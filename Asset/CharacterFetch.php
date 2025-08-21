@@ -1,0 +1,1 @@
+http://<?=domain?>/Asset/BodyColors.ashx?userId=3

@@ -1,0 +1,21 @@
+Options -Indexes
+DirectoryIndex Default.php
+ErrorDocument 404 /Error/DoesntExist.aspx
+
+RewriteEngine On
+
+RewriteRule ^(.*)\.aspx$ $1.php [L,QSA]
+RewriteRule ^(.*)\.asmx$ $1.php [L,QSA]
+RewriteRule ^(.*)\.ashx$ $1.php [L,QSA]
+#RewriteCond %{REQUEST_URI} ^/ScriptResource\.axd$
+#RewriteCond %{REQUEST_URI} ^/WebResource\.axd$
+RewriteRule ^(.*)\.axd$ $1.php [L,QSA]
+RewriteRule ^(.*)\.ashx$ $1.js [L,QSA]
+RewriteRule ^(.*)\.asmx$ $1.js [L,QSA]
+RewriteRule ^game/?$ /Game/ [R=301,L]
+
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type"
+</IfModule>

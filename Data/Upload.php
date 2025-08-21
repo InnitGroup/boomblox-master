@@ -1,0 +1,26 @@
+<?php
+#init
+require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
+global $user, $db;
+$data = gzdecode(file_get_contents("php://input"));
+$placeId = (int)$_GET["id"];
+if (!$user->ownsPlace($placeId)) {
+    Server::_404();
+}
+
+#write
+$file = fopen($_SERVER["DOCUMENT_ROOT"] . "/content/".$placeId, "w");
+fwrite($file, $data);
+fclose($file);
+
+$file = new File("/content/$placeId");
+$file->links();
+
+$stmt = "UPDATE items SET lastUpdate = :lastUpdate WHERE itemId=:itemId";
+$db->execute($stmt, [":lastUpdate" => date('Y-m-d H:i:s'), ":itemId" => $placeId]);
+
+#render
+$asset = new Asset($placeId);
+$asset->RequestThumbnail(420, 230, "PNG");
+$asset->RequestThumbnail(250, 250, "PNG");
+?>

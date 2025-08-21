@@ -1,0 +1,134 @@
+* {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 13px;
+}
+body {
+    margin: 0px;
+}
+a:link, a:visited {
+    color:blue;
+    text-decoration:none;
+  }
+.Button {
+cursor:pointer;
+background-color:#fff;
+border:solid 1px #333;
+color:#333;
+font-family:Verdana,Sans-Serif;
+font-size:.9em;
+padding:3px 10px 3px 10px;
+text-decoration:none;
+}
+.Button:link,
+.Button:visited {
+border:solid 1px #777;
+color:#777;
+}
+.Button:hover,
+.Button:active {
+background-color:#6e99c9;
+border:solid 1px #000;
+color:#fff;
+}
+#LeftContainer {
+    float:left;
+    background-color:#E8E8E8;
+    width:230px;
+    height:100%;
+    text-align:center;
+    padding:1em;
+    border-right:1px solid black;
+    position:fixed;
+}
+#LeftContainer #TextContent {
+    text-align:left;
+}
+#LogoSmall {
+    height:40px;
+    padding-bottom:20px;
+}
+#LeftListElement {
+    text-align:left;
+}
+#LeftListElementContent {
+    font-weight:bold;
+}
+.N {
+    display:none;
+}
+#MainPanel {
+    float:right;
+    background-color:#F7F8EE;
+    position:fixed;
+    top:20px;
+    /*height:700px;*/
+    width:1620px;
+    left:257px;
+    padding-top:30px;
+    padding-left:15px;
+    padding-bottom:30px;
+    border:1px solid black;
+    border-left:none;
+}
+#TableHeader {
+    background-color: #527DD3;
+}
+#AssetPanel {
+    background-color: #EAEAEA;
+}
+#AssetPanel #Details {
+    padding: 20px;
+}
+#AssetPanel #Details #Update {
+    display: block;
+    margin: auto;
+}
+#AssetTableContainer {
+    border: solid lightgray 6px;
+}
+#Asset {
+    padding:5px;
+    border: solid white 4px;
+    height:300px;
+    width:440px;
+}
+#Asset #AssetName {
+    display: block;
+    text-align:center;
+}
+#Asset #AssetImage {
+    display: block;
+    margin: auto;
+    height: 230px;
+    width: 420px;
+    box-shadow: 2px 2px 2px 2px gray;
+    filter: blur(24px);
+}
+#Asset #AssetOptions {
+    padding:15px;
+}
+.ShoutboxTable {
+    border-spacing:2px;
+}
+
+.ShoutboxTable tbody td {
+    border:solid 1px black;
+}
+
+.ShoutboxTable tbody th {
+    border:solid 1px black;
+}
+
+.TreeView table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.TreeView td a b {
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.TreeView td {
+    width: 17px;
+}

@@ -1,0 +1,79 @@
+<?php
+class Discord {
+    private static $secret = array(
+        "ZGx0NzR3dEoxXzg0V09Dcy1QaFJpdW1KY0hwN2ZhMjI==",
+    );
+    private static $clientId = array(
+        "MTM1NDkwNzg3ODcyNDczMDkxMA==",
+    );
+    private static $token = array(
+        "TVRNMU5Ea3dOemczT0RjeU5EY3pNRGt4TUEuR2lWQVloLjFPQ2lkaXR4anVQNjNpQjBaRUtTMGNEVzcwMG5wSWZxdVRRTjdn",
+    );
+    #https://stackoverflow.com/questions/54936975/setting-up-a-discord-oauth2-login-on-my-website-with-php
+    public static function sendOAuth() {
+        $params = [
+            'client_id' => base64_decode(string: self::$clientId[0]),
+            'redirect_uri' => fullDomain.'/My/Profile.aspx',
+            'response_type' => 'code',
+            'scope' => 'identify'
+        ];
+        header("Location: https://discordapp.com/api/oauth2/authorize?".http_build_query($params));
+    }
+    public static function getClient($code, $post, $headers = []) {
+        #url => https://discordapp.com/api/oauth2/token
+        $curl = curl_init("https://discordapp.com/api/oauth2/token");
+        curl_setopt($curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        $response = curl_exec($curl);
+
+        if ($post) {
+            curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($post));
+            $headers[] = 'Accept: application/json';
+            $headers[] = 'Authorization: Bearer '.$code;
+
+            curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+
+            $response = curl_exec($curl);
+            return json_decode($response);
+        }
+    }
+    public static function clientId($code) {
+        $response = self::getClient($code, array(
+            "grant_type" => "authorization_code",
+            "client_id" => base64_decode(self::$clientId[0]),
+            "client_secret" => base64_decode(self::$secret[0]),
+            "redirect_uri" => fullDomain.'/My/Profile.aspx',
+            "code" => $code
+        ));
+
+        $headers[] = 'Authorization: Bearer '.$response->access_token;
+        $curl = curl_init("https://discord.com/api/v10/users/@me");
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        $data = curl_exec($curl);
+        $data = json_decode($data, true);
+        return $data["id"];
+    }
+    public static function sendMessage($userId, $content) {
+        $headers = [
+            "Authorization: Bot ".base64_decode(self::$token[0]),
+            "Content-Type: application/json",
+        ];
+        $curl = curl_init("https://discord.com/api/v10/users/@me/channels");
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode(["recipient_id" => $userId]));
+        $response = json_decode(curl_exec($curl),true);
+        $channelId = $response["id"];
+
+        $curl = curl_init("https://discord.com/api/v10/channels/".$channelId."/messages");
+        curl_setopt($curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($content));
+        curl_exec($curl);
+    }
+}
+?>

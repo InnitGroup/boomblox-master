@@ -1,0 +1,321 @@
+
+.two_column .right,
+.two_column .left {
+  float: left; }
+
+.no_padding {
+  padding: 0px; }
+
+.see_all {
+  text-align: right; }
+
+.tab_bar {
+  padding: 3px 10px 0px;
+  border-bottom: solid 1px #3B5998; }
+
+  .tab_bar #tabs {
+    display: inline;
+    float: left;
+    border-bottom: none;
+    margin: 0px; }
+
+  .tab_bar .back_links {
+    padding: 4px 0px;
+    float: right; }
+
+.summary_bar {
+  color: #3B5998;
+  font-weight: bold;
+  line-height: 21px;
+  padding: 10px 10px 0px;
+  border-bottom: solid 1px #D8DFEA; }
+  
+  .summary_bar h4 { margin: 0px; float: left; }
+  .summary_bar .pager { float: right; }
+
+.footer_bar {
+  padding: 3px 10px; }
+  
+  .footer_bar .pager { float: right; }
+
+
+/*  -----------------------------|  PAGER PRO  |----------------------------  */
+
+.pagerpro {
+  float: right;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pagerpro li {
+  display: inline;
+  float: left;
+}
+
+.pagerpro a {
+  border-bottom: 2px solid white;
+  display: block;
+  padding: 3px;
+  padding-bottom: 2px;
+  text-transform: lowercase;
+}
+.pagerpro a:hover {
+  background: #3B5998;
+  border-color: #D8DFEA;
+  border-bottom: 1px solid #3B5998;
+  color: white;
+  text-decoration: none;
+}
+.pagerpro .current a,
+.pagerpro .current a:hover {
+  background: transparent;
+  border-color: #3B5998;
+  border-bottom: 2px solid #3B5998;
+  color: #3B5998;
+  font-weight: bold;
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+.footer_bar .pagerpro a {
+  border-top: 2px solid white;
+  padding-top: 1px;
+  padding-bottom: 0px;
+}
+.footer_bar .pagerpro a:hover {
+  border-bottom: 2px solid #3B5998;
+  border-top: 2px solid #3B5998;  
+}
+.footer_bar .pagerpro .current a,
+.footer_bar .pagerpro .current a:hover {
+  border-bottom-color: white;
+  border-top: 2px solid #3B5998;
+}
+
+/*  ------------------------|  TRANSITIONAL STYLES  |-----------------------  */
+
+.summary_bar {
+  border-bottom: 1px solid #D8DFEA;
+  clear: both;
+  padding: 11px 10px 0 10px;
+  color: black;
+  font-weight: normal;
+  line-height: normal;
+}
+
+.summary_bar .summary {
+  color: #3B5998;
+  float: left;
+  font-weight: bold;
+  padding-top: 3px;
+  padding-bottom: 4px;
+}
+
+.footer_bar {
+  border-top: 1px solid #D8DFEA;
+  padding: 0 10px;
+}
+
+.footer_bar .post_editor {
+  padding-bottom: 13px;
+  padding-top: 13px;
+}
+
+.thread .footer_bar .pagerpro a {
+  border-top: 2px solid #f7f7f7;
+}
+
+.thread .footer_bar .pagerpro a:hover,
+.thread .footer_bar .pagerpro .current a,
+.thread .footer_bar .pagerpro .current a:hover {
+  border-top: 2px solid #3B5998;
+}
+
+/*  ---------------------------|  ACTIONS PRO  |----------------------------  */
+
+.actionspro {
+  list-style: none;
+  margin: 0px;
+  padding: 0px; }
+
+.actionspro li { border-bottom: 1px solid #D8DFEA; }
+
+.actionspro a {
+  background: transparent;
+  display: block;
+  margin: 0px;
+  padding: 2px 3px;
+  text-decoration: none; }
+
+.actionspro a:hover {
+  background: #3b5998;
+  color: white;
+  text-decoration: none; }
+
+/*  ----------------------------|  MISCELLANY  |----------------------------  */
+
+.boxpro h2 {
+  background: #d8dfea;
+  border-top: 1px solid #3b5998;
+  color: #3b5998;
+  font-weight: bold;
+  padding: 2px 8px;
+}
+
+.boxpro .box_icon {
+  float: left;
+  padding: 10px;
+}
+
+.boxpro .box_message {
+  float: left;
+  padding: 10px;
+}
+
+.quail {
+  color: #3B5998;
+  float: left;
+  padding: 3px 0; }
+
+.quail a:hover { cursor: text; text-decoration: none }
+
+/*  ------------------------------------------------------------------------
+                          Facebook | Auxiliary Styles
+    ------------------------------------------------------------------------  */
+
+#pagefooter { border: 0px }
+
+
+/*  Migrating classes from <#pagebody> to <body>  --------------------------  */
+
+
+/* friends.css */
+
+.friends #content { padding: 0px }
+
+#pagebody.confirminvite #content { background: white }
+
+/* mailbox.css */
+
+.mailbox #content { padding-bottom: 0px }
+
+
+/* groups.css */
+
+.grouplist #content { padding: 0px }
+
+/* party.css */
+
+.partylist #content { padding: 0px }
+
+/* photos.css */
+
+.photos #content,
+.album #content,
+.photo #content,
+.editalbum #content {
+  position: relative;
+  margin: 0px;
+  padding: 0px; }
+
+.editalbum #content {
+  padding: 10px 0px 0px;
+  position: static; }
+
+.editphoto #content {
+  padding: 0px;
+  position: static; }
+
+.photo #content { position: static }
+
+.photo #subheader h2 a { font-weight: normal }
+
+/* places.css */
+
+.myplaces #content {
+  margin: 0px;
+  padding: 0px; }
+
+/* profile.css */
+
+.profile #content { padding: 10px 0px 10px 10px }
+
+.wall #content { padding: 10px 0px 0px 0px }
+
+h4 .edit {}
+
+/* search.css */
+
+.results #content { padding: 0px 0px 0px }
+
+.results .info { padding-right: 10px }
+
+/* wall.css */
+.wall #content {
+  margin: 0px;
+  padding: 0px; }
+
+
+/*  -------------------------|  EDIT EVENT INFO  |--------------------------  */
+
+.eventedit #frm { margin-top: 10px }
+
+.eventedit select#type {
+  margin-right: 5px;
+  width: 150px; }
+
+.eventedit select#sub_type {
+  margin-right: 5px;
+  width: 190px; }
+
+.eventoption { padding: 0 0 5px 0; }
+
+/*  ------------------------|  GROUP ADMIN PAGES  |-------------------------  */
+
+.newgroupadmin #content {
+  padding-left: 20px;
+  padding-right: 20px; }
+
+.newgroupadmin #tabs {
+  margin-left: 0;
+  margin-right: 0; }
+
+.newgroupadmin #error {
+  margin-left: 0;
+  margin-right: 0; }
+
+.pulseblurb td {
+  padding: 10px 5px;
+  text-align: left; }
+
+/*  --------------------------|  SQUARE BULLETS  |--------------------------  */
+
+ul.square_bullets {
+  list-style: square;
+  padding-left: 20px;
+  color: #3B5998; }
+
+ul.square_bullets li {
+  padding: 1px 0px; }
+
+ul.square_bullets li span {
+  color: black; }
+
+/*  ----------------------------|  MISCELLANY  |----------------------------  */
+
+/* safari won't do word break in a table without a nested div with a fixed 
+ * width. firefox does not understand break-word at all yet, though it is 
+ * standard css3. */
+.datawrap { word-wrap: break-word; }
+
+/* this makes opera respect wbr tags. */
+/* firefox and ie already do. */
+/* opera likes &shy;, but that causes other problems on other browsers. */
+/* safari is clueles about both. */
+wbr:after { content: "\00200B" }
+
+.jobs #faqindex li { list-style: square }
+
+
+/*  Here, take it. It's a goodbye gift. Go clean.  -------------------------  */

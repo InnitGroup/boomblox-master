@@ -1,0 +1,692 @@
+
+/*  ------------------------------------------------------------------------
+                                    Facebook
+    ------------------------------------------------------------------------
+
+    (We even start our pages with a <html> tag now)
+
+    Facebook Blue = #7448A5
+    Light Blue =    #D8DFEA
+*/
+
+body    {
+        background: #fff;
+        padding: 0;
+        margin: 0; }
+
+body, p {
+        font-size: 11px;
+        font-family: "lucida grande", tahoma, verdana, arial, sans-serif;
+        text-align: left; }
+
+a       {
+        color: #7448A5;
+        text-decoration: none; }
+
+img     {
+        border: 0px; }
+
+form    {
+        margin: 0px;
+        padding: 0px; }
+
+label   {
+        font-weight: bold;
+        color: gray; }
+
+td.label, td {
+        text-align: left; }
+
+/* Standard Page Styles */
+
+#book   {
+        padding: 8px 0px 0px;
+        margin: 0px auto;
+        width: 760px;
+        text-align: left; }
+
+#pageheader {
+        position: relative;
+        width: 760px;
+        height: 33px;
+        background-image: url(/images/pageheaderbg2.gif);
+        background-repeat: no-repeat; }
+
+#homelink {
+        position: absolute;
+        left: 132px;
+        width: 118px; 
+        height: 33px; }
+
+#gnav   {
+        text-align: right;
+        position: absolute;
+        line-height: 25px;
+        list-style: none;
+        top: 1px;
+        left: 250px;
+        width: 500px;
+        margin: 0px;
+        padding: 3px 0px; }
+        
+        #gnav li { display: inline; }
+        #gnav a { margin: auto 0px; padding: 2px 4px; color: #D8DFEA; }
+       #gnav a:hover { color: white; background-color: #7448A5; }
+
+#sidebar {
+        margin-top: 8px;
+        float: left;
+        width: 120px; }
+
+        #sidebar .adtable { /* For Backwards Compat with Ads */ border: solid 1px lightgrey; }
+
+#snav {
+        border-bottom: solid 1px white; /* firefox fix */
+        margin: 10px 0px;
+        padding: 0px; }
+        
+        #snav a {
+          border-bottom: solid 1px #D8DFEA;
+          padding: 2px 3px;
+          margin: 0px;
+          width: 114px;
+          display: block;
+          float: left; }
+        #snav a:hover { text-decoration: none; color: white; background: #7448A5; }
+        #snav a.hasedit { width: 68px; }
+        #snav a.edit {
+          width: 40px;
+          color: gray;
+          text-align: center; }
+        #snav a.edit:hover { color: white; }
+        
+#ssystemstatus {
+        width: 120px;
+        margin: 0px 0px 10px;
+        padding: 10px;
+        border: solid 1px #dd3c10;
+        background: #ffebe8; }
+
+#squicklogin {
+        width: 120px;
+        margin: 0px 0px 10px;
+        padding: 0px; }
+        
+        #squicklogin label {
+                display: block;
+                padding: 0px 0px 2px;
+                margin: 0px;
+                color: gray;
+                font-weight: bold; }
+		
+	#squicklogin table {
+	  display: inline-table;
+	  border-width: 0px;
+	  border-style: none;
+	  border-collapse: collapse;
+	  border-spacing: 0px;
+	  margin: 3px 0px 0px 0px;
+	}
+	#squicklogin td {
+	  text-align: center;
+	  border: none;
+	  border-width: none none none none;
+	  padding: 0px 0px 3px 0px;
+	}
+        #squicklogin .inputtext { width: 115px; }
+
+#qsearch { width: 120px; }
+#qsearch input { width: 115px; }
+
+#ssponsor { margin: 10px 0px; color: grey; }
+
+        #ssponsor a:hover { text-decoration: underline; }
+        #ssponsor table.adtable { color: black; }
+        #ssponsor table.adtable a:hover { text-decoration: underline; }
+
+#pagebody {
+        font-size: 11px;
+        margin-left: 12px;
+        float: left;
+        text-align: left;
+        width: 628px; 
+        }
+
+/* HACKED because IE SUCKS ASS */
+* html #pagebody {
+        f\loat: right;
+        margin: 0px;
+        c\lear: both;
+        text-align: left;
+        o\verflow: hidden; }
+
+        .pagebody a:hover { text-decoration: underline; }
+
+#content {
+        padding: 12px 0px;
+        border-bottom: solid 1px #7448A5;
+        border-left: solid 1px #D8DFEA;
+        border-right: solid 1px #D8DFEA; }
+      
+        #content:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+        /* #content li a:hover { text-decoration: none; } */
+      
+/* Hides from IE-Mac \*/
+* html #content { height: 1%; }
+/* End hide from IE-Mac */
+
+#error  {
+        margin: 0px 10px 10px;
+        padding: 10px;
+        border: solid 1px #dd3c10;
+        background: #ffebe8; }
+        
+        #error p {
+          margin: 4px 0px 0px; }
+        
+        #error a {
+          text-decoration: none;
+          color: #dd3c10; }
+
+.status {
+        margin: 0px 10px 10px;
+        padding: 10px;
+        border: solid 1px #ffe222;
+        background: #fffbe2; }
+        
+        .status p {
+           margin: 4px 0px 0px; }
+        
+        .status a {
+          text-decoration: none; }
+
+.note {
+        background: #fff;
+        padding: 10px;
+        margin: 0 10px 10px 10px;
+        border: 1px solid #bdc7d8;
+        color: #444; }
+               
+#header {
+        font-weight: bold;
+        line-height: 23px;
+        font-size: 14px;
+        padding: 0px 10px 0px;
+        margin: 0px;
+        background: #7448A5;
+        color: white;
+        border-bottom: solid 1pxrgb(94, 58, 136); }
+
+        /* #header.withsubheader { border-bottom: none; } */
+        #header.withsubtitle { text-align: right; }
+        #header.withsubtitle h1 { float: left; }
+
+#subheader {
+        text-align: left;
+        color: #7448A5;
+        font-weight: bold;
+        line-height: 21px;
+        font-size: 11px;
+        margin: 0px;
+        padding: 10px 10px 0px;
+        background: white;
+        border: solid 1px #D8DFEA;
+        border-top: none; }
+
+        #subheader.withsubtitle, #footer.withsubtitle { text-align: right; }
+        #subheader.withsubtitle h2, #footer.withsubtitle h2 { float: left; }
+        #subheader div { font-weight: normal; }
+        #subheader a { font-weight: normal; }
+
+#footer {
+        text-align: center;
+        color: #7448A5;
+        font-weight: bold;
+        line-height: 21px;
+        font-size: 11px;
+        margin: 0px;
+        padding: 0px 10px;
+        background: #D8DFEA;
+        border-bottom: solid 1px #7448A5; }
+
+h1      {
+        margin: 0px;
+        padding: 0px;
+        font-size: 14px; }
+
+        h1 a { color: white; text-decoration: none; }
+        h1 a:hover { color: white; text-decoration: underline; }
+        h1 em { font-style: normal; border-bottom: solid 1px #D8DFEA; }
+        h1 .subtitle { } /* Reserved */
+
+h2      {
+        font-size: 11px;
+        margin: 0px;
+        padding: 0px; }
+
+        h2 .subtitle { } /* Reserved */
+
+h3      {
+        color: #444;
+        font-size: 11px;
+        font-weight: normal;
+        margin: 0px;
+        padding: 0px; }
+
+h4      {
+        color: #7448A5;
+        font-size: 11px;
+        margin: 0px 0px 6px 8px; }
+
+        h4 .edit { display: inline; margin-left: 8px; }
+        h4 .edit a { color: lightgrey; }
+        h4 .edit a:hover { color: #7448A5; }
+
+h5      {
+       color: #7448A5;
+       font-size: 11px;
+       margin: 0px 0px 6px 8px; }
+
+       h5 .edit { display: inline; margin-left: 8px; }
+       h5 .edit a { color: lightgrey; }
+       h5 .edit a:hover { color: #7448A5; }
+
+
+#tabs {
+        text-align: center;
+        padding: 4px 0px;
+        margin: 10px 20px 10px;
+        border-bottom: solid 1px #7448A5; }
+
+#tabs div {
+        display: inline;
+        padding: 0px;
+        margin: 0px; }
+* html #tabs div { 
+        margin: 0 3px; }
+
+
+#tabs a {
+        margin: 0px;
+        padding: 4px; }
+
+#tabs .activetab a {
+        color: white;
+        background: #7448A5; }
+
+#tabs .activetab a:hover {
+        text-decoration: none; }
+
+#tabs .inactivetab a:hover {
+        background: #D8DFEA;
+        text-decoration: none; }
+
+#tabs .disabled {
+        color: #c0c0c0;
+        margin: 0px;
+        padding: 4px;
+        text-decoration: none; }
+
+#pagefooter {
+        clear: both;
+        font-size: 10px;
+        line-height: 15px;
+        padding: 10px 0px;
+        border-top: solid 1px #D8DFEA; }
+
+        #pagefooter a { padding: 3px 5px; }
+        #pagefooter a:hover { color: white; background: #7448A5; text-decoration: none; }
+        #pagefooter p { text-align: center; margin: 0; padding: 0; }
+
+.formtable {
+  margin: 0px auto; }
+
+.formtable {
+  margin: 0px; }
+
+.formtable td {
+  border: none;
+  margin: 0px;
+  padding: 3px 1px; }
+
+.formtable td.label {
+  padding-right: 10px;
+  font-weight: bold;
+  color: gray; }
+
+.formtable tr.tallrow {
+  vertical-align: top; }
+
+.formbuttons {
+  text-align: center;
+  margin: 10px 10px; }
+
+.formbuttons .inputsubmit, .formbuttons .inputbutton {
+  margin: 2px 4px; }
+
+.formbuttons .securetoggle {
+  padding: 9px 0px 0px 0px; }
+
+
+.infotable {
+  margin: 0px; }
+
+.infotable td {
+  vertical-align: top;
+  font-size: 11px;
+  margin: 0px;
+  padding: 0px;
+  padding-bottom: 2px; }
+
+.infotable td.label {
+  padding-right: 10px;
+  color: gray; }
+
+.pager {
+  padding-left: 4px;
+  text-align: right; }
+
+  .pager b {
+    padding: 2px;
+    font-style: normal;
+    font-weight: bold;
+    color: #7448A5;
+    border-bottom: solid 2px  }
+  .pager a {
+    font-weight: normal;
+    margin: 0px;
+    padding: 3px 3px; }
+  .pager a:hover {
+    color: white;
+    margin: 0px;
+    padding: 3px 3px;
+    background: #7448A5; }
+
+  #toppager a:hover, #bottompager a:hover {
+    text-decoration: none; }
+  
+  #toppager b {
+    border-bottom: solid 2px #7448A5; }
+
+  #bottompager b {
+    border-bottom: none;
+    border-top: solid 2px #7448A5; }
+  #bottompager.flip b {
+    border-top: none;
+    border-bottom: solid 2px #7448A5; }
+
+#suggest {
+  position: absolute;
+  background: #fff;
+  width: 150px; }
+
+  #suggest div {
+    background: #fff;
+    color: #000;
+    padding-left: 4px;
+    text-align: left; }
+
+  #suggest div.over {
+    color: #fff;
+    background: #000; }
+        
+/* Miscellaneous */
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.clear {
+  clear: both; }
+
+.bluebox {
+  margin-left: auto; margin-right: auto; width: 532px; padding: 5px 0; }
+
+/* Forms */
+
+.inputtext, .inputpassword {
+        border: 1px solid #bdc7d8;
+        padding: 3px;
+        font-size: 11px;
+        font-family: "lucida grande", tahoma, verdana, arial, sans-serif; }
+        
+input[type="text"],
+input[type="password"],
+input[type~="text"], 
+input[type~="password"] {
+        border: 1px solid #bdc7d8;
+        padding: 3px;
+        font-size: 11px;
+        font-family: "lucida grande", tahoma, verdana, arial, sans-serif; }
+        
+textarea {
+        border: 1px solid #bdc7d8;
+        padding: 3px;
+        font-size: 11px;
+        font-family: "lucida grande", tahoma, verdana, arial, sans-serif; }
+      
+input[type="submit"],
+input[type="button"],
+input[type~="submit"],
+input[type~="button"] {
+        border-style: solid;
+        border-top-width: 1px;
+        border-left-width: 1px;
+        border-bottom-width: 1px;
+        border-right-width: 1px;
+        border-top-color: #D9DFEA;
+        border-left-color: #D9DFEA;
+        border-bottom-color: #0e1f5b;
+        border-right-color: #0e1f5b;
+        background-color: #7448A5;
+        color: #FFFFFF;
+        font-size: 11px;
+        font-family: "lucida grande", tahoma, verdana, arial, sans-serif; }
+      
+* html .inputbutton, * html .inputsubmit {
+        border-style: solid;
+        border-top-width: 1px;
+        border-left-width: 1px;
+        border-bottom-width: 1px;
+        border-right-width: 1px;
+        border-top-color: #D9DFEA;
+        border-left-color: #D9DFEA;
+        border-bottom-color: #0e1f5b;
+        border-right-color: #0e1f5b;
+        background-color: #7448A5;
+        color: #FFFFFF;
+        font-size: 11px;
+        padding: 1px;
+        font-family: "lucida grande", tahoma, verdana, arial, sans-serif; }
+
+input[type~="radio"] { border: 0; }
+.inputcheckbox { border: 0; }
+.allfrom { border: 0; }
+#chk { border: 0; }
+
+select  {
+        border: 1px solid #bdc7d8;
+        padding: 2px;
+        font-size: 11px;
+        font-family: "lucida grande", tahoma, verdana, arial, sans-serif }
+        
+/* Eww.. blue boxes. */
+
+.blueheader h2 {
+  color: #7448A5;
+  font-size: 11px; }
+
+.blueheader {
+  margin: 0px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #7448A5;
+  background: #D8DFEA;
+  border-top: solid 1px #7448A5; } /* #8a9cc1; } */
+
+  .witheditlink { text-align: right; }
+  .witheditlink h2 { float: left; }
+
+.bluesubheader {
+  color: #7448A5;
+  font-weight: bold;
+  font-size: 12px;
+  margin: 0px;
+  padding: 2px 8px;
+  background: #eee;
+  border-top: solid 1px #ccc; }
+  
+.bluecontainer {
+  padding: 10px 8px; }
+
+
+/* Ads */
+#announce {
+  width: 120px;
+  font-size: 11px; }
+  
+  #announce div.advert {
+    margin: 0px auto;
+    display: block;
+    line-height: 14px;
+    background: #f9f9f9;
+    border: solid 1px #D8DFEA;
+    border-bottom: solid 1px #7448A5;
+    margin: 0px 0px 7px;
+    padding: 1px 0px 2px; }
+  #announce div.clickable {
+    cursor: pointer; } 
+  #announce p {
+    margin: 0px 0px 3px 5px;
+    overflow: hidden;
+    width: 110px;
+    color: #222222;
+    word-wrap: break-word; }
+  #announce a:hover {
+    text-decoration: underline; }
+  #announce h4 {
+    text-align: center;
+    font-size: 13px;
+    border-bottom: solid 1px #D8DFEA;
+    padding: 0px 0px 3px;
+    margin: 5px 5px 3px; }
+  #announce h3 {
+    text-align: center;
+    margin: 4px 5px 3px;
+    color: black;
+    font-weight: bold; }
+  .credit {
+    text-align: center; }
+  .create {
+    text-align: center;
+    background: #f7f7f7;
+    border: solid 1px #D8DFEA;
+    padding: 4px 0px; }
+  .seeall {
+    margin: 5px 0px;
+    text-align: right; }
+
+/* Miscellaneous */
+
+.pipe {
+  color: gray;
+  padding: 0 3px; }
+
+.clearfix:after {
+  content: "."; 
+  display: block; 
+  height: 0; 
+  clear: both; 
+  visibility: hidden;}
+
+/* .clearfix { display: inline-table; } */
+
+/* Hides from IE-mac \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* End hide from IE-mac */
+
+#homelink {
+  float: left;
+  height: 33px;
+  line-height: 33px;
+  width: 250px;
+  position: absolute; }
+
+#homelink a {
+  display: block;
+  height: 33px;
+  text-indent: -9999px; }
+
+#homelink a:hover {
+  text-decoration: none; }
+
+#nav {
+  list-style: none;
+  margin: 1.0em 0;
+  padding: 0; }
+
+#nav li {
+  border-bottom: 1px solid #d8dfea;
+  font-size: 1.0em; }
+
+#nav li#myprofile {
+  border-bottom: 0; }
+
+#nav li#myfriends {
+  clear: left; }
+
+#nav li a {
+  background: #eee;
+  background: white;
+  border-bottom: 1px solid green;
+  border: 0;
+  display: block;
+  padding: 2px 3px; }
+
+#nav li#myprofile a {
+  border-bottom: 1px solid #d8dfea;
+  padding: 0;
+  width: auto; }
+
+#nav li#myprofile a.hasedit {
+  float: left;
+  padding: 2px 0 2px 3px;
+  width: 69px; }
+
+#nav li#myprofile a.edit {
+  color: gray;
+  float: right;
+  padding: 2px 0;
+  text-align: center;
+  width: 48px; }
+
+#nav li a:hover,
+#nav li#myprofile a:hover {
+  background: #7448A5;
+  color: white; }
+
+#fnav {
+  font-size: 11px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center; }
+
+#fnav li {
+  display: inline; }
+
+#fnav li a {
+  padding: 2px 5px; }
+
+#fnav li a:hover {
+  color: white;
+  background: #7448A5; }
+
+.inputsearch {
+  background: white url(/images/magglass.png) 3px 4px no-repeat;
+  padding-left: 17px; }
+
+#quickquery.inputsearch { padding-left: 17px; width: 98px; }

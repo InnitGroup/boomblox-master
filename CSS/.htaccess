@@ -1,0 +1,3 @@
+RewriteEngine On
+
+RewriteRule ^(.*)\.ashx$ $1.css [L,QSA]

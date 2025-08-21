@@ -1,0 +1,239 @@
+.center {
+    text-align: center;
+}
+
+html,body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    display: table;
+}
+
+.container {
+    height: auto;
+}
+
+footer {
+    display: table-row;
+    height: 50px;
+    width: 100%;
+    background-color: #f9f9f9;
+    text-align: center;
+}
+
+footer p {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.d-block {
+    display: block;
+}
+
+.f-btn {
+    margin-right: 6px;
+}
+
+.no-tb-margin {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.four-tb-margin {
+    display: block;
+    margin-top: 4px;
+    margin-bottom: 4px;
+}
+
+.link-active {
+    font-weight: bold;
+}
+
+.clearfix {
+    clear: both;
+}
+
+#fillIP {
+    margin-left: 8px;
+}
+
+/*
+.same-row {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	flex-wrap: wrap;
+}
+.same-row > [class*='col-'] {
+	display: flex;
+	flex-direction: column;
+}
+*/
+
+body { 
+	/*background: url(/img/bg.png) no-repeat center center fixed;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-o-background-size: cover;
+	-moz-background-size: cover;*/
+	background: #fafafa;
+}
+
+hr {
+	border-top: 1px solid #ccc;
+}
+
+.row-eq-height {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+/* RForums */
+.highrow [class*="col-"]{
+	margin-bottom: -99999px;
+	padding-bottom: 99999px;
+}
+
+.highrow {
+	overflow: hidden;
+}
+.cat-lastpost p, .cat-name p, .nomar {
+	margin: 0 0 0 0;
+}
+
+@media (min-width: 1px) {
+	.b-right {
+		border-bottom: 1px solid #000;
+		border-right: 0;
+		margin-bottom: 10px;
+	}
+	.charthumb {
+		width: 85px;
+		height: 145px;
+	}
+}
+
+@media (min-width: 992px) {
+	.b-right {
+		border-bottom: 0;
+		border-right: 1px solid #000;
+		margin-bottom: 0px;
+	}
+	.charthumb {
+		width: 45%;
+		height: 44%;
+	}
+}
+
+.white-text, .white-text:hover, .white-text:active, .white-text:link, .white-text:focus, .white-text:visited {
+	color: white;
+}
+
+.actions-right {
+	float: right;
+}
+
+.fulltextarea {
+	width: 100%;
+}
+
+.cat-pr {
+	width: 10%;
+}
+
+.cat-lastpost {
+	width: 30%;
+}
+
+.cat-name {
+	width: 50%;
+}
+
+.cat-r {
+	width: 20%;
+}
+
+.well {
+	background-color: rgba(231, 231, 231, 0.22);
+	border: 0;
+	border-radius: 0;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+/* Lumen */
+/*
+.btn, .btn:hover, .btn:active, .btn-block {
+	border-width: 0 1px 1px 1px;
+	margin-top: 4px;
+	font-weight: normal;
+	text-transform: none;
+}
+
+.btn-block+.btn-block {
+	margin-top: 4px;
+}
+
+.navbar {
+	border-width: 0 1px 2px 1px;
+}
+
+.jumbotron {
+	-webkit-box-shadow: inset 0 1px 0 rgba(0,0,0,0.05);
+	box-shadow: inset 0 1px 0 rgba(0,0,0,0.05);
+}
+
+.nav-tabs>li>a:hover, .nav-tabs>li>a:focus, .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus, .nav-tabs .open>a, .nav-tabs .open>a:hover, .nav-tabs .open>a:focus {
+	padding-bottom: 12px;
+	margin-top: 4px;
+}
+
+.navbar-inverse .navbar-brand {
+	color: #777777;
+}
+*/
+
+/* *:before, *:after {content:"hue"} */
+
+/* LuaModelMaker's idea of CSS names: */
+
+.pad {
+	padding: 10px;
+}
+.marg {
+	margin: 10px;
+}
+.mov {
+	margin-left: 77px;
+}
+/* Button Sizes */
+@media (min-width : 992px) {
+	.full-height {
+		height: 100%;
+		padding: 15% 0;
+	}
+	.fnheight {
+		height: 49%;
+		padding: 5% 0;
+	}
+}
+
+/* Misc. Styling */
+.gameleft p {
+	margin: 2px 0 0 0;
+}
+
+.push-down {
+	padding-top: 6px;
+}

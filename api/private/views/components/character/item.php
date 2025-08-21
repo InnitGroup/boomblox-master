@@ -1,0 +1,12 @@
+<td class="Asset" id="<?=$item["itemId"]?>">
+    <a class="WearItem" title="click to wear" href="javascript:__doPostBack(\'Accoutrement\', \'<?=$this->requestData["type"]?>$<?=$item["itemId"]?>$Wear\')" onclick="wearItem(event)">[ wear ]</a>
+    <a href="/Item.aspx?ID=<?=$item["itemId"]?>">
+    <img class="AssetThumbnail" src="<?=$thumbnail->GetThumbnail(250,250,"PNG")?>">
+    </a>
+    <div class="AssetName">
+        <a href="/Item.aspx?ID=<?=$item["itemId"]?>"><?=htmlspecialchars($item["itemName"])?></a>
+    </div>
+    <div class="AssetDetails Label">
+        <span>Creator: <a href="/User.aspx?ID=<?=$item["creatorId"]?>"><?=$item["creatorName"]?></a></span>
+    </div>
+</td>
