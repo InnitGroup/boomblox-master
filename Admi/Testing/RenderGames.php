@@ -5,7 +5,7 @@ global $theme, $auth, $db;
 
 $page = new APageBuilder($theme);
 
-exit;
+#exit;
 $stmt = "SELECT * FROM items WHERE itemType='game' AND itemId = 307";
 $result = $db->execute($stmt);
 if ($result->rowCount() > 0) {
