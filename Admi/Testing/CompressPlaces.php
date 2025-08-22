@@ -5,6 +5,8 @@ global $theme, $auth, $db;
 
 $page = new APageBuilder($theme);
 
+exit;
+
 $stmt = "SELECT * FROM items WHERE itemType='game'";
 $result = $db->execute($stmt);
 $fetched = $result->fetchAll(PDO::FETCH_ASSOC);

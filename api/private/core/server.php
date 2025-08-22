@@ -20,7 +20,7 @@ class Server {
         }
     }
     public static function isLocal() {
-        return in_array($_SERVER["REMOTE_ADDR"], ["::1", "127.0.0.1", "104.219.236.150"]);
+        return in_array(self::getIP(), ["::1", "127.0.0.1", "104.219.236.150"]);
     }
     public static function isIE7() {
         $agent = $_SERVER['HTTP_USER_AGENT'];
@@ -49,13 +49,19 @@ class Server {
         PageBuilder::addComponent("404", "adminfind");
         exit;
     }
-    public static function ipLock() {
+    public static function getIP() {
         $ipVariable = $_SERVER['REMOTE_ADDR'];
         if ($ipVariable == "::1") {
             $ipVariable = $_SERVER['HTTP_X_FORWARDED_FOR'];
         }
+
+        return $ipVariable;
+    }
+
+    public static function ipLock() {
+        $ip = self::getIP();
         
-        if (!in_array($ipVariable ,self::$ipTable)) {
+        if (!in_array($ip ,self::$ipTable)) {
             self::_404();
         }
     }
