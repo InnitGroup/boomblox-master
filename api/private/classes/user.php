@@ -749,9 +749,27 @@ class User {
             return $this->lastOnline();
         }
     }
+
+    public function getPlayingServerId() {
+        global $db;
+        $stmt = "SELECT * FROM servers WHERE players > 0";
+        $result = $db->execute($stmt);
+        $result = $result->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($result as $server) {
+            $players = $server["playerTable"];
+            if ($players !== "0" && $players !== "a:0:{};") {
+                $players = unserialize($players);
+                if (in_array($this->data["user"]["id"], $players)) {
+                    return (int)$server["id"];
+                }
+            }
+        }
+    }
+
     public function isInGame() {
         return $this->isOnline() == true && $this->getStatus() != "Website";
     }
+
     public function getOnline() {
         if ($this->isOnline()) {
             return "Online";

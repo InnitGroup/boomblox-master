@@ -71,6 +71,18 @@ class Gameservers {
     public static function newServer($placeId) {
         return Server::callAPI(fullDomain."/api/public/StartServer.php?PlaceID=$placeId");
     }
+    public static function getPlayers($serverId) {
+        global $db;
+        $stmt = "SELECT playerTable FROM servers WHERE id=:serverId";
+        $result = $db->execute($stmt, [":serverId" => $serverId]);
+        if ($result->rowCount() == 0) {
+            return false;
+        }
+
+        $players = $result->fetch(PDO::FETCH_ASSOC)["playerTable"];
+        $players = unserialize($players);
+        return $players;
+    }
     public static function findBestServer($placeId) {
         global $db;
         $stmt = "SELECT playersMax from items WHERE itemId=:placeId";
