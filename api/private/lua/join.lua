@@ -142,7 +142,7 @@ local success, err = pcall(function()
 
     pcall(function() player.Name = [========[{Username}]========] end)
     player.CharacterAppearance = "{ClientTicket}"
-    if not test then visit:SetUploadUrl("")end
+    if not test then visit:SetUploadUrl("{UploadUrl}") end
 
     setMessage("Connecting to Server")
     client.ConnectionAccepted:connect(onConnectionAccepted)

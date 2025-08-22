@@ -51,6 +51,7 @@ if (!$server = Gameservers::getServerById($serverId)) {
 }
 
 $port = $server["port"];
+$uploadUrl = $user->ownsPlace($server["placeId"]) ? "http://".domain."/Data/Upload.ashx?id=" . $server["placeId"] : "";
 
 $file = new File("/api/private/lua/join.lua", 
 [
@@ -58,6 +59,7 @@ $file = new File("/api/private/lua/join.lua",
     "Username" => $user->getUsername(), 
     "Port" => $port,
     "ClientTicket" => $user->getTicket(),
+    "UploadUrl" => $uploadUrl,
     "Url" => url
 ]);
 
