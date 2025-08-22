@@ -9,9 +9,9 @@ if (!$user->ownsPlace($placeId)) {
 }
 
 #write
-$file = fopen($_SERVER["DOCUMENT_ROOT"] . "/content/".$placeId, "w");
-fwrite($file, $data);
-fclose($file);
+$filePath = $_SERVER["DOCUMENT_ROOT"] . "/content/" . $placeId;
+$compressedData = gzencode($data, 9);
+file_put_contents($filePath, $compressedData);
 
 $file = new File("/content/$placeId");
 $file->links();
@@ -22,5 +22,6 @@ $db->execute($stmt, [":lastUpdate" => date('Y-m-d H:i:s'), ":itemId" => $placeId
 #render
 $asset = new Asset($placeId);
 $asset->RequestThumbnail(420, 230, "PNG");
-$asset->RequestThumbnail(250, 250, "PNG");
+$render = $asset->RequestThumbnail(250, 250, "PNG");
+
 ?>

@@ -13,5 +13,5 @@ if (!Server::isLocal()) {
     }
 }
 
-include_once $_SERVER["DOCUMENT_ROOT"]."/content/".$placeId;
+echo gzdecode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/content/".$placeId));
 ?>

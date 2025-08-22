@@ -1,5 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
+global $user;
 
 if (!isset($_COOKIE["BROBLOSECURITY"])) {
 	Server::_404();
@@ -39,13 +40,15 @@ if (Server::isPost()) {
 			document.getElementById("Uploading").style.display = 'none';
 		}
 	</script>
+	<INPUT id="DialogResult" type="hidden">
+	<?php if (Setting::enabled("PlaceUploading") || !Setting::enabled("PlaceUploading") && $user->hasPerms(7)) { ?>
 	<TABLE height="100%" cellPadding="12" width="100%">
 		<TR vAlign="top">
 			<TD colSpan="2">
 				<P>You are about to leave your Place. Do you wish to save changes made to your Place before exiting?</P>
 				<DIV id="Uploading" style="display:none; FONT-WEIGHT: bold; COLOR: royalblue">Uploading. Please wait...</DIV>
 				<span id="CustomValidator2" style="color:Red;visibility:hidden;">Upload Failed!</span>
-				<INPUT id="DialogResult" type="hidden">
+				
 			</TD>
 		</TR>
 		<TR>
@@ -67,4 +70,9 @@ if (Server::isPost()) {
 			<td>Keep playing and exit later</td>
 		</tr>
 	</TABLE>
+	<?php } else { ?>
+		<h1 style="text-align:center">Feature disabled</h1>
+		<INPUT class="OKCancelButton" style="WIDTH: 100%" onclick="DialogResult.value='1'; window.close(); return false" type="button" value="Don't Save"><br><br>
+		<INPUT class="OKCancelButton" style="WIDTH: 100%" onclick="DialogResult.value='2'; window.close(); return false" type="button" value="Cancel">
+	<?php } ?>
 </form>

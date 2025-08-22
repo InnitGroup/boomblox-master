@@ -16,6 +16,7 @@
 			</div>
 			<input id="DialogResult" type="hidden" />
 			<table height="100%" cellpadding="12" width="100%">
+			
 				<tr valign="top">
 				<td colspan="2">
 				<p>You are about to publish this Place to ROBLOX.  Please choose how you would like to save your work:</p>
@@ -30,7 +31,6 @@
 				<td valign="top"><strong>Keep playing and exit later.</strong></td>
 				</tr>
 			</table>
-			
 		</form>
 	</body>
 </html>

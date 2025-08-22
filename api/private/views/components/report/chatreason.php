@@ -1,4 +1,4 @@
-<body style="background-color:#427FCC">
+<body bgcolor="buttonface" scroll="no">
     <script>
         function __doPostBack(eventTarget, eventArgument) {
             document.aspnetForm.__EVENTTARGET.value = eventTarget;
