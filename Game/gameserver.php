@@ -9,7 +9,7 @@ $place = $_GET["PlaceID"] ?? 1;
 if (!Server::isLocal()) {
     $file = new File("/api/private/lua/usergameserver.lua", [
         "Url" => url,
-        "Port" => 56430
+        "Port" => 53640
     ]);
     echo $file->handle();
     exit;

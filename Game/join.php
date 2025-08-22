@@ -12,7 +12,18 @@ if (!isset($_COOKIE["BROBLOSECURITY"])) {
 
 $userId = ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]);
 $user = new User($userId);
-$serverId = isset($_GET["ServerID"]) ? $_GET["ServerID"] : Server::_404();
+
+if (!isset($_GET["ServerID"])) {
+    $file = new File("/api/private/lua/userjoin.lua", [
+        "Port" => 53640,
+        "Url" => url
+    ]);
+
+    echo $file->handle();
+    exit;
+}
+
+$serverId = $_GET["ServerID"];
 
 if (Gameservers::isFull($serverId)) {
     $file = new File("/api/private/lua/joinfail.lua", [
@@ -53,8 +64,7 @@ if (!$server = Gameservers::getServerById($serverId)) {
 $port = $server["port"];
 $uploadUrl = $user->ownsPlace($server["placeId"]) ? "http://".domain."/Data/Upload.ashx?id=" . $server["placeId"] : "";
 
-$file = new File("/api/private/lua/join.lua", 
-[
+$file = new File("/api/private/lua/join.lua", [
     "UserID" => $userId, 
     "Username" => $user->getUsername(), 
     "Port" => $port,
