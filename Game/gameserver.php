@@ -13,18 +13,18 @@ if (!Server::isLocal()) {
     ]);
     echo $file->handle();
     exit;
+} else {
+    Server::ipLock();
+    if (Setting::disabled("Gameservers")) {
+        exit;
+    }
+
+    $file = new File("/api/private/lua/gameserver.lua", [
+        "Port" => $port, 
+        "PlaceID" => $place, 
+        "Url" => url
+    ]);
+    echo $file->handle();
 }
 
-Server::ipLock();
-
-if (Setting::disabled("Gameservers")) {
-    exit;
-}
-
-$file = new File("/api/private/lua/gameserver.lua", [
-    "Port" => $port, 
-    "PlaceID" => $place, 
-    "Url" => url
-]);
-echo $file->handle();
 ?>
