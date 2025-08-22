@@ -43,6 +43,9 @@ $asset = new Asset($place["itemId"]);
                 </div>
                 <div style="display:inline"> &nbsp;&nbsp;&nbsp; <button class="Button" onclick='Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/Edit.ashx?PlaceID=<?=$place["itemId"]?>&t=<?=time()?>", "NA", 3, <?=$place["itemId"]?>); return false;'>Edit</button>
                 </div>
+                <?php elseif ($place["onsale"] == 2): ?>
+                <div style="display:inline"> &nbsp;&nbsp;&nbsp; <button class="Button" onclick='Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/visit.ashx?PlaceID=<?=$place["itemId"]?>&t=<?=time()?>", "NA", 2, <?=$place["itemId"]?>); return false;'>Visit Solo</button>
+                </div>
                 <?php else: ?>
                 <div style="display:inline"> &nbsp;&nbsp;&nbsp; <button class="Button" disabled>Visit Solo</button></div>
                 <?php endif; ?>

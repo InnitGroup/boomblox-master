@@ -107,6 +107,9 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
 					<?php if (!$publicView): ?>
 					<div id="ctl00_cphRoblox_VisitButtons_VisitButton" style="display:inline"> &nbsp;&nbsp;&nbsp; <button id="ctl00_cphRoblox_VisitButtons_hlSoloVisit" class="Button" onclick='Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/visit.ashx?PlaceID=<?=$id?>&t=<?=time()?>", "NA", 2, <?=$id?>); return false;'>Visit Solo</button>
 					</div>
+					<?php elseif ($item["onsale"] == 2): ?>
+					<div id="ctl00_cphRoblox_VisitButtons_VisitButton" style="display:inline"> &nbsp;&nbsp;&nbsp; <button id="ctl00_cphRoblox_VisitButtons_hlSoloVisit" class="Button" onclick='Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/visit.ashx?PlaceID=<?=$id?>&t=<?=time()?>", "NA", 2, <?=$id?>); return false;'>Visit Solo</button>
+					</div>
 					<?php else: ?>
 					<div id="ctl00_cphRoblox_VisitButtons_VisitButton" style="display:inline"> &nbsp;&nbsp;&nbsp; <button id="ctl00_cphRoblox_VisitButtons_hlSoloVisit" class="Button" disabled>Visit Solo</button></div>
 					<?php endif; ?>

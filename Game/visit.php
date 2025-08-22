@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 header("Content-Type: text/plain");
-global $user;
+global $user, $db;
 
 if (!isset($_COOKIE["BROBLOSECURITY"])) {
     $file = new File("/api/private/lua/joinfail.lua", [
@@ -11,9 +11,22 @@ if (!isset($_COOKIE["BROBLOSECURITY"])) {
     exit;
 }
 
+$stmt = "SELECT onsale FROM items WHERE itemId=:placeId";
+$result = $db->execute($stmt, [":placeId" => $_GET["PlaceID"]]);
+if ($result->rowCount() == 0) {
+	$file = new File("/api/private/lua/joinfail.lua", [
+        "Error" => "join, place doesn't exist."
+    ]);
+    echo $file->handle();
+    exit;
+}
+
+$onsale = $result->fetch(PDO::FETCH_ASSOC)["onsale"];
+$copylocked = $onsale !== 2;
+
 if (isset($_GET["PlaceID"])) {
 	$placeId = $_GET["PlaceID"];
-	if (!$user->ownsPlace($placeId)) {
+	if (!$user->ownsPlace($placeId) && $copylocked) {
 		exit;
 	}
 
