@@ -390,7 +390,7 @@ class User {
         $placeId = $db->singleton()->lastInsertId();
         
         $data = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/content/templates/EmptyBaseplate");
-        file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/content/{$placeId}", $data);
+        file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/content/{$placeId}", gzencode($data));
     }
     public function addProfileView($userId) {
         global $db;

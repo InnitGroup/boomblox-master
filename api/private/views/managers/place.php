@@ -62,7 +62,7 @@ class PlaceManager {
                                 "ctl02" => "StartingBrickbattleMap"
                             ];
                             $chosenPlace = $places[$decrypted[3]];
-                            file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/content/" . $this->placeId, file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/content/templates/".$chosenPlace));
+                            file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/content/" . $this->placeId, gzencode(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/content/templates/".$chosenPlace)));
                             $asset = new Asset($this->placeId);
                             $asset->RequestThumbnail(420, 230, "PNG");
                             $asset->RequestThumbnail(250, 250, "PNG");
