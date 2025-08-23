@@ -1,9 +1,9 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 header("Content-Type: text/plain");
-global $user, $db;
+global $user, $auth, $db;
 
-if (!isset($_COOKIE["BROBLOSECURITY"])) {
+if (!$auth->isAuthed()) {
     $file = new File("/api/private/lua/joinfail.lua", [
         "Error" => "authenticate, try logging in through the client."
     ]);

@@ -3,6 +3,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 global $user, $db;
 $data = gzdecode(file_get_contents("php://input"));
+// test
 $placeId = (int)$_GET["id"];
 if (!$user->ownsPlace($placeId)) {
     Server::_404();

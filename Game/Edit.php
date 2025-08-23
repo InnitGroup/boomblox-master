@@ -1,10 +1,9 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 header("Content-Type: text/plain");
+global $user, $auth;
 
-global $user;
-
-if (!isset($_COOKIE["BROBLOSECURITY"])) {
+if (!$auth->isAuthed()) {
 	Server::_404();
 }
 

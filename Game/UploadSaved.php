@@ -1,5 +1,7 @@
 <?php
-if (!isset($_COOKIE["BROBLOSECURITY"])) {
+require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
+global $auth;
+if (!$auth->isAuthed()) {
 	Server::_404();
 }
 ?>

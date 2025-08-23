@@ -39,7 +39,9 @@ class Server {
         $ext = "";
         $aspxEnabled == true && $ext .= "aspx"; 
         $aspxEnabled == false && $ext .= "php";
+        header("HTTP/1.1 404 Not Found");
         header("Location: /Error/Default.".$ext);
+        exit;
     }
     public static function _s404() {
         PageBuilder::addComponent("404", "regular");
