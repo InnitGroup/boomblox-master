@@ -50,7 +50,7 @@ $page->buildHeader();
                 </div>
                 <div id="Games">
                     <span class="GamesDisplaySet"><?=$games->loadTitleSort($m,$t)?></span>
-                    <?=$paginator->load();?>
+                    <?=$paginator->load()?>
                     <table cellspacing="0" align="Center" border="0" width="550">
                         <tbody>
                             <?=$games->loadGames($games->getGames($m),$p);?>
