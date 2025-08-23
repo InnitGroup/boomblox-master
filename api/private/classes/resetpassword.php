@@ -17,12 +17,6 @@ class ResetPassword {
         $this->handle($post);
     }
     public function handle($post) {
-        /*if ($this->isTicketed) {
-            $userId = $this->ticket->getUser();
-            if (ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]) !== $userId) {
-                Server::_404();
-            }
-        }*/
         if (Server::isPost()) {
             if (!empty($post)) {
                 if (empty($post['ctl00$cphRoblox$UserName']) && !$this->isTicketed) {

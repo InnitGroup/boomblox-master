@@ -4,9 +4,15 @@ header("Content-type: text/plain");
 global $auth;
 
 if (!$auth->isAuthed()) {
-    $file = new File("/api/private/lua/joinfail.lua", [
+    /*$file = new File("/api/private/lua/joinfail.lua", [
         "Error" => "authenticate, try logging in through the client."
     ]);
+    echo $file->handle();*/
+    $file = new File("/api/private/lua/userjoin.lua", [
+        "Port" => 53640,
+        "Url" => url
+    ]);
+
     echo $file->handle();
     exit;
 }

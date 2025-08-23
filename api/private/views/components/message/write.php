@@ -1,7 +1,7 @@
 <?php
-global $db;
+global $db, $user;
 
-$userId = ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]);
+$userId = $user->getUserId();
 $recipientId = (int)$_GET["RecipientID"];
 
 $user = new User($userId);
