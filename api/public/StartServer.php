@@ -1,12 +1,16 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
-global $db;
+global $db, $auth;
 
 if (Setting::disabled("Gameservers")) {
     exit;
 }
 
-$placeId = (int)$_GET["PlaceID"];
+if (!$auth->isAuthed()) {
+    Server::_404();
+}
+
+$placeId = $_GET["PlaceID"] ?? Server::_404();
 $port = rand(1000,2000);
 $playerTable = 'a:0:{}';
 

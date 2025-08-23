@@ -9,21 +9,21 @@ class Economy {
     }
     public static function issueDaily($user) {
         if ($user->timeSinceDaily() > 1) {
-            global $db;
+            global $db, $user;
             $stmt = "INSERT INTO economy (`user`, `amount`, `currency`, `method`) VALUES (:userId, 10, 1, 'daily')";
-            $db->execute($stmt, [":userId" => ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"])]);
+            $db->execute($stmt, [":userId" => $user->getUserId()]);
             $stmt = "UPDATE users SET `tix`=`tix`+10 WHERE id=:userId";
-            $db->execute($stmt, [":userId" => ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"])]);
+            $db->execute($stmt, [":userId" => $user->getUserId()]);
             if ($user->hasBC()) {
                 $stmt = "INSERT INTO economy (`user`, `amount`, `currency`, `method`) VALUES (:userId, 15, 2, 'daily')";
-                $db->execute($stmt, [":userId" => ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"])]);
+                $db->execute($stmt, [":userId" => $user->getUserId()]);
                 $stmt = "UPDATE users SET `boombux`=`boombux`+15 WHERE id=:userId";
-                $db->execute($stmt, [":userId" => ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"])]);
+                $db->execute($stmt, [":userId" => $user->getUserId()]);
             }
         }
     }
     public static function getDailies($timespan) {
-        global $db;
+        global $db, $user;
         $timespanLimit = [
             "d" => "LIMIT 1",
             "w" => "LIMIT 7",
@@ -31,7 +31,7 @@ class Economy {
             "a" => ""
         ];
         $stmt = "SELECT * FROM economy WHERE user=:userId AND method='daily' ORDER BY occured DESC ".$timespanLimit[$timespan];
-        $result = $db->execute($stmt, [":userId" => ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"])]); #":timespan" => $timespanLimit[$timespan]]);
+        $result = $db->execute($stmt, [":userId" => $user->getUserId()]); #":timespan" => $timespanLimit[$timespan]]);
         $result = $result->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
@@ -64,9 +64,9 @@ class Economy {
             "m" => "LIMIT 30",
             "a" => ""
         ];
-        global $db;
+        global $db, $User;
         $stmt = "SELECT * FROM economy WHERE user=:userId and method='visit' ORDER BY occured DESC ".$timespanLimit[$timespan];
-        $result = $db->execute($stmt, [":userId" => ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"])]);
+        $result = $db->execute($stmt, [":userId" => $user->getUserId()]);
         $result = $result->fetchAll(PDO::FETCH_ASSOC);
         $income = array("tix" => 0, "bux" => 0);
         foreach ($result as $visit) {
@@ -88,9 +88,9 @@ class Economy {
             "m" => "LIMIT 30",
             "a" => ""
         ];
-        global $db;
+        global $db, $user;
         $stmt = "SELECT * FROM economy WHERE user=:userId and method='sale' ORDER BY occured DESC ".$timespanLimit[$timespan];
-        $result = $db->execute($stmt, [":userId" => ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"])]);
+        $result = $db->execute($stmt, [":userId" => $user->getUserId()]);
         $result = $result->fetchAll(PDO::FETCH_ASSOC);
         $income = array("tix" => 0, "bux" => 0);
         foreach ($result as $sale) {
