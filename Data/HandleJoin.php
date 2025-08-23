@@ -4,7 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 global $db, $auth;
 !$auth->isAuthed() && header("Location: /Welcome.php");
 
-if (!auth->isAuthed()) {
+if (!$auth->isAuthed()) {
     exit;
 }
 

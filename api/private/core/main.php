@@ -45,5 +45,4 @@ $theme = $themeManager->getTheme();
 $auth = $themeManager->getAuth();
 $user = $themeManager->getUser();
 
-
 ?>
