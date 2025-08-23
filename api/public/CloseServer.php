@@ -1,8 +1,8 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 global $db;
-$port = $_GET["Port"];
-$key = $_GET["Key"];
+$port = $_GET["Port"] ?? Server::_404();
+$key = $_GET["Key"] ?? Server::_404();
 
 if (Setting::disabled("Gameservers")) {
     exit;
