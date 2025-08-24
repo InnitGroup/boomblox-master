@@ -5,7 +5,7 @@ $blurb = !empty($blurb) ? $blurb : "";
 
 if ($publicView): ?>
     <?php if ($viewerId !== $userId): ?>
-        <?php if ($user->friendsWith($userId)): ?>
+        <?php if (!$user->friendsWith($userId)): ?>
     <p>
         <a href="/My/FriendInvitation.aspx?RecipientID=<?=$userId?>">Send Friend Request</a>
     </p>

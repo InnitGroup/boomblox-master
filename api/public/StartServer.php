@@ -6,9 +6,7 @@ if (Setting::disabled("Gameservers")) {
     exit;
 }
 
-if (!$auth->isAuthed()) {
-    Server::_404();
-}
+
 
 $placeId = $_GET["PlaceID"] ?? Server::_404();
 $port = rand(1000,2000);

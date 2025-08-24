@@ -175,6 +175,31 @@ class Admin {
     public static function getUsersToReview($count = false) {
         return 0;
     }
+    public static function backupDatabase() {
+        $host = "localhost";
+        $user = "root";
+        $password = Database::getPassword();
+        $dbname = Database::getName();
+
+        $backupPath = "C:/xampp/htdocs/api/private/sql/";
+        $date = date("m-d-y-h-i-s");
+        $filename = $backupPath . "dump-" . $date . ".sql";
+
+        $mysqldump = "C:/xampp/mysql/bin/mysqldump.exe";
+
+        $command = "\"$mysqldump\" --host=$host --user=$user --password=$password $dbname";
+
+        $output = [];
+        $result = null;
+        exec($command, $output, $result);
+
+        if ($result === 0 && !empty($output)) {
+            file_put_contents($filename, implode("\n", $output));
+           # return "Backup successful: $filename";
+        } else {
+           # return "Backup failed (exit code $result): \n" . implode("\n", $output);
+        }
+    }
     public static function getReportsToReview($count = false) {
         global $db;
         if ($count) {

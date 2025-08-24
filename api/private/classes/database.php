@@ -27,6 +27,14 @@ class Database {
         }
     }
 
+    public static function getName() {
+        return "boomdb";
+    }
+
+    public static function getPassword() {
+        return base64_decode('JFctbSViU0E5Z2c5');
+    }
+
     public function usernameTaken($username) {
         $sql = "SELECT * FROM users WHERE username = :username";
         $result = $this->execute($sql,[":username" => htmlspecialchars($username)]);

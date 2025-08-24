@@ -4,10 +4,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 global $db, $auth;
 !$auth->isAuthed() && header("Location: /Welcome.php");
 
-if (!$auth->isAuthed()) {
-    exit;
-}
-
 $userId = ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]);
 $placeId = $_GET["PlaceID"];
 $typeId = $_GET["TypeID"]; # 1 visit online | 2 visit solo | 3 edit
