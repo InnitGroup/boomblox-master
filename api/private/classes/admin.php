@@ -197,8 +197,15 @@ class Admin {
             file_put_contents($filename, implode("\n", $output));
            # return "Backup successful: $filename";
         } else {
-           # return "Backup failed (exit code $result): \n" . implode("\n", $output);
+            file_put_contents($filename, "Failed to backup");
         }
+
+        $gitCmd = "sh -c '"
+                . "cd C:/xampp/htdocs"
+                . "git add $filename"
+                . "git commit -m " . escapeshellarg("Database backup") . "&&"
+                . "git push origin master"
+                . "' 2>&1";
     }
     public static function getReportsToReview($count = false) {
         global $db;
