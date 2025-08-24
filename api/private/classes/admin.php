@@ -176,6 +176,9 @@ class Admin {
         return 0;
     }
     public static function backupDatabase() {
+       # $userId = ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]);
+       # $user = new User($userId);
+
         $host = "localhost";
         $user = "root";
         $password = Database::getPassword();
@@ -200,8 +203,10 @@ class Admin {
             file_put_contents($filename, "Failed to backup");
         }
 
+        global $user;
+        $username = $user->getUsername();
         exec("git add $filename");
-        exec('git commit -m "DB backup"');
+        exec('git commit -m "Common database backup: '.$username.'"');
         $gitOutput; $gitResult;
         exec("git push origin master --force 2>&1", $gitOutput, $gitResult);
 
