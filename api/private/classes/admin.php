@@ -200,12 +200,13 @@ class Admin {
             file_put_contents($filename, "Failed to backup");
         }
 
-        $gitCmd = "sh -c '"
-                . "cd C:/xampp/htdocs"
-                . "git add $filename"
-                . "git commit -m " . escapeshellarg("Database backup") . "&&"
-                . "git push origin master"
-                . "' 2>&1";
+        exec("git add $filename");
+        exec('git commit -m "DB backup"');
+        $gitOutput; $gitResult;
+        exec("git push origin master --force 2>&1", $gitOutput, $gitResult);
+
+        echo "Git Output:\n" . implode("\n", $gitOutput) . "\n";
+
     }
     public static function getReportsToReview($count = false) {
         global $db;
