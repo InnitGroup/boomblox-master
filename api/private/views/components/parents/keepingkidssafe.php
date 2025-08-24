@@ -9,7 +9,7 @@ global $theme;
 			<a id="ctl00_cphRoblox_BreadcrumbsHyperLink" href="/Parents.aspx"><?=Site::getThemeProperty("alias", $theme)?> Parents</a> &gt; Keeping Kids Safe
 		</div>
 		<a id="ctl00_cphRoblox_PageImage" class="PageImage" onclick="javascript:__doPostBack('ctl00$cphRoblox$PageImage','')" style="display:inline-block;cursor:pointer;">
-			<img src="/images/Parents/KeepingKidsSafe-110x112.png" border="0" blankurl="http://t7.roblox.com:80/blank-391x398.gif">
+			<img src="/images/Parents/<?=$theme == 0 || $theme > 2 ? "Boomblox" : ""?>KeepingKidsSafe-110x112.png" border="0" blankurl="http://t7.roblox.com:80/blank-391x398.gif">
 		</a>
 		<h2>Keeping Kids Safe</h2>
 		<div class="Navigation">

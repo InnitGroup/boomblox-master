@@ -8,7 +8,7 @@ global $theme;
 			<h2><?=Site::getThemeProperty("alias", $theme)?> Parents</h2>
 			<div class="ParentsSection" id="ROBLOXGuide">
 				<a id="ctl00_cphRoblox_RobloxGuideImageHyperLink" class="SectionIcon" text="<?=Site::getThemeProperty("alias", $theme)?> Guide" href="/Parents/RobloxGuide.aspx" style="display:inline-block;cursor:pointer;">
-					<img src="/images/Parents/RobloxGuide-110x115.png" border="0" blankurl="http://t3.roblox.com:80/blank-110x115.gif">
+					<img src="/images/Parents/<?=Site::getThemeProperty("name", $theme)?>Guide-110x115.png" border="0" blankurl="http://t3.roblox.com:80/blank-110x115.gif">
 				</a>
 				<h3>
 					<a id="ctl00_cphRoblox_RobloxGuideHyperLink" href="Parents/RobloxGuide.aspx"><?=Site::getThemeProperty("alias", $theme)?> Guide</a>
@@ -17,7 +17,7 @@ global $theme;
 			</div>
 			<div class="ParentsSection" id="KeepingKidsSafe">
 				<a id="ctl00_cphRoblox_KeepingKidsSafeImageHyperLink" class="SectionIcon" text="Keeping Kids Safe" href="/Parents/KeepingKidsSafe.aspx" style="display:inline-block;cursor:pointer;">
-					<img src="/images/Parents/KeepingKidsSafe-110x112.png" border="0" blankurl="http://t4.roblox.com:80/blank-110x112.gif">
+					<img src="/images/Parents/<?=$theme == 0 || $theme > 2 ? "Boomblox" : ""?>KeepingKidsSafe-110x112.png" border="0" blankurl="http://t4.roblox.com:80/blank-110x112.gif">
 				</a>
 				<h3>
 					<a id="ctl00_cphRoblox_KeepingKidsSafeHyperLink" href="Parents/KeepingKidsSafe.aspx">Keeping Kids Safe</a>
