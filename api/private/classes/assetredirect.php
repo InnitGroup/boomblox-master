@@ -50,15 +50,20 @@ class AssetRedirect {
                 if (!$item["itemType"] == "game") {
                     Server::ipLock();
                 }
-                echo file_get_contents($location);
-            } else {
-                $asset = $this->curl($assetId);
-                echo $asset;
+
+                exit(file_get_contents($location));
             }
-        } else {
-            $asset = $this->curl($assetId);
-            echo $asset;
         }
+
+        $asset = $this->curl($assetId);
+        if (str_starts_with($asset, '{"errors"')) {
+            header('Content-Type: application/json; charset=utf-8');
+            echo $asset;
+            exit;
+        }
+
+        echo $asset;
+        exit;
     }
 }
 ?>

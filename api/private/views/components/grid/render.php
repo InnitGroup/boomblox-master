@@ -22,10 +22,10 @@
                     $thumb = $avatar->RequestThumbnail(100,100,"JPG",true,true);
                     break;
                 case "Asset":
-                    if ($id == 8) {
-                        $error = "This asset is blacklisted, and may crash the grid when rendered";
-                        break;
-                    }
+                    #if ($id == 8) {
+                    #    $error = "This asset is blacklisted, and may crash the grid when rendered";
+                    #    break;
+                    #}
 
                     if (file_exists($_SERVER["DOCUMENT_ROOT"]."/content/$id")) {
                         $asset = new Asset($id);

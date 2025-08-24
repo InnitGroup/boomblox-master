@@ -203,10 +203,8 @@ class Admin {
             file_put_contents($filename, "Failed to backup");
         }
 
-        global $user;
-        $username = $user->getUsername();
         exec("git add $filename");
-        exec('git commit -m "Common database backup: '.$username.'"');
+        exec('git commit -m "Common database backup');
         $gitOutput; $gitResult;
         exec("git push origin master --force 2>&1", $gitOutput, $gitResult);
 
