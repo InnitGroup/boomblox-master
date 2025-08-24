@@ -21,7 +21,7 @@ class Economy {
                 $stmt = "UPDATE users SET `boombux`=`boombux`+15 WHERE id=:userId";
                 $db->execute($stmt, [":userId" => $userId]);
             }
-
+            // test
             if ($user->hasPerms(5)) {
                 Admin::backupDatabase();
             }
