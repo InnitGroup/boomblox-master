@@ -1,3 +1,10 @@
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
+if (!$auth->isAuthed()) {
+	Server::_404();
+}
+?>
+
 <html>
     <head>
         <title>ROBLOX Help</title>

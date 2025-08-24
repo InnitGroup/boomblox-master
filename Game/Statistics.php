@@ -11,6 +11,8 @@ $associate = $_GET["AssociatedUserID"] ?? NULL;
 $place = $_GET["AssociatedPlaceID"] ?? NULL;
 $serverPort = $_GET["serverPort"] ?? NULL;
 
+Server::ipLock();
+
 switch ($type) {
     case 1:
         #player join
