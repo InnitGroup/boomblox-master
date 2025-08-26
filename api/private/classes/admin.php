@@ -208,7 +208,7 @@ class Admin {
         $gitOutput; $gitResult;
         exec("git push origin master --force 2>&1", $gitOutput, $gitResult);
 
-        echo "Git Output:\n" . implode("\n", $gitOutput) . "\n";
+        #echo "Git Output:\n" . implode("\n", $gitOutput) . "\n";
 
     }
     public static function getReportsToReview($count = false) {
