@@ -60,10 +60,14 @@ if (Setting::disabled("Gameservers")) {
 }
 
 if (!$server = Gameservers::getServerById($serverId)) {
+    global $user;
+    
     $file = new File("/api/private/lua/joinfail.lua", [
         "Error" => "join, this game is no longer running.",
         "UserID" => $userId
     ]);
+    Client::setJoin($user->getUserId(), 0);
+    
     echo $file->handle();
     exit;
 }
