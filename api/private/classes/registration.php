@@ -52,6 +52,20 @@ class Registration {
         $db->createUser($_POST["Username"],$_POST["Password"],$_POST["Key"]);
         $id = $db->getIdByUser($_POST["Username"]);
         ROBLOSECURITY::new($id);
+
+        $newUser = new User($id);
+        $message = [
+            "senderId" => 1,
+            "senderUn" => "Boomblox",
+            "subject" => "Welcome to Boomblox",
+            "content" => "Hello, new Boombloxian!!
+
+Welcome to Boomblox! We are constantly working to make Boomblox a fun, safe, and creative place for everyone. We update Boomblox frequently, so be sure to visit our NEWS section to learn about new exciting updates. If you have questions about how something works, our HELP section is a great place to start. Finally, the FORUM is a where you can find other people and make friends. Be sure to read the Community Guidelines as well, so you know how best to get along with people on Boomblox! http://wiki.roblox.com/index.php?title=Community_Guidelines
+
+Have a great time here!";
+        ];
+        $newUser->sendMessage($message);
+
         return true;
     }
     public function error($json, $focus) {
