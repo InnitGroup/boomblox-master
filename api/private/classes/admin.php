@@ -32,6 +32,11 @@ class Admin {
             "Level" => 1,
         ],
         [
+            "Title" => "Award Product",
+            "Link" => "/Admi/Economy/AwardProduct.aspx",
+            "Level" => 2,
+        ],
+        [
             "Title" => "New Product",
             "Link" => "/Admi/Economy/NewProduct.aspx",
             "Level" => 2,
