@@ -1,7 +1,7 @@
 <div id="MainPanel">
     <div>
-        <h1>Award Product</h1>
-        <p>Staff have the ability to award products and provide reasoning.</p>
+        <h1>Revoke Product</h1>
+        <p>Staff have the ability to revoke products and provide reasoning.</p>
         <br>
         <label>User ID:</label>
         <input type="text" name="ctl00$robloxCph$userId" required>
@@ -40,14 +40,14 @@
                 $result = $db->execute($stmt, [":itemId" => $itemId]);
                 if ($result->rowCount() > 0) {
                     $recipient = new User($userId);
-                    $recipient->giveItem($itemId);
-                    echo '<b>Successfully awarded product!</b>';
+                    $recipient->removeItem($itemId);
+                    echo '<b>Successfully revoked product</b>';
                     $stmt = "INSERT INTO awards (giver, recipient, content, reason, awardedAt) VALUES (:giver, :recipient, :content, :reason, :awardedAt)";
                     $db->execute($stmt, [
                         ":giver" => $user->getUserId(),
                         ":recipient" => $userId,
                         ":content" => $itemId,
-                        ":reason" => "Awarded: ".$reason,
+                        ":reason" => "Revoked: ".$reason,
                         ":awardedAt" => date("Y-m-d H:i:s")
                     ]);
                 }

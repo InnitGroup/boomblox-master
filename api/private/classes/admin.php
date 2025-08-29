@@ -37,6 +37,11 @@ class Admin {
             "Level" => 2,
         ],
         [
+            "Title" => "Revoke Product",
+            "Link" => "/Admi/Economy/RevokeProduct.aspx",
+            "Level" => 2,
+        ],
+        [
             "Title" => "New Product",
             "Link" => "/Admi/Economy/NewProduct.aspx",
             "Level" => 2,
