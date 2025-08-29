@@ -11,7 +11,9 @@ $associate = $_GET["AssociatedUserID"] ?? NULL;
 $place = $_GET["AssociatedPlaceID"] ?? NULL;
 $serverPort = $_GET["serverPort"] ?? NULL;
 
-Server::ipLock();
+if ((int)$type !== 3) {
+    Server::ipLock();
+}
 
 switch ($type) {
     case 1:
