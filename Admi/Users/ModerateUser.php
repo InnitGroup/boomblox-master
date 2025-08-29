@@ -4,7 +4,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
 global $theme, $auth, $user;
-!$auth->isAuthed() && header("Location: /Welcome.php");
+!$auth->isAuthed() && Server::_404();
 !$auth->hasPerms(3) && Server::_404();
 !isset($_GET["UserID"]) && Server::_404();
 !$db->userExists($_GET["UserID"]) && Server::_404();

@@ -86,7 +86,7 @@ $toolbox = new ToolboxManager;
 							<?php
 							$search = $_POST["tbSearch"] ?? "";
 							?>
-							<input name="tbSearch" type="text" id="tbSearch" class="Search" value="<?=$search?>">
+							<input name="tbSearch" type="text" id="tbSearch" class="Search" value="<?=htmlspecialchars($search)?>">
 							<a id="lbSearch" class="ButtonText" href="javascript:__doPostBack('lbSearch','')">
 								<div id="Button">Search</div>
 							</a>
