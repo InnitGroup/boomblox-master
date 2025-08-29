@@ -504,6 +504,10 @@ class User {
 
         return $this->data["membership"]["bc"] == 1;
     }
+    public function bcExpires() {
+        $expires = new DateTime($this->data["membership"]["bcExpires"]);
+        return $expires->format("n/j/Y");
+    }
     public function isInviter() {
         return false; // temp
     }
