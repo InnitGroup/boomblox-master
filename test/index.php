@@ -24,7 +24,7 @@
         <div style="margin: 8px; padding: 12px; background-color: #FFFFCC; border-color: #0066FF;
             border-width: 12px; border-style: Ridge; font-family: Verdana;">
             <h3>
-                You have found the Roblox Testing site!&nbsp;&nbsp; =&gt;<a id="ctl00_HyperLink4" href="#"><b>More Info</b></a>&nbsp;&nbsp;=&gt;<a id="ctl00_HyperLink5" href="#"><b>Forum</b></a></h3>
+                You have found the Roblox Testing site!&nbsp;&nbsp; =&gt;<a id="ctl00_HyperLink4" href="Hub/"><b>More Info</b></a>&nbsp;&nbsp;=&gt;<a id="ctl00_HyperLink5" href="#"><b>Forum</b></a></h3>
             <p>
                 Help us test things by playing like you normally do, but remember it’s not for real.
                 Everything here will be <i>deleted on a random basis and without warning</i>. To
