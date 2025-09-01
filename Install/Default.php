@@ -2,10 +2,20 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
 global $theme, $auth, $user;
-!$auth->isAuthed() && header("Location: /Welcome.php");
+!$auth->isAuthed() && Server::_404();
 
 $page = new PageBuilder(Site::getThemeProperty("alias", $theme) . " | Install", $theme, "/templates/authheader.php");
 $page->buildHeader();
+
+if (Server::isPost()) {
+    if (isset($_POST['ctl00$cphRoblox$ButtonDownload'])) {
+        echo "
+        <script>
+        window.open('/Install/ActiveDownload.aspx', '_blank');
+        </script>
+        ";
+    }
+}
 ?>
 
 <div id="Body">
@@ -19,7 +29,7 @@ $page->buildHeader();
         <img id="ctl00_cphRoblox_Image3" class="Bullet" src="/images/BuildIcon.png" border="0">
         <div id="InstallStep1" style="padding-left: 60px">
             <h2>Download ROBLOX</h2>
-            <p><input type="submit" name="ctl00$cphRoblox$ButtonDownload" value="Install ROBLOX" id="ctl00_cphRoblox_ButtonDownload" disabled="disabled" class="BigButton">&nbsp;(Total download about 10Mb)</p>
+            <p><input type="submit" name="ctl00$cphRoblox$ButtonDownload" value="Install ROBLOX" id="ctl00_cphRoblox_ButtonDownload" class="BigButton">&nbsp;(Total download about 10Mb)</p>
         </div>
         <img id="ctl00_cphRoblox_Image4" class="Bullet" src="/images/FriendsIcon.png" border="0">
         <div id="InstallStep2" style="padding-left: 60px">
