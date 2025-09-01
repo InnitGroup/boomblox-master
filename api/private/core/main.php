@@ -33,9 +33,9 @@ define("user", $userdata[1]);
 define("password", $userdata[2]);
 
 const uri = "Boomblox:";
-const url = "bmblox.xyz";
-const domain = "bmblox.xyz";
-const fullDomain = "https://bmblox.xyz";
+const url = "xoblog.dev";
+const domain = "xoblog.dev";
+const fullDomain = "https://xoblog.dev";
 const testingIp = "26.33.216.211";
 
 #GLOBALS

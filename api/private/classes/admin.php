@@ -194,7 +194,7 @@ class Admin {
         $password = Database::getPassword();
         $dbname = Database::getName();
 
-        $backupPath = "C:/xampp/htdocs/api/private/sql/";
+        $backupPath = "C:/htdocs/api/private/sql/";
         $date = date("m-d-y-h-i-s");
         $filename = $backupPath . "dump-" . $date . ".sql";
 

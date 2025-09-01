@@ -148,7 +148,7 @@ local success, err = pcall(function()
     client.ConnectionAccepted:connect(onConnectionAccepted)
     client.ConnectionRejected:connect(onConnectionRejected)
     connectionFailed = client.ConnectionFailed:connect(onConnectionFailed)
-    client:Connect("104.219.236.150", {Port}, 0, threadSleepTime)
+    client:Connect("xoblog.dev", {Port}, 0, threadSleepTime)
 end)
 
 if not success then
