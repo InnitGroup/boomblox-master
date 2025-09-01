@@ -26,6 +26,6 @@ function publish() {
 
 function publishRegular(placeId) {
     var place = window.external.write();
-    place.Upload('http://bmblox.xyz/Data/Upload.ashx?id='+placeId);
+    place.Upload('http://xoblog.dev/Data/Upload.ashx?id='+placeId);
     window.close();
 }

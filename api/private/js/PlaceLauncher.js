@@ -57,7 +57,7 @@ Roblox.Launch.StartGame = function (visitUrl, authenticationUrl, type, placeID)
 		app = app.NullDispatch;
     } else
     {
-        window.location = "https://bmblox.xyz/Data/HandleJoin.ashx?PlaceID="+placeID+"&TypeID="+type;
+        window.location = "https://xoblog.dev/Data/HandleJoin.ashx?PlaceID="+placeID+"&TypeID="+type;
     }
 }
 
@@ -67,6 +67,6 @@ Roblox.Launch.VisitOnline = function(visit, placeID, serverID) {
         var workspace = app.CreateGame(placeID);    // Window
         workspace.ExecUrlScript(visit);
     } else {
-        window.location = "https://bmblox.xyz/Data/HandleJoin.ashx?PlaceID="+placeID+"&TypeID=1&ServerID="+serverID;
+        window.location = "https://xoblog.dev/Data/HandleJoin.ashx?PlaceID="+placeID+"&TypeID=1&ServerID="+serverID;
     }
 }

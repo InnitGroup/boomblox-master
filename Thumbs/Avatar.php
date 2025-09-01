@@ -39,7 +39,7 @@ class Avatar extends Base {
         fakehead.Parent = player.Character
         fakehead.CFrame = player.Character.Head.CFrame
         fakehead.BrickColor = player.Character.Head.BrickColor
-        game:GetObjects(\"http://bmblox.xyz/content/test/Roundy\")[1].Parent = player.Character.fakehead
+        game:GetObjects(\"http://xoblog.dev/content/test/Roundy\")[1].Parent = player.Character.fakehead
         local fake = Instance.new(\"Part\") 
         fake.Parent = game.Workspace.Player 
         fake.Size = Vector3.new(0.5,2,0.5)  
@@ -52,16 +52,6 @@ class Avatar extends Base {
         fakehead.CFrame = fakehead.CFrame * CFrame.fromEulerAnglesXYZ(0,math.rad(180),0)
         
         return game:GetService('ThumbnailGenerator'):Boom('".$imageFormat."', ".$width.", ".$height.", true)";
-        /*
-        local player = game.Players:CreateLocalPlayer(0)
-        player.CharacterAppearance = 'http://".domain."/Asset/?id=344'
-        player:LoadCharacter()
-        --local tshirt = Instance.new('ShirtGraphic')
-        --tshirt.Parent = player.Character
-        --tshirt.Graphic = 'http://".domain."/content/344_1.png'
-        print(player.Character['Shirt Graphic'].Graphic)
-        return game:GetService('ThumbnailGenerator'):Boom('".$imageFormat."', ".$width.", ".$height.", true)
-        ";*/
     }
     public function RequestThumbnail($width=100,$height=100,$imageFormat="PNG",$upload=true,$ignoreCache=false) {
         global $db;

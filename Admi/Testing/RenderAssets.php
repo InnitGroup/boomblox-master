@@ -5,8 +5,8 @@ global $theme, $auth, $db;
 
 $page = new APageBuilder($theme);
 
-exit;
-$stmt = "SELECT * FROM items WHERE catalogType IN ('Hat') AND itemId > 325 AND itemId < 355";
+#exit;
+$stmt = "SELECT * FROM items WHERE itemType='catalog' AND itemId > 457";
 $result = $db->execute($stmt);
 if ($result->rowCount() > 0) {
     $items = $result->fetchAll(PDO::FETCH_ASSOC);
