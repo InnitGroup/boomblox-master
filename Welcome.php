@@ -9,7 +9,7 @@ Server::isIE7() && header("Location: /Login/Default.aspx");
 
 if (Server::isPost()) {
     $login = new Login;
-    if ($login->validateLogin($_POST["Username"],$_POST["Password"])) {
+    if ($login->validateLogin($_POST["Username"],$_POST["Password"]) && Setting::enabled("LoginEnabled")) {
         $login->login($_POST["Username"]);
         header("Location: /Default.aspx");
     }
