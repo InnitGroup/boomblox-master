@@ -4,8 +4,8 @@ global $theme, $auth, $db;
 !$auth->isAuthed() && header("Location: /Welcome.php");
 
 $page = new APageBuilder($theme);
-#exit;
-$stmt = "SELECT * FROM items WHERE itemType='game' AND itemId > 692";
+exit;
+$stmt = "SELECT * FROM items WHERE itemType='game' and itemId > 676";
 $result = $db->execute($stmt);
 if ($result->rowCount() > 0) {
     $items = $result->fetchAll(PDO::FETCH_ASSOC);

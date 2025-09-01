@@ -1,7 +1,7 @@
 <?php
 class Server {
     private static $baseUrl = "http://roblox.com/";
-    private static $ipTable = array("104.219.236.150");
+    private static $ipTable = array("103.60.12.84");
     private static $rccUrl = "http://localhost:43241/";
     private static $rccPort = 43241;
     public static function isPost() {
@@ -20,7 +20,10 @@ class Server {
         }
     }
     public static function isLocal() {
-        return in_array(self::getIP(), ["::1", "127.0.0.1", "104.219.236.150"]);
+        return in_array(self::getIP(), ["::1", "127.0.0.1", "103.60.12.84"]);
+    }
+    public static function getServerIP() {
+        return self::$ipTable[0];
     }
     public static function isIE7() {
         $agent = $_SERVER['HTTP_USER_AGENT'];

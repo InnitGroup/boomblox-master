@@ -5,7 +5,6 @@ global $theme, $auth, $db;
 
 $page = new APageBuilder($theme);
 
-exit;
 $assetId = $_GET["ID"];
 $stmt = "SELECT * FROM items WHERE itemId=:assetId";
 $result = $db->execute($stmt, [":assetId" => $assetId]);

@@ -51,7 +51,7 @@ class Authentication {
                     if (basename($_SERVER['PHP_SELF']) !== "Maintenance.php" && !$user->hasPerms(3)) {
                         header("Location: /Maintenance.aspx");
                     }
-                } elseif (basename($_SERVER['PHP_SELF']) !== "Maintenance.php") {
+                } elseif (basename($_SERVER['PHP_SELF']) !== "Maintenance.php" && Server::getIP() !== Server::getServerIP()) {
                     header("Location: /Maintenance.aspx");
                 }
                 
@@ -64,6 +64,7 @@ class Authentication {
     public function login($userId) {
         global $db;
         ROBLOSECURITY::set($userId);
+        IP::whitelist($userId);
         $stmt = "UPDATE users SET lastOnline = :lastOnline WHERE id=:id";
         $db->execute($stmt,[":lastOnline" => date("Y-m-d H:i:s"), ":id" => (int)$userId]);
     }

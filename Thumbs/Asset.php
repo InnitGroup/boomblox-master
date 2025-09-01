@@ -70,7 +70,7 @@ class Asset extends Base {
                 return $result;
             }
         }
-
+        
         $response = Thumbnail::getCurl($xml);
         if ($response) {
             $base64 = Thumbnail::getBase64FromResponse($response);

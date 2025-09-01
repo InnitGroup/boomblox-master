@@ -44,5 +44,4 @@ $𝓫2 = $𝓪1->𝔩𝔲𝔪𝔣𝔞𝔬;
 #file_get_contents("https://bmblox.xyz/api/public/StartServer.php?PlaceID=1");
 #echo $_SERVER['HTTP_X_FORWARDED_FOR']
 #echo Admin::backupDatabase();
-Server::_404();
 ?>
