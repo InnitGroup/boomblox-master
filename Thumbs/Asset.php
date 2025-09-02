@@ -64,13 +64,11 @@ class Asset extends Base {
         $script = $this->GetScript($width,$height,$imageFormat);
         $altHash = md5(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/content/".self::$_assetId));
         $xml = Thumbnail::getXml($script);
-
-        if ($upload || !$ignoreCache) {
+        if ($upload && !$ignoreCache) {
             if ($result = CDN::hashExists($altHash, $size, $imageFormat, $hasError)) {
                 return $result;
             }
         }
-        
         $response = Thumbnail::getCurl($xml);
         if ($response) {
             $base64 = Thumbnail::getBase64FromResponse($response);

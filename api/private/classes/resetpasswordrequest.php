@@ -57,7 +57,7 @@ class ResetPasswordRequest {
                     array_push($this->reminders, "A message has been sent to your discord account!");
                 }
             } else {
-                $result = $result->fetch(PDO::FETCH_ASSOC);
+                $result = $result2;
                 $timestamp = $result["issued"];
                 $timestamp = new DateTime($timestamp);
                 $timeSince = Helper::bTimeAgo($timestamp);

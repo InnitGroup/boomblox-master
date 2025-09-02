@@ -2,7 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 global $auth;
 
-$file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/028.exe";
+$file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/029.exe";
 
 if ($auth->isAuthed()) {
     if (file_exists($file)) {

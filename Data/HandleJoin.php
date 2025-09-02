@@ -2,14 +2,14 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
 global $db, $auth;
-!$auth->isAuthed() && header("Location: /Welcome.php");
+!$auth->isAuthed() && Server::_404();
 
 $userId = ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]);
 $placeId = $_GET["PlaceID"];
 $typeId = $_GET["TypeID"]; # 1 visit online | 2 visit solo | 3 edit
 $serverId = 0;
 
-if (Setting::disabled("Gameservers")) {
+if (Setting::disabled("Gameservers") && $typeId == 1) {
     $stmt = "UPDATE users SET serverjoin=:serverId, clientjoin=:placeId, clienttype=:typeId WHERE id=:userId";
     $db->execute($stmt, [
         ":serverId" => $serverId, 
@@ -17,6 +17,7 @@ if (Setting::disabled("Gameservers")) {
         ":typeId" => $typeId, 
         ":userId" => $userId
     ]);
+    header("Location: /Item.aspx?ID=".$_GET["PlaceID"]."&Refer=Disabled");
     exit;
 }
 
