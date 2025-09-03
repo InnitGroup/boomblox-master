@@ -35,7 +35,12 @@ if (Server::isPost()) {
                         $result = $db->execute($stmt, [":abuseId" => $abuseId]);
                         if ($result->rowCount() > 0) {
                             $report = $result->fetch(PDO::FETCH_ASSOC);
-                            if ($_GET["UserID"] == $report["abuse"]) {
+                            if ($report["type"] == "user") {
+                                if ($_GET["UserID"] == $report["abuse"]) {
+                                    $stmt = "UPDATE reports SET handled=1 WHERE id=:abuseId";
+                                    $db->execute($stmt, [":abuseId" => $abuseId]);
+                                }
+                            } elseif ($report["type"] == "asset") {
                                 $stmt = "UPDATE reports SET handled=1 WHERE id=:abuseId";
                                 $db->execute($stmt, [":abuseId" => $abuseId]);
                             }
