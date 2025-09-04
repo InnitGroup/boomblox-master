@@ -81,7 +81,8 @@ $file = new File("/api/private/lua/join.lua", [
     "Port" => $port,
     "ClientTicket" => $user->getTicket(),
     "UploadUrl" => $uploadUrl,
-    "Url" => url
+    "Url" => url,
+    "IP" => "103.60.12.84"
 ]);
 
 echo $file->handle();

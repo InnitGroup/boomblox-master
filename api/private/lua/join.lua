@@ -60,6 +60,8 @@ function requestCharacter(replicator)
         replicator:RequestCharacter()
         setMessage("Waiting for character")
         waitingForCharacter = true
+        game:ClearMessage()
+        game["Script Context"]:Remove()
     end)
 
     if not success then
@@ -148,7 +150,7 @@ local success, err = pcall(function()
     client.ConnectionAccepted:connect(onConnectionAccepted)
     client.ConnectionRejected:connect(onConnectionRejected)
     connectionFailed = client.ConnectionFailed:connect(onConnectionFailed)
-    client:Connect("xoblog.dev", {Port}, 0, threadSleepTime)
+    client:Connect("{IP}", {Port}, 0, threadSleepTime)
 end)
 
 if not success then
