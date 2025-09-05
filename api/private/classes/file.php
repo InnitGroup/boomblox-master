@@ -35,6 +35,11 @@ class File {
         return str_contains($contents, "WEBPVP8X");
     }
 
+    public static function hasLocalScripts($file) {
+        $place = gzdecode(file_get_contents($file));
+        return str_contains($place, "LocalScript");
+    }
+
     public static function isLuaModel($file) {
         libxml_use_internal_errors(true);
 

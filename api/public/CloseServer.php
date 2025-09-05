@@ -1,12 +1,8 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
-global $db;
+global $db, $auth;
 $port = $_GET["Port"] ?? Server::_404();
 $key = $_GET["Key"] ?? Server::_404();
-
-if (Setting::disabled("Gameservers")) {
-    exit;
-}
 
 if ($port < 1000 || $port > 2000) {
     exit;
@@ -17,6 +13,10 @@ if (!isset($key) || empty($key)) {
 }
 
 if ($key !== Gameservers::getAPIKey("Close")) {
+    exit;
+}
+
+if (!$auth->isAuthed() && !Server::isLocal()) {
     exit;
 }
 
