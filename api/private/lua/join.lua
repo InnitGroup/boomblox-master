@@ -62,9 +62,7 @@ function requestCharacter(replicator)
         waitingForCharacter = true
         game:ClearMessage()
 
-        if {NoLocalScripts} then
-            game["Script Context"]:Remove()
-        end
+        {NoLocalScripts}
     end)
 
     if not success then
