@@ -83,7 +83,7 @@ $file = new File("/api/private/lua/join.lua", [
     "NoLocalScripts" => false,
     "UploadUrl" => $uploadUrl,
     "Url" => url,
-    "IP" => "103.60.12.84"
+    "IP" => "xoblog.xyz"
 ]);
 
 echo $file->handle();

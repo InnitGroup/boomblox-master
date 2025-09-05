@@ -46,5 +46,5 @@ $𝓫2 = $𝓪1->𝔩𝔲𝔪𝔣𝔞𝔬;
 #echo Admin::backupDatabase();
 #echo IP::get();
 
-echo (int)File::hasLocalScripts($_SERVER["DOCUMENT_ROOT"] . "/content/22");
+#echo (int)File::hasLocalScripts($_SERVER["DOCUMENT_ROOT"] . "/content/22");
 ?>
