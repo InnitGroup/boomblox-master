@@ -75,7 +75,7 @@ if (!$server = Gameservers::getServerById($serverId)) {
 $port = $server["port"];
 $uploadUrl = $user->ownsPlace($server["placeId"]) ? "http://".domain."/Data/Upload.ashx?id=" . $server["placeId"] : "";
 $hasLocalScripts = File::hasLocalScripts($_SERVER["DOCUMENT_ROOT"] . "/content/" . $server["placeId"]);
-$noLocalScripts = $hasLocalScripts ? 'game["Script Context"]:Remove()' : '';
+$noLocalScripts = $hasLocalScripts ? '' : 'game["Script Context"]:Remove()';
 
 $file = new File("/api/private/lua/join.lua", [
     "UserID" => $userId, 
@@ -85,7 +85,7 @@ $file = new File("/api/private/lua/join.lua", [
     "NoLocalScripts" => $noLocalScripts,
     "UploadUrl" => $uploadUrl,
     "Url" => url,
-    "IP" => "xoblog.xyz"
+    "IP" => "103.60.12.84"
 ]);
 
 echo $file->handle();
