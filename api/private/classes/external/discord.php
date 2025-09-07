@@ -9,6 +9,9 @@ class Discord {
     private static $token = array(
         "TVRNMU5Ea3dOemczT0RjeU5EY3pNRGt4TUEuR2lWQVloLjFPQ2lkaXR4anVQNjNpQjBaRUtTMGNEVzcwMG5wSWZxdVRRTjdn",
     );
+    private static $webhooks = array(
+        "join" => "https://discord.com/api/webhooks/1414034389423099934/w0cEn1lT6mtAMSVeV5Umdknc4p8NjNHNmlJzO6kmZc5i1grWR9M0H10gyHGE7Zalpd35"
+    );
     #https://stackoverflow.com/questions/54936975/setting-up-a-discord-oauth2-login-on-my-website-with-php
     public static function sendOAuth() {
         $params = [
@@ -74,6 +77,28 @@ class Discord {
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($content));
         curl_exec($curl);
+        curl_close($curl);
+    }
+
+    public static function sendWebhookMessage($webhookId, $content) {
+        $webhook = self::$webhooks[$webhookId];
+
+        $data = json_encode([
+            "content" => $content
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+
+        $curl = curl_init($webhook);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, ['Content-type: application/json']);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, 1);
+        curl_setopt($curl, CURLOPT_HEADER, 0);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+        $response = curl_exec($curl);
+        curl_close($curl);
+
+        return $response;
     }
 }
 ?>

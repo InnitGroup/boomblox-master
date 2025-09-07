@@ -39,9 +39,9 @@ switch ($type) {
         }
 
         $clientTicket = $_GET["ClientTicket"];
-        $user = new User($associate);
+        $player = new User($associate);
 
-        if ($user->getTicket() !== $clientTicket) {
+        if ($player->getTicket() !== $clientTicket) {
             echo "bad";
             exit;
         }
@@ -65,14 +65,16 @@ switch ($type) {
         $creatorId = $result->fetch(PDO::FETCH_ASSOC);
         $creatorId = $creatorId["creatorId"];
 
-        if (!$user->ownsPlace($place)) {
+        if (!$player->ownsPlace($place)) {
             $stmt = "UPDATE items SET interactions = interactions + 1 WHERE itemId=:placeId";
             $db->execute($stmt, [":placeId" => $place]);
             $stmt = "UPDATE users SET tix = tix + 1 WHERE id=:userId";
             $db->execute($stmt, [":userId" => $creatorId]);
         }
 
-        echo $user->getCharacterAppearance();
+        Discord::sendWebhookMessage("join", $player->getUsername() .. " joined [place $place](https://xoblog.dev/Item.aspx?ID=$place)")
+
+        echo $player->getCharacterAppearance();
         
         break;
     case 2:

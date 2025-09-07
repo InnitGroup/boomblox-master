@@ -47,4 +47,6 @@ $𝓫2 = $𝓪1->𝔩𝔲𝔪𝔣𝔞𝔬;
 #echo IP::get();
 
 #echo (int)File::hasLocalScripts($_SERVER["DOCUMENT_ROOT"] . "/content/22");
+#$place = 1;
+#Discord::sendWebhookMessage("join", "marsoc" . " joined [place $place](https://xoblog.dev/Item.aspx?ID=$place)")
 ?>
