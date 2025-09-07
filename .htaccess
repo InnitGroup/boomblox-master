@@ -13,6 +13,7 @@ RewriteRule ^(.*)\.axd$ $1.php [L,QSA]
 RewriteRule ^(.*)\.ashx$ $1.js [L,QSA]
 RewriteRule ^(.*)\.asmx$ $1.js [L,QSA]
 RewriteRule ^game/?$ /Game/ [R=301,L]
+RewriteRule ^\.git - [F,L]
 
 <IfModule mod_headers.c>
     Header set Access-Control-Allow-Origin "*"
