@@ -73,6 +73,7 @@ switch ($type) {
         }
 
         Discord::sendWebhookMessage("join", $player->getUsername() . " joined [place $place](https://xoblog.dev/Item.aspx?ID=$place)");
+        Analytics::logJoin($player->getUserId(), $place);
 
         echo $player->getCharacterAppearance();
         
