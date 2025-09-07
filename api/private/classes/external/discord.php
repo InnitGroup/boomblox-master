@@ -10,7 +10,7 @@ class Discord {
         "TVRNMU5Ea3dOemczT0RjeU5EY3pNRGt4TUEuR2lWQVloLjFPQ2lkaXR4anVQNjNpQjBaRUtTMGNEVzcwMG5wSWZxdVRRTjdn",
     );
     private static $webhooks = array(
-        "join" => "https://discord.com/api/webhooks/1414034389423099934/w0cEn1lT6mtAMSVeV5Umdknc4p8NjNHNmlJzO6kmZc5i1grWR9M0H10gyHGE7Zalpd35"
+        "games" => "https://discord.com/api/webhooks/1414034389423099934/w0cEn1lT6mtAMSVeV5Umdknc4p8NjNHNmlJzO6kmZc5i1grWR9M0H10gyHGE7Zalpd35"
     );
     #https://stackoverflow.com/questions/54936975/setting-up-a-discord-oauth2-login-on-my-website-with-php
     public static function sendOAuth() {

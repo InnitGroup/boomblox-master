@@ -72,7 +72,7 @@ switch ($type) {
             $db->execute($stmt, [":userId" => $creatorId]);
         }
 
-        Discord::sendWebhookMessage("join", $player->getUsername() . " joined [place $place](https://xoblog.dev/Item.aspx?ID=$place)");
+        Discord::sendWebhookMessage("games", $player->getUsername() . " joined [place $place](https://xoblog.dev/Item.aspx?ID=$place)");
         Analytics::logJoin($player->getUserId(), $place);
 
         echo $player->getCharacterAppearance();
@@ -89,6 +89,7 @@ switch ($type) {
         }
 
         $associate = (int)$associate;
+        $player = new User($associate);
         $stmt = "SELECT * FROM servers WHERE port=:serverPort";
         $result = $db->execute($stmt, [":serverPort" => $serverPort]);
         $fetched = $result->fetch(PDO::FETCH_ASSOC);
@@ -106,6 +107,8 @@ switch ($type) {
                 ":serverPort" => $serverPort
             ]);
         }
+
+        Discord::sendWebhookMessage("games", $player->getUsername() . " left");
 
         break;
     case 3:
