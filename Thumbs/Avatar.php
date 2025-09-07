@@ -13,6 +13,7 @@ class Avatar extends Base {
         return "local player = game.Players:CreateLocalPlayer(0)
         player.CharacterAppearance = '".$this->user->getCharacterAppearance()."'
         player:LoadCharacter()
+        print('".$this->user->getUsername().":".$this->user->getUserId()." being rendered')
         return game:GetService('ThumbnailGenerator'):Boom('".$imageFormat."', ".$width.", ".$height.", true)
         ";
     }
@@ -23,6 +24,7 @@ class Avatar extends Base {
         $cframe = $roundy;
         return "local player = game.Players:CreateLocalPlayer(0)
         player.CharacterAppearance = '".$this->user->getCharacterAppearance()."'
+        print('".$this->user->getUsername().":".$this->user->getUserId()." being rendered')
         player:LoadCharacter()
         player.Character.Head.Mesh:Remove()
         player.Character.Head.face:Remove()

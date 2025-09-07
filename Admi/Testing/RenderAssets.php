@@ -6,7 +6,7 @@ global $theme, $auth, $db;
 $page = new APageBuilder($theme);
 
 #exit;
-$stmt = "SELECT * FROM items WHERE `catalogType`='Hat'";
+$stmt = "SELECT * FROM items WHERE `catalogType`='Shirt'";
 $result = $db->execute($stmt);
 if ($result->rowCount() > 0) {
     $items = $result->fetchAll(PDO::FETCH_ASSOC);
