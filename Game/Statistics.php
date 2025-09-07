@@ -25,16 +25,19 @@ switch ($type) {
 
         if (!isset($serverPort)) {
             echo "bad";
+            Discord::sendWebhookMessage("weird", "User ID $associate tried to join a server without a port");
             exit;
         }
 
         if (!isset($_GET["ClientTicket"])) {
             echo "bad";
+            Discord::sendWebhookMessage("weird", "Client ticket failed for User ID: $associate");
             exit;
         }
 
         if (!Gameservers::serverExists($serverPort)) {
             echo "bad";
+            Discord::sendWebhookMessage("weird", "User ID $associate tried to join a non-existent server");
             exit;
         }
 
@@ -43,6 +46,7 @@ switch ($type) {
 
         if ($player->getTicket() !== $clientTicket) {
             echo "bad";
+            Discord::sendWebhookMessage("weird", "Someone tried to join $place as " . $player->getUsername() . " but their client ticket didn't authenticate");
             exit;
         }
 
@@ -126,8 +130,9 @@ switch ($type) {
             if ($_GET["Key"] == "AWESOME1SAUCE") {
                 $stmt = "UPDATE users SET kos = kos + 1 WHERE id=:userId";
                 $db->execute($stmt, [":userId" => $user]);
-                $user = new User($user);
-                $user->giveTix(2);
+                $player = new User($user);
+                $player->giveTix(2);
+                Discord::sendWebhookMessage("games", $player->getUsername() . " got a kill");
             }
         }
         break;
@@ -137,6 +142,8 @@ switch ($type) {
             if ($_GET["Key"] == "SUPER1SADGRRR") {
                 $stmt = "UPDATE users SET kos = kos + 1 WHERE id=:userId";
                 $db->execute($stmt, [":userId" => $user]);
+                $player = new User($user);
+                Discord::sendWebhookMessage("games", $player->getUsername() . " died");
             }
         }
         break;
