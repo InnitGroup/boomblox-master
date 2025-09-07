@@ -118,6 +118,7 @@ switch ($type) {
     case 3:
         #update clientjoin
         if (!$db->userExists($user)) {
+            Discord::sendWebhookMessage("weird", "Tried to update a users client ticket data with an ID of $user");
             break;
         }
         
@@ -133,6 +134,8 @@ switch ($type) {
                 $player = new User($user);
                 $player->giveTix(2);
                 Discord::sendWebhookMessage("games", $player->getUsername() . " got a kill");
+            } else {
+                Discord::sendWebhookMessage("weird", "Someone tried to access KOs API but set a bad key");
             }
         }
         break;
@@ -144,6 +147,8 @@ switch ($type) {
                 $db->execute($stmt, [":userId" => $user]);
                 $player = new User($user);
                 Discord::sendWebhookMessage("games", $player->getUsername() . " died");
+            } else {
+                Discord::sendWebhookMessage("weird", "Someone tried to access WOs API but set a bad key");
             }
         }
         break;
