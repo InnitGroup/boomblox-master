@@ -146,31 +146,31 @@ class UserManager {
             'Administrator');
         }
         if ($this->user->getVisits() >= 1000) {
-            $badges .= $this->addBadge('Bricksmith-54x75.jpg',
+            $badges .= $this->addBadge('Bricksmith-54x75.png',
             'The Bricksmith badge is earned by having a popular personal place. Once your place has been visited 1000 times, you will receive this award. '.Site::getThemeProperty("name", $this->theme).'ians with Bricksmith badges are accomplished builders who were able to create a place that people wanted to explore a thousand times. They no doubt know a thing or two about putting bricks together.',
             75,
             'Bricksmith');
         }
         if ($this->user->getVisits() >= 100) {
-            $badges .= $this->addBadge('Homestead-70x75.jpg',
+            $badges .= $this->addBadge('Homestead-70x75.png',
             'The homestead badge is earned by having your personal place visited 100 times. Players who achieve this have demonstrated their ability to build cool things that other '.Site::getThemeProperty("name", $this->theme).'ians were interested enough in to check out. Get a jump-start on earning this reward by inviting people to come visit your place.',
             75,
             'Homestead');
         }
         if ($this->user->getData("user","kos") >= 250) {
-            $badges .= $this->addBadge('Bloxxer-75x75.jpg',
+            $badges .= $this->addBadge('Bloxxer-75x75.png',
             'Anyone who has earned this badge is a very dangerous player indeed. Those Robloxians who excel at combat can one day hope to achieve this honor, the Bloxxer Badge. It is given to the warrior who has bloxxed at least 250 enemies and who has tasted victory more times than he or she has suffered defeat. Salute!',
             75,
             'Bloxxer');
         }
         if ($this->user->getData("user","kos") >= 100) {
-            $badges .= $this->addBadge('Warrior-75x75.jpg',
+            $badges .= $this->addBadge('Warrior-75x75.png',
             'This badge is given to the warriors of '.Site::getThemeProperty("name", $this->theme).'ia, who have time and time again overwhelmed their foes in battle. To earn this badge, you must rack up 100 knockouts. Anyone with this badge knows what to do in a fight!',
             75,
             'Warrior');
         }
         if ($this->user->getData("user","kos") >= 10) {
-            $badges .= $this->addBadge('CombatInitiation-75x75.jpg',
+            $badges .= $this->addBadge('CombatInitiation-75x75.png',
             'This badge is given to any player who has proven his or her combat abilities by accumulating 10 victories in battle. Players who have this badge are not complete newbies and probably know how to handle their weapons.',
             75,
             'Combat Initiation');
@@ -182,7 +182,7 @@ class UserManager {
             'Veteran');
         }
         if (count($this->user->getFriends(false)) >= 20) {
-            $badges .= $this->addBadge('Friendship-75x75.jpg',
+            $badges .= $this->addBadge('Friendship-75x75.png',
             'This badge is given to players who have embraced the '.Site::getThemeProperty("alias", $this->theme).' community and have made at least 20 friends. People who have this badge are good people to know and can probably help you out if you are having trouble.',
             75,
             'Friendship');
