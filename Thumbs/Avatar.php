@@ -82,7 +82,7 @@ class Avatar extends Base {
             $base64 = Thumbnail::getBase64FromResponse($response);
             $hash = md5($base64);
             $location = Thumbnail::getLocation();
-            $path = $_SERVER['DOCUMENT_ROOT']."/cdn/".$location."/".$hash;
+            $path = $_SERVER['DOCUMENT_ROOT']."/cdn/".$location."/".$hash.".".strtolower($imageFormat);
             if (!$hasError) {
                 $sql = "INSERT INTO cdn (`hash`, `altHash`, `size`, `format`, `location`, `createdBy`) VALUES ('".$hash."', '".$altHash."', '".$size."', '".$imageFormat."', '".$location."',".self::$_userId.")";
                 if ($db->execute($sql)) {

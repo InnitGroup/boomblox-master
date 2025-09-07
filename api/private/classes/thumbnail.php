@@ -75,7 +75,7 @@ class Thumbnail {
     }
     public static function getHashResult($null, $hash) {
         #return "http://$location." . domain . "/".$hash;
-        return "https://t2.".domain."/".$hash;
+        return "https://t2.".domain."/".$hash."?v=1";
     }
 }
 ?>
