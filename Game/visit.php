@@ -11,8 +11,6 @@ if (!$auth->isAuthed()) {
     exit;
 }
 
-
-
 if (isset($_GET["PlaceID"])) {
 	$stmt = "SELECT onsale FROM items WHERE itemId=:placeId";
 	$result = $db->execute($stmt, [":placeId" => $_GET["PlaceID"]]);

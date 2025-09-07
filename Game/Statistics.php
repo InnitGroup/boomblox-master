@@ -72,7 +72,7 @@ switch ($type) {
             $db->execute($stmt, [":userId" => $creatorId]);
         }
 
-        Discord::sendWebhookMessage("join", $player->getUsername() .. " joined [place $place](https://xoblog.dev/Item.aspx?ID=$place)")
+        Discord::sendWebhookMessage("join", $player->getUsername() . " joined [place $place](https://xoblog.dev/Item.aspx?ID=$place)");
 
         echo $player->getCharacterAppearance();
         
