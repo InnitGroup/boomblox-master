@@ -2,8 +2,16 @@
 #made: 04/20/2025 @marsoc
 #last edit: 04/20/2025 @marsoc
 
-global $auth;
-!$auth->hasPerms(3) && Server::_404();
+global $auth, $user;
+if (!$auth->hasPerms(3)) {
+    if (isset($user)) {
+        Discord::sendWebhookMessage("weird", $user->getUsername() . " tried to access the panel, but failed");
+    } else {
+        Discord::sendWebhookMessage("weird", "Someone unknown tried to access the panel, but failed");
+    }
+    
+    Server::_404();  
+}
 
 class APageBuilder {
     private $theme;
