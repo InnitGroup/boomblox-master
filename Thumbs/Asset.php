@@ -77,7 +77,7 @@ class Asset extends Base {
             }
             $hash = md5($base64.$size);
             $location = Thumbnail::getLocation();
-            $path = $_SERVER['DOCUMENT_ROOT']."/cdn/".$location."/".$hash.".".strtolower($imageFormat);
+            $path = $_SERVER['DOCUMENT_ROOT']."/cdn/".$location."/".$hash;
             if (!$hasError) {
                 $sql = "INSERT INTO cdn (`hash`, `altHash`, `size`, `format`, `location`, `createdBy`) VALUES ('".$hash."', '".$altHash."', '".$size."', '".$imageFormat."', '".$location."',1)";
                 if ($db->execute($sql)) {

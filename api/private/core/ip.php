@@ -75,11 +75,18 @@ class IP {
 
     public static function whitelisted($ip) {
         global $db;
-        $stmt = "SELECT * FROM whitelist WHERE ip=:ip AND whitelisted=1";
-        $ip = self::hash($ip);
-        $result = $db->execute($stmt, [":ip" => $ip]);
+        $stmt = "SELECT * FROM whitelist WHERE whitelisted=1";
+        $ip = self::sign($ip);
+        $result = $db->execute($stmt);
+        $result = $result->fetchAll(PDO::FETCH_ASSOC);
+        
+        foreach ($result as $listedIp) {
+            if (password_verify($ip, $listedIp["ip"])) {
+                return $listedIp["userId"];
+            }
+        }
 
-        return $result->rowCount() > 0;
+        return false;
     }
 }
 ?>
