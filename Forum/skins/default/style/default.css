@@ -111,13 +111,13 @@ Table Header and cell definitions
 *****************************************************/
 th
 {
-    background-image: url(/web/20070422034017im_/http://www.roblox.com/Forum/skins/default/images/forumHeaderBackground.gif);
+    background-image: url(/Forum/skins/default/images/forumHeaderBackground.gif);
     background-color: #4455aa
 }
 
 td.forumHeaderBackgroundAlternate
 {
-    background-image: url(/web/20070422034017im_/http://www.roblox.com/Forum/skins/default/images/forumHeaderBackgroundAlternate.gif);
+    background-image: url(/Forum/skins/default/images/forumHeaderBackgroundAlternate.gif);
     background-color: #EBEDF6;
 }
 

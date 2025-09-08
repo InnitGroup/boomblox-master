@@ -8,7 +8,8 @@ global $theme, $auth, $user;
 
 $page = new PageBuilder(Site::getThemeProperty("alias",$theme).": A FREE Virtual World-Building Game with Avatar Chat, 3D Environments, and Physics", $theme, "/templates/authheader.php", [], "rbxnews");
 $page->buildHeader();
-
+?>
+<?php
 PageBuilder::addComponent("forum", "default");
 
 $page->buildFooter();
