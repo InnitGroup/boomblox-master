@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="/Forum/skins/default/style/default.css">
 <div id="Body">
 	<table width="100%" cellspacing="0" cellpadding="0" border="0">
 		<tbody>

@@ -11,7 +11,7 @@ $page->buildHeader();
 ?>
 <link rel="stylesheet" href="/Forum/skins/default/style/default.css">
 <?php
-PageBuilder::addComponent("forum", "default");
+PageBuilder::addComponent("forum", "userprofile");
 
 $page->buildFooter();
 ?>
