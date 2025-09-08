@@ -103,7 +103,7 @@
 											<tr>
 												<td align="left">
 													<span class="normalTextSmallBold">Current time: </span>
-													<span class="normalTextSmall">Jun 30, 10:24 PM</span>
+													<span class="normalTextSmall"><?=date("M j, g:i A")?></span>
 												</td>
 												<td align="right"></td>
 											</tr>
