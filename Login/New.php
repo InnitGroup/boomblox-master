@@ -4,7 +4,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
 global $theme, $auth, $user;
-$auth->isAuthed() && header("Location: /Default.aspx");
+$auth->isAuthed() && header("Location: /Default.aspx") && exit;
 
 $page = new PageBuilder(Site::getThemeProperty("alias",$theme).": A FREE Virtual World-Building Game with Avatar Chat, 3D Environments, and Physics", 0, "/templates/dryheader.php", [], ["register"]);
 $page->buildHeader();
@@ -18,6 +18,9 @@ if (Server::isPost()) {
 		$error = json_decode($result)->focus;
 	}
 }
+
+!isset($_GET["Hit"]) && Server::_404();
+$_GET["Hit"] !== "TheRoadJack" && Server::_404();
 
 ?>
 <div id="Body">

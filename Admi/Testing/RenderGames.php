@@ -4,17 +4,19 @@ global $theme, $auth, $db;
 !$auth->isAuthed() && header("Location: /Welcome.php");
 
 $page = new APageBuilder($theme);
-exit;
-$stmt = "SELECT * FROM items WHERE itemType='game'";
+
+$stmt = "SELECT * FROM items WHERE itemType='game' AND itemId > 667";
 $result = $db->execute($stmt);
 if ($result->rowCount() > 0) {
     $items = $result->fetchAll(PDO::FETCH_ASSOC);
     foreach ($items as $item) {
-        if (file_exists($_SERVER["DOCUMENT_ROOT"]."/content/".$item["itemId"])) {
+        if ($item["itemId"] !== 692) {
+            if (file_exists($_SERVER["DOCUMENT_ROOT"]."/content/".$item["itemId"])) {
             $asset = new Asset($item["itemId"]);
-            $asset->RequestThumbnail(420, 230, "PNG", true, true);
-            $asset->RequestThumbnail(250, 250, "PNG", true, true);
-        }
+            $asset->RequestThumbnail(420, 230, "PNG", true);
+            $asset->RequestThumbnail(250, 250, "PNG", true);
+            }
+        }   
     }
 }
 

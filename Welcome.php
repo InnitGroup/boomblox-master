@@ -4,8 +4,11 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
 global $theme, $auth, $user;
-$auth->isAuthed() && header("Location: /Default.aspx");
-Server::isIE7() && header("Location: /Login/Default.aspx");
+$auth->isAuthed() && header("Location: /Default.aspx") && exit;
+Server::isIE7() && header("Location: /Login/Default.aspx") && exit;
+
+header("Location: /index.php");
+exit;
 
 if (Server::isPost()) {
     $login = new Login;

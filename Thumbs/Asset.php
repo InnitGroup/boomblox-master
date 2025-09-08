@@ -64,7 +64,7 @@ class Asset extends Base {
         $script = $this->GetScript($width,$height,$imageFormat);
         $altHash = md5(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/content/".self::$_assetId));
         $xml = Thumbnail::getXml($script);
-        if ($upload && !$ignoreCache) {
+        if (!$ignoreCache) {
             if ($result = CDN::hashExists($altHash, $size, $imageFormat, $hasError)) {
                 return $result;
             }

@@ -4,7 +4,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
 global $theme, $auth, $user;
-$auth->isAuthed() && header("Location: /Default.aspx");
+$auth->isAuthed() && header("Location: /Default.aspx") && exit;
 $page = new PageBuilder(Site::getThemeProperty("alias",$theme)." is SAFE for kids! ROBLOX is a FREE casual virtual world with fully constructible/desctructible environments and immersive physics. Build, battle, chat, or just hang out.", $theme, "/templates/dryheader.php");
 
 if (Server::isPost()) {
@@ -14,6 +14,9 @@ if (Server::isPost()) {
         header("Location: /Default.aspx");
     }
 }
+
+!isset($_GET["Hit"]) && Server::_404();
+$_GET["Hit"] !== "TheRoadJack" && Server::_404();
 
 $page->buildHeader();
 ?>

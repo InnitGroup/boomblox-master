@@ -1,5 +1,5 @@
 Options -Indexes
-DirectoryIndex Default.php
+DirectoryIndex index.php
 ErrorDocument 404 /Error/DoesntExist.aspx
 
 RewriteEngine On

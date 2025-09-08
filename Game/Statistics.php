@@ -133,7 +133,7 @@ switch ($type) {
                 $db->execute($stmt, [":userId" => $user]);
                 $player = new User($user);
                 $player->giveTix(2);
-                Discord::sendWebhookMessage("games", $player->getUsername() . " got a kill");
+                #Discord::sendWebhookMessage("games", $player->getUsername() . " got a kill");
             } else {
                 Discord::sendWebhookMessage("weird", "Someone tried to access KOs API but set a bad key");
             }
@@ -146,7 +146,7 @@ switch ($type) {
                 $stmt = "UPDATE users SET kos = kos + 1 WHERE id=:userId";
                 $db->execute($stmt, [":userId" => $user]);
                 $player = new User($user);
-                Discord::sendWebhookMessage("games", $player->getUsername() . " died");
+                #Discord::sendWebhookMessage("games", $player->getUsername() . " died");
             } else {
                 Discord::sendWebhookMessage("weird", "Someone tried to access WOs API but set a bad key");
             }
