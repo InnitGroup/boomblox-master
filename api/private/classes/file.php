@@ -37,7 +37,7 @@ class File {
 
     public static function hasLocalScripts($file) {
         $place = gzdecode(file_get_contents($file));
-        return str_contains($place, "LocalScript");
+        return str_contains($place, "LocalScript") || str_contains($place, "HopperBin");
     }
 
     public static function isLuaModel($file) {
