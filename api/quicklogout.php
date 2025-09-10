@@ -5,5 +5,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
 $auth->logout();
 header("Location: /Welcome.php");
+exit;
 
 ?>
