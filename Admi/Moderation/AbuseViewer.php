@@ -17,7 +17,7 @@ if (!isset($abuse)) {
     Server::_404();
 }
 
-$page = new APageBuilder($theme);
+$page = new APageBuilder;
 $page->buildHeader();
 
 PageBuilder::addComponent("admin", "abuseviewer", compact("abuse"));

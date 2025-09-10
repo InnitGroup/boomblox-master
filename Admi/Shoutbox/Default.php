@@ -7,7 +7,7 @@ global $theme, $auth, $user;
 !$auth->isAuthed() && header("Location: /Welcome.php");
 
 $shoutbox = new ShoutboxManager;
-$page = new APageBuilder($theme);
+$page = new APageBuilder;
 $page->buildHeader();
 
 $shoutbox->load();

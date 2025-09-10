@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 global $theme, $auth, $db;
 !$auth->isAuthed() && Server::_404();
 
-$page = new APageBuilder($theme);
+$page = new APageBuilder;
 $game = $_GET["ID"];
 $stmt = "SELECT * FROM items WHERE itemType='game' AND itemId=:itemId";
 $result = $db->execute($stmt, [":itemId" => $game]);

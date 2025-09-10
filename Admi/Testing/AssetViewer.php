@@ -11,7 +11,7 @@ if (isset($_GET["id"])) {
     $assetId = $_POST["assetId"];
 }
 
-$page = new APageBuilder($theme);
+$page = new APageBuilder;
 $page->buildHeader();
 
 if ($assetId > 0) {
