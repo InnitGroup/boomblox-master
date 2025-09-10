@@ -1,5 +1,9 @@
 <?php
+
+# for general admin tools and data
 class Admin {
+
+    # all options for the admin panel's link tree
     private static $linkTreeOptions = [
         [
             "Title" => "My ROBLOX",
@@ -122,6 +126,8 @@ class Admin {
             "Level" => 2,
         ],
     ];
+
+    # all possible punishments to give a user
     private static $punishments = [
         #1 => "None",
         2 => "Remind",
@@ -133,6 +139,8 @@ class Admin {
         8 => "Delete",
         9 => "Poison"
     ];
+
+    # return all punishments standing or not of a user, by their user id
     public static function getPunishments($userId) {
         global $db;
         $stmt = "SELECT * FROM moderation WHERE userId=:userId";
@@ -141,6 +149,8 @@ class Admin {
             return $result->fetchAll(PDO::FETCH_ASSOC);
         }
     }
+
+    # accepts a pending asset via asset id
     public static function acceptAsset($assetId) {
         global $db;
         $stmt = "UPDATE items SET `status`='accepted', lastUpdate=:lastUpdate WHERE itemId=:itemId";
@@ -177,18 +187,21 @@ class Admin {
             file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/content/" . (string)$assetId, $assetTexture);
         }
     }
+
+    # blocks an asset, regardless of pending or not, by asset id
     public static function blockAsset($assetId) {
         global $db;
         $stmt = "UPDATE items SET `status`='blocked', lastUpdate=:lastUpdate WHERE itemId=:itemId";
         $db->execute($stmt, [":itemId" => $assetId, ":lastUpdate" => date("Y-m-d H:i:s")]);
     }
-    public static function getUsersToReview($count = false) {
-        return 0;
-    }
-    public static function backupDatabase() {
-       # $userId = ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]);
-       # $user = new User($userId);
 
+    # returns a list or count of users to review (TBD)
+    public static function getUsersToReview($count = false) {
+        return 0; # TEMP
+    }
+
+    # backs up the database to github
+    public static function backupDatabase() {
         $host = "localhost";
         $user = "root";
         $password = Database::getPassword();
@@ -208,19 +221,18 @@ class Admin {
 
         if ($result === 0 && !empty($output)) {
             file_put_contents($filename, implode("\n", $output));
-           # return "Backup successful: $filename";
         } else {
             file_put_contents($filename, "Failed to backup");
         }
 
         exec("git add $filename");
         exec('git commit -m "Common database backup');
+
         $gitOutput; $gitResult;
         exec("git push origin master --force 2>&1", $gitOutput, $gitResult);
-
-        #echo "Git Output:\n" . implode("\n", $gitOutput) . "\n";
-
     }
+
+    # returns a count or list of reports to review
     public static function getReportsToReview($count = false) {
         global $db;
         if ($count) {
@@ -235,6 +247,8 @@ class Admin {
             return $fetched;
         }
     }
+
+    # returns a count or list of images to review
     public static function getImagesToReview($count = false) {
         global $db;
         $stmt = "SELECT * FROM items WHERE `status`='pending' AND `catalogType` IN ('Shirt', 'Pants', 'T-Shirt', 'Decal')";
@@ -245,12 +259,18 @@ class Admin {
         }
         return $fetched;
     }
+
+    # get of linkTreeOptions array
     public static function getLinkTreeOptions() {
         return self::$linkTreeOptions;
     }
+
+    # get of punishments array
     public static function getPunishmentsArray() {
         return self::$punishments;
     }
+
+    # returns a punishment name based on the given punishment id
     public static function getPunishmentTypeFromId($punishmentId) {
         switch ($punishmentId) {
             case 2:
@@ -269,6 +289,7 @@ class Admin {
         }
     }
 
+    # returns how long a punishment is (in days) based on the given id
     public static function getPunishmentLengthFromId($punishmentId) {
         switch ($punishmentId) {
             #case 1:
@@ -292,6 +313,7 @@ class Admin {
         }
     }
 
+    # returns all alternate accounts of a user (WIP)
     public static function getAltsOfUser($userId) {
         global $db;
         $user = new User($userId);
