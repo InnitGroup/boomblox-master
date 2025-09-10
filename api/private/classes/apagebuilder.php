@@ -15,18 +15,9 @@ if (!$auth->hasPerms(3)) {
 
 # admin page builder, since there is a completely different page scheme
 class APageBuilder {
-
-    # defines current user theme
-    private $theme;
-
-    # main constructor
-    public function __construct($theme = 0) {
-        $this->theme = $theme;
-    }
-
     # builds the admin panel header
     public function buildHeader($default = true, $dashboard = true) {
-        $theme = $this->theme;
+        global $theme;
         include_once $_SERVER['DOCUMENT_ROOT'] . "/aaa/components/head.php";
         if ($dashboard) {
             if ($default) {
