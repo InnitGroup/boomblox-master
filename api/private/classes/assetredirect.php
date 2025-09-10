@@ -1,13 +1,21 @@
 <?php
+
+# managing the asset redirect page
 class AssetRedirect {
+
+    # roblosecurity cookie of the asset redirect temporary account
     private array $roblosecurity = [
         roblosecurity
     ];
+
+    # main constructor
     public function __construct($assetId) {
         if (!empty($assetId) && $assetId !== 0) {
             $this->redirect($assetId);
         }
     }
+
+    # curls the asset api
     public function curl($assetId) {
         $roblosecurity = base64_decode($this->roblosecurity[0]);
 
@@ -32,13 +40,18 @@ class AssetRedirect {
         }
         return $asset;
     }
+
+    # checks if an asset is cached
     public function isCached($assetId) {
         return file_exists($_SERVER["DOCUMENT_ROOT"] . "/content/roblox/" . $assetId);
     }
+
+    # caches an asset
     public function cache($assetId, $asset) {
         return file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/content/roblox/" . $assetId, $asset);
     }
 
+    # serves the asset redirect
     public function redirect($assetId) {
         global $db;
         $stmt = "SELECT * FROM items WHERE itemId=:itemId";
