@@ -38,6 +38,13 @@ $stmt = "
     LIMIT 1
 ";
 $result = $db->execute($stmt, [":today" => $today]);
+
+if ($result->rowCount() == 0): ?>
+<div id="Body">
+    No data recorded yet today.
+</div>
+<?php endif;
+
 $topPlaceId = $result->fetch(PDO::FETCH_ASSOC);
 
 $stmt = "SELECT itemName FROM items WHERE itemId=:itemId";
