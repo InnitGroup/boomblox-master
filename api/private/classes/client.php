@@ -1,5 +1,7 @@
 <?php
+# for client interaction and data handling
 class Client {
+    # gets the place that the user is prepared to join
     public static function getJoin() {
         global $db;
         $stmt = "SELECT clientjoin FROM users WHERE id=:id";
@@ -13,6 +15,7 @@ class Client {
         }
     }
     
+    # gets the type of joining action the user is performing (online, solo, edit)
     public static function getType() {
         global $db, $user;
         $stmt = "SELECT clienttype FROM users WHERE id=:id";
@@ -26,6 +29,7 @@ class Client {
         }
     }
 
+    # gets the server that the user is prepared to join
     public static function getServer() {
         global $db, $user;
         $stmt = "SELECT serverjoin FROM users WHERE id=:id";
@@ -39,6 +43,7 @@ class Client {
         }
     }
 
+    # sets the ticket data for joining
     public static function setJoin($userId, $placeId) {
         global $db;
         $stmt = "UPDATE users SET clientjoin=:placeId WHERE id=:userId";
