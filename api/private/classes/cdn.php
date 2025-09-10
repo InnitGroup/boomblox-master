@@ -1,6 +1,11 @@
 <?php
+
+# content delivery management
 class CDN {
+    # current subdomain used for cdn
     private static $cdn = "t2";
+
+    # generates extra down-sized renders
     public static function correspondingRenders($original,$altHash,$userId,$nWidth,$nHeight) {
         global $db;
         $info = getimagesize($original);
@@ -41,6 +46,8 @@ class CDN {
         file_put_contents($output, $data);
         return $hash;
     }
+
+    # checks if a hash already exists in the cdn
     public static function hashExists($altHash,$size,$format, &$hasError) {
         global $db;
         $sql = "SELECT * FROM cdn WHERE `altHash`='".$altHash."' AND `size`='".$size."' AND `format`='".$format."'";
@@ -55,6 +62,8 @@ class CDN {
             }
         }
     }
+
+    # gets the current subdomain
     public static function getCommonCDN() {
         return self::$cdn;
     }
