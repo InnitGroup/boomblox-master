@@ -1,9 +1,15 @@
 <?php
 
+# for machine interaction/data
 class CPU {
-    private static int $cpuCount = 6;
+    # how many cpus there are in all of our machines
+    private static int $cpuCount = 12;
+
+    # how many machines we have
     private static int $machineCount = 1;
-    private static int $ram = 16000000;
+
+    # how much ram (in bytes) we have
+    private static int $ram = 32000000;
     public static function toMB(int $size): float|int {
         return $size/1000;
     }
