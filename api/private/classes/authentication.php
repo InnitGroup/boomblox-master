@@ -58,9 +58,13 @@ class Authentication {
             }
         }
     }
+
+    # logs the user out of the current authenticated session
     public function logout() {
         ROBLOSECURITY::detach(ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]), true);
     }
+
+    # logs the user into a new authenticated session
     public function login($userId) {
         global $db;
         ROBLOSECURITY::set($userId);
