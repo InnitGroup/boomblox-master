@@ -13,6 +13,7 @@ $page->buildHeader();
 	<div id="TradeCurrencyContainer">
 		<h2>Currency Exchange</h2>
 		<div style="margin-bottom:5px; text-align:center;">
+            <b>THIS IS PURE DESIGN AND HAS NO WORK BEHIND IT AS OF RIGHT NOW</b><br>
 			<a href="TradeCurrency.aspx">Refresh</a>
 		</div>
 		<div class="LeftColumn">
