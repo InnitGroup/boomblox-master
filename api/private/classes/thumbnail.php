@@ -50,6 +50,8 @@ class Thumbnail {
         $errors = [
             "err=0x2F7C",
             "tag expected after Byte-Order-Mark",
+            "TextXmlParser::parse empty file",
+            "stack end"
         ];
 
         foreach ($errors as $error) {
