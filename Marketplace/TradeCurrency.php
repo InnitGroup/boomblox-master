@@ -6,12 +6,12 @@ global $theme, $auth, $user;
 !$auth->isAuthed() && header("Location: /Default.aspx");
 
 $manager = new TradeCurrencyManager;
-$manager->handle();
+$manager->controller();
 
 $page = new PageBuilder(Site::getThemeProperty("alias",$theme)." is SAFE for kids! ROBLOX is a FREE casual virtual world with fully constructible/desctructible environments and immersive physics. Build, battle, chat, or just hang out.", $theme, "/templates/authheader.php", null, "economy");
 $page->buildHeader();
 
-$manager->load();
+$manager->viewer();
 
 $page->buildFooter();
 ?>
