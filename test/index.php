@@ -6,7 +6,7 @@
 <head><title>
 	ROBLOX: A FREE Virtual World-Building Game with Avatar Chat, 3D Environments,
         and Physics
-</title><link id="ctl00_Imports" rel="stylesheet" type="text/css" href="https://bmblox.xyz/CSS/AllCSS1.css" /><link id="ctl00_TestingCss" rel="stylesheet" type="text/css" href="Testing/Style.css" /><link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Language" content="en-us" /><meta name="author" content="ROBLOX Corporation" /><meta name="description" content="ROBLOX is SAFE for kids! ROBLOX is a FREE casual virtual world with fully constructible/desctructible 3D environments and immersive physics. Build, battle, chat, or just hang out." /><meta name="keywords" content="game, video game, building game, construction game, online game, LEGO game, LEGO, MMO, MMORPG, rowblocks, rowbloks, roblocks, robloks, roblocs, roblok" />
+</title><link id="ctl00_Imports" rel="stylesheet" type="text/css" href="https://xoblog.dev/CSS/AllCSS1.css" /><link id="ctl00_TestingCss" rel="stylesheet" type="text/css" href="Testing/Style.css" /><link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico" /><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><meta http-equiv="Content-Language" content="en-us" /><meta name="author" content="ROBLOX Corporation" /><meta name="description" content="ROBLOX is SAFE for kids! ROBLOX is a FREE casual virtual world with fully constructible/desctructible 3D environments and immersive physics. Build, battle, chat, or just hang out." /><meta name="keywords" content="game, video game, building game, construction game, online game, LEGO game, LEGO, MMO, MMORPG, rowblocks, rowbloks, roblocks, robloks, roblocs, roblok" />
     </head>
 <body>
     <form name="aspnetForm" method="post" action="Default.aspx" id="aspnetForm">
@@ -29,7 +29,7 @@
                 Help us test things by playing like you normally do, but remember it’s not for real.
                 Everything here will be <i>deleted on a random basis and without warning</i>. To
                 visit <b>regular Roblox</b>
-                <a id="ctl00_HyperLink1" href="https://bmblox.xyz"><b>click here</b></a>
+                <a id="ctl00_HyperLink1" href="https://xoblog.dev"><b>click here</b></a>
             </p>
         </div>
     
@@ -51,7 +51,7 @@
 </div>
                     
                 <div id="Logo">
-                    <a id="ctl00_rbxImage_Logo" title="ROBLOX" href="/" style="display:inline-block;cursor:pointer;"><img src="https://bmblox.xyz/images/RobloxLogo2.png" style="position:relative;top:8px;" border="0" alt="ROBLOX" blankUrl="http://t7.roblox.com:80/stag5-blank-224x59.gif" /></a>
+                    <a id="ctl00_rbxImage_Logo" title="ROBLOX" href="/" style="display:inline-block;cursor:pointer;"><img src="https://xoblog.dev/images/RobloxLogo2.png" style="position:relative;top:8px;" border="0" alt="ROBLOX" blankUrl="http://t7.roblox.com:80/stag5-blank-224x59.gif" /></a>
                 </div>
                 
                         
@@ -59,7 +59,7 @@
 <div id="Alerts">
     <table style="width:100%;height:100%">
         <tr>
-            <td valign="middle"><a id="ctl00_BannerAlertsLoginView_BannerAlerts_Anonymous_rbxAlerts_SignupAndPlayHyperLink" class="SignUpAndPlay" Text="Sign-up and Play!" href="/Login/New.aspx?ReturnUrl=%2fGames.aspx" style="display:inline-block;cursor:pointer;"><img src="https://bmblox.xyz/images/BannerPlay.png" border="0" blankUrl="http://t0.roblox.com:80/stag5-blank-210x40.gif" /></a>
+            <td valign="middle"><a id="ctl00_BannerAlertsLoginView_BannerAlerts_Anonymous_rbxAlerts_SignupAndPlayHyperLink" class="SignUpAndPlay" Text="Sign-up and Play!" href="/Login/New.aspx?ReturnUrl=%2fGames.aspx" style="display:inline-block;cursor:pointer;"><img src="https://xoblog.dev/images/BannerPlay.png" border="0" blankUrl="http://t0.roblox.com:80/stag5-blank-210x40.gif" /></a>
 
 </td>
         </tr>
@@ -82,7 +82,7 @@
 	<span class="Separator">&nbsp;|&nbsp;</span>
 	<span><a id="ctl00_Menu_hlForum" disabled="disabled" class="MenuItem">Forum</a></span>
 	<span class="Separator">&nbsp;|&nbsp;</span>
-	<span><a id="ctl00_Menu_hlNews" class="MenuItem" href="#" target="_blank">News</a>&nbsp;<a id="ctl00_Menu_hlNewsFeed" href="#"><img src="https://bmblox.xyz/images/feed-icons/feed-icon-14x14.png" alt="RSS" border="0" /></a></span>
+	<span><a id="ctl00_Menu_hlNews" class="MenuItem" href="#" target="_blank">News</a>&nbsp;<a id="ctl00_Menu_hlNewsFeed" href="#"><img src="https://xoblog.dev/images/feed-icons/feed-icon-14x14.png" alt="RSS" border="0" /></a></span>
 	<span class="Separator">&nbsp;|&nbsp;</span>
 	<span><a id="ctl00_Menu_hlParents" class="MenuItem" href=#">Parents</a></span>
 	<span class="Separator">&nbsp;|&nbsp;</span>
@@ -132,7 +132,7 @@
 			<br />
             
 				    <div id="Figure">
-				        <a id="ctl00_cphRoblox_LoginView1_ImageFigure" disabled="disabled" title="Figure" onclick="return false" style="display:inline-block;"><img src="https://bmblox.xyz/images/NewFrontPageGuy.png" border="0" alt="Figure" blankUrl="http://t0.roblox.com:80/stag5-blank-115x130.gif" /></a>
+				        <a id="ctl00_cphRoblox_LoginView1_ImageFigure" disabled="disabled" title="Figure" onclick="return false" style="display:inline-block;"><img src="https://xoblog.dev/images/NewFrontPageGuy.png" border="0" alt="Figure" blankUrl="http://t0.roblox.com:80/stag5-blank-115x130.gif" /></a>
 				    </div>
 			    
 		</div>
@@ -162,7 +162,7 @@
 			<div id="Install"><br></div>
 			<div id="ctl00_cphRoblox_pForParents">
 			<div id="ForParents">
-				<a id="ctl00_cphRoblox_hlKidSafe" title="ROBLOX is kid-safe!" href="Parents.aspx" style="display:inline-block;"><img title="ROBLOX is kid-safe!" src="https://bmblox.xyz/images/COPPASeal-125x125.jpg" border="0"></a>
+				<a id="ctl00_cphRoblox_hlKidSafe" title="ROBLOX is kid-safe!" href="Parents.aspx" style="display:inline-block;"><img title="ROBLOX is kid-safe!" src="https://xoblog.dev/images/COPPASeal-125x125.jpg" border="0"></a>
 			</div>
         </div>
 	    </div>
@@ -176,19 +176,19 @@
 		<table id="ctl00_cphRoblox_CoolPlaces_CoolPlacesDataList" cellspacing="0" Unit="Px" border="0" width="100%">
 	<tr>
 		<td class="UserPlace">
-            <a id="ctl00_cphRoblox_CoolPlacesDataList_ctl00_rbxContentImage" href="#" style="display:inline-block;cursor:pointer;"><img style="width:120px;height:70px;" src="https://t2.bmblox.xyz/f52cb7cec462fe7d9d04900925dc66b8" border="0" blankurl="http://t2.bmblox.xyz:80/blank-120x70.gif"></a>
+            <a id="ctl00_cphRoblox_CoolPlacesDataList_ctl00_rbxContentImage" href="#" style="display:inline-block;cursor:pointer;"><img style="width:120px;height:70px;" src="https://t2.xoblog.dev/f52cb7cec462fe7d9d04900925dc66b8" border="0" blankurl="http://t2.xoblog.dev:80/blank-120x70.gif"></a>
         </td>
         <td class="UserPlace">
-            <a id="ctl00_cphRoblox_CoolPlacesDataList_ctl00_rbxContentImage" href="#" style="display:inline-block;cursor:pointer;"><img style="width:120px;height:70px;" src="https://t2.bmblox.xyz/258bed58970ac0cd600f38d5643d5649" border="0" blankurl="http://t2.bmblox.xyz:80/blank-120x70.gif"></a>
+            <a id="ctl00_cphRoblox_CoolPlacesDataList_ctl00_rbxContentImage" href="#" style="display:inline-block;cursor:pointer;"><img style="width:120px;height:70px;" src="https://t2.xoblog.dev/258bed58970ac0cd600f38d5643d5649" border="0" blankurl="http://t2.xoblog.dev:80/blank-120x70.gif"></a>
         </td>
         <td class="UserPlace">
-            <a id="ctl00_cphRoblox_CoolPlacesDataList_ctl00_rbxContentImage" href="#" style="display:inline-block;cursor:pointer;"><img style="width:120px;height:70px;" src="https://t2.bmblox.xyz/cd939588288df8edf18a39dd486da6c4" border="0" blankurl="http://t2.bmblox.xyz:80/blank-120x70.gif"></a>
+            <a id="ctl00_cphRoblox_CoolPlacesDataList_ctl00_rbxContentImage" href="#" style="display:inline-block;cursor:pointer;"><img style="width:120px;height:70px;" src="https://t2.xoblog.dev/cd939588288df8edf18a39dd486da6c4" border="0" blankurl="http://t2.xoblog.dev:80/blank-120x70.gif"></a>
         </td>
         <td class="UserPlace">
-            <a id="ctl00_cphRoblox_CoolPlacesDataList_ctl00_rbxContentImage" href="#" style="display:inline-block;cursor:pointer;"><img style="width:120px;height:70px;" src="https://t2.bmblox.xyz/65f163e104518991201c95ff2b0a1574" border="0" blankurl="http://t2.bmblox.xyz:80/blank-120x70.gif"></a>
+            <a id="ctl00_cphRoblox_CoolPlacesDataList_ctl00_rbxContentImage" href="#" style="display:inline-block;cursor:pointer;"><img style="width:120px;height:70px;" src="https://t2.xoblog.dev/65f163e104518991201c95ff2b0a1574" border="0" blankurl="http://t2.xoblog.dev:80/blank-120x70.gif"></a>
         </td>
         <td class="UserPlace">
-            <a id="ctl00_cphRoblox_CoolPlacesDataList_ctl00_rbxContentImage" href="#" style="display:inline-block;cursor:pointer;"><img style="width:120px;height:70px;" src="https://t2.bmblox.xyz/38c4ca15ad445cdf0e834112333c0c94" border="0" blankurl="http://t2.bmblox.xyz:80/blank-120x70.gif"></a>
+            <a id="ctl00_cphRoblox_CoolPlacesDataList_ctl00_rbxContentImage" href="#" style="display:inline-block;cursor:pointer;"><img style="width:120px;height:70px;" src="https://t2.xoblog.dev/38c4ca15ad445cdf0e834112333c0c94" border="0" blankurl="http://t2.xoblog.dev:80/blank-120x70.gif"></a>
         </td>
 	</tr>
 </table>
