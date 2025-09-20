@@ -68,6 +68,11 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
 				<div id="Actions_Place">
 					<a <?=$user->hasFavorite($id) ? "disabled" : ""?> <?php if (!$user->hasFavorite($id)): ?> href="javascript:__doPostBack('ctl00$cphRoblox$Favorite', '')" <?php endif; ?>>Favorite</a>
 				</div>
+				<?php if (!$publicView): ?>
+                    <div id="Configuration">
+                        <a href="/My/Place.aspx?ID=<?=$id?>">Configure this Place</a>
+                    </div>
+                <?php endif; ?>
 				<div id="ctl00_cphRoblox_PlayGames" class="PlayGames">
 					<div style="text-align: center; margin: 1em 5px;">
 						<span id="ctl00_cphRoblox_PlaceAccessIndicator_FriendsOnlyLocked" style="display: none">
@@ -114,11 +119,6 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
 					<div id="ctl00_cphRoblox_VisitButtons_VisitButton" style="display:inline"> &nbsp;&nbsp;&nbsp; <button id="ctl00_cphRoblox_VisitButtons_hlSoloVisit" class="Button" disabled>Visit Solo</button></div>
 					<?php endif; ?>
 				</div>
-                <?php if (!$publicView): ?>
-                    <div id="Configuration">
-                        <a href="/My/Place.aspx?ID=<?=$id?>">Configure this Place</a>
-                    </div>
-                <?php endif; ?>
 				<div style="clear: both;"></div>
 			</div>
 			<div style="margin:10px;width:703px;">
