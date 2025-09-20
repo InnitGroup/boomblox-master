@@ -4,7 +4,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
 global $theme, $auth, $user, $db;
-!$auth->isAuthed() && header("Location: /Welcome.php");
+!$auth->isAuthed() && Server::_404();;
 
 $abuseId = $_GET["AbuseID"];
 $stmt = "SELECT * FROM reports WHERE id=:abuseId";

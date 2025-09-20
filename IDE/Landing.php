@@ -5,15 +5,19 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
 global $theme, $auth, $user;
 
+global $auth;
+!$auth->isAuthed() && Server::_404();
+
 if (Client::getJoin()) {
     $clientJoin = Client::getJoin();
     $clientType = Client::getType();
     $server = Client::getServer();
     // add server parameter
     header("Location: /IDE/Game.aspx?PlaceID=" . $clientJoin . "&TypeID=" . $clientType . "&ServerID=" . $server);
-} else {
-    #https://www.youtube.com/watch?v=Z6yYyWw79Ew
-    header("Location: /Games.aspx");
+    exit;
 }
 
+#https://www.youtube.com/watch?v=Z6yYyWw79Ew
+header("Location: /Games.aspx");
+exit;
 ?>

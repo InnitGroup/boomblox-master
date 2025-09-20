@@ -10,7 +10,7 @@
         if (isset($_POST['ctl$cphRoblox$AssetID'])) {
             $assetId = $_POST['ctl$cphRoblox$AssetID'];
             if ($user->hasPerms(5)) {
-                $stmt = "UPDATE items SET `status`='blocked',`lastUpdate`=:lastUpdate WHERE itemId=:itemId";
+                $stmt = "UPDATE items SET `status`='blocked',`lastUpdate`=:lastUpdate,`itemName`='[ Content Deleted ]' WHERE itemId=:itemId";
                 $db->execute($stmt, [":itemId" => $assetId, ":lastUpdate" => date('Y-m-d H:i:s')]);
                 echo "Successfully blocked!";
                 if (isset($_GET["AssetID"]) && isset($_GET["AbuseID"])) {

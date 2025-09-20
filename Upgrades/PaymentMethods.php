@@ -4,7 +4,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
 global $theme, $auth, $user;
-!$auth->isAuthed() && header("Location: /Welcome.php");
+!$auth->isAuthed() && Server::_404();;
 
 $ap = $_GET["ap"] ?? 0;
 $payment = new PaymentManager($ap, $theme);

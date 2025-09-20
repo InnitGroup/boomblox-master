@@ -12,7 +12,7 @@ if (isset($_GET["feed"])) {
     }
 }
 
-!$auth->isAuthed() && header("Location: /Welcome.php");
+!$auth->isAuthed() && Server::_404();;
 
 $games = new GamesManager;
 $m = $_GET["m"] ?? "MostPopular";

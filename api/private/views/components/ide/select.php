@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 global $auth;
-!$auth->isAuthed() && header("Location: /Welcome.php");
+!$auth->isAuthed() && Server::_404();;
 $user = new User(ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]));
 $places = $user->getPlaces();
 ?>

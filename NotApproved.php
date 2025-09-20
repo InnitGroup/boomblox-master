@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 global $theme, $auth, $user;
-!$auth->isAuthed() && header("Location: /Welcome.php");
+!$auth->isAuthed() && Server::_404();;
 !$user->isPunished() && header("Location: /Default.aspx");
 
 if (Server::isPost()) {

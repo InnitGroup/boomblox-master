@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 global $theme, $auth, $user;
-!$auth->isAuthed() && header("Location: /Welcome.php");
+!$auth->isAuthed() && Server::_404();;
 
 $contentBuilder = new ContentBuilderManager;
 $contentId = (int)$_GET["ContentType"];

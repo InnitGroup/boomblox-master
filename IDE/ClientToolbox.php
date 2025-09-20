@@ -1,6 +1,9 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 $toolbox = new ToolboxManager;
+
+global $auth;
+!$auth->isAuthed() && Server::_404();
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
