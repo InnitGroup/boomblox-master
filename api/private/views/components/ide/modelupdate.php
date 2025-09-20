@@ -3,11 +3,11 @@
 	<head>
 		<title>Save</title>
 		<link href="/CSS/RobloxOld.css" rel="stylesheet" type="text/css" />
-		<script src="http://bmblox.xyz/ScriptResource.axd?d=dXBsb2Fk"></script>
+		<script src="http://xoblog.dev/ScriptResource.axd?d=dXBsb2Fk"></script>
         <script>
             function upload() {
                 var data = window.external.WriteSelection();
-                data.Upload("http://bmblox.xyz/Data/Model.ashx");
+                data.Upload("http://xoblog.dev/Data/Model.ashx");
                 document.PublishContent.submit();
                 window.close();
             }

@@ -70,7 +70,7 @@
     <p>Utilize this panel to create new products for the catalog</p>
     <p>When creating an item:</p>
     <ul>
-        <li>You can make the texture a decal, just make the texture to be http://bmblox.xyz/asset/?id={DECAL_ID_HERE}</li>
+        <li>You can make the texture a decal, just make the texture to be http://xoblog.dev/asset/?id={DECAL_ID_HERE}</li>
         <li>For meshes, you should try to utilize the asset redirect system as well, especially for retextures, you can just use Roblox meshes</li>
         <li>Please consider accuracy and tone, brainrot, slop, or any sort of NSFW is <u>strictly</u> prohibited</li>
     </ul>

@@ -23,7 +23,7 @@ $availablePlaces = $user->getAvailablePlaces()
                 <br/>
                 <div style="left: 0px; float: left; position: relative; top: 0px">
                     <a disabled="disabled" title="<?=$username?>" onclick="return false" style="display:inline-block;">
-                        <img style="height:220px;" src="<?=$avatar->GetThumbnail(540,660,"PNG")?>" border="0" alt="<?=$username?>" blankUrl="http://t2.bmblox.xyz/blank-180x220.gif" />
+                        <img style="height:220px;" src="<?=$avatar->GetThumbnail(540,660,"PNG")?>" border="0" alt="<?=$username?>" blankUrl="http://t2.xoblog.dev/blank-180x220.gif" />
                     </a>
                     <br />
                     <?php if ($publicView) {PageBuilder::addComponent("user", "abuse", compact("userId"));}?>

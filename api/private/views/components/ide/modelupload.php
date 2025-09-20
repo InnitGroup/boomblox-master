@@ -13,7 +13,7 @@
 	<head>
 		<title>Upload</title>
 		<link href="/CSS/RobloxOld.css" rel="stylesheet" type="text/css" />
-		<script src="http://bmblox.xyz/ScriptResource.axd?d=dXBsb2Fk"></script>
+		<script src="http://xoblog.dev/ScriptResource.axd?d=dXBsb2Fk"></script>
 	</head>
 	<body bgcolor="buttonface" scroll="no">
 		<form name="PublishContent" method="post" action="/IDE/ModelSave.aspx" id="PublishContent">
