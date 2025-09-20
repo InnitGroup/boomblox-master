@@ -14,7 +14,7 @@ class Authentication {
                 $user = new User($userId);
 
                 Economy::issueDaily($user);
-                if ($user->isPunished()) {if (basename($_SERVER['PHP_SELF']) !== "NotApproved.php") {header("Location: /NotApproved.aspx");}}
+                if ($user->isPunished()) {if (basename($_SERVER['PHP_SELF']) !== "NotApproved.php") {header("Location: /NotApproved.aspx"); exit;}}
 
                 $stmt = "UPDATE users SET `lastOnline` = :lastOnline WHERE `id`=:id";
                 $db->execute($stmt,[":lastOnline" => date("Y-m-d H:i:s"), ":id" => ROBLOSECURITY::match($roblosecurity)]);

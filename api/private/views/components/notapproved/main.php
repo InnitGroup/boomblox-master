@@ -34,18 +34,18 @@ switch ($type) {
 		<h2> <?=$title?> </h2>
 		<p> Our content monitors have determined that your behavior at ROBLOX has been in violation of our Terms of Service. We will terminate your account if you do not abide by the rules.</p>
 		<p> Reason: <span style="font-weight: bold"> Profanity</span>
-			<br> Source: <span style="font-weight: bold"> <?=$punishment["actionSource"]?></span>
+			<br> Source: <span style="font-weight: bold"> <?=htmlspecialchars($punishment["actionSource"])?></span>
 			<br> Reported: <span style="font-weight: bold"> <?=$reported?></span>
 		</p>
 		<p>
-			<span style="font-weight: bold"> <?=$punishment["actionComment"]?></span>
+			<span style="font-weight: bold"> <?=htmlspecialchars($punishment["actionComment"])?></span>
 		</p>
 		<p> Please abide by the <a href="http://wiki.roblox.com/index.php?title=Community_Guidelines">ROBLOX Community Guidelines</a> so that ROBLOX can be fun for users of all ages. </p>
 		<?php if ($type == "Ban") {
 			PageBuilder::addComponent("notapproved", "disabled", compact("punishment"));
 		}?>
 		<div id="ctl00_cphRoblox_UpdatePanel1">
-			<?php if ($datetime >= $expiry) {
+			<?php if ($datetime >= $expiry && $type !== "Termination") {
 				PageBuilder::addComponent("notapproved", "activate");
 			}?>
 		</div>

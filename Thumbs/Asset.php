@@ -102,6 +102,10 @@ class Asset extends Base {
         }
     }
     public function GetThumbnail($width=48,$height=48,$imageFormat="PNG",$renderIfNone=false) {
+        if (self::$_status == "blocked") {
+            return "https://t2.".domain."/unapproved-250x250.png";
+        }
+
         if (self::$_itemType == "T-Shirt" || self::$_itemType == "Decal") {
             return $this->GetClothing();
         } 
@@ -116,11 +120,7 @@ class Asset extends Base {
                 return "https://t2.".domain."/pending-250x250.png";
             }
         } elseif (File::isLuaModel($_SERVER["DOCUMENT_ROOT"]."/content/".self::$_assetId)) {
-            return "https://t2.".domain."/LuaBase-120x120.png";
-        }
-
-        if (self::$_status == "blocked") {
-            return "https://t2.".domain."/unapproved-250x250.png";
+            return "https://t2.".domain."/Lua-250x250.png";
         }
         
         global $db;
