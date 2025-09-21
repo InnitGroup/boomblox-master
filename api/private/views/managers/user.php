@@ -259,7 +259,7 @@ class UserManager {
 							<acronym title="The number of times this user\'s place has been visited.">Place Visits</acronym>:
 						</div>
 						<div class="Value">
-							<span>'.number_format($this->user->getVisits()).' ( last week)</span>
+							<span>'.number_format($this->user->getVisits()).' ('.number_format($this->user->getLastWeekVisits()).' last week)</span>
 						</div>
 					</div>
 					<div class="Statistic">

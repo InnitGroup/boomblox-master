@@ -29,7 +29,6 @@ $page = new PageBuilder($userm->loadTitle(), $theme, "/templates/authheader.php"
 $page->buildHeader();
 
 ?>
-
 <div id="Body">
 	<div id="UserContainer">
 		<div id="LeftBank">
