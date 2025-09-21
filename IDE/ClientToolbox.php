@@ -102,21 +102,7 @@ global $auth;
 						<!-- 20 -->
 					</table>
 				</div>
-				<div id="pNavigation">
-					<div class="Navigation">
-						<div id="Previous">
-							<a href="ClientToolbox.aspx?Category=AllModels&amp;Query=color&amp;PageIndex=8" id="PreviousPage">
-								<span class="NavigationIndicators">&lt;&lt;</span> Prev </a>
-						</div>
-						<div id="Next">
-							<a href="ClientToolbox.aspx?Category=AllModels&amp;Query=color&amp;PageIndex=10" id="NextPage">Next <span class="NavigationIndicators">&gt;&gt;</span>
-							</a>
-						</div>
-						<div id="Location">
-							<?=$toolbox->loadPagerLocation()?>
-						</div>
-					</div>
-				</div>
+				<?=$toolbox->loadNavigation()?>
 			</div>
 			<div>
 				<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="">

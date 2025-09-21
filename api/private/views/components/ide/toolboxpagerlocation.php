@@ -1,1 +1,1 @@
-<span id="PagerLocation">181-200 of 644</span>
+<span id="PagerLocation"><?=$min?>-<?=$max?> of <?=$count?></span>
