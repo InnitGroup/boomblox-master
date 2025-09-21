@@ -68,7 +68,7 @@ global $auth;
 				<div id="ToolboxControls">
 					<div id="ToolboxSelector">
 						<?php
-						$sort = $_POST["ddlToolboxes"] ?? "AllModels";
+						$sort = $toolbox->getCategory();
 						?>
 						<select name="ddlToolboxes" onchange="javascript:setTimeout('__doPostBack(\'ddlToolboxes\',\'\')', 0)" id="ddlToolboxes" class="Toolboxes">
 							<option <?=$sort == "1" ? 'selected="selected"' : ""?> value="1">Bricks</option>
