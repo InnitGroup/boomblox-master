@@ -319,21 +319,13 @@ class User {
         $visits = 0;
 
         foreach ($places as $place) {
-            $stmt = "
-            SELECT COUNT(*) FROM analytics WHERE `actiondate` >= CURRENT_DATE - INTERVAL 7 DAY AND `actiondate` < CURRENT_DATE AND `place` = :place
-            ";
+            $stmt = "SELECT COUNT(*) FROM analytics WHERE `actiondate` >= CURRENT_DATE - INTERVAL 7 DAY AND `actiondate` < CURRENT_DATE AND `place` = :place";
 
             $result = $db->execute($stmt, [":place" => $place]);
             $visits = $visits + (int)$result->fetch(PDO::FETCH_ASSOC)["COUNT(*)"];
         }
 
         return $visits;
-
-        /*
-        Warning: PDOStatement::execute(): SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 5 in C:\htdocs\api\private\classes\database.php on line 24
-SELECT COUNT(*) FROM analytics WHERE actiondate >= CURRENT_DATE - INTERVAL '7 days' AND actiondate < CURRENT_DATE AND place = :place Array ( [:place] => 1 )
-Fatal error: Uncaught Error: Call to a member function fetch() on null in C:\htdocs\api\private\classes\user.php:331 Stack trace: #0 C:\htdocs\User.php(31): User->getLastWeekVisits() #1 {main} thrown in C:\htdocs\api\private\classes\user.php on line 331
-        */
     }
     public function getUsername() {
         return $this->data["user"]["username"];
