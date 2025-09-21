@@ -11,8 +11,8 @@ class ToolboxManager {
             $stmt .= " AND itemName LIKE '$search%'";
         }
 
-        if (isset($_POST["ddlToolboxes"])) {
-            $sort = htmlspecialchars($_POST["ddlToolboxes"]);
+        if (isset($_POST["ddlToolboxes"]) || isset($_GET["Category"])) {
+            $sort = isset($_POST["ddlToolboxes"]) ? htmlspecialchars($_POST["ddlToolboxes"]) : htmlspecialchars($_GET["Category"]);
             if ($sort == "MyModels") {
                 $stmt .= " AND creatorId=".$user->getUserId()." ORDER BY itemId DESC";
             }
@@ -36,6 +36,26 @@ class ToolboxManager {
         return [$result, $fetched];
     }
 
+    public function getCategory() {
+        if (isset($_POST["ddlToolboxes"])) {
+            return htmlspecialchars($_POST["ddlToolboxes"]);
+        }
+
+        if (isset($_GET["Category"])) {
+            return htmlspecialchars($_GET["Category"]);
+        }
+        
+        return "AllModels";
+    }
+
+    public function getPage() {
+        if (isset($_GET["PageIndex"])) {
+            return htmlspecialchars($_GET["PageIndex"]);
+        }
+
+        return 0;
+    }
+
     public function modelCount() {
         global $db;
 
@@ -56,7 +76,9 @@ class ToolboxManager {
     public function loadNavigation() {
         $count = $this->modelCount();
         $toolbox = $this;
-        PageBuilder::addComponent("ide", "toolboxnav", compact("toolbox", "count"));
+        $page = $this->getPage();
+        $category = $this->getCategory();
+        PageBuilder::addComponent("ide", "toolboxnav", compact("toolbox", "count", "page", "category"));
     }
 
     public function loadPagerLocation() {

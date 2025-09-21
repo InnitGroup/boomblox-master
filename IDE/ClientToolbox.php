@@ -42,7 +42,7 @@ global $auth;
 		</script>
 	</head>
 	<body class="Page" bottommargin="0" leftmargin="0" rightmargin="0">
-		<form name="fToolbox" method="post" action="ClientToolbox.aspx?Category=AllModels&amp;Query=color&amp;PageIndex=9" onkeypress="" id="fToolbox">
+		<form name="fToolbox" method="post" action="ClientToolbox.aspx?Category=<?=$toolbox->getCategory()?>&amp;Query=color&amp;PageIndex=<?=$toolbox->getPage()?>" onkeypress="" id="fToolbox">
 			<div>
 				<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="">
 				<input type="hidden" name="ScriptManager1_HiddenField" id="ScriptManager1_HiddenField" value="">
