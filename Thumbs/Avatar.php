@@ -14,8 +14,7 @@ class Avatar extends Base {
         player.CharacterAppearance = '".$this->user->getCharacterAppearance()."'
         player:LoadCharacter()
         print('".$this->user->getUsername().":".$this->user->getUserId()." being rendered')
-        return game:GetService('ThumbnailGenerator'):Boom('".$imageFormat."', ".$width.", ".$height.", true)
-        ";
+        return game:GetService('ThumbnailGenerator'):Boom('".$imageFormat."', ".$width.", ".$height.", true)";
     }
     private function TestScript($width=100,$height=100,$imageFormat="PNG") {
         
