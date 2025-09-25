@@ -13,6 +13,7 @@ $asset = new Asset($place["itemId"]);
                     <img src="images/unlocked.png" alt="Unlocked" border="0" />&nbsp;Friends-only: You have access </span>
                 <span style="display:inline;">
                     <img src="images/public.png" alt="Public" border="0" />&nbsp;Public </span>
+                    <br>
             </div>
             <div class="PlayOptions">
                 <div class="modalPopup" style="display: none">
@@ -35,19 +36,15 @@ $asset = new Asset($place["itemId"]);
                 </div>
                 <input type="hidden" name="ctl00$cphRoblox$rbxUserPlacesPane$ctl02$rbxPlatform$rbxVisitButtons$rbxPlaceLauncher$HiddenField1"/>
                 <div style="display:inline">
-                    <button id="ctl00_cphRoblox_VisitButtons_hlMultiplayerVisit" class="Button" onclick='Roblox.Launch.VisitOnline("http://<?=domain?>/game/join.ashx?t=<?=time()?>", <?=$place["itemId"]?>, <?=Gameservers::findBestServer($place["itemId"])?>); return false;'>Visit Online</button>
+                    <input id="ctl00_cphRoblox_VisitButtons_hlMultiplayerVisit" type="Image" src="/images/Play.png" onclick='Roblox.Launch.VisitOnline("http://<?=domain?>/game/join.ashx?t=<?=time()?>", <?=$place["itemId"]?>, <?=Gameservers::findBestServer($place["itemId"])?>); return false;'>
                 </div>
                 
                 <?php if ($user->ownsPlace($place["itemId"])): ?>
-                <div style="display:inline"> &nbsp;&nbsp;&nbsp; <button class="Button" onclick='Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/visit.ashx?PlaceID=<?=$place["itemId"]?>&t=<?=time()?>", "NA", 2, <?=$place["itemId"]?>); return false;'>Visit Solo</button>
-                </div>
-                <div style="display:inline"> &nbsp;&nbsp;&nbsp; <button class="Button" onclick='Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/Edit.ashx?PlaceID=<?=$place["itemId"]?>&t=<?=time()?>", "NA", 3, <?=$place["itemId"]?>); return false;'>Edit</button>
+                <div style="display:inline"> &nbsp;&nbsp;&nbsp; <input type="Image" src="/images/PlaySolo.png" onclick='Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/visit.ashx?PlaceID=<?=$place["itemId"]?>&t=<?=time()?>", "NA", 2, <?=$place["itemId"]?>); return false;'>
                 </div>
                 <?php elseif ($place["onsale"] == 2): ?>
-                <div style="display:inline"> &nbsp;&nbsp;&nbsp; <button class="Button" onclick='Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/visit.ashx?PlaceID=<?=$place["itemId"]?>&t=<?=time()?>", "NA", 2, <?=$place["itemId"]?>); return false;'>Visit Solo</button>
+                <div style="display:inline"> &nbsp;&nbsp;&nbsp; <input type="Image" src="/images/PlaySolo.png" onclick='Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/visit.ashx?PlaceID=<?=$place["itemId"]?>&t=<?=time()?>", "NA", 2, <?=$place["itemId"]?>); return false;'>
                 </div>
-                <?php else: ?>
-                <div style="display:inline"> &nbsp;&nbsp;&nbsp; <button class="Button" disabled>Visit Solo</button></div>
                 <?php endif; ?>
             </div>
             <div class="Statistics">
