@@ -6,6 +6,7 @@ local sleepTime = 10
 local ns = game:GetService("NetworkServer")
 
 --game:GetService("Players"):SetAbuseReportUrl("http://www.roblox.com/AbuseReport/InGameChatHandler.ashx")
+game:GetService("Players"):SetChatFilterUrl("http://xoblog.dev/Game/ChatFilter.ashx")
 
 game:Load("http://{Url}/Data/Get.ashx?id={PlaceID}")
 
@@ -161,7 +162,6 @@ if port>0 then
 	-- Now start the connection
 	ns:Start(port, sleepTime) 
 end
-
 game:GetService("RunService"):Run()
 
 game:GetService("RunService").Heartbeat:connect(function()
