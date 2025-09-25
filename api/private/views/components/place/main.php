@@ -68,11 +68,6 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
 				<div id="Actions_Place">
 					<a <?=$user->hasFavorite($id) ? "disabled" : ""?> <?php if (!$user->hasFavorite($id)): ?> href="javascript:__doPostBack('ctl00$cphRoblox$Favorite', '')" <?php endif; ?>>Favorite</a>
 				</div>
-				<?php if (!$publicView): ?>
-                    <div id="Configuration">
-                        <a href="/My/Place.aspx?ID=<?=$id?>">Configure this Place</a>
-                    </div>
-                <?php endif; ?>
 				<div id="ctl00_cphRoblox_PlayGames" class="PlayGames">
 					<div style="text-align: center; margin: 1em 5px;">
 						<span id="ctl00_cphRoblox_PlaceAccessIndicator_FriendsOnlyLocked" style="display: none">
@@ -102,23 +97,28 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
 						</div>
 					</div>
 					<input type="hidden" name="ctl00$cphRoblox$VisitButtons$rbxPlaceLauncher$HiddenField1" id="ctl00_cphRoblox_VisitButtons_rbxPlaceLauncher_HiddenField1">
-					<div id="ctl00_cphRoblox_VisitButtons_VisitMPButton" style="display:inline">
-						<?php if (Server::isIE7()): ?>
-						<button id="ctl00_cphRoblox_VisitButtons_hlMultiplayerVisit" class="Button" onclick='alert("You are in client, visit online is not supported yet!")'>Visit Online</button>
+					<div id="ctl00_cphRoblox_VisitButtons_FancyButtons">
+						<div id="ctl00_cphRoblox_VisitButtons_VisitMPButton2" style="display: inline; width: 10px;">
+							<?php if (Server::isIE7()): ?>
+							<input type="image" name="ctl00$cphRoblox$VisitButtons$MultiplayerVisitButtonB" id="ctl00_cphRoblox_VisitButtons_MultiplayerVisitButtonB" class="ImageButton" src="/images/Play.png" alt="Visit Online" onclick='alert("You are in client, visit online is not supported yet!")'>
+							<?php else: ?>
+							<input type="image" name="ctl00$cphRoblox$VisitButtons$MultiplayerVisitButtonB" id="ctl00_cphRoblox_VisitButtons_MultiplayerVisitButtonB" class="ImageButton" src="/images/Play.png" alt="Visit Online" onclick='Roblox.Launch.VisitOnline("http://<?=domain?>/game/join.ashx?t=<?=time()?>", <?=$id?>, <?=Gameservers::findBestServer($id)?>); return false;'>
+							<?php endif; ?>
+						</div>
+						<?php if (!$publicView || $item["onsale"] == 2): ?>
+						<div id="ctl00_cphRoblox_VisitButtons_VisitButton2" style="display: inline; width: 10px;">
+							<input type="image" name="ctl00$cphRoblox$VisitButtons$SoloVisitButtonB" id="ctl00_cphRoblox_VisitButtons_SoloVisitButtonB" class="ImageButton" src="/images/PlaySolo.png" alt="Visit Solo" onclick='Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/visit.ashx?PlaceID=<?=$id?>&t=<?=time()?>", "NA", 2, <?=$id?>); return false;'>
+						</div>
 						<?php else: ?>
-						<button id="ctl00_cphRoblox_VisitButtons_hlMultiplayerVisit" class="Button" onclick='Roblox.Launch.VisitOnline("http://<?=domain?>/game/join.ashx?t=<?=time()?>", <?=$id?>, <?=Gameservers::findBestServer($id)?>); return false;'>Visit Online</button>
+							<input type="image" name="ctl00$cphRoblox$VisitButtons$SoloVisitButtonB" id="ctl00_cphRoblox_VisitButtons_SoloVisitButtonB" class="ImageButton" src="/images/PlaySolo.png" alt="Visit Solo" disabled>
 						<?php endif; ?>
 					</div>
-					<?php if (!$publicView): ?>
-					<div id="ctl00_cphRoblox_VisitButtons_VisitButton" style="display:inline"> &nbsp;&nbsp;&nbsp; <button id="ctl00_cphRoblox_VisitButtons_hlSoloVisit" class="Button" onclick='Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/visit.ashx?PlaceID=<?=$id?>&t=<?=time()?>", "NA", 2, <?=$id?>); return false;'>Visit Solo</button>
-					</div>
-					<?php elseif ($item["onsale"] == 2): ?>
-					<div id="ctl00_cphRoblox_VisitButtons_VisitButton" style="display:inline"> &nbsp;&nbsp;&nbsp; <button id="ctl00_cphRoblox_VisitButtons_hlSoloVisit" class="Button" onclick='Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/visit.ashx?PlaceID=<?=$id?>&t=<?=time()?>", "NA", 2, <?=$id?>); return false;'>Visit Solo</button>
-					</div>
-					<?php else: ?>
-					<div id="ctl00_cphRoblox_VisitButtons_VisitButton" style="display:inline"> &nbsp;&nbsp;&nbsp; <button id="ctl00_cphRoblox_VisitButtons_hlSoloVisit" class="Button" disabled>Visit Solo</button></div>
-					<?php endif; ?>
 				</div>
+				<?php if (!$publicView): ?>
+                    <div id="Configuration">
+                        <a href="/My/Place.aspx?ID=<?=$id?>">Configure this Place</a>
+                    </div>
+                <?php endif; ?>
 				<div style="clear: both;"></div>
 			</div>
 			<div style="margin:10px;width:703px;">
