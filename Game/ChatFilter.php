@@ -8,7 +8,6 @@ $context = file_get_contents("php://input");
 
 if (in_array($context, $banned)) {
     echo "False";
-    file_put_contents($_SERVER["DOCUMENT_ROOT"]."/Game/test.txt", "bad");
     exit;
 }
 
