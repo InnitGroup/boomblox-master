@@ -1,6 +1,19 @@
 <?php
 global $user;
 $asset = new Asset($place["itemId"]);
+$hasAccess = false;
+
+if ($place["access"] == 1) {
+    $hasAccess = true;
+}
+
+if ($user->friendsWith($place["creatorName"])) {
+    $hasAccess = true;
+}
+
+if ($user->getUserId() == $place["creatorId"]) {
+    $hasAccess = true;
+}
 ?>
 
 <script src="/ScriptResource.axd?d=aWRl"></script>
@@ -8,11 +21,11 @@ $asset = new Asset($place["itemId"]);
     <div style="display:<?=$display?>;" id="PlaceContent<?=$id?>" class="PlaceContent">
         <div class="Place">
             <div class="PlayStatus">
-                <span style="display: none">
+                <span style="display: <?=!$user->friendsWith($place["creatorName"]) && $place["access"] == 0 && $user->getUserId() !== $place["creatorId"] ? "inline" : "none"?>">
                     <img src="images/locked.png" alt="Locked" border="0" />&nbsp;Friends-only </span>
-                <span style="display: none">
+                <span style="display: <?=$user->friendsWith($place["creatorName"]) && $place["access"] == 0 || $user->getUserId() == $place["creatorId"] && $place["access"] == 0 ? "inline" : "none"?>">
                     <img src="images/unlocked.png" alt="Unlocked" border="0" />&nbsp;Friends-only: You have access </span>
-                <span style="display:inline;">
+                <span style="display: <?=$place["access"] == 1 ? "inline" : "none"?>">
                     <img src="images/public.png" alt="Public" border="0" />&nbsp;Public </span>
                     <br>
             </div>
@@ -36,6 +49,7 @@ $asset = new Asset($place["itemId"]);
                     </div>
                 </div>
                 <input type="hidden" name="ctl00$cphRoblox$rbxUserPlacesPane$ctl02$rbxPlatform$rbxVisitButtons$rbxPlaceLauncher$HiddenField1"/>
+                <?php if ($hasAccess): ?>
                 <div style="display:inline">
                     <input type="Image" src="/images/Play.png" id="ctl00_cphRoblox_VisitButtons_hlMultiplayerVisit" onclick='alert("You are in client, visit online is not supported yet!")'>
                 </div>
@@ -46,7 +60,7 @@ $asset = new Asset($place["itemId"]);
                 <div style="display:inline"> &nbsp;&nbsp;&nbsp; <input type="Image" src="/images/PlaySolo.png" onclick='javascript:Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/visit.ashx?PlaceID=<?=$place["itemId"]?>&t=<?=time()?>", "NA", 2, <?=$place["itemId"]?>)'></div>
                 <?php else: ?>
                 <div style="display:inline"> &nbsp;&nbsp;&nbsp; <input type="Image" src="/images/PlaySolo.png" disabled></div>
-                <?php endif; ?>
+                <?php endif; endif; ?>
             </div>
             <div class="Statistics">
                 <span>Visited <?=number_format($place["interactions"])?> times ( last week)</span>

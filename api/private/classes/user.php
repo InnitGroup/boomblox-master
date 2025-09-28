@@ -306,6 +306,28 @@ class User {
             return 1;
         }
     }
+    public function canAccessPlace(int $placeId) {
+        global $db;
+        $stmt = "SELECT * FROM items WHERE itemId=:placeId";
+        $result = $db->execute($stmt, [":placeId" => $placeId]);
+        $place = $result->fetch(PDO::FETCH_ASSOC);
+
+        $access = $place["access"];
+        $creatorId = $place["creatorId"];
+        $creatorName = $place["creatorName"];
+
+        if ($access == 1) {
+            return true;
+        }
+
+        if ($this->getUserId() == $creatorId) {
+            return true;
+        }
+
+        if ($this->friendsWith($creatorName)) {
+            return true;
+        }
+    }
     public function getVisits() {
         global $db;
         $stmt = "SELECT SUM(interactions) FROM items WHERE `creatorId`=:creatorId AND `itemType`='game'";

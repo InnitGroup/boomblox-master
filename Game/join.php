@@ -70,6 +70,19 @@ if (!$server = Gameservers::getServerById($serverId)) {
     exit;
 }
 
+if (!$user->canAccessPlace($server["placeId"])) {
+    global $user;
+    
+    $file = new File("/api/private/lua/joinfail.lua", [
+        "Error" => "join, you are not friends with this user.",
+        "UserID" => $userId
+    ]);
+    Client::setJoin($user->getUserId(), 0);
+    
+    echo $file->handle();
+    exit;
+}
+
 $port = $server["port"];
 $uploadUrl = $user->ownsPlace($server["placeId"]) ? "http://".domain."/Data/Upload.ashx?id=" . $server["placeId"] : "";
 $hasLocalScripts = File::hasLocalScripts($_SERVER["DOCUMENT_ROOT"] . "/content/" . $server["placeId"]);

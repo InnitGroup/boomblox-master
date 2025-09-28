@@ -7,6 +7,7 @@ if (Setting::disabled("Gameservers")) {
 }
 
 $placeId = $_GET["PlaceID"] ?? Server::_404();
+
 $port = rand(1000,2000);
 $playerTable = 'a:0:{}';
 

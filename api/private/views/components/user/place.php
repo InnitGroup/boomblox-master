@@ -1,7 +1,6 @@
 <?php
 global $user;
 $asset = new Asset($place["itemId"]);
-
 $hasAccess = false;
 
 if ($place["access"] == 1) {
