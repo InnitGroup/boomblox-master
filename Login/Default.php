@@ -15,8 +15,8 @@ if (Server::isPost()) {
     }
 }
 
-!isset($_GET["And"]) && Server::_404();
-$_GET["And"] !== "ThisIsCrazy" && Server::_404();
+!isset($_GET["My"]) && Server::_404();
+$_GET["My"] !== "Way" && Server::_404();
 
 $page->buildHeader();
 ?>

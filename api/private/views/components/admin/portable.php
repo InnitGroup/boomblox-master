@@ -1,4 +1,4 @@
-<div style="position:fixed;bottom:0;left:90%;height:300px;width:150px;z-index:2;background-color:#D4D0C7;border:1px solid black;clear:both;padding:5px;">
+<div style="position:fixed;bottom:0;right:60px;height:300px;width:150px;z-index:2;background-color:#D4D0C7;border:1px solid black;clear:both;padding:5px;">
     <p style="margin:0 0 0 0;"><a href="/Admi/Cores.aspx">Machines:</a> <b><?=CPU::getMachineUsagePct()?>%</b> of <b><?=CPU::getMachines()?></b></p>
     <p style="margin:0 0 0 0;"><a href="/Admi/Cores.aspx">Cores:</a> <b><?=CPU::getCpuUsagePct()?>%</b> in use of <b><?=CPU::getCPUs()?></b></p>
     <p style="margin:0 0 0 0;"><b><?=Gameservers::countRunning()?></b> running, <b><?=Gameservers::countWaiting()?></b> waiting</p>
