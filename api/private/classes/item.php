@@ -49,6 +49,20 @@ class Item {
         return $this;
     }
 
+    # sets the privacy setting of an item
+    public function privacy(int $type): Item {
+        /*
+        1: public
+        2: friends-only
+        3: private
+        */
+
+        global $db;
+        $stmt = "UPDATE items SET access=:accessType WHERE itemId=:itemId";
+        $db->execute($stmt, [":accessType" => $type, ":itemId" => $this->id]);
+        return $this;
+    }
+
     # makes an item offsale
     public function offsale(): Item {
         global $db;
