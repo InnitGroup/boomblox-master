@@ -38,7 +38,7 @@ class GamesManager {
             SUM(s.players) AS totalPlayers
             FROM items i
             LEFT JOIN servers s ON s.placeId = i.itemId AND s.players > 0
-            WHERE i.itemType = 'game' AND i.status = 'accepted'
+            WHERE i.itemType = 'game' AND i.status = 'accepted' and i.access = 1
             GROUP BY i.itemId
             ORDER BY totalPlayers DESC, i.interactions DESC;
             ";

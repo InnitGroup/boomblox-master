@@ -10,6 +10,7 @@ $creator = $item["creatorName"];
 $lastUpdate = $item["lastUpdate"];
 $favorites = $item["favorites"];
 $interactions = $item["interactions"];
+$access = $item["access"];
 $copylock = (bool)$item["onsale"] == 2 ? "Shared" : "CopyLocked";
 
 $publicView = !$user->ownsPlace($id);
@@ -70,11 +71,11 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
 				</div>
 				<div id="ctl00_cphRoblox_PlayGames" class="PlayGames">
 					<div style="text-align: center; margin: 1em 5px;">
-						<span id="ctl00_cphRoblox_PlaceAccessIndicator_FriendsOnlyLocked" style="display: none">
+						<span id="ctl00_cphRoblox_PlaceAccessIndicator_FriendsOnlyLocked" style="display: <?=!$user->friendsWith($creator) && $access == 0 && $user->getUserId() !== $creatorId ? "inline" : "none"?>">
 							<img id="ctl00_cphRoblox_PlaceAccessIndicator_iFriendsOnly_Locked" src="/images/locked.png" alt="Locked" border="0">&nbsp;Friends-only </span>
-						<span id="ctl00_cphRoblox_PlaceAccessIndicator_FriendsOnlyUnlocked" style="display: none">
+						<span id="ctl00_cphRoblox_PlaceAccessIndicator_FriendsOnlyUnlocked" style="display: <?=$user->friendsWith($creator) && $access == 0 || $user->getUserId() == $creatorId && $access == 0 ? "inline" : "none"?>">
 							<img id="ctl00_cphRoblox_PlaceAccessIndicator_iFriendsOnly_Unlocked" src="/images/unlocked.png" alt="Unlocked" border="0">&nbsp;Friends-only: You have access </span>
-						<span id="ctl00_cphRoblox_PlaceAccessIndicator_Public" style="display:inline;">
+						<span id="ctl00_cphRoblox_PlaceAccessIndicator_Public" style="display:<?=$access == 1 ? "inline" : "none"?>;">
 							<img id="ctl00_cphRoblox_PlaceAccessIndicator_iPublic" src="/images/public.png" alt="Public" border="0">&nbsp;Public </span>
 						<img id="ctl00_cphRoblox_SharedIcon" src="/images/<?=$copylock?>.png" alt="Shared" border="0"> Copy Protection: <?=$copylock?>
 					</div>
