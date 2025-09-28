@@ -1,6 +1,20 @@
 <?php
 global $user;
 $asset = new Asset($place["itemId"]);
+
+$hasAccess = false;
+
+if ($place["access"] == 1) {
+    $hasAccess = true;
+}
+
+if ($user->friendsWith($place["creatorName"])) {
+    $hasAccess = true;
+}
+
+if ($user->getUserId() == $place["creatorId"]) {
+    $hasAccess = true;
+}
 ?>
 
 <div class="AccordionHeader" onclick="OpenPlace(<?=$id?>)"> <?=htmlspecialchars($place["itemName"])?> </div>
@@ -9,7 +23,7 @@ $asset = new Asset($place["itemId"]);
             <div class="PlayStatus">
                 <span style="display: <?=!$user->friendsWith($place["creatorName"]) && $place["access"] == 0 && $user->getUserId() !== $place["creatorId"] ? "inline" : "none"?>">
                     <img src="images/locked.png" alt="Locked" border="0" />&nbsp;Friends-only </span>
-                <span style="display: <?=$user->friendsWith($creator) && $access == 0 || $user->getUserId() == $creatorId && $access == 0 ? "inline" : "none"?>">
+                <span style="display: <?=$user->friendsWith($place["creatorName"]) && $place["access"] == 0 || $user->getUserId() == $place["creatorId"] && $place["access"] == 0 ? "inline" : "none"?>">
                     <img src="images/unlocked.png" alt="Unlocked" border="0" />&nbsp;Friends-only: You have access </span>
                 <span style="display: <?=$place["access"] == 1 ? "inline" : "none"?>">
                     <img src="images/public.png" alt="Public" border="0" />&nbsp;Public </span>
@@ -35,6 +49,7 @@ $asset = new Asset($place["itemId"]);
                     </div>
                 </div>
                 <input type="hidden" name="ctl00$cphRoblox$rbxUserPlacesPane$ctl02$rbxPlatform$rbxVisitButtons$rbxPlaceLauncher$HiddenField1"/>
+                <?php if ($hasAccess): ?>
                 <div style="display:inline">
                     <input id="ctl00_cphRoblox_VisitButtons_hlMultiplayerVisit" type="Image" src="/images/Play.png" onclick='Roblox.Launch.VisitOnline("http://<?=domain?>/game/join.ashx?t=<?=time()?>", <?=$place["itemId"]?>, <?=Gameservers::findBestServer($place["itemId"])?>); return false;'>
                 </div>
@@ -45,7 +60,7 @@ $asset = new Asset($place["itemId"]);
                 <?php elseif ($place["onsale"] == 2): ?>
                 <div style="display:inline"> &nbsp;&nbsp;&nbsp; <input type="Image" src="/images/PlaySolo.png" onclick='Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/visit.ashx?PlaceID=<?=$place["itemId"]?>&t=<?=time()?>", "NA", 2, <?=$place["itemId"]?>); return false;'>
                 </div>
-                <?php endif; ?>
+                <?php endif; endif; ?>
             </div>
             <div class="Statistics">
                 <span>Visited <?=number_format($place["interactions"])?> times ( last week)</span>
