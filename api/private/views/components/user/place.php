@@ -7,11 +7,11 @@ $asset = new Asset($place["itemId"]);
     <div style="display:<?=$display?>;" id="PlaceContent<?=$id?>" class="PlaceContent">
         <div class="Place">
             <div class="PlayStatus">
-                <span style="display: none">
+                <span style="display: <?=!$user->friendsWith($place["creatorName"]) && $place["access"] == 0 && $user->getUserId() !== $place["creatorId"] ? "inline" : "none"?>">
                     <img src="images/locked.png" alt="Locked" border="0" />&nbsp;Friends-only </span>
-                <span style="display: none">
+                <span style="display: <?=$user->friendsWith($creator) && $access == 0 || $user->getUserId() == $creatorId && $access == 0 ? "inline" : "none"?>">
                     <img src="images/unlocked.png" alt="Unlocked" border="0" />&nbsp;Friends-only: You have access </span>
-                <span style="display:inline;">
+                <span style="display: <?=$place["access"] == 1 ? "inline" : "none"?>">
                     <img src="images/public.png" alt="Public" border="0" />&nbsp;Public </span>
                     <br>
             </div>
