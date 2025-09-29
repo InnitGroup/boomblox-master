@@ -111,8 +111,6 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
 						<div id="ctl00_cphRoblox_VisitButtons_VisitButton2" style="display: inline; width: 10px;">
 							<input type="image" name="ctl00$cphRoblox$VisitButtons$SoloVisitButtonB" id="ctl00_cphRoblox_VisitButtons_SoloVisitButtonB" class="ImageButton" src="/images/PlaySolo.png" alt="Visit Solo" onclick='Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/visit.ashx?PlaceID=<?=$id?>&t=<?=time()?>", "NA", 2, <?=$id?>); return false;'>
 						</div>
-						<?php else: ?>
-							<input type="image" name="ctl00$cphRoblox$VisitButtons$SoloVisitButtonB" id="ctl00_cphRoblox_VisitButtons_SoloVisitButtonB" class="ImageButton" src="/images/PlaySolo.png" alt="Visit Solo" disabled>
 						<?php endif; ?>
 					</div>
 					<?php endif; ?>
