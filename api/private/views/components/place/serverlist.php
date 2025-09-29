@@ -9,6 +9,7 @@ $max = $result["playersMax"];
 
 $stmt = "SELECT * FROM servers WHERE placeId=:placeId";
 $result = $db->execute($stmt, [":placeId" => $id]);
+
 if ($result->rowCount() > 0):
 ?>
 
@@ -34,8 +35,10 @@ foreach ($servers as $server):
                 <?php endforeach; ?>
             </div>
             <div style="text-align: left;"> <?=number_format($server["players"])?> players of <?=$max?> max <br> &nbsp; </div><br>
+            <?php if ($user->canAccessPlace($id)): ?>
             <button class="Button" onclick='Roblox.Launch.VisitOnline("http://<?=domain?>/game/join.ashx?t=<?=time()?>&ServerId=<?=$server["id"]?>", <?=$id?>, <?=$server["id"]?>); return false;'>Join</button>
-            <?php if ($viewer->ownsPlace($id) || $viewer->hasPerms(3)): ?>
+            <?php endif;
+            if ($viewer->ownsPlace($id) || $viewer->hasPerms(3)): ?>
                 <button class="Button" onclick="RBXGS.Server.Close(<?=$server["id"]?>, <?=$id?>); return false;">Shutdown</button>
             <?php endif; ?>
         </div>

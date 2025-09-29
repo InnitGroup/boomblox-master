@@ -98,6 +98,7 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
 						</div>
 					</div>
 					<input type="hidden" name="ctl00$cphRoblox$VisitButtons$rbxPlaceLauncher$HiddenField1" id="ctl00_cphRoblox_VisitButtons_rbxPlaceLauncher_HiddenField1">
+					<?php if ($user->canAccessPlace($id)): ?>
 					<div id="ctl00_cphRoblox_VisitButtons_FancyButtons">
 						<div id="ctl00_cphRoblox_VisitButtons_VisitMPButton2" style="display: inline; width: 10px;">
 							<?php if (Server::isIE7()): ?>
@@ -114,6 +115,7 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
 							<input type="image" name="ctl00$cphRoblox$VisitButtons$SoloVisitButtonB" id="ctl00_cphRoblox_VisitButtons_SoloVisitButtonB" class="ImageButton" src="/images/PlaySolo.png" alt="Visit Solo" disabled>
 						<?php endif; ?>
 					</div>
+					<?php endif; ?>
 				</div>
 				<?php if (!$publicView): ?>
                     <div id="Configuration">
