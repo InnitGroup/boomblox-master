@@ -89,8 +89,12 @@ class CSettingsManager {
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="radio" name="Theme" value="2" '.$this->isTheme(2).' tabindex="1">
-                                            <label>Protonium Theme</label>
+                                            <label>RIP Protonium Theme</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label>(March 2025 - September 29th, 2025)</label>
                                         </td>
                                     </tr>
                                     <tr>
