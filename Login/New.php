@@ -19,8 +19,8 @@ if (Server::isPost()) {
 	}
 }
 
-!isset($_GET["Hit"]) && Server::_404();
-$_GET["Hit"] !== "TheRoadJack" && Server::_404();
+!isset($_GET["Come"]) && Server::_404();
+$_GET["Come"] !== "AsYouAre" && Server::_404();
 
 ?>
 <div id="Body">

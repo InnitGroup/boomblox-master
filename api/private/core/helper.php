@@ -88,7 +88,7 @@ class Helper {
             return "$days day" . ($days > 1 ? "s" : "") . " ago";
         } elseif ($weeks <= 4.3) {
             return "$weeks week" . ($weeks > 1 ? "s" : "") . " ago";
-        } elseif ($months <= 12) {
+        } elseif ($months < 12) {
             return "$months month" . ($months > 1 ? "s" : "") . " ago";
         } else {
             return "$years year" . ($years > 1 ? "s" : "") . " ago";

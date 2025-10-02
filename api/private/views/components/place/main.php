@@ -1,5 +1,5 @@
 <?php
-global $user;
+global $user, $theme;
 
 $name = isset($item["itemName"]) ? htmlspecialchars($item["itemName"]) : "Place";
 $description = isset($item["itemDescription"]) ? htmlspecialchars($item["itemDescription"]) : NULL;
