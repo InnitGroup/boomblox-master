@@ -143,9 +143,8 @@ switch ($type) {
         #death
         if (isset($_GET["Key"])) {
             if ($_GET["Key"] == "SUPER1SADGRRR") {
-                $stmt = "UPDATE users SET kos = kos + 1 WHERE id=:userId";
+                $stmt = "UPDATE users SET wos = wos + 1 WHERE id=:userId";
                 $db->execute($stmt, [":userId" => $user]);
-                $player = new User($user);
                 #Discord::sendWebhookMessage("games", $player->getUsername() . " died");
             } else {
                 Discord::sendWebhookMessage("weird", "Someone tried to access WOs API but set a bad key");
