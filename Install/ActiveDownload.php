@@ -15,6 +15,14 @@ if (isset($_GET["Special"])) {
 
             $file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/BoombloxXP.zip";
             break;
+        case "QATester030A":
+            $qaTesters = [3, 78, 99, 113, 79, 85, 105, 91, 100, 108, 93, 73];
+            if (!in_array($user->getUserId(), $qaTesters)) {
+                Server::_404();
+            }
+
+            $file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/030A.exe";
+            break;
     }
 }
 

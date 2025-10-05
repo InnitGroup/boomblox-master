@@ -80,9 +80,9 @@ class HomeManager {
                         </td><td class="UserPlace">
                             <a id="ctl00_cphRoblox_CoolPlacesDataList_ctl02_rbxContentImage" title="Destruction derby" href="/Item.aspx?ID=273" style="display:inline-block;cursor:pointer;"><img style="width:120px;height:70px;" src="https://t2.xoblog.dev/54ee6e22b9eee95a93d801ee28b60c5c" border="0" alt="Destruction derby" blankurl="http://t2.xoblog.dev:80/blank-120x70.gif"/></a>
                         </td><td class="UserPlace">
-                            <a id="ctl00_cphRoblox_CoolPlacesDataList_ctl03_rbxContentImage" title="Boomblox Park" href="/Item.aspx?ID=119" style="display:inline-block;cursor:pointer;"><img style="width:120px;height:70px;" src="https://t2.xoblog.dev/11c9b430e010c0e7d84486f37258eec0" border="0" alt="Boomblox Park" blankurl="http://t2.xoblog.dev:80/blank-120x70.gif"/></a>
+                            <a id="ctl00_cphRoblox_CoolPlacesDataList_ctl03_rbxContentImage" title="Boomblox Park" href="/Item.aspx?ID=119" style="display:inline-block;cursor:pointer;"><img style="width:120px;height:70px;" src="https://t2.xoblog.dev/b3cd1cabae837bd09f2fed10c56d1e2d?v=1" border="0" alt="Boomblox Park" blankurl="http://t2.xoblog.dev:80/blank-120x70.gif"/></a>
                         </td><td class="UserPlace">
-                            <a id="ctl00_cphRoblox_CoolPlacesDataList_ctl04_rbxContentImage" title="✪Heli-Wars: Winter Mayhem✪" href="/Item.aspx?ID=267" style="display:inline-block;cursor:pointer;"><img style="width:120px;height:70px;" src="https://t2.xoblog.dev/e9477a441704b419b4e9c945bda99e2a" border="0" alt="✪Heli-Wars: Winter Mayhem✪" blankurl="http://t2.xoblog.dev:80/blank-120x70.gif"/></a>
+                            <a id="ctl00_cphRoblox_CoolPlacesDataList_ctl04_rbxContentImage" title="✪Heli-Wars: Winter Mayhem✪" href="/Item.aspx?ID=267" style="display:inline-block;cursor:pointer;"><img style="width:120px;height:70px;" src="https://t2.xoblog.dev/edc2aa15ee2e35cacdd397c94755b40c?v=1" border="0" alt="✪Heli-Wars: Winter Mayhem✪" blankurl="http://t2.xoblog.dev:80/blank-120x70.gif"/></a>
                         </td>
                     </tr>
                 </table>
