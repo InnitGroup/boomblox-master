@@ -28,24 +28,27 @@ class Item {
     # renames an item
     public function rename(string $name): Item {
         global $db;
-        $stmt = "UPDATE items SET itemName=:itemName WHERE itemId=:itemId";
-        $db->execute($stmt, [":itemName" => $name, ":itemId" => $this->id]);
+        $date = date("Y-m-d H:i:s");
+        $stmt = "UPDATE items SET itemName=:itemName, lastUpdate=:dateV WHERE itemId=:itemId";
+        $db->execute($stmt, [":itemName" => $name, ":itemId" => $this->id, ":dateV" => $date]);
         return $this;
     }
 
     # describes an item
     public function description(string $desc): Item {
         global $db;
-        $stmt = "UPDATE items SET itemDescription=:itemDescription WHERE itemId=:itemId";
-        $db->execute($stmt, [":itemDescription" => $desc, ":itemId" => $this->id]);
+        $date = date("Y-m-d H:i:s");
+        $stmt = "UPDATE items SET itemDescription=:itemDescription, lastUpdate=:dateV WHERE itemId=:itemId";
+        $db->execute($stmt, [":itemDescription" => $desc, ":itemId" => $this->id, ":dateV" => $date]);
         return $this;
     }
 
     # makes an item onsale
     public function onsale(): Item {
         global $db;
-        $stmt = "UPDATE items SET onsale=1 WHERE itemId=:itemId";
-        $db->execute($stmt, [":itemId" => $this->id]);
+        $date = date("Y-m-d H:i:s");
+        $stmt = "UPDATE items SET onsale=1, lastUpdate=:dateV WHERE itemId=:itemId";
+        $db->execute($stmt, [":itemId" => $this->id, ":dateV" => $date]);
         return $this;
     }
 
@@ -66,8 +69,9 @@ class Item {
     # makes an item offsale
     public function offsale(): Item {
         global $db;
-        $stmt = "UPDATE items SET onsale=0 WHERE itemId=:itemId";
-        $db->execute($stmt, [":itemId" => $this->id]);
+        $date = date("Y-m-d H:i:s");
+        $stmt = "UPDATE items SET onsale=0, lastUpdate=:dateV WHERE itemId=:itemId";
+        $db->execute($stmt, [":itemId" => $this->id, ":dateV" => $date]);
         return $this;
     }
 
@@ -82,16 +86,18 @@ class Item {
     # attaches a price in bux for an item
     public function sellForBux(int $amount) {
         global $db;
-        $stmt = "UPDATE items SET priceInBoombux=:priceInBoombux WHERE itemId=:itemId";
-        $db->execute($stmt, [":itemId" => $this->id, ":priceInBoombux" => (int)$amount]);
+        $date = date("Y-m-d H:i:s");
+        $stmt = "UPDATE items SET priceInBoombux=:priceInBoombux, lastUpdate=:dateV WHERE itemId=:itemId";
+        $db->execute($stmt, [":itemId" => $this->id, ":priceInBoombux" => (int)$amount, ":dateV" => $date]);
         return $this;
     }
 
     # attaches a price in tix for an item
     public function sellForTix(int $amount) {
         global $db;
-        $stmt = "UPDATE items SET priceInTix=:priceInTix WHERE itemId=:itemId";
-        $db->execute($stmt, [":itemId" => $this->id, ":priceInTix" => (int)$amount]);
+        $date = date("Y-m-d H:i:s");
+        $stmt = "UPDATE items SET priceInTix=:priceInTix, lastUpdate=:dateV WHERE itemId=:itemId";
+        $db->execute($stmt, [":itemId" => $this->id, ":priceInTix" => (int)$amount, ":dateV" => $date]);
         return $this;
     }
 
