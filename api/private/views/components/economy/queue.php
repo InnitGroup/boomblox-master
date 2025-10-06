@@ -109,7 +109,7 @@ $required = Helper::is_even(round(abs($admins/2))) ? round(abs($admins/2))+1 : r
         &nbsp;|&nbsp;
         <button onclick="javascript:__doPostBack('ctl$cphRoblox$No','<?=$item["id"]?>')">No</button>
         <p><?=$item["yes"]?>-<?=$item["no"]?></p>
-        <?php if (($item["yes"] + $item["no"]) >= $required && $user->hasPerms(7)): ?>
+        <?php if ($user->hasPerms(7)): ?>
         <button onclick="javascript:__doPostBack('ctl$cphRoblox$Continue','<?=$item["id"]?>')">Continue</button>
         <?php endif; ?>
         <hr>
