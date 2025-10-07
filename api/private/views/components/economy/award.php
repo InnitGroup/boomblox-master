@@ -33,9 +33,8 @@
 
             if ($pass) {
                 $userId = $_POST['ctl00$robloxCph$userId'];
-                $isUsername = false;
+
                 if (str_starts_with($userId, "u:")) {
-                    $isUsername = true;
                     $username = substr($userId, 2);
                     $userId = User::getIdByName($username);
                 }
