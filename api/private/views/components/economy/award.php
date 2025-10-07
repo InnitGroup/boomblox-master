@@ -3,7 +3,7 @@
         <h1>Award Product</h1>
         <p>Staff have the ability to award products and provide reasoning.</p>
         <br>
-        <label>User ID:</label>
+        <label>User ID or Username: <i>if using username, begin with <pre>u:</pre></i></label>
         <input type="text" name="ctl00$robloxCph$userId" required>
         <br>
         <label>Item ID:</label>
@@ -33,6 +33,13 @@
 
             if ($pass) {
                 $userId = $_POST['ctl00$robloxCph$userId'];
+                $isUsername = false;
+                if (str_starts_with($userId, "u:")) {
+                    $isUsername = true;
+                    $username = substr($userId, 2);
+                    $userId = User::getIdByName($username);
+                }
+
                 $itemId = $_POST['ctl00$robloxCph$itemId'];
                 $reason = $_POST['ctl00$robloxCph$reason'];
 

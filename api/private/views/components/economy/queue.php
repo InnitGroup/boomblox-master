@@ -57,7 +57,7 @@ $required = Helper::is_even(round(abs($admins/2))) ? round(abs($admins/2))+1 : r
                     $stmt = "SELECT * FROM itemqueue WHERE id=:id";
                     $result = $db->execute($stmt, [":id" => $_POST["__EVENTARGUMENT"]]);
                     $queuedItem = $result->fetch(PDO::FETCH_ASSOC);
-                    if (($queuedItem["yes"] + $queuedItem["no"]) < $required) {break;}
+                    # if (($queuedItem["yes"] + $queuedItem["no"]) < $required) {break;}
                     if ($queuedItem["catalogType"] == 4) {$error = 'Heads cannot be uploaded yet.'; break;}
 
                     $stmt = "UPDATE itemqueue SET complete=1 WHERE id=:id";

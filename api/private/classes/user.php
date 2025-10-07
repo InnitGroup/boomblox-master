@@ -328,6 +328,22 @@ class User {
             return true;
         }
     }
+    public static function getNameById(int $id) {
+        global $db;
+        $stmt = "SELECT username FROM users WHERE id=:id";
+        $result = $db->execute($stmt, [":id" => $id]);
+        if ($result->rowCount() > 0) {
+            return $result->fetch(PDO::FETCH_ASSOC)["username"];
+        }
+    }
+    public static function getIdByName(string $name) {
+        global $db;
+        $stmt = "SELECT id FROM users WHERE username=:username";
+        $result = $db->execute($stmt, [":username" => $name]);
+        if ($result->rowCount() > 0) {
+            return $result->fetch(PDO::FETCH_ASSOC)["id"];
+        }
+    }
     public function getVisits() {
         global $db;
         $stmt = "SELECT SUM(interactions) FROM items WHERE `creatorId`=:creatorId AND `itemType`='game'";
