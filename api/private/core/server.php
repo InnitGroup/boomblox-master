@@ -55,6 +55,10 @@ class Server {
         $uri = str_replace(".php", ".aspx", $uri);
         echo '<script>window.location.href = "'.$uri.'";</script>';
     }
+    public static function _root() {
+        header("Location: /");
+        exit;
+    }
     public static function _af404() {
         PageBuilder::addComponent("404", "adminfind");
         exit;
