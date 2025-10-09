@@ -2,12 +2,32 @@
 class TradeCurrencyManager {
     # calculate the returned amount based on the amount & currency
     public function calculate($amount, $currency) {
+        if ($amount <= 0) {
+            return false;
+        }
+
+        if ($currency == "Tickets" && $amount < 20) {
+            return false;
+        }
+
         switch ($currency) {
             case "Tickets":
                 return floor((int)$amount / 10);
             case "Robux":
                 return floor((int)$amount) * 10;
         }
+    }
+
+    public function handleTicketMarketTrade(int $amount) {
+        global $user;
+        if ($user->getTickets() < $amount) {
+            return false;
+        }
+
+        $output = $this->calculate($amount, "Tickets");
+        $user->takeTix($amount);
+        $user->giveBux($output);
+        return true;
     }
 
     # controller
@@ -25,9 +45,23 @@ class TradeCurrencyManager {
         $orderType = $_POST['ctl00$cphRoblox$OrderType']; # MarketOrderRadioButton/LimitOrderRadioButton
 
         # continue
-        if ($currency == "Tickets" && $amount > 10 || $currency == "Robux" && $amount > 0) {
-            global $user;
-            echo "you got this far :shush:";
+        if ($orderType == "LimitOrderRadioButton") {
+            echo 1;
+            return; // too advanced
+        }
+
+        if ($currency == "Tickets" && $amount > 20 || $currency == "Robux" && $amount > 0) {
+            switch ($currency) {
+                case "Tickets":
+                    if ($result = $this->handleTicketMarketTrade($amount)) {
+                        Server::_self();
+                    }
+
+                    break;
+                case "Robux":
+                    
+                    break;
+            }
         }
     }
 

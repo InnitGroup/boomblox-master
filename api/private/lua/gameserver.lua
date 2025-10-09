@@ -78,10 +78,10 @@ game:service("Players").ChildAdded:connect(
 			end
 		)
 		player.Chatted:connect(function(message)
-			if (string.find(" ", message)) then
+			--[[if (string.find(" ", message)) then
 				local replicator = getPlayerReplicator(player)
 				replicator:CloseConnection()
-			end
+			end]]
 		end)
 		
 	end

@@ -50,6 +50,11 @@ class Server {
         PageBuilder::addComponent("404", "regular");
         exit;
     }
+    public static function _self() {
+        $uri = $_SERVER["PHP_SELF"];
+        $uri = str_replace(".php", ".aspx", $uri);
+        echo '<script>window.location.href = "'.$uri.'";</script>';
+    }
     public static function _af404() {
         PageBuilder::addComponent("404", "adminfind");
         exit;
@@ -79,6 +84,7 @@ class Server {
     public static function pageRestrictor($items,$limit,$page) {
         if (ceil($items->rowCount() / $limit) < $page || $page < 1) { #ceil()->rowCount() / 20) < $p || $p < 1
             header("Location: /Error/Default.aspx");
+            exit;
         }
     }
 
@@ -87,6 +93,7 @@ class Server {
         $from = $headers["From"];
         if ($from !== "siteApi") {
             header("Location: /404.aspx");
+            exit;
         }
     }
 
@@ -96,6 +103,7 @@ class Server {
                 #$GLOBALS["pageEx"] = "No items found.";
             } else {
                 header("Location: 404.aspx");
+                exit;
             }
         }
     }
