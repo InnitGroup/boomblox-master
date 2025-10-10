@@ -39,6 +39,12 @@ class Server {
         return $agent == "Roblox/WinInet";
     }
     public static function _404($aspxEnabled = true) {
+        global $auth;
+        if (!$auth->isAuthed()) {
+            header("Location: /");
+            exit;
+        }
+
         $ext = "";
         $aspxEnabled == true && $ext .= "aspx"; 
         $aspxEnabled == false && $ext .= "php";

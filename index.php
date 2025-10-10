@@ -6,7 +6,7 @@ $auth->isAuthed() && header("Location: /Default.aspx") && exit;
 
 if (isset($_GET["I"])) {
     if ($_GET["I"] === "DidIt") {
-        header("Location: /Login/Default.aspx?My=Way");
+        #header("Location: /Login/Default.aspx?My=Way");
         exit;
     }
 }
