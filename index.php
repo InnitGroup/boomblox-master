@@ -4,9 +4,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 global $auth;
 $auth->isAuthed() && header("Location: /Default.aspx") && exit;
 
-if (isset($_GET["I"])) {
-    if ($_GET["I"] === "DidIt") {
-        #header("Location: /Login/Default.aspx?My=Way");
+if (isset($_GET["For"])) {
+    if ($_GET["For"] === "TheFameWontYou") {
+        header("Location: /Login/Default.aspx?I=ServeTheBase");
         exit;
     }
 }
