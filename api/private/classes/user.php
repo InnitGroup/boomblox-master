@@ -480,9 +480,8 @@ class User {
         }
         if ($serialized) {
             return $friends;
-        } else {
-            return unserialize($friends);
         }
+        return unserialize($friends);
     }
 
     public function friendsWith($friend) {
