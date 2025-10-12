@@ -35,6 +35,7 @@ if (isset($_GET["issue"])) {
             case "BadHash":
                 Discord::sendWebhookMessage("weird", "{$user->getUsername()} tried to load client with a bad hash for dll: $module");
                 break;
+            case "SuspiciousSystemDll":
             case "UnknownModule":
                 Discord::sendWebhookMessage("weird", "{$user->getUsername()} tried to load client with an unknown dll: $module");
                 break;

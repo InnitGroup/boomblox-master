@@ -6,10 +6,6 @@ global $user, $auth;
 
 #!$auth->isAuthed() && Server::_404();
 
-if ($_SERVER["HTTP_USER_AGENT"] !== "Boomblox/1.0") {
-    #Server::_404();
-}
-
 $hashes = [
     "AnticheatA" => "d6c7c820f52ab1089ab463afd2f2b8bb7fee9581cdcec3acec709e8cf1ae5039",
     "fmodex.dll" => "da0db97d9236710f8c0d44dbd15dc8630b70b45495878fe8081014989787964f",
@@ -23,15 +19,14 @@ $hashes = [
     "tbb.dll" => "21a48a572bb9d3e136cdb40e33f8717bf38e08ccde9ed07c545c97e911470157"
 ];
 
-!isset($_GET["dllissue"]) && Server::_404();
-!isset($_GET["module"]) && Server::_404();
+$_SERVER["HTTP_USER_AGENT"] !== "Boomblox/1.0" && Server::_404();
+!isset($_GET["dll"]) && Server::_404();
 
-$issue = $_GET["dllissue"];
-$module = $_GET["module"];
+$dll = $_GET["dll"];
 
+!isset($hashes[$dll]) && Server::_404();
+#Discord::sendWebhookMessage("weird", "[testing] searching for dll...: $dll");
+echo $hashes[$dll];
 
-!isset($hashes[$module]) && Server::_404();
-$issue !== "BadHash" && Server::_404();
-
-echo $hashes[$module];
+exit;
 ?>
