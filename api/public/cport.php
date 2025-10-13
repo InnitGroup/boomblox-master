@@ -19,6 +19,7 @@ if (isset($_GET["issue"])) {
     
     if (isset($_GET["module"])) {
         $module = $_GET["module"];
+        str_replace("@", "", $module);
         switch ($issue) {
             case "Unauth":
                 Discord::sendWebhookMessage("weird", "{$user->getUsername()} tried to start the client with unauthorized module in folder: $module");

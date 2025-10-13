@@ -3,13 +3,11 @@
 #last edit: 01/19/2025 @marsoc
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
-if (!$auth->isAuthed()) {
-	Server::_404();
-}
+#Server::ipLock();
 
-$user = $_GET["userid"] ?? NULL;
+$userId = $_GET["userid"] ?? NULL;
 $key = $_GET["key"] ?? NULL;
-$asset = $_GET["assetnumber"] ?? NULL;
+$assetId = $_GET["assetnumber"] ?? NULL;
 
 switch ($key) {
     # this has been here since jan 2025, unused
@@ -18,7 +16,13 @@ switch ($key) {
 
     # october 1st, 2025 - yorick's resting place event
     case "H3d1dTh3M0nst3rM4sh":
+        #977
+        if (!$db->userExists($userId)) {
+            break;
+        }
         
+        echo 1;
+        $user = new User($userId);
         break;
 }
 ?>

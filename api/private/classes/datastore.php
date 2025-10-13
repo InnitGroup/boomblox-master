@@ -21,7 +21,7 @@ class Datastore {
         if (self::keyExists($key)) {
             $stmt = "SELECT * FROM datastore WHERE privateKey=:privateKey";
             $result = $db->execute($stmt, [":privateKey" => $key]);
-            $fetched = $result->fetchAll(PDO::FETCH_ASSOC);
+            $fetched = $result->fetch(PDO::FETCH_ASSOC);
             return $fetched;
         }
         
@@ -36,20 +36,19 @@ class Datastore {
         return $result->rowCount() == 1;
     }
 
-    public static function insertData(string $key, string $newData) {
+    public static function insertData(string $key, array $newData) {
         global $db;
-        if ($datastore = self::get($key)) {
-            $data = $datastore["data"];
-            $data = unserialize($data);
-            $data = array_push($data, $newData);
-            $data = serialize($data);
+        $datastore = self::get($key);
+        $data = $datastore["data"] == "0" ? [] : unserialize($datastore["data"]);
+        
+        $data = array_replace_recursive($data, $newData);
+        $data = serialize($data);
 
-            $stmt = "UPDATE datastore SET `data`=:newData WHERE `privateKey`=:privateKey";
-            return $db->execute($stmt, [
-                ":newData" => $data,
-                ":privateKey" => $key
-            ]);
-        }
+        $stmt = "UPDATE datastore SET `data`=:newData WHERE privateKey=:pKey";
+        return $db->execute($stmt, [
+            ":newData" => $data,
+            ":pKey" => $key
+        ]);
     }
 
     public static function parseData(string $data): array {

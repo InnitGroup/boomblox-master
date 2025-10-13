@@ -47,10 +47,10 @@ function onDied(victim, humanoid)
 	if killer then
 		victorId = killer.userId
 		--print("STAT: kill by " .. victorId .. " of " .. victim.userId)
-		game:HttpGet("http://{Url}/Game/Statistics.ashx?TypeID=15&UserID=" .. victorId .. "&AssociatedUserID=" .. victim.userId .. "&AssociatedPlaceID=0&Key=AWESOME1SAUCE")
+		game:HttpGet("http://{Url}/Game/Statistics.ashx?TypeID=15&UserID=" .. victorId .. "&AssociatedUserID=" .. victim.userId .. "&AssociatedPlaceID=0&Key=AWESOME1SAUCE", false)
 	end
 	--print("STAT: death of " .. victim.userId .. " by " .. victorId)
-	game:HttpGet("http://{Url}/Game/Statistics.ashx?TypeID=16&UserID=" .. victim.userId .. "&AssociatedUserID=" .. victorId .. "&AssociatedPlaceID=0&Key=SUPER1SADGRRR")
+	game:HttpGet("http://{Url}/Game/Statistics.ashx?TypeID=16&UserID=" .. victim.userId .. "&AssociatedUserID=" .. victorId .. "&AssociatedPlaceID=0&Key=SUPER1SADGRRR", false)
 end
 
 -- listen for the death of a Player
@@ -92,10 +92,10 @@ game.NetworkServer.ChildAdded:connect(function(replicator)
 end)
 
 game:service("Players").PlayerRemoving:connect(function(player)
-	game:HttpGet("http://{Url}/Game/Statistics.ashx?AssociatedPlaceID={PlaceID}&TypeID=2&AssociatedUserID=" .. player.userId .. "&serverPort=" .. port, true)
+	game:HttpGet("http://{Url}/Game/Statistics.ashx?AssociatedPlaceID={PlaceID}&TypeID=2&AssociatedUserID=" .. player.userId .. "&serverPort=" .. port, false)
 	wait(5)
 	if (#game.Players:GetChildren() == 0) then
-		game:HttpGet("http://{Url}/api/public/CloseServer.ashx?Port=" .. port .. "&Key=Y2M0YjFjNzNhZWY5YzAyYjkzNmM1NzFlZjg3MWZmODc=", true)
+		game:HttpGet("http://{Url}/api/public/CloseServer.ashx?Port=" .. port .. "&Key=Y2M0YjFjNzNhZWY5YzAyYjkzNmM1NzFlZjg3MWZmODc=", false)
 	end
 end)
 
@@ -167,6 +167,6 @@ game:GetService("RunService"):Run()
 game:GetService("RunService").Heartbeat:connect(function()
 	wait(30)
 	if (#game.Players:GetChildren() == 0) then
-		game:HttpGet("http://{Url}/api/public/CloseServer.ashx?Port=" .. port .. "&Key=Y2M0YjFjNzNhZWY5YzAyYjkzNmM1NzFlZjg3MWZmODc=", true)
+		game:HttpGet("http://{Url}/api/public/CloseServer.ashx?Port=" .. port .. "&Key=Y2M0YjFjNzNhZWY5YzAyYjkzNmM1NzFlZjg3MWZmODc=", false)
 	end
 end)
