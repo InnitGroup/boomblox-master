@@ -46,10 +46,10 @@ function onDied(victim, humanoid)
 	local victorId = 0
 	if killer then
 		victorId = killer.userId
-		--print("STAT: kill by " .. victorId .. " of " .. victim.userId)
+		print("STAT: kill by " .. victorId .. " of " .. victim.userId)
 		game:HttpGet("http://{Url}/Game/Statistics.ashx?TypeID=15&UserID=" .. victorId .. "&AssociatedUserID=" .. victim.userId .. "&AssociatedPlaceID=0&Key=AWESOME1SAUCE" .. "&t=" .. math.random(1,9999), false)
 	end
-	--print("STAT: death of " .. victim.userId .. " by " .. victorId)
+	print("STAT: death of " .. victim.userId .. " by " .. victorId)
 	game:HttpGet("http://{Url}/Game/Statistics.ashx?TypeID=16&UserID=" .. victim.userId .. "&AssociatedUserID=" .. victorId .. "&AssociatedPlaceID=0&Key=SUPER1SADGRRR" .. "&t=" .. math.random(1,9999), false)
 end
 
