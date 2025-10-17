@@ -845,7 +845,7 @@ class User {
         }
         return 2;
     }
-    public function giveItem($item) {
+    public function giveItem($item, $countInteraction = true) {
         if (!$this->hasItem($item)) {
             $items = unserialize($this->getItems2());
             array_push($items, $item);
@@ -853,8 +853,10 @@ class User {
             global $db;
             $stmt = "UPDATE users SET items=:items WHERE id=:id";
             $db->execute($stmt, [":items" => $items, ":id" => $this->getData("user","id")]);
-            $stmt = "UPDATE items SET interactions = interactions + 1 WHERE itemId=:id";
-            $db->execute($stmt, [":id" => $item]);
+            if ($countInteraction) {
+                $stmt = "UPDATE items SET interactions = interactions + 1 WHERE itemId=:id";
+                $db->execute($stmt, [":id" => $item]);
+            }
         }
     }
     public function boombloxifyItem($item) {

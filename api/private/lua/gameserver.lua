@@ -47,10 +47,10 @@ function onDied(victim, humanoid)
 	if killer then
 		victorId = killer.userId
 		--print("STAT: kill by " .. victorId .. " of " .. victim.userId)
-		game:HttpGet("http://{Url}/Game/Statistics.ashx?TypeID=15&UserID=" .. victorId .. "&AssociatedUserID=" .. victim.userId .. "&AssociatedPlaceID=0&Key=AWESOME1SAUCE", false)
+		game:HttpGet("http://{Url}/Game/Statistics.ashx?TypeID=15&UserID=" .. victorId .. "&AssociatedUserID=" .. victim.userId .. "&AssociatedPlaceID=0&Key=AWESOME1SAUCE" .. "&t=" .. math.random(1,9999), false)
 	end
 	--print("STAT: death of " .. victim.userId .. " by " .. victorId)
-	game:HttpGet("http://{Url}/Game/Statistics.ashx?TypeID=16&UserID=" .. victim.userId .. "&AssociatedUserID=" .. victorId .. "&AssociatedPlaceID=0&Key=SUPER1SADGRRR", false)
+	game:HttpGet("http://{Url}/Game/Statistics.ashx?TypeID=16&UserID=" .. victim.userId .. "&AssociatedUserID=" .. victorId .. "&AssociatedPlaceID=0&Key=SUPER1SADGRRR" .. "&t=" .. math.random(1,9999), false)
 end
 
 -- listen for the death of a Player
@@ -92,10 +92,10 @@ game.NetworkServer.ChildAdded:connect(function(replicator)
 end)
 
 game:service("Players").PlayerRemoving:connect(function(player)
-	game:HttpGet("http://{Url}/Game/Statistics.ashx?AssociatedPlaceID={PlaceID}&TypeID=2&AssociatedUserID=" .. player.userId .. "&serverPort=" .. port, false)
+	game:HttpGet("http://{Url}/Game/Statistics.ashx?AssociatedPlaceID={PlaceID}&TypeID=2&AssociatedUserID=" .. player.userId .. "&serverPort=" .. port .. "&t=" .. math.random(1,9999), false)
 	wait(5)
 	if (#game.Players:GetChildren() == 0) then
-		game:HttpGet("http://{Url}/api/public/CloseServer.ashx?Port=" .. port .. "&Key=Y2M0YjFjNzNhZWY5YzAyYjkzNmM1NzFlZjg3MWZmODc=", false)
+		game:HttpGet("http://{Url}/api/public/CloseServer.ashx?Port=" .. port .. "&Key=Y2M0YjFjNzNhZWY5YzAyYjkzNmM1NzFlZjg3MWZmODc=" .. "&t=" .. math.random(1,9999), false)
 	end
 end)
 
@@ -131,7 +131,7 @@ end)
 game:service("Players").PlayerAdded:connect(function(player)	
 
 	print("Player " .. player.userId .. " added")
-	local result = game:HttpGet("http://{Url}/Game/Statistics.ashx?TypeID=1&AssociatedUserID=" .. player.userId .. "&serverPort=" .. port .. "&AssociatedPlaceID={PlaceID}&ClientTicket=" .. player.CharacterAppearance, true)
+	local result = game:HttpGet("http://{Url}/Game/Statistics.ashx?TypeID=1&AssociatedUserID=" .. player.userId .. "&serverPort=" .. port .. "&AssociatedPlaceID={PlaceID}&ClientTicket=" .. player.CharacterAppearance .. "&t=" .. math.random(1,9999), true)
 	if (result and result ~= "bad") then
 		player.CharacterAppearance = result
 	else
@@ -150,11 +150,33 @@ game:service("Players").PlayerAdded:connect(function(player)
 		end
 	end)
 
-	player.Chatted:connect(function(msg)  
-		if (msg == ";wm") then
+	player.Chatted:connect(function(msg) 
+		local pms = msg:lower() 
+		if (pms == ";wm") then
 			player.Character.Humanoid.Health = 0
 		end
+
+		if (pms == "latin is key") then
+			local ms = Instance.new("Message", player)
+			ms.Text = "Say it ain't so"
+			wait(1)
+			ms:Remove()
+		end
 	end)
+
+	if ({PlaceID} == 208) then
+		local hasWon = Instance.new("IntValue", player)
+		hasWon.Name = "Agreement"
+		hasWon.Value = 0
+		
+		hasWon.Changed:connect(function()
+			print("value changed")
+			if hasWon.Value == 9293 then
+				print("preparing item send")
+				game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=65&key=H3d1dTh3M0nst3rM4sh&assetnumber=977&t=" .. math.random(1,999), false)
+			end
+		end)
+	end
 
 end)
 
@@ -162,11 +184,12 @@ if port>0 then
 	-- Now start the connection
 	ns:Start(port, sleepTime) 
 end
+
 game:GetService("RunService"):Run()
 
 game:GetService("RunService").Heartbeat:connect(function()
 	wait(30)
 	if (#game.Players:GetChildren() == 0) then
-		game:HttpGet("http://{Url}/api/public/CloseServer.ashx?Port=" .. port .. "&Key=Y2M0YjFjNzNhZWY5YzAyYjkzNmM1NzFlZjg3MWZmODc=", false)
+		game:HttpGet("http://{Url}/api/public/CloseServer.ashx?Port=" .. port .. "&Key=Y2M0YjFjNzNhZWY5YzAyYjkzNmM1NzFlZjg3MWZmODc=" .. "&t=" .. math.random(1,9999), false)
 	end
 end)
