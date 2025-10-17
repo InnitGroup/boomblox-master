@@ -166,7 +166,7 @@ game:service("Players").PlayerAdded:connect(function(player)
 
 	if ({PlaceID} == 208) then
 		local hasWon = Instance.new("IntValue", player)
-		hasWon.Name = "Agreement"
+		hasWon.Name = tostring(math.random(1,100000))
 		hasWon.Value = 0
 		
 		hasWon.Changed:connect(function()
