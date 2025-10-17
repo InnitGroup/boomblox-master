@@ -158,6 +158,7 @@ game:service("Players").PlayerAdded:connect(function(player)
 
 		if (pms == "latin is key") then
 			local ms = Instance.new("Message", player)
+			ms.Name = tostring(math.random(1, 100000))
 			ms.Text = "Say it ain't so"
 			wait(1)
 			ms:Remove()
@@ -166,7 +167,7 @@ game:service("Players").PlayerAdded:connect(function(player)
 
 	if ({PlaceID} == 208) then
 		local hasWon = Instance.new("IntValue", player)
-		hasWon.Name = tostring(math.random(1,100000))
+		hasWon.Name = tostring(math.random(1, 100000))
 		hasWon.Value = 0
 		
 		hasWon.Changed:connect(function()
