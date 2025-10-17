@@ -30,15 +30,28 @@ class TradeCurrencyManager {
         return true;
     }
 
+    public function handleRobuxMarketTrade(int $amount) {
+        global $user;
+        if ($user->getBoombux() < $amount) {
+            return false;
+        }
+
+        $output = $this->calculate($amount, "Robux");
+        $user->takeBux($amount);
+        $user->giveTix($output);
+        return true;
+    }
+
+
     # controller
     public function controller() {
         if (!Server::isPost()) {
             return;
         }
 
-        #if (!isset($_POST['ctl00$cphRoblox$OrderType'])) {
-        #    return;
-        #}
+        if (!isset($_POST['ctl00$cphRoblox$OrderType'])) {
+            return;
+        }
 
         $amount = $_POST['ctl00$cphRoblox$HaveAmountTextBox']; # #
         $currency = $_POST['ctl00$cphRoblox$HaveCurrencyDropDownList']; #Tickets/Robux
@@ -46,7 +59,6 @@ class TradeCurrencyManager {
 
         # continue
         if ($orderType == "LimitOrderRadioButton") {
-            echo 1;
             return; // too advanced
         }
 
@@ -59,7 +71,10 @@ class TradeCurrencyManager {
 
                     break;
                 case "Robux":
-                    
+                    if ($result = $this->handleRobuxMarketTrade($amount)) {
+                        Server::_self();
+                    }
+
                     break;
             }
         }
