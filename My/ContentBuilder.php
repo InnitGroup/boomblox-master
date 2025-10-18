@@ -2,8 +2,6 @@
 #made: 03/28/2025 @marsoc
 #last edit: 03/28/2025 @marsoc
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 global $theme, $auth, $user;
 !$auth->isAuthed() && Server::_404();;
