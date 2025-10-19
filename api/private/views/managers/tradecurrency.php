@@ -42,6 +42,19 @@ class TradeCurrencyManager {
         return true;
     }
 
+    public function log(int $trader, string $orderType, string $currency, int $given, int $asked, string $status) {
+        global $db;
+
+        $stmt = "INSERT INTO trades (`traderId`, `orderType`, `currency`, `amountGiven`, `amountAsked`, `status`) VALUES (:trader, :orderType, :currency, :given, :asked, :xstatus)";
+        $db->execute($stmt, [
+            ":traderId" => $trader,
+            ":orderType" => $orderType,
+            ":currency" => $currency,
+            ":amountGiven" => $given,
+            ":amountAsked" => $asked,
+            ":xstatus" => $status
+        ]);
+    }
 
     # controller
     public function controller() {
