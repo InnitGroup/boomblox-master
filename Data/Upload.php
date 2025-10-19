@@ -11,7 +11,7 @@ if (!$user->ownsPlace($placeId)) {
 
 #write
 $filePath = $_SERVER["DOCUMENT_ROOT"] . "/content/" . $placeId;
-str_replace("IncommingConnection", "", $data);
+#str_replace("IncommingConnection", "", $data);
 
 $compressedData = gzencode($data, 9);
 file_put_contents($filePath, $compressedData);
