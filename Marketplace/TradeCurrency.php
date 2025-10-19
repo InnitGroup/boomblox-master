@@ -3,7 +3,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
 global $theme, $auth, $user;
 !$auth->isAuthed() && Server::_404();
-!$user->hasPerms(7) && Server::_404();
 
 $manager = new TradeCurrencyManager;
 $manager->controller();

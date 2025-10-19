@@ -18,6 +18,22 @@ class TradeCurrencyManager {
         }
     }
 
+    # logs currency exchange to db
+    public function log(int $trader, string $orderType, string $currency, int $given, int $asked, string $status) {
+        global $db;
+
+        $stmt = "INSERT INTO trades (`traderId`, `orderType`, `currency`, `amountGiven`, `amountAsked`, `status`) VALUES (:traderId, :orderType, :currency, :amountGiven, :amountAsked, :xstatus)";
+        $db->execute($stmt, [
+            ":traderId" => $trader,
+            ":orderType" => $orderType,
+            ":currency" => $currency,
+            ":amountGiven" => $given,
+            ":amountAsked" => $asked,
+            ":xstatus" => $status
+        ]);
+    }
+
+    # market trade Tx
     public function handleTicketMarketTrade(int $amount) {
         global $user;
         if ($user->getTickets() < $amount) {
@@ -27,9 +43,11 @@ class TradeCurrencyManager {
         $output = $this->calculate($amount, "Tickets");
         $user->takeTix($amount);
         $user->giveBux($output);
+        $this->log($user->getUserId(), "Market", "Tickets", $amount, $output, "complete");
         return true;
     }
 
+    # market trade R$
     public function handleRobuxMarketTrade(int $amount) {
         global $user;
         if ($user->getBoombux() < $amount) {
@@ -39,21 +57,8 @@ class TradeCurrencyManager {
         $output = $this->calculate($amount, "Robux");
         $user->takeBux($amount);
         $user->giveTix($output);
+        $this->log($user->getUserId(), "Market", "Robux", $amount, $output, "complete");
         return true;
-    }
-
-    public function log(int $trader, string $orderType, string $currency, int $given, int $asked, string $status) {
-        global $db;
-
-        $stmt = "INSERT INTO trades (`traderId`, `orderType`, `currency`, `amountGiven`, `amountAsked`, `status`) VALUES (:trader, :orderType, :currency, :given, :asked, :xstatus)";
-        $db->execute($stmt, [
-            ":traderId" => $trader,
-            ":orderType" => $orderType,
-            ":currency" => $currency,
-            ":amountGiven" => $given,
-            ":amountAsked" => $asked,
-            ":xstatus" => $status
-        ]);
     }
 
     # controller
