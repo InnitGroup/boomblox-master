@@ -138,6 +138,9 @@ class User {
         }
         return $joinDate;
     }
+    public function lastDate() {
+        return new DateTime($this->getData("user", "lastOnline"));
+    }
     public function takeTix($amount) {
         global $db;
         $stmt = "UPDATE users SET tix = tix - :amount WHERE id=:id";

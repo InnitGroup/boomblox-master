@@ -1,3 +1,11 @@
+<?php
+global $db;
+
+$username = isset($_GET["UserName"]) ? $_GET["UserName"] : Server::_404();
+$userId = $db->getIdByUser($username);
+$profiledUser = new User($userId);
+?>
+
 <div id="Body">
 	<table width="100%" cellspacing="0" cellpadding="0" border="0">
 		<tbody>
@@ -35,7 +43,7 @@
 									<table cellspacing="1" cellpadding="0" width="100%" class="tableBorder">
 										<tbody>
 											<tr>
-												<th height="25" class="tableHeaderText" align="left" colspan="2"> &nbsp; Viewing User Profile for: <span id="ctl00_cphRoblox_Userinfo1_ctl00_Username">marsoc</span>
+												<th height="25" class="tableHeaderText" align="left" colspan="2"> &nbsp; Viewing User Profile for: <span id="ctl00_cphRoblox_Userinfo1_ctl00_Username"><?=$profiledUser->getUsername()?></span>
 												</th>
 											</tr>
 											<tr>
@@ -56,7 +64,7 @@
 																</td>
 																<td valign="top" align="left">
 																	<span class="normalTextSmall">
-																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_Joined">05-05-2008 05:15 PM</span>
+																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_Joined"><?=$profiledUser->joinDate()->format("m-d-Y h:i A")?></span>
 																	</span>
 																</td>
 															</tr>
@@ -66,7 +74,7 @@
 																</td>
 																<td valign="top" align="left">
 																	<span class="normalTextSmall">
-																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_LastLogin">05-05-2008 05:15 PM</span>
+																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_LastLogin"><?=$profiledUser->lastDate()->format("m-d-Y h:i A")?></span>
 																	</span>
 																</td>
 															</tr>
@@ -192,7 +200,7 @@
 															<tr>
 																<td valign="top" align="left">
 																	<span class="normalTextSmallBold">
-																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_PostStats">sirgren has contributed to 1 out of 1,040,533 total posts (0.00% of total).</span>
+																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_PostStats"><?=$profiledUser->getUsername()?> has contributed to 1 out of 1,040,533 total posts (0.00% of total).</span>
 																	</span>
 																</td>
 															</tr>
