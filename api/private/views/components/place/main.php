@@ -102,14 +102,14 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
 					<div id="ctl00_cphRoblox_VisitButtons_FancyButtons">
 						<div id="ctl00_cphRoblox_VisitButtons_VisitMPButton2" style="display: inline; width: 10px;">
 							<?php if (Server::isIE7()): ?>
-							<input type="image" name="ctl00$cphRoblox$VisitButtons$MultiplayerVisitButtonB" id="ctl00_cphRoblox_VisitButtons_MultiplayerVisitButtonB" class="ImageButton" src="/images/Play.png" alt="Visit Online" onclick='alert("You are in client, visit online is not supported yet!")'>
+							<input type="image" name="ctl00$cphRoblox$VisitButtons$MultiplayerVisitButtonB" id="ctl00_cphRoblox_VisitButtons_MultiplayerVisitButtonB" class="ImageButton" src="/images/Play<?=$theme == 0 || $theme == 4 ? "BMBLX" : ""?>.png" alt="Visit Online" onclick='alert("You are in client, visit online is not supported yet!")'>
 							<?php else: ?>
-							<input type="image" name="ctl00$cphRoblox$VisitButtons$MultiplayerVisitButtonB" id="ctl00_cphRoblox_VisitButtons_MultiplayerVisitButtonB" class="ImageButton" src="/images/Play.png" alt="Visit Online" onclick='Roblox.Launch.VisitOnline("http://<?=domain?>/game/join.ashx?t=<?=time()?>", <?=$id?>, <?=Gameservers::findBestServer($id)?>); return false;'>
+							<input type="image" name="ctl00$cphRoblox$VisitButtons$MultiplayerVisitButtonB" id="ctl00_cphRoblox_VisitButtons_MultiplayerVisitButtonB" class="ImageButton" src="/images/Play<?=$theme == 0 || $theme == 4 ? "BMBLX" : ""?>.png" alt="Visit Online" onclick='Roblox.Launch.VisitOnline("http://<?=domain?>/game/join.ashx?t=<?=time()?>", <?=$id?>, <?=Gameservers::findBestServer($id)?>); return false;'>
 							<?php endif; ?>
 						</div>
 						<?php if (!$publicView || $item["onsale"] == 2): ?>
 						<div id="ctl00_cphRoblox_VisitButtons_VisitButton2" style="display: inline; width: 10px;">
-							<input type="image" name="ctl00$cphRoblox$VisitButtons$SoloVisitButtonB" id="ctl00_cphRoblox_VisitButtons_SoloVisitButtonB" class="ImageButton" src="/images/PlaySolo.png" alt="Visit Solo" onclick='Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/visit.ashx?PlaceID=<?=$id?>&t=<?=time()?>", "NA", 2, <?=$id?>); return false;'>
+							<input type="image" name="ctl00$cphRoblox$VisitButtons$SoloVisitButtonB" id="ctl00_cphRoblox_VisitButtons_SoloVisitButtonB" class="ImageButton" src="/images/PlaySolo<?=$theme == 0 || $theme == 4 ? "BMBLX" : ""?>.png" alt="Visit Solo" onclick='Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/visit.ashx?PlaceID=<?=$id?>&t=<?=time()?>", "NA", 2, <?=$id?>); return false;'>
 						</div>
 						<?php endif; ?>
 					</div>

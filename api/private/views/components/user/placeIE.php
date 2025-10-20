@@ -1,5 +1,5 @@
 <?php
-global $user;
+global $user, $theme;
 $asset = new Asset($place["itemId"]);
 $hasAccess = false;
 
@@ -51,15 +51,15 @@ if ($user->getUserId() == $place["creatorId"]) {
                 <input type="hidden" name="ctl00$cphRoblox$rbxUserPlacesPane$ctl02$rbxPlatform$rbxVisitButtons$rbxPlaceLauncher$HiddenField1"/>
                 <?php if ($hasAccess): ?>
                 <div style="display:inline">
-                    <input type="Image" src="/images/Play.png" id="ctl00_cphRoblox_VisitButtons_hlMultiplayerVisit" onclick='alert("You are in client, visit online is not supported yet!")'>
+                    <input type="Image" src="/images/Play<?=$theme == 0 || $theme == 4 ? "BMBLX" : ""?>.png" id="ctl00_cphRoblox_VisitButtons_hlMultiplayerVisit" onclick='alert("You are in client, visit online is not supported yet!")'>
                 </div>
                 <?php if ($user->ownsPlace($place["itemId"])): ?>
                 <div style="display:inline"> &nbsp;&nbsp;&nbsp; <input type="Image" src="/images/Build.png" onclick='Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/Edit.ashx?PlaceID=<?=$place["itemId"]?>&t=<?=time()?>", "NA", 3, <?=$place["itemId"]?>)'>
                 </div>
                 <?php elseif ($place["onsale"] == 2): ?>
-                <div style="display:inline"> &nbsp;&nbsp;&nbsp; <input type="Image" src="/images/PlaySolo.png" onclick='javascript:Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/visit.ashx?PlaceID=<?=$place["itemId"]?>&t=<?=time()?>", "NA", 2, <?=$place["itemId"]?>)'></div>
+                <div style="display:inline"> &nbsp;&nbsp;&nbsp; <input type="Image" src="/images/PlaySolo<?=$theme == 0 || $theme == 4 ? "BMBLX" : ""?>.png" onclick='javascript:Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/visit.ashx?PlaceID=<?=$place["itemId"]?>&t=<?=time()?>", "NA", 2, <?=$place["itemId"]?>)'></div>
                 <?php else: ?>
-                <div style="display:inline"> &nbsp;&nbsp;&nbsp; <input type="Image" src="/images/PlaySolo.png" disabled></div>
+                <div style="display:inline"> &nbsp;&nbsp;&nbsp; <input type="Image" src="/images/PlaySolo<?=$theme == 0 || $theme == 4 ? "BMBLX" : ""?>.png" disabled></div>
                 <?php endif; endif; ?>
             </div>
             <div class="Statistics">

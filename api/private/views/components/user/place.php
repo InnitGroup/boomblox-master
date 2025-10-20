@@ -1,5 +1,5 @@
 <?php
-global $user;
+global $user, $theme;
 $asset = new Asset($place["itemId"]);
 $hasAccess = false;
 
@@ -50,14 +50,14 @@ if ($user->getUserId() == $place["creatorId"]) {
                 <input type="hidden" name="ctl00$cphRoblox$rbxUserPlacesPane$ctl02$rbxPlatform$rbxVisitButtons$rbxPlaceLauncher$HiddenField1"/>
                 <?php if ($hasAccess): ?>
                 <div style="display:inline">
-                    <input id="ctl00_cphRoblox_VisitButtons_hlMultiplayerVisit" type="Image" src="/images/Play.png" onclick='Roblox.Launch.VisitOnline("http://<?=domain?>/game/join.ashx?t=<?=time()?>", <?=$place["itemId"]?>, <?=Gameservers::findBestServer($place["itemId"])?>); return false;'>
+                    <input id="ctl00_cphRoblox_VisitButtons_hlMultiplayerVisit" type="Image" src="/images/Play<?=$theme == 0 || $theme == 4 ? "BMBLX" : ""?>.png" onclick='Roblox.Launch.VisitOnline("http://<?=domain?>/game/join.ashx?t=<?=time()?>", <?=$place["itemId"]?>, <?=Gameservers::findBestServer($place["itemId"])?>); return false;'>
                 </div>
                 
                 <?php if ($user->ownsPlace($place["itemId"])): ?>
                 <div style="display:inline"> &nbsp;&nbsp;&nbsp; <input type="Image" src="/images/Build.png" onclick='Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/Edit.ashx?PlaceID=<?=$place["itemId"]?>&t=<?=time()?>", "NA", 3, <?=$place["itemId"]?>); return false;'>
                 </div>
                 <?php elseif ($place["onsale"] == 2): ?>
-                <div style="display:inline"> &nbsp;&nbsp;&nbsp; <input type="Image" src="/images/PlaySolo.png" onclick='Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/visit.ashx?PlaceID=<?=$place["itemId"]?>&t=<?=time()?>", "NA", 2, <?=$place["itemId"]?>); return false;'>
+                <div style="display:inline"> &nbsp;&nbsp;&nbsp; <input type="Image" src="/images/PlaySolo<?=$theme == 0 || $theme == 4 ? "BMBLX" : ""?>.png" onclick='Roblox.Launch.StartGame("http:\/\/<?=domain?>/Game/visit.ashx?PlaceID=<?=$place["itemId"]?>&t=<?=time()?>", "NA", 2, <?=$place["itemId"]?>); return false;'>
                 </div>
                 <?php endif; endif; ?>
             </div>
