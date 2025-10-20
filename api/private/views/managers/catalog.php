@@ -120,7 +120,7 @@ class CatalogManager {
         <div class="DisplayFilters">
 			<h2>Catalog</h2>
 			<div id="BrowseMode">
-				<h4><a id="ctl00_cphRoblox_rbxCatalog_CafePressHyperLink" href="http://www.cafepress.com/roblox" target="_blank">Buy '.Site::getThemeProperty("alias",$this->theme).' Stuff!</a></h4>
+				<h4><a id="ctl00_cphRoblox_rbxCatalog_CafePressHyperLink" href="http://www.cafepress.com/roblox" target="_blank">Buy '.Site::getThemeProperty("alias", $this->theme).' Stuff!</a></h4>
                 <h4><a id="ctl00_cphRoblox_rbxCatalog_CurrencyPurchaseHyperLink" href="/Upgrades/Robux.aspx">Buy '.Site::getThemeProperty("alias", $this->theme).'!</a></h4>
                 <h4><a id="ctl00_cphRoblox_rbxCatalog_CurrencyExchangeHyperLink" href="/Marketplace/TradeCurrency.aspx">Trade Currency!</a></h4>
 				<h4>Browse</h4>
