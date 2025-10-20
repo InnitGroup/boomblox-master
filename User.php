@@ -18,6 +18,9 @@ if ($publicView) {
 	if ($userId !== $user->getUserId() && $userId !== 0) {
 		if ($db->userExists($userId)) {
 			$viewedUser = new User($userId);
+			if ($viewedUser->isPunished()) {
+				Server::_404();
+			}
 			if (!$viewedUser->viewedBy($user->getUserId())) {
 				$viewedUser->addProfileView($user->getUserId());
 			}
