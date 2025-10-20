@@ -1,59 +1,15 @@
 <?php
 global $db, $thread;
-?>
 
-<div id="Body">
-	<table width="100%" cellspacing="0" cellpadding="0" border="0">
-		<tbody>
-			<tr>
-				<td></td>
-			</tr>
-			<tr valign="bottom">
-				<td>
-					<table width="100%" height="100%" cellspacing="0" cellpadding="0" border="0">
-						<tbody>
-							<tr valign="top">
-								<!-- left column -->
-								<td>&nbsp; &nbsp; &nbsp;</td>
-								<!-- center column -->
-								<td id="ctl00_cphRoblox_CenterColumn" width="95%" class="CenterColumn">
-									<br>
-									<?=PageBuilder::addComponent("forum", "navmenu")?>
+PageBuilder::addComponent("forum", "header");
+PageBuilder::addComponent("forum", "navmenu");
+?>
 									<span id="ctl00_cphRoblox_PostView1">
 										<table cellpadding="0" width="100%">
 											<tbody>
 												<tr>
 													<td align="left" colspan="2">
-														<span id="ctl00_cphRoblox_PostView1_ctl00_Whereami1" name="Whereami1">
-															<table cellpadding="0" cellspacing="0" width="100%">
-																<tbody>
-																	<tr>
-																		<td valign="top" align="left" width="1px">
-																			<nobr></nobr>
-																		</td>
-																		<td id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_ForumGroupMenu" class="popupMenuSink" valign="top" align="left" width="1px">
-																			<nobr>
-																				<a id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_LinkForumGroup" class="linkMenuSink" href="/Forum/ShowForumGroup.aspx?ForumGroupID=1">ROBLOX</a>
-																			</nobr>
-																		</td>
-																		<td id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_ForumMenu" class="popupMenuSink" valign="top" align="left" width="1px">
-																			<nobr>
-																				<span id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_ForumSeparator" class="normalTextSmallBold">&nbsp;&gt;</span>
-																				<a id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_LinkForum" class="linkMenuSink" href="/Forum/ShowForum.aspx?ForumID=13">General Discussion</a>
-																			</nobr>
-																		</td>
-																		<td id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_PostMenu" class="popupMenuSink" valign="top" align="left" width="1px">
-																			<nobr>
-																				<span id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_PostSeparator" class="normalTextSmallBold">&nbsp;&gt;</span>
-																				<a id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_LinkPost" class="linkMenuSink" href="/Forum/ShowPost.aspx?PostID=1964006">Err...</a>
-																			</nobr>
-																		</td>
-																		<td valign="top" align="left" width="*">&nbsp;</td>
-																	</tr>
-																</tbody>
-															</table>
-															<span id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_MenuScript"></span>
-														</span>
+														<?=PageBuilder::addComponent("forum", "whereami")?>
 													</td>
 												</tr>
 												<tr>
@@ -177,13 +133,5 @@ global $db, $thread;
 											</tbody>
 										</table>
 									</span>
-								</td><td class="CenterColumn">&nbsp;&nbsp;&nbsp;</td>
-								<!-- right margin --><td class="RightColumn">&nbsp;&nbsp;&nbsp;</td>
-							</tr>
-						</tbody>
-					</table>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
+								</td>
+								<?=PageBuilder::addComponent("forum", "footer")?>

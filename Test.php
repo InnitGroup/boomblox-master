@@ -9,9 +9,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
     function a() {
         var app = window.external.GetApp();
         var ticket = "asdsadasd";
-        //app.CreateGame(1);
-        //app.RobloxAuthenticate("http://xoblog.dev/Login/Negotiate.ashx?suggest=a", ticket);
-        alert(app.ID);
+        app.CreateGame(1);
+        app.RobloxAuthenticate("http://xoblog.dev/Login/Negotiate.ashx?suggest=a", ticket);
+        
     }
 </script>
 

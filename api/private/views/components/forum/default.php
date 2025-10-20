@@ -80,22 +80,7 @@
 								<!-- center column -->
 								<td class="CenterColumn">&nbsp;&nbsp;&nbsp;</td>
 								<td id="ctl00_cphRoblox_CenterColumn" width="95%" class="CenterColumn">
-									<span id="ctl00_cphRoblox_NavigationMenu2">
-										<table width="100%" cellspacing="1" cellpadding="0">
-											<tbody>
-												<tr>
-													<td align="right" valign="middle">
-														<a id="ctl00_cphRoblox_NavigationMenu2_ctl00_HomeMenu" class="menuTextLink" href="/Forum/Default.aspx">
-															<img src="/Forum/skins/default/images/icon_mini_home.gif" border="0">Home &nbsp; </a>
-														<a id="ctl00_cphRoblox_NavigationMenu2_ctl00_SearchMenu" class="menuTextLink" href="/Forum/Search/default.aspx">
-															<img src="/Forum/skins/default/images/icon_mini_search.gif" border="0">Search &nbsp; </a>
-														<a id="ctl00_cphRoblox_NavigationMenu2_ctl00_RegisterMenu" class="menuTextLink" href="/Forum/User/CreateUser.aspx">
-															<img src="/Forum/skins/default/images/icon_mini_register.gif" border="0">Register &nbsp; </a>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</span>
+									<?=PageBuilder::addComponent("forum", "navmenu")?>
 									<br>
 									<table cellpadding="0" cellspacing="2" width="100%">
 										<tbody>
