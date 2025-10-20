@@ -32,8 +32,7 @@
 			</div>
 		</div>
 		<div class="CenterColumn">
-			<div id="CurrencyQuotePane">
-				<div class="CurrencyQuote">
+			<div class="CurrencyQuote">
 					<div class="TableHeader">
 						<div class="Pair">Pair</div>
 						<div class="Rate">Rate</div>
@@ -49,7 +48,6 @@
 						<div style="clear: both;"></div>
 					</div>
 				</div>
-			</div>
 			<div id="ctl00_cphRoblox_CurrencyTradePane">
 				<div class="CurrencyTrade">
 					<h4>Trade</h4>
