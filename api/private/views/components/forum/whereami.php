@@ -13,9 +13,9 @@ if (isset($w_forumId)) {
 }
 
 if (isset($w_postId)) {
-    $post = new Thread($w_postId);
-    $w_forumId = $post->getForumId();
-    $w_forum = 
+    $w_post = new Thread($w_postId);
+    $w_forumId = $w_post->getForumId();
+    $w_forum = new Forum($w_forumId);
     $w_forumGroupId = Forum::getGroupByForum($w_forumId);
     $w_forumGroup = new ForumGroup($w_forumGroupId);
 }
@@ -38,14 +38,14 @@ if (isset($w_postId)) {
                 <td id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_ForumMenu" class="popupMenuSink" valign="top" align="left" width="1px">
                     <nobr>
                         <span id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_ForumSeparator" class="normalTextSmallBold">&nbsp;&gt;</span>
-                        <a id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_LinkForum" class="linkMenuSink" href="/Forum/ShowForum.aspx?ForumID=13">General Discussion</a>
+                        <a id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_LinkForum" class="linkMenuSink" href="/Forum/ShowForum.aspx?ForumID=<?=$w_forumId?>"><?=$w_forum->getTopic()?></a>
                     </nobr>
                 </td>
                 <?php endif; ?>
                 <td id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_PostMenu" class="popupMenuSink" valign="top" align="left" width="1px">
                     <nobr>
                         <span id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_PostSeparator" class="normalTextSmallBold">&nbsp;&gt;</span>
-                        <a id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_LinkPost" class="linkMenuSink" href="/Forum/ShowPost.aspx?PostID=1964006">Err...</a>
+                        <a id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_LinkPost" class="linkMenuSink" href="/Forum/ShowPost.aspx?PostID=<?=$w_post->getTitle()?>">Err...</a>
                     </nobr>
                 </td>
                 <td valign="top" align="left" width="*">&nbsp;</td>

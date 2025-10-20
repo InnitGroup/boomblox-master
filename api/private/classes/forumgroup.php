@@ -16,7 +16,7 @@ class ForumGroup {
         $this->groups[1] = Site::getThemeProperty("alias", $theme);
 
         switch (gettype($input)) {
-            case "int":
+            case "integer":
                 if (!isset($this->groups[$input])) {
                     return false;
                 }
@@ -34,8 +34,9 @@ class ForumGroup {
                 break;
         }
 
-        public function getId() { return $this->groupId; }
-        public function getName() { return $this->groupName; }
     }
+
+    public function getId() { return $this->groupId; }
+    public function getName() { return $this->groupName; }
 };
 ?>
