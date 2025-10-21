@@ -1,3 +1,8 @@
+<?php
+PageBuilder::addComponent("forum", "header");
+PageBuilder::addComponent("forum", "navmenu");
+?>
+
 <span id="ctl00_cphRoblox_ThreadView1">
 	<table cellpadding="0" width="100%">
 		<tbody>
@@ -174,3 +179,7 @@
 		</tbody>
 	</table>
 </span>
+
+<?php
+PageBuilder::addComponent("forum", "footer");
+?>
