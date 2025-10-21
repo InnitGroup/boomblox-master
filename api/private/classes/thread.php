@@ -54,7 +54,7 @@ class Thread {
 
     public function getAuthorBust() {
         $avatar = new Avatar($this->author->getUserId());
-        return $avatar->GetThumbnail(64, 64, "PNG");
+        return $avatar->GetThumbnail(500, 500, "PNG");
     }
 
     public function formatLastActivity() {

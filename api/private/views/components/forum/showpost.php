@@ -65,7 +65,7 @@ PageBuilder::addComponent("forum", "navmenu");
 																				<tr>
 																					<td>
 																						<a href="/User.aspx?username=chrisishappy132">
-																							<img src="<?=$thread->getAuthorBust()?>" border="0">
+																							<img style="width:64px;height:64px;" src="<?=$thread->getAuthorBust()?>" border="0">
 																						</a>
 																					</td>
 																				</tr>
@@ -129,7 +129,7 @@ PageBuilder::addComponent("forum", "navmenu");
 															</tbody>
 														</table><span id="ctl00_cphRoblox_PostView1_ctl00_Pager"><table cellspacing="0" cellpadding="0" border="0" width="100%"><tbody><tr><td><span class="normalTextSmallBold">Page 1 of 1</span></td></tr></tbody></table></span>
 													</td>
-												</tr><tr><td colspan="2">&nbsp;</td></tr><tr><td align="left" colspan="2"></td></tr><tr><td align="left" colspan="2"><span id="ctl00_cphRoblox_PostView1_ctl00_Whereami2" name="Whereami2"><table cellpadding="0" cellspacing="0" width="100%"><tbody><tr><td valign="top" align="left" width="1px"><nobr><a id="ctl00_cphRoblox_PostView1_ctl00_Whereami2_ctl00_LinkHome" class="linkMenuSink" href="/Forum/Default.aspx">ROBLOX Forum</a></nobr></td><td id="ctl00_cphRoblox_PostView1_ctl00_Whereami2_ctl00_ForumGroupMenu" class="popupMenuSink" valign="top" align="left" width="1px"><nobr><span id="ctl00_cphRoblox_PostView1_ctl00_Whereami2_ctl00_ForumGroupSeparator" class="normalTextSmallBold">&nbsp;&gt;</span><a id="ctl00_cphRoblox_PostView1_ctl00_Whereami2_ctl00_LinkForumGroup" class="linkMenuSink" href="/Forum/ShowForumGroup.aspx?ForumGroupID=1">ROBLOX</a></nobr></td><td id="ctl00_cphRoblox_PostView1_ctl00_Whereami2_ctl00_ForumMenu" class="popupMenuSink" valign="top" align="left" width="1px"><nobr><span id="ctl00_cphRoblox_PostView1_ctl00_Whereami2_ctl00_ForumSeparator" class="normalTextSmallBold">&nbsp;&gt;</span><a id="ctl00_cphRoblox_PostView1_ctl00_Whereami2_ctl00_LinkForum" class="linkMenuSink" href="/Forum/ShowForum.aspx?ForumID=13">General Discussion</a></nobr></td><td id="ctl00_cphRoblox_PostView1_ctl00_Whereami2_ctl00_PostMenu" class="popupMenuSink" valign="top" align="left" width="1px"><nobr><span id="ctl00_cphRoblox_PostView1_ctl00_Whereami2_ctl00_PostSeparator" class="normalTextSmallBold">&nbsp;&gt;</span><a id="ctl00_cphRoblox_PostView1_ctl00_Whereami2_ctl00_LinkPost" class="linkMenuSink" href="/Forum/ShowPost.aspx?PostID=1964006">Err...</a></nobr></td><td valign="top" align="left" width="*">&nbsp;</td></tr></tbody></table><span id="ctl00_cphRoblox_PostView1_ctl00_Whereami2_ctl00_MenuScript"></span></span></td></tr>
+												</tr><tr><td colspan="2">&nbsp;</td></tr><tr><td align="left" colspan="2"></td></tr><tr><td align="left" colspan="2"><?=PageBuilder::addComponent("forum", "whereami")?></td></tr>
 											</tbody>
 										</table>
 									</span>

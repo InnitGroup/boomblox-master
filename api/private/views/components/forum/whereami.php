@@ -47,7 +47,7 @@ if (isset($w_postId)) {
                 <td id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_PostMenu" class="popupMenuSink" valign="top" align="left" width="1px">
                     <nobr>
                         <span id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_PostSeparator" class="normalTextSmallBold">&nbsp;&gt;</span>
-                        <a id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_LinkPost" class="linkMenuSink" href="/Forum/ShowPost.aspx?PostID=<?=$w_post->getTitle()?>">Err...</a>
+                        <a id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_LinkPost" class="linkMenuSink" href="/Forum/ShowPost.aspx?PostID=<?=$w_postId?>"><?=$w_post->getTitle()?></a>
                     </nobr>
                 </td>
                 <?php endif; ?>

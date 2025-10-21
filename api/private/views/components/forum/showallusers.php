@@ -131,7 +131,7 @@ $users = $result->fetchAll(PDO::FETCH_ASSOC);
 								<span class="normalTextSmall"><?=$lastActive?></span>
 							</td>
 							<td class="forumRowHighlight" align="left">
-								<a class="linkSmallBold" href="/Forum/Search/default.aspx?SearchFor=1&amp;SearchText=<?=$f_user["id"]?>"><?=$f_user["forumPosts"]?></a>
+								<a class="linkSmallBold" href="/Forum/Search/default.aspx?SearchFor=1&amp;SearchText=<?=$f_user["id"]?>"><?=$f_user["forumPosts"] > 0 ? $f_user["forumPosts"] : "-"?></a>
 							</td>
 						</tr>
                         <?php endforeach; ?>
