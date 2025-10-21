@@ -67,7 +67,7 @@ class Thread {
             return "Today @ " . $time;
         }
 
-        return $lastActivity->format("D M Y h:i A");
+        return $lastActivity->format("d M Y h:i A");
     }
 
     public function postedToday() {
