@@ -3,13 +3,15 @@ if (!isset($_GET["PostID"]) && !isset($_GET["ForumID"]) && !isset($_GET["ForumGr
     #
 }
 # using w_ prefix to avoid variable clashing in other files
-$w_forumGroupId = isset($_GET["ForumGroupID"]) ? $_GET["ForumGroupID"] : NULL;
-$w_forumId = isset($_GET["ForumID"]) ? $_GET["ForumID"] : NULL;
-$w_postId = isset($_GET["PostID"]) ? $_GET["PostID"] : NULL;
+$w_forumGroupId = isset($_GET["ForumGroupID"]) ? (int)$_GET["ForumGroupID"] : NULL;
+$w_forumId = isset($_GET["ForumID"]) ? (int)$_GET["ForumID"] : NULL;
+$w_postId = isset($_GET["PostID"]) ? (int)$_GET["PostID"] : NULL;
 
 if (isset($w_forumId)) {
     $w_forumGroupId = Forum::getGroupByForum($w_forumId);
     $w_forumGroup = new ForumGroup($w_forumGroupId);
+    $w_forum = new Forum($w_forumId);
+    echo $w_forum->getTopic();
 }
 
 if (isset($w_postId)) {
@@ -41,13 +43,14 @@ if (isset($w_postId)) {
                         <a id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_LinkForum" class="linkMenuSink" href="/Forum/ShowForum.aspx?ForumID=<?=$w_forumId?>"><?=$w_forum->getTopic()?></a>
                     </nobr>
                 </td>
-                <?php endif; ?>
+                <?php endif; if (isset($w_postId)): ?>
                 <td id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_PostMenu" class="popupMenuSink" valign="top" align="left" width="1px">
                     <nobr>
                         <span id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_PostSeparator" class="normalTextSmallBold">&nbsp;&gt;</span>
                         <a id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_LinkPost" class="linkMenuSink" href="/Forum/ShowPost.aspx?PostID=<?=$w_post->getTitle()?>">Err...</a>
                     </nobr>
                 </td>
+                <?php endif; ?>
                 <td valign="top" align="left" width="*">&nbsp;</td>
             </tr>
         </tbody>

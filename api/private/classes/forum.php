@@ -27,6 +27,7 @@ class Forum {
         }
 
         global $db;
+
         $result = $db->execute($stmt, [":identifier" => $identifier]);
         if ($result->rowCount() == 0) {
             return false;
