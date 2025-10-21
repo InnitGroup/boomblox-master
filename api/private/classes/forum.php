@@ -1,5 +1,7 @@
 <?php
 class Forum {
+    private int $postsPerPage = 12; # STATIC
+
     private int $forumId;
     private int $groupId;
     private int $lastPostId;
@@ -57,6 +59,31 @@ class Forum {
     public function getLastPostTime() { return $this->lastPostTime; }
     public function getThreadCount() { return $this->threads; }
     public function getPostCount() { return $this->posts; }
+
+    public function getPosts(int $page = NULL, string $query = NULL, int $range = NULL) {
+        global $db;
+        $stmt = "SELECT * FROM threads WHERE forumId=:forumId AND isReply=0";
+
+        if (isset($query)) {
+            $query = $query . "%";
+            $offset .= " AND threadTitle LIKE ':query'";
+        }
+
+        if (isset($page)) {
+            $offset = ($page * $this->postsPerPage) - $this->postsPerPage;
+            $stmt .= " OFFSET $offset LIMIT {$this->postsPerPage}";
+        }
+
+        $result;
+        if (isset($query)) {
+            $result = $db->execute($stmt, [":forumId" => $this->getId(), ":query" => $query]);
+        } else {
+            $result = $db->execute($stmt, [":forumId" => $this->getId()]);
+        }
+
+        $posts = $result->fetchAll(PDO::FETCH_ASSOC);
+        return $posts;
+    }
 
     public static function forumExists(int $forumId): bool {
         global $db;

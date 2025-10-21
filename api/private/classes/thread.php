@@ -5,6 +5,7 @@ class Thread {
     private bool $isReply;
     private bool $pinned;
     private User $author;
+    private array $views;
     
     private string $title;
     private string $content;
@@ -36,6 +37,7 @@ class Thread {
         $this->content = $thread["threadContent"];
         $this->postDate = new DateTime($thread["postDate"]);
         $this->lastActivity = new DateTime($thread["lastActivity"]);
+        $this->views = unserialize($thread["views"]);
     }
 
     public function getId() { return $this->id; }
@@ -47,9 +49,33 @@ class Thread {
     public function getContent() { return $this->content; }
     public function getPostDate() { return $this->postDate; }
     public function getLastActivity() { return $this->lastActivity; }
+    public function getViews() { return $this->views; }
+    public function viewCount() { return count($this->views); }
+
     public function getAuthorBust() {
         $avatar = new Avatar($this->author->getUserId());
         return $avatar->GetThumbnail(64, 64, "PNG");
+    }
+
+    public function formatLastActivity() {
+        $lastActivity = $this->lastActivity;
+        $today = new DateTime();
+        $diff = $today->diff($lastActivity)->format("%a");
+        $time = $lastActivity->format("h:i A");
+
+        if ($diff == 0) {
+            return "Today @ " . $time;
+        }
+
+        return $lastActivity->format("D M Y h:i A");
+    }
+
+    public function postedToday() {
+        $lastActivity = $this->lastActivity;
+        $today = new DateTime();
+        $diff = $today->diff($lastActivity)->format("%a");
+
+        return $diff == 0;
     }
 };
 ?>

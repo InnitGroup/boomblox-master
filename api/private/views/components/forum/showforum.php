@@ -32,313 +32,53 @@
 								<th class="tableHeaderText" align="center">&nbsp;Views&nbsp;</th>
 								<th class="tableHeaderText" align="center" nowrap="nowrap">&nbsp;Last Post&nbsp;</th>
 							</tr>
+
+                            <?php
+                            global $forum, $user;
+                            $posts = $forum->getPosts();
+
+                            foreach ($posts as $post):
+                                $thread = new Thread($post["postId"]);
+                            ?>
 							<tr>
 								<td class="forumRow" align="center" valign="middle" width="25">
+                                    <?php if ($thread->viewCount() > 1000): ?>
 									<img title="Popular post" src="/Forum/skins/default/images/topic-popular.gif" border="0">
+                                    <?php endif; if (!in_array($user->getUserId(), $thread->getViews())): ?>
+                                    <img title="Post (Not Read)" src="/Forum/skins/default/images/topic_notread.gif" border="0">
+                                    <?php else: ?>
+                                    <img title="Post" src="/Forum/skins/default/images/topic.gif" border="0"> 
+                                    <?php endif; ?>
 								</td>
 								<td class="forumRow" height="25">
-									<a class="linkSmallBold" href="/Forum/ShowPost.aspx?PostID=1756333">Teh Rulez</a>
+									<a class="linkSmallBold" href="/Forum/ShowPost.aspx?PostID=<?=$thread->getId()?>"><?=$thread->getTitle()?></a>
 								</td>
-								<td class="forumRowHighlight" align="left" width="100">&nbsp; <a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=Stealth Pilot">Stealth Pilot</a>
+								<td class="forumRowHighlight" align="left" width="100">&nbsp; <a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=<?=$thread->getAuthor()->getUsername()?>"><?=$thread->getAuthor()->getUsername()?></a>
 								</td>
 								<td class="forumRowHighlight" align="center" width="50">
 									<span class="normalTextSmaller">-</span>
 								</td>
 								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">1,043</span>
+									<span class="normalTextSmaller"><?=$thread->viewCount()?></span>
 								</td>
 								<td class="forumRowHighlight" align="center" width="140" nowrap="nowrap">
 									<span class="normalTextSmaller">
+                                        <?php if ($thread->isPinned()): ?>
 										<b>Pinned Post</b>
+                                        <?php elseif ($thread->postedToday()): ?>
+                                        <b><?=$thread->formatLastActivity()?></b>
+                                        <?php else: ?>
+                                        <?=$thread->formatLastActivity()?>
+                                        <?php endif; ?>
 										<br>by </span>
-									<a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=Stealth Pilot">Stealth Pilot</a>
-									<a href="/Forum/ShowPost.aspx?PostID=1756333#1756333">
+									<a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=<?=$thread->getAuthor()->getUsername()?>"><?=$thread->getAuthor()->getUsername()?></a>
+									<a href="/Forum/ShowPost.aspx?PostID=<?=$thread->getId()?>#<?=$thread->getId()?>">
 										<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
 									</a>
 								</td>
 							</tr>
-							<tr>
-								<td class="forumRow" align="center" valign="middle" width="25">
-									<img title="Popular post" src="/Forum/skins/default/images/topic-popular.gif" border="0">
-								</td>
-								<td class="forumRow" height="25">
-									<a class="linkSmallBold" href="/Forum/ShowPost.aspx?PostID=1589414">Reminder: Make thread titles related to the thread!</a>
-								</td>
-								<td class="forumRowHighlight" align="left" width="100">&nbsp; <a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=MrDoomBringer">MrDoomBringer</a>
-								</td>
-								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">-</span>
-								</td>
-								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">1,164</span>
-								</td>
-								<td class="forumRowHighlight" align="center" width="140" nowrap="nowrap">
-									<span class="normalTextSmaller">
-										<b>Pinned Post</b>
-										<br>by </span>
-									<a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=MrDoomBringer">MrDoomBringer</a>
-									<a href="/Forum/ShowPost.aspx?PostID=1589414#1589414">
-										<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td class="forumRow" align="center" valign="middle" width="25">
-									<img title="Popular post" src="/Forum/skins/default/images/topic-popular.gif" border="0">
-								</td>
-								<td class="forumRow" height="25">
-									<a class="linkSmallBold" href="/Forum/ShowPost.aspx?PostID=521113">INFO: How reporting works</a>
-								</td>
-								<td class="forumRowHighlight" align="left" width="100">&nbsp; <a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=MrDoomBringer">MrDoomBringer</a>
-								</td>
-								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">-</span>
-								</td>
-								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">5,754</span>
-								</td>
-								<td class="forumRowHighlight" align="center" width="140" nowrap="nowrap">
-									<span class="normalTextSmaller">
-										<b>Pinned Post</b>
-										<br>by </span>
-									<a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=MrDoomBringer">MrDoomBringer</a>
-									<a href="/Forum/ShowPost.aspx?PostID=521113#521113">
-										<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td class="forumRow" align="center" valign="middle" width="25">
-									<img title="Popular post" src="/Forum/skins/default/images/topic-popular.gif" border="0">
-								</td>
-								<td class="forumRow" height="25">
-									<a class="linkSmallBold" href="/Forum/ShowPost.aspx?PostID=1635040">Chain Spam (REMINDER)</a>
-								</td>
-								<td class="forumRowHighlight" align="left" width="100">&nbsp; <a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=Stealth Pilot">Stealth Pilot</a>
-								</td>
-								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">-</span>
-								</td>
-								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">1,575</span>
-								</td>
-								<td class="forumRowHighlight" align="center" width="140" nowrap="nowrap">
-									<span class="normalTextSmaller">
-										<b>Pinned Post</b>
-										<br>by </span>
-									<a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=Stealth Pilot">Stealth Pilot</a>
-									<a href="/Forum/ShowPost.aspx?PostID=1635040#1635040">
-										<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td class="forumRow" align="center" valign="middle" width="25">
-									<img title="Post (Not Read)" src="/Forum/skins/default/images/topic_notread.gif" border="0">
-								</td>
-								<td class="forumRow" height="25">
-									<a class="linkSmallBold" href="/Forum/ShowPost.aspx?PostID=1854875">Whoa...</a>
-								</td>
-								<td class="forumRowHighlight" align="left" width="100">&nbsp; <a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=Raxoe">Raxoe</a>
-								</td>
-								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">4</span>
-								</td>
-								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">32</span>
-								</td>
-								<td class="forumRowHighlight" align="center" width="140" nowrap="nowrap">
-									<span class="normalTextSmaller">
-										<b>Today @ 04:26 PM</b>
-										<br>by </span>
-									<a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=Raxoe">Raxoe</a>
-									<a href="/Forum/ShowPost.aspx?PostID=1854875#1856480">
-										<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td class="forumRow" align="center" valign="middle" width="25">
-									<img title="Post (Not Read)" src="/Forum/skins/default/images/topic_notread.gif" border="0">
-								</td>
-								<td class="forumRow" height="25">
-									<a class="linkSmallBold" href="/Forum/ShowPost.aspx?PostID=1856411">Hello :D!</a>
-								</td>
-								<td class="forumRowHighlight" align="left" width="100">&nbsp; <a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=GeorgeBloxxington">GeorgeBloxxington</a>
-								</td>
-								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">11</span>
-								</td>
-								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">46</span>
-								</td>
-								<td class="forumRowHighlight" align="center" width="140" nowrap="nowrap">
-									<span class="normalTextSmaller">
-										<b>Today @ 04:26 PM</b>
-										<br>by </span>
-									<a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=GeorgeBloxxington">GeorgeBloxxington</a>
-									<a href="/Forum/ShowPost.aspx?PostID=1856411#1856475">
-										<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td class="forumRow" align="center" valign="middle" width="25">
-									<img title="Post (Not Read)" src="/Forum/skins/default/images/topic_notread.gif" border="0">
-								</td>
-								<td class="forumRow" height="25">
-									<a class="linkSmallBold" href="/Forum/ShowPost.aspx?PostID=1856355">Copyright Offence</a>
-								</td>
-								<td class="forumRowHighlight" align="left" width="100">&nbsp; <a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=NintendoZACHERY">NintendoZACHERY</a>
-								</td>
-								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">11</span>
-								</td>
-								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">88</span>
-								</td>
-								<td class="forumRowHighlight" align="center" width="140" nowrap="nowrap">
-									<span class="normalTextSmaller">
-										<b>Today @ 04:25 PM</b>
-										<br>by </span>
-									<a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=NintendoZACHERY">NintendoZACHERY</a>
-									<a href="/Forum/ShowPost.aspx?PostID=1856355#1856470">
-										<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td class="forumRow" align="center" valign="middle" width="25">
-									<img title="Post (Not Read)" src="/Forum/skins/default/images/topic_notread.gif" border="0">
-								</td>
-								<td class="forumRow" height="25">
-									<a class="linkSmallBold" href="/Forum/ShowPost.aspx?PostID=1856262">Poor iPost XD</a>
-								</td>
-								<td class="forumRowHighlight" align="left" width="100">&nbsp; <a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=Skyskraper">Skyskraper</a>
-								</td>
-								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">9</span>
-								</td>
-								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">82</span>
-								</td>
-								<td class="forumRowHighlight" align="center" width="140" nowrap="nowrap">
-									<span class="normalTextSmaller">
-										<b>Today @ 04:25 PM</b>
-										<br>by </span>
-									<a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=LinkinParkRulez">LinkinParkRulez</a>
-									<a href="/Forum/ShowPost.aspx?PostID=1856262#1856465">
-										<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td class="forumRow" align="center" valign="middle" width="25">
-									<img title="Popular post" src="/Forum/skins/default/images/topic-popular.gif" border="0">
-								</td>
-								<td class="forumRow" height="25">
-									<a class="linkSmallBold" href="/Forum/ShowPost.aspx?PostID=1289478">Uberbloxxer Recruitment Topic</a>
-									<span class="normalTextSmall"> (Page: </span>
-									<a class="linkSmall" href="/Forum/ShowPost.aspx?PostID=1289478&amp;PageIndex=1">1</a>
-									<span class="normalTextSmall">, </span>
-									<a class="linkSmall" href="/Forum/ShowPost.aspx?PostID=1289478&amp;PageIndex=2">2</a>
-									<span class="normalTextSmall">, </span>
-									<a class="linkSmall" href="/Forum/ShowPost.aspx?PostID=1289478&amp;PageIndex=3">3</a>
-									<span class="normalTextSmall">)</span>
-								</td>
-								<td class="forumRowHighlight" align="left" width="100">&nbsp; <a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=ploober33">ploober33</a>
-								</td>
-								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">56</span>
-								</td>
-								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">291</span>
-								</td>
-								<td class="forumRowHighlight" align="center" width="140" nowrap="nowrap">
-									<span class="normalTextSmaller">
-										<b>Today @ 04:24 PM</b>
-										<br>by </span>
-									<a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=ploober33">ploober33</a>
-									<a href="/Forum/ShowPost.aspx?PostID=1289478#1856459">
-										<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td class="forumRow" align="center" valign="middle" width="25">
-									<img title="Post (Not Read)" src="/Forum/skins/default/images/topic_notread.gif" border="0">
-								</td>
-								<td class="forumRow" height="25">
-									<a class="linkSmallBold" href="/Forum/ShowPost.aspx?PostID=1856424">Wow iPost</a>
-								</td>
-								<td class="forumRowHighlight" align="left" width="100">&nbsp; <a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=chrisishappy132">chrisishappy132</a>
-								</td>
-								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">2</span>
-								</td>
-								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">32</span>
-								</td>
-								<td class="forumRowHighlight" align="center" width="140" nowrap="nowrap">
-									<span class="normalTextSmaller">
-										<b>Today @ 04:24 PM</b>
-										<br>by </span>
-									<a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=LinkinParkRulez">LinkinParkRulez</a>
-									<a href="/Forum/ShowPost.aspx?PostID=1856424#1856453">
-										<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td class="forumRow" align="center" valign="middle" width="25">
-									<img title="Post (Not Read)" src="/Forum/skins/default/images/topic_notread.gif" border="0">
-								</td>
-								<td class="forumRow" height="25">
-									<a class="linkSmallBold" href="/Forum/ShowPost.aspx?PostID=1856429">who wants this acc *not a scam*</a>
-								</td>
-								<td class="forumRowHighlight" align="left" width="100">&nbsp; <a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=lemonytreecko">lemonytreecko</a>
-								</td>
-								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">2</span>
-								</td>
-								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">22</span>
-								</td>
-								<td class="forumRowHighlight" align="center" width="140" nowrap="nowrap">
-									<span class="normalTextSmaller">
-										<b>Today @ 04:24 PM</b>
-										<br>by </span>
-									<a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=Corlento">Corlento</a>
-									<a href="/Forum/ShowPost.aspx?PostID=1856429#1856452">
-										<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-									</a>
-								</td>
-							</tr>
-							<tr>
-								<td class="forumRow" align="center" valign="middle" width="25">
-									<img title="Post (Not Read)" src="/Forum/skins/default/images/topic_notread.gif" border="0">
-								</td>
-								<td class="forumRow" height="25">
-									<a class="linkSmallBold" href="/Forum/ShowPost.aspx?PostID=1855897">I need 5 admins for my place!!</a>
-								</td>
-								<td class="forumRowHighlight" align="left" width="100">&nbsp; <a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=cpgurl3">cpgurl3</a>
-								</td>
-								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">19</span>
-								</td>
-								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">92</span>
-								</td>
-								<td class="forumRowHighlight" align="center" width="140" nowrap="nowrap">
-									<span class="normalTextSmaller">
-										<b>Today @ 04:23 PM</b>
-										<br>by </span>
-									<a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=cpgurl3">cpgurl3</a>
-									<a href="/Forum/ShowPost.aspx?PostID=1855897#1856437">
-										<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-									</a>
-								</td>
-							</tr>
+                            <?php endforeach; ?>
+
 							<tr>
 								<td class="forumHeaderBackgroundAlternate" colspan="6">&nbsp;</td>
 							</tr>

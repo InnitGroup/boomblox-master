@@ -5,7 +5,8 @@ global $theme, $auth, $user;
 !$auth->isAuthed() && Server::_404();
 !$user->hasPerms(3) && Server::_404(); #
 
-$postId = isset($_GET["ForumID"]) ? (int)$_GET["ForumID"] : Server::_404();
+$forumId = isset($_GET["ForumID"]) ? (int)$_GET["ForumID"] : Server::_404();
+$forum = new Forum($forumId);
 
 $page = new PageBuilder(Site::getThemeProperty("alias",$theme).": A FREE Virtual World-Building Game with Avatar Chat, 3D Environments, and Physics", $theme, "/templates/authheader.php", [], "rbxnews");
 $page->buildHeader();
