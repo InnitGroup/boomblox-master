@@ -166,15 +166,15 @@ game:service("Players").PlayerAdded:connect(function(player)
 	end)
 
 	if ({PlaceID} == 208) then
-		local hasWon = Instance.new("IntValue", player)
-		hasWon.Name = "HasWon"
-		hasWon.Value = 0
-		
-		hasWon.Changed:connect(function()
-			print("value changed")
-			if hasWon.Value == (12*player.userId) then
-				print("preparing item send")
-				game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=65&key=H3d1dTh3M0nst3rM4sh&assetnumber=977&t=" .. math.random(1,999), false)
+		player.ChildAdded:connect(function(child) 
+			if (child.Name == "winner") then
+				child.Changed:connect(function()
+					print("value changed")
+					if child.Value == 1 then
+						print("preparing item send")
+						game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=65&key=H3d1dTh3M0nst3rM4sh&assetnumber=977&t=" .. math.random(1,999), false)
+					end
+				end)
 			end
 		end)
 	end
