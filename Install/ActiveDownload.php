@@ -4,7 +4,7 @@ global $auth, $user;
 
 !$auth->isAuthed() && Server::_404();
 
-$file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/029.exe";
+$file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/031.exe";
 if (isset($_GET["Special"])) {
     switch ($_GET["Special"]) {
         case "XPTesterGC":
@@ -16,12 +16,14 @@ if (isset($_GET["Special"])) {
             $file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/BoombloxXP.zip";
             break;
         case "QATester030D":
+            /*
             $qaTesters = [3, 78, 99, 113, 79, 85, 105, 91, 100, 108, 93, 73, 96];
             if (!in_array($user->getUserId(), $qaTesters)) {
                 Server::_404();
             }
 
             $file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/030D.exe";
+            */
             break;
     }
 }

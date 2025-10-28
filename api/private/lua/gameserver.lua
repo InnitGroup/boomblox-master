@@ -165,14 +165,14 @@ game:service("Players").PlayerAdded:connect(function(player)
 		end
 	end)
 
-	if ({PlaceID} == 208) then
+	if ({PlaceID} == 164) then
 		player.ChildAdded:connect(function(child) 
 			if (child.Name == "winner") then
 				child.Changed:connect(function()
 					print("value changed")
 					if child.Value == 1 then
 						print("preparing item send")
-						game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=65&key=H3d1dTh3M0nst3rM4sh&assetnumber=977&t=" .. math.random(1,999), false)
+						game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .."&key=H3d1dTh3M0nst3rM4sh&assetnumber=977&t=" .. math.random(1,999), false)
 					end
 				end)
 			end

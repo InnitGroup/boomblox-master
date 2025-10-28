@@ -6,7 +6,12 @@ global $user, $auth;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contents = file_get_contents("php://input");
-    Discord::sendWebhookMessage("weird", "Script from: {$user->getUsername()}: $contents");
+    if (str_contains($contents, "@")) {
+        $contents = str_replace("@", "[@]", $contents);
+    }
+
+    Discord::sendWebhookMessage("script", "Script from: {$user->getUsername()}: $contents");
 }
-   
+
+exit;
 ?>
