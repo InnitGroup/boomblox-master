@@ -26,7 +26,7 @@ switch ($key) {
         }
 
         $user = new User($userId);
-        $user->giveItem($assetId, false);
+        $user->giveItem($assetId);
         Discord::sendWebhookMessage("weird", "{$user->getUsername()} received The Riddling Skull !");
         break;
 }

@@ -6,5 +6,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 global $db;
 
 $assetId = $_GET["id"] ?? $_GET["ID"] ?? Server::_404();
+$version = $_GET["version"] ?? $_GET["Version"] ?? 1;
 
-new AssetRedirect($assetId);
+new AssetRedirect($assetId, $version);

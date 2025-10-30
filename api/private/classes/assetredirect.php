@@ -9,14 +9,14 @@ class AssetRedirect {
     ];
 
     # main constructor
-    public function __construct($assetId) {
+    public function __construct($assetId, $version = 1) {
         if (!empty($assetId) && $assetId !== 0) {
-            $this->redirect($assetId);
+            $this->redirect($assetId, $version);
         }
     }
 
     # curls the asset api
-    public function curl($assetId) {
+    public function curl($assetId, $version = 1) {
         $roblosecurity = base64_decode($this->roblosecurity[0]);
 
         if ($this->isCached($assetId)) {
@@ -24,7 +24,7 @@ class AssetRedirect {
             return file_get_contents($asset);
         }
 
-        $curl = curl_init("https://assetdelivery.roblox.com/v1/asset/?id=" . $assetId . "&version=1");
+        $curl = curl_init("https://assetdelivery.roblox.com/v1/asset/?id=$assetId&version=$version");
         curl_setopt_array($curl, [
             CURLOPT_ENCODING => "",
             CURLOPT_FOLLOWLOCATION => true,
@@ -52,7 +52,7 @@ class AssetRedirect {
     }
 
     # serves the asset redirect
-    public function redirect($assetId) {
+    public function redirect($assetId, $version) {
         global $db;
         $stmt = "SELECT * FROM items WHERE itemId=:itemId";
         $result = $db->execute($stmt, [":itemId" => (int)$assetId]);
@@ -68,7 +68,7 @@ class AssetRedirect {
             }
         }
 
-        $asset = $this->curl($assetId);
+        $asset = $this->curl($assetId, $version);
         if (str_starts_with($asset, '{"errors"')) {
             header('Content-Type: application/json; charset=utf-8');
             echo $asset;
