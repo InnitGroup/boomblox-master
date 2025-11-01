@@ -12,16 +12,16 @@ $page->buildHeader();
 if (Server::isPost()) {
 	$register = new Registration;
 	$result = $register->handle();
-	if ($result) { #x: registry passed
-		header("Location: /Default.aspx"); #eat pie first you noob! seariously! go get me some pie!
+
+	if (!isset(json_decode($result)->error)) { #x: registry passed
+		#header("Location: /Default.aspx"); #eat pie first you noob! seariously! go get me some pie!
 	} else {
 		$error = json_decode($result)->focus;
 	}
 }
 
-#!isset($_GET["Come"]) && 
-Server::_404();
-#$_GET["Come"] !== "AsYouAre" && Server::_404();
+!isset($_GET["Everybody"]) && Server::_404();
+$_GET["Everybody"] !== "WantsToRuleTheWorld" && Server::_404();
 
 ?>
 <div id="Body">
