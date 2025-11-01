@@ -33,7 +33,7 @@ class ROBLOSECURITY {
         }
     }
     public static function set($userId) {
-        setcookie("BROBLOSECURITY", self::get($userId), time() + (60*60*24*30), "/", "", false, true); #https://www.php.net/manual/en/function.setcookie.php
+        setcookie("BROBLOSECURITY", self::get($userId), time() + (60*60*24*365), "/", "", false, true); #https://www.php.net/manual/en/function.setcookie.php
     }
     public static function detach($userId, $isLocal = false) {
         global $db;
