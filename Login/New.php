@@ -9,12 +9,13 @@ $auth->isAuthed() && header("Location: /Default.aspx") && exit;
 $page = new PageBuilder(Site::getThemeProperty("alias",$theme).": A FREE Virtual World-Building Game with Avatar Chat, 3D Environments, and Physics", 0, "/templates/dryheader.php", [], ["register"]);
 $page->buildHeader();
 
+$register = new Registration;
 if (Server::isPost()) {
-	$register = new Registration;
 	$result = $register->handle();
 
 	if (!isset(json_decode($result)->error)) { #x: registry passed
-		#header("Location: /Default.aspx"); #eat pie first you noob! seariously! go get me some pie!
+		header("Location: /Default.aspx"); #eat pie first you noob! seariously! go get me some pie!
+		exit;
 	} else {
 		$error = json_decode($result)->focus;
 	}
@@ -25,7 +26,7 @@ $_GET["Everybody"] !== "WantsToRuleTheWorld" && Server::_404();
 
 ?>
 <div id="Body">
-	<form name="Registration" method="POST">
+	<form name="Registration" method="POST" method="/Login/New.aspx?Everybody=WantsToRuleTheWorld">
 		<div id="Registration">
 			<div id="ctl00_cphRoblox_upAccountRegistration">
 				<h2>Sign Up and Play</h2>
@@ -57,8 +58,15 @@ $_GET["Everybody"] !== "WantsToRuleTheWorld" && Server::_404();
 							<div class="Attention"><?=isset($error) && $error == "EnterUsername" && $register->error(json_decode($result),"EnterUsername");?></div>
 							<div><a style="padding:5px;" href="javascript:toggleUsernameSuggestions()">Suggestions</a></div>
 							<div id="UsernameSuggestions" style="display: none">
-								<div>a,&nbsp;a,&nbsp;a</div>
-								<div><a href="#">Learn about username suggestions</a></div>
+								<div>
+								<?php if (!empty($register->presets)): foreach ($register->presets as $suggestion):?>
+									<?=$suggestion?><br>
+								<?php endforeach; ?>
+								<?php else: ?>
+									There are no available presets at the moment.
+								<?php endif; ?>
+								</div>
+								<div><a href="javascript:alert('Pick a suggested username for a B$ 10 bonus upon registry!')">Learn about username suggestions</a></div>
 							</div>
 						</div>
 						<div class="UsernameRow">

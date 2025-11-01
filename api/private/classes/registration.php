@@ -1,6 +1,6 @@
 <?php
 class Registration {
-    private array $presets = [
+    public array $presets = [
         "telamon0",
         "runescape117",
         "harryt",
