@@ -1,9 +1,25 @@
 <?php
 class Registration {
-    private $usernameError = array(
+    private array $presets = [
+        "telamon0",
+        "runescape117",
+        "harryt",
+        "TearSaver",
+        "yully",
+        "SpeedDT",
+        "freshmonkey",
+        "maniac4",
+        "cougarfootball",
+        "yorick001",
+        "sman1267",
+        "zachman98"
+    ];
+
+    private array $usernameError = [
         "This username is already taken!",
         "This username is in use by somebody else."
-    );
+    ];
+
     public function handle() {
         global $db;
         #username validators: This username is already taken!Try x instead!
@@ -66,7 +82,21 @@ Welcome to Boomblox! We are constantly working to make Boomblox a fun, safe, and
 Have a great time here!",
             "recipientId" => $id
         ];
+
         $newUser->sendMessage($message);
+
+        if (in_array($_POST["Userame"], $this->presets)) {
+            $newUser->giveBux(10);
+            $message = [
+                "senderId" => 1,
+                "senderUn" => "Boomblox",
+                "subject" => "Welcome to Boomblox",
+                "content" => "Hello, {$newUser->getUsername()}, you have been awarded B$ 10 for choosing a preset username, thank you for building site accuracy within the population!",
+                "recipientId" => $id
+            ];
+
+            $newUser->sendMessage($message);
+        }
 
         return true;
     }
