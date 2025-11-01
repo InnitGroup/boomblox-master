@@ -55,8 +55,13 @@ class HomeManager {
 					<div>Play with the slingshot, rocket, or other brick battle tools.  Be careful not to get "bloxxed".</div>
 				</li>
 			</ul>
-			<div id="Showcase">
-			    <iframe width="400" height="326" src="https://www.youtube.com/embed/JTllO3ktfDY?si=Ia-ZX73qEYMZ3uPx?autoplay=1&loop=1&controls=0" frameborder="0" allowfullscreen></iframe>
+            <div id="Showcase" onload="MM_CheckFlashVersion(\'8,0,0,0\',\'Content on this page requires a newer version of Macromedia Flash Player. Do you want to download it now?\');">
+                <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+                <object width="400" height="326">
+                    <param name="movie" value="/aaa.swf">
+                    <embed src="/aaa.swf">
+                    </embed>
+                </object>
             </div>
 			<div id="Install"><br></div>
 			<div id="ctl00_cphRoblox_pForParents">

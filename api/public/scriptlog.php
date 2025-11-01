@@ -10,13 +10,19 @@ $whitelisted = [
     "e9120b545a0a38c398e547e7091d6f1c", // [Roblox] Local Gui
     "b9ebf5d9bc79bc3b93ead1fe4721a999", // [Roblox] Local Gui
     "4f4d161071002c301f11a146ab788933", // [Roblox] Local Gui
+    "73ec312237e7944b840688c6b59da269", // [Roblox] Local Gui
     "70c316d0692f4a13c496a931d3e5ee19", // [Roblox] Local Gui
     "f65dea824660a0dc8229207b53c909ce", // [Roblox] Local Gui
     "0b7d28d1880e71acf4ba4e995c6bccdf", // [Roblox] Trowel script
+    "efb84ddc9a7158d6b91245d10cc19661", // [Roblox] Pumpkin bomb script
+    "a74f767c61515bf6e4932bf5ce85aaa4", // [Roblox] Rocket script
     "210ff6525607c2222dd6aaa4cc1a83dc", // [Client] Play solo in studio
     "582732186f2ba3c00bf03e0e6ef7d87e", // [Client] Character script
     "c096a64502c1f8638d6a234e13130486", // Game script by thereal
     "20d892247f1a7357975e0ee60b8e06ae", // Game script by clockwork [Roblox]
+    "917b7e147febc2b8f2c1594e58862460", // Game script by tobu.fi
+    "cb3d65eb9883a6e8973b6ec0ff3f71c1", // Game script by tobu.fi
+    "363056962501e710d9cad8c69408bca7", // Game script by tobu.fi
     "d0a7395ff9b46dcf73101b9bf2ba502c", // [Client] Character script
 ];
 
