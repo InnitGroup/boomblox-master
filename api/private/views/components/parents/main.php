@@ -8,7 +8,7 @@ global $theme;
 			<h2><?=Site::getThemeProperty("alias", $theme)?> Parents</h2>
 			<div class="ParentsSection" id="ROBLOXGuide">
 				<a id="ctl00_cphRoblox_RobloxGuideImageHyperLink" class="SectionIcon" text="<?=Site::getThemeProperty("alias", $theme)?> Guide" href="/Parents/RobloxGuide.aspx" style="display:inline-block;cursor:pointer;">
-					<img src="/images/Parents/<?=Site::getThemeProperty("name", $theme)?>Guide-110x115.png" border="0" blankurl="http://t3.roblox.com:80/blank-110x115.gif">
+					<img style="height:115px;width:110px;" src="/images/Parents/<?=Site::getThemeProperty("name", $theme)?>Guide-110x115.png?t=<?=time()?>" border="0" blankurl="http://t3.roblox.com:80/blank-110x115.gif">
 				</a>
 				<h3>
 					<a id="ctl00_cphRoblox_RobloxGuideHyperLink" href="Parents/RobloxGuide.aspx"><?=Site::getThemeProperty("alias", $theme)?> Guide</a>

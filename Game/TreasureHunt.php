@@ -3,11 +3,11 @@
 #last edit: 01/19/2025 @marsoc
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
-#Server::ipLock();
+Server::ipLock();
 
 $userId = $_GET["userid"] ?? NULL;
 $key = $_GET["key"] ?? NULL;
-$assetId = isset($_GET["assetnumber"]) ? (int)$_GET["assetnumber"] : NULL;
+$assetId = isset($_GET["assetnumber"]) ? (int)$_GET["assetnumber"] : Server::_404();
 
 switch ($key) {
     # this has been here since jan 2025, unused

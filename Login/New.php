@@ -60,7 +60,7 @@ $_GET["Everybody"] !== "WantsToRuleTheWorld" && Server::_404();
 							<div id="UsernameSuggestions" style="display: none">
 								<div>
 								<?php if (!empty($register->presets)): foreach ($register->presets as $suggestion):?>
-									<?=$suggestion?><br>
+									<?=!$db->usernameTaken($suggestion) ? $suggestion : ""?><br>
 								<?php endforeach; ?>
 								<?php else: ?>
 									There are no available presets at the moment.
