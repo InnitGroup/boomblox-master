@@ -27,4 +27,3 @@ $result = $db->execute($stmt);
     </div>
     <div id="ctl00_cphRoblox_ie6_peekaboo" style="clear: both"></div>
 </div>
-';
