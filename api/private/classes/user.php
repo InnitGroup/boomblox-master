@@ -34,6 +34,7 @@ class User {
             "llColor",
             "rlColor",
             "torsoColor",
+            "head",
             "hat",
             "shirt",
             "pants",
