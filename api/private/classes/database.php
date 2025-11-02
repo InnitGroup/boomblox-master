@@ -76,13 +76,19 @@ class Database {
     public function createUser($username, $password, $key) {
         if (!$this->keyTaken($key)) {
             $torsoColors = [1, 37, 21, 194, 141];
-            $sql = "INSERT INTO users (username, password, torsoColor) VALUES (:username, :password, :torsoColor)";
-            $this->execute($sql,[":username" => $username, ":password" => password_hash($password, PASSWORD_BCRYPT), ":torsoColor" => $torsoColors[rand(0,4)]]);
-            $sql = "UPDATE `keys` SET `status`=0 WHERE `keyC`=:keyC";
+            $joincode = bin2hex(random_bytes(16));
+
+            $sql = "INSERT INTO users (username, password, torsoColor, joincode) VALUES (:username, :password, :torsoColor, :joincode)";
+            $this->execute($sql, [
+                ":username" => $username, 
+                ":password" => password_hash($password, PASSWORD_BCRYPT), 
+                ":torsoColor" => $torsoColors[rand(0,4)],
+                ":joincode" => $joincode,
+            ]);
+
+            $sql = "UPDATE `keys` SET `status`=0, `recipient`=:recipient WHERE `keyC`=:keyC";
             $key = substr($key, 9);
-            $this->execute($sql, [":keyC" => (int)$key]);
-            $sql = "UPDATE `keys` SET `recipient`=:recipient WHERE `keyC`=:keyC";
-            $this->execute($sql, [":recipient" => $this->getLastUserId(), ":keyC" => $key]);
+            $this->execute($sql, [":keyC" => (int)$key, ":recipient" => $this->getLastUserId()]);
         }
     }
 
@@ -91,6 +97,7 @@ class Database {
         $sql = "SELECT `id` FROM users ORDER BY `id` DESC LIMIT 1";
         $result = $this->execute($sql);
         $fetched = $result->fetch(PDO::FETCH_ASSOC);
+        
         return $fetched["id"];
     }
 
