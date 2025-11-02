@@ -19,7 +19,7 @@ global $auth;
 
 			function dragRBX(id) {
 				isNetworkClient = window.external.ExecScript('return game:findFirstChild("NetworkClient")~=nil')[0];
-                    if (!isNetworkClient) window.external.Insert("http://<?=domain?>/asset/?id="+id);
+                    if (!isNetworkClient) window.external.StartDrag("http://<?=domain?>/asset/?id="+id);
             }
             
 			function clickButton(e, buttonid) {
