@@ -25,7 +25,6 @@ class User {
             "dynamicIp",
             "firstIp",
             "lastIp",
-            "head"
         ],
         "character" => [
             "headColor",
@@ -38,15 +37,15 @@ class User {
             "hat",
             "shirt",
             "pants",
-            "t-shirt"
+            "t-shirt",
         ],
         "membership" => [
             "bc",
-            "bcExpires"
+            "bcExpires",
         ],
         "client" => [
             "jointoken",
-            "joincode"
+            "joincode",
         ]
     ];
     public function __construct($userId) {

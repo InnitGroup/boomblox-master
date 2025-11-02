@@ -5,7 +5,7 @@ global $theme, $auth, $db;
 
 $page = new APageBuilder;
 
-for ($i = 0; $i < 121; $i++) {
+for ($i = 85; $i <= 128; $i++) {
     echo $i;
     $render = new Avatar($i);
     $render->RequestThumbnail(540,660,"PNG");
@@ -14,5 +14,4 @@ for ($i = 0; $i < 121; $i++) {
 }
 
 echo "Rendered!";
-
 ?>
