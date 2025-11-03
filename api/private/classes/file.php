@@ -38,6 +38,10 @@ class File {
         $half = explode('</int>', $half);
 
         $playerCount = (int)$half[0];
+        if ($playerCount < 1) {
+            $playerCount = 1;
+        }
+
         if ($playerCount > 50) {
             $playerCount = 50;
         }
