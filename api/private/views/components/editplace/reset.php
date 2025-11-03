@@ -13,14 +13,14 @@
                     <tr>
                         <td align="center" valign="middle" style="color:#003399;background-color:White;">
                             <a supportsalphachannel="false" title="Happy Home in Robloxia" onclick="javascript:__doPostBack('ctl00$cphRoblox$dlPlaceTemplates$ctl00$rbxPlaceTemplateThumbnail','')" style="display:inline-block;height:70px;width:120px;cursor:pointer;">
-                                <img src="<?=fullDomain?>/cdn/t2/ec270e402fea4b1d1d7068679fb47c55" style="height:70px;width:120px;" border="0" id="img" alt="Happy Home in Robloxia">
+                                <img src="https://t2.<?=domain?>/49ea97d8d0d691e963fe79e1c71cbc00" style="height:70px;width:120px;" border="0" id="img" alt="Happy Home in Robloxia">
                             </a>
                             <br>
                             <span>Happy Home in Robloxia</span>
                         </td>
                         <td align="center" valign="middle" style="color:#003399;background-color:White;">
                             <a supportsalphachannel="false" title="Starting BrickBattle Map" onclick="javascript:__doPostBack('ctl00$cphRoblox$dlPlaceTemplates$ctl02$rbxPlaceTemplateThumbnail','')" style="display:inline-block;height:70px;width:120px;cursor:pointer;">
-                                <img src="<?=fullDomain?>/cdn/t2/b117674211d077146446e8b2216a7af0" style="height:70px;width:120px;" border="0" id="img" alt="Starting BrickBattle Map">
+                                <img src="https://t2.<?=domain?>/25e430f72da9485e55c2ba87a0127ab1" style="height:70px;width:120px;" border="0" id="img" alt="Starting BrickBattle Map">
                             </a>
                             <br>
                             <span>Starting BrickBattle Map</span>
@@ -29,7 +29,7 @@
                     <tr>
                         <td align="center" valign="middle" style="color:#003399;background-color:White;">
                             <a supportsalphachannel="false" title="Empty Baseplate" onclick="javascript:__doPostBack('ctl00$cphRoblox$dlPlaceTemplates$ctl01$rbxPlaceTemplateThumbnail','')" style="display:inline-block;height:70px;width:120px;cursor:pointer;">
-                                <img src="<?=fullDomain?>/cdn/t2/7364b9e2bf42b7acf1837cbbec1ffa2d" style="height:70px;width:120px;" border="0" id="img" alt="Empty Baseplate">
+                                <img src="https://t2.<?=domain?>/7364b9e2bf42b7acf1837cbbec1ffa2d" style="height:70px;width:120px;" border="0" id="img" alt="Empty Baseplate">
                             </a>
                             <br>
                             <span>Empty Baseplate</span>
