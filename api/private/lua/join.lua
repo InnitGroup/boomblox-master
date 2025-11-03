@@ -79,8 +79,7 @@ function onConnectionAccepted(url, replicator)
 
     local success, err = pcall(function()
         if not test then
-            --game:HttpGet("http://{Url}/Game/Statistics.ashx?TypeID=3&UserID={UserID}")
-            --visit:SetPing("http://www.roblox.com/Game/ClientPresence.ashx?PlaceID=14799793&UserID=201573", 300)
+
         end
 
         game:SetMessageBrickCount()
@@ -134,7 +133,7 @@ end
 -- main ------------------------------------------------------------
 
 local success, err = pcall(function()
-    game:HttpGet("http://{Url}/Game/Statistics.ashx?TypeID=3&UserID={UserID}")
+    game:HttpGet("http://{Url}/Game/Statistics.ashx?TypeID=3&UserID={UserID}", false)
     setMessage("Creating Player")
     player = game:GetService("Players"):CreateLocalPlayer({UserID})
     player:SetSuperSafeChat(false)

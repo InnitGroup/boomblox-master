@@ -6,7 +6,7 @@ global $theme, $auth, $user;
 $page = new PageBuilder("About " . Site::getThemeProperty("alias",$theme), $theme, "/templates/authheader.php");
 $page->buildHeader();
 
-if ($theme == 0) {
+if ($theme == 0 || $theme == 4) {
     PageBuilder::addComponent("info", "aboutboomblox");
 } else {
     PageBuilder::addComponent("info", "about");

@@ -4,8 +4,8 @@ class Site {
         [
             "name" => "Boomblox",
             "alias" => "Boomblox",
-            "company" => "Exploco",
-            "company2" => "Exploco",
+            "company" => "?",
+            "company2" => "?",
             "year" => "2025. Experimental project.",
             "url" => "bmblox.xyz",
             "xmlUrl" => "www-bmblox-xyz",
@@ -77,8 +77,8 @@ class Site {
         [
             "name" => "Boomblox",
             "alias" => "Boomblox",
-            "company" => "Exploco",
-            "company2" => "Exploco",
+            "company" => "?",
+            "company2" => "?",
             "year" => "2025. Experimental project.",
             "url" => "bmblox.xyz",
             "xmlUrl" => "www-bmblox-xyz",

@@ -13,14 +13,21 @@ if (!$user->ownsPlace($placeId)) {
 $filePath = $_SERVER["DOCUMENT_ROOT"] . "/content/" . $placeId;
 #str_replace("IncommingConnection", "", $data);
 
-$compressedData = gzencode($data, 9);
-file_put_contents($filePath, $compressedData);
-
+file_put_contents($filePath, $data);
 $file = new File("/content/$placeId");
 $file->links();
+$playerCount = $file->getPlayerCount();
 
-$stmt = "UPDATE items SET lastUpdate = :lastUpdate WHERE itemId=:itemId";
-$db->execute($stmt, [":lastUpdate" => date('Y-m-d H:i:s'), ":itemId" => $placeId]);
+$compressedData = gzencode($data, 9);
+file_put_contents($filePath, $compressedData);
+Discord::sendWebhookMessage("games", $playerCount);
+
+$stmt = "UPDATE items SET lastUpdate = :lastUpdate, playersMax = :playerCount WHERE itemId=:itemId";
+$db->execute($stmt, [
+    ":lastUpdate" => date('Y-m-d H:i:s'), 
+    ":playerCount" => $playerCount,
+    ":itemId" => $placeId
+]);
 
 #render
 $asset = new Asset($placeId);

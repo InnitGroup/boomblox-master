@@ -30,6 +30,21 @@ class File {
         }
     }
 
+    public function getPlayerCount(): int {
+        // <int name="MaxPlayers">12</int>
+        $contents = file_get_contents($this->file);
+        $half = explode('<int name="MaxPlayers">', $contents);
+        $half = $half[1];
+        $half = explode('</int>', $half);
+
+        $playerCount = (int)$half[0];
+        if ($playerCount > 50) {
+            $playerCount = 50;
+        }
+
+        return $playerCount;
+    }
+
     public static function isWebp($file) {
         $contents = file_get_contents($file);
         return str_contains($contents, "WEBPVP8X");
