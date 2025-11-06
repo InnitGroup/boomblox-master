@@ -4,7 +4,7 @@ class ForumGroup {
     private string $groupName;
 
     private array $groups = [
-        1 => NULL,
+        1 => "ROBLOX",
         4 => "Help Center",
         5 => "Fun",
         6 => "Entertainment"
@@ -36,7 +36,30 @@ class ForumGroup {
 
     }
 
-    public function getId() { return $this->groupId; }
-    public function getName() { return $this->groupName; }
+    public function getId(): int { return $this->groupId; }
+    public function getName(): string { return $this->groupName; }
+    public static function getAllGroups(): array {
+        return $this->groups;
+    }
+
+    public function getForumsInGroup() : array { 
+        global $db;
+
+        $stmt = "SELECT * FROM forums WHERE groupId=:forumGroupId";
+        $result = $db->execute($stmt, [":forumGroupId" => $this->groupId]);
+
+        if ($result->rowCount() == 0) {
+            return ["Error" => "No forums in the current forum group."];
+        }
+
+        $forumArray = array();
+        $forums = $result->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($forums as $forum) {
+            $forumToPush = new Forum($forum["forumId"]);
+            array_push($forumArray, $forumToPush);
+        }
+
+        return $forumArray;
+     }
 };
 ?>

@@ -101,9 +101,13 @@
 												<th class="tableHeaderText" width="50" nowrap="nowrap">&nbsp;&nbsp;Posts&nbsp;&nbsp;</th>
 												<th class="tableHeaderText" width="135" nowrap="nowrap">&nbsp;Last Post&nbsp;</th>
 											</tr>
-											<tr id="ctl00_cphRoblox_ForumGroupRepeater1_ctl01_ForumGroup">
+											<?php
+											$forumGroups = ForumGroup::getAllGroups();
+											foreach ($forumGroups as $groupId => $groupName):
+											?>
+											<tr id="ctl00_cphRoblox_ForumGroupRepeater1_ctl0<?=$groupId?>_ForumGroup">
 												<td class="forumHeaderBackgroundAlternate" colspan="5" height="20">
-													<a id="ctl00_cphRoblox_ForumGroupRepeater1_ctl01_GroupTitle" class="forumTitle" href="/Forum/ShowForumGroup.aspx?ForumGroupID=1">ROBLOX</a>
+													<a id="ctl00_cphRoblox_ForumGroupRepeater1_ctl0<?=$groupId?>_GroupTitle" class="forumTitle" href="/Forum/ShowForumGroup.aspx?ForumGroupID=<?=$groupId?>"><?=htmlspecialchars($groupName)?></a>
 												</td>
 											</tr>
 											<tr>
