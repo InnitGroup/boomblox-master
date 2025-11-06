@@ -5,7 +5,7 @@ class Forum {
     private int $forumId;
     private int $groupId;
     private int $lastPostId;
-    private User $lastPoster;
+    private mixed $lastPoster;
 
     private string $forumTopic;
     private string $forumDesc;
@@ -40,7 +40,13 @@ class Forum {
         $this->forumId = $forum["forumId"];
         $this->groupId = $forum["groupId"];
         $this->lastPostId = $forum["lastPostId"];
-        $this->lastPoster = new User($forum["lastPoster"]);
+
+        if ($db->userExists($forum["lastPoster"])) {
+            $this->lastPoster = new User($forum["lastPoster"]);
+        } else {
+            $this->lastPoster = NULL;
+        }
+        
         $this->forumTopic = $forum["forumTopic"];
         $this->forumDesc = $forum["forumDesc"];
         $this->creationDate = new DateTime($forum["creationDate"]);
@@ -100,6 +106,18 @@ class Forum {
         }
 
         return $result->fetch(PDO::FETCH_ASSOC)["groupId"];
+    }
+
+    public static function formatTime(DateTime $timeToFormat): string {
+        $today = new DateTime();
+        $diff = $today->diff($timeToFormat)->format("%a");
+        $time = $timeToFormat->format("h:i A");
+
+        if ($diff == 0) {
+            return "Today @ " . $time;
+        }
+
+        return $timeToFormat->format("d M Y h:i A");
     }
 }
 ?>

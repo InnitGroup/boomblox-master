@@ -10,6 +10,13 @@ class ForumGroup {
         6 => "Entertainment"
     ];
 
+    private static array $s_groups = [
+        1 => "ROBLOX",
+        4 => "Help Center",
+        5 => "Fun",
+        6 => "Entertainment"
+    ];
+
     public function __construct(int|string $input) {
         global $theme;
 
@@ -38,8 +45,9 @@ class ForumGroup {
 
     public function getId(): int { return $this->groupId; }
     public function getName(): string { return $this->groupName; }
+    
     public static function getAllGroups(): array {
-        return $this->groups;
+        return self::$s_groups;
     }
 
     public function getForumsInGroup() : array { 

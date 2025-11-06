@@ -110,398 +110,49 @@
 													<a id="ctl00_cphRoblox_ForumGroupRepeater1_ctl0<?=$groupId?>_GroupTitle" class="forumTitle" href="/Forum/ShowForumGroup.aspx?ForumGroupID=<?=$groupId?>"><?=htmlspecialchars($groupName)?></a>
 												</td>
 											</tr>
+											<?php
+											$forumGroup = new ForumGroup($groupId);
+											$forums = $forumGroup->getForumsInGroup();
+											foreach ($forums as $forum): 
+											?>
 											<tr>
 												<td class="forumRow" align="center" valign="top" width="34" nowrap="nowrap">
 													<img src="/Forum/skins/default/images/forum_status.gif" width="34" border="0">
 												</td>
 												<td class="forumRow" width="80%">
-													<a class="forumTitle" href="/Forum/ShowForum.aspx?ForumID=13">General Discussion</a>
+													<a class="forumTitle" href="/Forum/ShowForum.aspx?ForumID=<?=$forum->getId()?>"><?=htmlspecialchars($forum->getTopic())?></a>
 													<span class="normalTextSmall">
-														<br>This is the place for conversation about all things ROBLOX. Posts not pertaining to ROBLOX will be mercilessly pruned by our crack squad of moderators. </span>
+														<br><?=htmlspecialchars($forum->getDescription())?> </span>
 												</td>
 												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">57,387</span>
+													<span class="normalTextSmaller"><?=$forum->getThreadCount()?></span>
 												</td>
 												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">642,649</span>
+													<span class="normalTextSmaller"><?=$forum->getPostCount()?></span>
 												</td>
 												<td class="forumRowHighlight" align="center">
+													<?php if ($forum->getLastPoster() !== NULL): ?>
 													<span class="normalTextSmaller">
 														<span>
-															<b>Today @ 10:24 PM</b>
+															<b><?=Forum::formatTime($forum->getLastPostTime())?></b>
 														</span>
 													</span>
 													<br>
-													<span class="normalTextSmaller">by <a href="/Forum/User/UserProfile.aspx?UserName=terminate891">terminate891</a>
-														<a href="/Forum/ShowPost.aspx?PostID=1594593#1594807">
+													<span class="normalTextSmaller">by <a href="/Forum/User/UserProfile.aspx?UserName=<?=$forum->getLastPoster() !== NULL ? $forum->getLastPoster()->getUsername() : "N/A"?>"><?=$forum->getLastPoster() !== NULL ? $forum->getLastPoster()->getUsername() : "N/A"?></a>
+														<a href="/Forum/ShowPost.aspx?PostID=<?=$forum->getLastPostId()?>#1594807">
 															<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
 														</a>
 													</span>
-												</td>
-											</tr>
-											<tr>
-												<td class="forumRow" align="center" valign="top" width="34" nowrap="nowrap">
-													<img src="/Forum/skins/default/images/forum_status.gif" width="34" border="0">
-												</td>
-												<td class="forumRow" width="80%">
-													<a class="forumTitle" href="/Forum/ShowForum.aspx?ForumID=17">Creations Gallery</a>
-													<span class="normalTextSmall">
-														<br>Discuss your ROBLOX creations and share the secrets of your success. Post requests for help building and scripting here. </span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">14,203</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">55,549</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
+													<?php else: ?>
 													<span class="normalTextSmaller">
 														<span>
-															<b>Today @ 10:21 PM</b>
+															<b>N/A</b>
 														</span>
 													</span>
-													<br>
-													<span class="normalTextSmaller">by <a href="/Forum/User/UserProfile.aspx?UserName=player1up">player1up</a>
-														<a href="/Forum/ShowPost.aspx?PostID=1594782#1594782">
-															<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-														</a>
-													</span>
+													<?php endif; ?>
 												</td>
 											</tr>
-											<tr>
-												<td class="forumRow" align="center" valign="top" width="34" nowrap="nowrap">
-													<img src="/Forum/skins/default/images/forum_status.gif" width="34" border="0">
-												</td>
-												<td class="forumRow" width="80%">
-													<a class="forumTitle" href="/Forum/ShowForum.aspx?ForumID=21">Suggestions, Feedback, and Ideas</a>
-													<span class="normalTextSmall">
-														<br>Do you have a suggestion for how to make ROBLOX better? Share your feedback here. </span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">9,589</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">56,123</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">
-														<span>
-															<b>Today @ 10:23 PM</b>
-														</span>
-													</span>
-													<br>
-													<span class="normalTextSmaller">by <a href="/Forum/User/UserProfile.aspx?UserName=mokothemonkey">mokothemonkey</a>
-														<a href="/Forum/ShowPost.aspx?PostID=1219090#1594806">
-															<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-														</a>
-													</span>
-												</td>
-											</tr>
-											<tr>
-												<td class="forumRow" align="center" valign="top" width="34" nowrap="nowrap">
-													<img src="/Forum/skins/default/images/forum_status.gif" width="34" border="0">
-												</td>
-												<td class="forumRow" width="80%">
-													<a class="forumTitle" href="/Forum/ShowForum.aspx?ForumID=18">Off Topic</a>
-													<span class="normalTextSmall">
-														<br>Feel like talking about stuff other than ROBLOX? Post here. </span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">27,389</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">314,274</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">
-														<span>
-															<b>Today @ 10:23 PM</b>
-														</span>
-													</span>
-													<br>
-													<span class="normalTextSmaller">by <a href="/Forum/User/UserProfile.aspx?UserName=fuzzykid45">fuzzykid45</a>
-														<a href="/Forum/ShowPost.aspx?PostID=1589111#1594805">
-															<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-														</a>
-													</span>
-												</td>
-											</tr>
-											<tr id="ctl00_cphRoblox_ForumGroupRepeater1_ctl02_ForumGroup">
-												<td class="forumHeaderBackgroundAlternate" colspan="5" height="20">
-													<a id="ctl00_cphRoblox_ForumGroupRepeater1_ctl02_GroupTitle" class="forumTitle" href="/Forum/ShowForumGroup.aspx?ForumGroupID=4">Help Center</a>
-												</td>
-											</tr>
-											<tr>
-												<td class="forumRow" align="center" valign="top" width="34" nowrap="nowrap">
-													<img src="/Forum/skins/default/images/forum_status.gif" width="34" border="0">
-												</td>
-												<td class="forumRow" width="80%">
-													<a class="forumTitle" href="/Forum/ShowForum.aspx?ForumID=19">Building Help</a>
-													<span class="normalTextSmall">
-														<br>Learn the ins and outs of building structures in ROBLOX here! Share your techniques with other builders, discuss designs, and draft plans. </span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">9,833</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">44,068</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">
-														<span>
-															<b>Today @ 10:22 PM</b>
-														</span>
-													</span>
-													<br>
-													<span class="normalTextSmaller">by <a href="/Forum/User/UserProfile.aspx?UserName=atmac0">atmac0</a>
-														<a href="/Forum/ShowPost.aspx?PostID=1588791#1594796">
-															<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-														</a>
-													</span>
-												</td>
-											</tr>
-											<tr>
-												<td class="forumRow" align="center" valign="top" width="34" nowrap="nowrap">
-													<img src="/Forum/skins/default/images/forum_status.gif" width="34" border="0">
-												</td>
-												<td class="forumRow" width="80%">
-													<a class="forumTitle" href="/Forum/ShowForum.aspx?ForumID=20">Scripting Help</a>
-													<span class="normalTextSmall">
-														<br>Need help with a script you are writing? Need to edit an existing script? Want to share your devious programming skills? For advanced ROBLOX users. </span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">13,645</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">75,735</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">
-														<span>
-															<b>Today @ 10:21 PM</b>
-														</span>
-													</span>
-													<br>
-													<span class="normalTextSmaller">by <a href="/Forum/User/UserProfile.aspx?UserName=Roku">Roku</a>
-														<a href="/Forum/ShowPost.aspx?PostID=224688#1594773">
-															<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-														</a>
-													</span>
-												</td>
-											</tr>
-											<tr>
-												<td class="forumRow" align="center" valign="top" width="34" nowrap="nowrap">
-													<img src="/Forum/skins/default/images/forum_status.gif" width="34" border="0">
-												</td>
-												<td class="forumRow" width="80%">
-													<a class="forumTitle" href="/Forum/ShowForum.aspx?ForumID=14">Technical Problems and Bug Reports</a>
-													<span class="normalTextSmall">
-														<br>Are you having trouble installing or upgrading ROBLOX? Account troubles? Website problems? Have you found a bug? Post here! </span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">10,036</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">39,303</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">
-														<span>
-															<b>Today @ 09:38 PM</b>
-														</span>
-													</span>
-													<br>
-													<span class="normalTextSmaller">by <a href="/Forum/User/UserProfile.aspx?UserName=superpong">superpong</a>
-														<a href="/Forum/ShowPost.aspx?PostID=1594094#1594271">
-															<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-														</a>
-													</span>
-												</td>
-											</tr>
-											<tr id="ctl00_cphRoblox_ForumGroupRepeater1_ctl03_ForumGroup">
-												<td class="forumHeaderBackgroundAlternate" colspan="5" height="20">
-													<a id="ctl00_cphRoblox_ForumGroupRepeater1_ctl03_GroupTitle" class="forumTitle" href="/Forum/ShowForumGroup.aspx?ForumGroupID=5">Fun</a>
-												</td>
-											</tr>
-											<tr>
-												<td class="forumRow" align="center" valign="top" width="34" nowrap="nowrap">
-													<img src="/Forum/skins/default/images/forum_status.gif" width="34" border="0">
-												</td>
-												<td class="forumRow" width="80%">
-													<a class="forumTitle" href="/Forum/ShowForum.aspx?ForumID=23">Role-Playing</a>
-													<span class="normalTextSmall">
-														<br>Does your Robloxian want to fly to the moon? Command a ship? Lay siege to a castle? Start a role-playing thread here. </span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">2,212</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">65,991</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">
-														<span>
-															<b>Today @ 10:22 PM</b>
-														</span>
-													</span>
-													<br>
-													<span class="normalTextSmaller">by <a href="/Forum/User/UserProfile.aspx?UserName=ristar4">ristar4</a>
-														<a href="/Forum/ShowPost.aspx?PostID=798603#1594789">
-															<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-														</a>
-													</span>
-												</td>
-											</tr>
-											<tr>
-												<td class="forumRow" align="center" valign="top" width="34" nowrap="nowrap">
-													<img src="/Forum/skins/default/images/forum_status.gif" width="34" border="0">
-												</td>
-												<td class="forumRow" width="80%">
-													<a class="forumTitle" href="/Forum/ShowForum.aspx?ForumID=27">ROBLOXiwood</a>
-													<span class="normalTextSmall">
-														<br>The forum for movie-makers! </span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">1,033</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">6,146</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">
-														<span>
-															<b>Today @ 10:15 PM</b>
-														</span>
-													</span>
-													<br>
-													<span class="normalTextSmaller">by <a href="/Forum/User/UserProfile.aspx?UserName=theo1170">theo1170</a>
-														<a href="/Forum/ShowPost.aspx?PostID=1563821#1594705">
-															<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-														</a>
-													</span>
-												</td>
-											</tr>
-											<tr>
-												<td class="forumRow" align="center" valign="top" width="34" nowrap="nowrap">
-													<img src="/Forum/skins/default/images/forum_status.gif" width="34" border="0">
-												</td>
-												<td class="forumRow" width="80%">
-													<a class="forumTitle" href="/Forum/ShowForum.aspx?ForumID=22">Rate My Robloxian</a>
-													<span class="normalTextSmall">
-														<br>Show the world of ROBLOX your character. Get feedback on your outfit. </span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">4,635</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">28,945</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">
-														<span>
-															<b>Today @ 10:06 PM</b>
-														</span>
-													</span>
-													<br>
-													<span class="normalTextSmaller">by <a href="/Forum/User/UserProfile.aspx?UserName=trooper90">trooper90</a>
-														<a href="/Forum/ShowPost.aspx?PostID=1395970#1594585">
-															<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-														</a>
-													</span>
-												</td>
-											</tr>
-											<tr id="ctl00_cphRoblox_ForumGroupRepeater1_ctl04_ForumGroup">
-												<td class="forumHeaderBackgroundAlternate" colspan="5" height="20">
-													<a id="ctl00_cphRoblox_ForumGroupRepeater1_ctl04_GroupTitle" class="forumTitle" href="/Forum/ShowForumGroup.aspx?ForumGroupID=6">Entertainment</a>
-												</td>
-											</tr>
-											<tr>
-												<td class="forumRow" align="center" valign="top" width="34" nowrap="nowrap">
-													<img src="/Forum/skins/default/images/forum_status.gif" width="34" border="0">
-												</td>
-												<td class="forumRow" width="80%">
-													<a class="forumTitle" href="/Forum/ShowForum.aspx?ForumID=26">Sports</a>
-													<span class="normalTextSmall">
-														<br>Show off your ROBLOX athlete. Or just hang out with other ROBLOX fans. </span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">889</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">8,279</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">
-														<span>
-															<b>Today @ 10:00 PM</b>
-														</span>
-													</span>
-													<br>
-													<span class="normalTextSmaller">by <a href="/Forum/User/UserProfile.aspx?UserName=PinapaQ">PinapaQ</a>
-														<a href="/Forum/ShowPost.aspx?PostID=1071370#1594487">
-															<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-														</a>
-													</span>
-												</td>
-											</tr>
-											<tr>
-												<td class="forumRow" align="center" valign="top" width="34" nowrap="nowrap">
-													<img src="/Forum/skins/default/images/forum_status.gif" width="34" border="0">
-												</td>
-												<td class="forumRow" width="80%">
-													<a class="forumTitle" href="/Forum/ShowForum.aspx?ForumID=24">Music</a>
-													<span class="normalTextSmall">
-														<br>Does your Robloxian rock? Let people know. Or just talk about your favorite bands. </span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">1,508</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">11,282</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">
-														<span>
-															<b>Today @ 10:01 PM</b>
-														</span>
-													</span>
-													<br>
-													<span class="normalTextSmaller">by <a href="/Forum/User/UserProfile.aspx?UserName=wersD">wersD</a>
-														<a href="/Forum/ShowPost.aspx?PostID=1593023#1594500">
-															<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-														</a>
-													</span>
-												</td>
-											</tr>
-											<tr>
-												<td class="forumRow" align="center" valign="top" width="34" nowrap="nowrap">
-													<img src="/Forum/skins/default/images/forum_status.gif" width="34" border="0">
-												</td>
-												<td class="forumRow" width="80%">
-													<a class="forumTitle" href="/Forum/ShowForum.aspx?ForumID=25">Movies/TV/Books</a>
-													<span class="normalTextSmall">
-														<br>Does your Robloxian belong on the silver screen, or in the pages of a novel? Show off your ROBLOX movie star, discuss your favorite TV series, films, and the books you love. </span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">1,280</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">10,198</span>
-												</td>
-												<td class="forumRowHighlight" align="center">
-													<span class="normalTextSmaller">
-														<span>
-															<b>Today @ 09:57 PM</b>
-														</span>
-													</span>
-													<br>
-													<span class="normalTextSmaller">by <a href="/Forum/User/UserProfile.aspx?UserName=johnnyvega">johnnyvega</a>
-														<a href="/Forum/ShowPost.aspx?PostID=1010925#1594458">
-															<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
-														</a>
-													</span>
-												</td>
-											</tr>
+											<?php endforeach; endforeach; ?>
 										</tbody>
 									</table>
 									<p></p>
