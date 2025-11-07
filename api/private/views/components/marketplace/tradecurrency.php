@@ -1,3 +1,7 @@
+<?php
+global $theme;
+?>
+
 <div id="Body">
 	<div id="TradeCurrencyContainer">
 		<h2>Currency Exchange</h2>
@@ -48,7 +52,7 @@
 						<div style="clear: both;"></div>
 					</div>
 				</div>
-			<div id="ctl00_cphRoblox_CurrencyTradePane">
+			<div id="ctl00_cphRoblox_CurrencyTradePane" style="margin-bottom: 20px;">
 				<div class="CurrencyTrade">
 					<h4>Trade</h4>
 					<div class="CurrencyTradeDetails">
@@ -93,7 +97,58 @@
 					</div>
 				</div>
 			</div>
-			<div class="TradingDashboard"></div>
+			<div class="TradingDashboard" id="UserPlaces">
+				<div>
+					<div class="AccordionHeader">My Open <?=Site::getThemeProperty("currency", $theme)?> Positions</div>
+					<div style="display: none;">
+						<div style="border: 1px solid #000; padding-top: 12px; text-align:center; font-family: Verdana, Sans-Serif;">
+							<div>You do not have any open <?=Site::getThemeProperty("currency", $theme)?> trades.</div>
+							<br>
+							<div style="color:#dcdcdc;">First Previous Next Last</div>
+						</div>
+					</div>
+				</div>
+				<div id="">
+					<div class="AccordionHeader">My Open Tickets Positions</div>
+					<div style="display: none;">
+						<div class="CurrencyBids" style="border: 1px solid #000; text-align:center; font-family: Verdana, Sans-Serif; width: 99.75%; height: 100%">
+							<table style="width: 100%; height: 100%">
+								<tr class="TableHeader">
+									<th style="width: 33%">Action</th>
+									<th style="width: 34%">Bid</th>
+									<th style="width: 33%">Remainder</th>
+								</tr>
+								<tr class="TableRow">
+									<td><a href="#">Cancel</a></td>
+									<td>1,000 Tx @ 4.7619:1</td>
+									<td>986</td>
+								</tr>
+							</table>
+							<div style="margin-top:5px; color:#dcdcdc;">First Previous <span style="color: black;">1</span> Next Last</div>
+						</div>
+					</div>
+				</div>
+				<div id="">
+					<div class="AccordionHeader">My Trade History</div>
+					<div style="display: block;">
+						<div class="CurrencyBids" style="border: 1px solid #000; text-align:center; font-family: Verdana, Sans-Serif; width: 99.75%; height: 100%">
+							<table style="width: 100%; height: 100%">
+								<tr class="TableHeader">
+									<th style="width: 30%">Trade</th>
+									<th style="width: 20%">Rate</th>
+									<th style="width: 50%">Date</th>
+								</tr>
+								<tr class="TableRow">
+									<td>3 R$ for 20 Tx</td>
+									<td>6.6666</td>
+									<td>12/15/2008 1:36:05 PM</td>
+								</tr>
+							</table>
+							<div style="margin-top:5px; color:#dcdcdc;">First Previous <span style="color: black;">1</span> Next Last</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 		<div class="RightColumn">
 			<div id="CurrencyOffersPane">
