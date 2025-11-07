@@ -23,3 +23,9 @@ class EconomyServices {
         }
     }
 }
+
+function ShowDashboardElement(elementNumber) {
+    var $accordion = $("#ctl00_cphRoblox_DashboardElement"+elementNumber);
+    $(".DashboardContent").not($accordion).slideUp();
+    $accordion.stop(true, true).slideToggle();
+}

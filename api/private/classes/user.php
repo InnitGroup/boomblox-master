@@ -107,6 +107,29 @@ class User {
         return $result;
     }
 
+    public function getTrades($limit = 10, $offset = 0) {
+        global $db;
+        $stmt = "SELECT postId FROM trades WHERE traderId=:userId ORDER BY postId DESC"; // LIMIT :t_limit OFFSET :t_offset
+        
+        $result = $db->execute($stmt, [
+            ":userId" => $this->getUserId(),
+            /*
+            ":t_limit" => $limit,
+            ":t_offset" => $offset
+            */
+        ]);
+
+        $indexedTrades = $result->fetchAll(PDO::FETCH_ASSOC);
+
+        $trades = [];
+        foreach ($indexedTrades as $indexedTrade) {
+            $trade = new CurrencyTrade($indexedTrade["postId"]);
+            array_push($trades, $trade);
+        }
+
+        return $trades;
+    }
+
     public function getRoleset() {
         $level = $this->data["user"]["level"];
         switch ($level) {

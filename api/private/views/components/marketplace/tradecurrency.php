@@ -98,9 +98,9 @@ global $theme;
 				</div>
 			</div>
 			<div class="TradingDashboard" id="UserPlaces">
-				<div>
-					<div class="AccordionHeader">My Open <?=Site::getThemeProperty("currency", $theme)?> Positions</div>
-					<div style="display: none;">
+				<div id="ctl00_cphRoblox_DashboardPositionsRobux">
+					<div class="AccordionHeader" onclick="ShowDashboardElement(1)">My Open <?=Site::getThemeProperty("currency", $theme)?> Positions</div>
+					<div class="DashboardContent" id="ctl00_cphRoblox_DashboardElement1" style="display: none;">
 						<div style="border: 1px solid #000; padding-top: 12px; text-align:center; font-family: Verdana, Sans-Serif;">
 							<div>You do not have any open <?=Site::getThemeProperty("currency", $theme)?> trades.</div>
 							<br>
@@ -108,9 +108,9 @@ global $theme;
 						</div>
 					</div>
 				</div>
-				<div id="">
-					<div class="AccordionHeader">My Open Tickets Positions</div>
-					<div style="display: none;">
+				<div id="ctl00_cphRoblox_DashboardPositionsTickets">
+					<div class="AccordionHeader" onclick="ShowDashboardElement(2)">My Open Tickets Positions</div>
+					<div class="DashboardContent" id="ctl00_cphRoblox_DashboardElement2" style="display: none;">
 						<div class="CurrencyBids" style="border: 1px solid #000; text-align:center; font-family: Verdana, Sans-Serif; width: 99.75%; height: 100%">
 							<table style="width: 100%; height: 100%">
 								<tr class="TableHeader">
@@ -128,9 +128,9 @@ global $theme;
 						</div>
 					</div>
 				</div>
-				<div id="">
-					<div class="AccordionHeader">My Trade History</div>
-					<div style="display: block;">
+				<div id="ctl00_cphRoblox_DashboardTradeHistory">
+					<div class="AccordionHeader" onclick="ShowDashboardElement(3)">My Trade History</div>
+					<div class="DashboardContent" id="ctl00_cphRoblox_DashboardElement3" style="display: block;">
 						<div class="CurrencyBids" style="border: 1px solid #000; text-align:center; font-family: Verdana, Sans-Serif; width: 99.75%; height: 100%">
 							<table style="width: 100%; height: 100%">
 								<tr class="TableHeader">
@@ -138,11 +138,26 @@ global $theme;
 									<th style="width: 20%">Rate</th>
 									<th style="width: 50%">Date</th>
 								</tr>
+								<?php
+								global $user;
+								$trades = $user->getTrades();
+
+								/*
 								<tr class="TableRow">
 									<td>3 R$ for 20 Tx</td>
 									<td>6.6666</td>
 									<td>12/15/2008 1:36:05 PM</td>
 								</tr>
+								*/
+
+								foreach ($trades as $trade):
+								?>
+								<tr class="TableRow">
+									<td><?=number_format($trade->given()) . " " . $trade->shortCurrency() . " for " . number_format($trade->asked()) . " " . $trade->askedCurrency()?></td>
+									<td><?=$trade->rate()?></td>
+									<td><?=$trade->getDate()?></td>
+								</tr>
+								<?php endforeach; ?>
 							</table>
 							<div style="margin-top:5px; color:#dcdcdc;">First Previous <span style="color: black;">1</span> Next Last</div>
 						</div>

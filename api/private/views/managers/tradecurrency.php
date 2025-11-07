@@ -22,14 +22,15 @@ class TradeCurrencyManager {
     public function log(int $trader, string $orderType, string $currency, int $given, int $asked, string $status) {
         global $db;
 
-        $stmt = "INSERT INTO trades (`traderId`, `orderType`, `currency`, `amountGiven`, `amountAsked`, `status`) VALUES (:traderId, :orderType, :currency, :amountGiven, :amountAsked, :xstatus)";
+        $stmt = "INSERT INTO trades (`traderId`, `orderType`, `currency`, `amountGiven`, `amountAsked`, `status`, `occured`) VALUES (:traderId, :orderType, :currency, :amountGiven, :amountAsked, :xstatus, :occured)";
         $db->execute($stmt, [
             ":traderId" => $trader,
             ":orderType" => $orderType,
             ":currency" => $currency,
             ":amountGiven" => $given,
             ":amountAsked" => $asked,
-            ":xstatus" => $status
+            ":xstatus" => $status,
+            ":occured" => date("Y-m-d H:i:s")
         ]);
     }
 
@@ -63,6 +64,7 @@ class TradeCurrencyManager {
 
     # controller
     public function controller() {
+
         if (!Server::isPost()) {
             return;
         }
@@ -71,7 +73,8 @@ class TradeCurrencyManager {
             return;
         }
 
-        $amount = $_POST['ctl00$cphRoblox$HaveAmountTextBox']; # #
+
+        $amount = (int)$_POST['ctl00$cphRoblox$HaveAmountTextBox']; # #
         $currency = $_POST['ctl00$cphRoblox$HaveCurrencyDropDownList']; #Tickets/Robux
         $orderType = $_POST['ctl00$cphRoblox$OrderType']; # MarketOrderRadioButton/LimitOrderRadioButton
 
@@ -80,7 +83,8 @@ class TradeCurrencyManager {
             return; // too advanced
         }
 
-        if ($currency == "Tickets" && $amount > 20 || $currency == "Robux" && $amount > 0) {
+
+        if ($currency == "Tickets" && $amount >= 20 || $currency == "Robux" && $amount > 0) {
             switch ($currency) {
                 case "Tickets":
                     if ($result = $this->handleTicketMarketTrade($amount)) {
