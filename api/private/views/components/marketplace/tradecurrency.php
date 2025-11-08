@@ -99,7 +99,7 @@ global $theme;
 			</div>
 			<div class="TradingDashboard" id="UserPlaces">
 				<div id="ctl00_cphRoblox_DashboardPositionsRobux">
-					<div class="AccordionHeader" onclick="ShowDashboardElement(1)">My Open <?=Site::getThemeProperty("currency", $theme)?> Positions</div>
+					<div class="AccordionHeader" onclick="ShowDashboardElement(1)" style="text-align: center;">My Open <?=Site::getThemeProperty("currency", $theme)?> Positions</div>
 					<div class="DashboardContent" id="ctl00_cphRoblox_DashboardElement1" style="display: none;">
 						<div style="border: 1px solid #000; padding-top: 12px; text-align:center; font-family: Verdana, Sans-Serif;">
 							<div>You do not have any open <?=Site::getThemeProperty("currency", $theme)?> trades.</div>
@@ -109,7 +109,7 @@ global $theme;
 					</div>
 				</div>
 				<div id="ctl00_cphRoblox_DashboardPositionsTickets">
-					<div class="AccordionHeader" onclick="ShowDashboardElement(2)">My Open Tickets Positions</div>
+					<div class="AccordionHeader" onclick="ShowDashboardElement(2)" style="text-align: center;">My Open Tickets Positions</div>
 					<div class="DashboardContent" id="ctl00_cphRoblox_DashboardElement2" style="display: none;">
 						<div class="CurrencyBids" style="border: 1px solid #000; text-align:center; font-family: Verdana, Sans-Serif; width: 99.75%; height: 100%">
 							<table style="width: 100%; height: 100%">
@@ -129,7 +129,7 @@ global $theme;
 					</div>
 				</div>
 				<div id="ctl00_cphRoblox_DashboardTradeHistory">
-					<div class="AccordionHeader" onclick="ShowDashboardElement(3)">My Trade History</div>
+					<div class="AccordionHeader" onclick="ShowDashboardElement(3)" style="text-align: center;">My Trade History</div>
 					<div class="DashboardContent" id="ctl00_cphRoblox_DashboardElement3" style="display: block;">
 						<div class="CurrencyBids" style="border: 1px solid #000; text-align:center; font-family: Verdana, Sans-Serif; width: 99.75%; height: 100%">
 							<table style="width: 100%; height: 100%">
