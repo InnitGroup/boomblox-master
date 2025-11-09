@@ -47,5 +47,14 @@ class CurrencyTrade {
     public function getDate(): string {
         return $this->occured->format("m/d/Y g:i:s A");
     }
+
+    public static function getTradeCountByUser(int $userId) {
+        global $db;
+        $stmt = "SELECT COUNT(*) AS tradeCount FROM trades WHERE traderId=:userId";
+        $result = $db->execute($stmt, [":userId" => $userId]);
+        $tradeCount = $result->fetch(PDO::FETCH_ASSOC)["tradeCount"];
+
+        return $tradeCount;
+    }
 };
 ?>

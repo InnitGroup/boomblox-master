@@ -109,14 +109,10 @@ class User {
 
     public function getTrades($limit = 10, $offset = 0) {
         global $db;
-        $stmt = "SELECT postId FROM trades WHERE traderId=:userId ORDER BY postId DESC"; // LIMIT :t_limit OFFSET :t_offset
+        $stmt = "SELECT postId FROM trades WHERE traderId=:userId ORDER BY postId DESC LIMIT $limit OFFSET $offset"; // 
         
         $result = $db->execute($stmt, [
             ":userId" => $this->getUserId(),
-            /*
-            ":t_limit" => $limit,
-            ":t_offset" => $offset
-            */
         ]);
 
         $indexedTrades = $result->fetchAll(PDO::FETCH_ASSOC);

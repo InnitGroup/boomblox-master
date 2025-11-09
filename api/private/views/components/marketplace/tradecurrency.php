@@ -1,5 +1,9 @@
 <?php
-global $theme;
+global $theme, $user;
+
+$tradeCount = CurrencyTrade::getTradeCountByUser($user->getUserId());
+$totalPages = ceil($tradeCount/10);
+$page = isset($_POST["__EVENTARGUMENT"]) ? explode("$", $_POST["__EVENTARGUMENT"])[1] : 1;
 ?>
 
 <div id="Body">
@@ -61,7 +65,7 @@ global $theme;
 								<input id="ctl00_cphRoblox_MarketOrderRadioButton" type="radio" name="ctl00$cphRoblox$OrderType" value="MarketOrderRadioButton" checked="checked" onclick="if (document.getElementById('ctl00_cphRoblox_MarketOrderRadioButton').checked) { document.getElementById('LimitOrder').style.display='none'; document.getElementById('SplitTrades').style.display='none'; document.getElementById('MarketOrder').style.display=''; } else { document.getElementById('LimitOrder').style.display=''; document.getElementById('SplitTrades').style.display=''; document.getElementById('MarketOrder').style.display='none'; };">
 								<label for="ctl00_cphRoblox_MarketOrderRadioButton">Market Order</label>
 							</span>&nbsp; <span title="A limit order is an order to buy at no more (or sell at no less) than a specific price. This gives you some control over the price at which the trade is executed, but may prevent the order from being executed.">
-								<input id="ctl00_cphRoblox_LimitOrderRadioButton" type="radio" name="ctl00$cphRoblox$OrderType" value="LimitOrderRadioButton" onclick="alert('Limit order is disabled until full release in November!'); return false;"> <!-- if (document.getElementById('ctl00_cphRoblox_LimitOrderRadioButton').checked) { document.getElementById('LimitOrder').style.display=''; document.getElementById('SplitTrades').style.display=''; document.getElementById('MarketOrder').style.display='none'; } else { document.getElementById('LimitOrder').style.display='none'; document.getElementById('SplitTrades').style.display='none'; document.getElementById('MarketOrder').style.display=''; }; -->
+								<input id="ctl00_cphRoblox_LimitOrderRadioButton" type="radio" name="ctl00$cphRoblox$OrderType" value="LimitOrderRadioButton" onclick="if (document.getElementById('ctl00_cphRoblox_LimitOrderRadioButton').checked) { document.getElementById('LimitOrder').style.display=''; document.getElementById('SplitTrades').style.display=''; document.getElementById('MarketOrder').style.display='none'; } else { document.getElementById('LimitOrder').style.display='none'; document.getElementById('SplitTrades').style.display='none'; document.getElementById('MarketOrder').style.display=''; };"> <!-- alert('Limit order is disabled until full release in November!'); return false; -->
 								<label for="ctl00_cphRoblox_LimitOrderRadioButton">Limit Order</label>
 							</span>
 						</div>
@@ -140,15 +144,7 @@ global $theme;
 								</tr>
 								<?php
 								global $user;
-								$trades = $user->getTrades();
-
-								/*
-								<tr class="TableRow">
-									<td>3 R$ for 20 Tx</td>
-									<td>6.6666</td>
-									<td>12/15/2008 1:36:05 PM</td>
-								</tr>
-								*/
+								$trades = $user->getTrades(10, ($page-1)*10);
 
 								foreach ($trades as $trade):
 								?>
@@ -159,7 +155,18 @@ global $theme;
 								</tr>
 								<?php endforeach; ?>
 							</table>
-							<div style="margin-top:5px; color:#dcdcdc;">First Previous <span style="color: black;">1</span> Next Last</div>
+
+							<?php
+							if ($tradeCount < 11):
+							?>
+							<div style="margin-top:5px; color:#dcdcdc;">First Previous <span style="color: black;"><?=(int)$page?></span> Next Last</div>
+							<?php elseif ($tradeCount > 10 && $page == 1 && $totalPages > 1): ?>
+							<div style="margin-top:5px; color:#dcdcdc;">First Previous <span style="color: black;"><?=(int)$page?></span> <a href="javascript:__doPostBack('ctl00$Paginator', 'Page$<?=(int)$page+1?>')">Next</a> <a href="javascript:__doPostBack('ctl00$Paginator', 'Page$<?=$totalPages?>')">Last</a></div>
+							<?php elseif ($tradeCount > 10 && $page > 1 && $totalPages > $page): ?>
+							<div style="margin-top:5px; color:#dcdcdc;"><a href="javascript:__doPostBack('ctl00$Paginator', 'Page$1')">First</a> <a href="javascript:__doPostBack('ctl00$Paginator', 'Page$<?=(int)$page-1?>')">Previous</a> <span style="color: black;"><?=(int)$page?></span> <a href="javascript:__doPostBack('ctl00$Paginator', 'Page$<?=(int)$page+1?>')">Next</a> <a href="javascript:__doPostBack('ctl00$Paginator', 'Page$<?=$totalPages?>')">Last</a></div>
+							<?php elseif ($tradeCount > 10 && $page > 1 && $totalPages == $page): ?>
+								<div style="margin-top:5px; color:#dcdcdc;"><a href="javascript:__doPostBack('ctl00$Paginator', 'Page$1')">First</a> <a href="javascript:__doPostBack('ctl00$Paginator', 'Page$<?=(int)$page-1?>')">Previous</a> <span style="color: black;"><?=(int)$page?></span> Next Last</div>
+							<?php endif; ?>
 						</div>
 					</div>
 				</div>
