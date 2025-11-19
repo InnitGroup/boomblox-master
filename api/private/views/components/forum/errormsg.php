@@ -1,8 +1,6 @@
 <?php
 PageBuilder::addComponent("forum", "header");
 
-$errorId = isset($_GET["MessageID"]) ? $_GET["MessageID"] : 0;
-
 $error = [
     "Unknown error",
     "You are Unable to Administer",
@@ -32,6 +30,8 @@ Once you've logged in, you may wish to visit your user profile and change your p
 <br><br>You should try your post again with different words. Putting dashes, periods, spaces or other breaks in a word to get around the filter is not allowed either. We block these words for a reason which may seem silly to you but these are our rules.",
     "The post you attempted to view does not exist. Most likely, the message you are trying to view has been deleted by one of the site's administrators.",
 ];
+
+$errorId = isset($_GET["MessageID"]) && isset($error[$_GET["MessageID"]]) ? $_GET["MessageID"] : 0;
 ?>
 
 <table width="100%">
