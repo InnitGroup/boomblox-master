@@ -8,7 +8,7 @@ global $auth;
 
 $model = new ModelManager;
 
-if (isset($_POST['CreationsRepeater$ctl00$CreationSelector'])) {
+if (isset($_GET['Update'])) {
     $model->handleUpdate();
     exit;
 }
