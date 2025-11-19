@@ -5,10 +5,11 @@
 		<link href="/CSS/RobloxOld.css" rel="stylesheet" type="text/css" />
 		<script src="http://xoblog.dev/ScriptResource.axd?d=dXBsb2Fk"></script>
         <script>
-            function upload() {
+            function upload(id) {
                 var data = window.external.WriteSelection();
-                data.Upload("http://xoblog.dev/Data/Model.ashx");
+                data.Upload("http://xoblog.dev/Data/Model.ashx?ID=" + id);
                 document.PublishContent.submit();
+				alert("Model uploaded!");
                 window.close();
             }
         </script>
@@ -25,7 +26,16 @@
 			<p>Select the Model you wish to update:</p>
 			<div id="CreationsPanel" class="CreationsPanel" style="overflow:auto;">
 				<div class="Creations">
-                    
+                    <?php
+					global $user;
+					$models = $user->getModels();
+
+                    foreach ($models as $item) {
+                        $relativeId = $item["itemId"];
+                        $name = $item["itemName"];
+                        PageBuilder::addComponent("ide", "model", compact("relativeId", "name"));
+                    }
+                    ?>
                 </div>
             </div>
 		</form>

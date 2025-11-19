@@ -26,7 +26,6 @@ class File {
             $contents = str_replace("http://www.roblox.com", "http://".domain, $contents);
             $contents = str_replace("http://roblox.com", "http://".domain, $contents);
             file_put_contents($this->file, $contents);
-            echo $contents;
         }
     }
 

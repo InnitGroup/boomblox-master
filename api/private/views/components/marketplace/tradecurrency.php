@@ -3,7 +3,7 @@ global $theme, $user;
 
 $tradeCount = CurrencyTrade::getTradeCountByUser($user->getUserId());
 $totalPages = ceil($tradeCount/10);
-$page = isset($_POST["__EVENTARGUMENT"]) ? explode("$", $_POST["__EVENTARGUMENT"])[1] : 1;
+$page = isset($_POST["__EVENTARGUMENT"]) && !empty($_POST["__EVENTARGUMENT"]) ? explode("$", $_POST["__EVENTARGUMENT"])[1] : 1;
 ?>
 
 <div id="Body">
@@ -144,7 +144,7 @@ $page = isset($_POST["__EVENTARGUMENT"]) ? explode("$", $_POST["__EVENTARGUMENT"
 								</tr>
 								<?php
 								global $user;
-								$trades = $user->getTrades(10, ($page-1)*10);
+								$trades = $user->getTrades(10, ((int)$page-1)*10);
 
 								foreach ($trades as $trade):
 								?>
@@ -160,11 +160,11 @@ $page = isset($_POST["__EVENTARGUMENT"]) ? explode("$", $_POST["__EVENTARGUMENT"
 							if ($tradeCount < 11):
 							?>
 							<div style="margin-top:5px; color:#dcdcdc;">First Previous <span style="color: black;"><?=(int)$page?></span> Next Last</div>
-							<?php elseif ($tradeCount > 10 && $page == 1 && $totalPages > 1): ?>
+							<?php elseif ($tradeCount > 10 && (int)$page == 1 && $totalPages > 1): ?>
 							<div style="margin-top:5px; color:#dcdcdc;">First Previous <span style="color: black;"><?=(int)$page?></span> <a href="javascript:__doPostBack('ctl00$Paginator', 'Page$<?=(int)$page+1?>')">Next</a> <a href="javascript:__doPostBack('ctl00$Paginator', 'Page$<?=$totalPages?>')">Last</a></div>
-							<?php elseif ($tradeCount > 10 && $page > 1 && $totalPages > $page): ?>
+							<?php elseif ($tradeCount > 10 && (int)$page > 1 && $totalPages > (int)$page): ?>
 							<div style="margin-top:5px; color:#dcdcdc;"><a href="javascript:__doPostBack('ctl00$Paginator', 'Page$1')">First</a> <a href="javascript:__doPostBack('ctl00$Paginator', 'Page$<?=(int)$page-1?>')">Previous</a> <span style="color: black;"><?=(int)$page?></span> <a href="javascript:__doPostBack('ctl00$Paginator', 'Page$<?=(int)$page+1?>')">Next</a> <a href="javascript:__doPostBack('ctl00$Paginator', 'Page$<?=$totalPages?>')">Last</a></div>
-							<?php elseif ($tradeCount > 10 && $page > 1 && $totalPages == $page): ?>
+							<?php elseif ($tradeCount > 10 && (int)$page > 1 && $totalPages == (int)$page): ?>
 								<div style="margin-top:5px; color:#dcdcdc;"><a href="javascript:__doPostBack('ctl00$Paginator', 'Page$1')">First</a> <a href="javascript:__doPostBack('ctl00$Paginator', 'Page$<?=(int)$page-1?>')">Previous</a> <span style="color: black;"><?=(int)$page?></span> Next Last</div>
 							<?php endif; ?>
 						</div>

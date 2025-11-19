@@ -7,5 +7,12 @@ global $auth;
 !$auth->isAuthed() && Server::_404();
 
 $model = new ModelManager;
+
+if (isset($_POST['CreationsRepeater$ctl00$CreationSelector'])) {
+    $model->handleUpdate();
+    exit;
+}
+
 $model->handleSave();
+exit;
 ?>

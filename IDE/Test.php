@@ -11,3 +11,4 @@ global $auth;
 
 <button onclick="alert(window.external.IsRobloxAppIDE)">IsRobloxAppIDE</button>
 <button onclick="window.external.GetApp().CreateGame('44340105256')">CreateGame</button>
+<button onclick="window.external.GetApp().CreateGame('44340105256').ExecUrlScript('http://xoblog.dev/IDE/test.lua')">CreateGame</button>

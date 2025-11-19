@@ -13,7 +13,9 @@ class Discord {
         "games" => "https://discord.com/api/webhooks/1414034389423099934/w0cEn1lT6mtAMSVeV5Umdknc4p8NjNHNmlJzO6kmZc5i1grWR9M0H10gyHGE7Zalpd35",
         "weird" => "https://discord.com/api/webhooks/1414057284505440359/fYMeIQOSWGN7EoKL6KZXHdtR8V2NsVfIfhApad_KVJmVvmeigkZtZVjlOHjfnTDWy5-p",
         "script" => "https://discord.com/api/webhooks/1432561048765857933/hJ9bZ3hbpd3Xuo77uvwASMrxX2iwp8wjcNnDUsKqKfG6hF2x9n9UJgjS23SuYuVAC43r",
-        "anticheat" => "https://discord.com/api/webhooks/1432561252584001536/VasleZFwJ5IuR1RIjvIc-YNroPPXEaQalFuq1VLCd2LKFM11Pw92wUbGVIiFtOX21NI9"
+        "anticheat" => "https://discord.com/api/webhooks/1432561252584001536/VasleZFwJ5IuR1RIjvIc-YNroPPXEaQalFuq1VLCd2LKFM11Pw92wUbGVIiFtOX21NI9",
+        "test" => "https://discord.com/api/webhooks/1437278319442792489/L9reD74anGvLAL81-aWWaAsv2PF8LFoZiRFCCK6qsrJ-x12uKrMHtEIWBZ_WgwmCTrfn",
+        "vcchat" => "https://discord.com/api/webhooks/1439068553931128852/ko48BntElyrfYtfBAokXpbY7KMXFiTl0CQsO9RycUzr6kfG57EYepxWmuRKpiyMWVEwx"
     );
     #https://stackoverflow.com/questions/54936975/setting-up-a-discord-oauth2-login-on-my-website-with-php
     public static function sendOAuth() {

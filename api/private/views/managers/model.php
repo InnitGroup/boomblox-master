@@ -3,6 +3,7 @@ class ModelManager {
     public function handleSave() {
         if (!empty($_POST)) {
             global $db, $user;
+
             $name = !empty($_POST['ctl00$cphRoblox$Name']) ? $_POST['ctl00$cphRoblox$Name'] : "Model";
             $description = !empty($_POST['ctl00$cphRoblox$Description']) ? $_POST['ctl00$cphRoblox$Description'] : "Model";
             $publicUse = isset($_POST['ctl00$cphRoblox$PublicUse']);
@@ -30,10 +31,32 @@ class ModelManager {
 
             $asset = new Asset($modelId);
             $asset->RequestThumbnail(250, 250, "PNG");
+            exit;
         }
     }
     public function handleUpdate() {
-        
+        global $db, $user;
+        /*
+        if (isset($_POST['CreationsRepeater$ctl00$CreationSelector'])) {
+            $modelId = (int)$_POST['CreationsRepeater$ctl00$CreationSelector'];
+
+            if (!$user->madeModel($modelId)) {
+                exit;
+            }
+
+            $stmt = "UPDATE items SET `lastUpdate` = :lastUpdate WHERE `itemId` = :modelId";
+            $db->execute($stmt, [
+                ":lastUpdate" => date("Y-m-d H:i:s"),
+                ":modelId" => $modelId
+            ]);
+            
+            $file = new File("/content/$modelId");
+            $file->links();
+
+            $asset = new Asset($modelId);
+            $asset->RequestThumbnail(250, 250, "PNG");
+            exit;
+        }*/
     }
     public function loadSave() {
         PageBuilder::addComponent("ide","modelsave");

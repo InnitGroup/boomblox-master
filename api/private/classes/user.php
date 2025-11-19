@@ -259,6 +259,9 @@ class User {
     public function ownsPlace($id) {
         return in_array($id, $this->getPlaces(true));
     }
+    public function madeModel($id) {
+        return in_array($id, $this->getModels(true));
+    }
     public function punish($punishmentId, $length, $note, $message) {
         global $db, $user;
         if (isset(Admin::getPunishmentsArray()[$punishmentId])) {

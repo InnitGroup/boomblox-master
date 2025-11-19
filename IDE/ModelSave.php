@@ -9,10 +9,10 @@ if (isset($_POST['ChoosePublishContentButton'])) {
 
     $choice = $_POST['ChoosePublishContentButton'];
     switch ($choice) {
-        case 'ChoosePublishContentButton':
+        case 'Create':
             $model->loadSave();
             break;
-        case 'ChoosePublishContentModificationButton':
+        case 'Update':
             $model->loadUpdate();
             break;
         default:

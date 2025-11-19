@@ -80,7 +80,7 @@ class CatalogManager {
         ($this->p*20)-20 !== 0 && $offset .= " OFFSET ".($this->p*20)-20;
         $this->c !== "9" && $sql = "SELECT * FROM items WHERE itemType='catalog'";
         $this->d !== "All" && $sql .= $this->dToSQL[$this->d];
-        $this->q !== "" && $sql .= " AND itemName LIKE '".htmlspecialchars($this->q)."%' ";
+        $this->q !== "" && $sql .= " AND itemName LIKE '%".htmlspecialchars($this->q)."%' ";
         $this->c !== "9" && $sql .= " AND catalogType='".$this->cToSQL[$this->c]."' ".htmlspecialchars($sort);
         $this->c == "9" && $sql = "SELECT * FROM items WHERE itemType='game' ";
         $this->q !== "" & $this->c == "9" && $sql .= " AND itemName LIKE '".htmlspecialchars($this->q)."%' ";
