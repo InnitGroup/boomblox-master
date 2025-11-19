@@ -5,7 +5,7 @@ class EconomyServices {
                 //throw new Error("Invalid trade amount");
             }
 
-            onTix(Number(amountToTrade * 10), context);
+            onTix(Number(amountToTrade * 4), context);
         } catch (error) {
             onError(error, context);
         }
@@ -13,11 +13,11 @@ class EconomyServices {
 
     static GetEstimatedTradeReturnForTickets(amountToTrade, onBux, onError, context) {
         try {
-            if (typeof Number(amountToTrade) !== "number" || amountToTrade < 10) {
+            if (typeof Number(amountToTrade) !== "number" || amountToTrade < 20) {
                 //throw new Error("Invalid trade amount");
             }
 
-            onBux(Math.floor(Number(amountToTrade / 10)), context);
+            onBux(Math.floor(Number(amountToTrade / 4)), context);
         } catch (error) {
             onError(error, context);
         }

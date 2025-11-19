@@ -12,6 +12,9 @@ $error = [
     "New Account Created",
     "Post Blocked by ROBLOX Rules",
     "Post Does Not Exist",
+	"PostID Parameter Not Specified",
+	"There was a Problem Posting your Message",
+	"The post you are attempting to view has not been approved",
 ];
 
 $errorDesc = [
@@ -25,10 +28,15 @@ $errorDesc = [
     "The file you requested cannot be found.",
     "The forum you requested does not exist.",
     "You will soon receive an email which will contain a randomly generated password. Once you have this information you may login at the ROBLOX Forum Login.
-Once you've logged in, you may wish to visit your user profile and change your password - all of these details will be provided in the email.",
+<br><br>Once you've logged in, you may wish to visit your user profile and change your password - all of these details will be provided in the email.",
     "Your post is breaking some ROBLOX rule. There is probably a word in your post that we do not allow either because it's too harsh for ROBLOX or it breaks our Privacy rules. We also don't allow talking about other online games.
 <br><br>You should try your post again with different words. Putting dashes, periods, spaces or other breaks in a word to get around the filter is not allowed either. We block these words for a reason which may seem silly to you but these are our rules.",
     "The post you attempted to view does not exist. Most likely, the message you are trying to view has been deleted by one of the site's administrators.",
+	"You have attempted to visit the Web page to display a forum's post, but, for some reason, the PostID was not successfully passed in.",
+	"There was a problem posting your message. This is most likely due to the fact that while you were replying to a message, it has been deleted by the administrator. We apologize for any inconvenience.",
+	"You are unable to view this message due to the fact that it has not been approved. Most likely this is because you are trying to view a post that was posted to a moderated forum and has not yet been approved by one of the forum administrators.
+<br><br>Once this post has been approved, it will appear in the forum list and you will be able to view its contents.",
+
 ];
 
 $errorId = isset($_GET["MessageID"]) && isset($error[$_GET["MessageID"]]) ? $_GET["MessageID"] : 0;

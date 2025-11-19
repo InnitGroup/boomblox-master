@@ -12,9 +12,9 @@ class TradeCurrencyManager {
 
         switch ($currency) {
             case "Tickets":
-                return floor((int)$amount / 10);
+                return floor((int)$amount / 4); // previously 10 @ 11/19/25
             case "Robux":
-                return floor((int)$amount) * 10;
+                return floor((int)$amount) * 4; // previously 10 @ 11/19/25
         }
     }
 
@@ -81,7 +81,11 @@ class TradeCurrencyManager {
             ]);
 
         } else {
-            $stmt = "SELECT * FROM trades WHERE `rate` > :rateMin AND `rate` < :rateMax AND `status` = 'processing' AND `amountAsked` >= :amount AND `split` = 1 ORDER BY `rate` DESC";
+            $stmt = "SELECT * FROM trades WHERE `rate` > :rateMin AND `rate` < :rateMax AND `status` = 'processing' AND `amountAsked` >= :amount ORDER BY `rate` DESC";
+            # don't need split, can calculate later in order to check whether that trade is split or not
+            # because if the fetched trade has exactly enough and splits off then we can do it
+            # if the fetched trade has more than enough and splits off then we can't do it
+            # if the fetched trade has more than enough and splits on we can do it
 
             $result = $db->execute($stmt, [
                 ":rateMin" => $marginalizedRateMin,
@@ -102,22 +106,24 @@ class TradeCurrencyManager {
     # limit trade Tx
     public function handleTicketLimitTrade(int $given, int $asked) {
         global $user;
-        Discord::sendWebhookMessage("vcchat", "hello");
         if ($user->getTickets() < $given) {
-            Discord::sendWebhookMessage("vcchat", "hi");
             return false;
         }
 
         // $given/$asked
         // cut off at ten-thousandths place
-        Discord::sendWebhookMessage("vcchat", "hi2");
         $rate = $given/$asked;
-        Discord::sendWebhookMessage("vcchat", (string)$rate);
         $rate = round($rate, 4, PHP_ROUND_HALF_DOWN);
-        Discord::sendWebhookMessage("vcchat", "hi3");
         $isSplit = isset($_POST['ctl00$cphRoblox$AllowSplitTradesCheckBox']);
 
-        Discord::sendWebhookMessage("vcchat", (string)$rate);
+        /* if is split:
+            -> check for existing trades with same rate at +-.005 of a margin
+            -> if existing trades appear, take robux from there and give corresponding tix to the trade
+            -> otherwise, upload trade onto the market regularly
+           else:
+            -> check for existing trades with same rate, if trade appears and has at least the robux as asked, trade it out; ensuring that trade has split trades if it's more
+            -> otherwise, upload trade onto the market regularly
+        */
 
         return;
 
