@@ -1,4 +1,6 @@
 <?php
+global $theme;
+
 if (!isset($_GET["PostID"]) && !isset($_GET["ForumID"]) && !isset($_GET["ForumGroupID"])) {
     #
 }
@@ -27,11 +29,14 @@ if (isset($w_postId)) {
         <tbody>
             <tr>
                 <td valign="top" align="left" width="1px">
-                    <nobr></nobr>
+                    <nobr>
+                        <a id="ctl00_cphRoblox_ThreadView1_ctl00_Whereami2_ctl00_LinkHome" class="linkMenuSink" href="/Forum/Default.aspx"><?=Site::getThemeProperty("alias", $theme)?> Forum</a>
+                    </nobr>
                 </td>
                 <?php if (isset($w_forumGroupId)): ?>
                 <td id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_ForumGroupMenu" class="popupMenuSink" valign="top" align="left" width="1px">
                     <nobr>
+                        <span id="ctl00_cphRoblox_ThreadView1_ctl00_Whereami2_ctl00_ForumGroupSeparator" class="normalTextSmallBold">&nbsp;&gt;</span>
                         <a id="ctl00_cphRoblox_PostView1_ctl00_Whereami1_ctl00_LinkForumGroup" class="linkMenuSink" href="/Forum/ShowForumGroup.aspx?ForumGroupID=<?=$w_forumGroupId?>"><?=$w_forumGroup->getName()?></a>
                     </nobr>
                 </td>
