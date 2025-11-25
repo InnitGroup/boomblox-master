@@ -19,10 +19,10 @@ class TradeCurrencyManager {
     }
 
     # logs currency exchange to db
-    public function log(int $trader, string $orderType, string $currency, int $given, int $asked, string $status, int $isSplit = 0) {
+    public function log(int $trader, string $orderType, string $currency, int $given, int $asked, string $status, int $isSplit = 0, float $rate = 4, int $remainder = 0) {
         global $db;
 
-        $stmt = "INSERT INTO trades (`traderId`, `orderType`, `currency`, `amountGiven`, `amountAsked`, `status`, `occured`, `isSplit`) VALUES (:traderId, :orderType, :currency, :amountGiven, :amountAsked, :xstatus, :occured, :isSplit)";
+        $stmt = "INSERT INTO trades (`traderId`, `orderType`, `currency`, `amountGiven`, `amountAsked`, `status`, `occured`, `isSplit`, `rate`, `remainder`) VALUES (:traderId, :orderType, :currency, :amountGiven, :amountAsked, :xstatus, :occured, :isSplit, :rate, :remainder)";
         $db->execute($stmt, [
             ":traderId" => $trader,
             ":orderType" => $orderType,
@@ -31,7 +31,9 @@ class TradeCurrencyManager {
             ":amountAsked" => $asked,
             ":xstatus" => $status,
             ":occured" => date("Y-m-d H:i:s"),
-            ":isSplit" => $isSplit
+            ":isSplit" => $isSplit,
+            ":rate" => $rate,
+            ":remainder" => $remainder
         ]);
     }
 
@@ -73,11 +75,11 @@ class TradeCurrencyManager {
         $result = NULL;
         
         if ($isSplit) {
-            $stmt = "SELECT * FROM trades WHERE `rate` > :rateMin AND `rate` < :rateMax AND `status` = 'processing' ORDER BY `rate` DESC";
+            $stmt = "SELECT * FROM trades WHERE `rate` > :rateMin AND `rate` < :rateMax AND `status` = 'processing' AND `isSplit` = 1 ORDER BY `rate` DESC";
 
             $result = $db->execute($stmt, [
                 ":rateMin" => $marginalizedRateMin,
-                ":rateMax" => $marginedRateMax,
+                ":rateMax" => $marginalizedRateMax,
             ]);
 
         } else {
@@ -115,6 +117,21 @@ class TradeCurrencyManager {
         $rate = $given/$asked;
         $rate = round($rate, 4, PHP_ROUND_HALF_DOWN);
         $isSplit = isset($_POST['ctl00$cphRoblox$AllowSplitTradesCheckBox']);
+        $status = "processing";
+        $remainder = $asked;
+
+        if ($trade = $this->getTradeByRate($rate, "limit", $given, $isSplit)) {
+            if ($isSplit) {
+                Discord::sendWebhookMessage("vcchat", "hi");
+            } else {
+                Discord::sendWebhookMessage("vcchat", "hi2");
+            }
+            return;
+        }
+
+        Discord::sendWebhookMessage("vcchat", "hi3");
+
+        $this->log($user->getUserId(), "Limit", "Tickets", $given, $asked, $status, $isSplit, $rate, $remainder);
 
         /* if is split:
             -> check for existing trades with same rate at +-.005 of a margin
@@ -132,7 +149,6 @@ class TradeCurrencyManager {
         
         //$user->takeTix($given);
         //$user->giveTix($output);
-        $this->log($user->getUserId(), "Limit", "Tickets", $given, $asked, "processing", $isSplit);
     }
 
     # controller

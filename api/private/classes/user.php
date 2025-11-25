@@ -107,12 +107,53 @@ class User {
         return $result;
     }
 
-    public function getTrades($limit = 10, $offset = 0) {
+    public function getTrades($limit = 10, $offset = 0, $status = "complete") {
         global $db;
-        $stmt = "SELECT postId FROM trades WHERE traderId=:userId ORDER BY postId DESC LIMIT $limit OFFSET $offset"; // 
+        $stmt = "SELECT postId FROM trades WHERE traderId=:userId AND `status`=:xstatus ORDER BY postId DESC LIMIT $limit OFFSET $offset"; // 
         
         $result = $db->execute($stmt, [
             ":userId" => $this->getUserId(),
+            ":xstatus" => $status
+        ]);
+
+        $indexedTrades = $result->fetchAll(PDO::FETCH_ASSOC);
+
+        $trades = [];
+        foreach ($indexedTrades as $indexedTrade) {
+            $trade = new CurrencyTrade($indexedTrade["postId"]);
+            array_push($trades, $trade);
+        }
+
+        return $trades;
+    }
+
+    public function getTicketTrades($limit = 10, $offset = 0, $status = "processing") {
+        global $db;
+        $stmt = "SELECT postId FROM trades WHERE traderId=:userId AND `currency` = 'Tickets' AND `status`=:xstatus ORDER BY postId DESC LIMIT $limit OFFSET $offset"; // 
+        
+        $result = $db->execute($stmt, [
+            ":userId" => $this->getUserId(),
+            ":xstatus" => $status
+        ]);
+
+        $indexedTrades = $result->fetchAll(PDO::FETCH_ASSOC);
+
+        $trades = [];
+        foreach ($indexedTrades as $indexedTrade) {
+            $trade = new CurrencyTrade($indexedTrade["postId"]);
+            array_push($trades, $trade);
+        }
+
+        return $trades;
+    }
+
+    public function getBuxTrades($limit = 10, $offset = 0, $status = "processing") {
+        global $db;
+        $stmt = "SELECT postId FROM trades WHERE traderId=:userId AND `currency` = 'Robux' AND `status`=:xstatus ORDER BY postId DESC LIMIT $limit OFFSET $offset"; // 
+        
+        $result = $db->execute($stmt, [
+            ":userId" => $this->getUserId(),
+            ":xstatus" => $status
         ]);
 
         $indexedTrades = $result->fetchAll(PDO::FETCH_ASSOC);

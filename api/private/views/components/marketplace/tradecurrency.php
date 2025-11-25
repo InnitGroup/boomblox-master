@@ -122,11 +122,17 @@ $page = isset($_POST["__EVENTARGUMENT"]) && !empty($_POST["__EVENTARGUMENT"]) ? 
 									<th style="width: 34%">Bid</th>
 									<th style="width: 33%">Remainder</th>
 								</tr>
+								<?php
+								$trades = $user->getTicketTrades(10, ((int)$page-1)*10);
+
+								foreach ($trades as $trade):
+								?>
 								<tr class="TableRow">
 									<td><a href="#">Cancel</a></td>
-									<td>1,000 Tx @ 4.7619:1</td>
+									<td><?=$trade->given()?> Tx @ <?=$trade->rate()?>:1</td>
 									<td>986</td>
 								</tr>
+								<?php endforeach; ?>
 							</table>
 							<div style="margin-top:5px; color:#dcdcdc;">First Previous <span style="color: black;">1</span> Next Last</div>
 						</div>
@@ -143,7 +149,6 @@ $page = isset($_POST["__EVENTARGUMENT"]) && !empty($_POST["__EVENTARGUMENT"]) ? 
 									<th style="width: 50%">Date</th>
 								</tr>
 								<?php
-								global $user;
 								$trades = $user->getTrades(10, ((int)$page-1)*10);
 
 								foreach ($trades as $trade):

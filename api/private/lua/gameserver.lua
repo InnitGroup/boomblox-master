@@ -168,17 +168,31 @@ game:service("Players").PlayerAdded:connect(function(player)
 	end)
 
 	if ({PlaceID} == 164) then
-		player.ChildAdded:connect(function(child) 
-			if (child.Name == "winner") then
-				child.Changed:connect(function()
-					print("value changed")
-					if child.Value == 1 then
-						print("preparing item send")
-						game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .."&key=H3d1dTh3M0nst3rM4sh&assetnumber=977&t=" .. math.random(1,999), false)
+		workspace.ChildAdded:connect(function(child)
+			if child.Name == "Board" then
+				wait(5)
+				local player = child.Owner.Value
+				local score = child.Score.Num
+				local level = player.Level.Value
+				score.Changed:connect(function()
+					if score.Value >= 150 then
+						if (level == 3) then -- bluesteel egg
+							game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .."&key=IR34l1yL0v3Th3RustyT3tr4m1n0H4h4h4h444444&assetnumber=&t=" .. math.random(1,999), false)
+						end
+					elseif score.Value >= 100 then
+						if (level == 1) then -- bronze
+							game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .."&key=IR34l1yL0v3Th3RustyT3tr4m1n0H4h4h4h444444&assetnumber=&t=" .. math.random(1,999), false)
+						elseif (level == 2) then -- silver
+							game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .."&key=IR34l1yL0v3Th3RustyT3tr4m1n0H4h4h4h444444&assetnumber=&t=" .. math.random(1,999), false)
+						elseif (level == 3) then -- gold
+							game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .."&key=IR34l1yL0v3Th3RustyT3tr4m1n0H4h4h4h444444&assetnumber=&t=" .. math.random(1,999), false)
+						end
 					end
 				end)
+				
 			end
 		end)
+		
 	end
 
 end)
