@@ -19,6 +19,15 @@
             <div>Play with the slingshot, rocket, or other brick battle tools.  Be careful not to get "bloxxed".</div>
         </li>
     </ul>
+    <?php if (Server::isIE7()): ?>
+        <div id="Showcase">
+        <object width="400" height="326">
+            <param name="movie" value="/images/videos/N.mp4">
+            <embed width="400" height="326" src="/images/videos/N.mp4">
+            </embed>
+        </object>
+    </div>
+    <?php else: ?>
     <div id="Showcase" onload="MM_CheckFlashVersion(\'8,0,0,0\',\'Content on this page requires a newer version of Macromedia Flash Player. Do you want to download it now?\');">
         <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
         <object width="400" height="326">
@@ -27,6 +36,7 @@
             </embed>
         </object>
     </div>
+    <?php endif; ?>
     <div id="Install"><br></div>
     <div id="ctl00_cphRoblox_pForParents">
         <div id="ForParents">

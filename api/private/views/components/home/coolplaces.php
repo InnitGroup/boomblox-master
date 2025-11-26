@@ -11,7 +11,8 @@ if ($result->rowCount() > 0) {
     $places = [NULL, NULL, NULL, NULL, NULL];
 }
 
-/*
+if (Server::isIE7()): ?>
+
 <div id="UserPlacesPane">
     <div id="UserPlaces_Content">
         <table id="ctl00_cphRoblox_CoolPlacesDataList" cellspacing="0" border="0" width="100%">
@@ -35,7 +36,8 @@ if ($result->rowCount() > 0) {
     </div>
     <div id="ctl00_cphRoblox_ie6_peekaboo" style="clear: both"></div>
 </div>
-*/?>
+
+<?php else: ?>
 
 <div id="ctl00_cphRoblox_CoolPlaces_FlashContent">
     <ruffle-object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://xoblog.dev/Data/swflash.cab" width="900" height="100" id="CoolPlaces" align="middle">
@@ -44,3 +46,5 @@ if ($result->rowCount() > 0) {
         </ruffle-embed> 
     </ruffle-object>
 </div>
+
+<?php endif; ?>
