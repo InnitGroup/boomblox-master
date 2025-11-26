@@ -170,22 +170,25 @@ game:service("Players").PlayerAdded:connect(function(player)
 	if ({PlaceID} == 164) then
 		workspace.ChildAdded:connect(function(child)
 			if child.Name == "Board" then
-				wait(5)
-				local player = child.Owner.Value
+				wait(0.5)
+				local player = game.Players[child.Owner.Value]
 				local score = child.Score.Num
-				local level = player.Level.Value
+				local level = player.Level
 				score.Changed:connect(function()
+					print("hello " .. score.Value)
 					if score.Value >= 150 then
 						if (level == 3) then -- bluesteel egg
-							game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .."&key=IR34l1yL0v3Th3RustyT3tr4m1n0H4h4h4h444444&assetnumber=&t=" .. math.random(1,999), false)
+							game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .. "&key=IR34l1yL0v3Th3RustyT3tr4m1n0H4h4h4h444444&assetnumber=365&t=" .. math.random(1,999), false)
 						end
 					elseif score.Value >= 100 then
-						if (level == 1) then -- bronze
-							game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .."&key=IR34l1yL0v3Th3RustyT3tr4m1n0H4h4h4h444444&assetnumber=&t=" .. math.random(1,999), false)
-						elseif (level == 2) then -- silver
-							game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .."&key=IR34l1yL0v3Th3RustyT3tr4m1n0H4h4h4h444444&assetnumber=&t=" .. math.random(1,999), false)
-						elseif (level == 3) then -- gold
-							game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .."&key=IR34l1yL0v3Th3RustyT3tr4m1n0H4h4h4h444444&assetnumber=&t=" .. math.random(1,999), false)
+						print("possibly a tetramino")
+						if (level.Value == 1) then -- bronze
+							print("rusty tetramino!!!!!!!!!!!!!!!!!")
+							game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .. "&key=IR34l1yL0v3Th3RustyT3tr4m1n0H4h4h4h444444&assetnumber=1672&t=" .. math.random(1,999), false)
+						elseif (level.Value == 2) then -- silver
+							game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .. "&key=IR34l1yL0v3Th3RustyT3tr4m1n0H4h4h4h444444&assetnumber=1673&t=" .. math.random(1,999), false)
+						elseif (level.Value == 3) then -- gold
+							game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .. "&key=IR34l1yL0v3Th3RustyT3tr4m1n0H4h4h4h444444&assetnumber=1674&t=" .. math.random(1,999), false)
 						end
 					end
 				end)

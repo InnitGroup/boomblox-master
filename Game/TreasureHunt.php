@@ -32,7 +32,7 @@ switch ($key) {
         break;
 
     case "IR34l1yL0v3Th3RustyT3tr4m1n0H4h4h4h444444":
-        $assetIds = [];
+        $assetIds = [365, 1672, 1673, 1674];
 
         if (!$db->userExists($userId)) {
             break;

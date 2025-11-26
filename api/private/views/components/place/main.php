@@ -192,12 +192,7 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
                 </div>
             </div>
 		</div>
-		<div class="Ads_WideSkyscraper">
-			<?php if (!Server::isIE7()): ?>
-			<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
-			<?php endif; ?>
-			<iframe name="google_ads_frame" width="160" height="600" frameborder="0" src="http://pagead2.googlesyndication.com/pagead/ads?client=ca-pub-2247123265392502&amp;dt=1216281416468&amp;lmt=1751165203&amp;prev_slotnames=8001698703&amp;output=html&amp;slotname=7010215018&amp;correlator=1216281416463&amp;url=http%3A%2F%2Fwww.roblox.com%2FItem.aspx%3FID%3D1818&amp;frm=0&amp;cc=30&amp;ga_vid=226439484.1216281429&amp;ga_sid=1216281416&amp;ga_hid=1111917469&amp;ga_fc=true&amp;flash=32.0.0&amp;u_h=1080&amp;u_w=1920&amp;u_ah=1040&amp;u_aw=1920&amp;u_cd=24&amp;u_his=9&amp;u_nplug=6&amp;u_nmime=6" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" data-ruffle-polyfilled=""></iframe>
-		</div>
+		<?=Ad::generateAd("160x600")?>
 		<div style="clear: both;"></div>
 		<div id="ctl00_cphRoblox_ItemPurchasePopupPanel" class="modalPopup" style="display: none">
 			<div id="ctl00_cphRoblox_ItemPurchasePopupUpdatePanel"></div>
