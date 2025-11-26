@@ -18,9 +18,13 @@ class AssetRedirect {
     # curls the asset api
     public function curl($assetId, $version = 1) {
         $roblosecurity = base64_decode($this->roblosecurity[0]);
+        $assetTitle = $assetId;
+        if ($version > 1) {
+            $assetTitle .= "_" . $version;
+        }
 
-        if ($this->isCached($assetId)) {
-            $asset = $_SERVER["DOCUMENT_ROOT"] . "/content/roblox/" . $assetId;
+        if ($this->isCached($assetTitle)) {
+            $asset = $_SERVER["DOCUMENT_ROOT"] . "/content/roblox/" . $assetTitle;
             return file_get_contents($asset);
         }
 
@@ -35,8 +39,8 @@ class AssetRedirect {
         ]);
 
         $asset = curl_exec($curl);
-        if (!$this->isCached($assetId) && $asset !== '{"errors":[{"code":0,"message":"Authentication required to access Asset."}]}' && $asset !== '{"errors":[{"code":0,"message":"Request asset was not found"}]}') {
-            $this->cache($assetId, $asset);
+        if (!$this->isCached($assetTitle) && $asset !== '{"errors":[{"code":0,"message":"Authentication required to access Asset."}]}' && $asset !== '{"errors":[{"code":0,"message":"Request asset was not found"}]}') {
+            $this->cache($assetTitle, $asset);
         }
         return $asset;
     }
