@@ -56,15 +56,15 @@ class ToolboxManager {
             $stmt = "SELECT COUNT(*) AS count FROM items WHERE catalogType='Model'";
             $result = $db->execute($stmt);
             $count = $result->fetch(PDO::FETCH_ASSOC)["count"];
-        } elseif ($typeId = "MyModels") {
+            return $count;
+        } elseif ($typeId == "MyModels") {
             return count($user->getModels(true));
         } else {
             $stmt = "SELECT COUNT(*) AS count FROM items WHERE modelType=:typeId";
             $result = $db->execute($stmt, [":typeId" => $typeId]);
             $count = $result->fetch(PDO::FETCH_ASSOC)["count"];
+            return $count;
         }
-
-        return $count;
     }
 
     public function getPage() {

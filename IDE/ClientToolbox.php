@@ -67,7 +67,6 @@ global $auth;
 			<div id="ToolboxContainer">
 				<div id="ToolboxControls">
 					<div id="ToolboxSelector">
-						<?=$toolbox->getModelsInCategory($toolbox->getCategory())?>
 						<?php
 						$sort = $toolbox->getCategory();
 						?>
