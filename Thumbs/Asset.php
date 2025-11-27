@@ -64,11 +64,17 @@ class Asset extends Base {
         $script = $this->GetScript($width,$height,$imageFormat);
         $altHash = md5(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/content/".self::$_assetId));
         $xml = Thumbnail::getXml($script);
+
+        if (empty(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/content/".self::$_assetId))) {
+            return Thumbnail::getUnavail($size);
+        }
+
         if (!$ignoreCache) {
             if ($result = CDN::hashExists($altHash, $size, $imageFormat, $hasError)) {
                 return $result;
             }
         }
+
         $response = Thumbnail::getCurl($xml);
         if ($response) {
             $base64 = Thumbnail::getBase64FromResponse($response);
@@ -159,7 +165,12 @@ class Asset extends Base {
         } elseif (self::$_status == "blocked") {
             return "https://t2.".domain."/unapproved-250x250.png";
         }
+
         $path = "/cdn/t3/".self::$_assetId;
+        if (empty(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/content/".self::$_assetId))) {
+            return "https://t2.".domain."/unavail-250x250.png";
+        }
+
         $file = File::getImageType($_SERVER["DOCUMENT_ROOT"] . $path);
         if (file_exists($file["FullPath"])) {
             return "https://t3.".domain."/".self::$_assetId.".".$file["Extension"];

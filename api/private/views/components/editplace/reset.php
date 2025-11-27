@@ -1,6 +1,3 @@
-<?php
-?>
-
 <div id="PlaceReset">
     <div id="popup" class="popupControl" style="width:400px;">
         <div>

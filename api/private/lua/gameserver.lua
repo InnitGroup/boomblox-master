@@ -177,7 +177,7 @@ game:service("Players").PlayerAdded:connect(function(player)
 				score.Changed:connect(function()
 					print("hello " .. score.Value)
 					if score.Value >= 150 then
-						if (level == 3) then -- bluesteel egg
+						if (level.Value == 3) then -- bluesteel egg
 							game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .. "&key=IR34l1yL0v3Th3RustyT3tr4m1n0H4h4h4h444444&assetnumber=365&t=" .. math.random(1,999), false)
 						end
 					elseif score.Value >= 100 then

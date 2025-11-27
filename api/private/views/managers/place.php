@@ -108,6 +108,7 @@ class PlaceManager {
         PageBuilder::addComponent($folder, "access", $packed);
         PageBuilder::addComponent($folder, "copyprotection", $packed);
         PageBuilder::addComponent($folder, "reset");
+        PageBuilder::addComponent($folder, "history");
         PageBuilder::addComponent($folder, "buttons");
     }
 }
