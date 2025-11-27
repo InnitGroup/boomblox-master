@@ -37,7 +37,7 @@
 				</tr>
 				<tr>
 				<td width="120" valign="top"><input type="submit" name="ChoosePublishContentButton" value="Update" id="ChoosePublishContentModificationButton" class="OKCancelButton" style="width:100%;" /></td>
-				<td valign="top"><strong>Update an existing Model on ROBLOX.</strong><br />(NOT COMPLETE YET) Choose this to make changes to a Model you have previously created.  You will have the opportunity to select which Model you wish to update.</td>
+				<td valign="top"><strong>Update an existing Model on ROBLOX.</strong><br />Choose this to make changes to a Model you have previously created.  You will have the opportunity to select which Model you wish to update.</td>
 				</tr>
 				<tr>
 				<td width="120" valign="top"><input class="OKCancelButton" onclick="DialogResult.value='2'; window.close(); return false" style="WIDTH: 100%" type="button" value="Cancel" /></td>
