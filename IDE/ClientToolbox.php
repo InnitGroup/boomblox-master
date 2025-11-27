@@ -67,6 +67,7 @@ global $auth;
 			<div id="ToolboxContainer">
 				<div id="ToolboxControls">
 					<div id="ToolboxSelector">
+						<?=$toolbox->getModelsInCategory($toolbox->getCategory())?>
 						<?php
 						$sort = $toolbox->getCategory();
 						?>
@@ -84,6 +85,7 @@ global $auth;
 							<option <?=$sort == "AllModels" ? 'selected="selected"' : ""?> value="AllModels">All Models</option>
 						</select>
 					</div>
+					<?php if ($toolbox->getModelsInCategory($toolbox->getCategory()) > 20): ?>
 					<div id="pSearch">
 						<div id="ToolboxSearch">
 							<?php
@@ -95,6 +97,7 @@ global $auth;
 							</a>
 						</div>
 					</div>
+					<?php endif; ?>
 				</div>
 				<div id="ToolboxItems">
 					<table id="dlToolboxItems" style="display:inline-block;width:100%;">
@@ -102,7 +105,9 @@ global $auth;
 						<!-- 20 -->
 					</table>
 				</div>
+				<?php if ($toolbox->getModelsInCategory($toolbox->getCategory()) > 20): ?>
 				<?=$toolbox->loadNavigation()?>
+				<?php endif; ?>
 			</div>
 			<div>
 				<input type="hidden" name="__VIEWSTATEENCRYPTED" id="__VIEWSTATEENCRYPTED" value="">
