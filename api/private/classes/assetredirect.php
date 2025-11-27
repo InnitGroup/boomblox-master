@@ -79,7 +79,7 @@ class AssetRedirect {
             exit;
         }
 
-        if(str_starts_with($asset, '�PNG')) {
+        if(str_contains(str_split($asset, 10)[0], 'PNG')) {  
             header('Content-Type: image/png');
             echo $asset;
             exit;

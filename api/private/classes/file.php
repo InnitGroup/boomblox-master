@@ -48,6 +48,30 @@ class File {
         return $playerCount;
     }
 
+    public static function isSkybox($file) {
+        libxml_use_internal_errors(true);
+
+        $xml = simplexml_load_file($file);
+        if (!$xml) return false;
+
+        if ($xml->getName() !== 'roblox') return false;
+
+        $allowedClasses = ['Sky', 'Workspace'];
+
+        foreach ($xml->children() as $child) {
+            if ($child->getName() !== 'Item') {
+                continue;
+            }
+
+            $classAttr = (string)$child['class'];
+            if (!in_array($classAttr, $allowedClasses, true)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     public static function isWebp($file) {
         $contents = file_get_contents($file);
         return str_contains($contents, "WEBPVP8X");

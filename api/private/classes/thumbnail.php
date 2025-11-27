@@ -24,6 +24,7 @@ class Thumbnail {
             </SOAP-ENV:Body>
         </SOAP-ENV:Envelope>';
     }
+
     public static function getCurl($xml) {
         $curl = curl_init();
         curl_setopt_array($curl, array(
@@ -38,14 +39,17 @@ class Thumbnail {
         ));
         return curl_exec($curl);
     }
+
     public static function getLocation() {
         return self::$location;
     }
+
     public static function getBase64FromResponse($response) {
         $start = strpos($response, '<ns1:value>') + strlen('<ns1:value>');
         $end = strpos($response, '</ns1:value>', $start);
         return substr($response, $start, $end - $start);
     }
+
     public static function hasError($response) {
         $errors = [
             "err=0x2F7C",
@@ -60,12 +64,23 @@ class Thumbnail {
             }
         }
     }
+
     public static function uploadRender($path, $base64) {
         
         $file = fopen($path,"w");
         fwrite($file,base64_decode($base64));
         fclose($file);
     }
+
+    public static function extractSkybox($path) {
+        $xml = file_get_contents($path);
+        $halfA = explode('<Content name="SkyboxFt"><url>', $xml)[1];
+        $contentUrl = explode('</url></Content>', $halfA)[0];
+        $url = urldecode($contentUrl);
+        $image = file_get_contents($url);
+        return $url;
+    }
+
     public static function getUnavail($size) {
         if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/cdn/t2/unavail-".$size.".png")) {
             #return "http://t2." . domain . "/unavail-".$size.".png";
@@ -75,6 +90,7 @@ class Thumbnail {
             return "https://t2.".domain."/unavail-100x100.png";
         }
     }
+
     public static function getHashResult($null, $hash) {
         #return "http://$location." . domain . "/".$hash;
         return "https://t2.".domain."/".$hash."?v=1";

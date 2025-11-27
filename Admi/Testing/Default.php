@@ -5,12 +5,7 @@ global $theme, $auth, $db;
 
 $page = new APageBuilder;
 
-exit;
-$stmt = "SELECT username FROM users";
-$result = $db->execute($stmt);
-$users = $result->fetchAll(PDO::FETCH_ASSOC);
-foreach ($users as $user) {
-    echo $user["username"]."<br>";
-}
+#echo Thumbnail::extractSkybox($_SERVER["DOCUMENT_ROOT"] . "/content/1701");
+echo '<img src="'.Thumbnail::extractSkybox($_SERVER["DOCUMENT_ROOT"] . "/content/1701") . '">';
 
 ?>

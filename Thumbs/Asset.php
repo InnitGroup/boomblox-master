@@ -127,6 +127,8 @@ class Asset extends Base {
             }
         } elseif (File::isLuaModel($_SERVER["DOCUMENT_ROOT"]."/content/".self::$_assetId)) {
             return "https://t2.".domain."/Lua-250x250.png";
+        } elseif (File::isSkybox($_SERVER["DOCUMENT_ROOT"] . "/content/" . self::$_assetId)) {
+            return Thumbnail::extractSkybox($_SERVER["DOCUMENT_ROOT"] . "/content/" . self::$_assetId);
         }
         
         global $db;
