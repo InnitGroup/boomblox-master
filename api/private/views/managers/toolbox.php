@@ -8,7 +8,7 @@ class ToolboxManager {
 
         if (isset($_POST["tbSearch"])) {
             $search = htmlspecialchars($_POST["tbSearch"]);
-            $stmt .= " AND itemName LIKE '$search%'";
+            $stmt .= " AND itemName LIKE '%$search%'";
         }
 
         if (isset($_POST["ddlToolboxes"]) || isset($_GET["Category"])) {

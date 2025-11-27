@@ -7,7 +7,7 @@ $shortName = $purchaseData["shortName"];
 $price = $purchaseData["price"];
 ?>
 
-<?php if ($currencyName !== "PublicDomain"): ?>
+<?php if ($shortName !== "Free"): ?>
 <div id="ctl00_cphRoblox_<?=$currencyName?>PurchasePanel">
     <div id="<?=$currencyName?>Purchase">
         <div id="PriceIn<?=$currencyName?>"><?=$shortName?>: <?=number_format($price)?></div>
