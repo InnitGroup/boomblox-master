@@ -39,12 +39,12 @@ if (Server::isIE7()): ?>
 
 <?php else: ?>
 
-<div id="ctl00_cphRoblox_CoolPlaces_FlashContent">
-    <ruffle-object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://xoblog.dev/Data/swflash.cab" width="900" height="100" id="CoolPlaces" align="middle">
-        <param name="movie" value="/images/CoolPlaces.swf?place1=<?=$places[0]["itemId"]?>&amp;place2=<?=$places[1]["itemId"]?>&amp;place3=<?=$places[2]["itemId"]?>&amp;place4=<?=$places[3]["itemId"]?>&amp;place5=<?=$places[4]["itemId"]?>&amp;bounce=true&amp;subdomain=http://xoblog.dev">
-        <ruffle-embed src="/images/CoolPlaces.swf?place1=<?=$places[0]["itemId"]?>&amp;place2=<?=$places[1]["itemId"]?>&amp;place3=<?=$places[2]["itemId"]?>&amp;place4=<?=$places[3]["itemId"]?>&amp;place5=<?=$places[4]["itemId"]?>&amp;bounce=true&amp;subdomain=http://xoblog.dev" width="900" height="100" name="CoolPlaces" align="middle" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
-        </ruffle-embed> 
-    </ruffle-object>
+<div id="ctl00_cphRoblox_CoolPlaces_FlashContent" onload="MM_CheckFlashVersion(\'8,0,0,0\',\'Content on this page requires a newer version of Macromedia Flash Player. Do you want to download it now?\');">
+    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://xoblog.dev/Data/swflash.cab" width="900" height="100" id="CoolPlaces" align="middle">
+        <param name="movie" value="/images/CoolPlaces.swf?place1=<?=$places[0]["itemId"]?>&place2=<?=$places[1]["itemId"]?>&place3=<?=$places[2]["itemId"]?>&place4=<?=$places[3]["itemId"]?>&place5=<?=$places[4]["itemId"]?>&bounce=true&subdomain=http://xoblog.dev">
+        <embed src="/images/CoolPlaces.swf?place1=<?=$places[0]["itemId"]?>&place2=<?=$places[1]["itemId"]?>&place3=<?=$places[2]["itemId"]?>&place4=<?=$places[3]["itemId"]?>&place5=<?=$places[4]["itemId"]?>&bounce=true&subdomain=http://xoblog.dev" width="900" height="100" name="CoolPlaces" align="middle" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
+        </embed> 
+    </object>
 </div>
 
 <?php endif; ?>
