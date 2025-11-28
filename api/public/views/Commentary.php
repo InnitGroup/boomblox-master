@@ -4,6 +4,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 global $theme;
 $data = file_get_contents("php://input");
 $data = json_decode($data, true);
+if (!isset($data)) {
+    Server::_404();
+}
 
 $page = $data["page"];
 $id = $data["id"];

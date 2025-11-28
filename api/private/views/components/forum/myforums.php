@@ -5,7 +5,7 @@ PageBuilder::addComponent("forum", "navmenu");
 
 <table cellPadding="0" width="100%">
   <tr>
-    <td align="left" colSpan="2"><ASPNETFORUMS:WHEREAMI id="Whereami1" runat="server" NAME="Whereami1"></ASPNETFORUMS:WHEREAMI></td>
+    <td align="left" colSpan="2"><?=PageBuilder::addComponent("forum", "whereami")?></td>
   </tr>
   <tr>
     <td align="left" colSpan="2">&nbsp;
@@ -14,10 +14,10 @@ PageBuilder::addComponent("forum", "navmenu");
   <tr>
     <td colSpan="2">
       <span class="menuTitle">Threads you are tracking:</span>
-      <AspNetForums:ThreadList id="ThreadTracking" CssClass="tableBorder" runat="server" CellSpacing="1" CellPadding="0" Width="100%">
+      <AspNetForums:ThreadList id="ThreadTracking" class="tableBorder" CellSpacing="1" CellPadding="0" Width="100%">
       </AspNetForums:ThreadList>
       <br>
-      <asp:Label visible="false" id="NoTrackedThreads" runat="server" CssClass="normalTextSmallBold">You are not tracking any threads.</asp:Label>
+      <label visible="false" id="NoTrackedThreads" class="normalTextSmallBold">You are not tracking any threads.</label>
     </td>
   </tr>
   <tr>
@@ -27,10 +27,10 @@ PageBuilder::addComponent("forum", "navmenu");
   <tr>
     <td colSpan="2">
       <span class="menuTitle">Last 25 active threads you have participated in:</span>
-      <AspNetForums:ThreadList id="ParticipatedThreads" CssClass="tableBorder" runat="server" CellSpacing="1" CellPadding="0" Width="100%">
+      <AspNetForums:ThreadList id="ParticipatedThreads" class="tableBorder" CellSpacing="1" CellPadding="0" Width="100%">
       </AspNetForums:ThreadList>
       <br>
-      <asp:Label visible="false" id="NoParticipatedThreads" runat="server" CssClass="normalTextSmallBold">You are not tracking any threads.</asp:Label>
+      <label visible="false" id="NoParticipatedThreads" class="normalTextSmallBold">You are not tracking any threads.</label>
     </td>
   </tr>
   <tr>
@@ -40,6 +40,4 @@ PageBuilder::addComponent("forum", "navmenu");
   </tr>
 </table>
 
-<?php
-PageBuilder::addComponent("forum", "footer");
-?>
+<?=PageBuilder::addComponent("forum", "footer")?>
