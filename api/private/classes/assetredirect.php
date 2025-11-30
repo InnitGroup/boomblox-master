@@ -8,6 +8,12 @@ class AssetRedirect {
         roblosecurity
     ];
 
+    private array $errors = [
+        '{"errors":[{"code":0,"message":"upstream request timeout"}]}',
+        '{"errors":[{"code":0,"message":"Authentication required to access Asset."}]}',
+        '{"errors":[{"code":0,"message":"Request asset was not found"}]}',
+    ];
+
     # main constructor
     public function __construct($assetId, $version = 1) {
         if (!empty($assetId) && $assetId !== 0) {
@@ -39,7 +45,7 @@ class AssetRedirect {
         ]);
 
         $asset = curl_exec($curl);
-        if (!$this->isCached($assetTitle) && $asset !== '{"errors":[{"code":0,"message":"Authentication required to access Asset."}]}' && $asset !== '{"errors":[{"code":0,"message":"Request asset was not found"}]}') {
+        if (!$this->isCached($assetTitle) && !in_array($asset, $this->errors)) {
             $this->cache($assetTitle, $asset);
         }
         return $asset;
