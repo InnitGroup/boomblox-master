@@ -32,7 +32,7 @@ class Thread {
         $this->forumId = $thread["forumId"];
         $this->isReply = (bool)$thread["isReply"];
         $this->pinned = (bool)$thread["pinned"];
-        $this->author = new User($db->getIdByUser($thread["author"]));
+        $this->author = new User($thread["author"]);
         $this->title = $thread["threadTitle"];
         $this->content = $thread["threadContent"];
         $this->postDate = new DateTime($thread["postDate"]);
@@ -59,12 +59,11 @@ class Thread {
 
     public function formatLastActivity() {
         $lastActivity = $this->lastActivity;
-        $today = new DateTime();
-        $diff = $today->diff($lastActivity)->format("%a");
-        $time = $lastActivity->format("h:i A");
+        $todayDate = (new DateTime())->format("Y-m-d");
+        $lastDate  = $lastActivity->format("Y-m-d");
 
-        if ($diff == 0) {
-            return "Today @ " . $time;
+        if ($todayDate === $lastDate) {
+            return "Today @ " . $lastActivity->format("h:i A");
         }
 
         return $lastActivity->format("d M Y h:i A");

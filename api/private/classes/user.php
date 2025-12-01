@@ -628,8 +628,39 @@ class User {
     public function isInviter() {
         return false; // temp
     }
-    public function getForumPosts() {
-        return 0;
+    public function getForumPosts($limit = NULL, $count = false) {
+        global $db;
+        $stmt = "SELECT * FROM threads WHERE author=:userId";
+        $result;
+
+        if ($limit) {
+            $stmt .= " LIMIT $limit";
+            $result = $db->execute($stmt, [
+                ":userId" => $this->getUserId()
+            ]);
+        } else {
+            $result = $db->execute($stmt, [
+                ":userId" => $this->getUserId()
+            ]);
+        }
+
+        if ($count) {
+            return $result->rowCount();
+        }
+
+        if ($result->rowCount() == 0) {
+            return 0;
+        }
+
+        $fetchedPosts = $result->fetchAll(PDO::FETCH_ASSOC);
+        $posts = [];
+
+        foreach ($fetchedPosts as $fetchedPost) {
+            $post = new Thread($fetchedPost["postId"]);
+            array_push($posts, $post);
+        }
+
+        return $posts;
     }
     public function getProfileViews($counted = true) {
         $profileViews = $this->data["user"]["pviews"];

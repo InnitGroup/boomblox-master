@@ -243,7 +243,7 @@ class UserManager {
 							<acronym title="The number of posts this user has made to the '.Site::getThemeProperty("name", $this->theme).' forum.">Forum Posts</acronym>:
 						</div>
 						<div class="Value">
-							<span>'.number_format($this->user->getForumPosts()).'</span>
+							<span>'.number_format($this->user->getForumPosts(NULL, true)).'</span>
 						</div>
 					</div>
 					<div class="Statistic">
