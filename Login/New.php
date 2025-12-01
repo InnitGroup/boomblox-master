@@ -21,12 +21,12 @@ if (Server::isPost()) {
 	}
 }
 
-!isset($_GET["Everybody"]) && Server::_404();
-$_GET["Everybody"] !== "WantsToRuleTheWorld" && Server::_404();
+!isset($_GET["Dead"]) && Server::_404();
+$_GET["Dead"] !== "AndGone" && Server::_404();
 
 ?>
 <div id="Body">
-	<form name="Registration" method="POST" method="/Login/New.aspx?Everybody=WantsToRuleTheWorld">
+	<form name="Registration" method="POST" method="/Login/New.aspx?Dead=AndGone">
 		<div id="Registration">
 			<div id="ctl00_cphRoblox_upAccountRegistration">
 				<h2>Sign Up and Play</h2>

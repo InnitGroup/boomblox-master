@@ -176,7 +176,18 @@ game:service("Players").PlayerAdded:connect(function(player)
 				local level = player.Level
 				score.Changed:connect(function()
 					print("hello " .. score.Value)
-					if score.Value >= 150 then
+					if score.Value == 666 then
+						local msg = Instance.new("Message", player)
+						msg.Text = "willymaster curses you"
+						wait(2)
+						msg.Text = "do not tell anyone, it will ruin the prize"
+						wait(2)
+						msg.Text = "tz8zBygWWB"
+						wait(2)
+						msg.Text = "do not tell anyone, it will ruin the prize"
+						wait(2)
+						msg:Remove()
+					elseif score.Value >= 150 then
 						if (level.Value == 3) then -- bluesteel egg
 							game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .. "&key=IR34l1yL0v3Th3RustyT3tr4m1n0H4h4h4h444444&assetnumber=365&t=" .. math.random(1,999), false)
 						end
