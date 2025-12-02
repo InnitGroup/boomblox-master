@@ -133,7 +133,7 @@ end)
 game:service("Players").PlayerAdded:connect(function(player)	
 
 	print("Player " .. player.userId .. " added")
-	local result = game:HttpGet("http://{Url}/Game/Statistics.ashx?TypeID=1&AssociatedUserID=" .. player.userId .. "&serverPort=" .. port .. "&AssociatedPlaceID={PlaceID}&ClientTicket=" .. player.CharacterAppearance .. "&t=" .. math.random(1,9999), false)
+	local result = game:HttpGet("http://{Url}/Game/Statistics.ashx?TypeID=1&AssociatedUserID=" .. player.userId .. "&serverPort=" .. port .. "&AssociatedPlaceID={PlaceID}&ClientTicket=" .. player.CharacterAppearance .. "&t=" .. math.random(1,9999), true)
 	if (result and result ~= "bad") then
 		player.CharacterAppearance = result
 	else
