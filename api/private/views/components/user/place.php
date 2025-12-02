@@ -78,6 +78,9 @@ if ($user->getUserId() == $place["creatorId"]) {
             <div class="Configuration">
                 <a href="/My/Place.aspx?ID=<?=$place["itemId"]?>">Configure this Place</a>
             </div>
+            <div class="Configuration">
+                <a href="/My/NewUserAd.aspx?targetID=<?=$place["itemId"]?>">Advertise this Place</a>
+            </div>
             <?php endif; ?>
         </div>
     </div>

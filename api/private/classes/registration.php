@@ -1,18 +1,18 @@
 <?php
 class Registration {
     public array $presets = [
-        "telamon0",
-        "runescape117",
-        "harryt",
-        "TearSaver",
-        "yully",
-        "SpeedDT",
-        "freshmonkey",
-        "maniac4",
-        "cougarfootball",
-        "yorick001",
-        "sman1267",
-        "zachman98"
+        "rock2059",
+        "penciltrick",
+        "umut10",
+        "Imperatore",
+        "dragonmagictrainer",
+        "GoldenThunder",
+        "bmcool",
+        "Fizzle82",
+        "ValaryCor",
+        "Jawsfan",
+        "AlphaShaymin",
+        "sniperwolf14"
     ];
 
     private array $usernameError = [
@@ -86,12 +86,12 @@ Have a great time here!",
         $newUser->sendMessage($message);
 
         if (in_array($_POST["Userame"], $this->presets)) {
-            $newUser->giveBux(10);
+            $newUser->giveBux(100);
             $message = [
                 "senderId" => 1,
                 "senderUn" => "Boomblox",
                 "subject" => "Welcome to Boomblox",
-                "content" => "Hello, {$newUser->getUsername()}, you have been awarded B$ 10 for choosing a preset username, thank you for building site accuracy within the population!",
+                "content" => "Hello, {$newUser->getUsername()}, you have been awarded B$ 100 for choosing a preset username, thank you for building site accuracy within the population!",
                 "recipientId" => $id
             ];
 

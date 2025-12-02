@@ -13,6 +13,19 @@ body {
    a:active {
     color:Blue;
    }
+   #ItemContainer #Advertise {
+  background-color: #fff;
+  border-bottom: dashed 1px #555;
+  border-left: dashed 1px #555;
+  border-right: dashed 1px #555;
+  clear: right;
+  float: right;
+  margin-left: 10px;
+  margin-top: 0;
+  padding: 5px 10px;
+  text-align: center;
+  width: 249px;
+}
    a:hover {
     text-decoration:underline;
    }

@@ -66,7 +66,7 @@ $_GET["Dead"] !== "AndGone" && Server::_404();
 									There are no available presets at the moment.
 								<?php endif; ?>
 								</div>
-								<div><a href="javascript:alert('Pick a suggested username for a B$ 10 bonus upon registry!')">Learn about username suggestions</a></div>
+								<div><a href="javascript:alert('Pick a suggested username for a B$ 100 bonus upon registry!')">Learn about username suggestions</a></div>
 							</div>
 						</div>
 						<div class="UsernameRow">
