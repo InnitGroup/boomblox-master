@@ -1,6 +1,6 @@
 <?php
 class AdManager {
-    private $allowedFileTypes = ["png", "jpg", "jpeg", "gif"];
+    private $allowedFileTypes = ["png", "jpg", "jpeg"];
     public function handleUpload($contentId, $data, $content) {
         global $db; 
         $type = $data->Type;
