@@ -33,7 +33,7 @@ class ContentBuilderManager {
         $width = $imageDimensions[1];
 
         if ($type == "Shirt" || $type == "Pants") {
-            if ($height !== 585 && $width !== 559) {
+            if ($height !== 585 || $width !== 559) {
                 return (object)["Error" => "Texture must be 585x559."];
             }
         } else {

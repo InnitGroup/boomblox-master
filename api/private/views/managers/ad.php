@@ -31,13 +31,18 @@ class AdManager {
         $height = $imageDimensions[0];
         $width = $imageDimensions[1];
 
+        switch ($type) {
+            case "Rectangle":
+                if ($height !== 250 || $width !== )
+                break;
+            case "Skyscraper":
+                break;
+            case "Banner":
+                break;
+        }
         if ($type == "Shirt" || $type == "Pants") {
-            if ($height !== 585 && $width !== 559) {
+            if ($height !== 585 || $width !== 559) {
                 return (object)["Error" => "Texture must be 585x559."];
-            }
-        } else {
-            if ($height > 2000 || $width > 2000) {
-                return (object)["Error" => "{$type} cannot be larger than 2000x2000."];
             }
         }
 
