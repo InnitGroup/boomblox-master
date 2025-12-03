@@ -59,6 +59,7 @@ class ContentBuilderManager {
         $user->giveItem($id);
 
         header("Location: /My/Character.aspx?AttireTypeID=".$contentId);
+        exit;
     }
 }
 
