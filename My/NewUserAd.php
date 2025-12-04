@@ -9,7 +9,15 @@ global $theme, $auth, $user;
 
 $ad = new AdManager;
 
+if (Server::isPost()) {
+    $upload = $ad->handleUpload();
+    if (isset($upload->Error)) {
+        echo $upload->Error;
+    }
+}
+
 $page = new PageBuilder(Site::getThemeProperty("alias",$theme).": A FREE Virtual World-Building Game with Avatar Chat, 3D Environments, and Physics", $theme, "/templates/authheader.php", [], "edititem"); # 
+$page->setImageForm();
 $page->buildHeader();
 
 PageBuilder::addComponent("userad", "newad");

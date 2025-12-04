@@ -1,17 +1,15 @@
 <?php
 class AdManager {
     private $allowedFileTypes = ["png", "jpg", "jpeg"];
-    public function handleUpload($contentId, $data, $content) {
+    public function handleUpload() {
         global $db; 
-        $type = $data->Type;
 
-        if (!isset($_FILES["texture"])) {
+        if (!isset($_FILES['ctl00$cphRoblox$adFile'])) {
             return (object)["Error" => "Texture missing."];
         }
 
-        $file = $_FILES["texture"];
-        $targetDirectory = $_SERVER["DOCUMENT_ROOT"] . "/cdn/t3/";
-        #$targetFile = 
+        $file = $_FILES['ctl00$cphRoblox$adFile'];
+        $targetDirectory = $_SERVER["DOCUMENT_ROOT"] . "/cdn/t4/";
         $fileType = strtolower(pathinfo($file["name"], PATHINFO_EXTENSION));
 
         if (File::isWebp($file["tmp_name"])) {
@@ -28,48 +26,39 @@ class AdManager {
             return (object)["Error" => "Faulty image file."];
         }
 
-        $height = $imageDimensions[0];
-        $width = $imageDimensions[1];
+        $height = $imageDimensions[1];
+        $width = $imageDimensions[0];
 
-        switch ($type) {
-            case "Rectangle":
-                if ($height !== 250 || $width !== )
-                break;
-            case "Skyscraper":
-                break;
-            case "Banner":
-                break;
-        }
-        if ($type == "Shirt" || $type == "Pants") {
-            if ($height !== 585 || $width !== 559) {
-                return (object)["Error" => "Texture must be 585x559."];
-            }
+        $adType = "N/A";
+
+        if ($width == 300 && $height == 250) {
+            $adType = "Rectangle";
+        } elseif ($width == 160 && $height == 600) {
+            $adType = "Skyscraper";
+        } elseif ($width == 728 && $height == 90) {
+            $adType = "Banner";
+        } else {
+            echo $width . "x" . $height;
+            return (object)["Error" => "Texture must be either 300x250, 160x600 or 728x90."];
         }
 
-        $stmt = "INSERT INTO items (itemType, catalogType, creatorId, creatorName, itemName) VALUES ('catalog', :catalogType, :creatorId, :creatorName, :itemName)";
-        $creatorId = ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]);
-        $creatorName = $db->getUserById($creatorId);
         $fileName = pathinfo($file["name"], PATHINFO_FILENAME);
-        
-        $db->execute($stmt, [":catalogType" => $type, ":creatorId" => $creatorId, ":creatorName" => $creatorName, ":itemName" => $fileName]);
-        $id = $db->singleton()->lastInsertId();
+        $md5 = md5(file_get_contents($file["tmp_name"]));
+        $filePath = $targetDirectory . (string)$md5;
 
-        $filePath = $targetDirectory . (string)$id . "." . $fileType;
-        if (!move_uploaded_file($file["tmp_name"], $targetDirectory . (string)$id . "." . $fileType)) {
+        global $user;
+        UserAd::new($_POST['ctl00$cphRoblox$adName'], $user, $width . "x" . $height, $md5);
+
+        if (!move_uploaded_file($file["tmp_name"], $filePath)) {
             return (object)["Error" => "Error uploading file."];
         }
 
-        $user = new User($creatorId);
-        $user->giveItem($id);
-
-        header("Location: /My/Character.aspx?AttireTypeID=".$contentId);
+        header("Location: /My/AdInventory.aspx");
         exit;
     }
 
     public function __construct() {
-        if (Server::isPost()) {
-            echo 1;
-        }
+        
     }
 }
 ?>

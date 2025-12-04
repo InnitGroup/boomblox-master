@@ -28,7 +28,7 @@ global $theme;
         Crafting an effective ad is an art. A good ad can get you more visitors for less money compared to a poor ad. For tips and tricks, read the tutorial <a href="https://rbxlegacy.wiki/index.php?title=How_to_Design_an_Effective_Ad">How To Design an Effective Ad.</a>
     </p><br>
     <p><b>Upload an Ad</b></p>
-    <input id="filename" type="text" name="ctl00$cphRoblox$adFile" disabled="" value="">
+    <input id="filename" type="text" name="ctl00$cphRoblox$adFileName" disabled="" value="">
     <input type="file" name="ctl00$cphRoblox$adFile"><br>
     <p><b>Name your ad (users will see this text when they mouse-over your ad)</b></p>
     <input type="text" maxlength="50" name="ctl00$cphRoblox$adName" class="TextBox" style="margin-bottom:5px"><br>
