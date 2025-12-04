@@ -1,6 +1,7 @@
 <?php
 class UserAd {
     public int $id;
+    public int $assetId;
     public string $name;
     public User $creator;
     public string $size;
@@ -32,7 +33,9 @@ class UserAd {
         $ad = $result->fetch(PDO::FETCH_ASSOC);
 
         $this->id = $id;
+        $this->assetId = $ad["assetId"];
         $this->name = $ad["name"];
+        $this->md5 = $ad["md5"];
         $this->created_at = new DateTime($ad["created_at"]);
         $this->last_ran = new DateTime($ad["last_ran"]);
         $this->creator = new User($ad["creator"]);
@@ -46,16 +49,33 @@ class UserAd {
         $this->last_bid = $ad["last_bid"];
     }
 
-    public static function new(string $name, User $creator, string $size, string $md5) {
+    public function id() { return $this->id; }
+    public function assetId() { return $this->assetId; }
+    public function name() { return $this->name; }
+    public function creator() { return $this->creator; }
+    public function size() { return $this->size; }
+    public function md5() { return $this->md5; }
+    public function running() { return $this->running; }
+    public function impressions() { return $this->impressions; }
+    public function clicks() { return $this->clicks; }
+    public function bid() { return $this->bid; }
+    public function last_impressions() { return $this->last_impressions; }
+    public function last_clicks() { return $this->last_clicks; }
+    public function last_bid() { return $this->last_bid; }
+    public function last_ctr() { return $this->last_impressions > 0 ? ($this->last_clicks/$this->last_impressions) * 100 . "%" : "0%"; }
+    public function ctr() { return $this->impressions > 0 ? ($this->clicks/$this->impressions) * 100 . "%" : "0%"; }
+
+    public static function new(string $name, User $creator, string $size, string $md5, int $assetId) {
         global $db;
 
-        $stmt = "INSERT INTO ads (`name`, `created_at`, `creator`, `size`, `md5`) VALUES (:xname, :created_at, :creator, :xsize, :md5)";
+        $stmt = "INSERT INTO ads (`name`, `created_at`, `creator`, `size`, `md5`, `assetId`) VALUES (:xname, :created_at, :creator, :xsize, :md5, :assetId)";
         $db->execute($stmt, [
             ":xname" => $name,
             ":created_at" => date("Y-m-d H:i:s"),
             ":creator" => $creator->getUserId(),
             ":xsize" => $size,
-            ":md5" => $md5
+            ":md5" => $md5,
+            ":assetId" => $assetId
         ]);
     }
 };

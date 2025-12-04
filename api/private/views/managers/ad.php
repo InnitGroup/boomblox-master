@@ -45,9 +45,10 @@ class AdManager {
         $fileName = pathinfo($file["name"], PATHINFO_FILENAME);
         $md5 = md5(file_get_contents($file["tmp_name"]));
         $filePath = $targetDirectory . (string)$md5;
+        $assetId = (int)$_GET["targetID"];
 
         global $user;
-        UserAd::new($_POST['ctl00$cphRoblox$adName'], $user, $width . "x" . $height, $md5);
+        UserAd::new($_POST['ctl00$cphRoblox$adName'], $user, $width . "x" . $height, $md5, $assetId);
 
         if (!move_uploaded_file($file["tmp_name"], $filePath)) {
             return (object)["Error" => "Error uploading file."];

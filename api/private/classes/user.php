@@ -75,7 +75,25 @@ class User {
     public function getUserId() {
         return $this->data["user"]["id"];
     }
-    
+    public function getAds($limit = 0) {
+        global $db;
+
+        $stmt = "SELECT id FROM ads WHERE creator=:userId";
+        if ($limit > 0) {
+            $stmt .= " LIMIT $limit";
+        }
+        $result = $db->execute($stmt, [":userId" => $this->getUserId()]);
+
+        $ads = [];
+        if ($result->rowCount() > 0) {
+            $fetchedAds = $result->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($fetchedAds as $fetchedAd) {
+                array_push($ads, new UserAd($fetchedAd["id"]));
+            }
+        }
+
+        return $ads;
+    }
     public function isStaff() {
         return $this->data["user"]["level"] > 1;
     }
