@@ -4,13 +4,13 @@
         <p>Staff have the ability to award products and provide reasoning.</p>
         <br>
         <label>User ID or Username: <i>if using username, begin with <pre>u:</pre></i></label>
-        <input type="text" name="ctl00$robloxCph$userId" required>
+        <input type="text" name="ctl00$robloxCph$userId" <?=isset($_GET["UserID"]) ? "value='" . (int)$_GET["UserID"] . "'" : ""?> required>
         <br>
         <label>Item ID:</label>
-        <input type="text" name="ctl00$robloxCph$itemId" required>
+        <input type="text" name="ctl00$robloxCph$itemId" <?=isset($_GET["ItemID"]) ? "value='" . (int)$_GET["ItemID"] . "'" : ""?> required>
         <br>
         <label>Reason:</label>
-        <input type="text" name="ctl00$robloxCph$reason" required>
+        <input type="text" name="ctl00$robloxCph$reason" <?=isset($_GET["Reason"]) ? "value='" . htmlspecialchars($_GET["Reason"]) . "'" : ""?> required>
         <br>
         <input type="submit" value="Award">
         <br>

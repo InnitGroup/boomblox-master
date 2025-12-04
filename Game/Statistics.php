@@ -131,6 +131,12 @@ switch ($type) {
             if ($_GET["Key"] == "AWESOME1SAUCE") {
                 $stmt = "UPDATE users SET kos = kos + 1 WHERE id=:userId";
                 $db->execute($stmt, [":userId" => $user]);
+                $stmt = "INSERT INTO `statistics` (killer, victim, died_at) VALUES (:killer, :victim, :died_at)";
+                $db->execute($stmt, [
+                    ":killer" => $user,
+                    ":victim" => $associate,
+                    ":died_at" => date("Y-m-d H:i:s")
+                ]);
                 $player = new User($user);
                 $player->giveTix(2);
                 #Discord::sendWebhookMessage("games", $player->getUsername() . " got a kill");
