@@ -59,7 +59,7 @@ $amount = count($ads);
                         <span>Ad Status:</span><br><br>
                         <img src="/images/AdPending.png">
                         <p>Pending approval</p>
-                        <p style="padding-left: 8px;"><a href="#">Run Ad</a><br><a href="#">Remove</a></p>
+                        <p style="padding-left: 8px;"><a href="/My/AdBuy.aspx?AdID=<?=$ad->id()?>">Run Ad</a><br><a href="#">Remove</a></p>
                     </div>
                 </div>
             <?php endforeach; ?>

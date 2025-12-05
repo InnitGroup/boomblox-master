@@ -11,9 +11,9 @@ global $theme;
     <ol>
         <li>
             <p>First you need to choose which size ad you want to make. There are currently three options. Each has a template that you can download to help you get started:</p><br>
-            <p><a href="#">Download 728 x 90 Banner Template</a></p><br>
-            <p><a href="#">Download 160 x 600 Skyscraper Template</a></p><br>
-            <p><a href="#">Download 300 x 250 Large Rectangle Template</a></p><br>
+            <p><a href="/images/ads/AdBannerTemplate.png" target="_blank">Download 728 x 90 Banner Template</a></p><br>
+            <p><a href="/images/ads/AdSkyscraperTemplate.png" target="_blank">Download 160 x 600 Skyscraper Template</a></p><br>
+            <p><a href="/images/ads/AdRectangleTemplate.png" target="_blank">Download 300 x 250 Large Rectangle Template</a></p><br>
         </li>
         <li><p>Use image editing software to craft an enticing ad.</p></li>
         <li><p>Save the customized ad to your computer.</p></li>
@@ -33,5 +33,4 @@ global $theme;
     <p><b>Name your ad (users will see this text when they mouse-over your ad)</b></p>
     <input type="text" maxlength="50" name="ctl00$cphRoblox$adName" class="TextBox" style="margin-bottom:5px"><br>
     <a class="Button" href="javascript:__doPostBack('ctl00$cphRoblox$lbUpload','')">Upload</a>
-    <?=var_dump($_POST);?>
 </div>
