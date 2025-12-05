@@ -8,7 +8,7 @@ global $theme, $auth, $user;
 $page = new PageBuilder(Site::getThemeProperty("alias",$theme).": A FREE Virtual World-Building Game with Avatar Chat, 3D Environments, and Physics", $theme, "/templates/authheader.php", [], "edititem"); # 
 $page->buildHeader();
 
-PageBuilder::addComponent("userad", "inventory");
+PageBuilder::addComponent("userad", "buy");
 
 $page->buildFooter();
 ?>
