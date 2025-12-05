@@ -66,6 +66,20 @@ class UserAd {
     public function last_ctr() { return $this->last_impressions > 0 ? ($this->last_clicks/$this->last_impressions) * 100 . "%" : "0%"; }
     public function ctr() { return $this->impressions > 0 ? ($this->clicks/$this->impressions) * 100 . "%" : "0%"; }
 
+    public function getImage() {
+        switch ($this->status()) {
+            case "pending":
+                return "https://t2.xoblog.dev/unavail-250x250.png";
+                break;
+            case "rejected":
+                return "https://t2.xoblog.dev/unapproved-250x250.png";
+                break;
+            default:
+                return "https://t4.xoblog.dev/{$this->md5()}";
+                break;
+        }
+    }
+
     public static function new(string $name, User $creator, string $size, string $md5, int $assetId) {
         global $db;
 
