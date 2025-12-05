@@ -2,11 +2,12 @@
 class UserAd {
     public int $id;
     public int $assetId;
-    public string $name;
     public User $creator;
+
+    public string $name;
     public string $size;
     public string $md5;
-    public int $running;
+    public string $status;
 
     public DateTime $created_at;
     public DateTime $last_ran;
@@ -40,7 +41,7 @@ class UserAd {
         $this->last_ran = new DateTime($ad["last_ran"]);
         $this->creator = new User($ad["creator"]);
         $this->size = $ad["size"];
-        $this->running = $ad["running"];
+        $this->status = $ad["status"];
         $this->impressions = $ad["impressions"];
         $this->clicks = $ad["clicks"];
         $this->bid = $ad["bid"];
@@ -55,7 +56,7 @@ class UserAd {
     public function creator() { return $this->creator; }
     public function size() { return $this->size; }
     public function md5() { return $this->md5; }
-    public function running() { return $this->running; }
+    public function status() { return $this->status; }
     public function impressions() { return $this->impressions; }
     public function clicks() { return $this->clicks; }
     public function bid() { return $this->bid; }

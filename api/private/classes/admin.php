@@ -188,11 +188,25 @@ class Admin {
         }
     }
 
+    # accepts an ad
+    public static function acceptAd($assetId) {
+        global $db;
+        $stmt = "UPDATE ads SET `status` = 'stopped' WHERE id=:assetId";
+        $db->execute($stmt, [":assetId" => $assetId]);
+    }
+
     # blocks an asset, regardless of pending or not, by asset id
     public static function blockAsset($assetId) {
         global $db;
         $stmt = "UPDATE items SET `status`='blocked', lastUpdate=:lastUpdate WHERE itemId=:itemId";
         $db->execute($stmt, [":itemId" => $assetId, ":lastUpdate" => date("Y-m-d H:i:s")]);
+    }
+
+    # blocks an ad
+    public static function acceptAd($assetId) {
+        global $db;
+        $stmt = "UPDATE ads SET `status` = 'rejected' WHERE id=:assetId";
+        $db->execute($stmt, [":assetId" => $assetId]);
     }
 
     # returns a list or count of users to review (TBD)

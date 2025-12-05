@@ -57,9 +57,33 @@ $amount = count($ads);
                     </div>
                     <div style="width:33%; float: left;">
                         <span>Ad Status:</span><br><br>
+                        <?php switch ($ad->status()): 
+                            case "pending": ?>
                         <img src="/images/AdPending.png">
                         <p>Pending approval</p>
-                        <p style="padding-left: 8px;"><a href="/My/AdBuy.aspx?AdID=<?=$ad->id()?>">Run Ad</a><br><a href="#">Remove</a></p>
+                        <p style="padding-left: 8px;"><span style="color:#dcdcdc;">Run Ad</span>
+                            <?php break; 
+                                case "rejected": ?>
+                        <img src="/images/AdRejected.png">
+                        <p>Rejected</p>
+                        <p style="padding-left: 8px;"><span style="color:#dcdcdc;">Run Ad</span>
+                            <?php break;
+                                case "running": ?>
+                        <img src="/images/AdRunning.png">
+                        <p>Running</p>
+                        <p style="padding-left: 8px;"><span style="color:#dcdcdc;">Run Ad</span>
+                            <?php break;
+                                case "stopped": ?>
+                        <img src="/images/AdStopped.png">
+                        <p>Not running</p>
+                        <p style="padding-left: 8px;"><a href="/My/AdBuy.aspx?AdID=<?=$ad->id()?>">Run Ad</a>
+                            <?php break;
+                                default: ?>
+                        <img src="/images/AdPending.png">
+                        <p>Pending approval</p>
+                        <p style="padding-left: 8px;"><a href="javascript:alert('Ad is pending approval')" disabled>Run Ad</a>
+                            <?php break; endswitch; ?>
+                        <br><a href="#">Remove</a></p>
                     </div>
                 </div>
             <?php endforeach; ?>
