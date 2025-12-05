@@ -17,7 +17,17 @@ $amount = count($ads);
                     <div style="width:23%; float: left;">
                         <span style="font-weight: bold; font-size: 13px;">Ad: <?=htmlspecialchars($ad->name())?></span>
                         <div style="text-align: center; width: 80%; height: 100px; position: relative; left: -15px;">
-                            <img src="http://t4.xoblog.dev/<?=$ad->md5()?>" style="max-height: 100px; max-width: 80%; border: 1px #000 solid">
+                            <img src="<?php switch ($ad->status()):
+                                case "pending": ?>
+                                    https://t2.xoblog.dev/unavail-250x250.png
+                                    <?php break;
+                                case "rejected": ?>
+                                    https://t2.xoblog.dev/unapproved-250x250.png
+                                    <?php break;
+                                default: ?>
+                                    https://t4.xoblog.dev/<?=$ad->md5()?>
+                                <?php break; endswitch; ?>
+                            " style="max-height: 100px; max-width: 80%; border: 1px #000 solid">
                         </div>
                         <p><a href="/Item.aspx?ID=<?=$ad->assetId()?>">Destination <?=htmlspecialchars($ad->name())?></a></p>
                     </div>
@@ -76,7 +86,7 @@ $amount = count($ads);
                                 case "stopped": ?>
                         <img src="/images/AdStopped.png">
                         <p>Not running</p>
-                        <p style="padding-left: 8px;"><a href="/My/AdBuy.aspx?AdID=<?=$ad->id()?>">Run Ad</a>
+                        <p style="padding-left: 8px;"><a href="/My/AdBuy.aspx?adId=<?=$ad->id()?>">Run Ad</a>
                             <?php break;
                                 default: ?>
                         <img src="/images/AdPending.png">

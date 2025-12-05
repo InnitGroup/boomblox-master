@@ -203,7 +203,7 @@ class Admin {
     }
 
     # blocks an ad
-    public static function acceptAd($assetId) {
+    public static function blockAd($assetId) {
         global $db;
         $stmt = "UPDATE ads SET `status` = 'rejected' WHERE id=:assetId";
         $db->execute($stmt, [":assetId" => $assetId]);

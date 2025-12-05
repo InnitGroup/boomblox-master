@@ -54,7 +54,7 @@ if (Server::isPost()) {
                     <?php 
                     if (!empty($assets)) {
                         foreach ($assets as $key => $asset) {
-                            $name = "Ad: " . $asset["itemName"];
+                            $name = $asset["itemName"];
                             $texture = "/cdn/t2/unavail-420x230.png";
 
                             if ($file = File::getImageType($_SERVER["DOCUMENT_ROOT"]."/cdn/t3/".$asset["itemId"])) {
@@ -77,13 +77,11 @@ if (Server::isPost()) {
                     <?php 
                     if (!empty($ads)) {
                         foreach ($ads as $key => $ad) {
-                            $name = $ad["name"];
+                            $name = "Ad: " . $ad["name"];
                             $texture = "/cdn/t2/unavail-420x230.png";
 
-                            if ($file = File::getImageType($_SERVER["DOCUMENT_ROOT"]."/cdn/t4/".$ad["md5"])) {
-                                if (file_exists($_SERVER["DOCUMENT_ROOT"] . "/cdn/t4/".$ad["md5"])) {
-                                    $texture = "/cdn/t4/".$ad["md5"];
-                                }
+                            if (file_exists($_SERVER["DOCUMENT_ROOT"] . "/cdn/t4/".$ad["md5"])) {
+                                $texture = "https://t4.xoblog.dev/".$ad["md5"];
                             }
                             
                             $id = $ad["id"];
