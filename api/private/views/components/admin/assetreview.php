@@ -26,12 +26,12 @@ if (Server::isPost()) {
                 case "Block":
                     Admin::blockAsset($assetId);
                     break;
-                #case "OK_AD": 
-                #    Admin::acceptAd($assetId);
-                #    break;
-               # case "Block_AD": 
-                #    Admin::acceptAd($assetId);
-               #     break;
+                case "OK_AD": 
+                    Admin::acceptAd($assetId);
+                    break;
+                case "Block_AD": 
+                    Admin::blockAd($assetId);
+                    break;
                 default;
             }
         }
