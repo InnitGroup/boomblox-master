@@ -119,6 +119,9 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
                     <div id="Configuration">
                         <a href="/My/Place.aspx?ID=<?=$id?>">Configure this Place</a>
                     </div>
+					<div id="Advertise">
+                        <a href="/My/NewUserAd.aspx?targetID=<?=$id?>">Configure this Place</a>
+                    </div>
                 <?php endif; ?>
 				<div style="clear: both;"></div>
 			</div>

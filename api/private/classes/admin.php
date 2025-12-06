@@ -274,6 +274,16 @@ class Admin {
         return $fetched;
     }
 
+    public static function getAdsToReview($count = true) {
+        global $db;
+        $stmt = "SELECT * FROM ads WHERE `status`='pending'";
+        $result = $db->execute($stmt);
+        $fetched = $result->fetchAll(PDO::FETCH_ASSOC);
+        if ($count) {
+            return count($fetched);
+        }
+    }
+
     # get of linkTreeOptions array
     public static function getLinkTreeOptions() {
         return self::$linkTreeOptions;

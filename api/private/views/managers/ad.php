@@ -71,5 +71,11 @@ class AdManager {
         $ad->placeBid($bidAmount);
         exit(header("Location: /My/AdInventory.aspx"));
     }
+
+    public static function isWhitelisted() {
+        global $user;
+        $whitelist = ["platos", "marsoc", "jur", "khayden_1", "pwnzor", "maskotgame", "johndoe", "adam", "g2hjs", "idontknowwhat", "jacek", "kainsteronyt", "red1993", "spades"];
+        return in_array(strtolower($user->getUsername()), $whitelist);
+    }
 }
 ?>

@@ -62,19 +62,35 @@ class UserAd {
     public function last_impressions() { return $this->last_impressions; }
     public function last_clicks() { return $this->last_clicks; }
     public function last_bid() { return $this->last_bid; }
-    public function last_ctr() { return count($this->last_impressions) > 0 ? (count($this->last_clicks)/count($this->last_impressions)) * 100 . "%" : "0%"; }
-    public function ctr() { return $this->impressions > 0 ? ($this->clicks/$this->impressions) * 100 . "%" : "0%"; }
+    public function last_ctr() { return count($this->last_impressions) > 0 ? round((count($this->last_clicks)/count($this->last_impressions)), 2) * 100 . "%" : "0%"; }
+    public function ctr() { return $this->impressions > 0 ? round(($this->clicks/$this->impressions), 2) * 100 . "%" : "0%"; }
+    public function last_ran() { return $this->last_ran; }
+    public function created_at() { return $this->created_at; }
 
     public function placeBid(int $amount) {
         global $db;
 
         $this->creator->takeTix($amount);
-        $stmt = "UPDATE ads SET last_bid = :bid, bid = bid + last_bid, `status` = 'running', last_ran = :xnow WHERE id=:adId";
+        $stmt = "UPDATE ads SET last_impressions = NULL, last_clicks = NULL, last_bid = :bid, bid = bid + last_bid, `status` = 'running', last_ran = :xnow WHERE id=:adId";
         $db->execute($stmt, [
             ":bid" => $amount,
             ":xnow" => date("Y-m-d H:i:s"),
             ":adId" => $this->id()
         ]);
+    }
+
+    public function deactivate() {
+        global $db;
+
+        $stmt = "UPDATE ads SET `status` = 'stopped' WHERE id=:adId";
+        $db->execute($stmt, [":adId" => $this->id()]);
+    }
+
+    public function checkIfValid() {
+        $daysSinceRan = Helper::bTimeAgo($this->last_ran());
+        if ($daysSinceRan > 0) {
+           $this->deactivate();
+        }
     }
 
     public function addImpression() {

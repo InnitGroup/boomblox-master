@@ -81,6 +81,9 @@ if (isset($data->itemDescription)) {
         <div id="Configuration">
             <a href="/My/Item.aspx?ID=<?=$data->itemId?>">Configure <?=isset($data->catalogType) && $data->catalogType == "Pants" ? "these" : "this"; ?> <?=$data->catalogType?></a>
         </div>
+        <div id="Advertise">
+            <a href="/My/NewUserAd.aspx?targetID=<?=$data->itemId?>">Advertise <?=isset($data->catalogType) && $data->catalogType == "Pants" ? "these" : "this"; ?> <?=$data->catalogType?></a>
+        </div>
     <?php endif; ?>
     <?php if ($user->hasItem($data->itemId)): ?>
         <div id="ctl00_cphRoblox_ItemOwnershipPanel" style="clear:both;">

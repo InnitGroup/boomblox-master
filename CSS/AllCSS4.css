@@ -19,6 +19,19 @@ body {
    a {
     text-decoration:none;
    }
+      #ItemContainer #Advertise {
+  background-color: var(--tonedBackground);
+  border-bottom: dashed 1px var(--border);
+  border-left: dashed 1px var(--border);
+  border-right: dashed 1px var(--border);
+  clear: right;
+  float: right;
+  margin-left: 10px;
+  margin-top: 0;
+  padding: 5px 10px;
+  text-align: center;
+  width: 249px;
+}
    a:link,
    a:visited,
    a:active {

@@ -9,7 +9,7 @@
     <hr>
     <p style="margin:0 0 0 0;">
         <b><?=Admin::getReportsToReview(true)?></b> <a href="/Admi/Moderation/AbuseReports.aspx">abuse reports</a>,
-        <b><?=Admin::getImagesToReview(true)?></b> <a href="/Admi/Moderation/AssetReview.aspx">images</a>,
+        <b><?=Admin::getImagesToReview(true) + Admin::getAdsToReview()?></b> <a href="/Admi/Moderation/AssetReview.aspx">images</a>,
         <b><?=Admin::getUsersToReview(true)?></b> <a href="/Admi/Users/ModerateUser.aspx">users</a>,
     </p>
     <p style="margin:0 0 0 0;"><a href="/Default.aspx">Roblox</a> <a href="/Admi/Users/Find.aspx">FindUser</a></p>
