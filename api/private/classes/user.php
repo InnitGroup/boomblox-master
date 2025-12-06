@@ -456,6 +456,13 @@ class User {
 
         return $visits;
     }
+    public function getLastWeekKOs() {
+        global $db;
+
+        $stmt = "SELECT killer FROM `statistics` WHERE killer=:killerId AND `died_at` >= CURRENT_DATE - INTERVAL 7 DAY AND `died_at` < CURRENT_DATE";
+        $result = $db->execute($stmt, [":killerId" => $this->getUserId()]);
+        return $result->rowCount();
+    }
     public function getUsername() {
         return $this->data["user"]["username"];
     }

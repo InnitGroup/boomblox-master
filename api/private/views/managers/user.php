@@ -267,7 +267,7 @@ class UserManager {
 							<acronym title="The number of times this user\'s character has destroyed another user\'s character in-game.">Knockouts</acronym>:
 						</div>
 						<div class="Value">
-							<span>'.number_format($this->user->getData("user", "kos")).' ( last week)</span>
+							<span>'.number_format($this->user->getData("user", "kos")).' ('.number_format($this->user->getLastWeekKOs()).' last week)</span>
 						</div>
 					</div>
 				</div>
