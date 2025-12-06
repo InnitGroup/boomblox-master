@@ -36,3 +36,4 @@ $availablePlaces = $user->getAvailablePlaces()
     <h4><?=Site::getThemeProperty("membership", $theme)?> Member until <?=$user->bcExpires()?></h4>
     <?php endif; ?>
 </div>
+<?=Ad::generateAd("300x250")?>
