@@ -62,7 +62,7 @@ if ($user->getUserId() == $place["creatorId"]) {
                 <?php endif; endif; ?>
             </div>
             <div class="Statistics">
-                <span>Visited <?=number_format($place["interactions"])?> times ( last week)</span>
+                <span>Visited <?=number_format($place["interactions"])?> times (<?=number_format($user->getLastWeekVisits($place["itemId"]))?> last week)</span>
             </div>
             <div class="Thumbnail">
                 <a disabled="disabled" title="<?=htmlspecialchars($place["itemName"])?>" href="/Item.aspx?ID=<?=$place["itemId"]?>" style="display:inline-block;">

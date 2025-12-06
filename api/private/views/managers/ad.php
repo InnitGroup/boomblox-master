@@ -1,6 +1,7 @@
 <?php
 class AdManager {
     private $allowedFileTypes = ["png", "jpg", "jpeg"];
+
     public function handleUpload() {
         global $db; 
 
@@ -58,8 +59,17 @@ class AdManager {
         exit;
     }
 
-    public function __construct() {
-        
+    public function adBuy() {
+        if (!isset($_POST['ctl00$cphRoblox$AdPlaceBid'])) {
+            exit(header("Location: /My/AdInventory.aspx"));
+        }
+
+        $adId = (int)$_GET["adId"];
+        $bidAmount = (int)$_POST['ctl00$cphRoblox$BidAmount'];
+
+        $ad = new UserAd($adId);
+        $ad->placeBid($bidAmount);
+        exit(header("Location: /My/AdInventory.aspx"));
     }
 }
 ?>

@@ -19,8 +19,8 @@ $ad = new UserAd($adId);
     </div>
     <div style="margin-top: 5px;">
         <span>Bid in Tix</span>
-        <input type="text" class="TextBox"><br>
-        <input type="submit" class="MediumButton" value="Place Bid">
-        <input type="submit" class="MediumButton" value="Cancel">
+        <input type="text" name = "ctl00$cphRoblox$BidAmount" class="TextBox"><br>
+        <input type="submit" name="ctl00$cphRoblox$AdPlaceBid" class="MediumButton" value="Place Bid">
+        <input type="submit" name="ctl00$cphRoblox$Cancel" class="MediumButton" value="Cancel">
     </div>
 </div>

@@ -66,6 +66,18 @@ class UserAd {
     public function last_ctr() { return $this->last_impressions > 0 ? ($this->last_clicks/$this->last_impressions) * 100 . "%" : "0%"; }
     public function ctr() { return $this->impressions > 0 ? ($this->clicks/$this->impressions) * 100 . "%" : "0%"; }
 
+    public function placeBid(int $amount) {
+        global $db;
+
+        $this->creator->takeTix($amount);
+        $stmt = "UPDATE ads SET last_bid = :bid, bid = bid + last_bid, `status` = 'running', last_ran = :xnow WHERE id=:adId";
+        $db->execute($stmt, [
+            ":bid" => $amount,
+            ":xnow" => date("Y-m-d H:i:s"),
+            ":adId" => $this->id()
+        ]);
+    }
+
     public function getImage() {
         switch ($this->status()) {
             case "pending":
