@@ -17,14 +17,14 @@ class Ad {
                 "/images/ads/ROtrisSkyscraper.png"
             ],
             "728x90" => [
-                "/images/ads/ROtrisSkyscraper.png"
+                "/images/ads/ROtrisRectangle.png"
             ],
             "300x250" => [
-                "/images/ads/ROtrisSkyscraper.png"
+                "/images/ads/ROtrisSquare.png"
             ]
         ];
 
-        return $ads[$size][array_rand($ads[$size])];
+        return (object)["isFallback" => true, "src" => $ads[$size][array_rand($ads[$size])]];
     }
 
     # ad generating algorithm for user ads

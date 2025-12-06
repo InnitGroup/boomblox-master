@@ -33,6 +33,7 @@ if (Server::isPost()) {
             <input type="hidden" name="__EVENTTARGET">
             <input type="hidden" name="__VIEWSTATE" value="<?=Viewstate::generateViewState()?>">
             <div id="Container">
+                <?=Ad::generateAd("728x90")?>
                 <div id="Header">
                     <div id="Banner">
                         <div id="Options">
