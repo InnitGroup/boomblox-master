@@ -16,10 +16,9 @@ class UserAd {
     public int $clicks;
     public int $bid;
 
-    public int $last_impressions;
-    public int $last_clicks;
+    public array $last_impressions;
+    public array $last_clicks;
     public int $last_bid;
-    
 
     public function __construct(int $id) {
         global $db;
@@ -45,8 +44,8 @@ class UserAd {
         $this->impressions = $ad["impressions"];
         $this->clicks = $ad["clicks"];
         $this->bid = $ad["bid"];
-        $this->last_impressions = $ad["last_impressions"];
-        $this->last_clicks = $ad["last_clicks"];
+        $this->last_impressions = $ad["last_impressions"] !== NULL ? unserialize($ad["last_impressions"]) : array();
+        $this->last_clicks = $ad["last_clicks"] !== NULL ? unserialize($ad["last_clicks"]) : array();
         $this->last_bid = $ad["last_bid"];
     }
 
@@ -63,7 +62,7 @@ class UserAd {
     public function last_impressions() { return $this->last_impressions; }
     public function last_clicks() { return $this->last_clicks; }
     public function last_bid() { return $this->last_bid; }
-    public function last_ctr() { return $this->last_impressions > 0 ? ($this->last_clicks/$this->last_impressions) * 100 . "%" : "0%"; }
+    public function last_ctr() { return count($this->last_impressions) > 0 ? (count($this->last_clicks)/count($this->last_impressions)) * 100 . "%" : "0%"; }
     public function ctr() { return $this->impressions > 0 ? ($this->clicks/$this->impressions) * 100 . "%" : "0%"; }
 
     public function placeBid(int $amount) {
@@ -76,6 +75,38 @@ class UserAd {
             ":xnow" => date("Y-m-d H:i:s"),
             ":adId" => $this->id()
         ]);
+    }
+
+    public function addImpression() {
+        global $db, $user;
+
+        $impressions = $this->last_impressions();
+        
+        if (!in_array($user->getUserId(), $impressions)) {
+
+            array_push($impressions, $user->getUserId());
+            $stmt = "UPDATE ads SET last_impressions = :last_impressions, impressions = impressions + 1 WHERE id=:adId";
+            $db->execute($stmt, [
+                ":last_impressions" => serialize($impressions),
+                ":adId" => $this->id()
+            ]);
+        }
+    }
+
+    public function addClick() {
+        global $db, $user;
+
+        $clicks = $this->last_clicks();
+        
+        if (!in_array($user->getUserId(), $clicks)) {
+
+            array_push($clicks, $user->getUserId());
+            $stmt = "UPDATE ads SET last_clicks = :last_clicks, clicks = clicks + 1 WHERE id=:adId";
+            $db->execute($stmt, [
+                ":last_clicks" => serialize($clicks),
+                ":adId" => $this->id()
+            ]);
+        }
     }
 
     public function getImage() {

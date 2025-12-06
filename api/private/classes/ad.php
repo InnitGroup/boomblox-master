@@ -12,11 +12,22 @@ class Ad {
     }
 
     public static function fallbackAds($size) {
-        $_160x600 = [];
-        $_728x90 = [];
-        $_300x250 = [];
+        $ads = [
+            "160x600" => [
+                "/images/ads/ROtrisSkyscraper.png"
+            ],
+            "728x90" => [
+                "/images/ads/ROtrisSkyscraper.png"
+            ],
+            "300x250" => [
+                "/images/ads/ROtrisSkyscraper.png"
+            ]
+        ];
+
+        return $ads[$size][array_rand($ads[$size])];
     }
 
+    # ad generating algorithm for user ads
     public static function algorithm($size) {
         global $db;
 
@@ -38,11 +49,13 @@ class Ad {
         foreach ($ads as $ad) {
             $rand -= $ad["last_bid"];
             if ($rand <= 0) {
-                return $ad["md5"];
+                $userAd = new UserAd($ad["id"]);
+                return $userAd;
             }
         }
 
-        return end($ads)["md5"];
+        $userAd = new UserAd(end($ads)["id"]);
+        return $userAd;
     }
 }
 ?>

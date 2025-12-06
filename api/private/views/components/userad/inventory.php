@@ -35,12 +35,12 @@ $amount = count($ads);
                             </tr>
                             <tr>
                                 <td>Impressions</td>
-                                <td><?=$ad->last_impressions()?></td>
+                                <td><?=count($ad->last_impressions())?></td>
                                 <td><?=$ad->impressions()?></td>
                             </tr>
                             <tr>
                                 <td>Clicks</td>
-                                <td><?=$ad->last_clicks()?></td>
+                                <td><?=count($ad->last_clicks())?></td>
                                 <td><?=$ad->clicks()?></td>
                             </tr>
                             <tr>
