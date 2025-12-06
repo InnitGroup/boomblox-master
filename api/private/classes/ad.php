@@ -4,11 +4,45 @@ class Ad {
 
     # generates an ad
     public static function generateAd($size) {
-        switch ($size) {
-            case "160x600":
-                PageBuilder::addComponent("ad", "160x600");
-            break;
+        $sizes = ["160x600", "728x90", "300x250"];
+
+        if (in_array($size, $sizes)) {
+            PageBuilder::addComponent("ad", $size);
         }
+    }
+
+    public static function fallbackAds($size) {
+        $_160x600 = [];
+        $_728x90 = [];
+        $_300x250 = [];
+    }
+
+    public static function algorithm($size) {
+        global $db;
+
+        $stmt = "SELECT * FROM ads WHERE `last_bid` > 0 AND `status` = 'running' AND `size` = :_size ORDER BY `last_bid` DESC";
+        $result = $db->execute($stmt, [":_size" => $size]);
+        if ($result->rowCount() == 0) {
+            return self::fallbackAds($size);
+        }
+
+        $ads = $result->fetchAll(PDO::FETCH_ASSOC);
+
+        $total = 0;
+        foreach ($ads as $ad) {
+            $total += $ad["last_bid"];
+        }
+
+        $rand = mt_rand() / mt_getrandmax() * $total;
+
+        foreach ($ads as $ad) {
+            $rand -= $ad["last_bid"];
+            if ($rand <= 0) {
+                return $ad["md5"];
+            }
+        }
+
+        return end($ads)["md5"];
     }
 }
 ?>
