@@ -81,9 +81,9 @@ $amount = count($ads);
                                 default: ?>
                         <img src="/images/AdPending.png">
                         <p>Pending approval</p>
-                        <p style="padding-left: 8px;"><a href="javascript:alert('Ad is pending approval')" disabled>Run Ad</a>
+                        <p style="padding-left: 8px;"><a disabled>Run Ad</a>
                             <?php break; endswitch; ?>
-                        <br><a href="#">Remove</a></p>
+                        <br><a href="javascript:__doPostBack('ctl00$cphRoblox$RemoveAd', '<?=$ad->id()?>')">Remove</a></p>
                     </div>
                 </div>
             <?php endforeach; ?>

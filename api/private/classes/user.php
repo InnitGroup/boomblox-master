@@ -78,7 +78,7 @@ class User {
     public function getAds($limit = 0) {
         global $db;
 
-        $stmt = "SELECT id FROM ads WHERE creator=:userId";
+        $stmt = "SELECT id FROM ads WHERE creator=:userId AND archived=0";
         if ($limit > 0) {
             $stmt .= " LIMIT $limit";
         }

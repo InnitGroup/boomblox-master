@@ -15,6 +15,7 @@ class UserAd {
     public int $impressions;
     public int $clicks;
     public int $bid;
+    public int $archived;
 
     public array $last_impressions;
     public array $last_clicks;
@@ -47,6 +48,7 @@ class UserAd {
         $this->last_impressions = $ad["last_impressions"] !== NULL ? unserialize($ad["last_impressions"]) : array();
         $this->last_clicks = $ad["last_clicks"] !== NULL ? unserialize($ad["last_clicks"]) : array();
         $this->last_bid = $ad["last_bid"];
+        $this->archived = $ad["archived"];
     }
 
     public function id() { return $this->id; }
@@ -86,6 +88,17 @@ class UserAd {
 
         $stmt = "UPDATE ads SET `status` = 'stopped' WHERE id=:adId";
         $db->execute($stmt, [":adId" => $this->id()]);
+    }
+
+    # static ->deactivate()
+    public static function remove(int $id) {
+        global $db, $user;
+
+        $stmt = "UPDATE ads SET `status` = 'stopped', `archived` = 1 WHERE id=:adId AND creator=:userId";
+        $db->execute($stmt, [
+            ":adId" => $id,
+            ":userId" => $user->getUserId()
+        ]);
     }
 
     public function checkIfValid() {
