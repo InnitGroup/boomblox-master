@@ -99,5 +99,14 @@ class Thread {
 
         return $replies;
     }
+
+    public function countReplies() {
+        global $db;
+
+        $stmt = "SELECT COUNT(*) FROM threads WHERE parentPost=:threadId";
+        $result = $db->execute($stmt, [":threadId" => $this->getId()]);
+        
+        return $result->fetch(PDO::FETCH_ASSOC)["COUNT(*)"];
+    }
 };
 ?>

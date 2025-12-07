@@ -62,7 +62,7 @@ global $forum, $user;
 								<td class="forumRowHighlight" align="left" width="100">&nbsp; <a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=<?=$thread->getAuthor()->getUsername()?>"><?=$thread->getAuthor()->getUsername()?></a>
 								</td>
 								<td class="forumRowHighlight" align="center" width="50">
-									<span class="normalTextSmaller">-</span>
+									<span class="normalTextSmaller"><?=$thread->countReplies()?></span>
 								</td>
 								<td class="forumRowHighlight" align="center" width="50">
 									<span class="normalTextSmaller"><?=$thread->viewCount()?></span>

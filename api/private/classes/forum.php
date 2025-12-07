@@ -137,6 +137,15 @@ class Forum {
             ":isReply" => (int)$isReply
         ]);
 
+        $stmt = "UPDATE forums SET threads = threads + :isntReply, posts = posts + 1, lastPostTime=:xnow, lastPoster=:authorId, lastPostId=:postId WHERE forumId=:forumId";
+        $db->execute($stmt, [
+            ":isntReply" => (int)!$isReply,
+            ":xnow" => date("Y-m-d H:i:s"),
+            ":authorId" => $authorId,
+            ":postId" => $parentPost !== NULL ? $parentPost : $db->lastInsertId("threads"),
+            ":forumId" => $this->getId()
+        ]);
+
         if ($parentPost == NULL) {
             return $db->lastInsertId("threads");
         }
