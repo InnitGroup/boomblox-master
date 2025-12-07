@@ -78,7 +78,7 @@ class AdManager {
         return in_array(strtolower($user->getUsername()), $whitelist);
     }
 
-    public static function trafficEstimator(int $bid) {
+    public static function trafficEstimator() {
         global $db;
 
         $stmt = "SELECT * FROM ads ORDER BY id DESC LIMIT 10";
@@ -102,7 +102,7 @@ class AdManager {
         $averageBid = $bid/$result->rowCount();
 
         $impressionsPerBid = $averageImpressions/$averageBid;
-        return round($bid * $impressionsPerBid);
+        return round($impressionsPerBid, 1);
     }
 }
 ?>
