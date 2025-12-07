@@ -1,6 +1,7 @@
 <?php
 PageBuilder::addComponent("forum", "header");
 PageBuilder::addComponent("forum", "navmenu");
+global $forum, $user;
 ?>
 
 <span id="ctl00_cphRoblox_ThreadView1">
@@ -16,7 +17,7 @@ PageBuilder::addComponent("forum", "navmenu");
 			</tr>
 			<tr>
 				<td valign="bottom" align="left">
-					<a id="ctl00_cphRoblox_ThreadView1_ctl00_NewThreadLinkTop" href="/Forum/AddPost.aspx?ForumID=13">
+					<a id="ctl00_cphRoblox_ThreadView1_ctl00_NewThreadLinkTop" href="/Forum/AddPost.aspx?ForumID=<?=$forum->getId()?>">
 						<img id="ctl00_cphRoblox_ThreadView1_ctl00_NewThreadImageTop" src="/Forum/skins/default/images/newtopic.gif" border="0">
 					</a>
 				</td>
@@ -39,7 +40,7 @@ PageBuilder::addComponent("forum", "navmenu");
 							</tr>
 
                             <?php
-                            global $forum, $user;
+                            
                             $posts = $forum->getPosts();
 
                             foreach ($posts as $post):
