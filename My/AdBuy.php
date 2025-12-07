@@ -6,7 +6,6 @@ global $theme, $auth, $user;
 !isset($_GET["adId"]) && Server::_404();
 
 $manager = new AdManager;
-!AdManager::isWhitelisted() && Server::_404();
 
 if (Server::isPost()) {
     $manager->adBuy();

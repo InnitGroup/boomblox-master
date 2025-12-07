@@ -5,7 +5,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
 global $theme, $auth, $user;
 !$auth->isAuthed() && Server::_404();
-!AdManager::isWhitelisted() && Server::_404();
 
 $ad = new AdManager;
 
