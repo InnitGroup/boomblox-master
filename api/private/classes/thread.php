@@ -2,6 +2,8 @@
 class Thread {
     private int $id;
     private int $forumId;
+    private int|null $parentPost;
+
     private bool $isReply;
     private bool $pinned;
     private User $author;
@@ -31,6 +33,7 @@ class Thread {
         $this->id = $thread["postId"];
         $this->forumId = $thread["forumId"];
         $this->isReply = (bool)$thread["isReply"];
+        $this->parentPost = $thread["parentPost"];
         $this->pinned = (bool)$thread["pinned"];
         $this->author = new User($thread["author"]);
         $this->title = $thread["threadTitle"];
@@ -51,6 +54,7 @@ class Thread {
     public function getLastActivity() { return $this->lastActivity; }
     public function getViews() { return $this->views; }
     public function viewCount() { return count($this->views); }
+    public function parentPost() { return $this->parentPost; }
 
     public function getAuthorBust() {
         $avatar = new Avatar($this->author->getUserId());
@@ -75,6 +79,25 @@ class Thread {
         $diff = $today->diff($lastActivity)->format("%a");
 
         return $diff == 0;
+    }
+
+    public function getReplies(int $limit = 25) {
+        global $db;
+
+        $stmt = "SELECT postId FROM threads WHERE parentPost=:threadId LIMIT $limit";
+        $result = $db->execute($stmt, [":threadId" => $this->getId()]);
+        if ($result->rowCount() == 0) {
+            return [];
+        }
+
+        $replies = [];
+        $fetchedReplies = $result->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($fetchedReplies as $fetchedReply) {
+            $reply = new Thread($fetchedReply["postId"]);
+            array_push($replies, $reply);
+        }
+
+        return $replies;
     }
 };
 ?>

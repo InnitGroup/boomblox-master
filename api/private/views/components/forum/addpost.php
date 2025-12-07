@@ -20,11 +20,45 @@ PageBuilder::addComponent("forum", "navmenu");
 	<table class="tableBorder" cellspacing="1" cellpadding="3" width="100%">
 		<tbody>
 			<tr>
-				<th class="tableHeaderText" align="left" height="25"> &nbsp; <span id="ctl00_cphRoblox_Createeditpost1_PostForm_PostTitle">Post a New Message</span>
+				<th class="tableHeaderText" align="left" height="25"> &nbsp; <span id="ctl00_cphRoblox_Createeditpost1_PostForm_PostTitle"><?php if (isset($_GET["PostID"])): ?> Reply to an Existing Message <?php else: ?> Post a New Message <?php endif; ?></span>
 				</th>
 			</tr>
 			<tr>
 				<td class="forumRow">
+					<?php if (isset($_GET["PostID"])): $thread = new Thread($_GET["PostID"])?>
+					The message you are replying to:
+					<table cellspacing="1" cellpadding="3">
+						<tbody>
+							<tr>
+								<td valign="top" nowrap="" align="right">
+									<span class="normalTextSmallBold">Posted By: </span>
+								</td>
+								<td valign="top" align="left" colspan="2">
+									<span class="normalTextSmall">
+										<span id="ctl00_cphRoblox_Createeditpost1_PostForm_PostAuthor"><a href="/User.aspx?ID=<?=$thread->getAuthor()->getUserId()?>"><?=$thread->getAuthor()->getUsername()?></a> on <?=$thread->getPostDate()->format("m-d-Y h:i A")?></span>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td nowrap="" valign="middle" align="right">
+									<span class="normalTextSmallBold">Subject: </span>
+								</td>
+								<td valign="top" align="left" colspan="2">
+									<span class="normalTextSmall"><a href="/Forum/ShowPost.aspx?PostID=<?=$thread->getId()?>"><?=htmlspecialchars($thread->getTitle())?></a></span>
+								</td>
+							</tr>
+							<tr>
+								<td nowrap="" valign="middle" align="right">
+									<span class="normalTextSmallBold">Message: </span>
+								</td>
+								<td valign="top" align="left" colspan="2">
+									<span class="normalTextSmall"><?=htmlspecialchars($thread->getContent())?></span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<br><br>
+					<?php endif; ?>
 					<table cellspacing="1" cellpadding="3">
 						<tbody>
 							<tr>
@@ -42,7 +76,7 @@ PageBuilder::addComponent("forum", "navmenu");
 									<span class="normalTextSmallBold">Subject: </span>
 								</td>
 								<td valign="top" align="left">
-									<input name="ctl00$cphRoblox$Createeditpost1$PostForm$PostSubject" type="text" size="55" id="ctl00_cphRoblox_Createeditpost1_PostForm_PostSubject" autocomplete="off">
+									<input name="ctl00$cphRoblox$Createeditpost1$PostForm$PostSubject" type="text" size="55" id="ctl00_cphRoblox_Createeditpost1_PostForm_PostSubject" autocomplete="off" value="<?=isset($_GET["PostID"]) ? "RE " . htmlspecialchars($thread->getTitle()) : ""?>">
 								</td>
 								<td>
 									<span id="ctl00_cphRoblox_Createeditpost1_PostForm_RequiredFieldValidator1" class="validationWarningSmall" style="color:Red;visibility:hidden;">Subject required.</span>

@@ -93,7 +93,10 @@ class Forum {
 
     public static function forumExists(int $forumId): bool {
         global $db;
-        # query for forum by id
+        $stmt = "SELECT forumId FROM forums WHERE forumId=:forumId";
+        $result = $db->execute($stmt, [":forumId" => $forumId]);
+
+        return $result->rowCount() == 1;
     }
 
     public static function getGroupByForum(int $forumId): int {
@@ -118,6 +121,27 @@ class Forum {
         }
 
         return $timeToFormat->format("d M Y h:i A");
+    }
+
+    public function addPost(int $authorId, int $parentPost = NULL, string $title, string $content, bool $isReply = false) {
+        global $db;
+
+        $stmt = "INSERT INTO threads (author, parentPost, threadTitle, threadContent, postDate, lastActivity, forumId, isReply) VALUES (:authorId, :parentPost, :title, :content, :xnow, :xnow, :forumId, :isReply)";
+        $db->execute($stmt, [
+            ":authorId" => $authorId,
+            ":parentPost" => $parentPost,
+            ":title" => $title,
+            ":content" => $content,
+            ":xnow" => date("Y-m-d H:i:s"),
+            ":forumId" => $this->getId(),
+            ":isReply" => (int)$isReply
+        ]);
+
+        if ($parentPost == NULL) {
+            return $db->lastInsertId("threads");
+        }
+        
+        return $parentPost;
     }
 }
 ?>

@@ -78,7 +78,7 @@ PageBuilder::addComponent("forum", "navmenu");
 																				<tr>
 																					<td>
 																						<span class="normalTextSmaller">
-																							<b>Total Posts: </b>584 </span>
+																							<b>Total Posts: </b><?=$thread->getAuthor()->getForumPosts(NULL, true)?> </span>
 																					</td>
 																				</tr>
 																				<tr>
@@ -97,7 +97,7 @@ PageBuilder::addComponent("forum", "navmenu");
 																						<a name="1964006">
 																							<br>
 																							<span class="normalTextSmaller"> Posted: </span>
-																							<span class="normalTextSmaller"><?=$thread->getPostDate()->format("j M Y g:i A")?></span>
+																							<span class="normalTextSmaller"><?=$thread->getPostDate()->format("m-d-Y h:i A")?></span>
 																						</a>
 																					</td>
 																				</tr>
@@ -116,16 +116,93 @@ PageBuilder::addComponent("forum", "navmenu");
 																				</tr>
 																				<tr>
 																					<td colspan="2">
-																						<a href="/Forum/AddPost.aspx?PostID=1964167&amp;mode=flat">
+																						<a href="/Forum/AddPost.aspx?PostID=<?=$thread->getId()?>&amp;mode=flat">
 																							<img border="0" src="/Forum/skins/default/images/newpost.gif">
 																						</a>
-																						<a href="/AbuseReport/ForumPost.aspx?PostID=1964006&amp;ReturnUrl=http%3a%2f%2fwww.roblox.com%2fForum%2fShowPost.aspx%3fPostID%3d1964006">Report Abuse</a>
+																						<a href="/AbuseReport/ForumPost.aspx?PostID=<?=$thread->getId()?>&amp;ReturnUrl=http%3a%2f%2fwww.roblox.com%2fForum%2fShowPost.aspx%3fPostID%3d1964006">Report Abuse</a>
 																					</td>
 																				</tr>
 																			</tbody>
 																		</table>
 																	</td>
 																</tr>
+																<?php if ($replies = $thread->getReplies()):
+																foreach ($replies as $count => $reply): ?>
+																<tr>
+																	<td class="forum<?=$count % 2 == 0 ? "Alternate" : "Row"?>" valign="top" nowrap="nowrap">
+																		<table border="0">
+																			<tbody>
+																				<tr>
+																					<td>
+																						<img src="/Forum/skins/default/images/user_IsOnline.gif" alt="EVILdemon1123 is not online. Last active: 1/10/2008 4:12:27 PM" border="0">&nbsp; <a class="normalTextSmallBold" href="/Forum/User/UserProfile.aspx?UserName=<?=$reply->getAuthor()->getUsername()?>"><?=$reply->getAuthor()->getUsername()?></a>
+																						<br>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td>
+																						<a href="/User.aspx?ID=<?=$reply->getAuthor()->getUserId()?>">
+																							<img style="width:64px;height:64px;" src="<?=$reply->getAuthorBust()?>" border="0">
+																						</a>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td>
+																						<span class="normalTextSmaller">
+																							<b>Joined:</b> <?=$reply->getAuthor()->joinDate()->format("j M Y")?> </span>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td>
+																						<span class="normalTextSmaller">
+																							<b>Total Posts: </b><?=$reply->getAuthor()->getForumPosts(NULL, true)?> </span>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td>&nbsp;</td>
+																				</tr>
+																			</tbody>
+																		</table>
+																	</td>
+																	<td class="forum<?=$count % 2 == 0 ? "Alternate" : "Row"?>" valign="top">
+																		<table cellspacing="0" width="100%" cellpadding="3" border="0">
+																			<tbody>
+																				<tr>
+																					<td class="forumRowHighlight">
+																						<span class="normalTextSmallBold"><?=htmlspecialchars($reply->getTitle())?> <a name="324350"></a>
+																						</span>
+																						<a name="324350">
+																							<br>
+																							<span class="normalTextSmaller"> Posted: </span>
+																							<span class="normalTextSmaller"><?=$reply->getPostDate()->format("m-d-Y h:i A")?></span>
+																						</a>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td colspan="2">
+																						<span class="normalTextSmall"><?=htmlspecialchars($reply->getContent())?></span>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td colspan="2">
+																						<span class="normalTextSmaller"></span>
+																					</td>
+																				</tr>
+																				<tr>
+																					<td height="2"></td>
+																				</tr>
+																				<tr>
+																					<td colspan="2">
+																						<a href="/Forum/AddPost.aspx?PostID=<?=$reply->getId()?>&amp;mode=flat">
+																							<img border="0" src="/Forum/skins/default/images/newpost.gif">
+																						</a>
+																						<a href="/AbuseReport/ForumPost.aspx?PostID=<?=$reply->getId()?>&amp;ReturnUrl=http%3a%2f%2fwww.roblox.com%2fForum%2fShowPost.aspx%3fPostID%3d1964006">Report Abuse</a>
+																					</td>
+																				</tr>
+																			</tbody>
+																		</table>
+																	</td>
+																</tr>
+																<?php endforeach; endif; ?>
 															</tbody>
 														</table><span id="ctl00_cphRoblox_PostView1_ctl00_Pager"><table cellspacing="0" cellpadding="0" border="0" width="100%"><tbody><tr><td><span class="normalTextSmallBold">Page 1 of 1</span></td></tr></tbody></table></span>
 													</td>
