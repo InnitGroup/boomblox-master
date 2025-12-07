@@ -52,7 +52,7 @@ class UserManager {
 
         if (!empty($postData[0])) {
             $decryptedPostData = explode("\$", $postData[1]);
-            if (!empty($decryptedPostData[0])) {
+            if (!empty($decryptedPostData[0]) && !empty($decryptedPostData[1]) && !empty($decryptedPostData[2])) {
                 $first = $decryptedPostData[0]; # can be asset type id or page integer
                 $second = $decryptedPostData[1]; # defines whether its the Paginator or AssetCategory
                 $third = $decryptedPostData[2]; # defines viewstate

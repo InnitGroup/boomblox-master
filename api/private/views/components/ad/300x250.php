@@ -6,7 +6,7 @@ if (!isset($display->isFallback)) {
 	$display->checkIfValid();
 
 	if (Server::isPost()) {
-		if (!isset($_POST['ctl00$cphRoblox$TabbedInfo$GamesTab$RefreshRunningGamesButton'])) {
+		if (!isset($_POST['ctl00$cphRoblox$TabbedInfo$GamesTab$RefreshRunningGamesButton']) && !empty($_POST['__EVENTARGUMENT'])) {
 			$awarded = new UserAd((int)$_POST['__EVENTARGUMENT']);
 			$awarded->addClick(); ?>
 			<script type="text/javascript">
