@@ -152,5 +152,13 @@ class UserAd {
             ":assetId" => $assetId
         ]);
     }
+
+    public static function exists(int $id) {
+        global $db;
+
+        $stmt = "SELECT id FROM ads WHERE id=:id";
+        $result = $db->execute($stmt, [":id" => $id]);
+        return $result->rowCount() > 0;
+    }
 };
 ?>

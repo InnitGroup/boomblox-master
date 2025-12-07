@@ -74,7 +74,7 @@ class AdManager {
 
     public static function isWhitelisted() {
         global $user;
-        $whitelist = ["platos", "marsoc", "jur", "khayden_1", "pwnzor", "maskotgame", "johndoe", "adam", "g2hjs", "idontknowwhat", "jacek", "kainsteronyt", "red1993", "spades"];
+        $whitelist = ["platos", "marsoc", "jur", "nox", "khayden_1", "pwnzor", "maskotgame", "johndoe", "adam", "g2hjs", "idontknowwhat", "jacek", "kainsteronyt", "red1993", "spades"];
         return in_array(strtolower($user->getUsername()), $whitelist);
     }
 }

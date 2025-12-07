@@ -7,12 +7,14 @@ if (!isset($display->isFallback)) {
 
 	if (Server::isPost()) {
 		if (!isset($_POST['ctl00$cphRoblox$TabbedInfo$GamesTab$RefreshRunningGamesButton']) && !empty($_POST['__EVENTARGUMENT'])) {
+			if (UserAd::exists((int)$_POST['__EVENTARGUMENT'])) {
 			$awarded = new UserAd((int)$_POST['__EVENTARGUMENT']);
 			$awarded->addClick(); ?>
 			<script type="text/javascript">
 			window.location.href = "/Item.aspx?ID=<?=$awarded->assetId()?>"
 			</script>
 			<?php
+			}
 		}
 	}
 } else {
