@@ -77,5 +77,32 @@ class AdManager {
         $whitelist = ["platos", "marsoc", "jur", "nox", "khayden_1", "pwnzor", "maskotgame", "johndoe", "adam", "g2hjs", "idontknowwhat", "jacek", "kainsteronyt", "red1993", "spades"];
         return in_array(strtolower($user->getUsername()), $whitelist);
     }
+
+    public static function trafficEstimator(int $bid) {
+        global $db;
+
+        $stmt = "SELECT * FROM ads ORDER BY id DESC LIMIT 10";
+        $result = $db->execute($stmt);
+
+        $impressions = 0;
+        $bid = 0;
+
+        if ($result->rowCount() == 0) {
+            return 0;
+        }
+
+        $fetchedAds = $result->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($fetchedAds as $fetchedAd) {
+            $lastImpressions = $fetchedAd["last_impressions"] !== NULL && $fetchedAd["last_impressions"] !== 0 ? count(unserialize($fetchedAd["last_impressions"])) : 0;
+            $impressions = $impressions + $lastImpressions;
+            $bid = $bid + $fetchedAd["last_bid"];
+        }
+
+        $averageImpressions = $impressions/$result->rowCount();
+        $averageBid = $bid/$result->rowCount();
+
+        $impressionsPerBid = $averageImpressions/$averageBid;
+        return round($bid * $impressionsPerBid);
+    }
 }
 ?>
