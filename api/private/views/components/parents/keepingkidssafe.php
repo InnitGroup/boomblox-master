@@ -85,25 +85,7 @@ global $theme;
 				<p>And if you're interested in learning more about online safety, please refer to the following links, which contain useful Internet safety information for parents.</p>
 				<ul>
 					<li>
-						<a href="http://www.wiredsafety.org/" target="_blank">WiredSafety</a>
-					</li>
-					<li>
-						<a href="http://www.cyberangels.org/" target="_blank">CyberAngels</a>
-					</li>
-					<li>
-						<a href="http://www.csn.org/" target="_blank">Child Safety Network</a>
-					</li>
-					<li>
-						<a href="http://www.staysafe.org/" target="_blank">staysafe.org</a>
-					</li>
-					<li>
-						<a href="http://onguardonline.gov/" target="_blank">OnGuardOnline.gov</a>
-					</li>
-					<li>
-						<a href="http://www.netsmartz.org/" target="_blank">NetSmartz Workshop</a>
-					</li>
-					<li>
-						<a href="http://www.commonsensemedia.org/" target="_blank">Common Sense Media</a>
+						<a href="#" target="_blank">All links removed temporarily for moderation</a>
 					</li>
 				</ul>
 			</dd>

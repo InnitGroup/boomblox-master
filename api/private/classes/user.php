@@ -251,6 +251,14 @@ class User {
             ":id" => $this->getUserId(),
         ]);
     }
+    public function hasTix($amount) {
+        global $db;
+        return $this->data["user"]["tix"] >= $amount;
+    }
+    public function hasBux($amount) {
+        global $db;
+        return $this->data["user"]["boombux"] >= $amount;
+    }
     public function takeBC() {
         global $db;
         $stmt = "UPDATE users SET bc=0 WHERE id=:id";

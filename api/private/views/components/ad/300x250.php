@@ -30,9 +30,9 @@ if (!isset($display->isFallback)) {
 ?>
 
 <?php if (isset($display->isFallback)): ?>
-<div id="AdvertisingLeaderboard">
+<div id="RobloxLargeRectangleAd">
 	<div style="overflow: hidden;">
-		<div id="ctl00_cphBannerAd_UserBanner_UserAdDisplay_AdPanel" class="AdPanel">
+		<div id="ctl00_cphRoblox_BigUglyAd_UserAdDisplay_AdPanel" class="AdPanel" style="margin-top: 10px;">
 			<input type="hidden" name="ctl00$cphBannerAd$UserBanner$UserAdDisplay$HiddenAdID" id="ctl00_cphBannerAd_UserBanner_UserAdDisplay_HiddenAdID" value="164">
 			<a id="ctl00_cphBannerAd_UserBanner_UserAdDisplay_AdImage" title="Play ROtris Now!" onclick="__doPostBack('ctl00$cphBannerAd$UserBanner$UserAdDisplay$AdImage','164')" style="display:inline-block;cursor:pointer;">
 				<img src="<?=$display->src?>" border="0" alt="Play ROtris Now!">
