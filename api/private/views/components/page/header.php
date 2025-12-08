@@ -18,6 +18,7 @@ if (Server::isPost()) {
             <?php endif; ?>
         <?php if (Server::isIE7()): ?>
             <script src="/ScriptResource.axd?v=<?=time()?>&d=ZGF0YTI="></script>
+            <script src="https://code.jquery.com/jquery-1.7.0.min.js"></script>
         <?php else: ?>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
             <script src="/ScriptResource.axd?v=<?=time()?>"></script>
