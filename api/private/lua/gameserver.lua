@@ -71,8 +71,8 @@ end
 
 -- listen to all Players' Characters
 game:service("Players").ChildAdded:connect(
-	collectgarbage("collect")
 	function (player)
+		collectgarbage("collect")
 		createDeathMonitor(player)
 		player.Changed:connect(
 			function (property)
