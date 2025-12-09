@@ -72,6 +72,10 @@ class UserAd {
     public function placeBid(int $amount) {
         global $db;
 
+        if ($amount < 1) {
+            return;
+        }
+
         if ($this->creator->hasTix($amount)) {
             $this->creator->takeTix($amount);
             $stmt = "UPDATE ads SET last_impressions = NULL, last_clicks = NULL, last_bid = :bid, bid = bid + last_bid, `status` = 'running', last_ran = :xnow WHERE id=:adId";

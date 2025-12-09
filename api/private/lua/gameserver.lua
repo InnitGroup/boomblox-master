@@ -42,6 +42,7 @@ end
 -- send kill and death stats when a player dies
 function onDied(victim, humanoid)
 	local killer = getKillerOfHumanoidIfStillInGame(humanoid)
+	collectgarbage("collect")
 
 	local victorId = 0
 	if killer then
@@ -70,6 +71,7 @@ end
 
 -- listen to all Players' Characters
 game:service("Players").ChildAdded:connect(
+	collectgarbage("collect")
 	function (player)
 		createDeathMonitor(player)
 		player.Changed:connect(
@@ -94,6 +96,7 @@ game.NetworkServer.ChildAdded:connect(function(replicator)
 end)
 
 game:service("Players").PlayerRemoving:connect(function(player)
+	collectgarbage("collect")
 	game:HttpGet("http://{Url}/Game/Statistics.ashx?AssociatedPlaceID={PlaceID}&TypeID=2&AssociatedUserID=" .. player.userId .. "&serverPort=" .. port .. "&t=" .. math.random(1,9999), false)
 	wait(5)
 	if (#game.Players:GetChildren() == 0) then
@@ -131,7 +134,6 @@ game.NetworkServer.ChildAdded:connect(function(replicator)
 end)
 
 game:service("Players").PlayerAdded:connect(function(player)	
-
 	print("Player " .. player.userId .. " added")
 	local result = game:HttpGet("http://{Url}/Game/Statistics.ashx?TypeID=1&AssociatedUserID=" .. player.userId .. "&serverPort=" .. port .. "&AssociatedPlaceID={PlaceID}&ClientTicket=" .. player.CharacterAppearance .. "&t=" .. math.random(1,9999), true)
 	if (result and result ~= "bad") then
