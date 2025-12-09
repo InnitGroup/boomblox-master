@@ -12,7 +12,9 @@ if (isset($purchaseData)) {
             <?=PageBuilder::addComponent("item", "details", $packed);?>
             <?=PageBuilder::addComponent("item", "tabs", $packed);?>
         </div>
-        <div class="Ads_WideSkyScraper"></div>
+        <div class="Ads_WideSkyScraper">
+        <?=Ad::generateAd("160x600")?>
+        </div>
         <div style="clear:both"></div>
         <?=PageBuilder::addComponent("item", "purchasemodal", $packed);?>
     </div>
