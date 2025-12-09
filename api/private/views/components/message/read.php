@@ -18,6 +18,11 @@ $thumbnail = $avatar->GetThumbnail(500, 500, "PNG")
 ?>
 <div id="Body">
     <div id="InvitationContainer">
+            <div id="MessageContainer">
+                <div id="AdsPane">
+                <?=Ad::generateAd("160x600")?>
+                </div>
+            </div>
             <div id="InvitationPane">
                 <div id="ctl00_cphRoblox_pFriendInvitation">
                     <div id="ctl00_cphRoblox_pMessageReader">

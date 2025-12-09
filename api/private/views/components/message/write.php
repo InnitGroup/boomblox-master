@@ -12,6 +12,7 @@ $to = $db->getUserById($recipientId);
 <div id="Body">
     <div id="ctl00_cphRoblox_pPrivateMessageEditor">
         <h3>Your Message</h3>
+        
         <div id="MessageEditorContainer">
             <div class="MessageEditor">
                 <table width="100%">

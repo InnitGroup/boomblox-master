@@ -1,6 +1,9 @@
 <div id="Body">
     <input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="<?=base64_encode($user["userId"] . ":" . time())?>"/>
 	<div class="MessageContainer">
+		<div id="AdsPane">
+		<?=Ad::generateAd("160x600")?>
+		</div>
 		<div id="MessagePane">
 			<div id="ctl00_cphRoblox_pConfirmation">
 				<div id="Confirmation">
