@@ -85,16 +85,13 @@ class Version {
         we need to move the last place to the current place file (next -> current)
         */
 
-        Discord::sendWebhookMessage("vcchat", $breadVersion);
-        Discord::sendWebhookMessage("vcchat", $sfothVersion);
-
         $sfoth = file_get_contents($current);
         $bread = file_get_contents($breadVersion);
 
         # only way that i can make this make sense :thumbs_up:
 
-        file_put_contents((string)$sfothVersion, $sfoth); # sfoth goes to version
         file_put_contents((string)$breadVersion, $bread); # SOMETHING ISNT RIGHT HERE
+        file_put_contents((string)$sfothVersion, $sfoth); # sfoth goes to version
         self::logVersion($assetId, $nextVersion);
     }
 
