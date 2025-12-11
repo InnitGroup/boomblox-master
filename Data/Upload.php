@@ -13,6 +13,12 @@ if (!$user->ownsPlace($placeId)) {
 $filePath = $_SERVER["DOCUMENT_ROOT"] . "/content/" . $placeId;
 str_replace("IncommingConnection", "-- why would you do that {$user->getUsername()}", $data);
 
+/*
+$version = Version::getVersion($placeId);
+if (Version::assetExists($placeId)) {
+    file_put_contents($filePath, file_get_contents($filePath . "_" . $version));
+}*/
+
 file_put_contents($filePath, $data);
 $file = new File("/content/$placeId");
 $file->links();
@@ -27,6 +33,8 @@ $db->execute($stmt, [
     ":playerCount" => $playerCount,
     ":itemId" => $placeId
 ]);
+
+//Version::logVersion($placeId, Version::getNextVersion($placeId));
 
 #render
 $asset = new Asset($placeId);

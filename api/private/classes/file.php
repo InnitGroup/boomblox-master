@@ -128,38 +128,5 @@ class File {
             return imagepng($image, $destination);
         }
     }
-
-    public static function assetExists(int $assetId): bool {
-        $directory = $_SERVER["DOCUMENT_ROOT"] . "/content/";
-
-        if (!file_exists($directory . $assetId)) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public static function assetVersionExists(int $assetId, int $versionId): bool {
-        $directory = $_SERVER["DOCUMENT_ROOT"] . "/content/";
-
-        if (!file_exists($directory . $assetId . "_" . $versionId)) {
-            return false;
-        }
-
-        return true;
-    }
-
-    public static function getNextVersion(int $assetId): int {
-        $directory = $_SERVER["DOCUMENT_ROOT"] . "/content/";
-
-        # realizing sql might be a better option
-        for ($i = 0; $i < 9999; $i++) {
-            if (!file_exists($directory . $assetId . "_" . $i)) {
-                return $i;
-            }
-        }
-
-        return 10000;
-    }
 }
 ?>
