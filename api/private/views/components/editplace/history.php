@@ -14,11 +14,15 @@
                 <th width="10%">Version</th>
                 <th width="50%">Created</th>
             </tr>
+            <?php
+            $versions = Version::getVersions($_GET["ID"]);
+            foreach ($versions as $version): ?>
             <tr>
-                <td><a href="#">[ Make Current ]</a></td>
-                <td>6</td>
-                <td>4/20/2009 12:46:28 AM</td>
+                <td><a href="javascript:__doPostBack('ctl00$cphRoblox$MakeCurrent', '<?=(int)$version["versionId"]?>')">[ Make Current ]</a></td>
+                <td><?=(int)$version["versionId"]?></td>
+                <td><?=Version::formatDate($version["created_at"])?></td>
             </tr>
+            <?php endforeach; ?>
         </table>
         <p style="text-align: center;">
             <span>First</span>

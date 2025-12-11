@@ -7,7 +7,7 @@ if (!isset($display->isFallback)) {
 
 	if (Server::isPost()) {
 		if (!isset($_POST['ctl00$cphRoblox$TabbedInfo$GamesTab$RefreshRunningGamesButton']) && !empty($_POST['__EVENTARGUMENT'])) {
-			if (UserAd::exists((int)$_POST['__EVENTARGUMENT'])) {
+			if (UserAd::exists((int)$_POST['__EVENTARGUMENT']) && $_POST['__EVENTTARGET'] == 'ctl00$cphBannerAd$UserBanner$UserAdDisplay$AdImage') {
 			$awarded = new UserAd((int)$_POST['__EVENTARGUMENT']);
 			$awarded->addClick(); ?>
 			<script type="text/javascript">
@@ -19,7 +19,7 @@ if (!isset($display->isFallback)) {
 	}
 } else {
 	if (Server::isPost()) {
-		if (!isset($_POST['ctl00$cphRoblox$TabbedInfo$GamesTab$RefreshRunningGamesButton']) && $_POST['__EVENTARGUMENT'] == "164") { ?>
+		if (!isset($_POST['ctl00$cphRoblox$TabbedInfo$GamesTab$RefreshRunningGamesButton']) && $_POST['__EVENTARGUMENT'] == "164"  && $_POST['__EVENTTARGET'] == 'ctl00$cphBannerAd$UserBanner$UserAdDisplay$AdImage') { ?>
 			<script type="text/javascript">
 			window.location.href = "/Item.aspx?ID=164"
 			</script>

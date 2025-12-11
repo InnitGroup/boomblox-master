@@ -67,6 +67,9 @@ class PlaceManager {
                             $asset->RequestThumbnail(420, 230, "PNG");
                             $asset->RequestThumbnail(250, 250, "PNG");
                             break;
+                        case 'MakeCurrent':
+                            Version::makeCurrent($this->placeId, (int)$_POST["__EVENTARGUMENT"]);
+                            break;
                         default:
                             #Server::_404();
                             break;

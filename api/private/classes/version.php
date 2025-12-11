@@ -23,7 +23,7 @@ class Version {
     public static function getNextVersion(int $assetId): int {
         global $db;
 
-        $stmt = "SELECT versionId FROM assets WHERE assetId=:assetId ORDER BY versionId DESC";
+        $stmt = "SELECT versionId FROM versions WHERE assetId=:assetId ORDER BY versionId DESC";
         $result = $db->execute($stmt, [":assetId" => $assetId]);
         if ($result->rowCount() == 0) {
             return 2;
@@ -36,7 +36,7 @@ class Version {
     public static function getVersion(int $assetId): int {
         global $db;
 
-        $stmt = "SELECT versionId FROM assets WHERE assetId=:assetId ORDER BY versionId DESC";
+        $stmt = "SELECT versionId FROM versions WHERE assetId=:assetId ORDER BY versionId DESC";
         $result = $db->execute($stmt, [":assetId" => $assetId]);
         if ($result->rowCount() == 0) {
             return 1;
@@ -44,6 +44,16 @@ class Version {
 
         $versionIds = $result->fetch(PDO::FETCH_ASSOC);
         return (int)$versionIds["versionId"];
+    }
+
+    public static function getVersions(int $assetId) {
+        global $db;
+
+        $stmt = "SELECT * FROM versions WHERE assetId=:assetId ORDER BY versionId DESC";
+        $result = $db->execute($stmt, [":assetId" => $assetId]);
+
+        $versionIds = $result->fetchAll(PDO::FETCH_ASSOC);
+        return $versionIds;
     }
 
     public static function logVersion(int $assetId, int $versionId) {
@@ -56,6 +66,41 @@ class Version {
             ":_now" => date("Y-m-d H:i:s"),
             ":creatorId" => $user->getUserId()
         ]);
+    }
+
+    public static function makeCurrent(int $assetId, int $versionId) {
+        if (!self::assetVersionExists($assetId, $versionId)) {
+            return false;
+        }
+
+        $current = $_SERVER["DOCUMENT_ROOT"] . "/content/$assetId";
+        $version = self::getVersion($assetId);
+        $nextVersion = self::getNextVersion($assetId);
+
+        $breadVersion = $current . "_" . (string)$versionId; # version to replace new
+        $sfothVersion = $current . "_" . (string)$version; # attaching a version to modern version and moving it back
+
+        /*
+        we need to move the current place to it's corresponding version (current -> version)
+        we need to move the last place to the current place file (next -> current)
+        */
+
+        Discord::sendWebhookMessage("vcchat", $breadVersion);
+        Discord::sendWebhookMessage("vcchat", $sfothVersion);
+
+        $sfoth = file_get_contents($current);
+        $bread = file_get_contents($breadVersion);
+
+        # only way that i can make this make sense :thumbs_up:
+
+        file_put_contents((string)$sfothVersion, file_get_contents($sfoth)); # sfoth goes to version
+        file_put_contents((string)$breadVersion, file_get_contents($bread)); # SOMETHING ISNT RIGHT HERE
+        self::logVersion($assetId, $nextVersion);
+    }
+
+    public static function formatDate(string $date) {
+        $actualDate = new DateTime($date);
+        return $actualDate->format("m/d/Y g:i:s A");
     }
 }
 ?>

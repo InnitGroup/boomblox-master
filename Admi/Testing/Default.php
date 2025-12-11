@@ -5,7 +5,5 @@ global $theme, $auth, $db;
 
 $page = new APageBuilder;
 
-#echo Thumbnail::extractSkybox($_SERVER["DOCUMENT_ROOT"] . "/content/1701");
-echo '<img src="'.Thumbnail::extractSkybox($_SERVER["DOCUMENT_ROOT"] . "/content/1701") . '">';
-
+Version::logVersion(1, 1);
 ?>
