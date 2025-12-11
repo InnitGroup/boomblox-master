@@ -93,8 +93,8 @@ class Version {
 
         # only way that i can make this make sense :thumbs_up:
 
-        file_put_contents((string)$sfothVersion, file_get_contents($sfoth)); # sfoth goes to version
-        file_put_contents((string)$breadVersion, file_get_contents($bread)); # SOMETHING ISNT RIGHT HERE
+        file_put_contents((string)$sfothVersion, $sfoth); # sfoth goes to version
+        file_put_contents((string)$breadVersion, $bread); # SOMETHING ISNT RIGHT HERE
         self::logVersion($assetId, $nextVersion);
     }
 
