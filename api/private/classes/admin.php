@@ -284,6 +284,30 @@ class Admin {
         }
     }
 
+    public static function getOwners(int $itemId) {
+        global $db;
+
+        $stmt = "SELECT items, username FROM users";
+        $result = $db->execute($stmt);
+
+        if ($result->rowCount() == 0) {
+            return [];
+        }
+
+        $owners = [];
+        $data = $result->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($data as $individualData) {
+            if ($individualData["items"] !== NULL && $individualData["items"] !== "0") {
+                $decodedInventory = unserialize($individualData["items"]);
+                if (in_array($itemId, $decodedInventory)) {
+                    array_push($owners, $individualData["username"]);
+                }
+            }
+        }
+
+        return $owners;
+    }
+
     # get of linkTreeOptions array
     public static function getLinkTreeOptions() {
         return self::$linkTreeOptions;
