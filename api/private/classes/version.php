@@ -92,6 +92,7 @@ class Version {
 
         file_put_contents((string)$breadVersion, $bread); # SOMETHING ISNT RIGHT HERE
         file_put_contents((string)$sfothVersion, $sfoth); # sfoth goes to version
+        file_put_contents((string)$current, $bread);
         self::logVersion($assetId, $nextVersion);
     }
 
