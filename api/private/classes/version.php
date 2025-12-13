@@ -36,8 +36,8 @@ class Version {
     public static function getVersion(int $assetId): int {
         global $db;
 
-        $stmt = "SELECT versionId FROM versions WHERE assetId=:assetId ORDER BY versionId DESC";
-        $result = $db->execute($stmt, [":assetId" => $assetId]);
+        $stmt = "SELECT versionId FROM items WHERE itemId=:itemId";
+        $result = $db->execute($stmt, [":itemId" => $assetId]);
         if ($result->rowCount() == 0) {
             return 1;
         }
@@ -46,10 +46,17 @@ class Version {
         return (int)$versionIds["versionId"];
     }
 
-    public static function getVersions(int $assetId) {
+    public static function getVersions(int $assetId, int $limit = 0, int $offset = 0) {
         global $db;
 
         $stmt = "SELECT * FROM versions WHERE assetId=:assetId ORDER BY versionId DESC";
+        if ($limit > 0) {
+            $stmt .= " LIMIT $limit";
+        }
+        if ($offset > 0) {
+            $stmt .= " OFFSET $offset";
+        }
+
         $result = $db->execute($stmt, [":assetId" => $assetId]);
 
         $versionIds = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -65,6 +72,16 @@ class Version {
             ":versionId" => $versionId,
             ":_now" => date("Y-m-d H:i:s"),
             ":creatorId" => $user->getUserId()
+        ]);
+    }
+
+    public static function setVersion(int $assetId, int $versionId) {
+        global $db, $user;
+
+        $stmt = "UPDATE items SET versionId=:versionId WHERE itemId=:assetId";
+        $db->execute($stmt, [
+            ":assetId" => $assetId,
+            ":versionId" => $versionId
         ]);
     }
 
@@ -93,7 +110,8 @@ class Version {
         file_put_contents((string)$breadVersion, $bread); # SOMETHING ISNT RIGHT HERE
         file_put_contents((string)$sfothVersion, $sfoth); # sfoth goes to version
         file_put_contents((string)$current, $bread);
-        self::logVersion($assetId, $nextVersion);
+        # self::logVersion($assetId, $nextVersion);
+        self::setVersion($assetId, $versionId);
     }
 
     public static function formatDate(string $date) {

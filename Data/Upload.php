@@ -13,11 +13,10 @@ if (!$user->ownsPlace($placeId)) {
 $filePath = $_SERVER["DOCUMENT_ROOT"] . "/content/" . $placeId;
 str_replace("IncommingConnection", "-- why would you do that {$user->getUsername()}", $data);
 
-/*
-$version = Version::getVersion($placeId);
-if (Version::assetExists($placeId)) {
-    file_put_contents($filePath, file_get_contents($filePath . "_" . $version));
-}*/
+$version = Version::getVersion($placeId); # should return 1
+if (Version::assetExists($placeId)) { # true
+    file_put_contents($filePath . "_" . $version, file_get_contents($filePath)); # replace /content/1_1 with /content/1
+} #
 
 if (strlen($data) > 30000000) {
     Server::_404();
@@ -38,7 +37,9 @@ $db->execute($stmt, [
     ":itemId" => $placeId
 ]);
 
-//Version::logVersion($placeId, Version::getNextVersion($placeId));
+$newVersion = Version::getNextVersion($placeId);
+Version::logVersion($placeId, $newVersion); #
+Version::setVersion($placeId, $newVersion);
 
 #render
 $asset = new Asset($placeId);

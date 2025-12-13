@@ -15,22 +15,50 @@
                 <th width="50%">Created</th>
             </tr>
             <?php
-            $versions = Version::getVersions($_GET["ID"]);
+            $versionCount = count(Version::getVersions($_GET["ID"]));
+            $page = 1;
+            $pages = ceil($versionCount / 10);
+
+            if (isset($_POST["__EVENTTARGET"]) && isset($_POST["__EVENTTARGET"])) {
+                if ($_POST["__EVENTTARGET"] == 'ctl00$cphRoblox$Paginator' && str_contains($_POST["__EVENTARGUMENT"], "Page$")) {
+                    $pageSet = explode("$", $_POST["__EVENTARGUMENT"]);
+                    $attemptedPage = $pageSet[1];
+                    if ($attemptedPage <= $pages*10) {
+                        $page = $attemptedPage;
+                    }
+                }
+            }
+            
+            $offset = ($page - 1) * 10;
+
+            $versions = Version::getVersions($_GET["ID"], 10, $offset);
             foreach ($versions as $version): ?>
             <tr>
-                <td><a href="javascript:__doPostBack('ctl00$cphRoblox$MakeCurrent', '<?=(int)$version["versionId"]?>')">[ Make Current ]</a></td>
+                <td>
+                    <?php if (Version::getVersion($_GET["ID"]) == $version["versionId"]): ?>
+                    <a disabled>[ Current ]</a></td>
+                    <?php else: ?>
+                    <a href="javascript:__doPostBack('ctl00$cphRoblox$MakeCurrent', '<?=(int)$version["versionId"]?>')">[ Make Current ]</a></td>
+                    <?php endif; ?>
                 <td><?=(int)$version["versionId"]?></td>
                 <td><?=Version::formatDate($version["created_at"])?></td>
             </tr>
             <?php endforeach; ?>
         </table>
         <p style="text-align: center;">
+            <?php 
+            $paginator = new CharacterPaginator('ctl00$cphRoblox$Paginator', $page, $pages);
+            $paginator = str_replace("color:#dcdcdc;", "", $paginator->load());
+            echo $paginator;
+            ?>
+            <!--
             <span>First</span>
             <span>Previous</span>
             <span>1</span>
             <a href="#">2</a>
             <a href="#">Next</a>
             <a href="#">Last</a>
+            -->
         </p>
     </fieldset>
 </div>
