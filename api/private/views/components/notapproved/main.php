@@ -31,14 +31,12 @@ switch ($type) {
 
 <div id="Body">
 	<div style="margin: 150px auto 150px auto; width: 500px; border: black thin solid; padding: 22px;">
-		<h2> <?=$title?> </h2>
+		<h1> <?=$title?> </h1>
 		<p> Our content monitors have determined that your behavior at ROBLOX has been in violation of our Terms of Service. We will terminate your account if you do not abide by the rules.</p>
-		<p> Reason: <span style="font-weight: bold"> Profanity</span>
-			<br> Source: <span style="font-weight: bold"> <?=htmlspecialchars($punishment["actionSource"])?></span>
-			<br> Reported: <span style="font-weight: bold"> <?=$reported?></span>
-		</p>
-		<p>
-			<span style="font-weight: bold"> <?=htmlspecialchars($punishment["actionComment"])?></span>
+		<p>Reported: <span style="font-weight: bold"> <?=$reported?></p>
+		<p>Moderate Note: <span style="font-weight: bold"> <?=htmlspecialchars($punishment["actionSource"])?></p>
+		<p style="border: solid 3px #000; padding: 5px;">
+			<span> <?=htmlspecialchars($punishment["actionComment"])?></span>
 		</p>
 		<p> Please abide by the <a href="http://wiki.roblox.com/index.php?title=Community_Guidelines">ROBLOX Community Guidelines</a> so that ROBLOX can be fun for users of all ages. </p>
 		<?php if ($type == "Ban") {
