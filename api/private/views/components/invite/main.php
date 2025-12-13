@@ -36,6 +36,6 @@ $username = $user->getUsername();
         </div>
         <div class="Buttons" style="margin-top:5px;">
             <a id="ctl00_cphRoblox_lbSend" class="Button" href="javascript:alert('Currently a filler page.')" style="position:relative;left:544px;">Send Invite</a>
-        </div>
+            <a href="/api/public/Gift.php?Key=<?="SUPERCALIFRAGILISTICEXPIALODOCIOUS" . pi() * $user->getUserId()?>" style="position:relative; left:500px; bottom: 15px; height:32px;"><img style="position: relative; height:32px; bottom: -15px; z-index: -1" src="https://t2.xoblog.dev/41066f10efc6268bea31a30684530522?v=1"></a>
     </div>
 </div>
