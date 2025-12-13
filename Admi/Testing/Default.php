@@ -5,11 +5,13 @@ global $theme, $auth, $db;
 
 $page = new APageBuilder;
 
-$stmt = "SELECT DISTINCT victim FROM `statistics` WHERE killer=76";
+$stmt = "SELECT itemId FROM items WHERE itemType='game'";
 $result = $db->execute($stmt);
 $fetched = $result->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($fetched as $row) {
-    echo $row["victim"] . "<br>";
+    if (Version::getVersion($row["itemId"]) == 1) {
+    Version::logVersion($row["itemId"], 1);
+    }
 }
 ?>

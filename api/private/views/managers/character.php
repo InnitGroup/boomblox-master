@@ -122,7 +122,7 @@ class CharacterManager {
     }
     public function getCreate() {
         if ($this->requestData["type"] == "Hat") {
-            return '<span>Create</span>';
+            return '<span style="color: #cccccc">Create</span>';
         } else {
             return '<a href="/My/ContentBuilder.aspx?ContentType='.Helper::typeId($this->requestData["type"]).'">Create</a>';
         }
