@@ -19,6 +19,10 @@ if (Version::assetExists($placeId)) {
     file_put_contents($filePath, file_get_contents($filePath . "_" . $version));
 }*/
 
+if (strlen($data) > 30000000) {
+    Server::_404();
+}
+
 file_put_contents($filePath, $data);
 $file = new File("/content/$placeId");
 $file->links();

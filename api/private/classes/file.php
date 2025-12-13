@@ -48,6 +48,27 @@ class File {
         return $playerCount;
     }
 
+    public function getPlayerCount2(): int {
+        // <int name="MaxPlayers">12</int>
+        $contents = file_get_contents($this->file);
+        echo $contents;
+        
+        $half = explode('<int name="MaxPlayers">', $contents);
+        $half = $half[1];
+        $half = explode('</int>', $half);
+
+        $playerCount = (int)$half[0];
+        if ($playerCount < 1) {
+            $playerCount = 1;
+        }
+
+        if ($playerCount > 50) {
+            $playerCount = 50;
+        }
+
+        return $playerCount;
+    }
+
     public static function isSkybox($file) {
         libxml_use_internal_errors(true);
 

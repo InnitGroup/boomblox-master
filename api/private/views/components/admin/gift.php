@@ -1,16 +1,23 @@
 <div id="MainPanel">
     <p>Utility panel for giving gifts to specific users</p>
     <?php
-    $gift = 1836;
+    $gift = 1991;
     $recipients = [
-        "marsoc",
-"khayden_1",
-"pwnzor",
+"Boomblox",
+"marsoc",
 "1o4xy9i8h9fPwnerv1",
-"viny",
-"red1993",
+"explorer",
+"kainsteronyt",
+"pwnzor",
+"platos",
 "TZolta",
-"ThePlayerRolo"
+"chicken",
+"phil",
+"nox",
+"G2HJS",
+"JohnDoe",
+"Spades",
+"viny"
     ];
     foreach ($recipients as $recipient) {
         global $db;

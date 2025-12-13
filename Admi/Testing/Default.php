@@ -5,5 +5,11 @@ global $theme, $auth, $db;
 
 $page = new APageBuilder;
 
-Version::logVersion(1, 1);
+$stmt = "SELECT DISTINCT victim FROM `statistics` WHERE killer=76";
+$result = $db->execute($stmt);
+$fetched = $result->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($fetched as $row) {
+    echo $row["victim"] . "<br>";
+}
 ?>
