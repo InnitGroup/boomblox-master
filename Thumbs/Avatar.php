@@ -10,11 +10,38 @@ class Avatar extends Base {
         $this->user = new User($userId);
     }
     public function GetScript($width=100,$height=100,$imageFormat="PNG") {
-        return "local player = game.Players:CreateLocalPlayer(0)
-        player.CharacterAppearance = '".$this->user->getCharacterAppearance()."'
-        player:LoadCharacter()
-        print('".$this->user->getUsername().":".$this->user->getUserId()." being rendered')
-        return game:GetService('ThumbnailGenerator'):Boom('".$imageFormat."', ".$width.", ".$height.", true)";
+        $script = "
+        local player = game.Players:CreateLocalPlayer(0)
+        player.CharacterAppearance = '{$this->user->getCharacterAppearance()}'
+        player:LoadCharacter()";
+
+        if ($this->user->getHead() > 0) {
+            $head = $this->user->getHead();
+            $script .= "
+            local char = player.Character
+            local head = char.Head
+            head.Mesh:Remove()
+            head.face:Remove()
+            game:GetObjects('http://xoblog.dev/content/$head')[1].Parent = head
+
+            local head2 = head:Clone()
+            head2.Parent = char
+            local mesh = head2.Mesh
+            mesh.Scale = Vector3.new(1.06, 1.06, 1.06)
+            mesh.TextureId = 'http://xoblog.dev/content/1010'
+
+            local head3 = head:Clone()
+            head3.Parent = char
+            head3.Mesh.Scale = Vector3.new(1.05, 1.05, 1.05)
+            head3.CFrame = head2.CFrame * CFrame.fromEulerAnglesXYZ(0, math.rad(180), 0)
+            ";
+        }
+
+        $script .= "
+        print('{$this->user->getUsername()}:{$this->user->getUserId()} being rendered')
+        return game:GetService('ThumbnailGenerator'):Boom('$imageFormat', $width, $height, true)";
+
+        return $script;
     }
     private function TestScript($width=100,$height=100,$imageFormat="PNG") {
         

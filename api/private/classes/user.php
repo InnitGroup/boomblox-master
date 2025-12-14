@@ -284,7 +284,7 @@ class User {
         return substr(implode("-",$this->data["character"]),77);
     }
     public function getHead() {
-        return $this->data["user"]["head"];
+        return $this->data["character"]["head"];
     }
     public function isOnline() {
         if (!$this->getData("user","lastOnline")) {

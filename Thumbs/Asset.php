@@ -37,6 +37,35 @@ class Asset extends Base {
                     player.CharacterAppearance = 'http://".domain."/api/private/xml/DefaultColors.xml;http://".domain."/Asset/?id=".self::$_assetId."'
                     player:LoadCharacter()
                     ";
+                } elseif (self::$_itemType == "Head") {
+                    $script = "
+                    local player = game.Players:CreateLocalPlayer(0)
+                    player:LoadCharacter()
+
+                    local char = player.Character
+                    local head = char.Head
+                    head.BrickColor = BrickColor.new('White')
+                    head.Mesh:Remove()
+                    head.face:Remove()
+                    game:GetObjects('http://".domain."/content/".self::$_assetId."')[1].Parent = head
+
+                    local head2 = head:Clone()
+                    head2.Parent = char
+                    local mesh = head2.Mesh
+                    mesh.Scale = Vector3.new(1.06, 1.06, 1.06)
+                    mesh.TextureId = 'http://xoblog.dev/content/1010'
+
+                    local head3 = head:Clone()
+                    head3.Parent = char
+                    head3.Mesh.Scale = Vector3.new(1.05, 1.05, 1.05)
+                    head3.CFrame = head2.CFrame * CFrame.fromEulerAnglesXYZ(0, math.rad(180), 0)
+
+                    char.Torso:Remove()
+                    char['Left Arm']:Remove()
+                    char['Left Leg']:Remove()
+                    char['Right Arm']:Remove()
+                    char['Right Leg']:Remove()
+                    ";
                 }
                 break;
             case "game":
