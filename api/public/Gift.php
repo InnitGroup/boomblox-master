@@ -4,6 +4,7 @@ global $theme, $auth, $user;
 !$auth->isAuthed() && Server::_404();
 
 exit;
+
 $givenKey = $_GET["Key"];
 $askedKey = "SUPERCALIFRAGILISTICEXPIALODOCIOUS" . pi() * $user->getUserId();
 
