@@ -91,7 +91,7 @@ class Asset extends Base {
 
         $size = Helper::dimensions($width,$height);
         $script = $this->GetScript($width,$height,$imageFormat);
-        $altHash = md5(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/content/".self::$_assetId));
+        $altHash = $this->altHash($_SERVER["DOCUMENT_ROOT"]."/content/".self::$_assetId);
         $xml = Thumbnail::getXml($script);
 
         if (empty(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/content/".self::$_assetId))) {

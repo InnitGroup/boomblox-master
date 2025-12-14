@@ -24,7 +24,8 @@ class CatalogManager {
         "10" => "Models",
         "11" => "Shirts",
         "12" => "Pants",
-        "13" => "Decals"
+        "13" => "Decals",
+        "17" => "Heads"
     ];
     private $cToSQL = [
         "2" => "T-Shirt",
@@ -34,7 +35,8 @@ class CatalogManager {
         "10" => "Model",
         "11" => "Shirt",
         "12" => "Pants",
-        "13" => "Decal"
+        "13" => "Decal",
+        "17" => "Head"
     ];
     private $dToSQL = [
         "All" => "",
@@ -50,7 +52,7 @@ class CatalogManager {
         "AllTime" => "All-time"
     ];
     public function __construct($m = "TopFavorites", $c = "8", $t = "PastWeek", $d = "All", $p = "1", $q = "", $theme = 0) {
-        $validC = [2, 4, 9, 8, 10, 11, 12, 13];
+        $validC = [2, 4, 9, 8, 10, 11, 12, 13, 17];
         $validM = ["TopFavorites", "BestSelling", "ForSale", "RecentlyUpdated", "PublicDomain"];
         if (!in_array($c, $validC)) {
             Server::_404();
