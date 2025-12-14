@@ -278,6 +278,9 @@ class User {
         if (isset($this->data["character"]["t-shirt"])) {
             $charapp .= ";".Site::$domain."/Asset/?id=".(int)$this->data["character"]["t-shirt"];
         }
+        if (isset($this->data["character"]["head"]) && $this->data["character"]["head"] > 0) {
+            $charapp .= ";".Site::$domain."/content/test/".(int)$this->data["character"]["head"];;
+        }
         return $charapp;
     }
     public function getAlternateAppearance() {
