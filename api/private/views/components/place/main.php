@@ -130,14 +130,12 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
 					<?php if (!Server::isIE7()): ?>
 					$(document).ready(function() {
 						$("#cmtTab").click(function() {
-							console.log(2);
 							$("#ctl00_cphRoblox_TabbedInfo_GamesTab").hide();
 							$("#ctl00_cphRoblox_TabbedInfo_CommentaryTab").show();
 							$("#CTabAjax").addClass("ajax__tab_active");
 							$("#GTabAjax").removeClass("ajax__tab_active");
 						});
 						$("#gmTab").click(function() {
-							console.log(1);
 							$("#ctl00_cphRoblox_TabbedInfo_GamesTab").show();
 							$("#ctl00_cphRoblox_TabbedInfo_CommentaryTab").hide();
 							$("#GTabAjax").addClass("ajax__tab_active");
