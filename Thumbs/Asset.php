@@ -50,7 +50,7 @@ class Asset extends Base {
 
                     local char = player.Character
                     local head = char.Head
-                    head.BrickColor = BrickColor.new('White')
+                    head.BrickColor = BrickColor.new('Medium stone grey')
                     head.Mesh:Remove()
                     head.face:Remove()
                     game:GetObjects('http://".domain."/content/".self::$_assetId."')[1].Parent = head

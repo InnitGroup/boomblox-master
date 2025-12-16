@@ -22,13 +22,14 @@
                     $thumb = $avatar->RequestThumbnail(100,100,"JPG",true,true);
                     break;
                 case "Asset":
-                    #if ($id == 8) {
-                    #    $error = "This asset is blacklisted, and may crash the grid when rendered";
-                    #    break;
-                    #}
-
                     if (file_exists($_SERVER["DOCUMENT_ROOT"]."/content/$id")) {
                         $asset = new Asset($id);
+                        $altHash = $asset->AltHash($_SERVER["DOCUMENT_ROOT"]."/content/".$id);
+
+                        global $db;
+                        $stmt = "DELETE FROM cdn WHERE altHash=:altHash";
+                        $db->execute($stmt, [":altHash" => $altHash]);
+
                         if ($asset->getType() == "game") {
                             $asset->RequestThumbnail(420, 230, "PNG",true,true);
                         }

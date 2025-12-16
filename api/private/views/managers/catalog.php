@@ -540,6 +540,14 @@ class CatalogManager {
             
             $counter++;
         }
+
+        if ($counter == 2) {
+            echo "<td valign='top'><div class='Asset'></div></td><td valign='top'><div class='Asset'></div></td>";
+        }
+
+        if ($counter == 3) {
+            echo "<td valign='top'><div class='Asset'></div></td>";
+        }
     }
     
 }

@@ -17,7 +17,7 @@
         <?php
         global $user, $db;
 
-        if (Server::isPost() && $user->hasPerms(7)) {
+        if (Server::isPost() && $user->hasPerms(5)) {
             $pass = true;
             if (!isset($_POST['ctl00$robloxCph$userId'])) {
                 $pass = false;
