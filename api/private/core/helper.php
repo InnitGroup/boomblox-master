@@ -17,7 +17,8 @@ class Helper {
             10 => "Model",
             11 => "Shirt",
             12 => "Pants",
-            13 => "Decal"
+            13 => "Decal",
+            17 => "Head"
         ];
 
         $contentTypes = [
@@ -28,16 +29,26 @@ class Helper {
             13 => "Decal"
         ];
 
-        return (object)["Type" => $types[$id], "IsContent" => $contentTypes[$id] ?? false] ?? null;
+        if (isset($types[$id])) {
+            return (object)["Type" => $types[$id], "IsContent" => $contentTypes[$id] ?? false] ?? null;
+        }
+
+        return 0;
     }
     public static function typeId($type) {
         $types = [
             "T-Shirt" => 2,
             "Hat" => 8,
             "Shirt" => 11,
-            "Pants" => 12
+            "Pants" => 12,
+            "Head" => 17
         ];
-        return $types[$type];
+
+        if (isset($types[$type])) {
+            return $types[$type];
+        }
+
+        return 0;
     }
     public static function makePlural(string $string) {
         if (str_ends_with($string, "s")) {

@@ -156,7 +156,7 @@ class CharacterManager {
                     $thumbnail = new Asset($item["itemId"]);
                     $result .= '
                     <td class="Asset" id="'.$item["itemId"].'">
-                        <a class="WearItem" title="click to wear" href="javascript:__doPostBack(\'Accoutrement\', \''.$this->requestData["type"].'$'.$item["itemId"].'$Wear\')" onclick="wearItem(event)">[ wear ]</a>
+                        <a class="WearItem" title="click to wear" href="javascript:__doPostBack(\'Accoutrement\', \''.htmlspecialchars($this->requestData["type"]).'$'.(int)$item["itemId"].'$Wear\')" onclick="wearItem(event)">[ wear ]</a>
                         <a href="/Item.aspx?ID='.$item["itemId"].'">
                         <img class="AssetThumbnail" src="'.$thumbnail->GetThumbnail(250,250,"PNG").'">
                         </a>
@@ -176,8 +176,10 @@ class CharacterManager {
                     }
                 }
             }
-        } else {
+        } elseif (Helper::typeId($this->requestData["type"]) !== 0) {
             return Site::noResults("You do not own any ".Helper::makePlural($this->requestData["type"]));
+        } else {
+            exit(Server::_s404());
         }
         return $result;
     }

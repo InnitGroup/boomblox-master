@@ -1,3 +1,3 @@
 <script>
-    window.location.href = "/Error/DoesntExist.aspx";
+    window.location = "/Error/DoesntExist.aspx";
 </script>
