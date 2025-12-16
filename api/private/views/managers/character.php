@@ -67,59 +67,72 @@ class CharacterManager {
         $this->paginator = new CharacterPaginator("Paginator", $this->page, ceil($this->user->getItems($this->requestData["type"],true)/8), $this->requestData["type"]);
     }
     public function processColorChange() {
+        $bodyParts = ["head", "la", "ra", "torso", "ll", "rl"];
         $bodyPart = $this->requestData["bodyPart"];
         $brickColor = $this->requestData["brickColor"];
         
-        global $db;
+        if (!in_array($bodyPart, $bodyParts)) {
+            exit(header("Location: /My/Character.aspx"));
+        }
+
+        global $db, $user;
         $stmt = "UPDATE users SET ";
         $stmt .= htmlspecialchars($bodyPart)."Color=:brickColor WHERE id=:id";
-        $result = $db->execute($stmt, [":brickColor" => (int)$brickColor, ":id" => ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"])]);
+        $result = $db->execute($stmt, [":brickColor" => (int)$brickColor, ":id" => $user->getUserId()]);
         if ($result) {
-            $render = new Avatar(ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]));
+            $render = new Avatar($user->getUserId());
             $render->RequestThumbnail(540,660,"PNG");
             $render->RequestThumbnail(500,500,"PNG");
             $render->RequestThumbnail(100,100,"JPG");
-            header("Location: /My/Character.aspx");
+            exit(header("Location: /My/Character.aspx"));
         }
     }
     public function processAccoutrement() {
-        global $db;
+        global $db, $user;
+        $types = ["hat", "shirt", "pants", "t-shirt", "head"];
         $type = strtolower($this->requestData["accoutrementType"]);
         $id = $this->requestData["accoutrementId"];
         $action = $this->requestData["action"];
+
+        if (!in_array($type, $types)) {
+            exit(header("Location: /My/Character.aspx"));
+        }
+
         if ($this->user->hasItem((int)$id)) { #'<script>javascript:alert("hi")</script>';
             $stmt = "UPDATE users SET ";
             $args = array();
-            /*if (!file_exists($_SERVER["DOCUMENT_ROOT"] . "/content/" . $id)) {
-                echo 1;
-                exit;
-            }*/
-            if ($action == "Wear") {
-                $stmt .= "`".htmlspecialchars($type)."`=:aId WHERE `id`=:uId"; # aId = accoutrementId, uId = userId
-                $args = [":aId" => (int)$id, ":uId" => ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"])];
-            } elseif ($action == "Remove") {
-                $stmt .= "`".htmlspecialchars($type)."`=NULL WHERE `id`=:uId"; # aId = accoutrementId, uId = userId
-                $args = [":uId" => ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"])];
-            }
-            
-            $result = $db->execute($stmt, $args);
-            if ($result) {
-                $render = new Avatar(ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]));
-                $render->RequestThumbnail(540,660,"PNG");
-                $render->RequestThumbnail(500,500,"PNG");
-                $render->RequestThumbnail(100,100,"JPG");
-                header("Location: /My/Character.aspx");
+            $asset = new Asset($id);
+            if ($type == strtolower($asset->catalogType()) || $asset->catalogType() == "hat") {
+                if ($action == "Wear") {
+                    $stmt .= "`".htmlspecialchars($type)."`=:aId WHERE `id`=:uId"; # aId = accoutrementId, uId = userId
+                    $args = [":aId" => (int)$id, ":uId" => $user->getUserId()];
+                } elseif ($action == "Remove") {
+                    $stmt .= "`".htmlspecialchars($type)."`=NULL WHERE `id`=:uId"; # aId = accoutrementId, uId = userId
+                    $args = [":uId" => $user->getUserId()];
+                }
+                
+                $result = $db->execute($stmt, $args);
+                if ($result) {
+                    $render = new Avatar($user->getUserId());
+                    $render->RequestThumbnail(540,660,"PNG");
+                    $render->RequestThumbnail(500,500,"PNG");
+                    $render->RequestThumbnail(100,100,"JPG");
+                    exit(header("Location: /My/Character.aspx"));
+                }
             }
         }
     }
+
     public function characterViewer() {
         $char = new Avatar(ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]));
         PageBuilder::addComponent("character", "viewer", compact("char"));
     }
+
     public function colorChooserFrame() {
         $character = $this->user->getCharacter();
         PageBuilder::addComponent("character", "colorchooser", compact("character"));
     }
+
     public function getCreate() {
         if ($this->requestData["type"] == "Hat") {
             return '<span style="color: #cccccc">Create</span>';
@@ -127,6 +140,7 @@ class CharacterManager {
             return '<a href="/My/ContentBuilder.aspx?ContentType='.Helper::typeId($this->requestData["type"]).'">Create</a>';
         }
     }
+
     public function loadWardrobe() {
         $page = $this->page;
         $limit = 8;
@@ -167,7 +181,7 @@ class CharacterManager {
         }
         return $result;
     }
-    #javascript:__doPostBack("Accoutrement", "'.$type.'$'.$item["itemId"].'")
+
     public function loadPaginatorOld() {
         
         $items = $this->user->getItems($this->requestData["type"]);
@@ -199,6 +213,7 @@ class CharacterManager {
         
         return $result;
     }
+
     public function attireCategoryChosen($category) {
         if (!Helper::isset($this->requestData["type"]) && $category == "Hat") {
             return 'class="AttireCategorySelector_Selected"';
@@ -207,6 +222,7 @@ class CharacterManager {
             return 'class="AttireCategorySelector_Selected"';
         }
     }
+
     public function attireChooser() {
         echo '
         <div class="AttireChooser" style="margin-bottom:10px;">
@@ -232,6 +248,7 @@ class CharacterManager {
 		</div>
         ';
     }
+
     public function accoutrements() {
         $items = $this->user->getWornItems();
         echo '

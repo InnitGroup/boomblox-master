@@ -1,5 +1,5 @@
 <?php
-#made: 01/25/2025 @marsoc (before logged; said 'hi', no history of when it was made)
+#made: 051/25/202 @marsoc (before logged; said 'hi', no history of when it was made)
 #last edit: 01/28/2025 @marsoc: reinstated ->Asset() from thumbs to ->RequestThumbnail()
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 $thumb = new Thumbnail;
@@ -21,9 +21,15 @@ class Asset extends Base {
             self::$_status = $fetched["status"];
         }
     }
+
     public function getType() {
         return self::$_assetType;
     }
+
+    public function catalogType() {
+        return self::$_itemType;
+    }
+
     private function GetScript($width=100,$height=100,$imageFormat="PNG") {
         $script = "";
         switch (self::$_assetType) {
@@ -76,12 +82,14 @@ class Asset extends Base {
         return $script." 
         return game:GetService('ThumbnailGenerator'):Boom('".$imageFormat."', ".$width.", ".$height.", ".$lighting.")";
     }
+
     private function TestScript($width=100,$height=100,$imageFormat="PNG") {
         return "
         game:Load(\"http://".domain."/content/snap.rbxl\")
         return game:GetService('ThumbnailGenerator'):Boom('".$imageFormat."', ".$width.", ".$height.", false)
         ";
     }
+
     public function RequestThumbnail($width=100,$height=100,$imageFormat="PNG",$upload=true,$ignoreCache=false) {
         if (self::$_itemType == "T-Shirt") {
             return $this->RequestTShirt();
@@ -136,6 +144,7 @@ class Asset extends Base {
             return Thumbnail::getUnavail($size);
         }
     }
+    
     public function GetThumbnail($width=48,$height=48,$imageFormat="PNG",$renderIfNone=false) {
         if (self::$_status == "blocked") {
             return "https://t2.".domain."/unapproved-250x250.png";
