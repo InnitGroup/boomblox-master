@@ -9,10 +9,11 @@ class CharacterManager {
         2 => "T-Shirt",
         8 => "Hat",
         11 => "Shirt",
-        12 => "Pants"
+        12 => "Pants",
+        17 => "Head"
     ];
     private $attireIDs = [
-        2, 8, 11, 12
+        2, 8, 11, 12, 17
     ];
     public function __construct($post) {
         $this->user = new User(ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]));
@@ -124,7 +125,8 @@ class CharacterManager {
     }
 
     public function characterViewer() {
-        $char = new Avatar(ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]));
+        global $user;
+        $char = new Avatar($user->getUserId());
         PageBuilder::addComponent("character", "viewer", compact("char"));
     }
 
@@ -134,7 +136,7 @@ class CharacterManager {
     }
 
     public function getCreate() {
-        if ($this->requestData["type"] == "Hat") {
+        if ($this->requestData["type"] == "Hat" || $this->requestData["type"] == "Head") {
             return '<span style="color: #cccccc">Create</span>';
         } else {
             return '<a href="/My/ContentBuilder.aspx?ContentType='.Helper::typeId($this->requestData["type"]).'">Create</a>';
@@ -231,7 +233,7 @@ class CharacterManager {
 			<h4>My Wardrobe</h4>
 			<div class="HeaderPager">
 				<div class="AttireCategory">
-					<span><a '.$this->attireCategoryChosen("T-Shirt").' href="javascript:__doPostBack(\'Type\',\'Accoutrement$T-Shirt\')">T-Shirts</a> | <a '.$this->attireCategoryChosen("Shirt").' href="javascript:__doPostBack(\'Type\',\'Accoutrement$Shirt\')">Shirts</a> | <a '.$this->attireCategoryChosen("Pants").' href="javascript:__doPostBack(\'Type\',\'Accoutrement$Pants\')">Pants</a> | <a '.$this->attireCategoryChosen("Hat").' href="javascript:__doPostBack(\'Type\',\'Accoutrement$Hat\')">Hats</a></span><br>    				                
+					<span><a '.$this->attireCategoryChosen("Head").' href="javascript:__doPostBack(\'Type\',\'Accoutrement$Head\')">Heads</a> | <a '.$this->attireCategoryChosen("T-Shirt").' href="javascript:__doPostBack(\'Type\',\'Accoutrement$T-Shirt\')">T-Shirts</a> | <a '.$this->attireCategoryChosen("Shirt").' href="javascript:__doPostBack(\'Type\',\'Accoutrement$Shirt\')">Shirts</a> | <a '.$this->attireCategoryChosen("Pants").' href="javascript:__doPostBack(\'Type\',\'Accoutrement$Pants\')">Pants</a> | <a '.$this->attireCategoryChosen("Hat").' href="javascript:__doPostBack(\'Type\',\'Accoutrement$Hat\')">Hats</a></span><br>    				                
 					<span><a href="/Catalog.aspx?m=ForSale&c='.Helper::typeId($this->requestData["type"]).'&d=All">Shop</a>&nbsp;&nbsp;'.$this->getCreate().'</span>
 				</div>
 			</div>

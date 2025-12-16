@@ -810,7 +810,7 @@ class User {
     }
     public function getItems($type = false, $count = false, $checkIfWearing = false) {
         global $db;
-        $char = array_intersect($this->getCharacter(), ["t-shirt", "shirt", "pants", "hat"]);
+        $char = array_intersect($this->getCharacter(), ["t-shirt", "shirt", "pants", "hat", "head"]);
         $items = unserialize($this->getData("user", "items"));
         if ($type) {
             if ($type == "game") {
@@ -906,6 +906,9 @@ class User {
         }
         if (!empty($char["t-shirt"])) {
             array_push($wornArray, $char["t-shirt"]);
+        }
+        if (!empty($char["head"])) {
+            array_push($wornArray, $char["head"]);
         }
         if (!$array) {
             return $wornArray;

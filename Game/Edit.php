@@ -20,7 +20,7 @@ if (!$user->ownsPlace($placeId)) {
 $uploadUrl = in_array($placeId, $user->getPlaces(true)) ? "http://".domain."/Data/Upload.ashx?id=" . $placeId : "";
 
 $file = new File("/api/private/lua/edit.lua", [
-	"UserId" => $userId,
+	"UserId" => $user->getUserId(),
 	"PlaceId" => $placeId,
 	"UploadUrl" => $uploadUrl,
 	"Url" => url
