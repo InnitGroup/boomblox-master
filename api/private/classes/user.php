@@ -856,15 +856,13 @@ class User {
     }
     public function getItems2() {
         $items = $this->data["user"]["items"];
-        #if ($items == "a:0:{}") {
-        #    $items = serialize(array());
-        #}
+
         return $items;
     }
     public function hasItem($item) {
         $items = $this->getItems2();
         
-        return in_array($item,unserialize($items));
+        return in_array($item, unserialize($items));
     }
     public function removeItem($item) {
         $items = $this->getItems2();

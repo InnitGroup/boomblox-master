@@ -96,6 +96,7 @@ class CharacterManager {
         $action = $this->requestData["action"];
 
         if (!in_array($type, $types)) {
+            #Discord::sendWebhookMessage("vcchat", "type not available");
             exit(header("Location: /My/Character.aspx"));
         }
 
@@ -120,7 +121,11 @@ class CharacterManager {
                     $render->RequestThumbnail(100,100,"JPG");
                     exit(header("Location: /My/Character.aspx"));
                 }
+            } else {
+                #Discord::sendWebhookMessage("vcchat", "type not connected");
             }
+        } else {
+            #Discord::sendWebhookMessage("vcchat", "accoutrement not found");
         }
     }
 

@@ -393,7 +393,7 @@ class CatalogManager {
 							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl04_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=8&t='.htmlspecialchars($this->t).'&d=All">Hats</a>
 						</li>
 						<li>
-							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl05_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=13&t='.htmlspecialchars($this->t).'&d=All">Decals<</a>
+							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl05_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=13&t='.htmlspecialchars($this->t).'&d=All">Decals</a>
 						</li>
 						<li>
 							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl06_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=10&t='.htmlspecialchars($this->t).'&d=All">Models</a>
