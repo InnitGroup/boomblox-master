@@ -173,6 +173,9 @@ class CatalogManager {
                 switch ($this->c) {
                     case "2": #
                         echo '
+                        <li>
+							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl00_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=17&t='.htmlspecialchars($this->t).'&d=All">Heads</a>
+						</li>
                         <li>  
                             <img id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl04_SelectedCategoryBullet" class="GamesBullet" src="images/games_bullet.png" border="0"/>
 							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl01_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=2&t='.htmlspecialchars($this->t).'&d=All"><b>T-Shirts</b></a>
@@ -199,6 +202,9 @@ class CatalogManager {
                         break;
                     case "8":
                         echo '
+                        <li>
+							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl00_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=17&t='.htmlspecialchars($this->t).'&d=All">Heads</a>
+						</li>
                         <li>  
 							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl01_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=2&t='.htmlspecialchars($this->t).'&d=All">T-Shirts</a>
 						</li>
@@ -225,6 +231,9 @@ class CatalogManager {
                         break;
                     case "9":
                         echo '
+                        <li>
+							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl00_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=17&t='.htmlspecialchars($this->t).'&d=All">Heads</a>
+						</li>
                         <li>  
 							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl01_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=2&t='.htmlspecialchars($this->t).'&d=All">T-Shirts</a>
 						</li>
@@ -251,6 +260,9 @@ class CatalogManager {
                         break;
                     case "10":
                         echo '
+                        <li>
+							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl00_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=17&t='.htmlspecialchars($this->t).'&d=All">Heads</a>
+						</li>
                         <li>  
 							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl01_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=2&t='.htmlspecialchars($this->t).'&d=All">T-Shirts</a>
 						</li>
@@ -277,6 +289,9 @@ class CatalogManager {
                         break;
                     case "11":
                         echo '
+                        <li>
+							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl00_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=17&t='.htmlspecialchars($this->t).'&d=All">Heads</a>
+						</li>
                         <li>  
 							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl01_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=2&t='.htmlspecialchars($this->t).'&d=All">T-Shirts</a>
 						</li>
@@ -303,6 +318,9 @@ class CatalogManager {
                         break;
                     case "12":
                         echo '
+                        <li>
+							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl00_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=17&t='.htmlspecialchars($this->t).'&d=All">Heads</a>
+						</li>
                         <li>  
 							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl01_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=2&t='.htmlspecialchars($this->t).'&d=All">T-Shirts</a>
 						</li>
@@ -329,6 +347,9 @@ class CatalogManager {
                         break;
                     case "13":
                         echo '
+                        <li>
+							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl00_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=17&t='.htmlspecialchars($this->t).'&d=All">Heads</a>
+						</li>
                         <li>  
 							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl01_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=2&t='.htmlspecialchars($this->t).'&d=All">T-Shirts</a>
 						</li>
@@ -344,6 +365,35 @@ class CatalogManager {
 						<li>
                             <img id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl04_SelectedCategoryBullet" class="GamesBullet" src="images/games_bullet.png" border="0"/>
 							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl05_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=13&t='.htmlspecialchars($this->t).'&d=All"><b>Decals</b></a>
+						</li>
+						<li>
+							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl06_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=10&t='.htmlspecialchars($this->t).'&d=All">Models</a>
+						</li>
+						<li>
+							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl07_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=9&t='.htmlspecialchars($this->t).'&d=All">Places</a>
+						</li>
+                        ';
+                        break;
+                    case "17":
+                        echo '
+                        <li>
+                            <img id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl04_SelectedCategoryBullet" class="GamesBullet" src="images/games_bullet.png" border="0"/>
+							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl00_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=17&t='.htmlspecialchars($this->t).'&d=All"><b>Heads</b></a>
+						</li>
+                        <li>  
+							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl01_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=2&t='.htmlspecialchars($this->t).'&d=All">T-Shirts</a>
+						</li>
+						<li>
+							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl02_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=11&t='.htmlspecialchars($this->t).'&d=All">Shirts</a>
+						</li>
+						<li>
+							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl03_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=12&t='.htmlspecialchars($this->t).'&d=All">Pants</a>
+						</li>
+						<li>
+							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl04_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=8&t='.htmlspecialchars($this->t).'&d=All">Hats</a>
+						</li>
+						<li>
+							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl05_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=13&t='.htmlspecialchars($this->t).'&d=All">Decals<</a>
 						</li>
 						<li>
 							<a id="ctl00_cphRoblox_rbxCatalog_AssetCategoryRepeater_ctl06_AssetCategorySelector" href="Catalog.aspx?m='.htmlspecialchars($this->m).'&c=10&t='.htmlspecialchars($this->t).'&d=All">Models</a>
