@@ -168,49 +168,6 @@ game:service("Players").PlayerAdded:connect(function(player)
 			ms:Remove()
 		end
 	end)
-
-	if ({PlaceID} == 164) then
-		workspace.ChildAdded:connect(function(child)
-			if child.Name == "Board" then
-				wait(0.5)
-				local player = game.Players[child.Owner.Value]
-				local score = child.Score.Num
-				local level = player.Level
-				score.Changed:connect(function()
-					print("hello " .. score.Value)
-					if score.Value == 666 then
-						local msg = Instance.new("Message", player)
-						msg.Text = "willymaster curses you"
-						wait(2)
-						msg.Text = "do not tell anyone, it will ruin the prize"
-						wait(2)
-						msg.Text = "tz8zBygWWB"
-						wait(2)
-						msg.Text = "do not tell anyone, it will ruin the prize"
-						wait(2)
-						msg:Remove()
-					elseif score.Value >= 150 then
-						if (level.Value == 3) then -- bluesteel egg
-							game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .. "&key=IR34l1yL0v3Th3RustyT3tr4m1n0H4h4h4h444444&assetnumber=365&t=" .. math.random(1,999), false)
-						end
-					elseif score.Value >= 100 then
-						print("possibly a tetramino")
-						if (level.Value == 1) then -- bronze
-							print("rusty tetramino!!!!!!!!!!!!!!!!!")
-							game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .. "&key=IR34l1yL0v3Th3RustyT3tr4m1n0H4h4h4h444444&assetnumber=1672&t=" .. math.random(1,999), false)
-						elseif (level.Value == 2) then -- silver
-							game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .. "&key=IR34l1yL0v3Th3RustyT3tr4m1n0H4h4h4h444444&assetnumber=1673&t=" .. math.random(1,999), false)
-						elseif (level.Value == 3) then -- gold
-							game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .. "&key=IR34l1yL0v3Th3RustyT3tr4m1n0H4h4h4h444444&assetnumber=1674&t=" .. math.random(1,999), false)
-						end
-					end
-				end)
-				
-			end
-		end)
-		
-	end
-
 end)
 
 if port>0 then

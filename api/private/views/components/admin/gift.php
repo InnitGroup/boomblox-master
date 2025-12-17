@@ -1,22 +1,25 @@
 <div id="MainPanel">
     <p>Utility panel for giving gifts to specific users</p>
     <?php
-    $gift = 1991;
+    $gift = 203;
     $recipients = [
-"Boomblox",
 "marsoc",
-"1o4xy9i8h9fPwnerv1",
+"EPICW3B",
 "explorer",
+"bee027",
+"1o4xy9i8h9fPwnerv1",
 "kainsteronyt",
 "pwnzor",
+"Adam",
 "platos",
-"TZolta",
-"chicken",
-"phil",
 "nox",
+"idontknowwhat",
 "G2HJS",
-"JohnDoe",
+"chicken",
 "Spades",
+"phil",
+"jamster",
+"Zanryth",
 "viny"
     ];
     foreach ($recipients as $recipient) {
