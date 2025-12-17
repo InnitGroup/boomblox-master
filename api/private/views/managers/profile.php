@@ -83,28 +83,33 @@ class ProfileManager {
         }
     }
     public function processEdits() {
-        global $db;
+        global $db, $user;
         switch ($this->postData["actionType"]) {
             case "Submit":
                 if ($this->postData["blurb"]) {
+                    $blurb = Helper::debugString($this->postData["blurb"]);
+
                     $stmt = "UPDATE users SET blurb=:blurb WHERE id=:id";
-                    $result = $db->execute($stmt, [":blurb" => $this->postData["blurb"], ":id" => ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"])]);
+                    $result = $db->execute($stmt, [":blurb" => $blurb, ":id" => $user->getUserId()]);
                     if (!$result) {
                         $this->postData["validator"] = 4;
                     }
                 }
                 if (!isset($this->postData["validator"])) {
-                    header("Location: /My/Profile.aspx");
+                    exit(header("Location: /My/Profile.aspx"));
                 }
                 break;
             case "Cancel":
                 header("Location: /My/Profile.aspx");
+                exit;
                 break;
             case "ChangePassword":
                 header("Location: /Login/ResetPassword.aspx");
+                exit;
                 break;
             case "CSettings":
                 header("Location: /My/CustomSettings.aspx");
+                exit;
                 break;
             case "VerifyEmail":
                 Discord::sendOAuth();
