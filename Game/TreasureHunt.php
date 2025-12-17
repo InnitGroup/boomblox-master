@@ -31,6 +31,7 @@ switch ($key) {
         Discord::sendWebhookMessage("weird", "{$user->getUsername()} received The Riddling Skull !");
         break;
 
+    # december 16th, 2025 - rotris event
     case "IR34l1yL0v3Th3RustyT3tr4m1n0H4h4h4h444444":
         $assetIds = [365, 1672, 1673, 1674];
 
