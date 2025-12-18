@@ -270,13 +270,22 @@ class User {
             $charapp .= ";".Site::$domain."/Asset/?id=".(int)$this->data["character"]["hat"];
         }
         if (isset($this->data["character"]["shirt"])) {
-            $charapp .= ";".Site::$domain."/Asset/?id=".(int)$this->data["character"]["shirt"];
+            $asset = new Asset((int)$this->data["character"]["shirt"]);
+            if ($asset->IsApproved()) {
+                $charapp .= ";".Site::$domain."/Asset/?id=".(int)$this->data["character"]["shirt"];
+            }
         }
         if (isset($this->data["character"]["pants"])) {
-            $charapp .= ";".Site::$domain."/Asset/?id=".(int)$this->data["character"]["pants"];
+            $asset = new Asset((int)$this->data["character"]["pants"]);
+            if ($asset->IsApproved()) {
+                $charapp .= ";".Site::$domain."/Asset/?id=".(int)$this->data["character"]["pants"];
+            }
         }
         if (isset($this->data["character"]["t-shirt"])) {
-            $charapp .= ";".Site::$domain."/Asset/?id=".(int)$this->data["character"]["t-shirt"];
+            $asset = new Asset((int)$this->data["character"]["t-shirt"]);
+            if ($asset->IsApproved()) {
+                $charapp .= ";".Site::$domain."/Asset/?id=".(int)$this->data["character"]["t-shirt"];
+            }
         }
         if (isset($this->data["character"]["head"]) && $this->data["character"]["head"] > 0) {
             $charapp .= ";".Site::$domain."/content/test/".(int)$this->data["character"]["head"];;

@@ -8,7 +8,7 @@ class Asset extends Base {
     private $user;
     private static $_assetType;
     public static $_itemType;
-    private static $_status;
+    public static $_status;
     public function __construct($assetId) {
         global $db;
         self::$_assetId = $assetId;
@@ -81,6 +81,10 @@ class Asset extends Base {
         }
         return $script." 
         return game:GetService('ThumbnailGenerator'):Boom('".$imageFormat."', ".$width.", ".$height.", ".$lighting.")";
+    }
+
+    private function IsApproved() {
+        return self::$_status == "accepted";
     }
 
     private function TestScript($width=100,$height=100,$imageFormat="PNG") {
