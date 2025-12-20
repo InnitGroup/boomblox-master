@@ -656,6 +656,9 @@ class UserManager {
                         } echo '
                     </div>
 					<div id="AssetsMenu">
+                        <div class="AssetsMenuItem'.$this->invCategorySelected($this->invCategory, 17).'">
+							<a class="AssetsMenuButton'.$this->invCategorySelected($this->invCategory, 17).'" href="javascript:__doWebPostBack('.$this->inventoryEndpoint.',\'UserAssetsPane\',{\'userId\': '.$this->userId.',\'publicView\': '.(int)$view.',\'theme\': '.$this->theme.',\'postData\': [\'AssetCategorySelector\',\'17$AssetCategory$Inventory\',17]})">Heads</a>
+						</div>
 						<div class="AssetsMenuItem'.$this->invCategorySelected($this->invCategory, 2).'">
 							<a class="AssetsMenuButton'.$this->invCategorySelected($this->invCategory, 2).'" href="javascript:__doWebPostBack('.$this->inventoryEndpoint.',\'UserAssetsPane\',{\'userId\': '.$this->userId.',\'publicView\': '.(int)$view.',\'theme\': '.$this->theme.',\'postData\': [\'AssetCategorySelector\',\'2$AssetCategory$Inventory\',2]})">T-Shirts</a>
 						</div>
