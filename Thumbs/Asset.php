@@ -83,7 +83,7 @@ class Asset extends Base {
         return game:GetService('ThumbnailGenerator'):Boom('".$imageFormat."', ".$width.", ".$height.", ".$lighting.")";
     }
 
-    private function IsApproved() {
+    public function IsApproved() {
         return self::$_status == "accepted";
     }
 

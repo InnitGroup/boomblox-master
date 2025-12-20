@@ -104,7 +104,7 @@ class CharacterManager {
             $stmt = "UPDATE users SET ";
             $args = array();
             $asset = new Asset($id);
-            if ($type == strtolower($asset->catalogType()) || $asset->catalogType() == "hat") {
+            if ($type == strtolower($asset->catalogType()) || $asset->catalogType() == "Hat") {
                 if ($action == "Wear") {
                     $stmt .= "`".htmlspecialchars($type)."`=:aId WHERE `id`=:uId"; # aId = accoutrementId, uId = userId
                     $args = [":aId" => (int)$id, ":uId" => $user->getUserId()];

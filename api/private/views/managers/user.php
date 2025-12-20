@@ -383,7 +383,8 @@ class UserManager {
         "10" => "Model",
         "11" => "Shirt",
         "12" => "Pants",
-        "13" => "Decal"
+        "13" => "Decal",
+        "17" => "Head"
     ];
     private $cToString = [
         "2" => "T-Shirts",
@@ -392,7 +393,8 @@ class UserManager {
         "10" => "Models",
         "11" => "Shirts",
         "12" => "Pants",
-        "13" => "Decals"
+        "13" => "Decals",
+        "17" => "Heads"
     ];
     
     public function loadFavPanePaginator($type) { // Header/Footer
@@ -528,7 +530,8 @@ class UserManager {
                             '.$this->loadFavPanePaginator("Footer").'
                         </div>
                         <div class="PanelFooter"> Category:&nbsp; <select onchange="javascript:__doWebPostBack('.$this->favoritesEndpoint.',\'FavoritesPane\',{\'userId\': '.$this->userId.',\'publicView\': '.$view.',\'theme\': '.$this->theme.',\'postData\': [\'AssetCategory\',this.value + \'$AssetCategory$Favorites\',this.value]})" name="AssetCategory">
-                                <option '.$this->categorySelected($this->favCategory, 2).' value="2"">T-Shirts</option>
+                                <option '.$this->categorySelected($this->favCategory, 17).' value="17">Heads</option>        
+                                <option '.$this->categorySelected($this->favCategory, 2).' value="2">T-Shirts</option>
                                 <option '.$this->categorySelected($this->favCategory, 11).' value="11">Shirts</option>
                                 <option '.$this->categorySelected($this->favCategory, 12).' value="12">Pants</option>
                                 <option '.$this->categorySelected($this->favCategory, 8).' value="8">Hats</option>
