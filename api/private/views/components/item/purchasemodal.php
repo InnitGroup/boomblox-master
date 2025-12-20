@@ -20,7 +20,7 @@ if (isset($purchaseData)) {
         <?php if (isset($purchaseData) && !isset($_POST['ctl00$cphRoblox$ProceedWithTicketsPurchaseButton']) && !isset($_POST['ctl00$cphRoblox$ProceedWithRobuxPurchaseButton']) && !isset($_POST['ctl00$cphRoblox$ProceedWithPublicDomainPurchaseButton'])): ?>
         <div id="VerifyPurchase_<?=$currencyName?>" style="margin: 1.5em;">
             <h3>Purchase Item:</h3>
-            <p>Would you like to purchase <?=$data->catalogType?> "<?=htmlspecialchars($data->itemName)?>" from <?=$data->creatorName?> for <?=$shortName == "Free" ? "Free" : "$shortName ". number_format($price)?>?</p>
+            <p>Would you like to purchase <?=$data->catalogType?> "<?=htmlspecialchars(Helper::debugString($data->itemName))?>" from <?=$data->creatorName?> for <?=$shortName == "Free" ? "Free" : "$shortName ". number_format($price)?>?</p>
             <?php if ($shortName !== "Free"): ?>
             <p>Your balance after this purchase will be <?=$shortName?> <?=number_format($balance)?>.</p>
             <?php endif; ?>

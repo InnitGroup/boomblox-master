@@ -1,6 +1,6 @@
 <?php
 $type = $item->catalogType;
-$name = htmlspecialchars($item->itemName);
+$name = htmlspecialchars(Helper::debugString($item->itemName));
 $desc = !empty($item->itemDescription) ? htmlspecialchars($item->itemDescription) : "No description available.";
 $comments = $item->commentsEnabled == 1 ? "checked" : "";
 

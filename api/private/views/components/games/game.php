@@ -1,5 +1,5 @@
 <?php
-$name = htmlspecialchars($game["itemName"]);
+$name = htmlspecialchars(Helper::debugString($game["itemName"]));
 $id = $game["itemId"];
 $lastUpdate = Helper::timeAgo($game["lastUpdate"]);
 $creatorId = $game["creatorId"];

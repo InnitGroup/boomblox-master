@@ -38,7 +38,7 @@ $places = $user->getPlaces();
 					<?php
                     foreach ($places as $item) {
                         $relativeId = $item["itemId"];
-                        $name = $item["itemName"];
+                        $name = Helper::debugString($item["itemName"]);
                         PageBuilder::addComponent("ide", "creation", compact("relativeId", "name"));
                     }
                     ?>

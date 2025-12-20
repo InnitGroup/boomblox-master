@@ -5,8 +5,8 @@
 
 foreach ($fetched as $order => $model): ?>
         <td class="ToolboxItem" ondragstart="dragRBX(<?=$model['itemId']?>)" onmouseover="this.style.borderStyle='outset'" onmouseout="this.style.borderStyle='solid'" style="border-style: solid;">
-            <a id="dlToolboxItems_ctl00_ciToolboxItem" title="<?=htmlspecialchars($model['itemName'])?>" href="javascript:insertContent(<?=$model['itemId']?>)" style="display:inline-block;height:60px;width:60px;cursor:pointer;">
-                <img style="width:56px;" src="<?php $asset = new Asset($model['itemId']); echo $asset->GetThumbnail(250, 250, "PNG");?>" border="0" id="img" alt="<?=htmlspecialchars($model['itemName'])?>">
+            <a id="dlToolboxItems_ctl00_ciToolboxItem" title="<?=htmlspecialchars(Helper::debugString($model['itemName']))?>" href="javascript:insertContent(<?=$model['itemId']?>)" style="display:inline-block;height:60px;width:60px;cursor:pointer;">
+                <img style="width:56px;" src="<?php $asset = new Asset($model['itemId']); echo $asset->GetThumbnail(250, 250, "PNG");?>" border="0" id="img" alt="<?=htmlspecialchars(Helper::debugString($model['itemName']))?>">
             </a>
         </td>
     <?php if (($order+1) % 2 == 0): ?>

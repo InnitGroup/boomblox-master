@@ -481,18 +481,18 @@ class UserManager {
                                             if (!$publicView) {$result .= '<a class="RemoveItem" href="javascript:__doPostBack(\''.$favorite["itemId"].'\', \'ctl00$robloxCph$RemoveFavorite\')" style="position:relative;left:20px;" onclick="wearItem(event)">&nbsp;[ delete ]&nbsp;</a>';}
                                                 
                                                 $result .= '<div class="AssetThumbnail">
-                                                    <a title="'.htmlspecialchars($favorite["itemName"]).'" href="/Item.aspx?ID='.htmlspecialchars($favorite["itemId"]).'" style="display:inline-block;cursor:pointer;">
-                                                        <img style="height:110px;width:110px;" src="'.$thumb.'" border="0" alt="'.htmlspecialchars($favorite["itemName"]).'">
+                                                    <a title="'.htmlspecialchars(Helper::debugString($favorite["itemName"])).'" href="/Item.aspx?ID='.htmlspecialchars($favorite["itemId"]).'" style="display:inline-block;cursor:pointer;">
+                                                        <img style="height:110px;width:110px;" src="'.$thumb.'" border="0" alt="'.htmlspecialchars(Helper::debugString($favorite["itemName"])).'">
                                                     </a>
                                                 </div>
                                                 <div class="AssetDetails">
                                                     <div class="AssetName">
-                                                        <a href="Item.aspx?ID='.htmlspecialchars($favorite["itemId"]).'">'.htmlspecialchars($favorite["itemName"]).'</a>
+                                                        <a href="Item.aspx?ID='.htmlspecialchars($favorite["itemId"]).'">'.htmlspecialchars(Helper::debugString(($favorite["itemName"]))).'</a>
                                                     </div>
                                                     <div class="AssetCreator">
                                                         <span class="Label">Creator:</span>
                                                         <span class="Detail">
-                                                            <a href="User.aspx?ID='.htmlspecialchars($favorite["creatorId"]).'">'.htmlspecialchars($favorite["creatorName"]).'</a>
+                                                            <a href="User.aspx?ID='.htmlspecialchars($favorite["creatorId"]).'">'.htmlspecialchars(Helper::debugString($favorite["creatorName"])).'</a>
                                                         </span>
                                                     </div>
                                                 </div>

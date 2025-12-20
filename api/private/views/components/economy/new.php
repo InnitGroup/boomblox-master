@@ -41,8 +41,8 @@
                 if ($user->hasPerms(7)) {
                     $stmt = "INSERT INTO items (itemType, catalogType, creatorId, creatorName, itemName, itemDescription) VALUES ('catalog', 'Mesh', 1, 'Boomblox', :itemName, :itemDescription)";
                     $db->execute($stmt, [
-                        ":itemName" => $_POST['ctl$cphRoblox$itemName'],
-                        ":itemDescription" => $description
+                        ":itemName" => Helper::debugString($_POST['ctl$cphRoblox$itemName']),
+                        ":itemDescription" => Helper::debugString($description)
                     ]);
                     
                     $meshId = $db->lastInsertId("items");
@@ -53,8 +53,8 @@
                 move_uploaded_file($file["tmp_name"], $_SERVER["DOCUMENT_ROOT"]."/content/temp/$tmpName");
                 $stmt = "INSERT INTO itemqueue (itemName, itemDescription, catalogType, tempName, uploaderId) VALUES (:itemName, :itemDescription, :catalogType, :tempName, :uploaderId)";
                 $db->execute($stmt, [
-                    ":itemName" => $_POST['ctl$cphRoblox$itemName'],
-                    ":itemDescription" => $_POST['ctl$cphRoblox$itemDescription'],
+                    ":itemName" => Helper::debugString($_POST['ctl$cphRoblox$itemName']),
+                    ":itemDescription" =>Helper::debugString($_POST['ctl$cphRoblox$itemDescription']),
                     ":catalogType" => $_POST['ctl$cphRoblox$catalogType'],
                     ":tempName" => $_SERVER["DOCUMENT_ROOT"]."/content/temp/$tmpName",
                     ":uploaderId" => $user->getUserId()

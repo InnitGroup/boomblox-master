@@ -3,7 +3,7 @@
         <div id="PurchaseSuccess" style="display:block;margin: 1.5em;">
             <h3>Purchase Complete</h3>
             <p>
-                You have successfully purchased <?=$data->catalogType?> "<?=htmlspecialchars($data->itemName)?>" from <?=$data->creatorName?> for <?=$shortName == "Free" ? "Free" : ": $price."?>
+                You have successfully purchased <?=$data->catalogType?> "<?=htmlspecialchars(Helper::debugString($data->itemName))?>" from <?=$data->creatorName?> for <?=$shortName == "Free" ? "Free" : ": $price."?>
             </p>
             <p>
                 <a href="/Catalog.aspx">Continue Shopping</a>

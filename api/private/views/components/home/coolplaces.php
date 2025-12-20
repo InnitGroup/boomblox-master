@@ -23,7 +23,7 @@ if (Server::isIE7()): ?>
                         $asset = new Asset($place["itemId"]);
                         $render = $asset->GetThumbnail(420, 230, "PNG"); ?>
                         <td class="UserPlace">
-                            <a id="ctl00_cphRoblox_CoolPlacesDataList_ctl00_rbxContentImage" title="<?=htmlspecialchars($place["itemName"])?>" href="/Item.aspx?ID=<?=(int)$place["itemId"]?>" style="display:inline-block;cursor:pointer;"><img style="width:120px;height:70px;" src="<?=$render?>" border="0" alt="<?=htmlspecialchars($place["itemName"])?>" blankurl="http://t2.xoblog.dev:80/blank-120x70.gif"/></a>
+                            <a id="ctl00_cphRoblox_CoolPlacesDataList_ctl00_rbxContentImage" title="<?=htmlspecialchars(Helper::debugString($place["itemName"]))?>" href="/Item.aspx?ID=<?=(int)$place["itemId"]?>" style="display:inline-block;cursor:pointer;"><img style="width:120px;height:70px;" src="<?=$render?>" border="0" alt="<?=htmlspecialchars(Helper::debugString($place["itemName"]))?>" blankurl="http://t2.xoblog.dev:80/blank-120x70.gif"/></a>
                         </td>
                 <?php endforeach;
                 endif; ?>

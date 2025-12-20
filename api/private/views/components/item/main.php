@@ -8,7 +8,7 @@ if (isset($purchaseData)) {
 <div id="Body">
     <div id="ItemContainer">
         <div id="Item">
-            <h2><?=htmlspecialchars($data->itemName)?></h2>
+            <h2><?=htmlspecialchars(Helper::debugString($data->itemName))?></h2>
             <?=PageBuilder::addComponent("item", "details", $packed);?>
             <?=PageBuilder::addComponent("item", "tabs", $packed);?>
         </div>

@@ -54,7 +54,7 @@ if (Server::isPost()) {
                     <?php 
                     if (!empty($assets)) {
                         foreach ($assets as $key => $asset) {
-                            $name = $asset["itemName"];
+                            $name = Helper::debugString($asset["itemName"]);
                             $texture = "/cdn/t2/unavail-420x230.png";
 
                             if ($file = File::getImageType($_SERVER["DOCUMENT_ROOT"]."/cdn/t3/".$asset["itemId"])) {

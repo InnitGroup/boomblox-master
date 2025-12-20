@@ -11,8 +11,8 @@ if (isset($data->itemDescription)) {
 
 <div id="Details">
     <div id="Thumbnail">
-        <a disabled="" title="<?=htmlspecialchars($data->itemName)?>" onclick="return false" style="display:inline-block;">
-            <img src="<?=$assetRender?>" border="0" alt="<?=htmlspecialchars($data->itemName)?>" style="height:250px;width:250px;">
+        <a disabled="" title="<?=htmlspecialchars(Helper::debugString($data->itemName))?>" onclick="return false" style="display:inline-block;">
+            <img src="<?=$assetRender?>" border="0" alt="<?=htmlspecialchars(Helper::debugString($data->itemName))?>" style="height:250px;width:250px;">
         </a>
     </div>
     <div id="Summary">

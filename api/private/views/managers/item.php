@@ -99,7 +99,7 @@ class ItemManager {
         } else {
             $type = $typeMap[$this->itemData["itemType"]];
         }
-        return htmlspecialchars($this->itemData["itemName"])." by ".$this->itemData["creatorName"]." - ".Site::getThemeProperty("alias", $this->theme)." ".$type;
+        return htmlspecialchars(Helper::debugString($this->itemData["itemName"]))." by ".$this->itemData["creatorName"]." - ".Site::getThemeProperty("alias", $this->theme)." ".$type;
     }
     public function load() {
         switch ($this->itemData["itemType"]) {

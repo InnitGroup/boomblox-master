@@ -556,7 +556,7 @@ class User {
             $placeName .= ": #".$result->rowCount() + 1;
         }
         $stmt = "INSERT INTO items (`itemType`, `creatorId`, `creatorName`, `itemName`, `itemDescription`, `status`) VALUES ('game', :creatorId, :creatorName, :itemName, 'No description available.', 'accepted')";
-        $result = $db->execute($stmt,[":creatorId" => $this->data["user"]["id"], ":creatorName" => $this->data["user"]["username"], ":itemName" => $placeName]);
+        $result = $db->execute($stmt,[":creatorId" => $this->data["user"]["id"], ":creatorName" => $this->data["user"]["username"], ":itemName" => Helper::debugString($placeName)]);
         $placeId = $db->singleton()->lastInsertId();
         
         $data = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/content/templates/EmptyBaseplate");
@@ -945,7 +945,7 @@ class User {
                         $stmt = "SELECT * FROM items WHERE itemId=:gameId";
                         $result = $db->execute($stmt, [":gameId" => (int)$server["placeId"]]);
                         $result = $result->fetch(PDO::FETCH_ASSOC);
-                        return htmlspecialchars($result["itemName"]);
+                        return htmlspecialchars(Helper::debugString($result["itemName"]));
                     }
                 }
             }

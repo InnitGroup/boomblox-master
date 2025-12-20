@@ -1,7 +1,7 @@
 <?php
 global $user, $theme;
 
-$name = isset($item["itemName"]) ? htmlspecialchars($item["itemName"]) : "Place";
+$name = isset($item["itemName"]) ? Helper::debugString(htmlspecialchars($item["itemName"])) : "Place";
 $description = isset($item["itemDescription"]) ? htmlspecialchars($item["itemDescription"]) : NULL;
 $id = $item["itemId"];
 $itemId = $item["itemId"];

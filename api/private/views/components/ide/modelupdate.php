@@ -32,7 +32,7 @@
 
                     foreach ($models as $item) {
                         $relativeId = $item["itemId"];
-                        $name = $item["itemName"];
+                        $name = Helper::debugString($item["itemName"]);
                         PageBuilder::addComponent("ide", "model", compact("relativeId", "name"));
                     }
                     ?>

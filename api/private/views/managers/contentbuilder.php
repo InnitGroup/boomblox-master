@@ -47,7 +47,7 @@ class ContentBuilderManager {
         $creatorName = $db->getUserById($creatorId);
         $fileName = pathinfo($file["name"], PATHINFO_FILENAME);
         
-        $db->execute($stmt, [":catalogType" => $type, ":creatorId" => $creatorId, ":creatorName" => $creatorName, ":itemName" => $fileName]);
+        $db->execute($stmt, [":catalogType" => $type, ":creatorId" => $creatorId, ":creatorName" => $creatorName, ":itemName" => Helper::debugString($fileName)]);
         $id = $db->singleton()->lastInsertId();
 
         $filePath = $targetDirectory . (string)$id . "." . $fileType;

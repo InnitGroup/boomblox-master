@@ -518,12 +518,12 @@ class CatalogManager {
                 <td valign="top">
                     <div class="Asset">
                         <div class="AssetThumbnail">
-                            <a title="'.htmlspecialchars($item["itemName"]).'" href="/Item.aspx?ID='.htmlspecialchars($item["itemId"]).'" style="display:inline-block;cursor:pointer;">
-                                <img style="height:120px;width:120px;" src="'.$thumbnail.'" border="0" alt="'.htmlspecialchars($item["itemName"]).'" blankUrl="/cdn/broken-120x120.png"/>
+                            <a title="'.htmlspecialchars(Helper::debugString($item["itemName"])).'" href="/Item.aspx?ID='.htmlspecialchars($item["itemId"]).'" style="display:inline-block;cursor:pointer;">
+                                <img style="height:120px;width:120px;" src="'.$thumbnail.'" border="0" alt="'.htmlspecialchars(Helper::debugString($item["itemName"])).'" blankUrl="/cdn/broken-120x120.png"/>
                             </a>
                         </div>
                         <div class="AssetDetails">
-                            <div class="AssetName"><a href="Item.aspx?ID='.htmlspecialchars($item["itemId"]).'">'.htmlspecialchars($item["itemName"]).'</a></div>
+                            <div class="AssetName"><a href="Item.aspx?ID='.htmlspecialchars($item["itemId"]).'">'.htmlspecialchars(Helper::debugString($item["itemName"])).'</a></div>
                             <div class="AssetLastUpdate"><span class="Label">Updated:</span> <span class="Detail">'.Helper::timeAgo($item["lastUpdate"]).'</span></div>
                             <div class="AssetCreator"><span class="Label">Creator:</span> <span class="Detail"><a href="User.aspx?ID='.htmlspecialchars($item["creatorId"]).'">'.htmlspecialchars($item["creatorName"]).'</a></span></div>
                             <div class="AssetsSold"><span class="Label">Number Sold:</span> <span class="Detail">'.Helper::times($sales).'</span></div>

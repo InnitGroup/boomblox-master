@@ -17,7 +17,7 @@ if ($user->getUserId() == $place["creatorId"]) {
 ?>
 
 <script src="/ScriptResource.axd?d=aWRl"></script>
-<div class="AccordionHeader" onclick="javascript:OpenPlace(<?=$id?>)"> <?=htmlspecialchars($place["itemName"])?> </div>
+<div class="AccordionHeader" onclick="javascript:OpenPlace(<?=$id?>)"> <?=htmlspecialchars(Helper::debugString($place["itemName"]))?> </div>
     <div style="display:<?=$display?>;" id="PlaceContent<?=$id?>" class="PlaceContent">
         <div class="Place">
             <div class="PlayStatus">
@@ -66,8 +66,8 @@ if ($user->getUserId() == $place["creatorId"]) {
                 <span>Visited <?=number_format($place["interactions"])?> times (<?=number_format($user->getLastWeekVisits($place["itemId"]))?> last week)</span>
             </div>
             <div class="Thumbnail">
-                <a disabled="disabled" title="<?=htmlspecialchars($place["itemName"])?>" href="/Item.aspx?ID=<?=$place["itemId"]?>" style="display:inline-block;">
-                    <img src="<?=$asset->GetThumbnail(420, 230, "PNG")?>" border="0" alt="<?=htmlspecialchars($place["itemName"])?>" />
+                <a disabled="disabled" title="<?=htmlspecialchars(Helper::debugString($place["itemName"]))?>" href="/Item.aspx?ID=<?=$place["itemId"]?>" style="display:inline-block;">
+                    <img src="<?=$asset->GetThumbnail(420, 230, "PNG")?>" border="0" alt="<?=htmlspecialchars(Helper::debugString($place["itemName"]))?>" />
                 </a>
             </div>
             <?php if (!empty($place["itemDescription"])): ?>

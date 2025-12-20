@@ -25,7 +25,7 @@ class PlaceManager {
                             }
                             $stmt = "UPDATE items SET itemName=:itemName, itemDescription=:itemDescription, access=:access, lastUpdate=:lastUpdate WHERE itemId=:itemId";
                             $db->execute($stmt, [
-                                ":itemName" => $name, 
+                                ":itemName" => Helper::debugString($name), 
                                 ":itemDescription" => Helper::debugString($_POST['ctl00$cphRoblox$tbDescription']), 
                                 ":access" => 0, 
                                 ":lastUpdate" => date('Y-m-d H:i:s'), 
