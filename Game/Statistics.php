@@ -41,6 +41,12 @@ switch ($type) {
             exit;
         }
 
+        if (!$db->userExists($associate)) {
+            echo "bad";
+            Discord::sendWebhookMessage("weird", "Someone tried to join $place with userId 0");
+            exit;
+        }
+
         $clientTicket = $_GET["ClientTicket"];
         $player = new User($associate);
 
@@ -93,6 +99,13 @@ switch ($type) {
         }
 
         $associate = (int)$associate;
+
+        if (!$db->userExists($associate)) {
+            echo "bad";
+            Discord::sendWebhookMessage("weird", "Someone tried to leave $place with userId 0");
+            exit;
+        }
+
         $player = new User($associate);
         $stmt = "SELECT * FROM servers WHERE port=:serverPort";
         $result = $db->execute($stmt, [":serverPort" => $serverPort]);
@@ -127,6 +140,18 @@ switch ($type) {
         break;
     case 15:
         #kill
+        if (!$db->userExists($associate)) {
+            echo "bad";
+            Discord::sendWebhookMessage("weird", "Someone tried to die as ID 0");
+            exit;
+        }
+        
+        if (!$db->userExists($user)) {
+            echo "bad";
+            Discord::sendWebhookMessage("weird", "Someone tried to kill as ID 0");
+            exit;
+        }
+
         if (isset($_GET["Key"])) {
             if ($_GET["Key"] == "AWESOME1SAUCE") {
                 $stmt = "UPDATE users SET kos = kos + 1 WHERE id=:userId";
@@ -147,6 +172,12 @@ switch ($type) {
         break;
     case 16:
         #death
+        if (!$db->userExists($user)) {
+            echo "bad";
+            Discord::sendWebhookMessage("weird", "Someone tried to die as ID 0");
+            exit;
+        }
+
         if (isset($_GET["Key"])) {
             if ($_GET["Key"] == "SUPER1SADGRRR") {
                 $stmt = "UPDATE users SET wos = wos + 1 WHERE id=:userId";

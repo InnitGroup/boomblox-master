@@ -134,6 +134,9 @@ game.NetworkServer.ChildAdded:connect(function(replicator)
 end)
 
 game:service("Players").PlayerAdded:connect(function(player)	
+	if (player.userId == 0) then
+		player:Remove()
+	end
 	print("Player " .. player.userId .. " added")
 	local result = game:HttpGet("http://{Url}/Game/Statistics.ashx?TypeID=1&AssociatedUserID=" .. player.userId .. "&serverPort=" .. port .. "&AssociatedPlaceID={PlaceID}&ClientTicket=" .. player.CharacterAppearance .. "&t=" .. math.random(1,9999), true)
 	-- local result = dofile("http://{Url}/Game/Statistics.ashx?TypeID=1&AssociatedUserID=" .. player.userId .. "&serverPort=" .. port .. "&AssociatedPlaceID={PlaceID}&ClientTicket=" .. player.CharacterAppearance .. "&t=" .. math.random(1,9999))

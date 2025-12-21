@@ -7,9 +7,10 @@ if (!Server::isLocal()) {
     global $user;
     if ($_SERVER["HTTP_USER_AGENT"] !== "Roblox/WinInet") {
         Server::_404();
-        if (!in_array($placeId, $user->getPlaces(true))) {
-            Server::_404();
-        }
+    }
+
+    if (!in_array($placeId, $user->getPlaces(true))) {
+        Server::_404();
     }
 }
 
