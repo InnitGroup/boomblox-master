@@ -11,8 +11,13 @@ if (!$user->ownsPlace($placeId)) {
 
 #write
 $filePath = $_SERVER["DOCUMENT_ROOT"] . "/content/" . $placeId;
-str_replace("IncommingConnection", "-- why would you do that {$user->getUsername()}", $data);
-str_replace("CreateLocalPlayer", "-- why would you do that {$user->getUsername()}", $data);
+$data = str_replace("IncommingConnection", "-- why would you do that", $data);
+$data = str_replace("CreateLocalPlayer", "-- why would you do that", $data);
+$data = str_replace("game:Load(", "-- why would you do that", $data);
+$data = str_replace("Game:Load(", "-- why would you do that", $data);
+$data = str_replace("game:HttpGet(", "-- why would you do that", $data);
+$data = str_replace("game:HttpPost(", "-- why would you do that", $data);
+$data = str_replace("SetUploadUrl", "-- why would you do that", $data);
 
 $version = Version::getVersion($placeId); # should return 1
 if (Version::assetExists($placeId)) { # true

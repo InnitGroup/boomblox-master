@@ -119,5 +119,12 @@ class Item {
         if ($price == 1) {return 1;}
         return $price == 0 ? "---" : ($price - self::marketplaceFee($price));
     }
+
+    public function isCopylocked(): bool {
+        global $db;
+        $stmt = "SELECT onsale FROM items WHERE itemId=:itemId";
+        $result = $db->execute($stmt, [":itemId" => $this->id]);
+        return $result->fetch(PDO::FETCH_ASSOC)["onsale"] == 2;
+    }
 }
 ?>
