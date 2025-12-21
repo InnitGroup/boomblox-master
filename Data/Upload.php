@@ -12,6 +12,7 @@ if (!$user->ownsPlace($placeId)) {
 #write
 $filePath = $_SERVER["DOCUMENT_ROOT"] . "/content/" . $placeId;
 str_replace("IncommingConnection", "-- why would you do that {$user->getUsername()}", $data);
+str_replace("CreateLocalPlayer", "-- why would you do that {$user->getUsername()}", $data);
 
 $version = Version::getVersion($placeId); # should return 1
 if (Version::assetExists($placeId)) { # true
