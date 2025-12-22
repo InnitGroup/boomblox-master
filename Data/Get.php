@@ -14,6 +14,14 @@ if (!Server::isLocal()) {
     if (!in_array($placeId, $user->getPlaces(true)) && !$item->isCopylocked()) {
         Server::_404();
     }
+} else {
+    if (!isset($_GET["key"])) {
+        Server::_404();
+    }
+
+    if ($_GET["key"] !== Gameservers::$key) {
+        Server::_404();
+    }
 }
 
 $data = gzdecode(file_get_contents($_SERVER["DOCUMENT_ROOT"]."/content/".$placeId));
@@ -24,5 +32,6 @@ $data = str_replace("Game:Load(", "-- why would you do that", $data);
 $data = str_replace("game:HttpGet(", "-- why would you do that", $data);
 $data = str_replace("game:HttpPost(", "-- why would you do that", $data);
 $data = str_replace("SetUploadUrl", "-- why would you do that", $data);
+$data = str_replace("string.char", "-- why would you do that", $data);
 echo $data;
 ?>

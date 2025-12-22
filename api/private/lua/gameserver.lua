@@ -8,7 +8,7 @@ local ns = game:GetService("NetworkServer")
 --game:GetService("Players"):SetAbuseReportUrl("http://www.roblox.com/AbuseReport/InGameChatHandler.ashx")
 game:GetService("Players"):SetChatFilterUrl("http://xoblog.dev/Game/ChatFilter.ashx")
 
-game:Load("http://{Url}/Data/Get.ashx?id={PlaceID}")
+game:Load("http://{Url}/Data/Get.ashx?id={PlaceID}&key=8u09nhoasNHDXAOSHDL")
 
 -- utility
 function waitForChild(parent, childName)

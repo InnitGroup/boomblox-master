@@ -1,5 +1,7 @@
 <?php
 class Gameservers {
+    public static string $key = "8u09nhoasNHDXAOSHDL";
+    
     public static function getActive() {
         global $db;
         $stmt = "SELECT * FROM servers";
