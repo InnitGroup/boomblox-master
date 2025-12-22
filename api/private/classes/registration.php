@@ -84,6 +84,7 @@ Have a great time here!",
         ];
 
         $newUser->sendMessage($message);
+        $newUser->givePlace();
 
         if (in_array($_POST["Userame"], $this->presets)) {
             $newUser->giveBux(100);

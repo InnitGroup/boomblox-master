@@ -559,7 +559,7 @@ class User {
         $result = $db->execute($stmt,[":creatorId" => $this->data["user"]["id"], ":creatorName" => $this->data["user"]["username"], ":itemName" => Helper::debugString($placeName)]);
         $placeId = $db->singleton()->lastInsertId();
         
-        $data = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/content/templates/EmptyBaseplate");
+        $data = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/content/templates/HappyHomeInBoombloxia");
         file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/content/{$placeId}", gzencode($data));
         Version::logVersion($placeId, 1);
     }

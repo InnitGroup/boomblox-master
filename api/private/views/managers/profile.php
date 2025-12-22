@@ -77,7 +77,10 @@ class ProfileManager {
         if (isset($post["__EVENTARGUMENT"])) {
             if (str_contains($post["__EVENTARGUMENT"],"$")) {
                 $decrypt = explode("$", $post["__EVENTARGUMENT"]);
-                $this->postData = ["actionType" => $decrypt[1], "ageGroup" => $post["AgeGroup"], "chatMode" => $post["ChatMode"], "email" => $post["TextBoxEMail"], "blurb" => htmlspecialchars($post["Blurb"])];
+                if (strlen($post["Blurb"]) > 1000) {
+                    $post["Blurb"] = substr($post["Blurb"], 1000);
+                }
+                $this->postData = ["actionType" => $decrypt[1], "ageGroup" => $post["AgeGroup"], "chatMode" => $post["ChatMode"], "email" => $post["TextBoxEMail"], "blurb" => htmlspecialchars(Helper::debugString($post["Blurb"]))];
                 $this->processEdits();
             }
         }

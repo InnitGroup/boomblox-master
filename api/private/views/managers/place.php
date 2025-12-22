@@ -20,9 +20,14 @@ class PlaceManager {
                     switch ($decrypted[2]) {
                         case "lbSubmit":
                             $name = $_POST['ctl00$cphRoblox$tbName'];
+                            if (strlen($name) > 40) {
+                                return false;
+                            }
+
                             if (empty($name) || empty(str_replace(" ", "", $name))) {
                                 $name = "Unnamed Place";
                             }
+
                             $stmt = "UPDATE items SET itemName=:itemName, itemDescription=:itemDescription, access=:access, lastUpdate=:lastUpdate WHERE itemId=:itemId";
                             $db->execute($stmt, [
                                 ":itemName" => Helper::debugString($name), 
@@ -31,6 +36,7 @@ class PlaceManager {
                                 ":lastUpdate" => date('Y-m-d H:i:s'), 
                                 ":itemId" => $this->placeId
                             ]);
+
                             if (isset($_POST['ctl00$cphRoblox$PlaceAccess'])) {
                                 $access = $_POST['ctl00$cphRoblox$PlaceAccess'];
                                 $stmt;
