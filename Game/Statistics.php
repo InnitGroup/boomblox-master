@@ -78,8 +78,8 @@ switch ($type) {
         if (!$player->ownsPlace($place)) {
             $stmt = "UPDATE items SET interactions = interactions + 1 WHERE itemId=:placeId";
             $db->execute($stmt, [":placeId" => $place]);
-            $stmt = "UPDATE users SET tix = tix + 1 WHERE id=:userId";
-            $db->execute($stmt, [":userId" => $creatorId]);
+            $creator = new User($creatorId);
+            $creator->giveTix(1);
         }
 
         Discord::sendWebhookMessage("games", $player->getUsername() . " joined [place $place](https://xoblog.dev/Item.aspx?ID=$place)");

@@ -76,6 +76,9 @@ class PlaceManager {
                             $asset = new Asset($this->placeId);
                             $asset->RequestThumbnail(420, 230, "PNG");
                             $asset->RequestThumbnail(250, 250, "PNG");
+                            $newVersion = Version::getNextVersion($this->placeId);
+                            Version::logVersion($this->placeId, $newVersion); #
+                            Version::setVersion($this->placeId, $newVersion);
                             break;
                         case 'MakeCurrent':
                             Version::makeCurrent($this->placeId, (int)$_POST["__EVENTARGUMENT"]);

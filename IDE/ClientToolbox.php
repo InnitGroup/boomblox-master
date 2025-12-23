@@ -18,8 +18,8 @@ global $auth;
 			}
 
 			function dragRBX(id) {
-				isNetworkClient = window.external.ExecScript('return game:findFirstChild("NetworkClient")~=nil')[0];
-                    if (!isNetworkClient) window.external.StartDrag("http://<?=domain?>/asset/?id="+id);
+				//isNetworkClient = window.external.ExecScript('return game:findFirstChild("NetworkClient")~=nil')[0];
+                    //if (!isNetworkClient) window.external.StartDrag("http://<?=domain?>/asset/?id="+id);
             }
             
 			function clickButton(e, buttonid) {

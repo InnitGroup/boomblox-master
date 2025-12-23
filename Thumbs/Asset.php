@@ -76,7 +76,7 @@ class Asset extends Base {
                 break;
             case "game":
                 $lighting = "false";
-                $script .= "game:Load('http://".domain."/Data/Get.ashx?id=".self::$_assetId."')";
+                $script .= "game:Load('http://".domain."/Data/Get.ashx?id=".self::$_assetId."&key=".Gameservers::$key."')";
                 break;
         }
         return $script." 
