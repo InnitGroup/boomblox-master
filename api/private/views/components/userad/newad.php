@@ -3,9 +3,6 @@ global $theme;
 ?>
 
 <div id="Body">
-    <div class="SearchBar">
-        <h4>You found an in-development page, wooo!</h4>
-    </div>
     <h2>Instructions</h2>
     <p>On <?=Site::getThemeProperty("alias", $theme)?>, users can bid an amount of tickets to buy advertising for their places, clothing and models. To create an ad:</p><br>
     <ol>
