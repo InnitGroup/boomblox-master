@@ -9,6 +9,10 @@ $w_forumGroupId = isset($_GET["ForumGroupID"]) ? (int)$_GET["ForumGroupID"] : NU
 $w_forumId = isset($_GET["ForumID"]) ? (int)$_GET["ForumID"] : NULL;
 $w_postId = isset($_GET["PostID"]) ? (int)$_GET["PostID"] : NULL;
 
+if (isset($w_forumGroupId)) {
+    $w_forumGroup = new ForumGroup($w_forumGroupId);
+}
+
 if (isset($w_forumId)) {
     $w_forumGroupId = Forum::getGroupByForum($w_forumId);
     $w_forumGroup = new ForumGroup($w_forumGroupId);
