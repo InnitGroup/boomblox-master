@@ -58,13 +58,13 @@ PageBuilder::addComponent("forum", "navmenu");
 																			<tbody>
 																				<tr>
 																					<td>
-																						<img src="/Forum/skins/default/images/user_IsOnline.gif" alt="chrisishappy132 is online. Last active: 7/24/2008 11:20:25 AM" border="0">&nbsp; <a class="normalTextSmallBold" href="/User.aspx?username=chrisishappy132"><?=$thread->getAuthor()->getUsername()?></a>
+																						<img src="/Forum/skins/default/images/user_Is<?=$thread->getAuthor()->isOnline() ? "Online" : "Offline"?>.gif" border="0">&nbsp; <a class="normalTextSmallBold" href="/User.aspx?username=<?=$thread->getAuthor()->getUsername()?>"><?=$thread->getAuthor()->getUsername()?></a>
 																						<br>
 																					</td>
 																				</tr>
 																				<tr>
 																					<td>
-																						<a href="/User.aspx?username=chrisishappy132">
+																						<a href="/User.aspx?username=<?=$thread->getAuthor()->getUsername()?>">
 																							<img style="width:64px;height:64px;" src="<?=$thread->getAuthorBust()?>" border="0">
 																						</a>
 																					</td>
@@ -134,7 +134,7 @@ PageBuilder::addComponent("forum", "navmenu");
 																			<tbody>
 																				<tr>
 																					<td>
-																						<img src="/Forum/skins/default/images/user_IsOnline.gif" alt="EVILdemon1123 is not online. Last active: 1/10/2008 4:12:27 PM" border="0">&nbsp; <a class="normalTextSmallBold" href="/Forum/User/UserProfile.aspx?UserName=<?=$reply->getAuthor()->getUsername()?>"><?=$reply->getAuthor()->getUsername()?></a>
+																						<img src="/Forum/skins/default/images/user_Is<?=$reply->getAuthor()->isOnline() ? "Online" : "Offline"?>.gif" border="0">&nbsp; <a class="normalTextSmallBold" href="/Forum/User/UserProfile.aspx?UserName=<?=$reply->getAuthor()->getUsername()?>"><?=$reply->getAuthor()->getUsername()?></a>
 																						<br>
 																					</td>
 																				</tr>

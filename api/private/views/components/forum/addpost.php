@@ -79,7 +79,14 @@ PageBuilder::addComponent("forum", "navmenu");
 									<input name="ctl00$cphRoblox$Createeditpost1$PostForm$PostSubject" type="text" size="55" id="ctl00_cphRoblox_Createeditpost1_PostForm_PostSubject" autocomplete="off" value="<?=isset($_GET["PostID"]) ? "RE " . htmlspecialchars($thread->getTitle()) : ""?>">
 								</td>
 								<td>
-									<span id="ctl00_cphRoblox_Createeditpost1_PostForm_RequiredFieldValidator1" class="validationWarningSmall" style="color:Red;visibility:hidden;">Subject required.</span>
+									<span id="ctl00_cphRoblox_Createeditpost1_PostForm_RequiredFieldValidator1" class="validationWarningSmall" style="color:Red;<?=isset($_GET["Error"]) ? "visibility:visible;" : "visibility:hidden;"?>">
+										<?php if (isset($_GET["Error"])): 
+										if ($_GET["Error"] == "NoSubject"): ?>
+										Subject required.
+										<?php elseif ($_GET["Error"] == "LongSubject"): ?>
+										Subject cannot exceed 40 characters.
+										<?php endif; endif ?>
+									</span>
 								</td>
 							</tr>
 							<tr>
@@ -124,36 +131,7 @@ PageBuilder::addComponent("forum", "navmenu");
 		<tbody>
 			<tr>
 				<td>
-					<span id="ctl00_cphRoblox_Createeditpost1_PostForm_Whereami2">
-						<table cellpadding="0" cellspacing="0" width="100%">
-							<tbody>
-								<tr>
-									<td valign="top" align="left" width="1px">
-										<nobr>
-											<a id="ctl00_cphRoblox_Createeditpost1_PostForm_Whereami2_ctl00_LinkHome" class="linkMenuSink" href="/Forum/Default.aspx">ROBLOX Forum</a>
-										</nobr>
-									</td>
-									<td id="ctl00_cphRoblox_Createeditpost1_PostForm_Whereami2_ctl00_ForumGroupMenu" class="popupMenuSink" valign="top" align="left" width="1px">
-										<nobr>
-											<span id="ctl00_cphRoblox_Createeditpost1_PostForm_Whereami2_ctl00_ForumGroupSeparator" class="normalTextSmallBold">&nbsp;&gt;</span>
-											<a id="ctl00_cphRoblox_Createeditpost1_PostForm_Whereami2_ctl00_LinkForumGroup" class="linkMenuSink" href="/Forum/ShowForumGroup.aspx?ForumGroupID=1">ROBLOX</a>
-										</nobr>
-									</td>
-									<td id="ctl00_cphRoblox_Createeditpost1_PostForm_Whereami2_ctl00_ForumMenu" class="popupMenuSink" valign="top" align="left" width="1px">
-										<nobr>
-											<span id="ctl00_cphRoblox_Createeditpost1_PostForm_Whereami2_ctl00_ForumSeparator" class="normalTextSmallBold">&nbsp;&gt;</span>
-											<a id="ctl00_cphRoblox_Createeditpost1_PostForm_Whereami2_ctl00_LinkForum" class="linkMenuSink" href="/Forum/ShowForum.aspx?ForumID=21">Suggestions &amp; Ideas</a>
-										</nobr>
-									</td>
-									<td id="ctl00_cphRoblox_Createeditpost1_PostForm_Whereami2_ctl00_PostMenu" class="popupMenuSink" valign="top" align="left" width="1px">
-										<nobr></nobr>
-									</td>
-									<td valign="top" align="left" width="*">&nbsp;</td>
-								</tr>
-							</tbody>
-						</table>
-						<span id="ctl00_cphRoblox_Createeditpost1_PostForm_Whereami2_ctl00_MenuScript"></span>
-					</span>
+					<?=PageBuilder::addComponent("forum", "whereamifull")?>
 				</td>
 			</tr>
 		</tbody>
