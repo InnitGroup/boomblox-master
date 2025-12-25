@@ -66,6 +66,22 @@ class Forum {
     public function getThreadCount() { return $this->threads; }
     public function getPostCount() { return $this->posts; }
 
+    public static function countAllPosts() {
+        global $db;
+        $stmt = "SELECT COUNT(*) FROM threads";
+        $result = $db->execute($stmt);
+
+        return $result->fetch(PDO::FETCH_ASSOC)["COUNT(*)"];
+    }
+
+    public static function countAllPostsByUser(int $userId) {
+        global $db;
+        $stmt = "SELECT COUNT(*) FROM threads WHERE author=:userId";
+        $result = $db->execute($stmt, [":userId" => $userId]);
+        
+        return $result->fetch(PDO::FETCH_ASSOC)["COUNT(*)"];
+    }
+
     public function getPosts(int $page = NULL, string $query = NULL, int $range = NULL) {
         global $db;
         $stmt = "SELECT * FROM threads WHERE forumId=:forumId AND isReply=0";

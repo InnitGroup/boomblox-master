@@ -185,7 +185,7 @@ $profiledUser = new User($userId);
 															<tr>
 																<td valign="top" align="left">
 																	<span class="normalTextSmallBold">
-																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_PostStats"><?=$profiledUser->getUsername()?> has contributed to 1 out of 1,040,533 total posts (0.00% of total).</span>
+																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_PostStats"><?=$profiledUser->getUsername()?> has contributed to <?=number_format(Forum::countAllPostsByUser($profiledUser->getUserId()))?> out of <?=number_format(Forum::countAllPosts())?> total posts (<?=(Forum::countAllPostsByUser($profiledUser->getUserId())/Forum::countAllPosts())*100?>% of total).</span>
 																	</span>
 																</td>
 															</tr>
