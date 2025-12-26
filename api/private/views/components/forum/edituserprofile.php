@@ -1,0 +1,254 @@
+<?php
+global $user;
+PageBuilder::addComponent("forum", "header")
+?>
+
+<table class="tableBorder" cellSpacing="1" cellPadding="0" width="100%">
+    <tr>
+        <th class="tableHeaderText" align="left" height="20">
+            &nbsp; Edit User Information for:
+            <span class="tableHeaderText" style="font-weight: bold"><?=$user->getUsername()?></span></th></tr>
+    <tr>
+        <td class="forumHeaderBackgroundAlternate" align="left" height="20"><span class="forumTitle">&nbsp;Required Information </span></td>
+    </tr>
+    <tr>
+        <td class="forumRow">
+            <table cellSpacing="0" cellPadding="2" border="0">
+                <tr>
+                    <td colSpan="4">&nbsp;</td>
+                </tr>
+                <!-- Email -->
+                <tr>
+                    <td class="forumRow" noWrap width="19">&nbsp; &nbsp;
+                    </td>
+                    <td noWrap align="right"><span class="normalTextSmallBold">Email: </span></td>
+                    <td align="left"><input name="ctl00$cphRoblox$EmailTextBox$lbEmail" type="text" size="35" id="ctl00_cphRoblox_EmailTextBox_lbEmail"></td> <!-- \w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)* -->
+                    <td align="left"><span id="ctl00_cphRoblox_Edituserprofile1_InfoForm_RequiredFieldValidator1" class="validationWarningSmall" style="color:Red;visibility:hidden;">You must supply a valid email address.</span></td>
+                </tr>
+                <tr>
+                    <td colSpan="2"></td>
+                    <td vAlign="top" height="20"><span class="normalTextSmaller">&nbsp;Your email 
+            address is not publicly available.</span></td>
+                    <td vAlign="top">
+                        <span id="ctl00_cphRoblox_Edituserprofile1_InfoForm_RequiredFieldValidator1" class="validationWarningSmall" style="color:Red;visibility:hidden;">You must supply an email address.</span>
+                    </td>
+                </tr>
+                <!-- Timezone -->
+                <tr>
+                    <td class="forumRow" noWrap width="19">&nbsp; &nbsp;
+                    </td>
+                    <td noWrap align="right"><span class="normalTextSmallBold">Timezone: </span></td>
+                    <td align="left">
+                        <select id="Timezone">
+                            <option value="-10">Hawaii (GMT -10)</option>
+                            <option value="-9">Alaska (GMT -9)</option>
+                            <option value="-8">Pacific Time (GMT -8)</option>
+                            <option value="-7">Mountain Time (GMT -7)</option>
+                            <option value="-6">Central Time (GMT -6)</option>
+                            <option value="-5">Eastern Time (GMT -5)</option>
+                            <option value="-4">Atlantic Time (GMT -4)</option>
+                            <option value="-3">Brasilia Time (GMT -3)</option>
+                            <option value="0">Greenwich Mean Time (GMT +0)</option>
+                            <option value="1">Central Europe Time (GMT +1)</option>
+                            <option value="2">Eastern Europe Time (GMT +2)</option>
+                            <option value="3">Middle Eastern Time (GMT +3)</option>
+                            <option value="4">Abu Dhabi Time (GMT +4)</option>
+                            <option value="5">Indian Time (GMT +5)</option>
+                            <option value="8">Eastern China Time (GMT +8)</option>
+                            <option value="9">Japan Time (GMT +9)</option>
+                            <option value="10">Australian Time (GMT +10)</option>
+                            <option value="11">Pacific Rim Time (GMT +11)</option>
+                            <option value="12">New Zealand Time (GMT +12)</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colSpan="2"></td>
+                    <td vAlign="top" height="20"><span class="normalTextSmaller">&nbsp;Date/Times will 
+            be displayed for your timezone.</span></td>
+                </tr>
+                <!-- Date Format -->
+                <tr>
+                    <td class="forumRow" noWrap width="19">&nbsp; &nbsp;
+                    </td>
+                    <td noWrap align="right"><span class="normalTextSmallBold">Date Format: </span></td>
+                    <td align="left"><select id="DateFormat">
+                            <option Value="dd MMM yyyy">Day Month Year (1 May 2002)</option>
+                            <option Value="MM-dd-yyyy">Month-Day-Year (5-1-2002)</option>
+                            <option Value="dd-MM-yyyy">Day-Month-Year (1-5-2002)</option>
+                            <option Value="MM/dd/yyyy">Month/Day/Year (5/1/2002)</option>
+                            <option Value="dd/MM/yyyy">Day/Month/Year</option>
+                        </select></td>
+                <tr>
+                    <td colSpan="2"></td>
+                    <td vAlign="top" height="20"><span class="normalTextSmaller">&nbsp;Date/Times will 
+            be displayed in this format.</span></td>
+                </tr>
+                <!-- Change Password-->
+                <tr>
+                    <td class="forumRow" noWrap width="19">&nbsp; &nbsp;
+                    </td>
+                    <td noWrap align="right"></td>
+                    <td align="left"><a Class="linkSmallBold" href="/Forum/User/ChangePassword.aspx">Change 
+                            Password</a></td>
+                    <td align="left"></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td class="forumHeaderBackgroundAlternate" align="left" height="20"><span class="forumTitle">&nbsp;About you (Optional) </span></td>
+    </tr>
+    <tr>
+        <td class="forumRow">
+            <table cellSpacing="0" cellPadding="3" width="100%" border="0">
+                <tr>
+                    <td><span class="normalTextSmaller">&nbsp;</span></td>
+                </tr>
+                <tr>
+                    <td class="forumRow" noWrap width="19">&nbsp; &nbsp;
+                    </td>
+                    <!-- Occupation -->
+                    <td align="right"><span class="normalTextSmallBold">Occupation: </span></td>
+                    <td align="left"><input name="Occupation" type="text" size="35" id="Occupation"></td>
+                    <td align="left"></td>
+                    <!-- Location -->
+                    <td noWrap align="right"><span class="normalTextSmallBold">Location: </span></td>
+                    <td noWrap align="left"><input name="Location" type="text" size="35" id="Location"></td>
+                </tr>
+                <tr>
+                    <td class="forumRow" noWrap width="19">&nbsp; &nbsp;
+                    </td>
+                    <!-- Interests -->
+                    <td align="right"><span class="normalTextSmallBold">Interests: </span></td>
+                    <td align="left"><input name="Interests" type="text" size="35" id="Interests"></td>
+                    <td align="left"></td>
+                    <!-- MSN IM -->
+                    <td noWrap align="right"><span class="normalTextSmallBold">MSN IM: </span></td>
+                    <td noWrap align="left"><input name="MsnIm" type="text" size="35" id="MsnIm"></td>
+                </tr>
+                <tr>
+                    <!-- AIM -->
+                    <td class="forumRow" noWrap width="19">&nbsp; &nbsp;
+                    </td>
+                    <td align="right"><span class="normalTextSmallBold">AIM: </span></td>
+                    <td align="left"><input name="AolIm" type="text" size="35" id="AolIm"></td>
+                    <td align="left"></td>
+                    <!-- Yahhoo Im -->
+                    <td noWrap align="right"><span class="normalTextSmallBold">Yahoo IM: </span></td>
+                    <td noWrap align="left"><input name="YahooIM" type="text" size="35" id="YahooIM"></td>
+                </tr>
+                <tr>
+                    <td class="forumRow" noWrap width="19">&nbsp; &nbsp;
+                    </td>
+                    <!-- ICQ -->
+                    <td align="right"><span class="normalTextSmallBold">ICQ: </span></td>
+                    <td align="left"><input name="Icq" type="text" size="35" id="Icq"></td>
+                    <td align="left"></td>
+                    <!-- Web site -->
+                    <td noWrap align="right"><span class="normalTextSmallBold">Website: </span></td>
+                    <td noWrap align="left">
+                        <input name="Website" type="text" size="35" id="Website"> <!-- http://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)? -->
+                        <span id="ctl00_cphRoblox_Edituserprofile1_InfoForm_RequiredFieldValidator1" class="validationWarningSmall" style="color:Red;visibility:hidden;">Must be valid URL.</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colSpan="4">&nbsp;</td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <TR>
+        <td class="forumHeaderBackgroundAlternate" align="left" height="20"><span class="forumTitle">&nbsp;Display Options </span></td>
+    </TR>
+    <tr>
+        <td class="forumRow">
+            <table cellSpacing="0" cellPadding="3" border="0">
+                <tr>
+                    <td><span class="normalTextSmaller">&nbsp;</span></td>
+                </tr>
+                <!-- Fake Email -->
+                <tr>
+                    <td class="forumRow" noWrap width="19">&nbsp; &nbsp;
+                    </td>
+                    <td noWrap align="right"><span class="normalTextSmallBold">Public Email: </span></td>
+                    <td align="left"><input name="FakeEmail" type="text" size="35" id="FakeEmail"></td>
+                    <td>
+                        <span id="ctl00_cphRoblox_Edituserprofile1_InfoForm_RequiredFieldValidator1" class="validationWarningSmall" style="color:Red;visibility:hidden;">You must supply a valid email address.</span> <!-- \w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)* -->
+                    </td>
+                </tr>
+                <tr>
+                    <td colSpan="2"></td>
+                    <td vAlign="top" height="20"><span class="normalTextSmaller">&nbsp;Email address published with your profile.</span></td>
+                </tr>
+                <!-- Signature -->
+                <tr>
+                    <td class="forumRow" noWrap width="19">&nbsp; &nbsp;
+                    </td>
+                    <td vAlign="top" align="right"><span class="normalTextSmallBold">Signature: </span></td>
+                    <td align="left" colSpan="2">
+                        <textarea name="Signature" rows="5" cols="50" id="Signature"></textarea>
+                    </td>
+                    <td align="left"></td>
+                </tr>
+                <tr>
+                    <td colSpan="2"></td>
+                    <td vAlign="top" height="20"><span class="normalTextSmaller">&nbsp;Message appended to your posts.</span></td>
+                </tr>
+    
+    <!-- Administration options -->
+    <span id="Administration">
+        <TR style="display:none;">
+            <td class="forumHeaderBackgroundAlternate" align="left" height="20"><span class="forumTitle">&nbsp;Administrator Options </span></td>
+        </TR>
+        <tr style="display:none;">
+            <td class="forumRow">
+                <table cellSpacing="0" cellPadding="3" border="0">
+                    <tr>
+                        <td><span class="normalTextSmaller">&nbsp;</span></td>
+                    </tr>
+                    <!-- User profile approved -->
+                    <tr>
+                        <td colSpan="2">
+                        <td vAlign="top" align="left"><input type="checkbox" id="ProfileApproved"><label class="normalTextSmallBold"> User's profile is approved (profile details are public)</label></td>
+                    </tr>
+                    <!-- User banned-->
+                    <tr>
+                        <td colSpan="2">
+                        <td vAlign="top" align="left"><input type="checkbox" id="Banned"><label class="normalTextSmallBold"> User is banned (cannot login)</label></td>
+                    </tr>
+                    <!-- User trusted -->
+                    <tr>
+                        <td colSpan="2">
+                        <td vAlign="top" align="left"><input type="checkbox" id="UserTrusted"><label class="normalTextSmallBold"> User is trusted (does not require moderation)</label></td>
+                    </tr>
+                    <!-- Email user's password -->
+                    <tr>
+                        <td colSpan="2">
+                        <td vAlign="top" align="left"><button ID="EmailUserPassword">Email the user his/her password</button></td>
+                    </tr>
+                    <tr>
+                        <td colSpan="4">&nbsp;</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </span>
+</table><br><br>
+<p>
+    <table width="100%" border="0">
+        <tr>
+            <td valign="top" align="center">
+                <span runat="server" id="PasswordRequired">
+                    <span class="normalTextSmallBold">Password (required for update): </span>
+                    <input id="Password" columns="35" type="Password">
+                </span>
+                <button id="Submit" type="submit">Update User Information</button>
+            </td>
+        </tr>
+        <tr>
+            <td align="middle" colSpan="2"><asp:requiredfieldvalidator id="ValidatePassword" runat="server" ErrorMessage="You must enter a password to make changes." Display="Dynamic" controltovalidate="Password" CssClass="validationWarningSmall"></asp:requiredfieldvalidator></td>
+        </tr>
+    </table>
+</p>
+<?=PageBuilder::addComponent("forum", "footer")?>
