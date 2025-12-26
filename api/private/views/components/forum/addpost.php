@@ -25,7 +25,9 @@ PageBuilder::addComponent("forum", "navmenu");
 			</tr>
 			<tr>
 				<td class="forumRow">
-					<?php if (isset($_GET["PostID"])): $thread = new Thread($_GET["PostID"])?>
+					<?php if (isset($_GET["PostID"])):
+						$thread = new Thread($_GET["PostID"]);
+						?>
 					The message you are replying to:
 					<table cellspacing="1" cellpadding="3">
 						<tbody>
@@ -44,7 +46,7 @@ PageBuilder::addComponent("forum", "navmenu");
 									<span class="normalTextSmallBold">Subject: </span>
 								</td>
 								<td valign="top" align="left" colspan="2">
-									<span class="normalTextSmall"><a href="/Forum/ShowPost.aspx?PostID=<?=$thread->getId()?>"><?=htmlspecialchars($thread->getTitle())?></a></span>
+									<span class="normalTextSmall"><a href="/Forum/ShowPost.aspx?PostID=<?=$thread->isAReply() ? $thread->parentPost() . "#" . $thread->getId() : $thread->getId()?>"><?=htmlspecialchars($thread->getTitle())?></a></span>
 								</td>
 							</tr>
 							<tr>

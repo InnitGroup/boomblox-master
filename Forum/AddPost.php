@@ -40,7 +40,13 @@ if (Server::isPost()) {
         $iForum = new Forum((int)$forumId);
         $postId = $iForum->addPost($user->getUserId(), $identifier == "PostID" ? $_GET["PostID"] : NULL, $subject, $body, $identifier == "PostID");
 
-        exit(header("Location: /Forum/ShowPost.aspx?PostID=$postId"));
+        if ($identifier == "ForumID") {
+            exit(header("Location: /Forum/ShowPost.aspx?PostID=$postId"));
+        } elseif ($identifier == "PostID") {
+            $repliedThread = new Thread($identifierValue);
+            $exitPost = $repliedThread->isAReply() ? $repliedThread->parentPost() : $_GET["PostID"];
+            exit(header("Location: /Forum/ShowPost.aspx?PostID=$exitPost"));
+        }
     }
 }
 

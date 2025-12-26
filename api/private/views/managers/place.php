@@ -21,7 +21,7 @@ class PlaceManager {
                         case "lbSubmit":
                             $name = $_POST['ctl00$cphRoblox$tbName'];
                             if (strlen($name) > 40) {
-                                return false;
+                                $name = substr($name, 0, 40);
                             }
 
                             if (empty($name) || empty(str_replace(" ", "", $name))) {

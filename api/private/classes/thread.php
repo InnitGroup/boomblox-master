@@ -18,7 +18,7 @@ class Thread {
     public static function threadExists(int $threadId): bool {
         global $db;
 
-        $stmt = "SELECT * FROM threads WHERE postId=:threadId AND isReply=0";
+        $stmt = "SELECT * FROM threads WHERE postId=:threadId"; # AND isReply=0";
         $result = $db->execute($stmt, [":threadId" => $threadId]);
         return $result->rowCount() > 0;
     }

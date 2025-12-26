@@ -20,7 +20,7 @@ $forBux = $item->onsale == 1 && $item->priceInBoombux > 0 ? "checked" : "";
             <div id="ItemName">
                 <span class="Label">Name:</span>
                 <br>
-                <input name="ctl00$cphRoblox$tbName" type="text" value="<?=$name?>" maxlength="50" class="TextBox">
+                <input name="ctl00$cphRoblox$tbName" type="text" value="<?=$name?>" maxlength="40" class="TextBox">
             </div>
             <div id="ItemDescription">
                 <span class="Label">Description:</span>

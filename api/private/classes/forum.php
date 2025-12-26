@@ -142,6 +142,11 @@ class Forum {
     public function addPost(int $authorId, int $parentPost = NULL, string $title, string $content, bool $isReply = false) {
         global $db;
 
+        if ($parentPost) {
+            $parentThread = new Thread($parentPost);
+            $parentPost = $parentThread->parentPost();
+        }
+
         $stmt = "INSERT INTO threads (author, parentPost, threadTitle, threadContent, postDate, lastActivity, forumId, isReply) VALUES (:authorId, :parentPost, :title, :content, :xnow, :xnow, :forumId, :isReply)";
         $db->execute($stmt, [
             ":authorId" => $authorId,

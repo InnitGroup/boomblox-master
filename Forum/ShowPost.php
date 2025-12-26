@@ -11,6 +11,8 @@ $postId = isset($_GET["PostID"]) ? (int)$_GET["PostID"] : Server::_404();
 
 $thread = new Thread($postId);
 
+$thread->isAReply() && Server::_404();
+
 $page = new PageBuilder(Site::getThemeProperty("alias",$theme).": A FREE Virtual World-Building Game with Avatar Chat, 3D Environments, and Physics", $theme, "/templates/authheader.php", [], "rbxnews");
 $page->buildHeader();
 ?>
