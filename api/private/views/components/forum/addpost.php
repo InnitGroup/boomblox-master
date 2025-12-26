@@ -76,7 +76,7 @@ PageBuilder::addComponent("forum", "navmenu");
 									<span class="normalTextSmallBold">Subject: </span>
 								</td>
 								<td valign="top" align="left">
-									<input name="ctl00$cphRoblox$Createeditpost1$PostForm$PostSubject" type="text" size="55" id="ctl00_cphRoblox_Createeditpost1_PostForm_PostSubject" autocomplete="off" value="<?=isset($_GET["PostID"]) ? "RE " . htmlspecialchars($thread->getTitle()) : ""?>">
+									<input name="ctl00$cphRoblox$Createeditpost1$PostForm$PostSubject" type="text" size="55" id="ctl00_cphRoblox_Createeditpost1_PostForm_PostSubject" autocomplete="off" value="<?=isset($_GET["PostID"]) ? "Re: " . htmlspecialchars($thread->getTitle()) : ""?>">
 								</td>
 								<td>
 									<span id="ctl00_cphRoblox_Createeditpost1_PostForm_RequiredFieldValidator1" class="validationWarningSmall" style="color:Red;<?=isset($_GET["Error"]) ? "visibility:visible;" : "visibility:hidden;"?>">

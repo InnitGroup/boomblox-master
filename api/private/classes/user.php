@@ -700,7 +700,7 @@ class User {
     }
     public function getForumPosts($limit = NULL, $count = false) {
         global $db;
-        $stmt = "SELECT * FROM threads WHERE author=:userId";
+        $stmt = "SELECT * FROM threads WHERE author=:userId ORDER BY postId DESC";
         $result;
 
         if ($limit) {
