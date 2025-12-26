@@ -45,7 +45,7 @@ if (Server::isPost()) {
         } elseif ($identifier == "PostID") {
             $repliedThread = new Thread($identifierValue);
             $exitPost = $repliedThread->isAReply() ? $repliedThread->parentPost() : $_GET["PostID"];
-            exit(header("Location: /Forum/ShowPost.aspx?PostID=$exitPost"));
+            #exit(header("Location: /Forum/ShowPost.aspx?PostID=$exitPost"));
         }
     }
 }
