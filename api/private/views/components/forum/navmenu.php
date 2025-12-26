@@ -12,7 +12,7 @@ global $user, $auth;
                         <img src="/Forum/skins/default/images/icon_mini_home.gif" border="0">Home &nbsp; </a>
                     <a id="ctl00_cphRoblox_Navigationmenu1_ctl00_SearchMenu" class="menuTextLink" href="/Forum/Search/default.aspx">
                         <img src="/Forum/skins/default/images/icon_mini_search.gif" border="0">Search &nbsp; </a>
-                    <a id="ctl00_cphRoblox_Navigationmenu1_ctl00_ProfileMenu" class="menuTextLink" href="/Forum/User/UserProfile.aspx?UserName=<?=$user->getUsername()?>">
+                    <a id="ctl00_cphRoblox_Navigationmenu1_ctl00_ProfileMenu" class="menuTextLink" href="/Forum/User/EditUserProfile.aspx?UserName=<?=$user->getUsername()?>">
                         <img src="/Forum/skins/default/images/icon_mini_profile.gif" border="0">Profile &nbsp; </a>
                         <a id="ctl00_cphRoblox_Navigationmenu1_ctl00_RegisterMenu" class="menuTextLink" href="/Forum/User/MyForums.aspx">
                         <img src="/Forum/skins/default/images/icon_mini_myforums.gif" border="0">MyForums &nbsp; </a>
