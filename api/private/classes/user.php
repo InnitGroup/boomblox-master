@@ -308,6 +308,23 @@ class User {
         $time = $now->getTimestamp() - $lastOnline->getTimestamp();
         return $time <= 3600;
     }
+    public function recentForumPosts($count = 10) {
+        global $db;
+        $stmt = "SELECT postId FROM threads WHERE author=:userId LIMIT $count";
+        $result = $db->execute($stmt, [":userId" => $this->getUserId()]);
+
+        if ($result->rowCount() == 0) {
+            return [];
+        }
+
+        $posts = [];
+        $fetchedPostIds = $result->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($fetchedPostIds as $fetchedPostId) {
+            array_push($posts, new Thread($fetchedPostId));
+        }
+
+        return $posts;
+    }
     public function lastOnline() {
         if (!$this->getData("user","lastOnline")) {
             return "N/A";

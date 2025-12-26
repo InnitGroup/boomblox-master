@@ -61,6 +61,18 @@ class Thread {
         return $avatar->GetThumbnail(500, 500, "PNG");
     }
 
+    public function formatPostDate() {
+        $postDate = $this->postDate;
+        $todayDate = (new DateTime())->format("Y-m-d");
+        $lastDate  = $postDate->format("Y-m-d");
+
+        if ($todayDate === $lastDate) {
+            return "Today @ " . $postDate->format("h:i A");
+        }
+
+        return $postDate->format("m/d/Y h:i:s A");
+    }
+
     public function formatLastActivity() {
         $lastActivity = $this->lastActivity;
         $todayDate = (new DateTime())->format("Y-m-d");

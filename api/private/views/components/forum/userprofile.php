@@ -202,19 +202,33 @@ $profiledUser = new User($userId);
 																				<td>
 																					<table width="100%" cellpadding="0" cellspacing="0">
 																						<tbody>
+																							<?php
+																							$recentPosts = $profiledUser->getForumPosts(10);
+																							if (count($recentPosts) > 0): 
+																							foreach ($recentPosts as $relativeId => $recentPost): ?>
 																							<tr>
-																								<td class="forumAlternate">
-																									<a class="linkSmallBold" href="/Forum/ShowPost.aspx?PostID=854563#1204120">Re: New to the game? Got some questions? Post here! I won't call you a noob!</a>
+																								<td <?=$relativeId % 2 == 0 ? 'class="forumAlternate"' : ''?>>
+																									<a class="linkSmallBold" href="/Forum/ShowPost.aspx?PostID=<?=$recentPost->isAReply() ? $recentPost->parentPost() . "#" . $recentPost->getId() : $recentPost->getId()?>"><?=htmlspecialchars(Helper::debugString($recentPost->getTitle()))?></a>
 																									<span class="normalTextSmall">
-																										<i>6/3/2008 8:23:42 AM</i>
-																									</span> &nbsp; <span class="normalTextSmall">(Total replies: 0)</span>
+																										<i><?=$recentPost->formatPostDate()?></i> <!-- 6/3/2008 8:23:42 AM -->
+																									</span> &nbsp; <span class="normalTextSmall">(Total replies: <?=$recentPost->countReplies()?>)</span>
 																								</td>
 																							</tr>
 																							<tr>
-																								<td class="forumAlternate">
-																									<span class="normalTextSmall">Im making a capture the flag game but for some reason when I bring the opponents flag to my flags stand it doesnt do anything.Do you know why?(Can you P.M. me the answer)</span>
+																								<td <?=$relativeId % 2 == 0 ? 'class="forumAlternate"' : ''?>>
+																									<span class="normalTextSmall"><?=htmlspecialchars(Helper::debugString($recentPost->getContent()))?></span>
 																								</td>
 																							</tr>
+																							<?php if (count($recentPosts) !== $relativeId): ?>
+																								<tr>
+																									<td>
+																										<hr size="1">
+																									</td>
+																								</tr>
+																							<?php
+																							endif; 
+																							endforeach;
+																							endif; ?>
 																						</tbody>
 																					</table>
 																				</td>
@@ -222,7 +236,7 @@ $profiledUser = new User($userId);
 																		</tbody>
 																	</table>
 																	<p>
-																		<a id="ctl00_cphRoblox_Userinfo1_ctl00_MorePosts" class="linkSmallBold" href="/Forum/Search/default.aspx?SearchFor=1&amp;SearchText=sirgren">Search for more...</a>
+																		<a id="ctl00_cphRoblox_Userinfo1_ctl00_MorePosts" class="linkSmallBold" href="/Forum/Search/default.aspx?SearchFor=1&amp;SearchText=<?=$profiledUser->getUsername()?>">Search for more...</a>
 																	</p>
 																</td>
 															</tr>
