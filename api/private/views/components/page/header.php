@@ -97,6 +97,10 @@ if (Server::isPost()) {
                         </span>
                         <span class="Separator">&nbsp;|&nbsp;</span>
                         <span>
+                            <a class="MenuItem" href="/Catalog.aspx">Catalog</a>
+                        </span>
+                        <span class="Separator">&nbsp;|&nbsp;</span>
+                        <span>
                             <a class="MenuItem" href="/Browse.aspx">People</a>
                         </span>
                         <span class="Separator">&nbsp;|&nbsp;</span>
