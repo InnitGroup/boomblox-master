@@ -18,7 +18,7 @@ if ($publicView): ?>
         <span><?=(strip_tags($blurb))?></span>
     </p>
 <?php else: ?>
-<div>
+<div style="text-align: left">
     <p>
         <a href="/My/Inbox.aspx">Inbox</a>
     </p>
@@ -43,6 +43,18 @@ if ($publicView): ?>
     </p>
     <p>
         <a href="/My/InviteAFriend.aspx">Share <?=Site::getThemeProperty("alias", $theme)?></a>
+    </p>
+    <p>
+        <a href="/My/InviteAFriend.aspx">Buy <?=Site::getThemeProperty("currency", $theme)?></a>
+    </p>
+    <p>
+        <a href="/Marketplace/TradeCurrency.aspx">Trade Currency</a>
+    </p>
+    <p>
+        <a href="/My/AdInventory.aspx">Ad Inventory</a>
+    </p>
+    <p>
+        <a href="/info/TermsOfService.aspx">Terms, Conditions, and Rules</a>
     </p>
 </div>
 <?php endif; ?>
