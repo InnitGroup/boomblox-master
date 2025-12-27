@@ -8,6 +8,7 @@ class CatalogManager {
         "ForSale" => "For Sale",
         "PublicDomain" => "Public Domain"
     ];
+
     private $sortToSQL = [
         "TopFavorites" => "ORDER BY favorites DESC",
         "BestSelling" => "ORDER BY interactions DESC",
@@ -15,6 +16,7 @@ class CatalogManager {
         "ForSale" => "AND onsale=1 ORDER BY priceInBoombux ASC, priceInTix ASC",
         "PublicDomain" => "AND onsale=2"
     ];
+
     private $cToLabel = [
         #2 11 12 8 13 10 9
         "2" => "T-Shirts",
@@ -27,6 +29,7 @@ class CatalogManager {
         "13" => "Decals",
         "17" => "Heads"
     ];
+
     private $cToSQL = [
         "2" => "T-Shirt",
         "4" => "Mesh",
@@ -38,11 +41,13 @@ class CatalogManager {
         "13" => "Decal",
         "17" => "Head"
     ];
+
     private $dToSQL = [
         "All" => "",
         "Robux" => " AND priceInBoombux > 0 AND priceInTix = 0",
         "Tickets" => " AND priceInTix > 0 AND priceInBoombux = 0"
     ];
+
     private $tToLabel = [
         #PastHour PastDay PastWeek PastMonth AllTime
         "PastHour" => "Past Hour",
@@ -51,6 +56,7 @@ class CatalogManager {
         "PastMonth" => "Past Month",
         "AllTime" => "All-time"
     ];
+
     public function __construct($m = "TopFavorites", $c = "8", $t = "PastWeek", $d = "All", $p = "1", $q = "", $theme = 0) {
         $validC = [2, 4, 9, 8, 10, 11, 12, 13, 17];
         $validM = ["TopFavorites", "BestSelling", "ForSale", "RecentlyUpdated", "PublicDomain"];
@@ -74,6 +80,7 @@ class CatalogManager {
         $this->q = htmlspecialchars($q);
         $this->theme = $theme;
     }
+
     public function getItems($sort) {
         global $db;
         $offset = "";
@@ -82,14 +89,28 @@ class CatalogManager {
         ($this->p*20)-20 !== 0 && $offset .= " OFFSET ".($this->p*20)-20;
         $this->c !== "9" && $sql = "SELECT * FROM items WHERE itemType='catalog'";
         $this->d !== "All" && $sql .= $this->dToSQL[$this->d];
-        $this->q !== "" && $sql .= " AND itemName LIKE '%".htmlspecialchars($this->q)."%' ";
+        $this->q !== "" && $sql .= " AND `itemName` LIKE '%".htmlspecialchars($this->q)."%' ";
         $this->c !== "9" && $sql .= " AND catalogType='".$this->cToSQL[$this->c]."' ".htmlspecialchars($sort);
         $this->c == "9" && $sql = "SELECT * FROM items WHERE itemType='game' ";
-        $this->q !== "" & $this->c == "9" && $sql .= " AND itemName LIKE '".htmlspecialchars($this->q)."%' ";
+        $this->q !== "" & $this->c == "9" && $sql .= " AND itemName LIKE '%".htmlspecialchars($this->q)."%' ";
         $this->c == "9" && $sql .= htmlspecialchars($sort);
         $result = $db->execute($sql);
         return $result;
     }
+
+    public function returnTippedQuery(string $q) {
+        // Exact Phrase: "red brick"
+        if (substr($q, -1, 1) == '"' && substr($q, 0, 1) == '"') {
+            return ' = "' . substr($q, 1, -1) . '"';
+        }
+
+        // Find ALL Terms: red and brick =OR=  red + brick
+        if (str_contains($q, " and ")) {
+            $split = str_split($q, strpos($q, " and "));
+            return " LIKE '%" . $split[0] . "%' O";
+        }
+    }
+
     public function getSiteSort() {
         $sort = "";
         $this->m !== "" && $sort .= "?m=".htmlspecialchars($this->m);
@@ -99,9 +120,11 @@ class CatalogManager {
         $this->p !== "" && $sort .= "&p=".htmlspecialchars($this->p);
         return $sort;
     }
+
     public function getSQLSort($m) {
         return $this->sortToSQL[$m];
     }
+
     public function getSort() {
         $sort = "";
         $this->m !== "" && $sort .= "?m=".htmlspecialchars($this->m);
@@ -110,6 +133,7 @@ class CatalogManager {
         $this->d !== "" && $sort .= "&d=".htmlspecialchars($this->d);
         return $sort;
     }
+
     public function getDisplaySetLabel($m, $c, $t) {
         $label = "";
         $label .= $this->mToLabel[$m]." ";
@@ -117,6 +141,7 @@ class CatalogManager {
         $label .= $this->tToLabel[$t];
         return $label;
     }
+
     public function loadSorts() {
         echo '
         <div class="DisplayFilters">
@@ -486,6 +511,7 @@ class CatalogManager {
 		</div>
         ';
     }
+
     public function getPrice($item) {
         if ($item["onsale"] == 1) {
             if ($item["priceInTix"] > 0 && $item["priceInBoombux"] > 0) {
@@ -498,6 +524,7 @@ class CatalogManager {
             }
         }
     }
+
     public function loadItems($items) {
         $start = ($this->p - 1) * 20;
         $counter = 0;
