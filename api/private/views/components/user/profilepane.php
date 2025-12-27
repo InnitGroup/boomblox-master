@@ -15,7 +15,7 @@ $availablePlaces = $user->getAvailablePlaces()
             </td>
         </tr>
         <tr>
-            <td>
+            <td> 
                 <span><?=PageBuilder::addComponent("user", "panelurl", compact("username", "publicView"))?></span>
                 <br/>
                 <a href="User.aspx?ID=<?=$userId?>">http://www.<?=Site::getThemeProperty("url",$theme)?>/User.aspx?ID=<?=$userId?></a>
