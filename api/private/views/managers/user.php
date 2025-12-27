@@ -237,7 +237,19 @@ class UserManager {
 						<div class="Value">
 							<span>'.number_format(count($this->user->getFriends(false))).' ( last week)</span>
 						</div>
-					</div>
+					</div>';
+                    if (!$this->publicView) {
+                        echo '
+                        <div class="Statistic">
+                            <div class="Label">
+                                <acronym title="The number of this user\'s friends that they invited.">Friends Invited</acronym>:
+                            </div>
+                            <div class="Value">
+                                <span> ( last week)</span>
+                            </div>
+                        </div>
+                        ';
+                    } echo '
 					<div class="Statistic">
 						<div class="Label">
 							<acronym title="The number of posts this user has made to the '.Site::getThemeProperty("name", $this->theme).' forum.">Forum Posts</acronym>:
@@ -269,7 +281,18 @@ class UserManager {
 						<div class="Value">
 							<span>'.number_format($this->user->getData("user", "kos")).' ('.number_format($this->user->getLastWeekKOs()).' last week)</span>
 						</div>
-					</div>
+					</div>';
+                    if (!$this->publicView) {
+                        echo '
+                    <div class="Statistic">
+						<div class="Label">
+							<acronym title="The number of times this user\'s character has been destroyed by another user\'s character in-game.">Wipeouts</acronym>:
+						</div>
+						<div class="Value">
+							<span>'.number_format($this->user->getData("user", "wos")).' ('.number_format($this->user->getLastWeekWOs()).' last week)</span>
+						</div>
+					</div>'; }
+                    echo '
 				</div>
 			</div>
         ';

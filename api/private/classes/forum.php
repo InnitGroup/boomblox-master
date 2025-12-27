@@ -144,7 +144,9 @@ class Forum {
 
         if ($parentPost) {
             $parentThread = new Thread($parentPost);
-            $parentPost = $parentThread->parentPost();
+            if ($parentThread->isAReply()) { # replying to a reply
+                $parentPost = $parentThread->parentPost();
+            }
         }
 
         $stmt = "INSERT INTO threads (author, parentPost, threadTitle, threadContent, postDate, lastActivity, forumId, isReply) VALUES (:authorId, :parentPost, :title, :content, :xnow, :xnow, :forumId, :isReply)";

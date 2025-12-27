@@ -17,6 +17,7 @@ class User {
             "forumPosts",
             "pviews",
             "kos",
+            "wos",
             "reg_date",
             "lastOnline",
             "terminal",
@@ -498,6 +499,13 @@ class User {
 
         $stmt = "SELECT killer FROM `statistics` WHERE killer=:killerId AND `died_at` >= CURRENT_DATE - INTERVAL 7 DAY AND `died_at` < CURRENT_DATE";
         $result = $db->execute($stmt, [":killerId" => $this->getUserId()]);
+        return $result->rowCount();
+    }
+    public function getLastWeekWOs() {
+        global $db;
+
+        $stmt = "SELECT victim FROM `statistics` WHERE victim=:victimId AND `died_at` >= CURRENT_DATE - INTERVAL 7 DAY AND `died_at` < CURRENT_DATE";
+        $result = $db->execute($stmt, [":victimId" => $this->getUserId()]);
         return $result->rowCount();
     }
     public function getUsername() {
