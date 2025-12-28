@@ -25,6 +25,7 @@ class User {
             "verified",
             "dynamicIp",
             "firstIp",
+            "timezone",
             "lastIp",
         ],
         "character" => [
@@ -66,6 +67,17 @@ class User {
     }
     public function getData($dataType = "user", $property = "id") {
         return $this->data[$dataType][$property] ?? NULL;
+    }
+    public function getEmail() {
+        return $this->data["user"]["email"];
+    }
+    public function getTimezone() {
+        return $this->data["user"]["timezone"];
+    }
+    public function setTimezone(int $timezone) {
+        global $db;
+        $stmt = "UPDATE users SET timezone=:timezone WHERE id=:userId";
+        $db->execute($stmt, [":timezone" => $timezone, ":userId" => $this->getUserId()]);
     }
     public function getDataTable($dataType = "user") {
         return $this->data[$dataType] ?? NULL;

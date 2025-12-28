@@ -1,6 +1,17 @@
 <?php
 global $user;
-PageBuilder::addComponent("forum", "header")
+PageBuilder::addComponent("forum", "header");
+
+if (Server::isPost()) {
+    $timezone = $user->getTimezone();
+    if (isset($_POST["Timezone"])) {
+        $newTimezone = $_POST["Timezone"];
+        if ($timezone !== $newTimezone) {
+            $user->setTimezone($newTimezone);
+            Server::_self();
+        }
+    }
+}
 ?>
 
 <table class="tableBorder" cellSpacing="1" cellPadding="0" width="100%">
@@ -22,7 +33,7 @@ PageBuilder::addComponent("forum", "header")
                     <td class="forumRow" noWrap width="19">&nbsp; &nbsp;
                     </td>
                     <td noWrap align="right"><span class="normalTextSmallBold">Email: </span></td>
-                    <td align="left"><input name="ctl00$cphRoblox$EmailTextBox$lbEmail" type="text" size="35" id="ctl00_cphRoblox_EmailTextBox_lbEmail"></td> <!-- \w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)* -->
+                    <td align="left"><input name="ctl00$cphRoblox$EmailTextBox$lbEmail" type="text" size="35" id="ctl00_cphRoblox_EmailTextBox_lbEmail" <?=$user->getEmail() !== NULL ? 'disabled value="' . $user->getEmail() . '"' : ''?>></td> <!-- \w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)* -->
                     <td align="left"><span id="ctl00_cphRoblox_Edituserprofile1_InfoForm_RequiredFieldValidator1" class="validationWarningSmall" style="color:Red;visibility:hidden;">You must supply a valid email address.</span></td>
                 </tr>
                 <tr>
@@ -39,26 +50,26 @@ PageBuilder::addComponent("forum", "header")
                     </td>
                     <td noWrap align="right"><span class="normalTextSmallBold">Timezone: </span></td>
                     <td align="left">
-                        <select id="Timezone">
-                            <option value="-10">Hawaii (GMT -10)</option>
-                            <option value="-9">Alaska (GMT -9)</option>
-                            <option value="-8">Pacific Time (GMT -8)</option>
-                            <option value="-7">Mountain Time (GMT -7)</option>
-                            <option value="-6">Central Time (GMT -6)</option>
-                            <option value="-5">Eastern Time (GMT -5)</option>
-                            <option value="-4">Atlantic Time (GMT -4)</option>
-                            <option value="-3">Brasilia Time (GMT -3)</option>
-                            <option value="0">Greenwich Mean Time (GMT +0)</option>
-                            <option value="1">Central Europe Time (GMT +1)</option>
-                            <option value="2">Eastern Europe Time (GMT +2)</option>
-                            <option value="3">Middle Eastern Time (GMT +3)</option>
-                            <option value="4">Abu Dhabi Time (GMT +4)</option>
-                            <option value="5">Indian Time (GMT +5)</option>
-                            <option value="8">Eastern China Time (GMT +8)</option>
-                            <option value="9">Japan Time (GMT +9)</option>
-                            <option value="10">Australian Time (GMT +10)</option>
-                            <option value="11">Pacific Rim Time (GMT +11)</option>
-                            <option value="12">New Zealand Time (GMT +12)</option>
+                        <select id="Timezone" name="Timezone">
+                            <option <?=$user->getTimezone() == -10 ? "selected" : ""?> value="-10">Hawaii (GMT -10)</option>
+                            <option <?=$user->getTimezone() == -9 ? "selected" : ""?> value="-9">Alaska (GMT -9)</option>
+                            <option <?=$user->getTimezone() == -8 ? "selected" : ""?> value="-8">Pacific Time (GMT -8)</option>
+                            <option <?=$user->getTimezone() == -7 ? "selected" : ""?> value="-7">Mountain Time (GMT -7)</option>
+                            <option <?=$user->getTimezone() == -6 ? "selected" : ""?> value="-6">Central Time (GMT -6)</option>
+                            <option <?=$user->getTimezone() == -5 ? "selected" : ""?> value="-5">Eastern Time (GMT -5)</option>
+                            <option <?=$user->getTimezone() == -4 ? "selected" : ""?> value="-4">Atlantic Time (GMT -4)</option>
+                            <option <?=$user->getTimezone() == -3 ? "selected" : ""?> value="-3">Brasilia Time (GMT -3)</option>
+                            <option <?=$user->getTimezone() == 0 ? "selected" : ""?> value="0">Greenwich Mean Time (GMT +0)</option>
+                            <option <?=$user->getTimezone() == 1 ? "selected" : ""?> value="1">Central Europe Time (GMT +1)</option>
+                            <option <?=$user->getTimezone() == 2 ? "selected" : ""?> value="2">Eastern Europe Time (GMT +2)</option>
+                            <option <?=$user->getTimezone() == 3 ? "selected" : ""?> value="3">Middle Eastern Time (GMT +3)</option>
+                            <option <?=$user->getTimezone() == 4 ? "selected" : ""?> value="4">Abu Dhabi Time (GMT +4)</option>
+                            <option <?=$user->getTimezone() == 5 ? "selected" : ""?> value="5">Indian Time (GMT +5)</option>
+                            <option <?=$user->getTimezone() == 8 ? "selected" : ""?> value="8">Eastern China Time (GMT +8)</option>
+                            <option <?=$user->getTimezone() == 9 ? "selected" : ""?> value="9">Japan Time (GMT +9)</option>
+                            <option <?=$user->getTimezone() == 10 ? "selected" : ""?> value="10">Australian Time (GMT +10)</option>
+                            <option <?=$user->getTimezone() == 11 ? "selected" : ""?> value="11">Pacific Rim Time (GMT +11)</option>
+                            <option <?=$user->getTimezone() == 12 ? "selected" : ""?> value="12">New Zealand Time (GMT +12)</option>
                         </select>
                     </td>
                 </tr>
