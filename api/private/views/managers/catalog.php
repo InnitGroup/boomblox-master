@@ -565,7 +565,10 @@ class CatalogManager {
                                 ';
                                 break;
                         }
-                        echo '</ul>';
+                        echo '
+                        <div class="Label">Lowest:&nbsp;<input name="ctl00$cphRoblox$rbxCatalog$MinimumCurrencyTextBox" type="text" maxlength="9" id="ctl00_cphRoblox_rbxCatalog_MinimumCurrencyTextBox" class="TextBox"></div>
+                        <div class="Label">Highest:&nbsp;<input name="ctl00$cphRoblox$rbxCatalog$MaximumCurrencyTextBox" type="text" maxlength="9" id="ctl00_cphRoblox_rbxCatalog_MaximumCurrencyTextBox" class="TextBox">&nbsp;<a id="ctl00_cphRoblox_rbxCatalog_CurrencySearchButton" href="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$cphRoblox$rbxCatalog$CurrencySearchButton&quot;, &quot;&quot;, true, &quot;&quot;, &quot;&quot;, false, true))">Apply</a></div>
+                        </ul>';
                     }
 					
 				echo '
