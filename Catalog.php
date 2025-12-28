@@ -49,7 +49,6 @@ $page->buildHeader();
 				<?=$catalog->loadItems($items);
 				isset($GLOBALS["pageEx"]) && print($GLOBALS["pageEx"]);
 				?>
-				
 			</table>
 		<?=$paginator->load()?>
 		</div>

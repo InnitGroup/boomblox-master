@@ -172,6 +172,7 @@ class CatalogManager {
         $this->c !== "" && $sort .= "&c=".htmlspecialchars($this->c);
         $this->t !== "" && $sort .= "&t=".htmlspecialchars($this->t);
         $this->d !== "" && $sort .= "&d=".htmlspecialchars($this->d);
+        $this->q !== "" && $sort .= "&q=".htmlspecialchars($this->q);
         return $sort;
     }
 
