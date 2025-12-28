@@ -194,6 +194,13 @@ class CatalogManager {
         $label .= $this->mToLabel[$m]." ";
         $label .= $this->cToLabel[(int)$c].", ";
         $label .= $this->tToLabel[$t];
+        
+        if (isset($_POST['SearchTextBox'])) {
+            $label .= " (Keyword: " . htmlspecialchars($_POST['SearchTextBox']) . ")";
+        } elseif (isset($_GET["q"])) {
+            $label .= " (Keyword: " . htmlspecialchars($_GET['q']) . ")";
+        }
+
         return $label;
     }
 
