@@ -89,7 +89,8 @@ class CatalogManager {
         ($this->p*20)-20 !== 0 && $offset .= " OFFSET ".($this->p*20)-20;
         $this->c !== "9" && $sql = "SELECT * FROM items WHERE itemType='catalog'";
         $this->d !== "All" && $sql .= $this->dToSQL[$this->d];
-        $this->q !== "" && $sql .= " AND `itemName` LIKE '%".htmlspecialchars($this->q)."%' ";
+        #$this->q !== "" && $sql .= " AND `itemName` LIKE '%".htmlspecialchars($this->q)."%' ";
+        $this->q !== "" && $sql .= " AND `itemName`" . $this->returnTippedQuery($this->q) . " ";
         $this->c !== "9" && $sql .= " AND catalogType='".$this->cToSQL[$this->c]."' ".htmlspecialchars($sort);
         $this->c == "9" && $sql = "SELECT * FROM items WHERE itemType='game' ";
         $this->q !== "" & $this->c == "9" && $sql .= " AND itemName LIKE '%".htmlspecialchars($this->q)."%' ";
@@ -98,17 +99,57 @@ class CatalogManager {
         return $result;
     }
 
-    public function returnTippedQuery(string $q) {
+    public function returnTippedQuery(string $query) {
+        $query = htmlspecialchars($query);
+
+        // Excluding Terms: red and not brick =OR= red - brick
+        if (str_contains($query, " and not ")) {
+            $split = str_split($query, strpos($query, " and not "));
+            return " LIKE '%" . $split[0] . "%' AND `itemName` NOT LIKE '%" . $split[1] . "%'";
+        }
+
+        if (str_contains($query, " - ")) {
+            $split = str_split($query, strpos($query, " - "));
+            return " LIKE '%" . $split[0] . "%' AND `itemName` NOT LIKE '%" . $split[1] . "%'";
+        }
+
         // Exact Phrase: "red brick"
-        if (substr($q, -1, 1) == '"' && substr($q, 0, 1) == '"') {
-            return ' = "' . substr($q, 1, -1) . '"';
+        if (substr($query, -1, 1) == '"' && substr($query, 0, 1) == '"') {
+            return ' = "' . substr($query, 1, -1) . '"';
         }
 
         // Find ALL Terms: red and brick =OR=  red + brick
-        if (str_contains($q, " and ")) {
-            $split = str_split($q, strpos($q, " and "));
-            return " LIKE '%" . $split[0] . "%' O";
+        if (str_contains($query, " and ")) {
+            $split = str_split($query, strpos($query, " and "));
+            return " LIKE '%" . $split[0] . "%' OR `itemName` LIKE '%" . $split[1] . "%'";
         }
+
+        if (str_contains($query, " + ")) {
+            $split = str_split($query, strpos($query, " + "));
+            return " LIKE '%" . $split[0] . "%' OR `itemName` LIKE '%" . $split[1] . "%'";
+        }
+
+        // Wildcard Suffix: tel* (Finds teleport, telamon, telephone, etc.)
+        if (str_contains($query, "*")) {
+            $prefix = str_split($query, strpos($query, "*"))[0];
+            return " LIKE '" . $prefix ."%'";
+        }
+
+        return "LIKE '%" . $query . "%' ";
+        // Terms Near each other: red near brick =OR= red ~ brick
+
+
+        
+
+
+        // Grouping operations: brick and (red or blue) =OR= brick + (red | blue)
+
+
+        // Combinations: "red brick" and not (tele* or tower) =OR= "red brick" - (tele* | tower)
+
+
+        // Wildcard Prefix is NOT supported: *port will not find teleport, airport, etc.
+
     }
 
     public function getSiteSort() {

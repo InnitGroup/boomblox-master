@@ -87,22 +87,6 @@ class CSettingsManager {
                                             <label>2007 ROBLOX Theme</label>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <label>RIP Protonium Theme</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <label>(March 2025 - September 29th, 2025)</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="radio" name="Theme" value="4" '.$this->isTheme(4).' tabindex="1">
-                                            <label>Dark Theme</label>
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
