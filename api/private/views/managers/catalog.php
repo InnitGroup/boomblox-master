@@ -100,42 +100,47 @@ class CatalogManager {
     }
 
     public function returnTippedQuery(string $query) {
-        $query = htmlspecialchars($query);
+        $query = htmlspecialchars_decode($query);
+        $returnQuery = htmlspecialchars($query);
 
-        // Excluding Terms: red and not brick =OR= red - brick
+
+        /* Excluding Terms: red and not brick =OR= red - brick
         if (str_contains($query, " and not ")) {
-            $split = str_split($query, strpos($query, " and not "));
+            $split = str_split($returnQuery, strpos($returnQuery, " and not "));
             return " LIKE '%" . $split[0] . "%' AND `itemName` NOT LIKE '%" . $split[1] . "%'";
         }
 
         if (str_contains($query, " - ")) {
-            $split = str_split($query, strpos($query, " - "));
+            $split = str_split($returnQuery, strpos($returnQuery, " - "));
             return " LIKE '%" . $split[0] . "%' AND `itemName` NOT LIKE '%" . $split[1] . "%'";
         }
+        */
 
         // Exact Phrase: "red brick"
         if (substr($query, -1, 1) == '"' && substr($query, 0, 1) == '"') {
-            return ' = "' . substr($query, 1, -1) . '"';
+            $returnQuery = substr($query, 1, -1);
+            return ' = "' . htmlspecialchars($returnQuery) . '"';
         }
 
-        // Find ALL Terms: red and brick =OR=  red + brick
+        /* Find ALL Terms: red and brick =OR=  red + brick
         if (str_contains($query, " and ")) {
-            $split = str_split($query, strpos($query, " and "));
+            $split = str_split($returnQuery, strpos($returnQuery, " and "));
             return " LIKE '%" . $split[0] . "%' OR `itemName` LIKE '%" . $split[1] . "%'";
         }
 
         if (str_contains($query, " + ")) {
-            $split = str_split($query, strpos($query, " + "));
+            $split = str_split($returnQuery, strpos($returnQuery, " + "));
             return " LIKE '%" . $split[0] . "%' OR `itemName` LIKE '%" . $split[1] . "%'";
         }
 
         // Wildcard Suffix: tel* (Finds teleport, telamon, telephone, etc.)
         if (str_contains($query, "*")) {
-            $prefix = str_split($query, strpos($query, "*"))[0];
+            $prefix = str_split($returnQuery, strpos($returnQuery, "*"))[0];
             return " LIKE '" . $prefix ."%'";
         }
+        */
 
-        return "LIKE '%" . $query . "%' ";
+        return "LIKE '%" . $returnQuery . "%' ";
         // Terms Near each other: red near brick =OR= red ~ brick
 
 
@@ -172,7 +177,13 @@ class CatalogManager {
         $this->c !== "" && $sort .= "&c=".htmlspecialchars($this->c);
         $this->t !== "" && $sort .= "&t=".htmlspecialchars($this->t);
         $this->d !== "" && $sort .= "&d=".htmlspecialchars($this->d);
-        $this->q !== "" && $sort .= "&q=".htmlspecialchars($this->q);
+
+        if (isset($_POST['SearchTextBox'])) {
+            $sort .= "&q=".htmlspecialchars($_POST['SearchTextBox']);
+        } elseif (isset($_GET["q"])) {
+             $sort .= "&q=".htmlspecialchars($_GET['q']);
+        }
+
         return $sort;
     }
 
