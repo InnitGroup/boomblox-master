@@ -8,6 +8,6 @@ global $db, $auth;
 $assetId = $_GET["id"] ?? $_GET["ID"] ?? Server::_404();
 $version = $_GET["version"] ?? $_GET["Version"] ?? 1;
 
-!$auth->isAuthed() && Server::ipLock();
+#!$auth->isAuthed() && Server::ipLock();
 
 new AssetRedirect($assetId, $version);

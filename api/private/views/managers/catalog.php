@@ -132,13 +132,15 @@ class CatalogManager {
             $split = str_split($returnQuery, strpos($returnQuery, " + "));
             return " LIKE '%" . $split[0] . "%' OR `itemName` LIKE '%" . $split[1] . "%'";
         }
+        */
 
         // Wildcard Suffix: tel* (Finds teleport, telamon, telephone, etc.)
-        if (str_contains($query, "*")) {
-            $prefix = str_split($returnQuery, strpos($returnQuery, "*"))[0];
-            return " LIKE '" . $prefix ."%'";
+        if (str_contains($query, "*") && substr($query, 0, 1) !== "*") {
+            $split = str_split($query, strpos($query, "*"));
+            if ($split[1] == "*" && $split[0] !== "*") {
+                return " LIKE '" . htmlspecialchars($split[0]) . "%'";
+            }
         }
-        */
 
         return "LIKE '%" . $returnQuery . "%' ";
         // Terms Near each other: red near brick =OR= red ~ brick
