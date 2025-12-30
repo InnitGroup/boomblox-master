@@ -183,7 +183,7 @@ end
 
 game:GetService("RunService"):Run()
 
-game:GetService("RunService").Heartbeat:connect(function()
+pcall(function()
 	wait(30)
 	if (#game.Players:GetChildren() == 0) then
 		game:HttpGet("http://{Url}/api/public/CloseServer.ashx?Port=" .. port .. "&Key=Y2M0YjFjNzNhZWY5YzAyYjkzNmM1NzFlZjg3MWZmODc=" .. "&t=" .. math.random(1,9999), false)
