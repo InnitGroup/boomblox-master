@@ -10,7 +10,7 @@ class Thumbnail {
                 <ns1:OpenJob>
                     <ns1:job>
                         <ns1:id>'.Helper::guid().'</ns1:id>
-                        <ns1:expirationInSeconds>10</ns1:expirationInSeconds>
+                        <ns1:expirationInSeconds>30</ns1:expirationInSeconds>
                         <ns1:category>1</ns1:category>
                         <ns1:cores>1</ns1:cores>
                     </ns1:job>
