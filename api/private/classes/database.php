@@ -126,6 +126,13 @@ class Database {
         return $result;
     }
 
+    # returns all users
+    public function getAllUsersThisMonth() {
+        $sql = "SELECT * FROM users WHERE `lastOnline` >= DATE_FORMAT(NOW() ,'%Y-%m-01')";
+        $result = $this->execute($sql);
+        return $result;
+    }
+
     # checks if a user exists by their user id
     public function userExists($userId) {
         $sql = "SELECT * FROM users WHERE id=:id";
