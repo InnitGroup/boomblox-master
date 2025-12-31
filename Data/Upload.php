@@ -24,7 +24,7 @@ if (Version::assetExists($placeId)) { # true
     file_put_contents($filePath . "_" . $version, file_get_contents($filePath)); # replace /content/1_1 with /content/1
 } #
 
-if (strlen($data) > 30000000) {
+if (strlen($data) > 100000000) {
     Server::_404();
 }
 

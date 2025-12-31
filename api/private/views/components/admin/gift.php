@@ -1,8 +1,9 @@
 <div id="MainPanel">
     <p>Utility panel for giving gifts to specific users</p>
     <?php
-    $gift = 1865;
-    $item = 2230;
+    exit;
+    $gift = 203;
+    $item = 2265;
 
     global $db;
     $recentUsers = $db->getAllUsersThisMonth()->fetchAll(PDO::FETCH_ASSOC);

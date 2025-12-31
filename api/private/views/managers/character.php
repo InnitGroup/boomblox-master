@@ -104,6 +104,10 @@ class CharacterManager {
             $stmt = "UPDATE users SET ";
             $args = array();
             $asset = new Asset($id);
+            if ($type == "Head" && $asset->catalogType !== "Head") {
+                exit(header("Location: /My/Character.aspx"));
+            }
+            
             if ($type == strtolower($asset->catalogType()) || $asset->catalogType() == "Hat") {
                 if ($action == "Wear") {
                     $stmt .= "`".htmlspecialchars($type)."`=:aId WHERE `id`=:uId"; # aId = accoutrementId, uId = userId
