@@ -63,7 +63,7 @@ class Version {
         return $versionIds;
     }
 
-    public static function logVersion(int $assetId, int $versionId) {
+    public static function logVersion(int $assetId, int $versionId, User $creator) {
         global $db, $user;
 
         $stmt = "INSERT INTO versions (assetId, versionId, created_at, creatorId) VALUES (:assetId, :versionId, :_now, :creatorId)";
@@ -71,7 +71,7 @@ class Version {
             ":assetId" => $assetId,
             ":versionId" => $versionId,
             ":_now" => date("Y-m-d H:i:s"),
-            ":creatorId" => $user->getUserId()
+            ":creatorId" => $creator->getUserId()
         ]);
     }
 

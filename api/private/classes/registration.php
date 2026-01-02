@@ -1,18 +1,15 @@
 <?php
 class Registration {
     public array $presets = [
-        "rock2059",
-        "penciltrick",
-        "umut10",
-        "Imperatore",
-        "dragonmagictrainer",
-        "GoldenThunder",
-        "bmcool",
-        "Fizzle82",
-        "ValaryCor",
-        "Jawsfan",
-        "AlphaShaymin",
-        "sniperwolf14"
+        "Ryxo",
+        "DEMOblock",
+        "Talen14",
+        "cendrena",
+        "idomino",
+        "seeeeth",
+        "planeboys12",
+        "unseenunheard",
+        "Alacazar"
     ];
 
     private array $usernameError = [

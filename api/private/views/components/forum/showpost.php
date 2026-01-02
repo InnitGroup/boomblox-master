@@ -92,9 +92,9 @@ PageBuilder::addComponent("forum", "navmenu");
 																			<tbody>
 																				<tr>
 																					<td class="forumRowHighlight">
-																						<span class="normalTextSmallBold"><?=htmlspecialchars($thread->getTitle())?><a name="1964006"></a>
+																						<span class="normalTextSmallBold"><?=htmlspecialchars($thread->getTitle())?><a name="<?=$thread->getId()?>"></a>
 																						</span>
-																						<a name="1964006">
+																						<a name="<?=$thread->getId()?>">
 																							<br>
 																							<span class="normalTextSmaller"> Posted: </span>
 																							<span class="normalTextSmaller"><?=$thread->getPostDate()->format("m-d-Y h:i A")?></span>
@@ -168,9 +168,9 @@ PageBuilder::addComponent("forum", "navmenu");
 																			<tbody>
 																				<tr>
 																					<td class="forumRowHighlight">
-																						<span class="normalTextSmallBold"><?=htmlspecialchars($reply->getTitle())?> <a name="324350"></a>
+																						<span class="normalTextSmallBold"><?=htmlspecialchars($reply->getTitle())?> <a name="<?=$reply->getId()?>"></a>
 																						</span>
-																						<a name="324350">
+																						<a name="<?=$reply->getId()?>">
 																							<br>
 																							<span class="normalTextSmaller"> Posted: </span>
 																							<span class="normalTextSmaller"><?=$reply->getPostDate()->format("m-d-Y h:i A")?></span>
@@ -203,6 +203,13 @@ PageBuilder::addComponent("forum", "navmenu");
 																	</td>
 																</tr>
 																<?php endforeach; endif; ?>
+																<tr>
+																	<td class="forumHeaderBackgroundAlternate" colspan="2" height="20"><table cellspacing="0" cellpadding="0" border="0" width="100%">
+																		<tbody><tr>
+																			<td align="left"></td><td align="right"><a id="ctl00_cphRoblox_PostView1_ctl00_PostList_ctl02_PreviousThread" class="linkSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$PostView1$ctl00$PostList$ctl02$PreviousThread','')">Previous Thread</a>&nbsp;<span class="normalTextSmallBold">::</span>&nbsp;<a id="ctl00_cphRoblox_PostView1_ctl00_PostList_ctl02_NextThread" class="linkSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$PostView1$ctl00$PostList$ctl02$NextThread','')">Next Thread</a>&nbsp;</td>
+																		</tr>
+																	</tbody></table></td>
+																</tr>
 															</tbody>
 														</table><span id="ctl00_cphRoblox_PostView1_ctl00_Pager"><table cellspacing="0" cellpadding="0" border="0" width="100%"><tbody><tr><td><span class="normalTextSmallBold">Page 1 of 1</span></td></tr></tbody></table></span>
 													</td>

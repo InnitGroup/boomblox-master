@@ -598,7 +598,7 @@ class User {
         
         $data = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/content/templates/HappyHomeInBoombloxia");
         file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/content/{$placeId}", gzencode($data));
-        Version::logVersion($placeId, 1);
+        Version::logVersion($placeId, 1, $this);
     }
     public function addProfileView($userId) {
         global $db;

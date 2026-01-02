@@ -16,7 +16,7 @@ class PlaceManager {
             if (isset($_POST["__EVENTTARGET"])) {
                  if (str_contains($_POST["__EVENTTARGET"], "$")) {
                     $decrypted = explode("$", $_POST["__EVENTTARGET"]);
-                    global $db;
+                    global $db, $user;
                     switch ($decrypted[2]) {
                         case "lbSubmit":
                             $name = $_POST['ctl00$cphRoblox$tbName'];
@@ -77,8 +77,8 @@ class PlaceManager {
                             $asset->RequestThumbnail(420, 230, "PNG");
                             $asset->RequestThumbnail(250, 250, "PNG");
                             $newVersion = Version::getNextVersion($this->placeId);
-                            Version::logVersion($this->placeId, $newVersion); #
-                            Version::setVersion($this->placeId, $newVersion);
+                            Version::logVersion($this->placeId, $newVersion, $user); #
+                            Version::setVersion($this->placeId, $newVersion, $user);
                             break;
                         case 'MakeCurrent':
                             Version::makeCurrent($this->placeId, (int)$_POST["__EVENTARGUMENT"]);

@@ -44,8 +44,8 @@ $db->execute($stmt, [
 ]);
 
 $newVersion = Version::getNextVersion($placeId);
-Version::logVersion($placeId, $newVersion); #
-Version::setVersion($placeId, $newVersion);
+Version::logVersion($placeId, $newVersion, $user); #
+Version::setVersion($placeId, $newVersion, $user);
 
 #render
 $asset = new Asset($placeId);
