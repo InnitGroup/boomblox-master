@@ -278,7 +278,7 @@ class User {
         $db->execute($stmt, [":id" => $this->getUserId()]);
     }
     public function getCharacterAppearance() {
-        $charapp = Site::$domain."/Asset/BodyColors.ashx?userId=".$this->data["user"]["id"];
+        $charapp = Site::$domain."/Asset/BodyColors.ashx?userId=".$this->data["user"]["id"]."?t=".time();
         if (isset($this->data["character"]["hat"])) {
             $charapp .= ";".Site::$domain."/Asset/?id=".(int)$this->data["character"]["hat"];
         }
