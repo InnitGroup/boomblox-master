@@ -22,7 +22,7 @@ $result = $db->execute($stmt, [
 echo $port;
 
 $script = "wait(); dofile('http://".domain."/game/gameserver.ashx?serverPort=".$port."&PlaceID=".$placeId."')";
-$command = 'start C:\2008L\Server4.exe -no3d -script "'.$script.'"';
+$command = 'start C:\2008L\Server5.exe -no3d -script "'.$script.'"';
 popen($command, "r");
 
 ?>
