@@ -63,7 +63,7 @@ class AssetRedirect {
 
     # serves the asset redirect
     public function redirect($assetId, $version) {
-        global $db;
+        global $db, $user;
         $stmt = "SELECT * FROM items WHERE itemId=:itemId";
         $result = $db->execute($stmt, [":itemId" => (int)$assetId]);
         if ($result->rowCount() > 0) {
@@ -72,6 +72,15 @@ class AssetRedirect {
                 $item = $result->fetch(PDO::FETCH_ASSOC);
                 if (!$item["itemType"] == "game") {
                     Server::ipLock();
+                }
+
+                if ($item["itemType"] == "game") {
+                    if (!Server::isLocal()) {
+                        $game = new Item($item["itemId"]);
+                        if (!in_array($item["itemId"], $user->getPlaces(true)) && !$game->isCopylocked()) {
+                            Server::_404();
+                        }
+                    }
                 }
 
                 exit(file_get_contents($location));

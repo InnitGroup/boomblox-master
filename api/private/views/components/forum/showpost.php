@@ -52,81 +52,17 @@ PageBuilder::addComponent("forum", "navmenu");
 																	<th class="tableHeaderText" align="left" height="25" width="100">&nbsp;Author</th>
 																	<th class="tableHeaderText" align="left" width="85%">&nbsp;Thread: <?=htmlspecialchars($thread->getTitle())?></th>
 																</tr>
-																<tr>
-																	<td class="forumRow" valign="top" width="150" nowrap="nowrap">
-																		<table border="0">
-																			<tbody>
-																				<tr>
-																					<td>
-																						<img src="/Forum/skins/default/images/user_Is<?=$thread->getAuthor()->isOnline() ? "Online" : "Offline"?>.gif" border="0">&nbsp; <a class="normalTextSmallBold" href="/User.aspx?username=<?=$thread->getAuthor()->getUsername()?>"><?=$thread->getAuthor()->getUsername()?></a>
-																						<br>
-																					</td>
-																				</tr>
-																				<tr>
-																					<td>
-																						<a href="/User.aspx?username=<?=$thread->getAuthor()->getUsername()?>">
-																							<img style="width:64px;height:64px;" src="<?=$thread->getAuthorBust()?>" border="0">
-																						</a>
-																					</td>
-																				</tr>
-																				<tr>
-																					<td>
-																						<span class="normalTextSmaller">
-																							<b>Joined:</b> <?=$thread->getAuthor()->joinDate()->format("j M Y")?> </span>
-																					</td>
-																				</tr>
-																				<tr>
-																					<td>
-																						<span class="normalTextSmaller">
-																							<b>Total Posts: </b><?=$thread->getAuthor()->getForumPosts(NULL, true)?> </span>
-																					</td>
-																				</tr>
-																				<tr>
-																					<td>&nbsp;</td>
-																				</tr>
-																			</tbody>
-																		</table>
-																	</td>
-																	<td class="forumRow" valign="top">
-																		<table cellspacing="0" cellpadding="3" border="0" width="100%">
-																			<tbody>
-																				<tr>
-																					<td class="forumRowHighlight">
-																						<span class="normalTextSmallBold"><?=htmlspecialchars($thread->getTitle())?><a name="<?=$thread->getId()?>"></a>
-																						</span>
-																						<a name="<?=$thread->getId()?>">
-																							<br>
-																							<span class="normalTextSmaller"> Posted: </span>
-																							<span class="normalTextSmaller"><?=$thread->getPostDate()->format("m-d-Y h:i A")?></span>
-																						</a>
-																					</td>
-																				</tr>
-																				<tr>
-																					<td colspan="2">
-																						<span class="normalTextSmall"><?=htmlspecialchars($thread->getContent())?></span>
-																					</td>
-																				</tr>
-																				<tr>
-																					<td colspan="2">
-																						<span class="normalTextSmaller"></span>
-																					</td>
-																				</tr>
-																				<tr>
-																					<td height="2"></td>
-																				</tr>
-																				<tr>
-																					<td colspan="2">
-																						<a href="/Forum/AddPost.aspx?PostID=<?=$thread->getId()?>&amp;mode=flat">
-																							<img border="0" src="/Forum/skins/default/images/newpost.gif">
-																						</a>
-																						<a href="/AbuseReport/ForumPost.aspx?PostID=<?=$thread->getId()?>&amp;ReturnUrl=http%3a%2f%2fwww.roblox.com%2fForum%2fShowPost.aspx%3fPostID%3d1964006">Report Abuse</a>
-																					</td>
-																				</tr>
-																			</tbody>
-																		</table>
-																	</td>
-																</tr>
-																<?php if ($replies = $thread->getReplies()):
+																<?php 
+																$totalPosts = $thread->countReplies() + 1;
+																$page = isset($_GET["PageIndex"]) ? (int)$_GET["PageIndex"] : 1;
+																$pages = ceil($totalPosts / 25);
+																$offset = ($pages - 1) * 25; # ThePlayerRolo this is the only way to calculate offsets Frick laravel
+
+																$replies = $thread->getReplies(25, $offset);
+																if ($page == 1) {
+																	array_unshift($replies, $thread);
+																}
+																if ($replies):
 																foreach ($replies as $count => $reply): ?>
 																<tr>
 																	<td class="forum<?=$count % 2 == 0 ? "Alternate" : "Row"?>" valign="top" nowrap="nowrap">
@@ -211,9 +147,29 @@ PageBuilder::addComponent("forum", "navmenu");
 																	</tbody></table></td>
 																</tr>
 															</tbody>
-														</table><span id="ctl00_cphRoblox_PostView1_ctl00_Pager"><table cellspacing="0" cellpadding="0" border="0" width="100%"><tbody><tr><td><span class="normalTextSmallBold">Page 1 of 1</span></td></tr></tbody></table></span>
+														</table>
+														<span id="ctl00_cphRoblox_PostView1_ctl00_Pager">
+															<table cellspacing="0" cellpadding="0" border="0" width="100%">
+																<tbody>
+																	<tr>
+																		<td>
+																			<span class="normalTextSmallBold">Page 1 of 1</span>
+																		</td>
+																	</tr>
+																</tbody>
+															</table>
+														</span>
 													</td>
-												</tr><tr><td colspan="2">&nbsp;</td></tr><tr><td align="left" colspan="2"></td></tr><tr><td align="left" colspan="2"><?=PageBuilder::addComponent("forum", "whereami")?></td></tr>
+												</tr>
+												<tr>
+													<td colspan="2">&nbsp;</td>
+												</tr>
+												<tr>
+													<td align="left" colspan="2"></td>
+												</tr>
+												<tr>
+													<td align="left" colspan="2"><?=PageBuilder::addComponent("forum", "whereami")?></td>
+												</tr>
 											</tbody>
 										</table>
 									</span>

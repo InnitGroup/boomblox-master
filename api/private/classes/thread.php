@@ -93,10 +93,10 @@ class Thread {
         return $diff == 0;
     }
 
-    public function getReplies(int $limit = 25) {
+    public function getReplies(int $limit = 25, int $offset = 0) {
         global $db;
 
-        $stmt = "SELECT postId FROM threads WHERE parentPost=:threadId LIMIT $limit";
+        $stmt = "SELECT postId FROM threads WHERE parentPost=:threadId LIMIT $limit OFFSET $offset";
         $result = $db->execute($stmt, [":threadId" => $this->getId()]);
         if ($result->rowCount() == 0) {
             return [];
