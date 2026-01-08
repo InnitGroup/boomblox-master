@@ -36,6 +36,7 @@ class User {
             "rlColor",
             "torsoColor",
             "head",
+            "face",
             "hat",
             "shirt",
             "pants",
@@ -301,8 +302,11 @@ class User {
             }
         }
         if (isset($this->data["character"]["head"]) && $this->data["character"]["head"] > 0) {
-            $charapp .= ";".Site::$domain."/content/test/".(int)$this->data["character"]["head"];;
+            $charapp .= ";".Site::$domain."/content/test/".(int)$this->data["character"]["head"];
         }
+        #if (isset($this->data["character"]["face"]) && $this->data["character"]["face"] > 0) {
+        #    $charapp .= ";".Site::$domain."/content/test/".(int)$this->data["character"]["face"];
+        #}
         return $charapp;
     }
     public function getAlternateAppearance() {
@@ -310,6 +314,9 @@ class User {
     }
     public function getHead() {
         return $this->data["character"]["head"];
+    }
+    public function getFace() {
+        return $this->data["character"]["face"];
     }
     public function isOnline() {
         if (!$this->getData("user","lastOnline")) {

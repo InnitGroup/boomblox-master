@@ -13,7 +13,7 @@ $thread->isAReply() && Server::_404();
 $totalPosts = $thread->countReplies() + 1;
 $page = isset($_GET["PageIndex"]) ? (int)$_GET["PageIndex"] : 1;
 $pages = ceil($totalPosts / 25);
-if ($page > $pages) {
+if ($page > $pages || $page == 0) {
     Server::_404();
 }
 

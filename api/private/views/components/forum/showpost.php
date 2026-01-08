@@ -55,13 +55,14 @@ PageBuilder::addComponent("forum", "navmenu");
 																<?php 
 																$totalPosts = $thread->countReplies() + 1;
 																$page = isset($_GET["PageIndex"]) ? (int)$_GET["PageIndex"] : 1;
-																$pages = ceil($totalPosts / 25);
-																$offset = ($pages - 1) * 25; # ThePlayerRolo this is the only way to calculate offsets Frick laravel
+																$pages = 6; //ceil($totalPosts / 25);
+																$offset = ($page - 1) * 25; # ThePlayerRolo this is the only way to calculate offsets Frick laravel
 
 																$replies = $thread->getReplies(25, $offset);
 																if ($page == 1) {
 																	array_unshift($replies, $thread);
 																}
+
 																if ($replies):
 																foreach ($replies as $count => $reply): ?>
 																<tr>
@@ -153,8 +154,29 @@ PageBuilder::addComponent("forum", "navmenu");
 																<tbody>
 																	<tr>
 																		<td>
-																			<span class="normalTextSmallBold">Page 1 of 1</span>
+																			<span class="normalTextSmallBold">Page <?=$page?> of <?=$pages?></span>
 																		</td>
+																		<?php if ($pages > 1): ?>
+																		<td align="right">
+																			<span>
+																				<span class="normalTextSmallBold">Goto to page: </span>
+																				<?php for ($i = 1; $i <= $pages; $i++): ?>
+																				<?php if ($i <= 3): ?>
+																				<a id="ctl00_cphRoblox_PostView1_ctl00_Pager_Page<?=$i?>" class="normalTextSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$PostView1$ctl00$Pager$Page<?=$i?>','')"><?=$i?></a><?php if ($i < $pages && $i !== 3): ?><span class="normalTextSmallBold">, </span>
+																				<?php endif; endif; ?>
+																				<?php if ($i == 4 && $pages > 5): ?>
+																				<span class="normalTextSmallBold"> ... </span>
+																				<a id="ctl00_cphRoblox_PostView1_ctl00_Pager_Page<?=$pages - 1?>" class="normalTextSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$PostView1$ctl00$Pager$Page<?=$pages - 1?>','')"><?=$pages - 1?></a>
+																				<span class="normalTextSmallBold">, </span>
+																				<a id="ctl00_cphRoblox_PostView1_ctl00_Pager_Page<?=$pages?>" class="normalTextSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$PostView1$ctl00$Pager$Page<?=$pages?>','')"><?=$pages?></a>
+																				<span class="normalTextSmallBold">&nbsp;</span>
+																				<?php endif; endfor; ?>
+																				<?php if ($pages > 3): ?>
+																				<a id="ctl00_cphRoblox_PostView1_ctl00_Pager_Next" class="normalTextSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$PostView1$ctl00$Pager$Next','')">Next</a>
+																				<?php endif; ?>
+																			</span>
+																		</td>
+																		<?php endif; ?>
 																	</tr>
 																</tbody>
 															</table>
