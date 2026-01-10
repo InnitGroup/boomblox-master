@@ -47,16 +47,18 @@ local db = {}
 -- send kill and death stats when a player dies
 function onDied(victim, humanoid)
 	local killer = getKillerOfHumanoidIfStillInGame(humanoid)
-	if db[killer.userId] and db[killer.userId][1]<tick() then
-		if victim.userId==db[killer.userId][2] then 
-			return 
-		end 
-	end 
-	db[killer.userId] = {tick()+waitTime, victim.userId}
 	collectgarbage("collect")
 
 	local victorId = 0
 	if killer then
+		if db[killer.userId] and db[killer.userId][1]>tick() then
+			if victim.userId==db[killer.userId][2] then 
+				return 
+			end 
+		end 
+
+		db[killer.userId] = {tick()+waitTime, victim.userId}
+		print(table.concat(db, " "))
 		victorId = killer.userId
 		print("STAT: kill by " .. victorId .. " of " .. victim.userId)
 		if (victorId ~= victim.userId) then
