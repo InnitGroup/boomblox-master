@@ -41,9 +41,18 @@ function getKillerOfHumanoidIfStillInGame(humanoid)
 	return nil
 end
 
+local waitTime = 3
+local db = {}
+
 -- send kill and death stats when a player dies
 function onDied(victim, humanoid)
 	local killer = getKillerOfHumanoidIfStillInGame(humanoid)
+	if db[killer.userId] and db[killer.userId][1]<tick() then
+		if victim.userId==db[killer.userId][2] then 
+			return 
+		end 
+	end 
+	db[killer.userId] = {tick()+waitTime, victim.userId}
 	collectgarbage("collect")
 
 	local victorId = 0

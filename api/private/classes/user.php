@@ -278,7 +278,7 @@ class User {
         $stmt = "UPDATE users SET bc=0 WHERE id=:id";
         $db->execute($stmt, [":id" => $this->getUserId()]);
     }
-    public function getCharacterAppearance() {
+    public function getCharacterAppearance($isRender = false) {
         $charapp = Site::$domain."/Asset/BodyColors.ashx?userId=".$this->data["user"]["id"]."?t=".time();
         if (isset($this->data["character"]["hat"])) {
             $charapp .= ";".Site::$domain."/Asset/?id=".(int)$this->data["character"]["hat"];
@@ -301,12 +301,14 @@ class User {
                 $charapp .= ";".Site::$domain."/Asset/?id=".(int)$this->data["character"]["t-shirt"];
             }
         }
-        if (isset($this->data["character"]["head"]) && $this->data["character"]["head"] > 0) {
-            $charapp .= ";".Site::$domain."/content/test/".(int)$this->data["character"]["head"];
+        if (!$isRender) {
+            if (isset($this->data["character"]["head"]) && $this->data["character"]["head"] > 0) {
+                $charapp .= ";".Site::$domain."/content/test/".(int)$this->data["character"]["head"];
+            }
+            if (isset($this->data["character"]["face"]) && $this->data["character"]["face"] > 0) {
+                $charapp .= ";".Site::$domain."/Data/Face.ashx?ID=".(int)$this->data["character"]["face"];
+            }
         }
-        #if (isset($this->data["character"]["face"]) && $this->data["character"]["face"] > 0) {
-        #    $charapp .= ";".Site::$domain."/content/test/".(int)$this->data["character"]["face"];
-        #}
         return $charapp;
     }
     public function getAlternateAppearance() {

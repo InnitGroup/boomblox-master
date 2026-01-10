@@ -88,6 +88,9 @@ class CatalogManager {
         #this is really bad but at least we are upgrading from old boomblox code
         ($this->p*20)-20 !== 0 && $offset .= " OFFSET ".($this->p*20)-20;
         $this->c !== "9" && $sql = "SELECT * FROM items WHERE itemType='catalog'";
+        if (!isset($this->dToSQL[$this->d])) {
+            Server::_404();
+        }
         $this->d !== "All" && $sql .= $this->dToSQL[$this->d];
         #$this->q !== "" && $sql .= " AND `itemName` LIKE '%".htmlspecialchars($this->q)."%' ";
         $this->q !== "" && $sql .= " AND `itemName`" . $this->returnTippedQuery($this->q) . " ";

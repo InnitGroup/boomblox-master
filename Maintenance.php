@@ -61,5 +61,5 @@ global $theme, $auth, $user;
     </div> 
 </div>
 <script type="text/javascript"> 
-    window.window.setTimeout("window.location = '<?=Site::$domain?>'", 30000);
+    window.setTimeout("window.location = '<?=Site::$domain?>'", 30000);
 </script>

@@ -15,7 +15,7 @@ class Avatar extends Base {
 
         $script = "
         local player = game.Players:CreateLocalPlayer(0)
-        player.CharacterAppearance = '{$this->user->getCharacterAppearance()}'
+        player.CharacterAppearance = '{$this->user->getCharacterAppearance(true)}'
         player:LoadCharacter()
         local char = player.Character
         local head = char.Head
