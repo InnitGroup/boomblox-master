@@ -185,7 +185,7 @@ $profiledUser = new User($userId);
 															<tr>
 																<td valign="top" align="left">
 																	<span class="normalTextSmallBold">
-																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_PostStats"><?=$profiledUser->getUsername()?> has contributed to <?=number_format(Forum::countAllPostsByUser($profiledUser->getUserId()))?> out of <?=number_format(Forum::countAllPosts())?> total posts (<?=(Forum::countAllPostsByUser($profiledUser->getUserId())/Forum::countAllPosts())*100?>% of total).</span>
+																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_PostStats"><?=$profiledUser->getUsername()?> has contributed to <?=number_format(Forum::countAllPostsByUser($profiledUser->getUserId()))?> out of <?=number_format(Forum::countAllPosts())?> total posts (<?=number_format((Forum::countAllPostsByUser($profiledUser->getUserId())/Forum::countAllPosts())*100, 2)?>% of total).</span>
 																	</span>
 																</td>
 															</tr>
@@ -196,6 +196,9 @@ $profiledUser = new User($userId);
 															</tr>
 															<tr>
 																<td valign="top" align="left" colspan="2">
+																	<?php 
+																	$recentPosts = $profiledUser->getForumPosts(10);
+																	if (!empty($recentPosts)): ?>
 																	<table id="ctl00_cphRoblox_Userinfo1_ctl00_PostList" cellspacing="1" cellpadding="3" border="0" width="100%">
 																		<tbody>
 																			<tr>
@@ -203,8 +206,6 @@ $profiledUser = new User($userId);
 																					<table width="100%" cellpadding="0" cellspacing="0">
 																						<tbody>
 																							<?php
-																							$recentPosts = $profiledUser->getForumPosts(10);
-																							if (count($recentPosts) > 0): 
 																							foreach ($recentPosts as $relativeId => $recentPost): ?>
 																							<tr>
 																								<td <?=$relativeId % 2 == 0 ? 'class="forumAlternate"' : ''?>>
@@ -227,14 +228,14 @@ $profiledUser = new User($userId);
 																								</tr>
 																							<?php
 																							endif; 
-																							endforeach;
-																							endif; ?>
+																							endforeach; ?>
 																						</tbody>
 																					</table>
 																				</td>
 																			</tr>
 																		</tbody>
 																	</table>
+																	<?php endif; ?>
 																	<p>
 																		<a id="ctl00_cphRoblox_Userinfo1_ctl00_MorePosts" class="linkSmallBold" href="/Forum/Search/default.aspx?SearchFor=1&amp;SearchText=<?=$profiledUser->getUsername()?>">Search for more...</a>
 																	</p>
