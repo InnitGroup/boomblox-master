@@ -10,10 +10,11 @@ class CharacterManager {
         8 => "Hat",
         11 => "Shirt",
         12 => "Pants",
-        17 => "Head"
+        17 => "Head",
+        18 => "Face"
     ];
     private $attireIDs = [
-        2, 8, 11, 12, 17
+        2, 8, 11, 12, 17, 18
     ];
     public function __construct($post) {
         $this->user = new User(ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]));
@@ -90,13 +91,12 @@ class CharacterManager {
     }
     public function processAccoutrement() {
         global $db, $user;
-        $types = ["hat", "shirt", "pants", "t-shirt", "head"];
+        $types = ["hat", "shirt", "pants", "t-shirt", "head", "face"];
         $type = strtolower($this->requestData["accoutrementType"]);
         $id = $this->requestData["accoutrementId"];
         $action = $this->requestData["action"];
 
         if (!in_array($type, $types)) {
-            #Discord::sendWebhookMessage("vcchat", "type not available");
             exit(header("Location: /My/Character.aspx"));
         }
 
@@ -128,8 +128,6 @@ class CharacterManager {
             } else {
                 #Discord::sendWebhookMessage("vcchat", "type not connected");
             }
-        } else {
-            #Discord::sendWebhookMessage("vcchat", "accoutrement not found");
         }
     }
 
@@ -242,7 +240,7 @@ class CharacterManager {
 			<h4>My Wardrobe</h4>
 			<div class="HeaderPager">
 				<div class="AttireCategory">
-					<span><a '.$this->attireCategoryChosen("Head").' href="javascript:__doPostBack(\'Type\',\'Accoutrement$Head\')">Heads</a> | <a '.$this->attireCategoryChosen("T-Shirt").' href="javascript:__doPostBack(\'Type\',\'Accoutrement$T-Shirt\')">T-Shirts</a> | <a '.$this->attireCategoryChosen("Shirt").' href="javascript:__doPostBack(\'Type\',\'Accoutrement$Shirt\')">Shirts</a> | <a '.$this->attireCategoryChosen("Pants").' href="javascript:__doPostBack(\'Type\',\'Accoutrement$Pants\')">Pants</a> | <a '.$this->attireCategoryChosen("Hat").' href="javascript:__doPostBack(\'Type\',\'Accoutrement$Hat\')">Hats</a></span><br>    				                
+					<span><a '.$this->attireCategoryChosen("Head").' href="javascript:__doPostBack(\'Type\',\'Accoutrement$Head\')">Heads</a> | <a '.$this->attireCategoryChosen("Face").' href="javascript:__doPostBack(\'Type\',\'Accoutrement$Face\')">Faces</a> | <a '.$this->attireCategoryChosen("T-Shirt").' href="javascript:__doPostBack(\'Type\',\'Accoutrement$T-Shirt\')">T-Shirts</a> | <a '.$this->attireCategoryChosen("Shirt").' href="javascript:__doPostBack(\'Type\',\'Accoutrement$Shirt\')">Shirts</a> | <a '.$this->attireCategoryChosen("Pants").' href="javascript:__doPostBack(\'Type\',\'Accoutrement$Pants\')">Pants</a> | <a '.$this->attireCategoryChosen("Hat").' href="javascript:__doPostBack(\'Type\',\'Accoutrement$Hat\')">Hats</a></span><br>    				                
 					<span><a href="/Catalog.aspx?m=ForSale&c='.Helper::typeId($this->requestData["type"]).'&d=All">Shop</a>&nbsp;&nbsp;'.$this->getCreate().'</span>
 				</div>
 			</div>
