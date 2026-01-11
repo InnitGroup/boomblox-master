@@ -128,15 +128,25 @@ class Forum {
     }
 
     public static function formatTime(DateTime $timeToFormat): string {
+        global $user;
         $today = new DateTime();
+        $today->setTimezone(Helper::timezoneToDateTimeZone($user->getTimezone()));
         $diff = $today->diff($timeToFormat)->format("%a");
-        $time = $timeToFormat->format("h:i A");
+        $time = $timeToFormat->format("h:i ");
 
         if ($diff == 0) {
             return "Today @ " . $time;
         }
-
+        
+        $timeToFormat->setTimezone(Helper::timezoneToDateTimezone($user->getTimezone()));
         return $timeToFormat->format("d M Y h:i A");
+    }
+
+    public static function currentTime(): string {
+        global $user;
+        $current = new DateTIme();
+        $current->setTimezone(Helper::timezoneToDateTimeZone($user->getTimezone()));
+        return $current->format("M j, g:i A");
     }
 
     public function addPost(int $authorId, int $parentPost = NULL, string $title, string $content, bool $isReply = false) {

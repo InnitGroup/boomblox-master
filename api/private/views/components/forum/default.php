@@ -87,7 +87,7 @@
 											<tr>
 												<td align="left">
 													<span class="normalTextSmallBold">Current time: </span>
-													<span class="normalTextSmall"><?=date("M j, g:i A")?></span>
+													<span class="normalTextSmall"><?=Forum::currentTime()?></span>
 												</td>
 												<td align="right"></td>
 											</tr>

@@ -70,19 +70,23 @@ class Helper {
             return $string."s";
         }
     }
+
     public static function sign($script) {
         $key = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/api/private/lua/PrivateKey.pem");
         $signature = "";
         openssl_sign($script, $signature, $key, OPENSSL_ALGO_SHA1);
         return base64_encode($signature);
     }
+
     public static function contains($string, $contains) {
         $sContains = implode('', $contains);
         return strpbrk($string,$sContains) !== false && true || strpbrk($string,$sContains);
     }
+
     public static function validUsername($username) {
         return preg_match("/^[A-Za-z0-9]+$/",$username);
     }
+
     public static function times($value) {
         if ($value == 1) {
             return number_format($value)." time";
@@ -90,6 +94,7 @@ class Helper {
             return number_format($value)." times";
         }
     }
+
     public static function timeAgo($timestamp) {
         $current_time = time();
         $time_diff = $current_time - strtotime($timestamp);
@@ -128,13 +133,16 @@ class Helper {
         $diff = $now->diff($timestamp);
         return $diff->days;
     }
+
     public static function dimensions($width,$height) {
         return (int)$width."x".(int)$height;
     }
+
     //https://stackoverflow.com/questions/21671179/how-to-generate-a-new-guid
     public static function guid() {
         return sprintf('%04X%04X-%04X-%04X-%04X-%04X%04X%04X', mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(16384, 20479), mt_rand(32768, 49151), mt_rand(0, 65535), mt_rand(0, 65535), mt_rand(0, 65535));
     }
+
     public static $brickColors = array(
         1=>'242, 243, 243',#white
         #2=>'161, 165, 162',#grey
@@ -170,6 +178,7 @@ class Helper {
         208=>'229, 228, 223',#light stone grey
         217=>'124, 92, 70'#brown
     );
+
     public static function rgbToBrick($rgb) {
         while ($color = current(self::$brickColors)) {
             if ($color == $rgb) {
@@ -178,9 +187,11 @@ class Helper {
             next(self::$brickColors);
         }
     }
+
     public static function isset($value) {
         return isset($value) && !empty($value);
     }
+
     public static function validateCheckbox(string $data) {
         return isset($_POST[$data]) && $_POST[$data] === 'on';
     }
@@ -200,6 +211,49 @@ class Helper {
 
     public static function cphIdentifier($key) {
         return str_pad($key, 2, '0', STR_PAD_LEFT);
+    }
+
+    public static function timezoneToDateTimeZone(int $timezone): DateTimeZone {
+        switch ($timezone) {
+            case -10:
+                return new DateTimeZone("Pacific/Honolulu");
+            case -9:
+                return new DateTimeZone("America/Anchorage");
+            case -8:
+                return new DateTimeZone("America/Los_Angeles");
+            case -7:
+                return new DateTimeZone("America/Denver");
+            case -6:
+                return new DateTimeZone("America/Chicago");
+            case -5:
+                return new DateTimeZone("America/New_York");
+            case -4:
+                return new DateTimeZone("America/Moncton");
+            case -3:
+                return new DateTimeZone("America/Sao_Paulo");
+            case 0:
+                return new DateTimeZone("UTC");
+            case 1:
+                return new DateTimeZone("Europe/Vienna");
+            case 2:
+                return new DateTimeZone("Africa/Cairo");
+            case 3:
+                return new DateTimeZone("Asia/Bahrain");
+            case 4:
+                return new DateTimeZone("Asia/Dubai");
+            case 5:
+                return new DateTimeZone("Asia/Ashgabat");
+            case 8:
+                return new DateTimeZone("Asia/Shanghai");
+            case 9:
+                return new DateTimeZone("Asia/Seoul");
+            case 10:
+                return new DateTimeZone("Pacific/Guam");
+            case 11:
+                return new DateTimeZone("Australia/Melbourne");
+            case 12:
+                return new DateTimeZone("Pacific/Fiji");
+        }
     }
 }
 ?>
