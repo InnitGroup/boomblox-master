@@ -66,10 +66,17 @@ class Forum {
     public function getThreadCount() { return $this->threads; }
     public function getPostCount() { return $this->posts; }
 
-    public static function countAllPosts() {
+    public static function countAllPosts(int $forumId = NULL) {
         global $db;
-        $stmt = "SELECT COUNT(*) FROM threads";
-        $result = $db->execute($stmt);
+        $stmt; $result;
+
+        if (isset($forumId)) {
+            $stmt = "SELECT COUNT(*) FROM threads WHERE forumId=:forumId";
+            $result = $db->execute($stmt, [":forumId" => $forumId]);
+        } else {
+            $stmt = "SELECT COUNT(*) FROM threads";
+            $result = $db->execute($stmt);
+        }
 
         return $result->fetch(PDO::FETCH_ASSOC)["COUNT(*)"];
     }
@@ -82,9 +89,9 @@ class Forum {
         return $result->fetch(PDO::FETCH_ASSOC)["COUNT(*)"];
     }
 
-    public function getPosts(int $page = NULL, string $query = NULL, int $range = NULL) {
+    public function getPosts(int $page = 1, string $query = NULL, int $range = NULL) {
         global $db;
-        $stmt = "SELECT * FROM threads WHERE forumId=:forumId AND isReply=0";
+        $stmt = "SELECT * FROM threads WHERE forumId=:forumId AND isReply=0 ORDER BY pinned DESC, lastActivity DESC";
 
         if (isset($query)) {
             $query = $query . "%";
@@ -93,7 +100,7 @@ class Forum {
 
         if (isset($page)) {
             $offset = ($page * $this->postsPerPage) - $this->postsPerPage;
-            $stmt .= " OFFSET $offset LIMIT {$this->postsPerPage}";
+            $stmt .= " LIMIT {$this->postsPerPage} OFFSET $offset";
         }
 
         $result;
