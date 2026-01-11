@@ -50,8 +50,20 @@ class Thread {
     public function getAuthor() { return $this->author; }
     public function getTitle() { return $this->title; }
     public function getContent() { return $this->content; }
-    public function getPostDate() { return $this->postDate; }
-    public function getLastActivity() { return $this->lastActivity; }
+
+    public function getPostDate() { 
+        global $user;
+        $postDate = $this->postDate;
+        $postDate->setTimezone(Helper::timezoneToDateTimeZone($user->getTimezone()));
+        return $postDate;
+    }
+
+    public function getLastActivity() { 
+        global $user;
+        $lastActivity = $this->lastActivity;
+        $lastActivity->setTimezone(Helper::timezoneToDateTimeZone($user->getTimezone()));
+        return $lastActivity;
+    }
     public function getViews() { return $this->views; }
     public function viewCount() { return count($this->views); }
     public function parentPost() { return $this->parentPost; }
