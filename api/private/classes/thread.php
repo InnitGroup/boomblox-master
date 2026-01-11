@@ -51,6 +51,30 @@ class Thread {
     public function getTitle() { return $this->title; }
     public function getContent() { return $this->content; }
 
+    public function viewedBy(int|string $viewer): bool {
+        if (gettype($viewer) == "string") {
+            $viewer = $db->getIdByUser($viewer);
+        }
+
+        return in_array($viewer, $this->views);
+    }
+
+    public function addView() {
+        global $db, $user;
+        if ($this->viewedBy($user->getUserId())) {
+            return;
+        }
+
+        $newViews = $this->views;
+        array_push($newViews, $user->getUserId());
+
+        $stmt = "UPDATE threads SET views=:views WHERE postId=:id";
+        $result = $db->execute($stmt, [
+            ":views" => serialize($newViews),
+            ":id" => $this->id
+        ]);
+    }
+
     public function getPostDate() { 
         global $user;
         $postDate = $this->postDate;
