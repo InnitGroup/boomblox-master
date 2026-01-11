@@ -69,7 +69,7 @@ $profiledUser = new User($userId);
 																</td>
 																<td valign="top" align="left">
 																	<span class="normalTextSmall">
-																		<a id="ctl00_cphRoblox_Userinfo1_ctl00_WebSite" target="_blank"></a>
+																		<a id="ctl00_cphRoblox_Userinfo1_ctl00_WebSite" target="_blank"><?=$profiledUser->getWebsite() !== NULL && !empty($profiledUser->getWebsite()) ? htmlspecialchars($profiledUser->getWebsite()) : ""?></a>
 																	</span>
 																</td>
 															</tr>
@@ -79,7 +79,7 @@ $profiledUser = new User($userId);
 																</td>
 																<td valign="top" align="left">
 																	<span class="normalTextSmall">
-																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_Location">Unavailable to anonymous users.</span>
+																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_Location"><?=$profiledUser->getLocation() !== NULL && !empty($profiledUser->getLocation()) ? htmlspecialchars($profiledUser->getLocation()) : "N/A"?></span>
 																	</span>
 																</td>
 															</tr>
@@ -89,7 +89,7 @@ $profiledUser = new User($userId);
 																</td>
 																<td valign="top" align="left">
 																	<span class="normalTextSmall">
-																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_Occupation">Unavailable to anonymous users.</span>
+																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_Occupation"><?=$profiledUser->getOccupation() !== NULL && !empty($profiledUser->getOccupation()) ? htmlspecialchars($profiledUser->getOccupation()) : "N/A"?></span>
 																	</span>
 																</td>
 															</tr>
@@ -99,7 +99,7 @@ $profiledUser = new User($userId);
 																</td>
 																<td valign="top" align="left">
 																	<span class="normalTextSmall">
-																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_Interests">Unavailable to anonymous users.</span>
+																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_Interests"><?=$profiledUser->getInterests() !== NULL && !empty($profiledUser->getInterests()) ? htmlspecialchars($profiledUser->getInterests()) : "N/A"?></span>
 																	</span>
 																</td>
 															</tr>
@@ -109,7 +109,7 @@ $profiledUser = new User($userId);
 																</td>
 																<td valign="top" align="left">
 																	<span class="normalTextSmall">
-																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_Signature"></span>
+																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_Signature"><?=$profiledUser->getSignature() !== NULL && !empty($profiledUser->getSignature()) ? htmlspecialchars($profiledUser->getSignature()) : ""?></span>
 																	</span>
 																</td>
 															</tr>
@@ -125,7 +125,7 @@ $profiledUser = new User($userId);
 																</td>
 																<td valign="top" align="left">
 																	<span class="normalTextSmall">
-																		<a id="ctl00_cphRoblox_Userinfo1_ctl00_Email" target="_blank">Unavailable to anonymous users.</a>
+																		<a id="ctl00_cphRoblox_Userinfo1_ctl00_Email" target="_blank"><?=$profiledUser->getPemail() !== NULL && !empty($profiledUser->getPemail()) ? htmlspecialchars($profiledUser->getPemail()) : "N/A"?></a>
 																	</span>
 																</td>
 															</tr>
@@ -135,7 +135,7 @@ $profiledUser = new User($userId);
 																</td>
 																<td valign="top" align="left">
 																	<span class="normalTextSmall">
-																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_MsnIm">Unavailable to anonymous users.</span>
+																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_MsnIm"><?=$profiledUser->getMSN() !== NULL && !empty($profiledUser->getMSN()) ? htmlspecialchars($profiledUser->getMSN()) : "N/A"?></span>
 																	</span>
 																</td>
 															</tr>
@@ -145,7 +145,7 @@ $profiledUser = new User($userId);
 																</td>
 																<td valign="top" align="left">
 																	<span class="normalTextSmall">
-																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_AolIm">Unavailable to anonymous users.</span>
+																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_AolIm"><?=$profiledUser->getAIM() !== NULL && !empty($profiledUser->getAIM()) ? htmlspecialchars($profiledUser->getAIM()) : "N/A"?></span>
 																	</span>
 																</td>
 															</tr>
@@ -155,7 +155,7 @@ $profiledUser = new User($userId);
 																</td>
 																<td valign="top" align="left">
 																	<span class="normalTextSmall">
-																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_YahooIm">Unavailable to anonymous users.</span>
+																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_YahooIm"><?=$profiledUser->getYahoo() !== NULL && !empty($profiledUser->getYahoo()) ? htmlspecialchars($profiledUser->getYahoo()) : "N/A"?></span>
 																	</span>
 																</td>
 															</tr>
@@ -165,7 +165,7 @@ $profiledUser = new User($userId);
 																</td>
 																<td valign="top" align="left">
 																	<span class="normalTextSmall">
-																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_ICQ">Unavailable to anonymous users.</span>
+																		<span id="ctl00_cphRoblox_Userinfo1_ctl00_ICQ"><?=$profiledUser->getICQ() !== NULL && !empty($profiledUser->getICQ()) ? htmlspecialchars($profiledUser->getICQ()) : "N/A"?></span>
 																	</span>
 																</td>
 															</tr>
