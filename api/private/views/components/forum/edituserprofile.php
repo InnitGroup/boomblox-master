@@ -3,14 +3,92 @@ global $user;
 PageBuilder::addComponent("forum", "header");
 
 if (Server::isPost()) {
-    $timezone = $user->getTimezone();
     if (isset($_POST["Timezone"])) {
+        $timezone = $user->getTimezone();
+        $timezones = [-10, -9, -8, -7, -6, -5, -4, -3, 0, 1, 2, 3, 4, 5, 8, 9, 10, 11, 12];
         $newTimezone = $_POST["Timezone"];
+        if (!in_array($newTimezone, $timezones)) {
+            Server::_404();
+        }
+
         if ($timezone !== $newTimezone) {
             $user->setTimezone($newTimezone);
-            Server::_self();
         }
     }
+
+    if (isset($_POST["Occupation"])) {
+        $occupation = $user->getOccupation();
+        $newOccupation = $_POST["Occupation"];
+        
+        if ($occupation !== $newOccupation) {
+            $user->setOccupation($newOccupation);
+        }
+    }
+
+    if (isset($_POST["Interests"])) {
+        $interests = $user->getInterests();
+        $newInterests = $_POST["Interests"];
+        
+        if ($interests !== $newInterests) {
+            $user->setInterests($newInterests);
+        }
+    }
+
+    if (isset($_POST["AolIm"])) {
+        $aim = $user->getAIM();
+        $newAim = $_POST["AolIm"];
+        
+        if ($aim !== $newAim) {
+            $user->setAIM($newAim);
+        }
+    }
+
+    if (isset($_POST["Icq"])) {
+        $icq = $user->getICQ();
+        $newIcq = $_POST["Icq"];
+        
+        if ($icq !== $newIcq) {
+            $user->setICQ($newIcq);
+        }
+    }
+
+    if (isset($_POST["Location"])) {
+        $location = $user->getLocation();
+        $newLocation = $_POST["Location"];
+        
+        if ($location !== $newLocation) {
+            $user->setLocation($newLocation);
+        }
+    }
+
+    if (isset($_POST["MsnIm"])) {
+        $msn = $user->getMSN();
+        $newMsn = $_POST["MsnIm"];
+        
+        if ($msn !== $newMsn) {
+            $user->setMSN($newMsn);
+        }
+    }
+
+    if (isset($_POST["YahooIM"])) {
+        $yahoo = $user->getYahoo();
+        $newYahoo = $_POST["YahooIM"];
+        
+        if ($yahoo !== $newYahoo) {
+            $user->setYahoo($newYahoo);
+        }
+    }
+
+    if (isset($_POST["Website"])) {
+        $website = $user->getWebsite();
+        $newWebsite = $_POST["Website"];
+        
+        if ($website !== $newWebsite) {
+            $user->setWebsite($newWebsite);
+        }
+    }
+
+    Server::_self();
 }
 ?>
 
@@ -121,45 +199,45 @@ if (Server::isPost()) {
                     </td>
                     <!-- Occupation -->
                     <td align="right"><span class="normalTextSmallBold">Occupation: </span></td>
-                    <td align="left"><input name="Occupation" type="text" size="35" id="Occupation"></td>
+                    <td align="left"><input name="Occupation" type="text" size="35" id="Occupation" <?=$user->getOccupation() !== NULL && !empty($user->getOccupation()) ? 'value="' . htmlspecialchars($user->getOccupation()) . '"' : ""?>></td>
                     <td align="left"></td>
                     <!-- Location -->
                     <td noWrap align="right"><span class="normalTextSmallBold">Location: </span></td>
-                    <td noWrap align="left"><input name="Location" type="text" size="35" id="Location"></td>
+                    <td noWrap align="left"><input name="Location" type="text" size="35" id="Location" <?=$user->getLocation() !== NULL && !empty($user->getLocation()) ? 'value="' . htmlspecialchars($user->getLocation()) . '"' : ""?>></td>
                 </tr>
                 <tr>
                     <td class="forumRow" noWrap width="19">&nbsp; &nbsp;
                     </td>
                     <!-- Interests -->
                     <td align="right"><span class="normalTextSmallBold">Interests: </span></td>
-                    <td align="left"><input name="Interests" type="text" size="35" id="Interests"></td>
+                    <td align="left"><input name="Interests" type="text" size="35" id="Interests" <?=$user->getInterests() !== NULL && !empty($user->getInterests()) ? 'value="' . htmlspecialchars($user->getInterests()) . '"' : ""?>></td>
                     <td align="left"></td>
                     <!-- MSN IM -->
                     <td noWrap align="right"><span class="normalTextSmallBold">MSN IM: </span></td>
-                    <td noWrap align="left"><input name="MsnIm" type="text" size="35" id="MsnIm"></td>
+                    <td noWrap align="left"><input name="MsnIm" type="text" size="35" id="MsnIm" <?=$user->getMSN() !== NULL && !empty($user->getMSN()) ? 'value="' . htmlspecialchars($user->getMSN()) . '"' : ""?>></td>
                 </tr>
                 <tr>
                     <!-- AIM -->
                     <td class="forumRow" noWrap width="19">&nbsp; &nbsp;
                     </td>
                     <td align="right"><span class="normalTextSmallBold">AIM: </span></td>
-                    <td align="left"><input name="AolIm" type="text" size="35" id="AolIm"></td>
+                    <td align="left"><input name="AolIm" type="text" size="35" id="AolIm" <?=$user->getAIM() !== NULL && !empty($user->getAIM()) ? 'value="' . htmlspecialchars($user->getAIM()) . '"' : ""?>></td>
                     <td align="left"></td>
                     <!-- Yahhoo Im -->
                     <td noWrap align="right"><span class="normalTextSmallBold">Yahoo IM: </span></td>
-                    <td noWrap align="left"><input name="YahooIM" type="text" size="35" id="YahooIM"></td>
+                    <td noWrap align="left"><input name="YahooIM" type="text" size="35" id="YahooIM" <?=$user->getYahoo() !== NULL && !empty($user->getYahoo()) ? 'value="' . htmlspecialchars($user->getYahoo()) . '"' : ""?>></td>
                 </tr>
                 <tr>
                     <td class="forumRow" noWrap width="19">&nbsp; &nbsp;
                     </td>
                     <!-- ICQ -->
                     <td align="right"><span class="normalTextSmallBold">ICQ: </span></td>
-                    <td align="left"><input name="Icq" type="text" size="35" id="Icq"></td>
+                    <td align="left"><input name="Icq" type="text" size="35" id="Icq" <?=$user->getICQ() !== NULL && !empty($user->getICQ()) ? 'value="' . htmlspecialchars($user->getICQ()) . '"' : ""?>></td>
                     <td align="left"></td>
                     <!-- Web site -->
                     <td noWrap align="right"><span class="normalTextSmallBold">Website: </span></td>
                     <td noWrap align="left">
-                        <input name="Website" type="text" size="35" id="Website"> <!-- http://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)? -->
+                        <input name="Website" type="text" size="35" id="Website" <?=$user->getWebsite() !== NULL && !empty($user->getWebsite()) ? 'value="' . htmlspecialchars($user->getWebsite()) . '"' : ""?>> <!-- http://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)? -->
                         <span id="ctl00_cphRoblox_Edituserprofile1_InfoForm_RequiredFieldValidator1" class="validationWarningSmall" style="color:Red;visibility:hidden;">Must be valid URL.</span>
                     </td>
                 </tr>

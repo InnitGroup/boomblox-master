@@ -164,7 +164,7 @@ class User {
         $db->execute($stmt, [":icq" => $icq, ":userId" => $this->getUserId()]);
     }
 
-    public function setLocation(int $location) {
+    public function setLocation(string $location) {
         global $db;
         $stmt = "UPDATE users SET `location`=:xlocation WHERE id=:userId";
         $db->execute($stmt, [":xlocation" => $location, ":userId" => $this->getUserId()]);
