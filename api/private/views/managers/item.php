@@ -92,7 +92,8 @@ class ItemManager {
             "T-Shirt" => "T-Shirts",
             "Model" => "Models",
             "Decal" => "Decals",
-            "Head" => "Heads"
+            "Head" => "Heads",
+            "Face" => "Faces"
         ];
         if ($this->itemData["itemType"] == "catalog") {
             $type = $typeMap[$this->itemData["catalogType"]];

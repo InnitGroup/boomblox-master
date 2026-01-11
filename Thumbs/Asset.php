@@ -154,7 +154,7 @@ class Asset extends Base {
             return "https://t2.".domain."/unapproved-250x250.png";
         }
 
-        if (self::$_itemType == "T-Shirt" || self::$_itemType == "Decal") {
+        if (self::$_itemType == "T-Shirt" || self::$_itemType == "Decal" || self::$_itemType == "Face") {
             return $this->GetClothing();
         } 
         $assetId = self::$_assetId;
@@ -229,7 +229,7 @@ class Asset extends Base {
     public function GetClothing() {
         if (self::$_itemType == "T-Shirt") {
             return $this->GetTShirt();
-        } elseif(self::$_itemType == "Decal") {
+        } elseif(self::$_itemType == "Decal" || self::$_itemType == "Face") {
             return $this->GetDecal();
         }
         if (self::$_status == "pending") {
