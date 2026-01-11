@@ -62,9 +62,11 @@ class Thread {
     }
 
     public function formatPostDate() {
+        global $user;
         $postDate = $this->postDate;
         $todayDate = (new DateTime())->format("Y-m-d");
         $lastDate  = $postDate->format("Y-m-d");
+        $postDate->setTimezone(Helper::timezoneToDateTimeZone($user->getTimezone()));
 
         if ($todayDate === $lastDate) {
             return "Today @ " . $postDate->format("h:i A");
@@ -74,9 +76,11 @@ class Thread {
     }
 
     public function formatLastActivity() {
+        global $user;
         $lastActivity = $this->lastActivity;
         $todayDate = (new DateTime())->format("Y-m-d");
         $lastDate  = $lastActivity->format("Y-m-d");
+        $lastActivity->setTimezone(Helper::timezoneToDateTimeZone($user->getTimezone()));
 
         if ($todayDate === $lastDate) {
             return "Today @ " . $lastActivity->format("h:i A");
