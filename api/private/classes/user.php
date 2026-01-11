@@ -25,7 +25,6 @@ class User {
             "verified",
             "dynamicIp",
             "firstIp",
-            "timezone",
             "lastIp",
         ],
         "character" => [
@@ -49,6 +48,19 @@ class User {
         "client" => [
             "jointoken",
             "joincode",
+        ],
+        "forums" => [
+            "timezone",
+            "occupation",
+            "interests",
+            "aim",
+            "icq",
+            "location",
+            "msn",
+            "yahoo",
+            "website",
+            "pemail",
+            "signature"
         ]
     ];
     public function __construct($userId) {
@@ -57,38 +69,149 @@ class User {
         $result = $db->execute($stmt,[":id" => $userId]);
         $result = $result->fetch(PDO::FETCH_ASSOC);
         if ($result) {
-            Helper::directData($result,$this->data["user"]);
-            Helper::directData($result,$this->data["character"]);
-            Helper::directData($result,$this->data["membership"]);
-            Helper::directData($result,$this->data["client"]);
+            Helper::directData($result, $this->data["user"]);
+            Helper::directData($result, $this->data["character"]);
+            Helper::directData($result, $this->data["membership"]);
+            Helper::directData($result, $this->data["client"]);
+            Helper::directData($result, $this->data["forums"]);
         }
     }
+
     public function getTicket() {
         return $this->data["client"]["joincode"];
     }
+
     public function getData($dataType = "user", $property = "id") {
         return $this->data[$dataType][$property] ?? NULL;
     }
+
     public function getEmail() {
         return $this->data["user"]["email"];
     }
+
+    # forum interaction functions
     public function getTimezone() {
-        return $this->data["user"]["timezone"];
+        return $this->data["forums"]["timezone"];
     }
+
+    public function getOccupation() {
+        return $this->data["forums"]["occupation"];
+    }
+
+    public function getInterests() {
+        return $this->data["forums"]["interests"];
+    }
+
+    public function getAIM() {
+        return $this->data["forums"]["aim"];
+    }
+
+    public function getICQ() {
+        return $this->data["forums"]["icq"];
+    }
+
+    public function getLocation() {
+        return $this->data["forums"]["location"];
+    }
+
+    public function getMSN() {
+        return $this->data["forums"]["msn"];
+    }
+
+    public function getYahoo() {
+        return $this->data["forums"]["yahoo"];
+    }
+
+    public function getWebsite() {
+        return $this->data["forums"]["website"];
+    }
+
+    public function getPemail() {
+        return $this->data["forums"]["pemail"];
+    }
+
+    public function getSignature() {
+        return $this->data["forums"]["signature"];
+    }
+
     public function setTimezone(int $timezone) {
         global $db;
         $stmt = "UPDATE users SET timezone=:timezone WHERE id=:userId";
         $db->execute($stmt, [":timezone" => $timezone, ":userId" => $this->getUserId()]);
     }
+
+    public function setOccupation(string $occupation) {
+        global $db;
+        $stmt = "UPDATE users SET occupation=:occupation WHERE id=:userId";
+        $db->execute($stmt, [":occupation" => $occupation, ":userId" => $this->getUserId()]);
+    }
+
+    public function setInterests(string $interests) {
+        global $db;
+        $stmt = "UPDATE users SET interests=:interests WHERE id=:userId";
+        $db->execute($stmt, [":interests" => $interests, ":userId" => $this->getUserId()]);
+    }
+
+    public function setAIM(string $aim) {
+        global $db;
+        $stmt = "UPDATE users SET aim=:aim WHERE id=:userId";
+        $db->execute($stmt, [":aim" => $aim, ":userId" => $this->getUserId()]);
+    }
+
+    public function setICQ(string $icq) {
+        global $db;
+        $stmt = "UPDATE users SET icq=:icq WHERE id=:userId";
+        $db->execute($stmt, [":icq" => $icq, ":userId" => $this->getUserId()]);
+    }
+
+    public function setLocation(int $location) {
+        global $db;
+        $stmt = "UPDATE users SET `location`=:xlocation WHERE id=:userId";
+        $db->execute($stmt, [":xlocation" => $location, ":userId" => $this->getUserId()]);
+    }
+
+    public function setMSN(string $msn) {
+        global $db;
+        $stmt = "UPDATE users SET msn=:msn WHERE id=:userId";
+        $db->execute($stmt, [":msn" => $msn, ":userId" => $this->getUserId()]);
+    }
+
+    public function setYahoo(string $yahoo) {
+        global $db;
+        $stmt = "UPDATE users SET yahoo=:yahoo WHERE id=:userId";
+        $db->execute($stmt, [":yahoo" => $yahoo, ":userId" => $this->getUserId()]);
+    }
+
+    public function setWebsite(string $website) {
+        global $db;
+        $stmt = "UPDATE users SET website=:website WHERE id=:userId";
+        $db->execute($stmt, [":website" => $website, ":userId" => $this->getUserId()]);
+    }
+
+    public function setPemail(string $pemail) {
+        global $db;
+        $stmt = "UPDATE users SET pemail=:pemail WHERE id=:userId";
+        $db->execute($stmt, [":pemail" => $pemail, ":userId" => $this->getUserId()]);
+    }
+
+    public function setSignature(string $signature) {
+        global $db;
+        $stmt = "UPDATE users SET `signature`=:xsignature WHERE id=:userId";
+        $db->execute($stmt, [":xsignature" => $signature, ":userId" => $this->getUserId()]);
+    }
+
     public function getDataTable($dataType = "user") {
         return $this->data[$dataType] ?? NULL;
     }
+
     public function getCharacter() {
         return $this->data["character"];
     }
+
     public function getUserId() {
         return $this->data["user"]["id"];
     }
+
     public function getAds($limit = 0) {
         global $db;
 
