@@ -208,27 +208,33 @@ $profiledUser = new User($userId);
 																							<?php
 																							foreach ($recentPosts as $relativeId => $recentPost): ?>
 																							<tr>
-																								<td <?=$relativeId % 2 == 0 ? 'class="forumAlternate"' : ''?>>
-																									<a class="linkSmallBold" href="/Forum/ShowPost.aspx?PostID=<?=$recentPost->isAReply() ? $recentPost->parentPost() . "#" . $recentPost->getId() : $recentPost->getId()?>"><?=htmlspecialchars(Helper::debugString($recentPost->getTitle()))?></a>
-																									<span class="normalTextSmall">
-																										<i><?=$recentPost->formatPostDate()?></i> <!-- 6/3/2008 8:23:42 AM -->
-																									</span> &nbsp; <span class="normalTextSmall">(Total replies: <?=$recentPost->countReplies()?>)</span>
+																								<td>
+																									<table width="100%" cellpadding="0" cellspacing="0">
+																										<tbody>
+																											<tr>
+																												<td <?=$relativeId % 2 == 0 ? 'class="forumAlternate"' : ''?>>
+																													<a class="linkSmallBold" href="/Forum/ShowPost.aspx?PostID=<?=$recentPost->isAReply() ? $recentPost->parentPost() . "#" . $recentPost->getId() : $recentPost->getId()?>"><?=htmlspecialchars(Helper::debugString($recentPost->getTitle()))?></a>
+																													<span class="normalTextSmall">
+																														<i><?=$recentPost->formatPostDate()?></i> <!-- 6/3/2008 8:23:42 AM -->
+																													</span> &nbsp; <span class="normalTextSmall">(Total replies: <?=$recentPost->countReplies()?>)</span>
+																												</td>
+																											</tr>
+																											<tr>
+																												<td <?=$relativeId % 2 == 0 ? 'class="forumAlternate"' : ''?>>
+																													<span class="normalTextSmall"><?=htmlspecialchars(Helper::debugString($recentPost->getContent()))?></span>
+																												</td>
+																											</tr>
+																										</tbody>
+																									</table>
 																								</td>
-																							</tr>
-																							<tr>
-																								<td <?=$relativeId % 2 == 0 ? 'class="forumAlternate"' : ''?>>
-																									<span class="normalTextSmall"><?=htmlspecialchars(Helper::debugString($recentPost->getContent()))?></span>
-																								</td>
-																							</tr>
+																							</tr>	
 																							<?php if (count($recentPosts) !== $relativeId): ?>
 																								<tr>
 																									<td>
 																										<hr size="1">
 																									</td>
 																								</tr>
-																							<?php
-																							endif; 
-																							endforeach; ?>
+																								<?php endif; endforeach; ?>
 																						</tbody>
 																					</table>
 																				</td>
