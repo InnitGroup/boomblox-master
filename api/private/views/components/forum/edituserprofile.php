@@ -88,6 +88,15 @@ if (Server::isPost()) {
         }
     }
 
+    if (isset($_POST["FakeEmail"])) {
+        $pemail = $user->getPemail();
+        $newPemail = $_POST["FakeEmail"];
+        
+        if ($pemail !== $newPemail) {
+            $user->setPemail($newPemail);
+        }
+    }
+
     Server::_self();
 }
 ?>
@@ -237,7 +246,7 @@ if (Server::isPost()) {
                     <!-- Web site -->
                     <td noWrap align="right"><span class="normalTextSmallBold">Website: </span></td>
                     <td noWrap align="left">
-                        <input name="Website" type="text" size="35" id="Website" <?=$user->getWebsite() !== NULL && !empty($user->getWebsite()) ? 'value="' . htmlspecialchars($user->getWebsite()) . '"' : ""?>> <!-- http://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)? -->
+                        <input name="Website" type="text" pattern="https?://[A-Za-z]+\.[A-Za-z]+" size="35" id="Website" <?=$user->getWebsite() !== NULL && !empty($user->getWebsite()) ? 'value="' . htmlspecialchars($user->getWebsite()) . '"' : ""?>> <!-- http://([\w-]+\.)+[\w-]+(/[\w- ./?%&amp;=]*)? -->
                         <span id="ctl00_cphRoblox_Edituserprofile1_InfoForm_RequiredFieldValidator1" class="validationWarningSmall" style="color:Red;visibility:hidden;">Must be valid URL.</span>
                     </td>
                 </tr>
@@ -261,7 +270,7 @@ if (Server::isPost()) {
                     <td class="forumRow" noWrap width="19">&nbsp; &nbsp;
                     </td>
                     <td noWrap align="right"><span class="normalTextSmallBold">Public Email: </span></td>
-                    <td align="left"><input name="FakeEmail" type="text" size="35" id="FakeEmail"></td>
+                    <td align="left"><input name="FakeEmail" pattern="[A-Za-z]+@[A-Za-z]+\.[A-Za-z]+" type="text" size="35" id="FakeEmail" <?=$user->getPemail() !== NULL && !empty($user->getPemail()) ? 'value="' . htmlspecialchars($user->getPemail()) . '"' : ""?>></td>
                     <td>
                         <span id="ctl00_cphRoblox_Edituserprofile1_InfoForm_RequiredFieldValidator1" class="validationWarningSmall" style="color:Red;visibility:hidden;">You must supply a valid email address.</span> <!-- \w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)* -->
                     </td>
@@ -276,7 +285,7 @@ if (Server::isPost()) {
                     </td>
                     <td vAlign="top" align="right"><span class="normalTextSmallBold">Signature: </span></td>
                     <td align="left" colSpan="2">
-                        <textarea name="Signature" rows="5" cols="50" id="Signature"></textarea>
+                        <textarea name="Signature" rows="5" cols="50" id="Signature"><?=$user->getSignature() !== NULL && !empty($user->getSignature()) ? htmlspecialchars($user->getSignature()) : ""?></textarea>
                     </td>
                     <td align="left"></td>
                 </tr>
