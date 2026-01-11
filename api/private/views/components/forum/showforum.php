@@ -48,7 +48,7 @@ global $forum, $user;
                             ?>
 							<tr>
 								<td class="forumRow" align="center" valign="middle" width="25">
-                                    <?php if ($thread->viewCount() > 1000): ?>
+                                    <?php if ($thread->viewCount() > 100): ?>
 									<img title="Popular post" src="/Forum/skins/default/images/topic-popular.gif" border="0">
                                     <?php endif; if (!in_array($user->getUserId(), $thread->getViews())): ?>
                                     <img title="Post (Not Read)" src="/Forum/skins/default/images/topic_notread.gif" border="0">
