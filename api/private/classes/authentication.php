@@ -9,9 +9,11 @@ class Authentication {
         if (isset($_COOKIE["BROBLOSECURITY"])) {
             $roblosecurity = $_COOKIE["BROBLOSECURITY"];
             if (ROBLOSECURITY::match($roblosecurity)) {
-                global $db;
+                global $db, $user;
                 $userId = ROBLOSECURITY::match($roblosecurity);
-                $user = new User($userId);
+                if (!isset($user)) {
+                    $user = new User($userId);
+                }
 
                 Economy::issueDaily($user);
                 if ($user->isPunished()) {if (basename($_SERVER['PHP_SELF']) !== "NotApproved.php") {header("Location: /NotApproved.aspx"); exit;}}
@@ -28,7 +30,7 @@ class Authentication {
     # checks if a user has a specific permission level
     public function hasPerms($permissionLevel) {
         if (isset($_COOKIE["BROBLOSECURITY"])) { 
-            $user = new User(ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]));
+            global $user;
             return $user->getData("user","level") >= $permissionLevel;
         }
 

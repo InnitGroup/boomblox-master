@@ -269,8 +269,11 @@ class CharacterManager {
 				<tbody>
 					<tr class="TileGroup">';
                         if (!empty($items)) {
-                            foreach ($items as $item) {
+                            foreach ($items as $itemCount => $item) {
                                 $thumbnail = new Asset($item["itemId"]);
+                                if ($itemCount == 4) {
+                                    echo '</tr><tr class="TileGroup">';
+                                }
                                 echo '
                                 <td class="Asset" id="'.$item["itemId"].'">
                                 <a class="RemoveItem" href="javascript:__doPostBack(\'Accoutrement\', \''.$item["catalogType"].'$'.$item["itemId"].'$Remove\')" onclick="wearItem(event)">&nbsp;[ remove ]&nbsp;</a>
@@ -285,6 +288,9 @@ class CharacterManager {
                                 </div>
                             </td>
                                 ';
+                                if ($itemCount == 8) {
+                                    echo '</tr>';
+                                }
                             }
                         } else {
                             #https://www.youtube.com/watch?v=p5d0ammvUoo
