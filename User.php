@@ -6,6 +6,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 global $theme, $auth, $user, $db;
 !$auth->isAuthed() && Server::_404();;
 
+if (isset($_GET["username"]) || isset($_GET["Username"])) {
+	$username = isset($_GET["username"]) ? $_GET["username"] : $_GET["Username"];
+	if ($db->usernameTaken($username)) {
+		$id = $db->getIdByUser($username);
+		exit(header("Location: /User.aspx?ID=$id"));
+	}
+}
+
 $userId = $_GET["ID"] ?? $_GET["id"] ?? 0;
 $publicView = $_GET["ForcePublicView"] ?? true;
 $target = $_POST["__EVENTTARGET"] ?? null;
