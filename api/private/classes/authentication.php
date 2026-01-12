@@ -8,10 +8,11 @@ class Authentication {
 
         if (isset($_COOKIE["BROBLOSECURITY"])) {
             $roblosecurity = $_COOKIE["BROBLOSECURITY"];
-            if (ROBLOSECURITY::match($roblosecurity)) {
+            if ($userId = ROBLOSECURITY::match($roblosecurity)) {
                 global $db, $user;
-                $userId = ROBLOSECURITY::match($roblosecurity);
+                
                 if (!isset($user)) {
+                    #$userId = ROBLOSECURITY::match($roblosecurity);
                     $user = new User($userId);
                 }
 
@@ -19,7 +20,7 @@ class Authentication {
                 if ($user->isPunished()) {if (basename($_SERVER['PHP_SELF']) !== "NotApproved.php") {header("Location: /NotApproved.aspx"); exit;}}
 
                 $stmt = "UPDATE users SET `lastOnline` = :lastOnline WHERE `id`=:id";
-                $db->execute($stmt,[":lastOnline" => date("Y-m-d H:i:s"), ":id" => ROBLOSECURITY::match($roblosecurity)]);
+                $db->execute($stmt,[":lastOnline" => date("Y-m-d H:i:s"), ":id" => $user->getUserId()]);
                 return true;
             }
             return false;
@@ -48,7 +49,7 @@ class Authentication {
                 }
             } else {
                 if (isset($_COOKIE["BROBLOSECURITY"])) {
-                    $user = new User(ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]));
+                    global $user;
                     if (basename($_SERVER['PHP_SELF']) !== "Maintenance.php" && !$user->hasPerms(3)) {
                         header("Location: /Maintenance.aspx");
                         exit;

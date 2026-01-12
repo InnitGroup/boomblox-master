@@ -10,7 +10,6 @@ game:GetService("Players"):SetChatFilterUrl("http://xoblog.dev/Game/ChatFilter.a
 game:Load("http://{Url}/Data/Get.ashx?id={PlaceID}&key=8u09nhoasNHDXAOSHDL")
 settings().Network.PhysicsSend = 1 -- 1==RoundRobin
 settings().Network.ExperimentalPhysicsEnabled = true
-pcall(function() settings().Diagnostics:LegacyScriptMode() end)
 
 -- utility
 function waitForChild(parent, childName)
