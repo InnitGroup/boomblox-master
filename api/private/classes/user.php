@@ -620,7 +620,7 @@ class User {
     public function getLastWeekVisits(int $placeId = NULL) {
         global $db;
         if ($placeId) {
-            $stmt = "SELECT COUNT(*) FROM analytics WHERE `actiondate` >= CURRENT_DATE - INTERVAL 7 DAY AND `actiondate` < CURRENT_DATE AND `place` = :placeId";
+            $stmt = "SELECT COUNT(*) FROM analytics WHERE `actiondate` >= CURRENT_DATE - INTERVAL 7 DAY AND `actiondate` < CURRENT_DATE AND `place` = :placeId AND actiontype = 'join'";
             $result = $db->execute($stmt, [":placeId" => $placeId]);
             $visits = (int)$result->fetch(PDO::FETCH_ASSOC)["COUNT(*)"];
             return $visits;

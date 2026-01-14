@@ -125,6 +125,7 @@ switch ($type) {
             ]);
         }
 
+        Analytics::logLeave($player->getUserId(), $place);
         Discord::sendWebhookMessage("games", $player->getUsername() . " left");
 
         break;
