@@ -41,7 +41,14 @@ PageBuilder::addComponent("forum", "navmenu");
 																				<tr>
 																					<td align="left"></td>
 																					<td align="right">
-																						<a id="ctl00_cphRoblox_PostView1_ctl00_PostList_ctl00_PreviousThread" class="linkSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$PostView1$ctl00$PostList$ctl00$PreviousThread','')">Previous Thread</a>&nbsp; <span class="normalTextSmallBold">::</span>&nbsp; <a id="ctl00_cphRoblox_PostView1_ctl00_PostList_ctl00_NextThread" class="linkSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$PostView1$ctl00$PostList$ctl00$NextThread','')">Next Thread</a>&nbsp;
+																						<?php if ($thread->getId() !== 1): ?>
+																						<a id="ctl00_cphRoblox_PostView1_ctl00_PostList_ctl00_PreviousThread" class="linkSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$PostView1$ctl00$PostList$ctl00$PreviousThread','')">Previous Thread</a>&nbsp; 
+																						<?php endif; ?>
+																						<?php if ($thread->getId() !== Forum::getLastGlobalPostId() && $thread->getId() !== 1): ?>
+																						<span class="normalTextSmallBold">::</span>&nbsp; 
+																						<?php endif; if ($thread->getId() !== Forum::getLastGlobalPostId()): ?>
+																						<a id="ctl00_cphRoblox_PostView1_ctl00_PostList_ctl00_NextThread" class="linkSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$PostView1$ctl00$PostList$ctl00$NextThread','')">Next Thread</a>&nbsp;
+																						<?php endif; ?>
 																					</td>
 																				</tr>
 																			</tbody>
@@ -154,7 +161,17 @@ PageBuilder::addComponent("forum", "navmenu");
 																<tr>
 																	<td class="forumHeaderBackgroundAlternate" colspan="2" height="20"><table cellspacing="0" cellpadding="0" border="0" width="100%">
 																		<tbody><tr>
-																			<td align="left"></td><td align="right"><a id="ctl00_cphRoblox_PostView1_ctl00_PostList_ctl02_PreviousThread" class="linkSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$PostView1$ctl00$PostList$ctl02$PreviousThread','')">Previous Thread</a>&nbsp;<span class="normalTextSmallBold">::</span>&nbsp;<a id="ctl00_cphRoblox_PostView1_ctl00_PostList_ctl02_NextThread" class="linkSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$PostView1$ctl00$PostList$ctl02$NextThread','')">Next Thread</a>&nbsp;</td>
+																			<td align="left"></td>
+																			<td align="right">
+																				<?php if ($thread->getId() !== 1): ?>
+																				<a id="ctl00_cphRoblox_PostView1_ctl00_PostList_ctl00_PreviousThread" class="linkSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$PostView1$ctl00$PostList$ctl00$PreviousThread','')">Previous Thread</a>&nbsp; 
+																				<?php endif; ?>
+																				<?php if ($thread->getId() !== Forum::getLastGlobalPostId() && $thread->getId() !== 1): ?>
+																				<span class="normalTextSmallBold">::</span>&nbsp; 
+																				<?php endif; if ($thread->getId() !== Forum::getLastGlobalPostId()): ?>
+																				<a id="ctl00_cphRoblox_PostView1_ctl00_PostList_ctl00_NextThread" class="linkSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$PostView1$ctl00$PostList$ctl00$NextThread','')">Next Thread</a>&nbsp;
+																				<?php endif; ?>
+																			</td>
 																		</tr>
 																	</tbody></table></td>
 																</tr>

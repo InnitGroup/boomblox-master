@@ -18,6 +18,19 @@ if ($page > $pages || $page == 0) {
     Server::_404();
 }
 
+if (Server::isPost()) {
+    if (isset($_POST['__EVENTTARGET'])) {
+        switch ($_POST['__EVENTTARGET']) {
+            case 'ctl00$cphRoblox$PostView1$ctl00$PostList$ctl00$PreviousThread':
+                exit(header("Location: /Forum/ShowPost.aspx?PostID=" . Forum::getPreviousPostId($postId)));
+                break;
+            case 'ctl00$cphRoblox$PostView1$ctl00$PostList$ctl00$NextThread':
+                exit(header("Location: /Forum/ShowPost.aspx?PostID=" . Forum::getNextPostId($postId)));
+                break;
+        }
+    }
+}
+
 $page = new PageBuilder(Site::getThemeProperty("alias",$theme).": A FREE Virtual World-Building Game with Avatar Chat, 3D Environments, and Physics", $theme, "/templates/authheader.php", [], "rbxnews");
 $page->buildHeader();
 ?>

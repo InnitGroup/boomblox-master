@@ -81,6 +81,48 @@ class Forum {
         return $result->fetch(PDO::FETCH_ASSOC)["COUNT(*)"];
     }
 
+    public static function getNextPostId(int $postId, int $forumId = NULL) {
+        global $db;
+     
+        if (isset($forumId)) {
+            $stmt = "SELECT postId FROM threads WHERE forumId=:forumId AND isReply=0 AND postId > :postId ORDER BY postId ASC";
+            $result = $db->execute($stmt, [
+                ":forumId" => $forumId,
+                ":postId" => $postId
+            ]);
+            return $result->fetch(PDO::FETCH_ASSOC)["postId"];
+        }
+
+        $stmt = "SELECT postId FROM threads WHERE postId > :postId AND isReply=0 ORDER BY postId ASC";
+        $result = $db->execute($stmt, [":postId" => $postId]);
+        return $result->fetch(PDO::FETCH_ASSOC)["postId"];
+    }
+
+    public static function getPreviousPostId(int $postId, int $forumId = NULL) {
+        global $db;
+     
+        if (isset($forumId)) {
+            $stmt = "SELECT postId FROM threads WHERE forumId=:forumId AND isReply=0 AND postId < :postId ORDER BY postId DESC";
+            $result = $db->execute($stmt, [
+                ":forumId" => $forumId,
+                ":postId" => $postId
+            ]);
+            return $result->fetch(PDO::FETCH_ASSOC)["postId"];
+        }
+
+        $stmt = "SELECT postId FROM threads WHERE postId < :postId AND isReply=0 ORDER BY postId DESC";
+        $result = $db->execute($stmt, [":postId" => $postId]);
+        return $result->fetch(PDO::FETCH_ASSOC)["postId"];
+    }
+
+    public static function getLastGlobalPostId() {
+        global $db;
+
+        $stmt = "SELECT postId FROM threads ORDER BY postId DESC LIMIT 1";
+        $result = $db->execute($stmt);
+        return $result->fetch(PDO::FETCH_ASSOC)["postId"];
+    }
+
     public static function countAllPostsByUser(int $userId) {
         global $db;
         $stmt = "SELECT COUNT(*) FROM threads WHERE author=:userId";
