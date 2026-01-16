@@ -107,6 +107,10 @@ class CharacterManager {
             if ($type == "Head" && $asset->catalogType !== "Head") {
                 exit(header("Location: /My/Character.aspx"));
             }
+
+            if ($type == "Face" && $asset->catalogType !== "Face") {
+                exit(header("Location: /My/Character.aspx"));
+            }
             
             if ($type == strtolower($asset->catalogType()) || $asset->catalogType() == "Hat") {
                 if ($action == "Wear") {
