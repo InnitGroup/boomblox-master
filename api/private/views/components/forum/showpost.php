@@ -59,7 +59,11 @@ PageBuilder::addComponent("forum", "navmenu");
 																if (isset($_POST["__EVENTTARGET"])) {
 																	if (str_starts_with($_POST["__EVENTTARGET"], 'ctl00$cphRoblox$PostView1$ctl00$Pager$')) {
 																		$page = explode('$', $_POST["__EVENTTARGET"])[5];
-																		$page = (int)explode("Page", $page)[1];
+																		if ($page == "Next") {
+																			$page = $page + 1;
+																		} else {
+																			$page = (int)explode("Page", $page)[1];
+																		}
 																	}
 																}
 

@@ -40,8 +40,22 @@ global $forum, $user;
 							</tr>
 
                             <?php
-                            
-                            $posts = $forum->getPosts();
+                            $totalThreads = $forum->getThreadCount();
+							$pages = ceil($totalThreads / 12);
+							$page = isset($_GET["PageIndex"]) ? (int)$_GET["PageIndex"] : 1;
+							if (isset($_POST["__EVENTTARGET"])) {
+								if (str_starts_with($_POST["__EVENTTARGET"], 'ctl00$cphRoblox$ThreadView1$ctl00$Pager$')) {
+									$page = explode('$', $_POST["__EVENTTARGET"])[5];
+									if ($page == "Next") {
+										$page = $page + 1;
+									} else {
+										$page = (int)explode("Page", $page)[1];
+									}
+								}
+							}
+
+							$offset = ($page - 1) * 12;
+                            $posts = $forum->getPosts($page);
 
                             foreach ($posts as $post):
                                 $thread = new Thread($post["postId"]);
@@ -95,24 +109,29 @@ global $forum, $user;
 							<tbody>
 								<tr>
 									<td>
-										<span class="normalTextSmallBold">Page 1 of 1</span>
+										<span class="normalTextSmallBold">Page <?=$page?> of <?=$pages?></span>
 									</td>
+									<?php if ($pages > 1): ?>
 									<td align="right">
 										<span>
 											<span class="normalTextSmallBold">Goto to page: </span>
-											<a id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page0" class="normalTextSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$ThreadView1$ctl00$Pager$Page0','')">1</a>
-											<span class="normalTextSmallBold">, </span>
-											<a id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page1" class="normalTextSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$ThreadView1$ctl00$Pager$Page1','')">2</a>
-											<span class="normalTextSmallBold">, </span>
-											<a id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page2" class="normalTextSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$ThreadView1$ctl00$Pager$Page2','')">3</a>
+											<?php for ($i = 1; $i <= $pages; $i++): ?>
+											<?php if ($i <= 3): ?>
+											<a id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page<?=$i?>" class="normalTextSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$ThreadView1$ctl00$Pager$Page<?=$i?>','')"><?=$i?></a><?php if ($i < $pages && $i !== 3): ?><span class="normalTextSmallBold">, </span>
+											<?php endif; endif; ?>
+											<?php if ($i == 4 && $pages > 5): ?>
 											<span class="normalTextSmallBold"> ... </span>
-											<a id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page2639" class="normalTextSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$ThreadView1$ctl00$Pager$Page2639','')">2,640</a>
+											<a id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page<?=$pages - 1?>" class="normalTextSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$ThreadView1$ctl00$Pager$Page<?=$pages - 1?>','')"><?=$pages - 1?></a>
 											<span class="normalTextSmallBold">, </span>
-											<a id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page2640" class="normalTextSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$ThreadView1$ctl00$Pager$Page2640','')">2,641</a>
+											<a id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Page<?=$pages?>" class="normalTextSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$ThreadView1$ctl00$Pager$Page<?=$pages?>','')"><?=$pages?></a>
 											<span class="normalTextSmallBold">&nbsp;</span>
+											<?php endif; endfor; ?>
+											<?php if ($pages > 3): ?>
 											<a id="ctl00_cphRoblox_ThreadView1_ctl00_Pager_Next" class="normalTextSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$ThreadView1$ctl00$Pager$Next','')">Next</a>
+											<?php endif; ?>
 										</span>
 									</td>
+									<?php endif; ?>
 								</tr>
 							</tbody>
 						</table>
