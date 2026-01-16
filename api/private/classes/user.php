@@ -617,6 +617,16 @@ class User {
         $result = $result->fetch(PDO::FETCH_ASSOC);
         return $result["SUM(interactions)"] ?? 0;
     }
+    public function isTester() {
+        if ($this->isStaff()) {
+            return true;
+        }
+
+        $testers = [93, 113, 76, 108, 123, 73, 124, 126];
+        if (in_array($this->getUserId(), $testers)) {
+            return true;
+        }
+    }
     public function getLastWeekVisits(int $placeId = NULL) {
         global $db;
         if ($placeId) {

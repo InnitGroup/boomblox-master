@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
 global $theme, $auth, $user;
 !$auth->isAuthed() && Server::_404();
-!$user->hasPerms(3) && Server::_404(); #
+!$user->isTester() && Server::_404(); #
 
 $groupId = isset($_GET["ForumGroupID"]) ? (int)$_GET["ForumGroupID"] : Server::_404();
 $group = new ForumGroup($groupId);

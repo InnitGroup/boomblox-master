@@ -3,7 +3,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
 global $theme, $auth, $user;
 !$auth->isAuthed() && Server::_404();
-!$user->hasPerms(3) && Server::_404();
+!$user->isTester() && Server::_404();
 !isset($_GET["ForumID"]) && !isset($_GET["PostID"]) && Server::_404();
 
 $identifier = isset($_GET["ForumID"]) ? "ForumID" : "PostID";
