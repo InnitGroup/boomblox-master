@@ -18,7 +18,8 @@ class Helper {
             11 => "Shirt",
             12 => "Pants",
             13 => "Decal",
-            17 => "Head"
+            17 => "Head",
+            18 => "Face"
         ];
 
         $contentTypes = [

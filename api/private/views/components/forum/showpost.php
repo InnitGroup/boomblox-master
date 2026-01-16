@@ -54,8 +54,15 @@ PageBuilder::addComponent("forum", "navmenu");
 																</tr>
 																<?php 
 																$totalPosts = $thread->countReplies() + 1;
+																$pages = ceil($totalPosts / 25);
 																$page = isset($_GET["PageIndex"]) ? (int)$_GET["PageIndex"] : 1;
-																$pages = 6; //ceil($totalPosts / 25);
+																if (isset($_POST["__EVENTTARGET"])) {
+																	if (str_starts_with($_POST["__EVENTTARGET"], 'ctl00$cphRoblox$PostView1$ctl00$Pager$')) {
+																		$page = explode('$', $_POST["__EVENTTARGET"])[5];
+																		$page = (int)explode("Page", $page)[1];
+																	}
+																}
+
 																$offset = ($page - 1) * 25; # ThePlayerRolo this is the only way to calculate offsets Frick laravel
 
 																$replies = $thread->getReplies(25, $offset);
