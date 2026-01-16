@@ -1,10 +1,12 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
-global $theme, $auth, $user;
+global $theme, $auth, $user, $db;
 !$auth->isAuthed() && Server::_404();;
-
 !$user->isTester() && Server::_404();
+
+$username = isset($_GET["UserName"]) ? $_GET["UserName"] : Server::_404();
+!$db->getIdByUser($username) && Server::_404();
 
 $page = new PageBuilder(Site::getThemeProperty("alias",$theme).": A FREE Virtual World-Building Game with Avatar Chat, 3D Environments, and Physics", $theme, "/templates/authheader.php", [], "rbxnews");
 $page->buildHeader();
