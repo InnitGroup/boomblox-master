@@ -15,6 +15,7 @@ PageBuilder::addComponent("forum", "navmenu");
 			<tr>
 				<td align="left" colspan="2">&nbsp; </td>
 			</tr>
+			<?php if (1 == 0): # unreleased feature ?>
 			<tr>
 				<td colspan="2">
 					<span class="menuTitle">Threads you are tracking:</span>
@@ -81,6 +82,7 @@ PageBuilder::addComponent("forum", "navmenu");
 					<br>
 				</td>
 			</tr>
+			<?php endif; ?>
 			<tr>
 				<td align="left" colspan="2">&nbsp; </td>
 			</tr>
