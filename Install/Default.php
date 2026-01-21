@@ -29,7 +29,7 @@ if (Server::isPost()) {
         <img id="ctl00_cphRoblox_Image3" class="Bullet" src="/images/BuildIcon.png" border="0">
         <div id="InstallStep1" style="padding-left: 60px">
             <h2>Download ROBLOX</h2>
-            <p><input type="submit" name="ctl00$cphRoblox$ButtonDownload" value="Install ROBLOX" id="ctl00_cphRoblox_ButtonDownload" class="BigButton">&nbsp;(Total download about 10Mb)</p>
+            <p><input type="submit" name="ctl00$cphRoblox$ButtonDownload" value="Install ROBLOX" id="ctl00_cphRoblox_ButtonDownload" class="BigButton">&nbsp;(Total download about 8.5Mb)</p>
         </div>
         <img id="ctl00_cphRoblox_Image4" class="Bullet" src="/images/FriendsIcon.png" border="0">
         <div id="InstallStep2" style="padding-left: 60px">
