@@ -47,11 +47,11 @@ Roblox.Launch.StartGame = function (visitUrl, authenticationUrl, type, placeID)
     if (window.external.IsRobloxAppIDE)
     {
         var app = window.external.GetApp();
-        var workspace = app.CreateGame(2);    // Window
+        var workspace = app.CreateGame(44340105256);    // Window
         workspace.ExecUrlScript(visitUrl);
     } else if (Roblox.Launch.isVista()) {
         var app = new ActiveXObject("Roblox.App");
-        var workspace = app.CreateGame(2);
+        var workspace = app.CreateGame(44340105256);
         workspace.ExecUrlScript(visitUrl);
 		workspace = app.NullDispatch;
 		app = app.NullDispatch;
@@ -64,7 +64,7 @@ Roblox.Launch.StartGame = function (visitUrl, authenticationUrl, type, placeID)
 Roblox.Launch.VisitOnline = function(visit, placeID, serverID) {
     if (window.external.IsRobloxAppIDE) {
         var app = window.external.GetApp();
-        var workspace = app.CreateGame(placeID);    // Window
+        var workspace = app.CreateGame(44340105256);    // Window
         workspace.ExecUrlScript(visit);
     } else {
         window.location = "https://xoblog.dev/Data/HandleJoin.ashx?PlaceID="+placeID+"&TypeID=1&ServerID="+serverID;

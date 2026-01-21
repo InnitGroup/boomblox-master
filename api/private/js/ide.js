@@ -13,7 +13,7 @@ function join(placeId) {
     var authenticationUrl = "http://bmblox.xyz/Login/Negotiate.ashx";
     if (isIDE()) {
         var app = window.external.GetApp();
-        var workspace = app.CreateGame(1);
+        var workspace = app.CreateGame(44340105256);
         workspace.ExecUrlScript(visitUrl);
     } else if (isVista()) {
         var launcher = new ActiveXObject("RobloxLauncher.Launcher");

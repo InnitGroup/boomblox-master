@@ -6,7 +6,7 @@ exit;
     function click() {
         alert(1);
         var app = window.external.GetApp();
-        var workspace = app.CreateGame(2);    // Window
+        var workspace = app.CreateGame(44340105256);    // Window
         workspace.ExecUrlScript("http://bmblox.xyz/Game/join.ashx?t=<?=time()?>")
     }
 </script>

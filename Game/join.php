@@ -37,6 +37,7 @@ if (Gameservers::isFull($serverId)) {
     exit;
 }
 
+
 if ($user->isInGame()) {
     $file = new File("/api/private/lua/joinfail.lua", [
         "Error" => "join, you can not play multiple games at once.",

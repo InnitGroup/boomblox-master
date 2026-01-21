@@ -29,7 +29,7 @@ switch ($typeId) {
         <?php endif; ?>
 
         var app = window.external.GetApp();
-        var workspace = app.CreateGame(1);
+        var workspace = app.CreateGame(44340105256);
         workspace.ExecUrlScript(visitUrl);
 
         window.location = "http://<?=domain?>/Games.aspx";
