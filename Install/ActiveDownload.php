@@ -4,7 +4,7 @@ global $auth, $user;
 
 !$auth->isAuthed() && Server::_404();
 
-$file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/031.exe";
+$file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/031A.exe";
 if (isset($_GET["Special"])) {
     switch ($_GET["Special"]) {
         case "XPTesterGC":
@@ -37,7 +37,7 @@ if (file_exists($file)) {
     header('Content-Length: ' . filesize($file));
     header('Pragma: public');
     header('Cache-Control: must-revalidate');
-    header('Content-Disposition: attachment; filename="'.basename($file).'"');
+    header('Content-Disposition: attachment; filename="' . basename($file) . '"');
     readfile($file);
     exit;
 }
