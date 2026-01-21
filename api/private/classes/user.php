@@ -48,6 +48,8 @@ class User {
         "client" => [
             "jointoken",
             "joincode",
+            "clientMd5",
+            "clientMd5Changed"
         ],
         "forums" => [
             "timezone",
@@ -116,6 +118,30 @@ class User {
 
     public function getMSN() {
         return $this->data["forums"]["msn"];
+    }
+
+    public function getClientMd5() {
+        return $this->data["client"]["clientMd5"];
+    }
+
+    public function getClientMd5Changed() {
+        return new DateTime($this->data["client"]["clientMd5Changed"]);
+    }
+
+    public function getTimeSinceLastClientMd5() {
+        $lastMd5 = new DateTime($this->data["client"]["clientMd5Changed"]);
+        return time() - $lastMd5->getTimestamp();
+    }
+
+    public function setClientMd5(string $md5) {
+        global $db;
+
+        $stmt = "UPDATE users SET clientMd5 = :clientMd5, clientMd5Changed = :clientMd5Changed WHERE id=:userId";
+        $db->execute($stmt, [
+            ":clientMd5" => $md5,
+            ":clientMd5Changed" => date("Y-m-d H:i:s"),
+            ":userId" => $this->getUserId()
+        ]);
     }
 
     public function getYahoo() {

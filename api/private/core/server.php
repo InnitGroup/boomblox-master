@@ -25,6 +25,9 @@ class Server {
     public static function getServerIP() {
         return self::$ipTable[0];
     }
+    public static function currentClientMd5() {
+        return "ab8de569917eb6cd25958ef28422aa87";
+    }
     public static function isIE7() {
         $agent = $_SERVER['HTTP_USER_AGENT'];
         if (preg_match('/MSIE (\d+\.\d+);/', $agent, $matches)) {
