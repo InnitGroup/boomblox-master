@@ -13,7 +13,7 @@ if (strlen($md5) > 33) {
         exit(Discord::sendWebhookMessage("anticheat", "-# user: `{$user->getUsername()}` tried spoofing their md5 to `{$md5}`"));
     }
     
-    exit(Discord::sendWebhookMessage("anticheat", "-# an anonymous user tried spoofing their md5 to `{$md5}`"));
+    #exit(Discord::sendWebhookMessage("anticheat", "-# an anonymous user tried spoofing their md5 to `{$md5}`"));
 }
 
 $user->setClientMd5($md5);

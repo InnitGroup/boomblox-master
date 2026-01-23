@@ -27,8 +27,8 @@ class CSettingsManager {
                         $result = $db->execute($stmt, [":dynamicIp" => (int)!$isDynamic, ":id" => ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"])]);
 
                         $stmt = "UPDATE users SET lastIp=:lastIp WHERE id=:id";
-                        $ip = IP::getDatabaseIp(IP::getIp(!$isDynamic), !$isDynamic);
-                        $result = $db->execute($stmt, [":lastIp" => $ip, ":id" => ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"])]);
+                        #$ip = IP::getDatabaseIp(IP::getIp(!$isDynamic), !$isDynamic);
+                        #$result = $db->execute($stmt, [":lastIp" => $ip, ":id" => ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"])]);
                         break;
                     case "Submit":
                         $theme = (int)$post["Theme"];
