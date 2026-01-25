@@ -51,6 +51,31 @@ class AssetRedirect {
         return $asset;
     }
 
+    # checks if asset existed at this current point in time
+    public static function breaksTimeline($assetId) {
+        $roblosecurity = base64_decode(roblosecurity);
+        $curl = curl_init("https://economy.roblox.com/v2/assets/$assetId/details");
+        curl_setopt_array($curl, [
+            CURLOPT_ENCODING => "",
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_USERAGENT => "Roblox/WinInet",
+            CURLOPT_HTTPHEADER => ["Cookie: .ROBLOSECURITY={$roblosecurity}"]
+        ]);
+
+        $asset = json_decode(curl_exec($curl));
+        $created = $asset->Created;
+        $date = new DateTime(substr($created, 0, 10));
+        $today = new DateTime();
+        $today->modify("-17 years");
+        if ($date > $today) {
+            echo "broken";
+        } else {
+            echo "intact";
+        }
+    }
+
     # checks if an asset is cached
     public function isCached($assetId) {
         return file_exists($_SERVER["DOCUMENT_ROOT"] . "/content/roblox/" . $assetId);

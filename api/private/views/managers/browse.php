@@ -11,12 +11,14 @@ class BrowseManager {
         "lastActivity2" => "lastOnline",
 
     ];
+
     private $sortDirection = "DESC";
     public function __construct($sort, $search) {
         $this->sort = $sort;
         $this->search = $search;
         $this->loadSort($sort, $search);
     }
+
     public function getUsers() {
         global $db;
         if (isset($this->search)) {
@@ -29,6 +31,7 @@ class BrowseManager {
         $result = $db->execute($stmt);
         return $result;
     }
+
     public function getUserCount() {
         global $db;
         if (isset($this->search)) {
@@ -41,6 +44,7 @@ class BrowseManager {
         $result = $db->execute($stmt);
         return $result;
     }
+
     public function loadUsers() {
         $result = $this->getUsers();
         $users = 0;
@@ -53,6 +57,7 @@ class BrowseManager {
         $paginator = new BrowsePaginator("UsersBrowsed", $this->page, ceil($this->getUserCount()->rowCount()/10));
         echo $paginator->load();
     }
+    
     public function loadSort($sort, $search = "") {
         $type = substr($sort,0,4);
         if ($type !== "tbSearch") {

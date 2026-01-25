@@ -46,6 +46,14 @@ class Helper {
             $string = "[ Content Deleted ]";
         }
 
+        if (str_contains($string, "꧅")) {
+            $string = "[ Content Deleted ]";
+        } // °͌͌͌͌͌͌͌͌͌͌͌͌͌͌͌͌͌͌͌͌͌͌͌͌͌
+
+        if (str_contains($string, "°͌͌͌͌͌͌͌͌͌͌͌͌͌͌͌͌͌͌͌͌͌͌͌͌͌")) {
+            $string = "[ Content Deleted ]";
+        }
+
         return $string;
     }
 

@@ -123,7 +123,7 @@ PageBuilder::addComponent("forum", "navmenu");
 																			<tbody>
 																				<tr>
 																					<td class="forumRowHighlight">
-																						<span class="normalTextSmallBold"><?=htmlspecialchars($reply->getTitle())?> <a name="<?=$reply->getId()?>"></a>
+																						<span class="normalTextSmallBold"><?=Helper::debugString(htmlspecialchars($reply->getTitle()))?> <a name="<?=$reply->getId()?>"></a>
 																						</span>
 																						<a name="<?=$reply->getId()?>">
 																							<br>
@@ -134,7 +134,7 @@ PageBuilder::addComponent("forum", "navmenu");
 																				</tr>
 																				<tr>
 																					<td colspan="2">
-																						<span class="normalTextSmall"><?=htmlspecialchars($reply->getContent())?></span>
+																						<span class="normalTextSmall"><?=Helper::debugString(htmlspecialchars($reply->getContent()))?></span>
 																					</td>
 																				</tr>
 																				<tr>

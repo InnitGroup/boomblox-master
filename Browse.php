@@ -10,7 +10,7 @@ $sort = $_POST["__EVENTARGUMENT"] ?? "Page$1";
 $search = $_POST["tbSearch"] ?? "";
 $browse = new BrowseManager($sort, $search);
 
-$page = new PageBuilder(Site::getThemeProperty("alias",$theme).": A FREE Virtual World-Building Game with Avatar Chat, 3D Environments, and Physics", $theme, "/templates/authheader.php");
+$page = new PageBuilder(Site::getThemeProperty("alias", $theme).": A FREE Virtual World-Building Game with Avatar Chat, 3D Environments, and Physics", $theme, "/templates/authheader.php");
 $page->buildHeader();
 
 $browse->load();
