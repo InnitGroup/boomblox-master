@@ -4,14 +4,34 @@ global $theme, $auth, $db, $User;
 !$auth->isAuthed() && Server::_404();;
 
 $page = new APageBuilder;
-exit;
-$stmt = "SELECT itemId FROM items WHERE itemType='game'";
-$result = $db->execute($stmt);
-$fetched = $result->fetchAll(PDO::FETCH_ASSOC);
 
-foreach ($fetched as $row) {
-    if (Version::getVersion($row["itemId"]) == 1) {
-    Version::logVersion($row["itemId"], 1, $user);
-    }
+exit;
+$participants = [
+    "viny",
+    "tmr",
+    "pwnzor",
+    "nox",
+    "kainsteronyt",
+    "grenbiguy",
+    "Zanryth",
+    "sharklebanan",
+    "Chetoz",
+    "G2HJS",
+    "1o4xy9i8h9fPwnerv1",
+    "Spades",
+    "cubp",
+    "kainsteronyt",
+    "chicken",
+    "thereal",
+    "jamster",
+    "phil",
+    "Tixguy211",
+    "platos",
+    "killeroid7"
+];
+
+foreach ($participants as $participant) {
+    $participantObj = new User($db->getIdByUser($participant));
+    $participantObj->giveItem(2505);
 }
 ?>

@@ -4,7 +4,7 @@ global $auth, $user;
 
 !$auth->isAuthed() && Server::_404();
 
-$file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/031A.exe";
+$file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/032A.exe";
 if (isset($_GET["Special"])) {
     switch ($_GET["Special"]) {
         case "XPTesterGC":
