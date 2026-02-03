@@ -98,6 +98,12 @@ PageBuilder::addComponent("forum", "navmenu");
 								<td valign="top" align="left">
 									<textarea name="ctl00$cphRoblox$Createeditpost1$PostForm$PostBody" rows="20" cols="90" id="ctl00_cphRoblox_Createeditpost1_PostForm_PostBody"></textarea>
 								</td>
+								<span id="ctl00_cphRoblox_Createeditpost1_PostForm_RequiredFieldValidator1" class="validationWarningSmall" style="color:Red;<?=isset($_GET["Error"]) ? "visibility:visible;" : "visibility:hidden;"?>">
+										<?php if (isset($_GET["Error"])): 
+										if ($_GET["Error"] == "LongBody"): ?>
+										Message cannot exceed 1000 characters.
+										<?php endif; endif; ?>
+									</span>
 								<td valign="top">&nbsp;</td>
 							</tr>
 							<tr>

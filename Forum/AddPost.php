@@ -33,6 +33,10 @@ if (Server::isPost()) {
             exit(header("Location: /Forum/AddPost.aspx?$identifier=$identifierValue&Error=LongSubject"));
         }
 
+        if (strlen($body) > 1000) {
+            exit(header("Location: /Forum/AddPost.aspx?$identifier=$identifierValue&Error=LongBody"));
+        }
+
         if (empty($body) || empty(trim($body))) {
             $body = "Body left intentionally blank.";
         }
