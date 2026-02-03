@@ -648,7 +648,7 @@ class User {
             return true;
         }
 
-        $testers = [93, 113, 76, 108, 123, 73, 124, 126];
+        $testers = [93, 113, 76, 108, 123, 73, 124, 126, 135, 131];
         if (in_array($this->getUserId(), $testers)) {
             return true;
         }

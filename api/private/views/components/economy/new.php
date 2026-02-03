@@ -37,28 +37,31 @@
 
         if (empty($error)) {
             
-            if ($_POST['ctl$cphRoblox$catalogType'] == '4') {
-                if ($user->hasPerms(7)) {
-                    $stmt = "INSERT INTO items (itemType, catalogType, creatorId, creatorName, itemName, itemDescription) VALUES ('catalog', 'Mesh', 1, 'Boomblox', :itemName, :itemDescription)";
+            switch ((int)$_POST['ctl$cphRoblox$catalogType']) {
+                case 4:
+                    if ($user->hasPerms(7)) {
+                        $stmt = "INSERT INTO items (itemType, catalogType, creatorId, creatorName, itemName, itemDescription) VALUES ('catalog', 'Mesh', 1, 'Boomblox', :itemName, :itemDescription)";
+                        $db->execute($stmt, [
+                            ":itemName" => Helper::debugString($_POST['ctl$cphRoblox$itemName']),
+                            ":itemDescription" => Helper::debugString($description)
+                        ]);
+                        
+                        $meshId = $db->lastInsertId("items");
+                        move_uploaded_file($file["tmp_name"], $_SERVER["DOCUMENT_ROOT"]."/content/$meshId");
+                    }
+                    break;
+                default:
+                    $tmpName = md5(rand(0,999999999999999));
+                    move_uploaded_file($file["tmp_name"], $_SERVER["DOCUMENT_ROOT"]."/content/temp/$tmpName");
+                    $stmt = "INSERT INTO itemqueue (itemName, itemDescription, catalogType, tempName, uploaderId) VALUES (:itemName, :itemDescription, :catalogType, :tempName, :uploaderId)";
                     $db->execute($stmt, [
                         ":itemName" => Helper::debugString($_POST['ctl$cphRoblox$itemName']),
-                        ":itemDescription" => Helper::debugString($description)
+                        ":itemDescription" => Helper::debugString($_POST['ctl$cphRoblox$itemDescription']),
+                        ":catalogType" => $_POST['ctl$cphRoblox$catalogType'],
+                        ":tempName" => $_SERVER["DOCUMENT_ROOT"]."/content/temp/$tmpName",
+                        ":uploaderId" => $user->getUserId()
                     ]);
-                    
-                    $meshId = $db->lastInsertId("items");
-                    move_uploaded_file($file["tmp_name"], $_SERVER["DOCUMENT_ROOT"]."/content/$meshId");
-                }
-            } else {
-                $tmpName = md5(rand(0,999999999999999));
-                move_uploaded_file($file["tmp_name"], $_SERVER["DOCUMENT_ROOT"]."/content/temp/$tmpName");
-                $stmt = "INSERT INTO itemqueue (itemName, itemDescription, catalogType, tempName, uploaderId) VALUES (:itemName, :itemDescription, :catalogType, :tempName, :uploaderId)";
-                $db->execute($stmt, [
-                    ":itemName" => Helper::debugString($_POST['ctl$cphRoblox$itemName']),
-                    ":itemDescription" =>Helper::debugString($_POST['ctl$cphRoblox$itemDescription']),
-                    ":catalogType" => $_POST['ctl$cphRoblox$catalogType'],
-                    ":tempName" => $_SERVER["DOCUMENT_ROOT"]."/content/temp/$tmpName",
-                    ":uploaderId" => $user->getUserId()
-                ]);
+                    break;
             }   
             
             $success = true;
@@ -86,9 +89,10 @@
     <div style="margin:5px;">
         <label>Type:</label>
         <select name="ctl$cphRoblox$catalogType" required>
+            <option value="4">Mesh</option>
             <option value="8">Hat</option>
             <option value="17">Head</option>
-            <option value="4">Mesh</option>
+            <option value="18">Face</option>
         </select>
     </div>
     <div style="margin:5px;">

@@ -134,7 +134,7 @@ PageBuilder::addComponent("forum", "navmenu");
 																				</tr>
 																				<tr>
 																					<td colspan="2">
-																						<span class="normalTextSmall"><?=Helper::debugString(htmlspecialchars($reply->getContent()))?></span>
+																						<span class="normalTextSmall"><?=nl2br(Helper::debugString(htmlspecialchars($reply->getContent())))?></span>
 																					</td>
 																				</tr>
 																				<tr>

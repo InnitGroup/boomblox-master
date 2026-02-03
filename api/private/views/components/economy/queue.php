@@ -79,6 +79,7 @@ $required = Helper::is_even(round(abs($admins/2))) ? round(abs($admins/2))+1 : r
 
                     $file = $queuedItem["tempName"];
                     file_put_contents($_SERVER["DOCUMENT_ROOT"]."/content/$itemId", file_get_contents($file));
+                    file_put_contents($_SERVER["DOCUMENT_ROOT"]."/cdn/t3/$itemId.png", file_get_contents($file));
 
                     $item = new Asset($itemId);
                     $item->RequestThumbnail(250, 250, "PNG");
