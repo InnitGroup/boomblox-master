@@ -39,7 +39,7 @@ class EditItemManager {
 
         if ($name === '') {
             Error::throw("Item name cannot be empty.");
-            return header("Location: " . $_SERVER['REQUEST_URI']);
+            return header("Location: " . htmlspecialchars($_SERVER['REQUEST_URI']));
         }
 
         $this->item
@@ -53,16 +53,16 @@ class EditItemManager {
 
             if ($robux == 0 && $tickets == 0) {
                 $this->item->offsale();
-                return header("Location: " . $_SERVER['REQUEST_URI']);
+                #return header("Location: " . htmlspecialchars($_SERVER['REQUEST_URI']));
             }
 
             $this->item->onsale()
                 ->sellForBux($robux)
                 ->sellForTix($tickets);
-                return header("Location: " . $_SERVER['REQUEST_URI']);
+                #return header("Location: " . htmlspecialchars($_SERVER['REQUEST_URI']));
         } else {
             $this->item->offsale();
-            return header("Location: " . $_SERVER['REQUEST_URI']);
+            #return header("Location: " . htmlspecialchars($_SERVER['REQUEST_URI']));
         }
     }
 }

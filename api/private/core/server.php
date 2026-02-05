@@ -59,9 +59,15 @@ class Server {
         PageBuilder::addComponent("404", "regular");
         exit;
     }
-    public static function _self() {
-        $uri = $_SERVER["PHP_SELF"];
+    public static function _self(int $delay = 0) {
+        $uri = $_SERVER["REQUEST_URI"];
         $uri = str_replace(".php", ".aspx", $uri);
+
+        if ($delay > 0) {
+            echo '<script>setTimeout(function() { window.location.href = "'.$uri.'"; }, ' . $delay * 1000 . ');</script>';
+            return;
+        }
+
         echo '<script>window.location.href = "'.$uri.'";</script>';
     }
     public static function _root() {

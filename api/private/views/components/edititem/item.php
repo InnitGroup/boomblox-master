@@ -17,6 +17,9 @@ $forBux = $item->onsale == 1 && $item->priceInBoombux > 0 ? "checked" : "";
     <div id="EditItemContainer">
         <div id="EditItem">
             <h2>Configure <?=$type?></h2>
+            <?php if (isset($_POST['__EVENTTARGET'])): if ($_POST['__EVENTTARGET'] == 'ctl00$cphRoblox$lbSubmit'): ?>
+            <div id="Confirmation" class="Suggestion" style="font-size: 12px;">Your changes to the item have been saved. (<?=date("h:i:s A")?>)</div>
+            <?php Server::_self(3); endif; endif; ?>
             <div id="ItemName">
                 <span class="Label">Name:</span>
                 <br>
