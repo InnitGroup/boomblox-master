@@ -117,9 +117,7 @@ $file = new File("/api/private/lua/join.lua", [
     "IP" => "103.60.12.84"
 ]);
 
+Client::clearType($user->getUserId());
 echo $file->handle();
 exit;
-
-
-
 ?>

@@ -48,4 +48,7 @@ if (isset($_GET["PlaceID"])) {
 	]);
 	echo $file->handle();
 }
+
+Client::clearType($user->getUserId());
+exit;
 ?>

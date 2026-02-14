@@ -2,8 +2,13 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
 global $theme, $auth, $user;
+if (!isset($_GET["PlaceID"]) || !isset($_GET["TypeID"])) {
+    Client::clearType($user->getUserId());
+    Server::_404();
+}
+
 $placeId = $_GET["PlaceID"];
-$typeId = $_GET["TypeID"];
+$typeId = $_GET["TypeID"] ??;
 $serverId = isset($_GET["ServerID"]) && !empty($_GET["ServerID"]) ? (int)$_GET["ServerID"] : 0;
 $type;
 

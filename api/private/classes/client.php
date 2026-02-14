@@ -52,5 +52,14 @@ class Client {
             ":userId" => $userId
         ]);
     }
+
+    # clear type
+    public static function clearType($userId) {
+        global $db;
+        $stmt = "UPDATE users SET clienttype=0 WHERE id=:userId";
+        $db->execute($stmt, [
+            ":userId" => $userId
+        ]);
+    }
 }
 ?>

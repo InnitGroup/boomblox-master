@@ -39,7 +39,7 @@ $db->execute($stmt, [
 ]);
 
 
-header("Location: /Item.aspx?ID=".$_GET["PlaceID"]."&Refer=Uri");
+exit(header("Location: /Item.aspx?ID=".$_GET["PlaceID"]."&Refer=Uri"));
 
 # make it so that if ServerID is defined, it will set it
 ?>

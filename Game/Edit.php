@@ -25,5 +25,8 @@ $file = new File("/api/private/lua/edit.lua", [
 	"UploadUrl" => $uploadUrl,
 	"Url" => url
 ]);
+
+Client::clearType($user->getUserId());
 echo $file->handle();
+exit;
 ?>
