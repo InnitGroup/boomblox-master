@@ -14,7 +14,7 @@ class Ad {
     public static function fallbackAds($size) {
         $ads = [
             "160x600" => [
-                "/images/ads/InviteGiftSkyscraper.png"
+                "/images/ads/8039810.png"
             ],
             "728x90" => [
                 "/images/ads/ROtrisRectangle.png"

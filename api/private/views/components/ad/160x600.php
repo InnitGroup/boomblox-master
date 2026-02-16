@@ -19,9 +19,9 @@ if (!isset($display->isFallback)) {
 	}
 } else {
 	if (Server::isPost()) {
-		if (!isset($_POST['ctl00$cphRoblox$TabbedInfo$GamesTab$RefreshRunningGamesButton']) && $_POST['__EVENTARGUMENT'] == "2021"  && $_POST['__EVENTTARGET'] == 'ctl00$cphRoblox$AsyncAd1$UserAdDisplay$AdImage') { ?>
+		if (!isset($_POST['ctl00$cphRoblox$TabbedInfo$GamesTab$RefreshRunningGamesButton']) && $_POST['__EVENTARGUMENT'] == "2816"  && $_POST['__EVENTTARGET'] == 'ctl00$cphRoblox$AsyncAd1$UserAdDisplay$AdImage') { ?>
 			<script type="text/javascript">
-			window.location.href = "/Item.aspx?ID=2021"
+			window.location.href = "/Item.aspx?ID=2816"
 			</script>
 			<?php
 		}
@@ -33,9 +33,9 @@ if (!isset($display->isFallback)) {
 <div class="Ads_WideSkyscraper">
     <div style="overflow: hidden;">
         <div id="ctl00_cphRoblox_AsyncAd1_UserAdDisplay_AdPanel" class="AdPanel">
-            <input type="hidden" name="ctl00$cphRoblox$AsyncAd1$UserAdDisplay$HiddenAdID" id="ctl00_cphRoblox_AsyncAd1_UserAdDisplay_HiddenAdID" value="2021">
-            <a id="ctl00_cphRoblox_AsyncAd1_UserAdDisplay_AdImage" title="Play ROtris Now!" onclick="__doPostBack('ctl00$cphRoblox$AsyncAd1$UserAdDisplay$AdImage','2021')" style="display:inline-block;cursor:pointer;">
-                <img src="<?=$display->src?>" border="0" alt="Play ROtris Now!">
+            <input type="hidden" name="ctl00$cphRoblox$AsyncAd1$UserAdDisplay$HiddenAdID" id="ctl00_cphRoblox_AsyncAd1_UserAdDisplay_HiddenAdID" value="2816">
+            <a id="ctl00_cphRoblox_AsyncAd1_UserAdDisplay_AdImage" title="Chefs Kiss" onclick="__doPostBack('ctl00$cphRoblox$AsyncAd1$UserAdDisplay$AdImage','2916')" style="display:inline-block;cursor:pointer;">
+                <img src="<?=$display->src?>" border="0" alt="Chefs Kiss">
             </a>
         </div>
         <a id="ctl00_cphRoblox_AsyncAd1_ReportUserAdButton" title="click to report an offensive ad" class="BadAdButton" href="javascript:__doPostBack('ctl00$cphRoblox$AsyncAd1$ReportUserAdButton','')">[ report ]</a>
