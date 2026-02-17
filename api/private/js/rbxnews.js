@@ -5,12 +5,12 @@ function isIE() {
 
 if (isIE()) {
     document.attachEvent("onDOMContentLoaded", function() {
-        __loading("RobloxNews","padding-top:30px;padding-bottom:70px;");
+        __loading("RobloxNews","position:relative;left:60px;top:28px;");
         __doWebPostBack("/api/public/views/News.ashx","RobloxNews","");
     });
 } else {
     document.addEventListener("DOMContentLoaded", function() {
-        __loading("RobloxNews","padding-top:30px;padding-bottom:70px;");
+        __loading("RobloxNews","position:relative;left:60px;top:28px;");
         __doWebPostBack("/api/public/views/News.ashx","RobloxNews","");
     });
 }

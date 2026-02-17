@@ -4,7 +4,7 @@ class Ad {
 
     # generates an ad
     public static function generateAd($size) {
-        $sizes = ["160x600", "728x90", "300x250"];
+        $sizes = ["160x600", "728x90", "300x250", "300x250a", "728x90a"];
 
         if (in_array($size, $sizes)) {
             PageBuilder::addComponent("ad", $size);
@@ -18,6 +18,12 @@ class Ad {
             ],
             "728x90" => [
                 "/images/ads/ROtrisRectangle.png"
+            ],
+            "728x90a" => [
+                "/images/ads/ROtrisRectangle.png"
+            ],
+            "300x250" => [
+                "/images/ads/ROtrisSquare.png"
             ],
             "300x250" => [
                 "/images/ads/ROtrisSquare.png"
