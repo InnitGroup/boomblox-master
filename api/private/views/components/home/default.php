@@ -21,9 +21,9 @@
 		<?=Ad::generateAd("300x250a")?>
 	</div>
 	<div class="FrontPagePanel" id="SalesPitch">
-		<a id="ctl00_cphRoblox_MoneyMachine_PlayNowButton" href="Games.aspx">
+		<a id="ctl00_cphRoblox_MoneyMachine_PlayNowButton" href="/Upgrades/ROBUX.aspx">
 			<?php global $theme; ?>
-			<img src="/images/SalesPitcher/PlayNow<?=$theme == 0 ? "2" : "3"?>.png" border="0">
+			<img src="/images/SalesPitcher/ExtraCash.png" border="0">
 		</a>
 	</div>
 	<div class="FrontPagePanel" id="RandomFacts">

@@ -6,7 +6,7 @@ global $theme, $auth, $user;
     <head>
         <title><?=$title?></title>
         <link rel="icon" href="/images/<?=Site::getThemeProperty("favicon", $theme)?>?v=<?=time()?>">
-        <link rel="stylesheet" href="/CSS/AllCSS<?=$theme?>.ashx?t=<?=time()?>">
+        <link rel="stylesheet" href="/CSS/AllCSS.ashx?v=<?=$theme?>&t=<?=time()?>">
         <link rel="stylesheet" href="/CSS/Ajax.css?t=<?=time()?>">
 
         <?php if (Server::isIE7()): ?>
@@ -25,7 +25,7 @@ global $theme, $auth, $user;
 		<input type="hidden" name="__EVENTARGUMENT">
 		<input type="hidden" name="__EVENTTARGET">
 		<input type="hidden" name="__VIEWSTATE" value="<?=Viewstate::generateViewState()?>">
-        <div id="Container">
+        <div id="MasterContainer"><div id="Container">
             <div id="Header">
             	<div id="Banner">
             	    <div id="Options">
