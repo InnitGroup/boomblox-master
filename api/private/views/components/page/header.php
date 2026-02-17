@@ -11,7 +11,7 @@ if (Server::isPost()) {
     <head>
         <title><?=$title?></title>
         <link rel="icon" href="/images/<?=Site::getThemeProperty("favicon", $theme)?>?v=<?=time()?>">
-        <link rel="stylesheet" href="/CSS/AllCSS<?=$theme?>.ashx?t=<?=time()?>">
+        <link rel="stylesheet" href="/CSS/AllCSS.ashx?v=<?=$theme?>">
         <link rel="stylesheet" href="/CSS/Ajax.css?t=<?=time()?>">
         <?php if (isset($hasAds)): ?>
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4924425901885448" crossorigin="anonymous"></script>
@@ -50,7 +50,7 @@ if (Server::isPost()) {
                                     </div>
                                 <div id="Logo">
                                     <a id="ctl00_rbxImage_Logo" title="<?=Site::getThemeProperty("name",$theme);?>" href="/" style="display:inline-block;cursor:pointer;width:267px;height:58px;">
-                                        <img src="/images/<?=Site::getThemeProperty("logo",$theme);?>" border="0" alt="<?=Site::getThemeProperty("name",$theme);?>" blankurl="http://t2.xoblog.dev/blank-267x70.gif" style="position:relative;<?=Site::getThemeProperty("logoDimensions",$theme);?>">
+                                        <img src="/images/<?=Site::getThemeProperty("logo",$theme);?>" border="0" alt="<?=Site::getThemeProperty("name",$theme);?>" blankurl="http://t2.xoblog.dev/blank-267x70.gif" style="position:relative;top:4px">
                                     </a>
                                 </div>
                                 <?php if ($theme == 3 && $user->getBoombux() > 0 || $theme !== 3): ?>

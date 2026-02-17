@@ -112,7 +112,7 @@ input.Text {
   text-decoration: underline;
 }
 #Banner {
-  background-image: url(../images/WoodBanner.png);
+  background-image: url(../images/2009FebEarlyBanner.png);
   background-repeat: no-repeat;
   border-bottom: solid 1px #000;
   border-left: solid 1px #000;
@@ -140,7 +140,7 @@ input.Text {
 }
 #Banner #Logo {
   float: left;
-  margin: 7px 0;
+  margin: 4px 0;
   text-align: center;
   width: 293px;
 }

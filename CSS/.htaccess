@@ -1,3 +1,4 @@
 RewriteEngine On
 
+RewriteRule ^(.*)\.ashx$ $1.php [L,QSA]
 RewriteRule ^(.*)\.ashx$ $1.css [L,QSA]

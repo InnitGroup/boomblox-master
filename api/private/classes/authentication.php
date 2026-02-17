@@ -50,6 +50,12 @@ class Authentication {
             } else {
                 if (isset($_COOKIE["BROBLOSECURITY"])) {
                     global $user;
+                
+                    if (!isset($user)) {
+                        $userId = ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]);
+                        $user = new User($userId);
+                    }
+
                     if (basename($_SERVER['PHP_SELF']) !== "Maintenance.php" && !$user->hasPerms(3)) {
                         header("Location: /Maintenance.aspx");
                         exit;
