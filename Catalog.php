@@ -45,7 +45,7 @@ $page->buildHeader();
 		<div class="Assets">
 			<span class="AssetsDisplaySet"><?=$catalog->getDisplaySetLabel($m,$c,$t)?></span>
 			<?=$paginator->load()?>
-			<table cellspacing="0" align="Center" border="0" width="735">
+			<table cellspacing="0" align="Center" border="0" width="610">
 				<?=$catalog->loadItems($items);
 				isset($GLOBALS["pageEx"]) && print($GLOBALS["pageEx"]);
 				?>

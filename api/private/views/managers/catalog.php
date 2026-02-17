@@ -661,7 +661,7 @@ class CatalogManager {
             $item["itemType"] == "catalog" && $sales = $item["interactions"];
             if ($item["itemType"] == "game" && $this->m == "BestSelling") {break;}
             if ($counter >= $start && $counter < $start + 20) {
-                if ($counter % 5 == 0 && $trCounter < 5) {
+                if ($counter % 4 == 0 && $trCounter < 4) {
                     echo '<tr>';
                     $trCounter += 1;
                 }
@@ -686,7 +686,7 @@ class CatalogManager {
                     </div>
                 </td>
                 ';
-                if (($counter + 1) % 5 == 0) {
+                if (($counter + 1) % 4 == 0) {
                     echo '</tr>';
                 }
             }

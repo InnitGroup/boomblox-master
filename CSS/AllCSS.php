@@ -12,4 +12,6 @@ if (file_exists($_SERVER["DOCUMENT_ROOT"] . "/CSS/AllCSS" . $versionIndicator . 
     $css = $_SERVER["DOCUMENT_ROOT"] . "/CSS/AllCSS" . $versionIndicator . ".css";
     include_once $css;
 }
+
+exit;
 ?>

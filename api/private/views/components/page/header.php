@@ -2,16 +2,17 @@
 global $theme, $auth, $user;
 if (Server::isPost()) {
 	if ($_POST["__EVENTTARGET"] == "LoginStatus") {
-		header("Location: /api/quicklogout.ashx");
+		exit(header("Location: /api/quicklogout.ashx"));
 	}
 }
+
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         <title><?=$title?></title>
         <link rel="icon" href="/images/<?=Site::getThemeProperty("favicon", $theme)?>?v=<?=time()?>">
-        <link rel="stylesheet" href="/CSS/AllCSS.ashx?v=<?=$theme?>">
+        <link rel="stylesheet" href="/CSS/AllCSS.ashx?v=<?=$theme == 1 ? 5 : $theme?>">
         <link rel="stylesheet" href="/CSS/Ajax.css?t=<?=time()?>">
         <?php if (isset($hasAds)): ?>
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4924425901885448" crossorigin="anonymous"></script>
