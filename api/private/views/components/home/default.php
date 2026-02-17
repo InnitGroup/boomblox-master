@@ -4,8 +4,12 @@
 			<div id="LoginView">
 				<h5 id="loginViewTitle">Logged in</h5>
 				<div id="AlreadySignedIn"></div>
-				<a title="marsoc" style="display:inline-block;height:190px;width:152px;cursor:pointer;" href="/User.aspx">
-					<img src="https://t2.xoblog.dev/81ae1d1aa5fb56c058d15f1a42e73b32?v=1" style="display:inline-block;height:175px;width:145px;margin-top:15px;" border="0" alt="marsoc">
+				<?php 
+				global $user;
+				$avatar = new Avatar($user->getUserId());
+				?>
+				<a title="<?=$user->getUsername()?>" style="display:inline-block;height:190px;width:152px;cursor:pointer;" href="/User.aspx">
+					<img src="<?=$avatar->GetThumbnail(540, 660, "PNG")?>" style="display:inline-block;height:175px;width:145px;margin-top:15px;" border="0" alt="<?=$user->getUsername()?>">
 				</a>
 			</div>
 		</div>
@@ -18,45 +22,46 @@
 	</div>
 	<div class="FrontPagePanel" id="SalesPitch">
 		<a id="ctl00_cphRoblox_MoneyMachine_PlayNowButton" href="Games.aspx">
-			<img src="/images/SalesPitcher/PlayNow3.png" border="0">
+			<?php global $theme; ?>
+			<img src="/images/SalesPitcher/PlayNow<?=$theme == 0 ? "2" : "3"?>.png" border="0">
 		</a>
 	</div>
 	<div class="FrontPagePanel" id="RandomFacts">
 		<div id="ctl00_cphRoblox_RandomFacts_pRandomFacts">
-			<h3 style="text-align: center;">ROBLOX Facts</h3>
+			<h3 style="text-align: center;"><?=Site::getThemeProperty("alias", $theme)?> Facts</h3>
 			<div id="marqueecontainer" onmouseover="copyspeed=pausespeed" onmouseout="copyspeed=marqueespeed">
 				<div id="vmarquee" style="position: absolute; top: -70px;">
 					<!--YOUR SCROLL CONTENT HERE-->
 					<div class="RandomFactoid">
 						<img src="/images/RandomFactsIcons/House.png">
-						<a href="Item.aspx?ID=7271003">
-							<b>$$$ ROB ROBLOXIA BANK $$$ </b>
+						<a href="Item.aspx?ID=1">
+							<b>Sword Fights on the Heights IV </b>
 						</a> has been favorited a lot recently
 					</div>
 					<div class="RandomFactoid">
 						<img src="/images/RandomFactsIcons/Pants.png">
-						<b>243</b>
+						<b>0</b>
 						<a href="Catalog.aspx?m=BestSelling&amp;c=12&amp;t=PastWeek&amp;d=All&amp;q=tuxedo">fine-looking <b>tuxedos</b>
 						</a> are available in the pants section of the catalog
 					</div>
 					<div class="RandomFactoid">
-						<img src="/images/RandomFactsIcons/Bux.png"> 100 ROBUX buys about <b>371</b> tickets on the <a href="Marketplace/TradeCurrency.aspx">Currency Exchange</a> right now
+						<img src="/images/RandomFactsIcons/Bux.png"> 100 <?=Site::getThemeProperty("currency", $theme)?> buys about <b>400</b> tickets on the <a href="Marketplace/TradeCurrency.aspx">Currency Exchange</a> right now
 					</div>
 					<div class="RandomFactoid">
 						<img src="/images/RandomFactsIcons/Shirt.png">
-						<b>63</b>
+						<b>0</b>
 						<a href="Catalog.aspx?m=BestSelling&amp;c=11&amp;t=PastWeek&amp;d=All&amp;q=assassin">deadly <b>assassin</b> robes </a> are available in the shirts section of the catalog
 					</div>
 					<div class="RandomFactoid">
-						<img src="/images/RandomFactsIcons/ShoppingBag.png"> the average bid for a user-run <b>rectangle</b> ad is <b>716</b> tickets
+						<img src="/images/RandomFactsIcons/ShoppingBag.png"> the average bid for a user-run <b>rectangle</b> ad is <b>212</b> tickets
 					</div>
 					<div class="RandomFactoid">
-						<img src="/images/RandomFactsIcons/Shield.png"> there are <b>31883</b>
-						<a href="Parents.aspx">parents</a> keeping track of their kids on ROBLOX
+						<img src="/images/RandomFactsIcons/Shield.png"> there are <b>0</b>
+						<a href="Parents.aspx">parents</a> keeping track of their kids on <?=Site::getThemeProperty("alias", $theme)?>
 					</div>
 					<div class="RandomFactoid">
 						<img src="/images/RandomFactsIcons/Admin.png">
-						<b>9</b> forum moderators are providing help in the forums
+						<b>0</b> forum moderators are providing help in the forums
 					</div>
 					<!--YOUR SCROLL CONTENT HERE-->
 				</div>
@@ -104,7 +109,7 @@
 			<img id="ctl00_cphRoblox_ShieldImg" class="ShieldImage" src="/images/SuperSafe32.png" border="0">
 			<div style="float:left; font-size: x-large; height: 42px; width: 220px; text-align: center;">Parents' Corner</div>
 			<div style="clear: left;"></div>
-			<p>ROBLOX is a kid-friendly place on the internet where your children can exercise their creativity in a safe, moderated online environment</p>
+			<p><?=Site::getThemeProperty("alias", $theme)?> is a kid-friendly place on the internet where your children can exercise their creativity in a safe, moderated online environment</p>
 			<a id="ctl00_cphRoblox_LearnMore" class="Button" href="javascript:__doPostBack('ctl00$cphRoblox$LearnMore','')">Learn More</a>
 			<a id="ctl00_cphRoblox_AccessParentAccount" class="Button" href="javascript:__doPostBack('ctl00$cphRoblox$AccessParentAccount','')">Access Parent Account</a>
 			<a id="ctl00_cphRoblox_PrivacyPolicy" href="info/Privacy.aspx">
@@ -119,21 +124,6 @@
 		<?=Ad::generateAd("728x90a")?>
 	</div>
 	<div class="FrontPagePanel" id="NewsFeeder">
-		<div id="ctl00_cphRoblox_NewsFeed_pRobloxNews" class="RobloxNews">
-			<div id="RobloxNews">
-				<h4 style="text-align: center; height: 16px; margin: 0px 0px 2px 0px;"><a id="ctl00_cphRoblox_NewsFeed_RobloxNewsHyperLink" href="#"><font color="graytext">ROBLOX News</font></a></h4>
-				<table id="ctl00_cphRoblox_NewsFeed_dlNews" cellspacing="0" cellpadding="1" border="0" width="158">
-					<tbody>
-						<tr>
-							<td align="left">
-								<li style="margin-left: 1px;">
-									<a id="ctl00_cphRoblox_NewsFeed_dlNews_ctl00_NewsItemHyperLink" href="https://web.archive.org/web/20090228151657/http://blog.roblox.com/?p=746">lodeing</a>
-								</li>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
+		<?=PageBuilder::addComponent("home", "news")?>
 	</div>
 </div>

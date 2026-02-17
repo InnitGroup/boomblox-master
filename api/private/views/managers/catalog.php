@@ -672,7 +672,7 @@ class CatalogManager {
                     <div class="Asset">
                         <div class="AssetThumbnail">
                             <a title="'.htmlspecialchars(Helper::debugString($item["itemName"])).'" href="/Item.aspx?ID='.htmlspecialchars($item["itemId"]).'" style="display:inline-block;cursor:pointer;">
-                                <img style="height:120px;width:120px;" src="'.$thumbnail.'" border="0" alt="'.htmlspecialchars(Helper::debugString($item["itemName"])).'" blankUrl="/cdn/broken-120x120.png"/>
+                                <img style="height:110px;width:110px;" src="'.$thumbnail.'" border="0" alt="'.htmlspecialchars(Helper::debugString($item["itemName"])).'" blankUrl="/cdn/broken-120x120.png"/>
                             </a>
                         </div>
                         <div class="AssetDetails">

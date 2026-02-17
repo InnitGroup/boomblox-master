@@ -294,15 +294,17 @@ input.Text {
   visibility: hidden;
 }
 .ColorPickerItem {
-  border-color: #fff;
-  border-style: solid;
-  border-width: 2px;
-}
-.ColorPickerItem:hover {
-  border-color: Blue;
-  border-style: solid;
-  border-width: 2px;
-}
+    border-color:#fff;
+    border-style:solid;
+    border-width:2px;
+    height:30px;
+    width:30px;
+   }
+   .ColorPickerItem:hover {
+    border-color:Blue;
+    border-style:solid;
+    border-width:2px;
+   }
 .modalBackground {
   background-color: Gray;
   filter: alpha(opacity=30);
@@ -1203,6 +1205,49 @@ div.AspNet-TreeView ul {
   margin: 0;
   padding: 0;
 }
+ .Part0 {
+    border:none;
+    margin-top:6px;
+    margin-left:4px;
+    height:36px;
+    width:36px;
+    position:relative;
+    }
+   .Part1 {
+       border:none;
+       margin-top:6px;
+       margin-left:4px;
+       height:72px;
+       width:32px;
+       position:relative;
+   }
+   .Part2 {
+    border:none;
+    margin-top:6px;
+    margin-left:4px;
+    height:72px;
+    width:72px;
+    position:relative;
+    }
+.RemoveItem {
+  padding-bottom:1px;
+  width:20px;
+  z-index:2;
+  position:relative;
+  top:17px;
+  left:42px;
+  background-color:#ededed;
+  border:solid 1px #000;
+  }
+  .WearItem {
+  padding-bottom:1px;
+  z-index:2;
+  position:relative;
+  top:17px;
+  left:64px;
+  background-color:#ededed;
+  border:solid 1px #000;
+  }
 .AspNet-TreeView-Hide {
   display: none;
 }

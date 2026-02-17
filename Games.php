@@ -25,7 +25,7 @@ if (!is_numeric($p)) {
 
 $gameItems = $games->getGames($m);
 #echo $gameItems->rowCount();
-$paginator = new Paginator("Games",$gameItems,$p,15,$games->getSiteSort($m, $t));
+$paginator = new Paginator("Games", $gameItems, $p, 15, $games->getSiteSort($m, $t));
 
 Server::pageRestrictor($gameItems, 15, $p);
 
@@ -53,7 +53,7 @@ $page->buildHeader();
                     <?=$paginator->load()?>
                     <table cellspacing="0" align="Center" border="0" width="550">
                         <tbody>
-                            <?=$games->loadGames($games->getGames($m),$p);?>
+                            <?=$games->loadGames($gameItems, $p);?>
                         </tbody>
                     </table>
                     <?=$paginator->load();?>

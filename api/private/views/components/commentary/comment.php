@@ -14,7 +14,7 @@ $commenterRender = $commenterAvatar->GetThumbnail(500, 500, "PNG");
     <div class="Commenter">
         <div class="Avatar" style="overflow:hidden;">
             <a href="/User.aspx?ID=<?=$commenterId?>">
-                <img style="width:64px;height:64px;" src="<?=$commenterRender?>">
+                <img style="width:100px;height:100px;" src="<?=$commenterRender?>">
             </a>
         </div>
     </div>

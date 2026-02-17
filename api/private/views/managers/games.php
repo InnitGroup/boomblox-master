@@ -31,7 +31,13 @@ class GamesManager {
                     Server::_404();
                     break;
             }
-            $stmt = "SELECT * FROM items WHERE itemType='game' ORDER BY ".$newsort." DESC";
+            $stmt = "SELECT i.*, 
+            COALESCE(SUM(s.players),0) AS totalPlayers
+            FROM items i
+            LEFT JOIN servers s ON s.placeId = i.itemId
+            WHERE i.itemType='game'
+            GROUP BY i.itemId
+            ORDER BY i.".$newsort." DESC";
             $result = $db->execute($stmt);
         } else {
             $stmt = "SELECT i.*, 
@@ -166,11 +172,12 @@ class GamesManager {
             "PastWeek",
             "PastMonth",
         ];
+        
         if (in_array($t, $validT)) {
             return $this->browseTable[htmlspecialchars($m)]." (".$this->timeTable[htmlspecialchars($t)].")";
-        } else {
-            Server::_404();
         }
+
+        Server::_404();
     }
     public function getPages($gamesResult,$c) {
         $currentPage = (int)$c;
@@ -178,11 +185,11 @@ class GamesManager {
     }
     public function loadGames($gamesResult, $page) {
         $gameCount = 0;
-        foreach ($gamesResult->fetchAll(PDO::FETCH_ASSOC) as $game) {
+        while ($game = $gamesResult->fetch(PDO::FETCH_ASSOC)) {
             if ($gameCount == 0) {echo "<tr>";}
             if ($gameCount < 15*$page && ($gameCount >= ($page-1)*15)) {
                 $asset = new Asset($game["itemId"]);
-                $players = $this->getPlayers($game["itemId"]);
+                $players = $game["totalPlayers"];#$this->getPlayers($game["itemId"]);
                 $packed = compact("asset", "game", "players");
                 PageBuilder::addComponent("games", "game", $packed);
             }

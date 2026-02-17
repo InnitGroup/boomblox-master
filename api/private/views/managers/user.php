@@ -503,7 +503,7 @@ class UserManager {
                     $result .= '
                                         <td class="Asset" valign="top">
                                             <div style="padding:5px">';
-                                            if (!$publicView) {$result .= '<a class="RemoveItem" href="javascript:__doPostBack(\''.$favorite["itemId"].'\', \'ctl00$robloxCph$RemoveFavorite\')" style="position:relative;left:20px;" onclick="wearItem(event)">&nbsp;[ delete ]&nbsp;</a>';}
+                                            if (!$publicView) {$result .= '<a class="RemoveItem" href="javascript:__doPostBack(\''.$favorite["itemId"].'\', \'ctl00$robloxCph$RemoveFavorite\')" style="position:relative;left:24px;" onclick="wearItem(event)">&nbsp;[ delete ]&nbsp;</a>';}
                                                 
                                                 $result .= '<div class="AssetThumbnail">
                                                     <a title="'.htmlspecialchars(Helper::debugString($favorite["itemName"])).'" href="/Item.aspx?ID='.htmlspecialchars($favorite["itemId"]).'" style="display:inline-block;cursor:pointer;">

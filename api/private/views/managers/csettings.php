@@ -32,7 +32,7 @@ class CSettingsManager {
                         break;
                     case "Submit":
                         $theme = (int)$post["Theme"];
-                        $validThemes = [0, 1, 2, 3, 4];
+                        $validThemes = [0, 1];
                         if ($theme !== $this->user->getData("user", "theme") && in_array($theme, $validThemes)) {
                             $stmt = "UPDATE users SET theme=:theme WHERE id=:id";
                             $db->execute($stmt, [":theme" => $theme, ":id" => ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"])]);
@@ -79,12 +79,6 @@ class CSettingsManager {
                                         <td>
                                             <input type="radio" name="Theme" value="1" '.$this->isTheme(1).' tabindex="1">
                                             <label>ROBLOX Theme</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="radio" name="Theme" value="3" '.$this->isTheme(3).' tabindex="1">
-                                            <label>2007 ROBLOX Theme</label>
                                         </td>
                                     </tr>
                                 </tbody>
