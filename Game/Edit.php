@@ -7,6 +7,10 @@ if (!$auth->isAuthed()) {
 	Server::_404();
 }
 
+if (!isset($_GET["PlaceID"])) {
+	Server::_404();
+}
+
 $placeId = $_GET["PlaceID"];
 if (!$user->ownsPlace($placeId)) {
 	$file = new File("/api/private/lua/joinfail.lua", [

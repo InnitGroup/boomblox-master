@@ -33,7 +33,7 @@ global $theme, $db;
                         $error = "Receiving user does not exist";
                     }
 
-                    if ($amount < 0 || $amount > 1000) {
+                    if ($amount < 0 || $amount > 1500) {
                         $error = "You cannot give less than 0 or more than 1,000";
                     }
 
@@ -46,6 +46,8 @@ global $theme, $db;
                             ":adjuster" => $user->getUserId(),
                             ":occured" => date("Y-m-d H:i;s")
                         ]);
+                        $adjustee = new User($recipient);
+                        $adjustee->giveBux((int)$amount);
                     }             
                 }
             }
@@ -59,7 +61,7 @@ global $theme, $db;
     <h1>Recent Adjustments</h1>
     <?php
     global $db;
-    $stmt = "SELECT * FROM adjustments ORDER BY id DESC LIMIT 5";
+    $stmt = "SELECT * FROM adjustments ORDER BY id ";
     $result = $db->execute($stmt);
     
     if ($result->rowCount() > 0):
