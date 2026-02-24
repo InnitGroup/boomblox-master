@@ -547,7 +547,7 @@ class UserManager {
                         <h4>Favorites</h4>
                         <div id="FavoritesContent" style="">
                             '.$this->loadFavPanePaginator("Header").'
-                            <table id="ctl00_cphRoblox_rbxFavoritesPane_FavoritesDataList" cellspacing="0" border="0">
+                            <table id="ctl00_cphRoblox_rbxFavoritesPane_FavoritesDataList" cellspacing="0" border="0" style="margin-left:auto;margin-right:auto;">
                                 <tbody>
                                     '.$this->loadFavorites().'
                                 </tbody>

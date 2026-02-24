@@ -5,7 +5,7 @@ class MembershipManager {
     public function __construct($theme) {
         global $user;
         $this->theme = $theme;
-        $this->user;
+        $this->user = $user;
     }
     public function cancel() {
         if ($this->user->hasBC()) {

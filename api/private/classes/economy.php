@@ -28,7 +28,7 @@ class Economy {
         global $db;
         $userId = self::getUserId();
 
-        $db->beginTransaction();
+        #$db->beginTransaction();
 
         try {
             $db->execute(
@@ -59,10 +59,10 @@ class Economy {
                 Admin::backupDatabase();
             }
 
-            $db->commit();
+            #$db->commit();
 
         } catch (Exception $e) {
-            $db->rollBack();
+            #$db->rollBack();
             throw $e;
         }
     }
