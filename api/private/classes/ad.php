@@ -37,16 +37,17 @@ class Ad {
     public static function algorithm($size) {
         global $db;
 
-        $stmt = "SELECT * FROM ads WHERE `last_bid` > 0 AND `status` = 'running' AND `size` = :_size ORDER BY `last_bid` DESC";
+        $stmt = "SELECT * FROM ads WHERE `last_bid` > 0 AND `status` = 'running' AND `size` = :_size ORDER BY `last_bid` DESC LIMIT 5";
         $result = $db->execute($stmt, [":_size" => $size]);
         if ($result->rowCount() == 0) {
             return self::fallbackAds($size);
         }
 
-        $ads = $result->fetchAll(PDO::FETCH_ASSOC);
-
+        $ads = [];
         $total = 0;
-        foreach ($ads as $ad) {
+
+        while ($ad = $result->fetch(PDO::FETCH_ASSOC)) {
+            $ads[] = $ad;
             $total += $ad["last_bid"];
         }
 
@@ -55,13 +56,11 @@ class Ad {
         foreach ($ads as $ad) {
             $rand -= $ad["last_bid"];
             if ($rand <= 0) {
-                $userAd = new UserAd($ad["id"]);
-                return $userAd;
+                return new UserAd($ad["id"]);
             }
         }
 
-        $userAd = new UserAd(end($ads)["id"]);
-        return $userAd;
+        return new UserAd(end($ads)["id"]);
     }
 }
 ?>

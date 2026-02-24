@@ -5,7 +5,7 @@
 				<h5 id="loginViewTitle">Logged in</h5>
 				<div id="AlreadySignedIn"></div>
 				<?php 
-				global $user;
+				global $user, $theme;
 				$avatar = new Avatar($user->getUserId());
 				?>
 				<a title="<?=$user->getUsername()?>" style="display:inline-block;height:190px;width:152px;cursor:pointer;" href="/User.aspx">
@@ -15,14 +15,13 @@
 		</div>
 	</div>
 	<div class="FrontPagePanel" id="Movie">
-	<iframe width="424" height="250" src="https://www.youtube.com/embed/Pwl_1n_purY?si=zpjI-o6oUUv04rB4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
+	<iframe width="424" height="250" src="<?=$theme == 1 ? "https://www.youtube.com/embed/Pwl_1n_purY?si=zpjI-o6oUUv04rB4" : "https://www.youtube.com/embed/S7TELrdHI8E?si=VW1xERt_5n7DzWpU"?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
 	</div>
 	<div class="FrontPagePanel" id="FrontPageRectangleAd">
 		<?=Ad::generateAd("300x250a")?>
 	</div>
 	<div class="FrontPagePanel" id="SalesPitch">
 		<a id="ctl00_cphRoblox_MoneyMachine_PlayNowButton" href="/Upgrades/ROBUX.aspx">
-			<?php global $theme; ?>
 			<img src="/images/SalesPitcher/ExtraCash.png" border="0">
 		</a>
 	</div>
