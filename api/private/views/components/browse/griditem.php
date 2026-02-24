@@ -1,13 +1,13 @@
 <tr class="GridItem">
     <td>
-        <a title="<?=$user["username"]?>" href="/User.aspx?ID=<?=$user["id"]?>" style="display:inline-block;cursor:pointer;">
-            <img src="<?=$avatar->GetThumbnail(48,48,"JPG")?>" border="0" alt="<?=$user["username"]?>" style="width:48px;height:48px;"/>
+        <a title="<?=$userObj->getUsername()?>" href="/User.aspx?ID=<?=$userObj->getUserId()?>" style="display:inline-block;cursor:pointer;">
+            <img src="<?=$avatar->GetThumbnail(48,48,"JPG")?>" border="0" alt="<?=$userObj->getUsername()?>" style="width:48px;height:48px;"/>
         </a>
     </td>
     <td>
-        <a href="User.aspx?ID=<?=$user["id"]?>"><?=$user["username"]?></a>
+        <a href="User.aspx?ID=<?=$userObj->getUserId()?>"><?=$userObj->getUsername()?></a>
         <br/>
-        <span><?=($user["blurb"])?></span>
+        <span><?=htmlspecialchars($userObj->getBlurb())?></span>
     </td>
     <td>
         <span><?=$userObj->getOnline()?></span>

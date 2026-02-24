@@ -1,13 +1,13 @@
 <?php
 class EditFriendsManager {
     public function __construct() {
+        global $user;
         if (isset($_POST) && !empty($_POST)) {
             if (isset($_POST['ctl00$cphRoblox$rbxEditFriendsPane$dlFriends$ctl00$bDelete'])) {
                 $delete = $_POST['ctl00$cphRoblox$rbxEditFriendsPane$dlFriends$ctl00$bDelete'];
                 $exploded = explode("$", $delete);
                 $userId = $exploded[3];
 
-                $user = new User(ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]));
                 $friend = new User($userId);
 
                 $user->removeFriend($friend->getUsername());
@@ -16,7 +16,7 @@ class EditFriendsManager {
         }
     }
     public function load() {
-        $user = new User(ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]));
+        global $user;
         PageBuilder::addComponent("editfriends", "main", compact("user"));
     }
 }

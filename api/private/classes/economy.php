@@ -77,7 +77,7 @@ class Economy {
             SELECT currency, SUM(amount) as total
             FROM economy
             WHERE user = :userId
-              AND method = :method
+            AND method = :method
             GROUP BY currency
             ORDER BY occured DESC
         ";
@@ -86,14 +86,14 @@ class Economy {
             $sql .= " LIMIT " . (int)$limit;
         }
 
-        $rows = $db->execute($sql, [
+        $stmt = $db->execute($sql, [
             ":userId" => $userId,
             ":method" => $method
-        ])->fetchAll(PDO::FETCH_ASSOC);
+        ]);
 
         $income = ["tix" => 0, "bux" => 0];
 
-        foreach ($rows as $row) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             if ($row["currency"] == 1) {
                 $income["tix"] = (int)$row["total"];
             } elseif ($row["currency"] == 2) {

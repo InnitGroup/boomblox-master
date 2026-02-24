@@ -3,8 +3,9 @@ class CSettingsManager {
     private $theme;
     private $user;
     public function __construct($post, $theme) {
+        global $theme, $user;
         $this->theme = $theme;
-        $this->user = new User(ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]));
+        $this->user = $user;
         if (!empty($post)) {
             $this->handle($post);
         }

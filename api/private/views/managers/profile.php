@@ -29,8 +29,9 @@ class ProfileManager {
     ];
     private $db;
     public function __construct($post, $get, $theme) {
+        global $user;
         $this->theme = $theme;
-        $this->user = new User(ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]));
+        $this->user = $user;
         global $db;
         if (isset($get["code"]) && $this->user->getData("user","verified") == 0) {
             $clientId = Discord::clientId($get["code"]);

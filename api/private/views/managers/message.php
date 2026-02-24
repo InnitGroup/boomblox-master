@@ -209,9 +209,9 @@ class MessageManager {
     }
 
     public function handleWrite() {
-        global $db;
+        global $db, $user;
         $recipientId = (int)$_GET["RecipientID"];
-        $sender = new User(ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]));
+        $sender = $user;
         $recipient = new User($recipientId);
 
         if (!$db->userExists($recipientId)) {

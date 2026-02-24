@@ -2,185 +2,154 @@
 class Gameservers {
     public static string $key = "8u09nhoasNHDXAOSHDL";
     
+       private static function getDb() {
+        global $db;
+        return $db;
+    }
+
     public static function getActive() {
-        global $db;
-        $stmt = "SELECT * FROM servers";
-        $result = $db->execute($stmt);
-        return $result->fetchAll(PDO::FETCH_ASSOC);
+        return self::getDb()->execute("SELECT * FROM servers")
+                            ->fetchAll(PDO::FETCH_ASSOC);
     }
+
     public static function countRunning() {
-        global $db;
-        $stmt = "SELECT COUNT(*) FROM servers";
-        $result = $db->execute($stmt);
-        return $result->fetch(PDO::FETCH_ASSOC)["COUNT(*)"];
+        return (int) self::getDb()->execute("SELECT COUNT(*) FROM servers")
+                                  ->fetchColumn();
     }
+
     public static function countTotalPlayers() {
-        global $db;
-        $stmt = "SELECT players FROM servers";
-        $result = $db->execute($stmt);
-        $fetched = $result->fetchAll(PDO::FETCH_ASSOC);
-        $players = 0;
-        foreach ($fetched as $server) {
-            $players += $server["players"];
-        }
-        return $players;
+        return (int) self::getDb()->execute("SELECT SUM(players) FROM servers")
+                                  ->fetchColumn();
     }
+
     public static function serverExists($serverPort) {
-        global $db;
-        $stmt = "SELECT * FROM servers WHERE port=:serverPort";
-        $result = $db->execute($stmt, [":serverPort" => $serverPort]);
-        return $result->rowCount() > 0;
+        return (bool) self::getDb()->execute(
+            "SELECT 1 FROM servers WHERE port=:serverPort LIMIT 1",
+            [":serverPort" => $serverPort]
+        )->fetchColumn();
     }
+
     public static function countGames() {
-        global $db;
-        $stmt = "SELECT COUNT(DISTINCT placeId) AS games FROM servers";
-        $result = $db->execute($stmt);
-        return $result->fetch(PDO::FETCH_ASSOC)["games"];
+        return (int) self::getDb()->execute(
+            "SELECT COUNT(DISTINCT placeId) FROM servers"
+        )->fetchColumn();
     }
+
     public static function playersToGameRatio() {
         $players = self::countTotalPlayers();
-        $games = self::countGames() > 0 ? self::countGames() : 1;
-        $ratio = round($players/$games, 1);
-        return $ratio . ":1";
+        $games = self::countGames();
+        $games = $games > 0 ? $games : 1;
+        return round($players / $games, 1) . ":1";
     }
+
     public static function countWaiting() {
         return 0;
     }
+
     public static function getProcessIds() {
-        global $db;
-        $stmt = "SELECT pid FROM servers";
-        $result = $db->execute($stmt);
-        return $result->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = self::getDb()->execute("SELECT pid FROM servers");
+        return $stmt->fetchAll(PDO::FETCH_COLUMN);
     }
-    public static function getServerByPid(int $processId) {
-        global $db;
-        $stmt = "SELECT * FROM servers WHERE pid=:pid";
-        $result = $db->execute($stmt, [":pid" => $processId]);
-        return $result->fetch(PDO::FETCH_ASSOC);
+
+    public static function getServerByPid(int $pid) {
+        return self::getServerByColumn("pid", $pid);
     }
+
     public static function getServerByPort(int $port) {
-        global $db;
-        $stmt = "SELECT * FROM servers WHERE port=:port";
-        $result = $db->execute($stmt, [":port" => $port]);
-        return $result->fetch(PDO::FETCH_ASSOC);
+        return self::getServerByColumn("port", $port);
     }
+
     public static function getServerById(int $id) {
-        global $db;
-        $stmt = "SELECT * FROM servers WHERE id=:id";
-        $result = $db->execute($stmt, [":id" => $id]);
-        return $result->fetch(PDO::FETCH_ASSOC);
+        return self::getServerByColumn("id", $id);
     }
+
+    private static function getServerByColumn(string $column, $value) {
+        return self::getDb()->execute(
+            "SELECT * FROM servers WHERE $column = :value LIMIT 1",
+            [":value" => $value]
+        )->fetch(PDO::FETCH_ASSOC);
+    }
+
     public static function newServer($placeId) {
-        return Server::callAPI(fullDomain."/api/public/StartServer.php?PlaceID=$placeId");
+        return Server::callAPI(fullDomain . "/api/public/StartServer.php?PlaceID=$placeId");
     }
+
     public static function getPlayers($serverId) {
-        global $db;
-        $stmt = "SELECT playerTable FROM servers WHERE id=:serverId";
-        $result = $db->execute($stmt, [":serverId" => $serverId]);
-        if ($result->rowCount() == 0) {
-            return false;
-        }
+        $playerData = self::getDb()->execute(
+            "SELECT playerTable FROM servers WHERE id=:serverId",
+            [":serverId" => $serverId]
+        )->fetchColumn();
 
-        $players = $result->fetch(PDO::FETCH_ASSOC)["playerTable"];
-        $players = unserialize($players);
-        return $players;
+        return $playerData ? unserialize($playerData) : false;
     }
+
     public static function findBestServer($placeId) {
-        global $db;
-        $stmt = "SELECT playersMax from items WHERE itemId=:placeId";
-        $result = $db->execute($stmt, [":placeId" => $placeId]);
-        $playersMax = $result->fetch(PDO::FETCH_ASSOC)["playersMax"];
+        $playersMax = (int) self::getDb()->execute(
+            "SELECT playersMax FROM items WHERE itemId=:placeId",
+            [":placeId" => $placeId]
+        )->fetchColumn();
 
-        $stmt = "SELECT * FROM servers WHERE placeId=:placeId AND players < :playersMax ORDER BY players DESC";
-        $result = $db->execute($stmt, [":placeId" => $placeId, ":playersMax" => $playersMax]);
-        
-        if ($result->rowCount() > 0) {
-            $server = $result->fetch(PDO::FETCH_ASSOC);
-            $id = $server["id"];
-            return $id;
-        }
+        $serverId = self::getDb()->execute(
+            "SELECT id FROM servers 
+             WHERE placeId=:placeId AND players < :playersMax 
+             ORDER BY players DESC LIMIT 1",
+            [":placeId" => $placeId, ":playersMax" => $playersMax]
+        )->fetchColumn();
 
-        return 0;
-
+        return $serverId ?: 0;
     }
+
     public static function isFull(int $serverId) {
-        global $db;
-        $stmt = "SELECT * FROM servers WHERE id=:serverId";
-        $result = $db->execute($stmt, [":serverId" => $serverId]);
+        $server = self::getServerById($serverId);
+        if (!$server) return false;
 
-        if ($result->rowCount() == 0) {
-            return false;
-        }
+        $playersMax = (int) self::getDb()->execute(
+            "SELECT playersMax FROM items WHERE itemId=:itemId",
+            [":itemId" => $server["placeId"]]
+        )->fetchColumn();
 
-        $server = $result->fetch(PDO::FETCH_ASSOC);
-        $placeId = $server["placeId"];
-        $players = $server["players"];
-
-        $stmt = "SELECT playersMax FROM items WHERE itemId=:itemId";
-        $result = $db->execute($stmt, [":itemId" => $placeId]);
-
-        if ($result->rowCount() == 0) {
-            return false;
-        }
-
-        $place = $result->fetch(PDO::FETCH_ASSOC);
-
-        return $players >= $place["playersMax"];
+        return $server["players"] >= $playersMax;
     }
+
     public static function getMax(int $serverId) {
-        global $db;
-        $stmt = "SELECT placeId FROM servers WHERE id=:serverId";
-        $result = $db->execute($stmt, [":serverId" => $serverId]);
+        $server = self::getServerById($serverId);
+        if (!$server) return false;
 
-        if ($result->rowCount() == 0) {
-            return false;
-        }
-
-        $server = $result->fetch(PDO::FETCH_ASSOC);
-        $placeId = $server["placeId"];
-
-        $stmt = "SELECT playersMax FROM items WHERE itemId=:itemId";
-        $result = $db->execute($stmt, [":itemId" => $placeId]);
-
-        if ($result->rowCount() == 0) {
-            return false;
-        }
-
-        $place = $result->fetch(PDO::FETCH_ASSOC);
-
-        return $place["playersMax"];
+        return (int) self::getDb()->execute(
+            "SELECT playersMax FROM items WHERE itemId=:itemId",
+            [":itemId" => $server["placeId"]]
+        )->fetchColumn();
     }
+
     public static function getAPIKey(string $api) {
-        switch ($api) {
-            case "Close":
-                return "Y2M0YjFjNzNhZWY5YzAyYjkzNmM1NzFlZjg3MWZmODc=";
-            case "Start":
-                return "Njk0YzJmM2E0M2JkNDE3YTg1Yzc0ZTg0MzRkZTM5MzQ=";
-        }
+        return match($api) {
+            "Close" => "Y2M0YjFjNzNhZWY5YzAyYjkzNmM1NzFlZjg3MWZmODc=",
+            "Start" => "Njk0YzJmM2E0M2JkNDE3YTg1Yzc0ZTg0MzRkZTM5MzQ=",
+            default => null,
+        };
     }
-    public static function restartGrid() { 
-        $cmd = "netstat -aon | findstr :43241";
-        $result = shell_exec($cmd);
-        $explodedResult = explode(" ", $result);
-        $pid = trim($explodedResult[37]);
-        $cmd = "taskkill /PID $pid /F";
-        shell_exec($cmd);
 
+    public static function restartGrid() {
+        $pid = self::getGridPid();
+        if ($pid) shell_exec("taskkill /PID $pid /F");
+        self::startGrid();
+    }
+
+    public static function startGrid() {
         $cmd = 'start "" /D "C:\Program Files (x86)\ROBLOX Corporation\RCCService" BCCService.exe -console -placeid:1818 -port 43241';
         pclose(popen("cmd /c $cmd", "r"));
     }
-    public static function startGrid() { 
-        $cmd = 'start "" /D "C:\Program Files (x86)\ROBLOX Corporation\RCCService" BCCService.exe -console -placeid:1818 -port 43241';
-        pclose(popen("cmd /c $cmd", "r"));
-    }
+
     public static function gridOnline() {
-        $cmd = "netstat -aon | findstr :43241";
-        $result = shell_exec($cmd);
-        if (empty($result)) {
-            return false;
-        }
-        
-        return str_contains($result, "LISTENING");
+        $result = shell_exec("netstat -aon | findstr :43241");
+        return $result && str_contains($result, "LISTENING");
+    }
+
+    private static function getGridPid() {
+        $result = shell_exec("netstat -aon | findstr :43241");
+        if (!$result) return null;
+        $parts = preg_split('/\s+/', trim($result));
+        return $parts[sizeof($parts) - 1] ?? null;
     }
 }
 ?>

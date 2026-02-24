@@ -8,7 +8,7 @@ class ThemeManager {
         $this->auth = new Authentication;
         $this->theme = 0;
         if ($this->auth->isAuthed()) {
-            $this->user = new User(ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]));
+            $this->user = $this->auth->user;
             $this->theme = $this->user->getData("user","theme");
         }
     }

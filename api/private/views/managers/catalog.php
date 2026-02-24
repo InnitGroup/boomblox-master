@@ -656,7 +656,7 @@ class CatalogManager {
         $counter = 0;
         $trCounter = 0;
 
-        foreach ($items->fetchAll(PDO::FETCH_ASSOC) as $item) {
+        while ($item = $items->fetch(PDO::FETCH_ASSOC)) {
             $sales = 0;
             $item["itemType"] == "catalog" && $sales = $item["interactions"];
             if ($item["itemType"] == "game" && $this->m == "BestSelling") {break;}

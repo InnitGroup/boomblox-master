@@ -17,7 +17,8 @@ class CharacterManager {
         2, 8, 11, 12, 17, 18
     ];
     public function __construct($post) {
-        $this->user = new User(ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]));
+        global $user;
+        $this->user = $user;
         #print_r($post);
         if (isset($_GET["AttireTypeID"])) {
             $attireId = (int)$_GET["AttireTypeID"];

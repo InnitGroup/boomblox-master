@@ -59,9 +59,10 @@ class FriendInvitationManager {
                     break;
 
                 case 'ctl00$cphRoblox$lbDecline':
+                    global $user;
                     $invitationData = $this->getInvitationData($_GET["InvitationID"]);
                     $sender = new User($invitationData["senderId"]);
-                    $recipient = new User(ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]));
+                    $recipient = $user;
                     $recipientUn = $recipient->getUsername();
 
                     $message = [
@@ -186,9 +187,9 @@ class FriendInvitationManager {
     }
 
     public function handleWrite() {
-        global $db;
+        global $db, $user;
         $recipientId = (int)$_GET["RecipientID"];
-        $sender = new User(ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]));
+        $sender = $user;
         $recipient = new User($recipientId);
 
         if (!$db->userExists($recipientId)) {

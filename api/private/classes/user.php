@@ -83,6 +83,10 @@ class User {
         return $this->data["client"]["joincode"];
     }
 
+    public function getBlurb() {
+        return $this->data["user"]["blurb"];
+    }
+
     public function getData($dataType = "user", $property = "id") {
         return $this->data[$dataType][$property] ?? NULL;
     }

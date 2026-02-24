@@ -1,6 +1,7 @@
 <?php
 # general authentication management and data handling
 class Authentication {
+    public $user;
 
     # checks if the current visitor on-site is authenticated
     public function isAuthed() {
@@ -13,18 +14,23 @@ class Authentication {
                 
                 if (!isset($user)) {
                     #$userId = ROBLOSECURITY::match($roblosecurity);
-                    $user = new User($userId);
+                    $this->user = new User($userId);
+                    $user = $this->user;
+                } else {
+                    $this->user = $user;
                 }
 
                 Economy::issueDaily($user);
                 if ($user->isPunished()) {if (basename($_SERVER['PHP_SELF']) !== "NotApproved.php") {header("Location: /NotApproved.aspx"); exit;}}
 
                 $stmt = "UPDATE users SET `lastOnline` = :lastOnline WHERE `id`=:id";
-                $db->execute($stmt,[":lastOnline" => date("Y-m-d H:i:s"), ":id" => $user->getUserId()]);
+                $db->execute($stmt, [":lastOnline" => date("Y-m-d H:i:s"), ":id" => $user->getUserId()]);
                 return true;
             }
+
             return false;
         }
+
         return false;
     }
 

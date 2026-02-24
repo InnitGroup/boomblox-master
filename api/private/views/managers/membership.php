@@ -3,8 +3,9 @@ class MembershipManager {
     private $theme;
     private $user;
     public function __construct($theme) {
+        global $user;
         $this->theme = $theme;
-        $this->user = new User(ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]));
+        $this->user;
     }
     public function cancel() {
         if ($this->user->hasBC()) {
