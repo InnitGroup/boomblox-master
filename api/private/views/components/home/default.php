@@ -15,7 +15,7 @@
 		</div>
 	</div>
 	<div class="FrontPagePanel" id="Movie">
-	<iframe width="424" height="250" src="<?=$theme == 1 ? "https://www.youtube.com/embed/Pwl_1n_purY?si=zpjI-o6oUUv04rB4" : "https://www.youtube.com/embed/S7TELrdHI8E?si=VW1xERt_5n7DzWpU"?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
+	<iframe width="424" height="250" src="https://www.bitview.net/embed.php?v=LYkKRQuT7_5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
 	</div>
 	<div class="FrontPagePanel" id="FrontPageRectangleAd">
 		<?=Ad::generateAd("300x250a")?>
@@ -80,7 +80,7 @@
 			<div style="float: left;">
 				<div style="margin: 0px 5px 5px 5px; ">
 					<a id="ctl00_cphRoblox_FeaturedGames_AssetThumbnailImage" disabled="disabled" title="gone fhishing {{WIP}}" href="/Item.aspx?ID=<?=$featuredGameId?>" style="display:inline-block;">
-						<img src="https://t2.xoblog.dev/0055527c05201d325922f9dd82393972?v=1" border="0" alt="gone fhishing {{WIP}}">
+						<img src="https://t2.<?=domain?>/0055527c05201d325922f9dd82393972?v=1" border="0" alt="gone fhishing {{WIP}}">
 					</a>
 				</div>
 			</div>
@@ -94,8 +94,8 @@
 					<div id="ctl00_cphRoblox_FeaturedGames_VisitedPanel" class="Visited">Visited: <?=Helper::times($featuredGame->get()->interactions)?></div>
 					<div id="Creator" class="Creator">
 						<div class="Avatar">
-							<a id="ctl00_cphRoblox_FeaturedGames_AvatarImage" title="hecka" href="https://xoblog.dev/User.aspx?ID=140" style="display:inline-block;cursor:pointer;">
-								<img src="https://t2.xoblog.dev/546fb3cf43677604674b9ad622b0a44c?v=1" style="height:100px;" border="0" alt="hecka" blankurl="http://t6-cf.roblox.com/blank-100x100.gif">
+							<a id="ctl00_cphRoblox_FeaturedGames_AvatarImage" title="hecka" href="https://<?=domain?>/User.aspx?ID=140" style="display:inline-block;cursor:pointer;">
+								<img src="https://t2.<?=domain?>/546fb3cf43677604674b9ad622b0a44c?v=1" style="height:100px;" border="0" alt="hecka" blankurl="http://t6-cf.roblox.com/blank-100x100.gif">
 							</a>
 						</div> Creator: <a id="ctl00_cphRoblox_FeaturedGames_CreatorHyperLink" href="User.aspx?ID=140">hecka</a>
 					</div>

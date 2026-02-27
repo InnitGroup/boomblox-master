@@ -91,8 +91,25 @@ class Site {
             "currencyIcon" => "Boombux",
             "membership" => "Bombers Club",
             "shortCurrency" => "B$"
+        ],
+        [
+            "name" => "GoodBlox",
+            "alias" => "GOODBLOX",
+            "company" => "ROBLOX Corporation",
+            "company2" => "ROBLOX Corp.",
+            "year" => "©2009. Patents pending.",
+            "url" => "goodblox.xyz",
+            "xmlUrl" => "www-roblox-com",
+            "logo" => "goodblox_logo.png",
+            "favicon" => "gb_favicon.ico",
+            "logoDimensions" => "width:257px;height:67px;",
+            "css" => "AllCSS3.ashx",
+            "3char" => "gbx",
+            "currency" => "GOODBUX",
+            "currencyIcon" => "ROBUX",
+            "membership" => "Builders Club",
+            "shortCurrency" => "G$"
         ]
-        
     ];
     public static $domain = "http://".url;
     public static $noHttpDomain = url;

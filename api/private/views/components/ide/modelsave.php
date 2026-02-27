@@ -3,7 +3,7 @@
 	<head>
 		<title>Save</title>
 		<link href="/CSS/RobloxOld.css" rel="stylesheet" type="text/css" />
-		<script src="http://xoblog.dev/ScriptResource.axd?d=dXBsb2Fk"></script>
+		<script src="/ScriptResource.axd?d=dXBsb2Fk"></script>
         <script>
             function upload() {
                 var data = window.external.WriteSelection();

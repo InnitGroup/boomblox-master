@@ -48,18 +48,18 @@ class CDN {
     }
 
     # checks if a hash already exists in the cdn
-    public static function hashExists($altHash,$size,$format, &$hasError) {
+    public static function hashExists($altHash, $size, $format, &$hasError) {
         global $db;
-        $sql = "SELECT * FROM cdn WHERE `altHash`='".$altHash."' AND `size`='".$size."' AND `format`='".$format."'";
-        $result = $db->execute($sql);
+        $stmt = "SELECT * FROM cdn WHERE `altHash`=:altHash AND `size`=:_size AND `format`=:format";
+        $result = $db->execute($stmt, [":altHash" => $altHash, ":_size" => $size, ":format" => $format]);
+
         if ($result->rowCount() > 0) {
             $result = $result->fetch(PDO::FETCH_ASSOC);
             if ($result["error"] == 0) {
                 return "/cdn/".$result["location"]."/".$result["hash"];;
-            } else {
-                $hasError = 1;
-                return false;
             }
+
+            $hasError = 1;
         }
     }
 

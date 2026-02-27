@@ -23,7 +23,7 @@ if (Server::isIE7()): ?>
                         $asset = new Asset($place["itemId"]);
                         $render = $asset->GetThumbnail(420, 230, "PNG"); ?>
                         <td class="UserPlace">
-                            <a id="ctl00_cphRoblox_CoolPlacesDataList_ctl00_rbxContentImage" title="<?=htmlspecialchars(Helper::debugString($place["itemName"]))?>" href="/Item.aspx?ID=<?=(int)$place["itemId"]?>" style="display:inline-block;cursor:pointer;"><img style="width:120px;height:70px;" src="<?=$render?>" border="0" alt="<?=htmlspecialchars(Helper::debugString($place["itemName"]))?>" blankurl="http://t2.xoblog.dev:80/blank-120x70.gif"/></a>
+                            <a id="ctl00_cphRoblox_CoolPlacesDataList_ctl00_rbxContentImage" title="<?=htmlspecialchars(Helper::debugString($place["itemName"]))?>" href="/Item.aspx?ID=<?=(int)$place["itemId"]?>" style="display:inline-block;cursor:pointer;"><img style="width:120px;height:70px;" src="<?=$render?>" border="0" alt="<?=htmlspecialchars(Helper::debugString($place["itemName"]))?>" blankurl="http://t2.<?=domain?>:80/blank-120x70.gif"/></a>
                         </td>
                 <?php endforeach;
                 endif; ?>
@@ -40,9 +40,9 @@ if (Server::isIE7()): ?>
 <?php else: ?>
 
 <div id="ctl00_cphRoblox_CoolPlaces_FlashContent" onload="MM_CheckFlashVersion(\'8,0,0,0\',\'Content on this page requires a newer version of Macromedia Flash Player. Do you want to download it now?\');">
-    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://xoblog.dev/Data/swflash.cab" width="900" height="100" id="CoolPlaces" align="middle">
-        <param name="movie" value="/images/CoolPlaces.swf?place1=<?=$places[0]["itemId"]?>&place2=<?=$places[1]["itemId"]?>&place3=<?=$places[2]["itemId"]?>&place4=<?=$places[3]["itemId"]?>&place5=<?=$places[4]["itemId"]?>&bounce=true&subdomain=http://xoblog.dev">
-        <embed src="/images/CoolPlaces.swf?place1=<?=$places[0]["itemId"]?>&place2=<?=$places[1]["itemId"]?>&place3=<?=$places[2]["itemId"]?>&place4=<?=$places[3]["itemId"]?>&place5=<?=$places[4]["itemId"]?>&bounce=true&subdomain=http://xoblog.dev" width="900" height="100" name="CoolPlaces" align="middle" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
+    <object classid="clsid:d27cdb6e-ae6d-11cf-96b8-444553540000" codebase="http://<?=domain?>/Data/swflash.cab" width="900" height="100" id="CoolPlaces" align="middle">
+        <param name="movie" value="/images/CoolPlaces.swf?place1=<?=$places[0]["itemId"]?>&place2=<?=$places[1]["itemId"]?>&place3=<?=$places[2]["itemId"]?>&place4=<?=$places[3]["itemId"]?>&place5=<?=$places[4]["itemId"]?>&bounce=true&subdomain=http://<?=domain?>">
+        <embed src="/images/CoolPlaces.swf?place1=<?=$places[0]["itemId"]?>&place2=<?=$places[1]["itemId"]?>&place3=<?=$places[2]["itemId"]?>&place4=<?=$places[3]["itemId"]?>&place5=<?=$places[4]["itemId"]?>&bounce=true&subdomain=http://<?=domain?>" width="900" height="100" name="CoolPlaces" align="middle" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer">
         </embed> 
     </object>
 </div>

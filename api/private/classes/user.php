@@ -84,7 +84,7 @@ class User {
     }
 
     public function getBlurb() {
-        return $this->data["user"]["blurb"];
+        return isset($this->data["user"]["blurb"]) ? $this->data["user"]["blurb"] : "";
     }
 
     public function getData($dataType = "user", $property = "id") {

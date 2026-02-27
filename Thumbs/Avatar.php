@@ -85,9 +85,6 @@ class Avatar extends Base {
         $size = Helper::dimensions($width,$height);
         $script = $this->GetScript($width,$height,$imageFormat);
         $altHash = md5($user->getAlternateAppearance());
-        #if ($user->getUserId() == 3) {
-            #$script = $this->TestScript($width,$height,$imageFormat);
-        #}
         $xml = Thumbnail::getXml($script);
 
         if (!$ignoreCache) {

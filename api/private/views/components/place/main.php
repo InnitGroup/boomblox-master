@@ -56,12 +56,12 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
 					<div id="ReportAbuse">
 						<div id="ctl00_cphRoblox_AbuseReportButton1_AbuseReportPanel" class="ReportAbusePanel">
 							<span class="AbuseIcon">
-								<a id="ctl00_cphRoblox_AbuseReportButton1_ReportAbuseIconHyperLink" href="AbuseReport/AssetVersion.aspx?ID<?=$id?>2&amp;ReturnUrl=http%3a%2f%2fxoblog.dev%2fItem.aspx%3fID%3d<?=$id?>">
+								<a id="ctl00_cphRoblox_AbuseReportButton1_ReportAbuseIconHyperLink" href="AbuseReport/AssetVersion.aspx?ID<?=$id?>2&amp;ReturnUrl=http%3a%2f%2f<?=domain?>%2fItem.aspx%3fID%3d<?=$id?>">
 									<img src="/images/abuse.PNG" alt="Report Abuse" border="0">
 								</a>
 							</span>
 							<span class="AbuseButton">
-								<a id="ctl00_cphRoblox_AbuseReportButton1_ReportAbuseTextHyperLink" href="AbuseReport/AssetVersion.aspx?ID=<?=$id?>&amp;ReturnUrl=http%3a%2f%2fxoblog.dev%2fItem.aspx%3fID%3d<?=$id?>">Report Abuse</a>
+								<a id="ctl00_cphRoblox_AbuseReportButton1_ReportAbuseTextHyperLink" href="AbuseReport/AssetVersion.aspx?ID=<?=$id?>&amp;ReturnUrl=http%3a%2f%2f<?=domain?>%2fItem.aspx%3fID%3d<?=$id?>">Report Abuse</a>
 							</span>
 						</div>
 					</div>

@@ -81,7 +81,7 @@ if (Server::isPost()) {
                             $texture = "/cdn/t2/unavail-420x230.png";
 
                             if (file_exists($_SERVER["DOCUMENT_ROOT"] . "/cdn/t4/".$ad["md5"])) {
-                                $texture = "https://t4.xoblog.dev/".$ad["md5"];
+                                $texture = "https://t4." . domain . "/".$ad["md5"];
                             }
                             
                             $id = $ad["id"];

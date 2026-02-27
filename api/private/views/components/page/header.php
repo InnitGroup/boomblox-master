@@ -50,8 +50,8 @@ if (Server::isPost()) {
                                 </div>
                                     </div>
                                 <div id="Logo">
-                                    <a id="ctl00_rbxImage_Logo" title="<?=Site::getThemeProperty("name",$theme);?>" href="/" style="display:inline-block;cursor:pointer;width:267px;height:58px;">
-                                        <img src="/images/<?=Site::getThemeProperty("logo", $theme)?>?t=<?=time()?>" border="0" alt="<?=Site::getThemeProperty("name",$theme);?>" blankurl="http://t2.xoblog.dev/blank-267x70.gif" style="position:relative;top:4px">
+                                    <a id="ctl00_rbxImage_Logo" title="<?=Site::getThemeProperty("name",$theme);?>" href="/" style="display:inline-block;cursor:pointer;">
+                                        <img src="/images/<?=Site::getThemeProperty("logo", $theme)?>?t=<?=time()?>" border="0" alt="<?=Site::getThemeProperty("name",$theme);?>" blankurl="http://t2.<?=domain?>/blank-267x70.gif" style="">
                                     </a>
                                 </div>
                                 <?php if ($theme == 3 && $user->getBoombux() > 0 || $theme !== 3): ?>
