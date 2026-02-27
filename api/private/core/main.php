@@ -41,7 +41,7 @@ const testingIp = "26.33.216.211";
 #GLOBALS
 $db = new Database;
 $themeManager = new ThemeManager;
-$theme = $themeManager->getTheme();
+$theme = 5;
 $auth = $themeManager->getAuth();
 $user = $themeManager->getUser();
 
