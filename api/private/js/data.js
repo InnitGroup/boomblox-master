@@ -40,7 +40,7 @@ if (isIE() == false) {
 
 //https://www.youtube.com/watch?v=Ctz1Fsgt9OE
 async function __doWebPostBack(url, target, argument) {
-    fetch("https://xoblog.dev/"+url, { // Site::$standaloneDomain
+    fetch("/"+url, { // Site::$standaloneDomain
         "method": "POST",
         "headers": {
             "Content-Type": "application/json; charset=utf-8",
