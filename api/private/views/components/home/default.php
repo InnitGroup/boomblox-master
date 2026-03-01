@@ -15,7 +15,7 @@
 		</div>
 	</div>
 	<div class="FrontPagePanel" id="Movie">
-	<iframe width="424" height="250" src="https://www.bitview.net/embed.php?v=LYkKRQuT7_5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
+	<iframe width="424" height="250" src="<?=$theme == 1 ? "https://www.youtube.com/embed/Pwl_1n_purY?si=zpjI-o6oUUv04rB4" : "https://www.youtube.com/embed/S7TELrdHI8E?si=VW1xERt_5n7DzWpU"?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
 	</div>
 	<div class="FrontPagePanel" id="FrontPageRectangleAd">
 		<?=Ad::generateAd("300x250a")?>

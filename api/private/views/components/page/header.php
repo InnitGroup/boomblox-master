@@ -50,7 +50,7 @@ if (Server::isPost()) {
                                 </div>
                                     </div>
                                 <div id="Logo">
-                                    <a id="ctl00_rbxImage_Logo" title="<?=Site::getThemeProperty("name",$theme);?>" href="/" style="display:inline-block;cursor:pointer;">
+                                    <a id="ctl00_rbxImage_Logo" title="<?=Site::getThemeProperty("name",$theme);?>" href="/" style="display:inline-block;cursor:pointer;position:relative;top:4px">
                                         <img src="/images/<?=Site::getThemeProperty("logo", $theme)?>?t=<?=time()?>" border="0" alt="<?=Site::getThemeProperty("name",$theme);?>" blankurl="http://t2.<?=domain?>/blank-267x70.gif" style="">
                                     </a>
                                 </div>

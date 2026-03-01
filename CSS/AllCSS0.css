@@ -140,7 +140,7 @@ input.Text {
 }
 #Banner #Logo {
   float: left;
-  margin: 0px 0;
+  margin: 4px 0;
   text-align: center;
   width: 293px;
 }

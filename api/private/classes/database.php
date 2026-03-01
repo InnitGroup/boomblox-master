@@ -13,8 +13,12 @@ class Database {
     # main constructor
     public function __construct() {
         if ($this->current == NULL) {
-            $this->current = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->dbuser, $this->dbpassword);
-            $this->current->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+            try {
+                $this->current = new PDO("mysql:host=$this->host;dbname=$this->dbname", $this->dbuser, $this->dbpassword);
+                $this->current->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+            } catch (Exception $e) {
+                Discord::sendWebhookMessage("staff", "[DB Error] " . $e->getMessage());
+            }
         }
     }
 
