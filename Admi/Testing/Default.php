@@ -4,34 +4,9 @@ global $theme, $auth, $db, $User;
 !$auth->isAuthed() && Server::_404();;
 
 $page = new APageBuilder;
+$page->buildHeader();
 
-exit;
-$participants = [
-    "viny",
-    "tmr",
-    "pwnzor",
-    "nox",
-    "kainsteronyt",
-    "grenbiguy",
-    "Zanryth",
-    "sharklebanan",
-    "Chetoz",
-    "G2HJS",
-    "1o4xy9i8h9fPwnerv1",
-    "Spades",
-    "cubp",
-    "kainsteronyt",
-    "chicken",
-    "thereal",
-    "jamster",
-    "phil",
-    "Tixguy211",
-    "platos",
-    "killeroid7"
-];
+PageBuilder::addComponent("testing", "testa");
 
-foreach ($participants as $participant) {
-    $participantObj = new User($db->getIdByUser($participant));
-    $participantObj->giveItem(2505);
-}
+$page->buildFooter();
 ?>

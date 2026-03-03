@@ -13,10 +13,12 @@
         </div>
         <div class="ajax__tab_body" id="TabbedInfo_CommentaryTab">
             <div class="ajax__tab_panel">
+                <div id="ctl00_cphRoblox_rbxCommentsContainer"  class="CommentsContainer">
                 <?php
                 $itemId = $data->itemId;
                 PageBuilder::addComponent("commentary", "main", compact("data", "commentData", "commentCount"))
                 ?>
+                </div>
             </div>
         </div>
     </div>

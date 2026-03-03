@@ -175,7 +175,9 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
 					</div>  
                     <div class="ajax__tab_body" id="ctl00_cphRoblox_TabbedInfo_CommentaryTab" style="display:none;">
                         <div class="ajax__tab_panel">
+							<div id="ctl00_cphRoblox_rbxCommentsContainer"  class="CommentsContainer">
                             <?=PageBuilder::addComponent("commentary", "main", compact("id", "commentData", "commentCount"))?>
+							</div>
                         </div>
                     </div>
                     <div class="ajax__tab_body" id="ctl00_cphRoblox_TabbedInfo_GamesTab">

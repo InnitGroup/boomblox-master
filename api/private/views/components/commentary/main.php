@@ -9,7 +9,6 @@ if (isset($_POST['__EVENTTARGET'])) {
     }
 }
 ?>
-<div id="ctl00_cphRoblox_rbxCommentsContainer"  class="CommentsContainer">
     <?php if ($comments > 0): ?>
     <h3>Comments (<?=$comments?>)</h3>
     <div class="HeaderPager">
@@ -58,4 +57,3 @@ if (isset($_POST['__EVENTTARGET'])) {
         <div style="height:6px;clear:both;"></div>
         <a class="Button" href="javascript:__doPostBack('ctl00$cphRoblox$Comment','')">Post Comment</a>
     </div>
-</div>
