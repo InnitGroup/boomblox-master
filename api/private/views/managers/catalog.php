@@ -62,15 +62,23 @@ class CatalogManager {
     public function __construct($m = "TopFavorites", $c = "8", $t = "PastWeek", $d = "All", $p = "1", $q = "", $theme = 0) {
         $validC = [2, 4, 9, 8, 10, 11, 12, 13, 17, 18];
         $validM = ["TopFavorites", "BestSelling", "ForSale", "RecentlyUpdated", "PublicDomain"];
+        $validT = ["PastHour", "PastDay", "PastWeek", "PastMonth", "AllTime"];
         if (!in_array($c, $validC)) {
             Server::_404();
         }
+
         if (!in_array($m, $validM)) {
             Server::_404();
         }
+
+        if (!in_array($t, $validT)) {
+            Server::_404();
+        }
+
         if (!is_numeric($p)) {
             Server::_404();
         }
+        
         if (!is_numeric($c)) {
             Server::_404();
         }
