@@ -468,10 +468,10 @@ class User {
         return substr(implode("-",$this->data["character"]),77);
     }
     public function getHead() {
-        return $this->data["character"]["head"];
+        return isset($this->data["character"]["head"]) ? $this->data["character"]["head"] : 2268;
     }
     public function getFace() {
-        return $this->data["character"]["face"];
+        return isset($this->data["character"]["face"]) ? $this->data["character"]["face"] : 1010;
     }
     public function isOnline() {
         if (!$this->getData("user","lastOnline")) {

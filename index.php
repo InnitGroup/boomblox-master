@@ -2,6 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
 global $auth;
+/*
 if (!$auth->isAuthed()) {
     $log = implode(" -- ", $_SERVER);
     if (strpos($_SERVER["HTTP_USER_AGENT"], "Discordbot/2.0") !== false) {
@@ -10,6 +11,7 @@ if (!$auth->isAuthed()) {
         Discord::sendWebhookMessage("e", "Emergency log: ```" . $log . "```");
     }
 }
+*/
 
 $auth->isAuthed() && header("Location: /Default.aspx") && exit;
 

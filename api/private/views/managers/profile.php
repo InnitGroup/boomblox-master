@@ -81,7 +81,7 @@ class ProfileManager {
                 if (strlen($post["Blurb"]) > 1000) {
                     $post["Blurb"] = substr($post["Blurb"], 1000);
                 }
-                $this->postData = ["actionType" => $decrypt[1], "ageGroup" => $post["AgeGroup"], "chatMode" => $post["ChatMode"], "email" => $post["TextBoxEMail"], "blurb" => htmlspecialchars(Helper::debugString($post["Blurb"]))];
+                $this->postData = ["actionType" => $decrypt[1], "ageGroup" => $post["AgeGroup"], "chatMode" => $post["ChatMode"], "email" => $post["TextBoxEMail"], "blurb" => Helper::debugString($post["Blurb"])];
                 $this->processEdits();
             }
         }
@@ -92,6 +92,9 @@ class ProfileManager {
             case "Submit":
                 if ($this->postData["blurb"]) {
                     $blurb = Helper::debugString($this->postData["blurb"]);
+                    if (str_contains($blurb, domain)) {
+                        $blurb = "[ Content Deleted ]";
+                    }
 
                     $stmt = "UPDATE users SET blurb=:blurb WHERE id=:id";
                     $result = $db->execute($stmt, [":blurb" => $blurb, ":id" => $user->getUserId()]);

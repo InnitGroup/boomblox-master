@@ -14,13 +14,13 @@ if (isset($_POST['__EVENTTARGET'])) {
     <h3>Comments (<?=$comments?>)</h3>
     <div class="HeaderPager">
         <?php if ($page > 1): ?>
-        <a href="javascript:__doWebPostBack('/api/public/views/Commentary.php?ID=<?=$itemId?>', 'ctl00_cphRoblox_rbxCommentsContainer', {'page': <?=$page?>, 'action': 'previous', 'id': <?=$itemId?>})"><span class="NavigationIndicators">&lt;&lt;</span> Previous</a>
+        <a href="javascript:__doWebPostBack('api/public/views/Commentary.php?ID=<?=$itemId?>', 'ctl00_cphRoblox_rbxCommentsContainer', {'page': <?=$page?>, 'action': 'previous', 'id': <?=$itemId?>})"><span class="NavigationIndicators">&lt;&lt;</span> Previous</a>
         <?php endif; ?>
 
         <span>Page <?=$page?> of <?=$pages?></span>
         
         <?php if ($pages > 1 && $page < $pages): ?>
-        <a href="javascript:__doWebPostBack('/api/public/views/Commentary.php?ID=<?=$itemId?>', 'ctl00_cphRoblox_rbxCommentsContainer', {'page': <?=$page?>, 'action': 'next', 'id': <?=$itemId?>})"> Next <span class="NavigationIndicators">&gt;&gt;</span></a>
+        <a href="javascript:__doWebPostBack('api/public/views/Commentary.php?ID=<?=$itemId?>', 'ctl00_cphRoblox_rbxCommentsContainer', {'page': <?=$page?>, 'action': 'next', 'id': <?=$itemId?>})"> Next <span class="NavigationIndicators">&gt;&gt;</span></a>
         <?php endif; ?>
         
     </div>
@@ -40,13 +40,13 @@ if (isset($_POST['__EVENTTARGET'])) {
     <div class="FooterPager">
         <?php if ($page > 1): ?>
         <!--<a href="javascript:__doPostBack('ctl00$cphRoblox$rbxTabbedInfoCommentaryTab$PageSelector_Previous', '<?=$page-1?>')"><span class="NavigationIndicators">&lt;&lt;</span> Previous</a>-->
-        <a href="javascript:__doWebPostBack('/api/public/views/Commentary.php?ID=<?=$itemId?>', 'ctl00_cphRoblox_rbxCommentsContainer', {'page': <?=$page?>, 'action': 'previous', 'id': <?=$itemId?>})"><span class="NavigationIndicators">&lt;&lt;</span> Previous</a>
+        <a href="javascript:__doWebPostBack('api/public/views/Commentary.php?ID=<?=$itemId?>', 'ctl00_cphRoblox_rbxCommentsContainer', {'page': <?=$page?>, 'action': 'previous', 'id': <?=$itemId?>})"><span class="NavigationIndicators">&lt;&lt;</span> Previous</a>
         <?php endif; ?>
 
         <span>Page <?=$page?> of <?=$pages?></span>
 
         <?php if ($pages > 1 && $page < $pages): ?>
-        <a href="javascript:__doWebPostBack('/api/public/views/Commentary.php?ID=<?=$itemId?>', 'ctl00_cphRoblox_rbxCommentsContainer', {'page': <?=$page?>, 'action': 'next', 'id': <?=$itemId?>})"> Next <span class="NavigationIndicators">&gt;&gt;</span></a>
+        <a href="javascript:__doWebPostBack('api/public/views/Commentary.php?ID=<?=$itemId?>', 'ctl00_cphRoblox_rbxCommentsContainer', {'page': <?=$page?>, 'action': 'next', 'id': <?=$itemId?>})"> Next <span class="NavigationIndicators">&gt;&gt;</span></a>
         <?php endif; ?>
         
     </div>

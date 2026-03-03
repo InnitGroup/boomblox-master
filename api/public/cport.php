@@ -6,6 +6,8 @@ global $user, $auth;
 
 #!$auth->isAuthed() && Server::_404();
 
+Discord::sendWebhookMessage("anticheat", "{$user->getUsername()} test");
+
 if ($_SERVER["HTTP_USER_AGENT"] !== "Boomblox/1.0") {
     Server::_404();
 }
