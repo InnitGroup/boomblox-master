@@ -55,7 +55,6 @@ if ($user->getTimeSinceLastClientMd5() > 120) {
     exit;
 }
 
-/*
 if ($user->isInGame()) {
     $file = new File("/api/private/lua/joinfail.lua", [
         "Error" => "join, you can not play multiple games at once.",
@@ -64,7 +63,6 @@ if ($user->isInGame()) {
     echo $file->handle();
     exit;
 }
-*/
 
 if (Setting::disabled("Gameservers")) {
     $file = new File("/api/private/lua/joinfail.lua", [
