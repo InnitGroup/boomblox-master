@@ -28,6 +28,7 @@ class ProfileManager {
         "darryl4852@msn.com",
     ];
     private $db;
+    
     public function __construct($post, $get, $theme) {
         global $user;
         $this->theme = $theme;
@@ -86,6 +87,7 @@ class ProfileManager {
             }
         }
     }
+
     public function processEdits() {
         global $db, $user;
         switch ($this->postData["actionType"]) {
@@ -124,138 +126,11 @@ class ProfileManager {
         }
     }
 
-    public function getVerification() {
-        $verification = '';
-        $string = '';
-        if ($this->theme == 1) {
-            $string = "Email";
-        } else {
-            $string = "Discord Account";
-        }
-        if ($this->user->getData("user", "verified") == 0) {
-            $verification = '
-                <div style="text-align:center;">
-                    <a title="Verify '.$string.'" href="javascript:__doPostBack(\''.$this->user->getData("user","email").'\',\'Roblox$VerifyEmail\')">Verify '.$string.'</a>
-                    <div class="Suggestion">and get a free hat!</div>
-                </div>
-            ';
-        }
-        return $verification;
-    }
-    public function getEmail() {
-        $string = '';
-        if ($this->theme == 1) {
-            $string = "Email";
-        } else {
-            $string = "Discord Account";
-        }
-
-        $div = '
-        <fieldset title="Update '.$string.'">
-                        <legend>Update '.$string.'</legend>
-                        <div class="EmailRow">
-                            ';
-        
-        if ($this->user->getData("user", "verified") == 1) {
-            if ($this->theme == 1) {
-                $div .= '<label class="Label">Email:</label>&nbsp; <input disabled name="TextBoxEMail" type="text" value="'.$this->randomEmails[(int)$this->user->getData("user","email")[0]];
-            } else {
-                $div .= '<label class="Label">Discord ID:</label>&nbsp; <input disabled name="TextBoxEMail" type="text" value="'.htmlspecialchars($this->user->getData("user","email"));
-            }
-        } else {
-            if ($this->theme == 1) {
-                $div .= '<label class="Label">Email:</label>&nbsp; <input disabled name="TextBoxEMail" type="text"';
-            } else {
-                $div .= '<label class="Label">Email:</label>&nbsp; <input disabled name="TextBoxEMail" type="text"';
-            }
-        }
-
-        $div .= '" tabindex="4" class="TextBox">
-            </div>
-            '.$this->getVerification().'
-        </fieldset>';
-        return $div;
-    }
     public function load() { # BRB 
-        echo '
-        <div id="Body">
-            <div id="EditProfileContainer">
-                <h2>Edit Profile</h2>
-                <div id="AgeGroup">
-                    <fieldset title="Update your age-group">
-                        <legend>Update your age-group</legend>
-                        <div class="Suggestion"> This is used to customize your '.Site::getThemeProperty("alias", $this->theme).' experience. Users under 13 years are only shown pre-approved images. </div>
-                        <div class="AgeGroupRow">
-                            <table>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <input type="radio" name="AgeGroup" value="1" tabindex="1">
-                                            <label>Under 13 years</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="radio" name="AgeGroup" value="2" checked="checked" tabindex="1">
-                                            <label>13 years or older</label>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </fieldset>
-                </div>
-                <div id="ChatMode">
-                    <fieldset title="Update your chat mode">
-                        <legend>Update your chat mode</legend>
-                        <div class="Suggestion"> All in-game chat is subject to profanity filtering and moderation. For enhanced chat safety, choose SuperSafe Chat; only chat from pre-approved menus will be shown to you. </div>
-                        <div class="ChatModeRow">
-                            <table border="0">
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <input type="radio" name="ChatMode" value="False" checked="checked" tabindex="2">
-                                            <label>Safe Chat</label>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <input type="radio" name="ChatMode" value="True" tabindex="2">
-                                            <label>SuperSafe Chat</label>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </fieldset>
-                </div>
-                <div id="ResetPassword">
-                    <fieldset title="Reset your password">
-                        <legend>Change your password</legend>
-                        <div class="Suggestion">Click the button below to change your password.</div>
-                        <div class="ResetPasswordRow"> &nbsp; <a href="javascript:__doPostBack(\'\',\'Roblox$ChangePassword\')">Change Password</a></div>
-                    </fieldset>
-                </div>
-                <div id="EnterEmail">
-                    '.$this->getEmail().'
-                </div>
-                <div id="Blurb">
-                    <fieldset title="Update your personal blurb">
-                        <legend>Update your personal blurb</legend>
-                        <div class="Suggestion">Describe yourself here (max. 1000 characters). Make sure not to provide any details that can be used to identify you outside '.Site::getThemeProperty("alias", $this->theme).'. </div>
-                        <div class="BlurbRow">
-                            <textarea name="Blurb" rows="2" cols="20" tabindex="3" class="MultilineTextBox">'.$this->user->getData("user","blurb").'</textarea>
-                        </div>
-                    </fieldset>
-                </div>
-                <div class="Buttons">
-                    <a tabindex="4" class="Button" href="javascript:__doPostBack(\'\',\'Roblox$Submit\')">Update</a>
-                    &nbsp; 
-                    <a tabindex="5" class="Button" href="javascript:__doPostBack(\'\',\'Roblox$Cancel\')">Cancel</a>
-                </div>
-            </div>
-        </div>
-        ';
+        $emails = $this->randomEmails;
+        $variables = compact("emails");
+
+        PageBuilder::addComponent("editprofile", "main", $variables);
     }
 }
 ?>

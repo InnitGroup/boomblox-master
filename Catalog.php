@@ -52,6 +52,7 @@ $page->buildHeader();
 			</table>
 		<?=$paginator->load()?>
 		</div>
+		
 		<div style="clear: both;"/>
 	</div>
 </div>
