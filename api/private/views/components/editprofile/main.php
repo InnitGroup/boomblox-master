@@ -5,7 +5,7 @@ global $user, $theme;
 <div id="Body">
     <div id="EditProfileContainer">
         <h2>Edit Profile</h2>
-        <?php if (isset($_POST['__EVENTTARGET'])): if ($_POST['__EVENTTARGET'] == 'Roblox$Submit'): ?>
+        <?php if (isset($_POST['__EVENTARGUMENT'])): if ($_POST['__EVENTARGUMENT'] == 'Roblox$Submit'): ?>
         <div id="EditItemContainer">
             <div id="Confirmation" class="Suggestion" style="font-size: 12px;">Your changes to the item have been saved. (<?=date("h:i:s A")?>)</div>
         </div>
@@ -74,13 +74,13 @@ global $user, $theme;
                 <legend>Update <?=$inputType?></legend>
                 <div class="EmailRow">
                 <?php if ($user->isVerified()): if ($theme == 1): ?>
-                    <label class="Label">Email:</label>&nbsp; <input disabled name="TextBoxEMail" type="text" value="<?=$emails[(int)$user->getData("user", "email")[0]]?>'" tabindex="4" class="TextBox">
+                    <label class="Label">Email:</label>&nbsp; <input readonly name="TextBoxEMail" type="text" value="<?=$emails[(int)$user->getData("user", "email")[0]]?>" tabindex="4" class="TextBox">
                 <?php else: ?>
-                <label class="Label">Discord ID:</label>&nbsp; <input disabled name="TextBoxEMail" type="text" value="<?=htmlspecialchars($user->getData("user", "email"))?>" tabindex="4" class="TextBox">
+                    <label class="Label">Discord ID:</label>&nbsp; <input readonly name="TextBoxEMail" type="text" value="<?=htmlspecialchars($user->getData("user", "email"))?>" tabindex="4" class="TextBox">
                 <?php endif; elseif ($theme == 1): ?>
-                <label class="Label">Email:</label>&nbsp; <input disabled name="TextBoxEMail" type="text" tabindex="4" class="TextBox">
+                    <label class="Label">Email:</label>&nbsp; <input readonly name="TextBoxEMail" type="text" tabindex="4" class="TextBox">
                 <?php else: ?>
-                    <label class="Label">Discord ID:</label>&nbsp; <input disabled name="TextBoxEMail" type="text" tabindex="4" class="TextBox">
+                    <label class="Label">Discord ID:</label>&nbsp; <input readonly name="TextBoxEMail" type="text" tabindex="4" class="TextBox">
                 <?php endif; ?>
             </div>
             <?php if (!$user->isVerified()): ?>

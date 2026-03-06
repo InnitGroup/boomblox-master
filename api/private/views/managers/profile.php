@@ -28,17 +28,21 @@ class ProfileManager {
         "darryl4852@msn.com",
     ];
     private $db;
-    
-    public function __construct($post, $get, $theme) {
-        global $user;
+
+    public function __construct() {
+        global $user, $theme, $db;
         $this->theme = $theme;
         $this->user = $user;
-        global $db;
-        if (isset($get["code"]) && $this->user->getData("user","verified") == 0) {
+
+        $post = $_POST;
+        $get = $_GET;
+
+        if (isset($get["code"]) && !$user->isVerified()) {
             $clientId = Discord::clientId($get["code"]);
             $content = [];
-            if (!$db->emailTaken(ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]), $clientId)) {
-                $date = new DateTime();
+
+            if (!$db->emailTaken($user->getUserId(), $clientId)) {
+                $date = new DateTime;
                 $content = [
                     "content" => null,
                     "embeds" => [
@@ -49,18 +53,20 @@ class ProfileManager {
                         ]
                     ]
                 ];
-                $stmt = "UPDATE users SET email=:email WHERE id=:id";
-                $db->execute($stmt, [":email" => (int)$clientId, ":id" => ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"])]);
-                $stmt = "UPDATE users SET verified=1 WHERE id=:id";
-                $db->execute($stmt, [":id" => ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"])]);
+
+                $stmt = "UPDATE users SET email=:email, verified = 1 WHERE id=:id";
+                $db->execute($stmt, [":email" => (int)$clientId, ":id" => $user->getUserId()]);
+
                 if (!$this->user->hasItem(33)) {
                     $this->user->giveItem(33);
                 }
+
             } else {
                 $stmt = "SELECT * FROM users WHERE email=:email";
                 $result = $db->execute($stmt, [":email" => $clientId]);
                 $result = $result->fetch(PDO::FETCH_ASSOC);
-                $date = new DateTime();
+                $date = new DateTime;
+
                 $content = [
                     "content" => null,
                     "embeds" => [
@@ -74,10 +80,10 @@ class ProfileManager {
             }
             
             Discord::sendMessage((int)$clientId, $content);
-            header("Location: /My/Profile.aspx");
+            exit(header("Location: /My/Profile.aspx"));
         }
         if (isset($post["__EVENTARGUMENT"])) {
-            if (str_contains($post["__EVENTARGUMENT"],"$")) {
+            if (str_contains($post["__EVENTARGUMENT"], "$")) {
                 $decrypt = explode("$", $post["__EVENTARGUMENT"]);
                 if (strlen($post["Blurb"]) > 1000) {
                     $post["Blurb"] = substr($post["Blurb"], 1000);
@@ -100,17 +106,18 @@ class ProfileManager {
 
                     $stmt = "UPDATE users SET blurb=:blurb WHERE id=:id";
                     $result = $db->execute($stmt, [":blurb" => $blurb, ":id" => $user->getUserId()]);
+
                     if (!$result) {
                         $this->postData["validator"] = 4;
                     }
                 }
                 if (!isset($this->postData["validator"])) {
-                    exit(header("Location: /My/Profile.aspx"));
+                    #exit(header("Location: /My/Profile.aspx"));
                 }
                 break;
             case "Cancel":
-                header("Location: /My/Profile.aspx");
-                exit;
+                #header("Location: /My/Profile.aspx");
+                #exit;
                 break;
             case "ChangePassword":
                 header("Location: /Login/ResetPassword.aspx");
