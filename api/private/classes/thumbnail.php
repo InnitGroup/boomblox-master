@@ -73,7 +73,7 @@ class Thumbnail {
     }
 
     public static function extractSkybox($path) {
-        $xml = file_get_contents($path); #<binary xmime:contentType="image/bmp">
+        $xml = file_get_contents($path);
 
         # url based image
         if (str_contains($xml, '<Content name="SkyboxFt"><url>')) {
@@ -92,16 +92,13 @@ class Thumbnail {
 
     public static function getUnavail($size) {
         if (file_exists($_SERVER['DOCUMENT_ROOT'] . "/cdn/t2/unavail-".$size.".png")) {
-            #return "http://t2." . domain . "/unavail-".$size.".png";
             return "https://t2.".domain."/unavail-".$size.".png";
         } else {
-            #return "http://t2." . domain . "/unavail-100x100.png";
             return "https://t2.".domain."/unavail-100x100.png";
         }
     }
 
     public static function getHashResult($null, $hash) {
-        #return "http://$location." . domain . "/".$hash;
         return "https://t2.".domain."/".$hash."?v=1";
     }
 }

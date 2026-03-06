@@ -7,7 +7,7 @@ global $theme, $auth, $user;
 !$auth->isAuthed() && Server::_404();;
 
 $sort = $_POST["__EVENTARGUMENT"] ?? "Page$1";
-$search = $_POST["tbSearch"] ?? "";
+$search = $_POST["SearchTextBox"] ?? "";
 $browse = new BrowseManager($sort, $search);
 
 $page = new PageBuilder(Site::getThemeProperty("alias", $theme).": A FREE Virtual World-Building Game with Avatar Chat, 3D Environments, and Physics", $theme, "/templates/authheader.php");
