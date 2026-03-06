@@ -60,7 +60,6 @@ class ProfileManager {
                 if (!$this->user->hasItem(33)) {
                     $this->user->giveItem(33);
                 }
-
             } else {
                 $stmt = "SELECT * FROM users WHERE email=:email";
                 $result = $db->execute($stmt, [":email" => $clientId]);
@@ -111,13 +110,9 @@ class ProfileManager {
                         $this->postData["validator"] = 4;
                     }
                 }
-                if (!isset($this->postData["validator"])) {
-                    #exit(header("Location: /My/Profile.aspx"));
-                }
+
                 break;
             case "Cancel":
-                #header("Location: /My/Profile.aspx");
-                #exit;
                 break;
             case "ChangePassword":
                 header("Location: /Login/ResetPassword.aspx");
@@ -133,7 +128,7 @@ class ProfileManager {
         }
     }
 
-    public function load() { # BRB 
+    public function load() {
         $emails = $this->randomEmails;
         $variables = compact("emails");
 

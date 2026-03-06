@@ -73,12 +73,21 @@ class Thumbnail {
     }
 
     public static function extractSkybox($path) {
-        $xml = file_get_contents($path);
-        $halfA = explode('<Content name="SkyboxFt"><url>', $xml)[1];
-        $contentUrl = explode('</url></Content>', $halfA)[0];
-        $url = urldecode($contentUrl);
-        $image = file_get_contents($url);
-        return $url;
+        $xml = file_get_contents($path); #<binary xmime:contentType="image/bmp">
+
+        # url based image
+        if (str_contains($xml, '<Content name="SkyboxFt"><url>')) {
+            $halfA = explode('<Content name="SkyboxFt"><url>', $xml)[1];
+            $contentUrl = explode('</url></Content>', $halfA)[0];
+            $url = urldecode($contentUrl);
+            $image = file_get_contents($url);
+            return $url;
+        }
+
+        # inline image data detection
+        if (str_contains($xml, '<Content name="SkyboxFt" mimeType=')) {
+            return self::getUnavail("110x110");
+        }
     }
 
     public static function getUnavail($size) {

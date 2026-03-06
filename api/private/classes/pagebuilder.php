@@ -42,6 +42,7 @@ class PageBuilder {
 
         $packed = compact("title", "jsList", "enc");
         $headerPacked = compact("title", "jsList", "enc", "hasAds");
+        
         if ($this->content["header"] == $_SERVER['DOCUMENT_ROOT'] . "/templates/authheader.php") {
             self::addComponent("page", "header", $packed);
         } else {
@@ -52,6 +53,7 @@ class PageBuilder {
         global $theme, $user;
         $packed = compact("theme");
         self::addComponent("page", "footer", $packed);
+
         if (isset($user)) {
             if ($user->hasPerms(3)) {
                 self::addComponent("admin", "portable");
@@ -64,6 +66,7 @@ class PageBuilder {
         if (!empty($data)) {
             extract($data);
         }
+
         include $dir->components . $folder . "/" . $component . ".php";
     }
 }

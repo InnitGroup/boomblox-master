@@ -24,12 +24,11 @@ if (!is_numeric($p)) {
 }
 
 $gameItems = $games->getGames($m);
-#echo $gameItems->rowCount();
 $paginator = new Paginator("Games", $gameItems, $p, 15, $games->getSiteSort($m, $t));
 
 Server::pageRestrictor($gameItems, 15, $p);
 
-$page = new PageBuilder(Site::getThemeProperty("alias",$theme)." Games - ".$games->loadTitleSort($m,$t), $theme, "/templates/authheader.php");
+$page = new PageBuilder(Site::getThemeProperty("alias", $theme)." Games - ".$games->loadTitleSort($m, $t), $theme, "/templates/authheader.php");
 $page->buildHeader();
 ?>
 
