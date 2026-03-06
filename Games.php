@@ -59,6 +59,7 @@ $page->buildHeader();
                     <?=$paginator->load();?>
                 </div>
             </div>
+            <?=Ad::generateAd("160x600")?>
             <div style="clear:both;"></div>
         </div> 
     </div>
