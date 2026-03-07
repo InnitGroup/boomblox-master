@@ -33,11 +33,24 @@ switch ($typeId) {
         var visitUrl = "http://<?=domain?>/Game/join.ashx?PlaceID="+placeId+"&ServerID="+serverId;
         <?php endif; ?>
 
-        var app = window.external.GetApp();
-        var workspace = app.CreateGame(44340105256);
-        workspace.ExecUrlScript(visitUrl);
+        try {
+            var app = window.external.GetApp();
+            var workspace = app.CreateGame(44340105256);
+            workspace.ExecUrlScript(visitUrl);
 
-        window.location = "http://<?=domain?>/Games.aspx";
+            window.location = "http://<?=domain?>/Games.aspx";
+        } catch (error) {
+            document.write("COM is not installed on this Roblox client, locate the client folder and run <b>RobloxApp.exe /regserver</b> in CMD to install COM");
+            alert(error);
+        }
     }
+
     join(<?=$placeId?>, <?=$serverId?>);
 </script>
+
+<p>You're seeing this for 1 of 2 reasons:</p>
+<ul>
+    <li>You're currently loading into a game on the Boom - this can be a result for users with slower internet speeds</li>
+    <li>Your client's COM is improperly installed - locate the client folder and run <b>RobloxApp.exe /regserver</b> in CMD to install COM</li>
+    <li>Your Internet Explorer's javascript is disabled - please enable it</li>
+</ul>

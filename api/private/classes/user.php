@@ -88,7 +88,7 @@ class User {
     }
 
     public function isVerified(): bool {
-        return $this->data["user"]["verified"] == 1;
+        return isset($this->data["user"]["verified"]) ? (bool)$this->data["user"]["verified"] : false;
     }
 
     public function getData($dataType = "user", $property = "id") {

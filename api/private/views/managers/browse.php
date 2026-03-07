@@ -28,7 +28,6 @@ class BrowseManager {
         $offset = ($this->page - 1) * 10;
         $limit = 10;
 
-        // Validate sort column and direction
         $sortBy = in_array($this->sortBy, ['username', 'lastOnline']) ? $this->sortBy : 'lastOnline';
         $sortDirection = strtoupper($this->sortDirection) === 'ASC' ? 'ASC' : 'DESC';
 
