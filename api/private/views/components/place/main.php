@@ -127,7 +127,6 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
 			</div>
 			<div style="margin:10px;width:703px;">
 				<script>
-					<?php if (!Server::isIE7()): ?>
 					$(document).ready(function() {
 						$("#cmtTab").click(function() {
 							$("#ctl00_cphRoblox_TabbedInfo_GamesTab").hide();
@@ -152,9 +151,6 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
 							$("#CTabAjax").removeClass("ajax__tab_hover");
 						});
 					});
-					<?php else: ?>
-						alert("You are in client, and some features (such as tabs & visit online) may not work properly!");
-					<?php endif; ?>
 				</script>
                 <div class="ajax__tab_xp ajax__tab_container ajax__tab_default">
                     <div class="ajax__tab_header" style="height: 21px;">
@@ -197,9 +193,6 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
 		</div>
 		<?=Ad::generateAd("160x600")?>
 		<div style="clear: both;"></div>
-		<div id="ctl00_cphRoblox_ItemPurchasePopupPanel" class="modalPopup" style="display: none">
-			<div id="ctl00_cphRoblox_ItemPurchasePopupUpdatePanel"></div>
-		</div>
 		<input type="hidden" name="ctl00$cphRoblox$HiddenField1" id="ctl00_cphRoblox_HiddenField1">
 		<input type="hidden" name="ctl00$cphRoblox$HiddenField2" id="ctl00_cphRoblox_HiddenField2">
 		<input type="hidden" name="ctl00$cphRoblox$HiddenField3" id="ctl00_cphRoblox_HiddenField3">

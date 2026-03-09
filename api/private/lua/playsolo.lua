@@ -1,5 +1,6 @@
 workspace:SetPhysicsThrottleEnabled(true)
 game:GetService("RunService"):Run()
+game:GetService("Visit")
 
 local player = game.Players:CreateLocalPlayer({UserID})
 player.CharacterAppearance = "{CharacterAppearance}"
