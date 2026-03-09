@@ -62,11 +62,30 @@ Roblox.Launch.StartGame = function (visitUrl, authenticationUrl, type, placeID)
 }
 
 Roblox.Launch.VisitOnline = function(visit, placeID, serverID) {
-    if (window.external.IsRobloxAppIDE) {
-        var app = window.external.GetApp();
-        var workspace = app.CreateGame(44340105256);    // Window
-        workspace.ExecUrlScript(visit);
-    } else {
+    $(".modalContainer").show();
+    $(".modalPopup").show();
+
+    setTimeout(function() {
+        $("#Requesting").show();
+    }, 1000);
+
+    setTimeout(function() {
+        $("#Requesting").hide();
+        $("#Waiting").show();
+    }, 2000);
+
+    setTimeout(function() {
+        $("#Waiting").hide();
+        $("#Loading").show();
+    }, 3000);
+
+    setTimeout(function() {
+        $("#Loading").hide();
+        $("#Joining").show();
+    }, 4000);
+
+    setTimeout(function() {
         window.location = "/Data/HandleJoin.ashx?PlaceID="+placeID+"&TypeID=1&ServerID="+serverID;
-    }
+    }, 5000);
+    
 }

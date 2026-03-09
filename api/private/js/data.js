@@ -48,7 +48,6 @@ if (isIE() === false) {
 }
 
 function __doWebPostBack(url, target, argument) {
-
     var xhr;
 
     if (window.XMLHttpRequest) {
@@ -83,6 +82,41 @@ function __doWebPostBack(url, target, argument) {
     }
 
     xhr.send(data);
+}
+
+function __requestResponse(url, argument) {
+    var xhr;
+
+    if (window.XMLHttpRequest) {
+        xhr = new XMLHttpRequest();
+    } else {
+        xhr = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    xhr.open("POST", "/" + url, false);
+
+    xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+    xhr.setRequestHeader("From", "siteApi");
+
+    var data = argument;
+
+    if (typeof argument != "string") {
+        if (window.JSON && JSON.stringify) {
+            data = JSON.stringify(argument);
+        } else {
+            data = "";
+        }
+    }
+
+    xhr.send(data);
+
+    var response = "";
+
+    if (xhr.status == 200 || xhr.status == 0) {
+        response = xhr.responseText;
+    }
+
+    return response;
 }
 
 function __loading(target, style) {

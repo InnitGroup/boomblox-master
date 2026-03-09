@@ -38,6 +38,10 @@ $db->execute($stmt, [
     ":userId" => $userId
 ]);
 
+if (Server::isIE7()) {
+    $user->setClientMd5(Server::currentClientMd5());
+    exit(header("Location: /IDE/Landing.aspx"));
+}
 
 exit(header("Location: /Item.aspx?ID=".$_GET["PlaceID"]."&Refer=Uri"));
 
