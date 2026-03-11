@@ -1,4 +1,4 @@
-<div id="ctl00_cphRoblox_ItemPurchasePopupPanel" class="modalPopup" style="z-index: 5; position: absolute; left: 38%; top: 25%; width: 27em; display: block">
+<div id="ctl00_cphRoblox_ItemPurchasePopupPanel" class="modalPopup" style="z-index: 5; position: absolute; left: 50%; top: 30%; width: 27em; display: block">
     <div id="ctl00_cphRoblox_ItemPurchasePopupUpdatePanel">
         <div id="PurchaseSuccess" style="display:block;margin: 1.5em;">
             <h3>Purchase Complete</h3>
@@ -15,5 +15,5 @@
         
     </div>
 </div>
-<div id="ctl00_cphRoblox_ItemPurchasePopupPanel" class="modalPopup" style="background-color: black; border: solid 1px black; z-index: 3; width: 300px; height:140px; position: absolute; left: 38.5%; top: 26%; width: 27em; display: block">
+<div id="ctl00_cphRoblox_ItemPurchasePopupPanel" class="modalPopup" style="background-color: black; border: solid 1px black; z-index: 3; width: 300px; height:140px; position: absolute; left: 50.5%; top: 31%; width: 27em; display: block">
 </div>

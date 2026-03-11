@@ -16,6 +16,6 @@ if (isset($purchaseData)) {
         <?=Ad::generateAd("160x600")?>
         </div>
         <div style="clear:both"></div>
-        <? if (isset($purchaseData)) PageBuilder::addComponent("item", "purchasemodal", $packed);?>
+        <?=PageBuilder::addComponent("item", "purchasemodal", $packed)?>
     </div>
 </div>
