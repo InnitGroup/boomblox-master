@@ -1,5 +1,16 @@
 <div id="MainPanel">
-    <?php if (isset($_POST["recommendedAsset"])): print_r(Recommender::gatherKeywords($_POST["recommendedAsset"])); endif; ?>
+    <?php if (isset($_POST["recommendedAsset"])) {
+        $recommender = new Recommender($_POST["recommendedAsset"]);
+        $recommendations = $recommender->generateRecommendations();
+        if (!isset($recommendations["Error"])) {
+            foreach ($recommendations as $recommendation) {
+                echo $recommendation->get()->itemName . "<br>";
+            }
+        } else {
+            echo $recommendations["Error"];
+        }
+    }
+    ?>
 
     <input type="number" name="recommendedAsset">
     <input type="submit">

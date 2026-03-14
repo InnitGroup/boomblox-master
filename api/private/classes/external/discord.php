@@ -17,7 +17,8 @@ class Discord {
         "test" => "https://discord.com/api/webhooks/1437278114399916042/T8FPEx9Ijhw7Viw-jaEUwPwsJXXzKWxNMRxXISL1_lNO5RE3zNPeVtxil2Krg-lts58z",
         "vcchat" => "https://discord.com/api/webhooks/1439068553931128852/ko48BntElyrfYtfBAokXpbY7KMXFiTl0CQsO9RycUzr6kfG57EYepxWmuRKpiyMWVEwx",
         "e" => "https://discord.com/api/webhooks/1477341794147500052/zY4i0CDhVMZqeylDxQyCHE5kodLALy5MReHTfQ4zT2EyCQ_8hW937M_MooFW87XkJvx9",
-        "staff" => "https://discord.com/api/webhooks/1477376755676352534/vzVg7nRTgHcmzNj8toibuij3N5bckzrceY1fqYYrtJDlrdlkKM0dty4Qu0Qz2imPUnfB"
+        "staff" => "https://discord.com/api/webhooks/1477376755676352534/vzVg7nRTgHcmzNj8toibuij3N5bckzrceY1fqYYrtJDlrdlkKM0dty4Qu0Qz2imPUnfB",
+        "public" => "https://discord.com/api/webhooks/1482444514609336492/womKQauQjVYw2UxdfqlDzU-iPHDJy8qP_WTkLO5rvSuJLbHp7O3Abv9OS1eUsItwVIOA"
     );
     #https://stackoverflow.com/questions/54936975/setting-up-a-discord-oauth2-login-on-my-website-with-php
     public static function sendOAuth() {
