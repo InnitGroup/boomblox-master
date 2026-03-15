@@ -18,7 +18,7 @@ $availablePlaces = $user->getAvailablePlaces()
             <td> 
                 <span><?=PageBuilder::addComponent("user", "panelurl", compact("username", "publicView"))?></span>
                 <br/>
-                <a href="User.aspx?ID=<?=$userId?>">http://www.<?=Site::getThemeProperty("url",$theme)?>/User.aspx?ID=<?=$userId?></a>
+                <a href="User.aspx?ID=<?=$userId?>">http://www.<?=Site::getThemeProperty("url", $theme)?>/User.aspx?ID=<?=$userId?></a>
                 <br/>
                 <br/>
                 <div style="<?=!$publicView ? 'height:340px; width:220px; left: 0px; float: left; position: relative; top: 60px' : 'left: 0px; float: left; position: relative; top: 0px'?>">
@@ -32,7 +32,7 @@ $availablePlaces = $user->getAvailablePlaces()
             </td>
         </tr>
     </table>
-    <?php if ($user->hasBC()): ?>
+    <?php if ($user->hasBC() && !$publicView): ?>
     <h4><?=Site::getThemeProperty("membership", $theme)?> Member until <?=$user->bcExpires()?></h4>
     <?php endif; ?>
 </div>
