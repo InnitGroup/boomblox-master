@@ -26,12 +26,12 @@ class Avatar extends Base {
         local head2 = head:Clone()
         head2.Parent = char
         local mesh = head2.Mesh
-        mesh.Scale = Vector3.new(1.06, 1.06, 1.06)
+        mesh.Scale = Vector3.new(1.03, 1.03, 1.03)
         mesh.TextureId = 'http://xoblog.dev/asset/?id=$face'
 
         local head3 = head:Clone()
         head3.Parent = char
-        head3.Mesh.Scale = Vector3.new(1.05, 1.05, 1.05)
+        head3.Mesh.Scale = Vector3.new(1.02, 1.02, 1.02)
         head3.CFrame = head2.CFrame * CFrame.fromEulerAnglesXYZ(0, math.rad(180), 0)
         print('{$this->user->getUsername()}:{$this->user->getUserId()} being rendered')
         return game:GetService('ThumbnailGenerator'):Boom('$imageFormat', $width, $height, true)";

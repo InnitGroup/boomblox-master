@@ -17,8 +17,10 @@ global $user;
                 var avatar = __requestResponse("Thumbs/Redraw.ashx?userId=<?=$user->getUserId()?>");
                 if (avatar) {
                     $("#CharacterRender").attr('src', avatar);
+                } else {
+                    $("#CharacterRender").attr('src', '<?=Thumbnail::getUnavail("250x250")?>');
                 }
-                
+
                 $("#CharacterLoading").hide();
             }, 1000);
         }
