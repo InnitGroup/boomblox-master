@@ -14,6 +14,7 @@ if (Server::isPost()) {
         <link rel="icon" href="/images/<?=Site::getThemeProperty("favicon", $theme)?>?v=<?=time()?>">
         <link rel="stylesheet" href="/CSS/AllCSS.ashx?v=<?=$theme == 1 ? 5 : $theme?>">
         <link rel="stylesheet" href="/CSS/Ajax.css?t=<?=time()?>">
+        <meta name="robots" content="noindex">
         <?php if (isset($hasAds)): ?>
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4924425901885448" crossorigin="anonymous"></script>
             <?php endif; ?>

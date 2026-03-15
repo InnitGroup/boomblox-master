@@ -101,27 +101,30 @@ class CharacterManager {
             exit(header("Location: /My/Character.aspx"));
         }
 
-        if ($this->user->hasItem((int)$id)) { #'<script>javascript:alert("hi")</script>';
+        if ($this->user->hasItem((int)$id)) {
             $stmt = "UPDATE users SET ";
             $args = array();
+            $_itemObj = new Item($id);
+            $item = $_itemObj->get();
             $asset = new Asset($id);
-            if ($type == "Head" && $asset->catalogType !== "Head") {
+                    
+            if ($type == "head" && $item->catalogType !== "Head") {
                 exit(header("Location: /My/Character.aspx"));
             }
 
-            if ($type !== "Head" && $asset->catalogType == "Head") {
+            if ($type !== "head" && $item->catalogType == "Head") {
                 exit(header("Location: /My/Character.aspx"));
             }
 
-            if ($type == "Face" && $asset->catalogType !== "Face") {
+            if ($type == "face" && $item->catalogType !== "Face") {
                 exit(header("Location: /My/Character.aspx"));
             }
 
-            if ($type !== "Face" && $asset->catalogType == "Face") {
+            if ($type !== "face" && $item->catalogType == "Face") {
                 exit(header("Location: /My/Character.aspx"));
             }
             
-            if ($type == strtolower($asset->catalogType()) || $asset->catalogType() == "Hat") {
+            if ($type == strtolower($item->catalogType) || $item->catalogType == "Hat") {
                 if ($action == "Wear") {
                     $stmt .= "`".htmlspecialchars($type)."`=:aId WHERE `id`=:uId"; # aId = accoutrementId, uId = userId
                     $args = [":aId" => (int)$id, ":uId" => $user->getUserId()];
@@ -138,8 +141,6 @@ class CharacterManager {
                     $render->RequestThumbnail(100,100,"JPG");
                     exit(header("Location: /My/Character.aspx"));
                 }
-            } else {
-                #Discord::sendWebhookMessage("vcchat", "type not connected");
             }
         }
     }

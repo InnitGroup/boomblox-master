@@ -8,7 +8,7 @@ global $theme, $auth, $user;
         <link rel="icon" href="/images/<?=Site::getThemeProperty("favicon", $theme)?>?v=<?=time()?>">
         <link rel="stylesheet" href="/CSS/AllCSS.ashx?v=<?=$theme?>&t=<?=time()?>">
         <link rel="stylesheet" href="/CSS/Ajax.css?t=<?=time()?>">
-
+		<meta name="robots" content="noindex">
         <?php if (Server::isIE7()): ?>
             <script src="/ScriptResource.axd?v=<?=time()?>&d=ZGF0YTI="></script>
         <?php else: ?>
