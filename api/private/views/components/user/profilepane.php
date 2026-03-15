@@ -1,9 +1,10 @@
 <?php
 global $theme;
+
 $userId = $user->getData("user", "id");
 $username = $user->getData("user", "username");
 $blurb = $user->getData("user", "blurb");
-$availablePlaces = $user->getAvailablePlaces()
+$availablePlaces = $user->getAvailablePlaces();
 ?>
 <div id="ProfilePane">
     <table id="ProfilePaneBackground" width="100%" bgcolor="<?=($theme !== 4 ? "lightsteelblue" : "")?>" cellpadding="6" cellspacing="0">
@@ -32,8 +33,9 @@ $availablePlaces = $user->getAvailablePlaces()
             </td>
         </tr>
     </table>
-    <?php if ($user->hasBC() && !$publicView): ?>
+    <?php if ($user->hasBC()): if (!$publicView): ?>
     <h4><?=Site::getThemeProperty("membership", $theme)?> Member until <?=$user->bcExpires()?></h4>
-    <?php endif; ?>
+    <?php endif; endif; ?>
 </div>
+
 <?=Ad::generateAd("300x250")?>

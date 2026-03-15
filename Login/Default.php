@@ -50,7 +50,7 @@ $page->buildHeader();
 					<input type="submit" value="Log In" id="ctl00_cphRoblox_lRobloxLogin_LoginButton" name="type" />
 				</div>
 				<div class="AspNet-Login-PasswordRecoveryPanel">
-					<a href="ResetPasswordRequest.aspx" title="Password recovery">Forgot your password?</a>
+					<a href="ResetPasswordRequest.aspx?Key=IWantToResetMyPasswordPlease" title="Password recovery">Forgot your password?</a>
 				</div>
 			</form>
 		</div>

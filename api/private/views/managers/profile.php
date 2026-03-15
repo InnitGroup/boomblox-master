@@ -115,7 +115,7 @@ class ProfileManager {
             case "Cancel":
                 break;
             case "ChangePassword":
-                header("Location: /Login/ResetPassword.aspx");
+                header("Location: /Login/ResetPassword.aspx?Key=IWantToResetMyPasswordPlease");
                 exit;
                 break;
             case "CSettings":
