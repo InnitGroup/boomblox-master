@@ -10,7 +10,7 @@ if (!$server = Gameservers::getServerById($serverId)) {
 $placeId = $server["placeId"];
 
 if (!$user->ownsPlace($placeId)) {
-    if (!$user->hasPerms(3)) {
+    if (!$user->hasPerms(3)) {;
         exit;
     }
 }

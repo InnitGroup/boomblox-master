@@ -23,7 +23,7 @@ if (typeof document.addEventListener === "function") {
             $(".popupControl").css("left", event.clientX+"px");
             $(".popupControl").css("top", event.clientY+"px");
             $(".popupControl").css("visibility", "visible");
-            $(".popupControl").attr("title", event.target.id);
+            $(".popupControl").attr("title", event.target.id); // .setAttribute("title", )
         });
     };
 }
