@@ -4,11 +4,11 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
 #Server::ipLock();
-!isset($_GET["userId"]) || $_GET["userId"] == "" && Server::_404();
+!isset($_GET["userid"]) || $_GET["userid"] == "" && Server::_404();
 header('Content-Type: application/xml; charset=utf-8');
 
 
-$user = new User((int)$_GET["userId"]);
+$user = new User((int)$_GET["userid"]);
 $charapp = $user->getCharacter();
 ?>
 

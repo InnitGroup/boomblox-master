@@ -19,7 +19,7 @@ if (!Server::isLocal()) {
         Server::_404();
     }
 
-    if ($_GET["key"] !== Gameservers::$key) {
+    if (strtolower($_GET["key"]) !== strtolower(Gameservers::$key)) {
         Server::_404();
     }
 }

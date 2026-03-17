@@ -436,7 +436,7 @@ class User {
         $db->execute($stmt, [":id" => $this->getUserId()]);
     }
     public function getCharacterAppearance($isRender = false) {
-        $charapp = Site::$domain."/Asset/BodyColors.ashx?userId=".$this->data["user"]["id"]."?t=".time();
+        $charapp = Site::$domain."/Asset/BodyColors.ashx?userid=".$this->data["user"]["id"]."?t=".time();
         if (isset($this->data["character"]["hat"])) {
             $charapp .= ";".Site::$domain."/Asset/?id=".(int)$this->data["character"]["hat"];
         }
@@ -463,7 +463,7 @@ class User {
                 $charapp .= ";".Site::$domain."/content/test/".(int)$this->data["character"]["head"];
             }
             if (isset($this->data["character"]["face"]) && $this->data["character"]["face"] > 0) {
-                $charapp .= ";".Site::$domain."/Data/Face.ashx?ID=".(int)$this->data["character"]["face"];
+                $charapp .= ";".Site::$domain."/Data/Face.ashx?id=".(int)$this->data["character"]["face"];
             }
         }
         return $charapp;

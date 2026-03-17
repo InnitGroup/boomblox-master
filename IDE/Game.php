@@ -54,3 +54,5 @@ switch ($typeId) {
     <li>Your client's COM is improperly installed - locate the client folder and run <b>RobloxApp.exe /regserver</b> in CMD to install COM</li>
     <li>Your Internet Explorer's javascript is disabled - please enable it</li>
 </ul>
+<br>
+<button onclick="alert(window.external.IsRobloxAppIDE)">COM Tester</button>

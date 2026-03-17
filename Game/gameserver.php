@@ -3,8 +3,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 header("Content-Type: text/plain");
 global $user, $auth;
 
-$port = $_GET["serverPort"] ?? 10000;
-$place = $_GET["PlaceID"] ?? 1;
+$port = $_GET["serverport"] ?? 10000;
+$place = $_GET["placeid"] ?? 1;
 
 if (!Server::isLocal()) {
     $file = new File("/api/private/lua/usergameserver.lua", [

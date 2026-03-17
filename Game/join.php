@@ -16,7 +16,7 @@ if (!$auth->isAuthed()) {
 $userId = ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]);
 $user = new User($userId);
 
-if (!isset($_GET["ServerID"])) {
+if (!isset($_GET["serverid"])) {
     $file = new File("/api/private/lua/userjoin.lua", [
         "Port" => 53640,
         "Url" => url
@@ -26,7 +26,7 @@ if (!isset($_GET["ServerID"])) {
     exit;
 }
 
-$serverId = $_GET["ServerID"];
+$serverId = $_GET["serverid"];
 
 if (Gameservers::isFull($serverId)) {
     $file = new File("/api/private/lua/joinfail.lua", [
