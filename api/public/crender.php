@@ -5,6 +5,6 @@ $key = isset($_GET["key"]) ? $_GET["key"] : Server::_404();
 
 if ($key == "Perfect") {
     $data = file_get_contents("php://input");
-    file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/api/public/i.png", $data);
+    file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/api/public/a.png", $data);
 }
 ?>
