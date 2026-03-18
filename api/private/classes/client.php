@@ -3,7 +3,7 @@
 class Client {
     public static function getMd5($version) {
         $md5s = [
-            "035" => "5c7bff8eb01b07f9965e15d7fb624fc1",
+            "035" => "60a08b222ffb723e9c597d77206661b2",
             "034" => "cec71839990fa724e0b1ffd8e041a77f",
             "033C" => "32e3789576b3379e5067fa4e376a5a81",
             "030D" => "83888fa47ddc4eac3795860629c2f545"

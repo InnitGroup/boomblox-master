@@ -26,7 +26,7 @@ class Server {
         return self::$ipTable[0];
     }
     public static function currentClientMd5() {
-        return "cec71839990fa724e0b1ffd8e041a77f";
+        return file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/cdn/t0/version.txt");
     }
     public static function isIE7() {
         $agent = $_SERVER['HTTP_USER_AGENT'];
