@@ -47,6 +47,7 @@ if ($user->getClientMd5() !== Server::currentClientMd5()) {
 }
 
 if ($user->getTimeSinceLastClientMd5() > 120) {
+    Client::clearType($user->getUserId());
     $file = new File("/api/private/lua/joinfail.lua", [
         "Error" => "join, your client failed to authenticate.",
         "UserID" => $userId

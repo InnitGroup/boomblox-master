@@ -1,6 +1,16 @@
 <?php
 # for client interaction and data handling
 class Client {
+    public static function getMd5($version) {
+        $md5s = [
+            "035" => "5c7bff8eb01b07f9965e15d7fb624fc1",
+            "034" => "cec71839990fa724e0b1ffd8e041a77f",
+            "033C" => "32e3789576b3379e5067fa4e376a5a81",
+            "030D" => "83888fa47ddc4eac3795860629c2f545"
+        ];
+
+        return $md5s[$version] ?? NULL;
+    }
     # gets the place that the user is prepared to join
     public static function getJoin() {
         global $db;
