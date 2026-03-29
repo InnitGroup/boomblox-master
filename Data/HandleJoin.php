@@ -25,6 +25,10 @@ if ($typeId == 1) {
     $serverId = isset($_GET["ServerID"]) ? $_GET["ServerID"] : 0;
     if (!Gameservers::getServerById($serverId)) {
         $serverPort = Gameservers::newServer($placeId);
+        if (gettype($serverPort) !== "int") {
+            echo $serverPort;
+        }
+        
         $server = Gameservers::getServerByPort($serverPort);
         $serverId = $server["id"];
     }

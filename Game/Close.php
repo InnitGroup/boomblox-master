@@ -15,6 +15,6 @@ if (!$user->ownsPlace($placeId)) {
     }
 }
 
-$port = $server["port"];
-file_get_contents(fullDomain."/api/public/CloseServer.php?Port=$port&Key=" . Gameservers::getAPIKey("Close"));
+$port = $server["port"]; # - 1001;
+file_get_contents(fullDomain . "/api/public/CloseServer.php?Port=$port&Key=" . Gameservers::getAPIKey("Close"));
 ?>

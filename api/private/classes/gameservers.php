@@ -2,7 +2,7 @@
 class Gameservers {
     public static string $key = "8u09nhoasNHDXAOSHDL";
     
-       private static function getDb() {
+    private static function getDb() {
         global $db;
         return $db;
     }

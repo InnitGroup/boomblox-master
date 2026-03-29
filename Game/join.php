@@ -100,7 +100,7 @@ if (!$user->canAccessPlace($server["placeId"])) {
     exit;
 }
 
-$port = $server["port"] + 1001;
+$port = $server["port"];
 $uploadUrl = $user->ownsPlace($server["placeId"]) ? "http://".domain."/Data/Upload.ashx?id=" . $server["placeId"] : "";
 $hasLocalScripts = File::hasLocalScripts($_SERVER["DOCUMENT_ROOT"] . "/content/" . $server["placeId"]);
 $noLocalScripts = $hasLocalScripts ? '' : 'game["Script Context"]:Remove()';
@@ -113,7 +113,7 @@ $file = new File("/api/private/lua/join.lua", [
     "NoLocalScripts" => $noLocalScripts,
     "UploadUrl" => $uploadUrl,
     "Url" => url,
-    "IP" => "103.60.12.84"
+    "IP" => Server::getServerIP()
 ]);
 
 Client::clearType($user->getUserId());

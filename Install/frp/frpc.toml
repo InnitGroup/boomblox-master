@@ -1,9 +1,0 @@
-serverAddr = "103.60.12.84"
-serverPort = 7000
-
-[[proxies]]
-name = "test"
-type = "udp"
-localIP = "127.0.0.1"
-localPort = 2000-4000
-remotePort = 2000-4000
