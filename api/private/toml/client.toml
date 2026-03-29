@@ -1,0 +1,9 @@
+serverAddr = "{serverAddr}"
+serverPort = {serverPort}
+
+[[proxies]]
+name = "test{localPort}"
+type = "udp"
+localIP = "{localIP}"
+localPort = {localPort}
+remotePort = {remotePort}

@@ -33,5 +33,9 @@ $data = str_replace("game:HttpGet(", "-- why would you do that", $data);
 $data = str_replace("game:HttpPost(", "-- why would you do that", $data);
 $data = str_replace("SetUploadUrl", "-- why would you do that", $data);
 $data = str_replace("string.char", "-- why would you do that", $data);
+$data = str_replace("string.char", "-- why would you do that", $data);
+$data = str_replace("%d+%.%d+%.%d+%.%d+", "-- why would you do that", $data);
+#$data = str_replace('model.Name = "hello " .. name', 'model.Name = "127.0.0.1:" .. math.random(40000,60000)')
+
 echo $data;
 ?>

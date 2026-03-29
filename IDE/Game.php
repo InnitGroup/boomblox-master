@@ -40,7 +40,7 @@ switch ($typeId) {
 
             window.location = "http://<?=domain?>/Games.aspx";
         } catch (error) {
-            document.write("COM is not installed on this Roblox client, locate the client folder and run <b>RobloxApp.exe /regserver</b> in CMD to install COM");
+            document.write("COM is not installed on this Roblox client, locate the client folder and run <b>RobloxApp.exe /regserver</b> in CMD to install COM: <br>" + error);
             alert(error);
         }
     }

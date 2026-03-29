@@ -59,7 +59,7 @@ class Asset extends Base {
                     head2.Parent = char
                     local mesh = head2.Mesh
                     mesh.Scale = Vector3.new(1.06, 1.06, 1.06)
-                    mesh.TextureId = 'http://xoblog.dev/content/1010'
+                    mesh.TextureId = 'http://" . domain . "/content/1010'
 
                     local head3 = head:Clone()
                     head3.Parent = char

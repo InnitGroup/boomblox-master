@@ -8,7 +8,11 @@ if (Setting::disabled("Gameservers")) {
 
 $placeId = $_GET["PlaceID"] ?? Server::_404();
 
-$port = rand(1000,2000);
+$originPort = rand(1000, 2000); # 1000 - 2000
+$remotePort = $originPort + 1001; # 2001 - 3001
+$proxyPort = $remotePort + 1001; # 3002 - 4002
+
+$port = rand(1000, 2000);
 $playerTable = 'a:0:{}';
 
 $stmt = "INSERT INTO servers (placeid, serverid, playerTable, port) VALUES (:placeid, :serverid, :playerTable, :port)";
@@ -21,8 +25,10 @@ $result = $db->execute($stmt, [
 
 echo $port;
 
+
+
 $script = "wait(); dofile('http://".domain."/game/gameserver.ashx?serverPort=".$port."&PlaceID=".$placeId."')";
-$command = 'start C:\2009E3\Server.exe -no3d -script "'.$script.'"';
+$command = 'start C:\2009E4\Server.exe -no3d -script "'.$script.'"';
 popen($command, "r");
 
 ?>

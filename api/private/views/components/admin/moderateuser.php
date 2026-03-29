@@ -84,6 +84,7 @@ $userId = $moderatedUser->getUserId();
         <input type="submit" name="ctl00$cphRoblox$OverrideAccountStateButton" value="Submit" id="ctl00_cphRoblox_OverrideAccountStateButton">
         <?=!empty($error) ? "<span style='color:red;'>$error</span>" : ""?>
         <br>
+        <?=$moderatedUser->bcExpires(true)?>
         <br>
         <div>
             <?php

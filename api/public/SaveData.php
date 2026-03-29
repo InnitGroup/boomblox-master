@@ -6,7 +6,7 @@ global $db, $auth;
 #Server::ipLock();
 
 // EXAMPLE:
-// game:HttpGet("http://xoblog.dev/api/public/SaveData.ashx?key=ABCD-1234-EFGH-5678&data=[user=3;coins=100]")
+// game:HttpGet("http:// /api/public/SaveData.ashx?key=ABCD-1234-EFGH-5678&data=[user=3;coins=100]")
 
 $privateKey = $_GET["key"];
 if (!Datastore::keyExists($privateKey)) {

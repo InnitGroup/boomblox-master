@@ -100,7 +100,7 @@ if (!$user->canAccessPlace($server["placeId"])) {
     exit;
 }
 
-$port = $server["port"];
+$port = $server["port"] + 1001;
 $uploadUrl = $user->ownsPlace($server["placeId"]) ? "http://".domain."/Data/Upload.ashx?id=" . $server["placeId"] : "";
 $hasLocalScripts = File::hasLocalScripts($_SERVER["DOCUMENT_ROOT"] . "/content/" . $server["placeId"]);
 $noLocalScripts = $hasLocalScripts ? '' : 'game["Script Context"]:Remove()';

@@ -12,7 +12,7 @@ $fetched = $result->fetchAll(PDO::FETCH_ASSOC);
 foreach ($fetched as $place) {
  
     $xml = (file_get_contents($_SERVER["DOCUMENT_ROOT"]."/content/".$place["itemId"]));
-    $xml = str_replace("bmblox.xyz", "xoblog.dev", $xml);
+    $xml = str_replace("bmblox.xyz", domain, $xml);
     file_put_contents($_SERVER["DOCUMENT_ROOT"]."/content/".$place["itemId"], ($xml));
 
 }

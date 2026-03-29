@@ -430,6 +430,31 @@ class User {
         global $db;
         return $this->data["user"]["boombux"] >= $amount;
     }
+    public function giveBC(int $months = 1) {
+        if (!$this->bcExpires(true) > 160) { # if they have more than 5 months worth of bc then they can't be given more 
+            return;
+        }
+
+        $expirationDate = new DateTime($this->data["membership"]["bcExpires"]);
+        $expirationDate->add(DateInterval::createFromDateString($months . " month" . $months > 1 ? "months" : "month"));
+        
+        global $db;
+        if ($this->user->hasBC()) {
+            $stmt = "UPDATE users SET bcExpires=:expiration WHERE id=:userId";
+            $db->execute($stmt, [
+                ":expiration" => $expirationDate->format("Y-m-d H:i:s"),
+                ":userId" => $this->getUserId()
+            ]);
+
+            return;
+        }
+
+        $stmt = "UPDATE users SET bcExpires = :expiration, bc = 1 WHERE id=:userId";
+        $db->execute($stmt, [
+            ":expiration" => $expirationDate->format("Y-m-d H:i:s"),
+            ":userId" => $this->getUserId()
+        ]);
+    }
     public function takeBC() {
         global $db;
         $stmt = "UPDATE users SET bc=0 WHERE id=:id";
@@ -888,8 +913,15 @@ class User {
 
         return $this->data["membership"]["bc"] == 1;
     }
-    public function bcExpires() {
+    public function bcExpires(bool $inDays = false) {
         $expires = new DateTime($this->data["membership"]["bcExpires"]);
+        if ($inDays) {
+            $now = new DateTime;
+            $diff = $now->diff($expires);
+
+            return $diff->format("%R%a");
+        }
+
         return $expires->format("n/j/Y");
     }
     public function isInviter() {

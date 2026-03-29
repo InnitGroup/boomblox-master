@@ -147,13 +147,13 @@ class UserAd {
     public function getImage() {
         switch ($this->status()) {
             case "pending":
-                return "https://t2.xoblog.dev/unavail-250x250.png";
+                return "https://t2." . domain . "/unavail-250x250.png";
                 break;
             case "rejected":
-                return "https://t2.xoblog.dev/unapproved-250x250.png";
+                return "https://t2." . domain . "/unapproved-250x250.png";
                 break;
             default:
-                return "https://t4.xoblog.dev/{$this->md5()}";
+                return "https://t4." . domain . "/{$this->md5()}";
                 break;
         }
     }

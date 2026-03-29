@@ -82,7 +82,7 @@ switch ($type) {
             $creator->giveTix(1);
         }
 
-        Discord::sendWebhookMessage("games", $player->getUsername() . " joined [place $place](https://xoblog.dev/Item.aspx?ID=$place)");
+        Discord::sendWebhookMessage("games", $player->getUsername() . " joined [place $place](https://" . domain . "/Item.aspx?ID=$place)");
         Analytics::logJoin($player->getUserId(), $place);
 
         echo $player->getCharacterAppearance();

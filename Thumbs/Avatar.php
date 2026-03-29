@@ -21,13 +21,13 @@ class Avatar extends Base {
         local head = char.Head
         head.Mesh:Remove()
         head.face:Remove()
-        game:GetObjects('http://xoblog.dev/asset/?id=$head')[1].Parent = head
+        game:GetObjects('http://" . domain . "/asset/?id=$head')[1].Parent = head
 
         local head2 = head:Clone()
         head2.Parent = char
         local mesh = head2.Mesh
         mesh.Scale = Vector3.new(1.03, 1.03, 1.03)
-        mesh.TextureId = 'http://xoblog.dev/asset/?id=$face'
+        mesh.TextureId = 'http://" . domain . "/asset/?id=$face'
 
         local head3 = head:Clone()
         head3.Parent = char
@@ -63,7 +63,7 @@ class Avatar extends Base {
         fakehead.Parent = player.Character
         fakehead.CFrame = player.Character.Head.CFrame
         fakehead.BrickColor = player.Character.Head.BrickColor
-        game:GetObjects(\"http://xoblog.dev/content/test/Roundy\")[1].Parent = player.Character.fakehead
+        game:GetObjects(\"http://" . domain . "/content/test/Roundy\")[1].Parent = player.Character.fakehead
         local fake = Instance.new(\"Part\") 
         fake.Parent = game.Workspace.Player 
         fake.Size = Vector3.new(0.5,2,0.5)  
