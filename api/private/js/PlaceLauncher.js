@@ -69,6 +69,16 @@ Roblox.Launch.VisitOnline = function(visit, placeID, serverID) {
         $("#Requesting").show();
     }, 1000);
 
+    if (__requestResponse("api/public/GameserversActive.ashx") == "0") {
+        setTimeout(function() {
+            $("#Spinner").hide();
+            $("#Requesting").hide();
+            $("#Expired").show();
+        }, 2000);
+
+        return;
+    }
+
     setTimeout(function() {
         $("#Requesting").hide();
         $("#Waiting").show();

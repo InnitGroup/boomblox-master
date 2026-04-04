@@ -47,6 +47,8 @@ $script = "wait(); dofile('http://".domain."/game/gameserver.ashx?serverPort=".$
 $command = 'start C:\2009E4\Server.exe -no3d -script "'.$script.'"';
 popen($command, "r");
 
+$udp = "start C:/udp/sudppipe.exe -p 103.60.12.84 $port $port";
+popen($udp, "rb");
 /*
 $frpc = "start C:/frp/frpc.exe -c C:/frp/temp/frpc$localPort.toml";
 $frps = "start C:/frp/frps.exe -c C:/frp/temp/frps$localPort.toml";
