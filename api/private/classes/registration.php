@@ -83,7 +83,7 @@ Have a great time here!",
         $newUser->sendMessage($message);
         $newUser->givePlace();
 
-        if (in_array($_POST["Userame"], $this->presets)) {
+        if (in_array($_POST["Username"], $this->presets)) {
             $newUser->giveBux(100);
             $message = [
                 "senderId" => 1,

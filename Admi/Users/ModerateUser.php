@@ -63,7 +63,9 @@ if (Server::isPost()) {
     }
 
     # bc handler
-    
+    if (isset($_POST['ctl00$cphRoblox$AddMembershipButton'])) {
+        
+    }
 }
 
 # ["ctl00$cphRoblox$PunishmentOptionsRadioButtonList"]=> string(1) "8" ["ctl00$cphRoblox$AccountStateModerationNoteTextBox"]=> string(0) "" ["ctl00$cphRoblox$AccountStateMessageToUserTextBox"]=> string(0) "" ["ctl00$cphRoblox$OverrideAccountStateButton"]=> string(6) "Submit"
