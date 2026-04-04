@@ -3,7 +3,7 @@
             <!-- MachineID: APP7 -->
             <head>
                 <title><?=Site::getThemeProperty("alias", $theme)?> | Administration </title>
-                <link href="/Admi/Admin.css" type="text/css" rel="stylesheet" />
+                <link href="/Admi/Admin.css?v=<?=time()?>" type="text/css" rel="stylesheet" />
                 <link rel="icon" type="image/vnd.microsoft.icon" href="/images/<?=Site::getThemeProperty("favicon", $theme)?>" />
                 <script src="/aaa/Dashboard.js" type="text/javascript"></script>
             </head>

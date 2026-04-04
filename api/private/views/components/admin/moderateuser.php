@@ -84,7 +84,19 @@ $userId = $moderatedUser->getUserId();
         <input type="submit" name="ctl00$cphRoblox$OverrideAccountStateButton" value="Submit" id="ctl00_cphRoblox_OverrideAccountStateButton">
         <?=!empty($error) ? "<span style='color:red;'>$error</span>" : ""?>
         <br>
-        <?=$moderatedUser->bcExpires(true)?>
+        <?php 
+        $bcExpires = $moderatedUser->bcExpires(true);
+        ?>
+
+        <p>This users Builders Club <?=$bcExpires > 0 ? "expires in $bcExpires days" : "expired"?>.</p>
+        
+        <?php if ($bcExpires < 60): ?>
+            <input type="submit" name="ctl00$cphRoblox$Add1MembershipButton" value="Add 1 Month BC" id="ctl00_cphRoblox_AddMembershipButton">
+            <br><br>
+            <input type="submit" name="ctl00$cphRoblox$Add3MembershipButton" value="Add 3 Months BC" id="ctl00_cphRoblox_AddMembershipButton">
+            <br>
+        <?php endif; ?>
+
         <br>
         <div>
             <?php

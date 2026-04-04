@@ -1,4 +1,4 @@
-            <body style="height: 100%">
+            <body >
                 <form name="aspnetForm" method="post" id="aspnetForm" enctype="multipart/form-data">
                     <input type="hidden" name="__EVENTARGUMENT">
                     <input type="hidden" name="__EVENTTARGET">
