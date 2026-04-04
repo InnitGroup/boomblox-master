@@ -431,21 +431,20 @@ class User {
         return $this->data["user"]["boombux"] >= $amount;
     }
     public function giveBC(int $months = 1) {
-        if (!$this->bcExpires(true) > 160) { # if they have more than 5 months worth of bc then they can't be given more 
+        if ($this->bcExpires(true) > 160) { # if they have more than 5 months worth of bc then they can't be given more 
             return;
         }
 
         $expirationDate = new DateTime($this->data["membership"]["bcExpires"]);
-        $expirationDate->add(DateInterval::createFromDateString($months . " month" . $months > 1 ? "months" : "month"));
+        $expirationDate->add(DateInterval::createFromDateString($months . " " . ($months > 1 ? "months" : "month")));
         
         global $db;
-        if ($this->user->hasBC()) {
+        if ($this->hasBC()) {
             $stmt = "UPDATE users SET bcExpires=:expiration WHERE id=:userId";
             $db->execute($stmt, [
                 ":expiration" => $expirationDate->format("Y-m-d H:i:s"),
                 ":userId" => $this->getUserId()
             ]);
-
             return;
         }
 

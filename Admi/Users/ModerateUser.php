@@ -13,6 +13,7 @@ $moderatedUser = new User($_GET["UserID"]);
 $error = "";
 
 if (Server::isPost()) {
+
     # handle ban
     if (isset($_POST['ctl00$cphRoblox$OverrideAccountStateButton']) && isset($_POST['ctl00$cphRoblox$PunishmentOptionsRadioButtonList']) && isset($_POST['ctl00$cphRoblox$AccountStateMessageToUserTextBox']) && isset($_POST['ctl00$cphRoblox$AccountStateModerationNoteTextBox'])) {
         if (!empty($_POST['ctl00$cphRoblox$AccountStateModerationNoteTextBox']) && !empty($_POST['ctl00$cphRoblox$AccountStateMessageToUserTextBox'])) {
@@ -63,8 +64,14 @@ if (Server::isPost()) {
     }
 
     # bc handler
-    if (isset($_POST['ctl00$cphRoblox$AddMembershipButton'])) {
-        
+    if (isset($_POST['ctl00$cphRoblox$Add1MembershipButton'])) {
+        $moderatedUser->giveBC(1);
+        Server::_self();
+    }
+
+    if (isset($_POST['ctl00$cphRoblox$Add3MembershipButton'])) {
+        $moderatedUser->giveBC(3);
+        Server::_self();
     }
 }
 
