@@ -2,6 +2,9 @@
 #made: 01/19/2025 @marsoc
 #last edit: 01/19/2025 @marsoc
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
 
 Server::ipLock();
 
@@ -46,6 +49,20 @@ switch ($key) {
         $user = new User($userId);
         $user->giveItem($assetId);
         Discord::sendWebhookMessage("weird", "{$user->getUsername()} received [$assetId](https://".url."/Item.aspx?ID=$assetId) !");
+        break;
+    case "WhyY0uG0tt4UpNJ1ckl3Y4ng":
+        if (!$db->userExists($userId)) {
+            break;
+        }
+
+        if ($assetId !== 12345678) {
+            break;
+        }
+
+        $user = new User($userId);
+        $tix = rand(1, 5);
+        $user->giveTix($tix);
+        Discord::sendWebhookMessage("weird", "{$user->getUsername()} received $tix tix from the Ticket Egg !");
         break;
     }
 ?>

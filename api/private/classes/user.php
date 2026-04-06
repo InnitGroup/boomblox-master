@@ -435,6 +435,10 @@ class User {
             return;
         }
 
+        if (!$this->hasItem(118)) {
+            $this->giveItem(118);
+        }
+
         $expirationDate = new DateTime($this->data["membership"]["bcExpires"]);
         $expirationDate->add(DateInterval::createFromDateString($months . " " . ($months > 1 ? "months" : "month")));
         

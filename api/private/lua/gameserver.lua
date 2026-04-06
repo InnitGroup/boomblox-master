@@ -9,6 +9,7 @@ local ns = game:GetService("NetworkServer")
 game:GetService("Players"):SetChatFilterUrl("http://xoblog.dev/Game/ChatFilter.ashx")
 game:Load("http://{Url}/Data/Get.ashx?id={PlaceID}&key=8u09nhoasNHDXAOSHDL")
 --game:GetObjects("http://{Url}/content/duckydrop.rbxm")[1].Parent = workspace
+game:GetObjects("http://{Url}/content/eggdrop2009.rbxm")[1].Parent = workspace
 settings().Network.PhysicsSend = 1 -- 1==RoundRobin
 settings().Network.ExperimentalPhysicsEnabled = true
 
@@ -111,7 +112,7 @@ end)
 game:service("Players").PlayerRemoving:connect(function(player)
 	collectgarbage("collect")
 	game:HttpGet("http://{Url}/Game/Statistics.ashx?AssociatedPlaceID={PlaceID}&TypeID=2&AssociatedUserID=" .. player.userId .. "&serverPort=" .. port .. "&t=" .. math.random(1,9999), false)
-	wait(5)
+	wait(25)
 	if (#game.Players:GetChildren() == 0) then
 		game:HttpGet("http://{Url}/api/public/CloseServer.ashx?Port=" .. port .. "&Key=Y2M0YjFjNzNhZWY5YzAyYjkzNmM1NzFlZjg3MWZmODc=" .. "&t=" .. math.random(1,9999), false)
 	end
@@ -168,6 +169,23 @@ game:service("Players").PlayerAdded:connect(function(player)
 	player.Changed:connect(function(name)
 		if name=="Character" then
 			characterRessurection(player)
+		end
+	end)
+
+	local eggValue = Instance.new("ObjectValue", player)
+	eggValue.Name = "SuperCoolHopefullySecretValue"
+	eggValue.Value = nil
+
+	eggValue.Changed:connect(function()
+		if eggValue.Value ~= nil then
+			print(eggValue)
+			if eggValue.Value.Name == "TicketEgg" then
+				print("ticket egg")
+				game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .. "&key=WhyY0uG0tt4UpNJ1ckl3Y4ng&assetnumber=12345678", false)
+			end
+			print("destroying")
+			eggValue.Value:Remove()
+			eggValue.Value = nil
 		end
 	end)
 
