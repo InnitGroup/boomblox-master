@@ -12,6 +12,7 @@ class AssetRedirect {
         '{"errors":[{"code":0,"message":"upstream request timeout"}]}',
         '{"errors":[{"code":0,"message":"Authentication required to access Asset."}]}',
         '{"errors":[{"code":0,"message":"Request asset was not found"}]}',
+        '{"errors":[{"code":1,"message":"User is not authorized to access Asset."}]}'
     ];
 
     # main constructor

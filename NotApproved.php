@@ -1,7 +1,8 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 global $theme, $auth, $user;
-!$auth->isAuthed() && Server::_404();;
+!$auth->isAuthed() && Server::_404();
+
 if (!$user->isPunished()) {
     header("Location: /Default.aspx");
     exit;
@@ -25,7 +26,7 @@ if (Server::isPost()) {
     }
 }
 
-$page = new PageBuilder(Site::getThemeProperty("alias",$theme)." | Disabled Account", $theme, "/templates/dryheader.php");
+$page = new PageBuilder(Site::getThemeProperty("alias", $theme) . " | Disabled Account", $theme, "/templates/dryheader.php");
 
 $page->buildHeader();
 PageBuilder::addComponent("notapproved", "main");

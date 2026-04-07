@@ -9,7 +9,7 @@ local ns = game:GetService("NetworkServer")
 game:GetService("Players"):SetChatFilterUrl("http://xoblog.dev/Game/ChatFilter.ashx")
 game:Load("http://{Url}/Data/Get.ashx?id={PlaceID}&key=8u09nhoasNHDXAOSHDL")
 --game:GetObjects("http://{Url}/content/duckydrop.rbxm")[1].Parent = workspace
-game:GetObjects("http://{Url}/content/eggdrop2009.rbxm?v=3")[1].Parent = workspace
+game:GetObjects("http://{Url}/content/eggdrop2009.rbxm?v=5")[1].Parent = workspace
 settings().Network.PhysicsSend = 1 -- 1==RoundRobin
 settings().Network.ExperimentalPhysicsEnabled = true
 
@@ -178,14 +178,7 @@ game:service("Players").PlayerAdded:connect(function(player)
 
 	eggValue.Changed:connect(function()
 		if eggValue.Value ~= nil then
-			print(eggValue)
-			if eggValue.Value.Name == "TicketEgg" then
-				print("ticket egg")
-				game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .. "&key=WhyY0uG0tt4UpNJ1ckl3Y4ng&assetnumber=12345678", false)
-			elseif eggValue.Value.Name == "ConfusingEgg" then
-				print("confused egg")
-				game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .. "&key=WhyY0uG0tt4UpNJ1ckl3Y4ng&assetnumber=3349", false)
-			end
+			game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .. "&key=WhyY0uG0tt4UpNJ1ckl3Y4ng&assetnumber=" .. eggValue.Value.Name, false)
 			
 			print("destroying")
 			eggValue.Value:Remove()
