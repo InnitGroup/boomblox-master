@@ -7,7 +7,7 @@ $result = $db->execute($stmt, [":itemId" => $id]);
 $result = $result->fetch(PDO::FETCH_ASSOC);
 $max = $result["playersMax"];
 
-$stmt = "SELECT * FROM servers WHERE placeId=:placeId";
+$stmt = "SELECT * FROM servers WHERE placeId=:placeId ORDER BY players DESC";
 $result = $db->execute($stmt, [":placeId" => $id]);
 
 if ($result->rowCount() > 0):

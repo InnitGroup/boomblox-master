@@ -51,18 +51,28 @@ switch ($key) {
         Discord::sendWebhookMessage("weird", "{$user->getUsername()} received [$assetId](https://".url."/Item.aspx?ID=$assetId) !");
         break;
     case "WhyY0uG0tt4UpNJ1ckl3Y4ng":
+        $assetIds = [3349, 12345678];
+
         if (!$db->userExists($userId)) {
             break;
         }
 
-        if ($assetId !== 12345678) {
+        if (!in_array($assetId, $assetIds)) {
             break;
         }
 
         $user = new User($userId);
-        $tix = rand(1, 5);
-        $user->giveTix($tix);
-        Discord::sendWebhookMessage("weird", "{$user->getUsername()} received $tix tix from the Ticket Egg !");
+
+        if ($assetId == 12345678) {
+            $tix = 1;
+            $user->giveTix($tix);
+            Discord::sendWebhookMessage("weird", "{$user->getUsername()} received $tix tix from the Ticket Egg !");
+            break;
+        }
+
+        $user->giveItem($assetId);
+        Discord::sendWebhookMessage("weird", "{$user->getUsername()} received [$assetId](https://".url."/Item.aspx?ID=$assetId) !");
+        
         break;
     }
 ?>
