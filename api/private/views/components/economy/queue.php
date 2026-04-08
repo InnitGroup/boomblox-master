@@ -87,7 +87,7 @@ $required = Helper::is_even(round(abs($admins/2))) ? round(abs($admins/2))+1 : r
                     $boomblox = new User(1);
                     $boomblox->giveItem($itemId);
 
-                    Discord::sendWebhookMessage("player-post", "New item released! - " . htmlspecialchars($queuedItem["itemName"]) . " - [bmblox.xyz/Item.aspx?ID=$itemId](https://xoblog.dev/Item.aspx?ID=$itemId)")
+                    Discord::sendWebhookMessage("player-post", "New item released! - " . htmlspecialchars($queuedItem["itemName"]) . " - [bmblox.xyz/Item.aspx?ID=$itemId](https://xoblog.dev/Item.aspx?ID=$itemId)");
 
                     break;
             }
