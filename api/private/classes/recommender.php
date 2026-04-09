@@ -3,70 +3,136 @@ class Recommender {
     private array $keywords = [];
     private Item $originalItem;
 
-    public static function gatherKeywords(int $itemId): array | null {
-        $commonWords = ["the", "a", "and", "or", "but", "in", "of", "to", "for", "with", "at", "by", "from", "up", "down", "this", "that", "he", "she", "I", "you", "they", "not", "very", "here"];
+    public static function gatherKeywords(int $itemId): ?array {
+        $commonWords = ["the", "a", "and", "or", "but", "in", "of", "to", "for", "with", "at", "by", "from", "up", "down", "this", "that", "he", "she", "i", "you", "they", "not", "very", "here"];
+
         $preparedItem = new Item($itemId);
         $item = $preparedItem->get();
-        $name = $item->itemName;
+        $name = strtolower($item->itemName);
 
-        $scoredName = preg_replace("/[^A-Za-z]/", "_", $name); # gathering all alphanumeric words by replacing non alphanumeric characters with underscores
-        $words = explode("_", $scoredName);                    # exploding all alphanumeric words by underscores
+        $scoredName = preg_replace("/[^a-z]/", "_", $name);
 
-        foreach ($commonWords as $commonWord) {
-            $wordFound = array_search($commonWord, $words);
-            if ($wordFound) {
-               unset($words[$wordFound]); 
-            }
+        $words = explode("_", $scoredName);
+
+        $filtered = [];
+        foreach ($words as $word) {
+            if ($word === "") continue;
+            if (in_array($word, $commonWords)) continue;
+            $filtered[] = $word;
         }
 
-        return array_values(array_filter($words));
+        return array_values($filtered);
     }
 
     public function generateRecommendations(): array {
+        global $db;
+
         $item = $this->originalItem->get();
+
         if (empty($this->keywords)) {
             $this->keywords = self::gatherKeywords($item->itemId);
         }
 
-        $recommendationLimit = 4;
-        if ($item->itemType == "game") {
-            $recommendationLimit = 3;
-        }
+        $recommendationLimit = ($item->itemType === "game") ? 3 : 4;
 
-        global $db;
         $recommendations = [];
-        #print_r($this->keywords);
+        $seenIds = [];
 
-        do {
-            foreach ($this->keywords as $index => $keyword) {
-                $stmt = "SELECT itemId FROM items WHERE itemName LIKE :keyword AND NOT itemId = :currentId AND itemType = :itemType AND catalogType = :catalogType LIMIT 1";
+        foreach ($this->keywords as $keyword) {
+            if (count($recommendations) >= $recommendationLimit) break;
+
+            if ($item->itemType == "catalog") {
+                $stmt = "SELECT itemId FROM items
+                     WHERE itemName LIKE :keyword
+                     AND itemId != :currentId
+                     AND itemType = :itemType
+                     AND catalogType = :catalogType
+                     ORDER BY RAND()
+                     LIMIT 10";
+
                 $result = $db->execute($stmt, [
                     ":keyword" => "%$keyword%",
                     ":currentId" => $item->itemId,
                     ":itemType" => $item->itemType,
                     ":catalogType" => $item->catalogType
-                    ]);
-                if ($result->rowCount() == 0) {
-                    continue;
-                }
+                ]);
 
-                $fetched = $result->fetch(PDO::FETCH_ASSOC);
-                $recommendations[] = new Item($fetched["itemId"]);
+                if ($result->rowCount() == 0) {
+                    $stmt = "SELECT itemId FROM items
+                            WHERE itemType = :itemType
+                            AND catalogType = :catalogType
+                            ORDER BY RAND() LIMIT 10";
+                    $result = $db->execute($stmt, [
+                        ":itemType" => $item->itemType,
+                        ":catalogType" => $item->catalogType
+                    ]);
+                }
+            } else {
+                $stmt = "SELECT itemId FROM items
+                     WHERE itemName LIKE :keyword
+                     AND itemId != :currentId
+                     AND itemType = :itemType
+                     ORDER BY RAND()
+                     LIMIT 10";
+
+                $result = $db->execute($stmt, [
+                    ":keyword" => "%$keyword%",
+                    ":currentId" => $item->itemId,
+                    ":itemType" => $item->itemType
+                ]);
+
+                if ($result->rowCount() == 0) {
+                    $stmt = "SELECT itemId FROM items
+                            WHERE itemType = :itemType
+                            ORDER BY RAND() LIMIT 10";
+                    $result = $db->execute($stmt, [
+                        ":itemType" => $item->itemType
+                    ]);
+                }
             }
-        } while (count($recommendations) < $recommendationLimit);
-        
+            
+
+            $rows = $result->fetchAll(PDO::FETCH_ASSOC);
+
+            shuffle($rows);
+
+            foreach ($rows as $row) {
+                $id = $row["itemId"];
+                if (in_array($id, $seenIds)) continue;
+
+                $seenIds[] = $id;
+                $recommendations[] = new Item($id);
+
+                if (count($recommendations) >= $recommendationLimit) break 2;
+            }
+        }
+
         if (empty($recommendations)) {
-            $recommendations = ["Error" => "No " . $item->itemType == "game" ? "places" : Helper::makePlural($item->catalogType) . " available to recommend."];
+            $recommendations = [
+                "Error" => "No " . (
+                    $item->itemType === "game"
+                        ? "places"
+                        : Helper::makePlural($item->catalogType)
+                ) . " available to recommend."
+            ];
         }
 
         return $recommendations;
     }
 
-    public function __construct(int $itemId, array $keywords = NULL) {
+    public function build() {
+        $recommendations = $this->generateRecommendations();
+        $baseItem = $this->originalItem;
+        PageBuilder::addComponent("recommender", "main", compact("recommendations", "baseItem"));
+    }
+
+    public function __construct(int $itemId, ?array $keywords = null) {
         $this->originalItem = new Item($itemId);
 
-        if (!isset($keywords)) {
+        if ($keywords !== null) {
+            $this->keywords = $keywords;
+        } else {
             $this->keywords = self::gatherKeywords($itemId);
         }
     }
-};
+}

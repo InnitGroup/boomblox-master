@@ -103,6 +103,11 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
                 <?php endif; ?>
 				<div style="clear: both;"></div>
 			</div>
+			<?php
+			$recommender = new Recommender($_GET["ID"]);
+            $recommender->generateRecommendations();
+            $recommender->build();
+			?>
 			<div style="margin:10px;width:703px;">
 				<script>
 					$(document).ready(function() {

@@ -9,8 +9,13 @@ if (isset($purchaseData)) {
     <div id="ItemContainer">
         <div id="Item">
             <h2><?=htmlspecialchars(Helper::debugString($data->itemName))?></h2>
-            <?=PageBuilder::addComponent("item", "details", $packed)?>
-            <?=PageBuilder::addComponent("item", "tabs", $packed)?>
+            <?php
+            PageBuilder::addComponent("item", "details", $packed);
+            $recommender = new Recommender($_GET["ID"]);
+            $recommender->generateRecommendations();
+            $recommender->build();
+            PageBuilder::addComponent("item", "tabs", $packed);
+            ?>
         </div>
         <div class="Ads_WideSkyScraper">
         <?=Ad::generateAd("160x600")?>
