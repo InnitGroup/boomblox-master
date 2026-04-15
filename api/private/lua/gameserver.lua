@@ -9,7 +9,7 @@ local ns = game:GetService("NetworkServer")
 game:GetService("Players"):SetChatFilterUrl("http://xoblog.dev/Game/ChatFilter.ashx")
 game:Load("http://{Url}/Data/Get.ashx?id={PlaceID}&key=8u09nhoasNHDXAOSHDL")
 --game:GetObjects("http://{Url}/content/duckydrop.rbxm")[1].Parent = workspace
-game:GetObjects("http://{Url}/content/eggdrop2009.rbxm?v=6")[1].Parent = workspace
+game:GetObjects("http://{Url}/content/eggdrop2009.rbxm?v=7")[1].Parent = workspace
 settings().Network.PhysicsSend = 1 -- 1==RoundRobin
 settings().Network.ExperimentalPhysicsEnabled = true
 

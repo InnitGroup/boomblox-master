@@ -4,8 +4,11 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
 global $theme, $auth, $user;
+if (Server::getIP() == Server::getServerIP()) {
+    header("Location: /IDE/Host.aspx");
+    exit;
+}
 
-global $auth;
 !$auth->isAuthed() && Server::_404();
 
 if (Client::getJoin()) {

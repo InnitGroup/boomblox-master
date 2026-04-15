@@ -21,6 +21,10 @@ class Recommender {
             $filtered[] = $word;
         }
 
+        if (empty($filtered)) {
+            $filtered = ["Wow"];
+        }
+
         return array_values($filtered);
     }
 

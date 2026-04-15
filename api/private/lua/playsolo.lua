@@ -2,7 +2,7 @@ workspace:SetPhysicsThrottleEnabled(true)
 game:GetService("RunService"):Run()
 game:GetService("Visit")
 
-local player = game.Players:CreateLocalPlayer({UserID})
+local player = game.Players:CreateLocalPlayer(0)
 player.CharacterAppearance = "{CharacterAppearance}"
 player:LoadCharacter()
 
