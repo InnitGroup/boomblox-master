@@ -9,7 +9,7 @@ global $theme, $auth, $user;
 $page = new APageBuilder;
 $page->buildHeader();
 
-PageBuilder::addComponent("admin", "tbd");
+PageBuilder::addComponent("admin", "inventory");
 
 $page->buildFooter();
 ?>
