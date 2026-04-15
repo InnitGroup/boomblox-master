@@ -19,7 +19,8 @@ class Discord {
         "e" => "https://discord.com/api/webhooks/1477341794147500052/zY4i0CDhVMZqeylDxQyCHE5kodLALy5MReHTfQ4zT2EyCQ_8hW937M_MooFW87XkJvx9",
         "staff" => "https://discord.com/api/webhooks/1477376755676352534/vzVg7nRTgHcmzNj8toibuij3N5bckzrceY1fqYYrtJDlrdlkKM0dty4Qu0Qz2imPUnfB",
         "public" => "https://discord.com/api/webhooks/1482444514609336492/womKQauQjVYw2UxdfqlDzU-iPHDJy8qP_WTkLO5rvSuJLbHp7O3Abv9OS1eUsItwVIOA",
-        "player-post" => "https://discord.com/api/webhooks/1491168278062563461/lDKfWLRNua9pSqbir6wrQnSJb8sCYkLUss_HAj2eNiwWi-56E_CLhNUfrplvcOh0B-VQ"
+        "player-post" => "https://discord.com/api/webhooks/1491168278062563461/lDKfWLRNua9pSqbir6wrQnSJb8sCYkLUss_HAj2eNiwWi-56E_CLhNUfrplvcOh0B-VQ",
+        "staff-logs" => "https://discord.com/api/webhooks/1494064879064187060/_qcnAo1jZRouEF9pT-s92rCj3PCNpyjtAS6oBMkvrOj9w4xHj3ndnBIz4LUJrGf6xz_I"
     );
     #https://stackoverflow.com/questions/54936975/setting-up-a-discord-oauth2-login-on-my-website-with-php
     public static function sendOAuth() {

@@ -109,4 +109,5 @@ $userId = $moderatedUser->getUserId();
             ?>
         </div>
         <br>
+        <a href="/Admi/Moderation/Inventory.aspx?UserID=<?=$userId?>"><?=$username?>'s</a> Inventory
     </div>

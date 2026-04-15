@@ -1,4 +1,5 @@
 <?php
+global $user;
 $inventoryOwner = new User($_GET["UserID"]);
 $inventory = $inventoryOwner->getItems("hat");
 $count = 0;
@@ -8,8 +9,9 @@ if (Server::isPost()) {
         exit;
     }
 
-    $itemToRemove = $_POST['ctl00$cphRoblox$RemoveItem'];
+    $itemToRemove = (int)$_POST['ctl00$cphRoblox$RemoveItem'];
     $inventoryOwner->removeItem($itemToRemove);
+    Discord::sendWebhookMessage("staff-logs", "{$user->getUsername()} removed item $itemToRemove from {$inventoryOwner->getUsername()}'s inventory");
     exit(Server::_self());
 }
 ?>
