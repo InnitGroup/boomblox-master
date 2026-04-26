@@ -17,7 +17,8 @@ if (Server::isPost()) {
 ?>
 
 <div id="MainPanel">
-    <h1><a href="/Admi/Users/ModerateUser.aspx?UserID=<?=$inventoryOwner->getUserId()?>"><?=htmlspecialchars($inventoryOwner->getUsername())?>'s</a> inventory</h1>
+    <span><h1><a href="/Admi/Users/ModerateUser.aspx?UserID=<?=$inventoryOwner->getUserId()?>"><?=htmlspecialchars($inventoryOwner->getUsername())?>'s</a> inventory</h1> If you are caught abusing this feature, you will be demoted and punished on the spot.</span>
+    <hr>
     <table border="1" cellpadding="5" cellspacing="0" style="width:100%; text-align:center;">
         <tr>
         <?php foreach ($inventory as $item) {

@@ -187,9 +187,9 @@ class ItemManager {
 
         $packed = compact("asset", "assetRender", "creatorRender", "data", "publicView", "user", "commentData", "commentCount");
 
-        if (isset($_POST["__EVENTTARGET"])) {
+        if (isset($_POST["__EVENTTARGET"]) && $data->onsale == 1) {
             global $theme;
-            if ($_POST["__EVENTTARGET"] == 'ctl00$cphRoblox$PurchaseWithTicketsButton') {
+            if ($_POST["__EVENTTARGET"] == 'ctl00$cphRoblox$PurchaseWithTicketsButton' && $data->priceInTix > 0) {
                 $purchaseData = [
                     "currencyName" => "Tickets",
                     "shortName" => "Tx",
@@ -198,7 +198,7 @@ class ItemManager {
                 $packed = compact("asset", "assetRender", "creatorRender", "data", "publicView", "user", "commentData", "commentCount", "purchaseData");
             }
 
-            if ($_POST["__EVENTTARGET"] == 'ctl00$cphRoblox$PurchaseWithRobuxButton') {
+            if ($_POST["__EVENTTARGET"] == 'ctl00$cphRoblox$PurchaseWithRobuxButton' && $data->priceInBoombux > 0) {
                 $purchaseData = [
                     "currencyName" => Site::getThemeProperty("currency", $theme),
                     "shortName" => Site::getThemeProperty("shortCurrency", $theme),
@@ -207,7 +207,7 @@ class ItemManager {
                 $packed = compact("asset", "assetRender", "creatorRender", "data", "publicView", "user", "commentData", "commentCount", "purchaseData");
             }
 
-            if ($_POST["__EVENTTARGET"] == 'ctl00$cphRoblox$PurchaseForFreeButton') {
+            if ($_POST["__EVENTTARGET"] == 'ctl00$cphRoblox$PurchaseForFreeButton' && $data->priceInTix == 0 && $data->priceInBoombux == 0) {
                 $purchaseData = [
                     "currencyName" => "PublicDomain",
                     "shortName" => "Free",

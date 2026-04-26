@@ -51,7 +51,7 @@ switch ($key) {
         Discord::sendWebhookMessage("weird", "{$user->getUsername()} received [$assetId](https://".url."/Item.aspx?ID=$assetId) !");
         break;
     case "WhyY0uG0tt4UpNJ1ckl3Y4ng":
-        $assetIds = [3349, 3363, 3364, 12345678];
+        $assetIds = [3349, 3363, 3364, 3533, 3532, 12345678];
 
         if (!$db->userExists($userId)) {
             break;
