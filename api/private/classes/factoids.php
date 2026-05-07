@@ -44,7 +44,7 @@ class Factoids {
         $query = self::$catalogQueries[$randomOption];
         
         global $db;
-        $stmt = "SELECT COUNT(*) FROM items WHERE catalogType=:catalogType";
+        $stmt = "SELECT COUNT(*) FROM items WHERE catalogType=:catalogType AND itemName LIKE '%$query%'";
         $result = $db->execute($stmt, [":catalogType" => $catalogType]);
     }
 };

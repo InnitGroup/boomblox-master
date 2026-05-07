@@ -45,7 +45,7 @@ echo $port;
 # $remotePort = $port + 1;
 
 $script = "wait(); dofile('http://".domain."/game/gameserver.ashx?serverPort=" . $port . "&PlaceID=".$placeId."')";
-$command = 'start C:\2009E4\Server.exe -no3d -script "'.$script.'"';
+$command = 'start C:\2009M\Server.exe -no3d -script "'.$script.'"';
 popen($command, "r");
 
 # $udp = "cmd /c start C:/udp/sudppipe " . Server::getServerIP() . " $port $remotePort";

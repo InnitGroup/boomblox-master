@@ -7,11 +7,11 @@ if (!$auth->isAuthed()) {
 	Server::_404();
 }
 
-if (!isset($_GET["placeid"])) {
+if (!isset($_GET["PlaceID"])) {
 	Server::_404();
 }
 
-$placeId = $_GET["placeid"];
+$placeId = $_GET["PlaceID"];
 if (!$user->ownsPlace($placeId)) {
 	$file = new File("/api/private/lua/joinfail.lua", [
 		"Error" => "edit place, this place is not yours."

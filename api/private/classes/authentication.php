@@ -62,7 +62,7 @@ class Authentication {
                         $user = new User($userId);
                     }
 
-                    if (basename($_SERVER['PHP_SELF']) !== "Maintenance.php" && !$user->hasPerms(3)) {
+                    if (basename($_SERVER['PHP_SELF']) !== "Maintenance.php" && !$user->hasPerms(3) && !$user->isTester()) {
                         header("Location: /Maintenance.aspx");
                         exit;
                     }
