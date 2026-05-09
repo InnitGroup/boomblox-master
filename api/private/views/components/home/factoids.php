@@ -15,17 +15,14 @@ global $theme;
 					</div>
 					<div class="RandomFactoid">
 						<img src="/images/RandomFactsIcons/Pants.png">
-						<b>0</b>
-						<a href="Catalog.aspx?m=BestSelling&amp;c=12&amp;t=PastWeek&amp;d=All&amp;q=tuxedo">fine-looking <b>tuxedos</b>
-						</a> are available in the pants section of the catalog
+						<?=Factoids::generateCatalogFactoid("pants")?>
 					</div>
 					<div class="RandomFactoid">
 						<img src="/images/RandomFactsIcons/Bux.png"> 100 <?=Site::getThemeProperty("currency", $theme)?> buys about <b>400</b> tickets on the <a href="Marketplace/TradeCurrency.aspx">Currency Exchange</a> right now
 					</div>
 					<div class="RandomFactoid">
 						<img src="/images/RandomFactsIcons/Shirt.png">
-						<b>0</b>
-						<a href="Catalog.aspx?m=BestSelling&amp;c=11&amp;t=PastWeek&amp;d=All&amp;q=assassin">deadly <b>assassin</b> robes </a> are available in the shirts section of the catalog
+						<?=Factoids::generateCatalogFactoid("shirt")?>
 					</div>
 					<div class="RandomFactoid">
 						<img src="/images/RandomFactsIcons/ShoppingBag.png"> the average bid for a user-run <b>rectangle</b> ad is <b>212</b> tickets
