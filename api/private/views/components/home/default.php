@@ -28,18 +28,25 @@
 	<?=PageBuilder::addComponent("home", "factoids")?>
 	<div class="FrontPagePanel" id="WhatsNew">
 		<div>
-			<div style="text-align: center;">
-				<h3>Featured Game: <span id="ctl00_cphRoblox_FeaturedGames_GameName">gone fhishing {{WIP}}</span>
-				</h3>
-			</div>
 			<?php
 				$featuredGameId = 2586;
 				$featuredGame = new Item($featuredGameId);
+				$game = $featuredGame->get();
+				$asset = new Asset($featuredGameId);
+				$assetRender = $asset->GetThumbnail(420, 230, "PNG");
+				$creatorId = $game->creatorId;
+				$creator = new User($creatorId);
+				$avatar = new Avatar($creatorId);
+				$avatarRender = $avatar->GetThumbnail(500, 500, "PNG");
 			?>
+			<div style="text-align: center;">
+				<h3>Featured Game: <span id="ctl00_cphRoblox_FeaturedGames_GameName"><?=htmlspecialchars(Helper::debugString($game->itemName))?></span>
+				</h3>
+			</div>
 			<div style="float: left;">
 				<div style="margin: 0px 5px 5px 5px; ">
-					<a id="ctl00_cphRoblox_FeaturedGames_AssetThumbnailImage" disabled="disabled" title="gone fhishing {{WIP}}" href="/Item.aspx?ID=<?=$featuredGameId?>" style="display:inline-block;">
-						<img src="https://t2.<?=domain?>/0055527c05201d325922f9dd82393972?v=1" border="0" alt="gone fhishing {{WIP}}">
+					<a id="ctl00_cphRoblox_FeaturedGames_AssetThumbnailImage" disabled="disabled" title="<?=htmlspecialchars(Helper::debugString($game->itemName))?>" href="/Item.aspx?ID=<?=$featuredGameId?>" style="display:inline-block;">
+						<img src="<?=$assetRender?>" border="0" alt="<?=htmlspecialchars(Helper::debugString($game->itemName))?>">
 					</a>
 				</div>
 			</div>
@@ -53,10 +60,10 @@
 					<div id="ctl00_cphRoblox_FeaturedGames_VisitedPanel" class="Visited">Visited: <?=Helper::times($featuredGame->get()->interactions)?></div>
 					<div id="Creator" class="Creator">
 						<div class="Avatar">
-							<a id="ctl00_cphRoblox_FeaturedGames_AvatarImage" title="hecka" href="https://<?=domain?>/User.aspx?ID=140" style="display:inline-block;cursor:pointer;">
-								<img src="https://t2.<?=domain?>/546fb3cf43677604674b9ad622b0a44c?v=1" style="height:100px;" border="0" alt="hecka" blankurl="http://t6-cf.roblox.com/blank-100x100.gif">
+							<a id="ctl00_cphRoblox_FeaturedGames_AvatarImage" title="<?=htmlspecialchars($creator->getUsername())?>" href="https://<?=domain?>/User.aspx?ID=140" style="display:inline-block;cursor:pointer;">
+								<img src="<?=$avatarRender?>" style="height:100px;" border="0" alt="<?=htmlspecialchars($creator->getUsername())?>" blankurl="http://t6-cf.roblox.com/blank-100x100.gif">
 							</a>
-						</div> Creator: <a id="ctl00_cphRoblox_FeaturedGames_CreatorHyperLink" href="User.aspx?ID=140">hecka</a>
+						</div> Creator: <a id="ctl00_cphRoblox_FeaturedGames_CreatorHyperLink" href="User.aspx?ID=140"><?=htmlspecialchars($creator->getUsername())?></a>
 					</div>
 				</div>
 			</div>

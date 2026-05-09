@@ -7,6 +7,8 @@ if (!isset($_GET["PlaceID"]) || !isset($_GET["TypeID"])) {
     Server::_404();
 }
 
+Client::clearType($user->getUserId());
+
 $placeId = $_GET["PlaceID"];
 $typeId = $_GET["TypeID"] ?? 0;
 $serverId = isset($_GET["ServerID"]) && !empty($_GET["ServerID"]) ? (int)$_GET["ServerID"] : 0;
@@ -56,3 +58,4 @@ switch ($typeId) {
 </ul>
 <br>
 <button onclick="alert(window.external.IsRobloxAppIDE)">COM Tester</button>
+<a href="/">Back home</a>
