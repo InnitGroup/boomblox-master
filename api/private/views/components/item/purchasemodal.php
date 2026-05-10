@@ -13,6 +13,10 @@ if (isset($purchaseData)) {
     }
 }
 
+if ($user->hasItem($data->itemId)) {
+    $purchaseData = NULL;
+}
+
 ?>
 
 <div id="ctl00_cphRoblox_ItemPurchasePopupPanel" class="modalPopup" style="z-index: 5; position: absolute; left: 50%; top: 30%; width: 27em; display: <?=isset($purchaseData) ? "block" : "none"?>">

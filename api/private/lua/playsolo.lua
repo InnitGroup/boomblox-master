@@ -1,3 +1,4 @@
+
 workspace:SetPhysicsThrottleEnabled(true)
 game:GetService("RunService"):Run()
 game:GetService("Visit")

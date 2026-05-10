@@ -11,6 +11,8 @@ if (!$auth->isAuthed()) {
     exit;
 }
 
+$script;
+
 if (isset($_GET["placeid"])) {
 	$stmt = "SELECT onsale FROM items WHERE itemId=:placeId";
 	$result = $db->execute($stmt, [":placeId" => $_GET["placeid"]]);
@@ -39,15 +41,20 @@ if (isset($_GET["placeid"])) {
 		"UploadUrl" => $uploadUrl,
 		"Url" => url
 	]);
-	echo $file->handle();
+
+	$script = $file->handle();
 } else {
 	$file = new File("/api/private/lua/playsolo.lua", [
 		"UserID" => $user->getUserId(),
 		"Username" => $user->getUsername(), 
 		"CharacterAppearance" => $user->getCharacterAppearance()
 	]);
-	echo $file->handle();
+
+	$script = $file->handle();
 }
+
+$signedScript = Crypt::scriptSign($script);
+echo $signedScript;
 
 Client::clearType($user->getUserId());
 exit;
