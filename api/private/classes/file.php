@@ -13,18 +13,23 @@ class File {
                 foreach ($this->parameters as $key => $value) {
                     $contents = str_replace("{".$key."}", $value, $contents);
                 }
+
+                if (str_ends_with($this->file, ".lua")) {
+                    return Crypt::scriptSign($contents);
+                }
+
                 return $contents;
             }
-        } else {
-            return "Error";
         }
+
+        return "Error";
     }
 
     public function links() {
         if (file_exists($this->file)) {
             $contents = file_get_contents($this->file);
-            $contents = str_replace("http://www.roblox.com", "http://".domain, $contents);
-            $contents = str_replace("http://roblox.com", "http://".domain, $contents);
+            $contents = str_replace("http://www.roblox.com", "http://" . domain, $contents);
+            $contents = str_replace("http://roblox.com", "http://" . domain, $contents);
             file_put_contents($this->file, $contents);
         }
     }

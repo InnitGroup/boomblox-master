@@ -10,5 +10,6 @@ global $auth;
 ?>
 
 <button onclick="alert(window.external.IsRobloxAppIDE)">IsRobloxAppIDE</button>
-<button onclick="window.external.GetApp().CreateGame('44340105256')">CreateGame</button>
-<button onclick="window.external.GetApp().CreateGame('44340105256').ExecUrlScript('http://<?=domain?>/IDE/test.lua')">CreateGame</button>
+<button onclick="window.external.GetApp().CreateGame('44340105256').ExecScript('loadfile(\'http://xoblog.dev/IDE/TestScript.ashx\')()')">test script</button>
+<button onclick="window.external.GetApp().CreateGame('44340105256').ExecScript('dofile(\'http://xoblog.dev/game/join.ashx\')')">test join</button>
+<button onclick="window.external.GetApp().CreateGame('44340105256').ExecUrlScript('http://<?=domain?>/game/gameserver.ashx?t=1')">test server</button>

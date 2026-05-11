@@ -113,7 +113,7 @@ local success, err = pcall(function()
     client.ConnectionAccepted:connect(onConnectionAccepted)
     client.ConnectionRejected:connect(onConnectionRejected)
     connectionFailed = client.ConnectionFailed:connect(onConnectionFailed)
-    client:Connect("127.0.0.1", {Port}, 0, threadSleepTime)
+    client:Connect("192.168.109.1", {Port}, 0, threadSleepTime)
 end)
 
 if not success then

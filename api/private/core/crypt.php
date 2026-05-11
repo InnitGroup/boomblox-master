@@ -12,6 +12,15 @@ class Crypt {
         $signature = self::sign($data);
         return sprintf("%%%s%%%s", base64_encode($signature), $data);
     }
+
+    public static function alternativeScriptSign($data) {
+        ob_start();
+        echo $data;
+        $data = ob_get_clean();
+        
+        $signature = base64_encode(self::sign("\r\n" . $data));
+        return "%". $signature . "%\r\n" . $data;
+    }
 }
 
 ?>

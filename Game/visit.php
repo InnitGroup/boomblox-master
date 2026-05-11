@@ -37,7 +37,7 @@ if (isset($_GET["placeid"])) {
 		"PlaceId" => $placeId,
 		"UserID" => $user->getUserId(),
 		"Username" => $user->getUsername(), 
-		"CharacterAppearance" => $user->getCharacterAppearance(), 
+		"CharacterAppearance" => $user->getCharacterAppearance(), # "http://" . domain . "/Asset/CharacterFetch.ashx?userId=" . $user->getUserId(), 
 		"UploadUrl" => $uploadUrl,
 		"Url" => url
 	]);
@@ -47,14 +47,14 @@ if (isset($_GET["placeid"])) {
 	$file = new File("/api/private/lua/playsolo.lua", [
 		"UserID" => $user->getUserId(),
 		"Username" => $user->getUsername(), 
-		"CharacterAppearance" => $user->getCharacterAppearance()
+		"CharacterAppearance" => $user->getCharacterAppearance() #"http://" . domain . "/Asset/CharacterFetch.ashx?userId=" . $user->getUserId()
 	]);
 
 	$script = $file->handle();
 }
 
-$signedScript = Crypt::scriptSign($script);
-echo $signedScript;
+echo $script;
+#echo Crypt::scriptSign($script);
 
 Client::clearType($user->getUserId());
 exit;
