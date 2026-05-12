@@ -14,8 +14,8 @@ class File {
                     $contents = str_replace("{".$key."}", $value, $contents);
                 }
 
-                if (str_ends_with($this->file, ".lua")) {
-                    #return Crypt::scriptSign($contents);
+                if (str_ends_with($this->file, ".lua") && Setting::enabled("SignedScripts")) {
+                    return Crypt::scriptSign($contents);
                 }
 
                 return $contents;
