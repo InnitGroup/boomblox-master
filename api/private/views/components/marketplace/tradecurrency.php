@@ -16,26 +16,26 @@ $page = isset($_POST["__EVENTARGUMENT"]) && !empty($_POST["__EVENTARGUMENT"]) ? 
 			<div id="CurrencyBidsPane">
 				<div class="CurrencyBids">
 					<h4>Available Tickets</h4>
-					<div class="CurrencyBid"> 27,175 @ 3.8220:1 </div>
-					<div class="AlternatingCurrencyBid"> 22 @ 3.6666:1 </div>
-					<div class="CurrencyBid"> 43 @ 3.5833:1 </div>
-					<div class="AlternatingCurrencyBid"> 20,468 @ 3.4591:1 </div>
-					<div class="CurrencyBid"> 11,736 @ 3.4588:1 </div>
-					<div class="AlternatingCurrencyBid"> 201 @ 3.4067:1 </div>
-					<div class="CurrencyBid"> 10 @ 3.3333:1 </div>
-					<div class="AlternatingCurrencyBid"> 162 @ 3.24:1 </div>
-					<div class="CurrencyBid"> 113 @ 3.2285:1 </div>
-					<div class="AlternatingCurrencyBid"> 31,500 @ 3.15:1 </div>
-					<div class="CurrencyBid"> 1,075 @ 3.1069:1 </div>
-					<div class="AlternatingCurrencyBid"> 37 @ 3.0833:1 </div>
-					<div class="CurrencyBid"> 7,812 @ 3.0671:1 </div>
-					<div class="AlternatingCurrencyBid"> 92 @ 3.0666:1 </div>
-					<div class="CurrencyBid"> 76 @ 3.04:1 </div>
-					<div class="AlternatingCurrencyBid"> 380 @ 3.0158:1 </div>
-					<div class="CurrencyBid"> 1,187 @ 3.0050:1 </div>
-					<div class="AlternatingCurrencyBid"> 841 @ 3.0035:1 </div>
-					<div class="CurrencyBid"> 3,001 @ 3.001:1 </div>
-					<div class="AlternatingCurrencyBid"> 60 @ 3:1 </div>
+					<div class="CurrencyBid"> 39,193 @ 9.0181:1 </div>
+					<div class="AlternatingCurrencyBid"> 74,657 @ 9.0002:1 </div>
+					<div class="CurrencyBid"> 4,193 @ 8.9023:1 </div>
+					<div class="AlternatingCurrencyBid"> 76,475 @ 8.8872:1 </div>
+					<div class="CurrencyBid"> 133 @ 8.8666:1 </div>
+					<div class="AlternatingCurrencyBid"> 141 @ 8.8125:1 </div>
+					<div class="CurrencyBid"> 4,848 @ 8.7985:1 </div>
+					<div class="AlternatingCurrencyBid"> 47,999 @ 8.7910:1 </div>
+					<div class="CurrencyBid"> 1,468 @ 8.7904:1 </div>
+					<div class="AlternatingCurrencyBid"> 4,760 @ 8.7822:1 </div>
+					<div class="CurrencyBid"> 71,492 @ 8.7752:1 </div>
+					<div class="AlternatingCurrencyBid"> 24,115 @ 8.7690:1 </div>
+					<div class="CurrencyBid"> 24,895 @ 8.7658:1 </div>
+					<div class="AlternatingCurrencyBid"> 26 @ 8.6666:1 </div>
+					<div class="CurrencyBid"> 1,000 @ 8.6206:1 </div>
+					<div class="AlternatingCurrencyBid"> 148,782 @ 8.6001:1 </div>
+					<div class="CurrencyBid"> 860 @ 8.6:1 </div>
+					<div class="AlternatingCurrencyBid"> 215 @ 8.6:1 </div>
+					<div class="CurrencyBid"> 21,422 @ 8.5997:1 </div>
+					<div class="AlternatingCurrencyBid"> 50,069 @ 8.5940:1 </div>
 				</div>
 			</div>
 		</div>
@@ -50,9 +50,9 @@ $page = isset($_POST["__EVENTARGUMENT"]) && !empty($_POST["__EVENTARGUMENT"]) ? 
 					</div>
 					<div class="TableRow">
 						<div class="Pair">BUX/TIX</div>
-						<div class="Rate">3.8220/3.9023</div>
-						<div class="Spread">80</div>
-						<div class="HighLow">459/0.0018</div>
+						<div class="Rate">9.0181/8.9047</div>
+						<div class="Spread">-113</div>
+						<div class="HighLow">1000/0.0061</div>
 						<div style="clear: both;"></div>
 					</div>
 				</div>
@@ -181,26 +181,26 @@ $page = isset($_POST["__EVENTARGUMENT"]) && !empty($_POST["__EVENTARGUMENT"]) ? 
 			<div id="CurrencyOffersPane">
 				<div class="CurrencyOffers">
 					<h4>Available ROBUX</h4>
-					<div class="CurrencyOffer"> 18,850 @ 1:3.9023 </div>
-					<div class="AlternatingCurrencyOffer"> 400 @ 1:3.9975 </div>
-					<div class="CurrencyOffer"> 8,144 @ 1:3.9998 </div>
-					<div class="AlternatingCurrencyOffer"> 50 @ 1:4 </div>
-					<div class="CurrencyOffer"> 15 @ 1:4 </div>
-					<div class="AlternatingCurrencyOffer"> 15 @ 1:4 </div>
-					<div class="CurrencyOffer"> 5 @ 1:4 </div>
-					<div class="AlternatingCurrencyOffer"> 2,000 @ 1:4 </div>
-					<div class="CurrencyOffer"> 3 @ 1:4 </div>
-					<div class="AlternatingCurrencyOffer"> 20 @ 1:4 </div>
-					<div class="CurrencyOffer"> 25 @ 1:4 </div>
-					<div class="AlternatingCurrencyOffer"> 10 @ 1:4 </div>
-					<div class="CurrencyOffer"> 10 @ 1:4 </div>
-					<div class="AlternatingCurrencyOffer"> 10 @ 1:4 </div>
-					<div class="CurrencyOffer"> 10 @ 1:4 </div>
-					<div class="AlternatingCurrencyOffer"> 5 @ 1:4 </div>
-					<div class="CurrencyOffer"> 20 @ 1:4 </div>
-					<div class="AlternatingCurrencyOffer"> 25 @ 1:4 </div>
-					<div class="CurrencyOffer"> 1,200 @ 1:4 </div>
-					<div class="AlternatingCurrencyOffer"> 10 @ 1:4 </div>
+					<div class="CurrencyOffer"> 42 @ 1:8.9047 </div>
+					<div class="AlternatingCurrencyOffer"> 122 @ 1:9.3360 </div>
+					<div class="CurrencyOffer"> 6,006 @ 1:9.3594 </div>
+					<div class="AlternatingCurrencyOffer"> 99,908 @ 1:9.3596 </div>
+					<div class="CurrencyOffer"> 16 @ 1:9.375 </div>
+					<div class="AlternatingCurrencyOffer"> 92 @ 1:9.3913 </div>
+					<div class="CurrencyOffer"> 561 @ 1:9.3992 </div>
+					<div class="AlternatingCurrencyOffer"> 691 @ 1:9.4312 </div>
+					<div class="CurrencyOffer"> 360 @ 1:9.5 </div>
+					<div class="AlternatingCurrencyOffer"> 32 @ 1:9.5 </div>
+					<div class="CurrencyOffer"> 2,164 @ 1:9.5536 </div>
+					<div class="AlternatingCurrencyOffer"> 24 @ 1:9.5833 </div>
+					<div class="CurrencyOffer"> 79 @ 1:9.6075 </div>
+					<div class="AlternatingCurrencyOffer"> 4,635 @ 1:9.6129 </div>
+					<div class="CurrencyOffer"> 55 @ 1:9.6545 </div>
+					<div class="AlternatingCurrencyOffer"> 88 @ 1:9.6590 </div>
+					<div class="CurrencyOffer"> 31 @ 1:9.6774 </div>
+					<div class="AlternatingCurrencyOffer"> 28 @ 1:9.9285 </div>
+					<div class="CurrencyOffer"> 15 @ 1:9.9333 </div>
+					<div class="AlternatingCurrencyOffer"> 1,001 @ 1:9.9880 </div>
 				</div>
 			</div>
 		</div>

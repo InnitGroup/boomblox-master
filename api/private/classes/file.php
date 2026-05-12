@@ -15,7 +15,7 @@ class File {
                 }
 
                 if (str_ends_with($this->file, ".lua")) {
-                    return Crypt::scriptSign($contents);
+                    #return Crypt::scriptSign($contents);
                 }
 
                 return $contents;

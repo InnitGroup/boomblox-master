@@ -1,5 +1,6 @@
 <?php
 class TradeCurrencyManager {
+    private int $tixPerBux = 9;
     # calculate the returned amount based on the amount & currency
     public function calculate($amount, $currency) {
         if ($amount <= 0) {
@@ -12,9 +13,9 @@ class TradeCurrencyManager {
 
         switch ($currency) {
             case "Tickets":
-                return floor((int)$amount / 4); // previously 10 @ 11/19/25
+                return floor((int)$amount / $this->tixPerBux); // previously 10 @ 11/19/25
             case "Robux":
-                return floor((int)$amount) * 4; // previously 10 @ 11/19/25
+                return floor((int)$amount) * $this->tixPerBux; // previously 10 @ 11/19/25
         }
     }
 
@@ -115,7 +116,7 @@ class TradeCurrencyManager {
         // $given/$asked
         // cut off at ten-thousandths place
         $rate = $given/$asked;
-        $rate = round($rate, 4, PHP_ROUND_HALF_DOWN);
+        $rate = round($rate, $this->tixPerBux, PHP_ROUND_HALF_DOWN);
         $isSplit = isset($_POST['ctl00$cphRoblox$AllowSplitTradesCheckBox']);
         $status = "processing";
         $remainder = $asked;

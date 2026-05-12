@@ -15,15 +15,12 @@ if (isset($_GET["Special"])) {
 
             $file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/032B.exe";
             break;
-        case "QATester030D":
-            /*
-            $qaTesters = [3, 78, 99, 113, 79, 85, 105, 91, 100, 108, 93, 73, 96];
-            if (!in_array($user->getUserId(), $qaTesters)) {
+        case "QATester":
+            if (!$user->isTester()) {
                 Server::_404();
             }
 
-            $file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/030D.exe";
-            */
+            $file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/038IndevRelease.zip";
             break;
     }
 }
