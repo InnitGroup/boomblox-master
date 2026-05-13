@@ -147,6 +147,7 @@ class ItemManager {
             $creator = new User($data->creatorId);
             switch ($currencyType) {
                 case "tix":
+                    if ($data->priceInTix <= 0) return false; 
                     if ($user->getTickets() >= $data->priceInTix) {
                         $user->takeTix($data->priceInTix);
                         $creator->giveTix($data->priceInTix);
@@ -155,6 +156,7 @@ class ItemManager {
                     }
                     break;
                 case "boombux":
+                    if ($data->priceInBoombux <= 0) return false; 
                     if ($user->getBoombux() >= $data->priceInBoombux) {
                         $user->takeBux($data->priceInBoombux);
                         $creator->giveBux($data->priceInBoombux);
