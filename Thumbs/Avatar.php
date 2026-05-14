@@ -40,42 +40,37 @@ class Avatar extends Base {
         return $script;
     }
     private function TestScript($width=100,$height=100,$imageFormat="PNG") {
-        
-        $roxbox = "0, 0.0, 0.1";
-        $roundy = "0, 0.03, 0.2";
-        $cframe = $roundy;
-        return "local player = game.Players:CreateLocalPlayer(0)
-        player.CharacterAppearance = '".$this->user->getCharacterAppearance()."'
-        print('".$this->user->getUsername().":".$this->user->getUserId()." being rendered')
+        $head = $this->user->getHead() == 0 ? 2268 : $this->user->getHead();
+        $face = $this->user->getFace() == 0 ? 1010 : $this->user->getFace();
+
+        $script = "
+        local player = game.Players:CreateLocalPlayer(0)
+        player.CharacterAppearance = '{$this->user->getCharacterAppearance(true)}'
         player:LoadCharacter()
-        player.Character.Head.Mesh:Remove()
-        player.Character.Head.face:Remove()
-        player.Character.Head.Anchored = true
-        player.Character.Torso.Anchored = true
-        player.Character['Left Arm'].Anchored = true
-        player.Character['Right Arm'].Anchored = true
-        player.Character['Left Leg'].Anchored = true
-        player.Character['Right Leg'].Anchored = true
-        player.Character.Head.Transparency = 1
-        local fakehead = Instance.new(\"Part\")
-        fakehead.Name = \"fakehead\"
-        fakehead.Anchored = true
-        fakehead.Parent = player.Character
-        fakehead.CFrame = player.Character.Head.CFrame
-        fakehead.BrickColor = player.Character.Head.BrickColor
-        game:GetObjects(\"http://" . domain . "/content/test/Roundy\")[1].Parent = player.Character.fakehead
-        local fake = Instance.new(\"Part\") 
-        fake.Parent = game.Workspace.Player 
-        fake.Size = Vector3.new(0.5,2,0.5)  
-        fake.CFrame = game.Workspace.Player.Head.CFrame + Vector3.new(".$cframe.")
-        fake.Transparency = 1 
-        fake.Anchored = true
-        local face = Instance.new(\"Decal\") 
-        face.Parent = fake 
-        face.Texture = \"rbxasset://textures/face.png\"
-        fakehead.CFrame = fakehead.CFrame * CFrame.fromEulerAnglesXYZ(0,math.rad(180),0)
+        local char = player.Character
+        local head = char.Head
+        head.Mesh:Remove()
+        head.face:Remove()
+        game:GetObjects('http://" . domain . "/asset/?id=$head')[1].Parent = head
+
+        local head2 = head:Clone()
+        head2.Parent = char
+        local mesh = head2.Mesh
+        mesh.Scale = Vector3.new(1.03, 1.03, 1.03)
+        mesh.TextureId = 'http://" . domain . "/asset/?id=$face'
+
+        local head3 = head:Clone()
+        head3.Parent = char
+        head3.Mesh.Scale = Vector3.new(1.02, 1.02, 1.02)
+        head3.CFrame = head2.CFrame * CFrame.fromEulerAnglesXYZ(0, math.rad(180), 0)
+
+        char.Torso['Right Shoulder'].CurrentAngle = math.pi / 2
+        game:GetObjects('http://xoblog.dev/asset/?id=4220')[1].Parent = char
         
-        return game:GetService('ThumbnailGenerator'):Boom('".$imageFormat."', ".$width.", ".$height.", true)";
+        print('{$this->user->getUsername()}:{$this->user->getUserId()} being rendered')
+        return game:GetService('ThumbnailGenerator'):Boom('$imageFormat', $width, $height, true)";
+
+        return $script;
     }
     public function RequestThumbnail($width=100,$height=100,$imageFormat="PNG",$upload=true,$ignoreCache=false) {
         global $db;
@@ -84,6 +79,7 @@ class Avatar extends Base {
 
         $size = Helper::dimensions($width,$height);
         $script = $this->GetScript($width,$height,$imageFormat);
+        if ($user->isStaff()) $script = $this->TestScript($width,$height,$imageFormat);
         $altHash = md5($user->getAlternateAppearance());
         $xml = Thumbnail::getXml($script);
 
