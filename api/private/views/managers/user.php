@@ -408,7 +408,8 @@ class UserManager {
         "12" => "Pants",
         "13" => "Decal",
         "17" => "Head",
-        "18" => "Face"
+        "18" => "Face",
+        "19" => "Gear",
     ];
     private $cToString = [
         "2" => "T-Shirts",
@@ -419,7 +420,8 @@ class UserManager {
         "12" => "Pants",
         "13" => "Decals",
         "17" => "Heads",
-        "18" => "Faces"
+        "18" => "Faces",
+        "19" => "Gears",
     ];
     
     public function loadFavPanePaginator($type) { // Header/Footer
@@ -555,7 +557,8 @@ class UserManager {
                             '.$this->loadFavPanePaginator("Footer").'
                         </div>
                         <div class="PanelFooter"> Category:&nbsp; <select onchange="javascript:__doWebPostBack('.$this->favoritesEndpoint.',\'FavoritesPane\',{\'userId\': '.$this->userId.',\'publicView\': '.$view.',\'theme\': '.$this->theme.',\'postData\': [\'AssetCategory\',this.value + \'$AssetCategory$Favorites\',this.value]})" name="AssetCategory">
-                                <option '.$this->categorySelected($this->favCategory, 17).' value="17">Heads</option>        
+                                <option '.$this->categorySelected($this->favCategory, 17).' value="17">Heads</option>      
+                                <option '.$this->categorySelected($this->favCategory, 19).' value="19">Gears</option>  
                                 <option '.$this->categorySelected($this->favCategory, 2).' value="2">T-Shirts</option>
                                 <option '.$this->categorySelected($this->favCategory, 11).' value="11">Shirts</option>
                                 <option '.$this->categorySelected($this->favCategory, 12).' value="12">Pants</option>
@@ -686,6 +689,9 @@ class UserManager {
 						</div>
                         <div class="AssetsMenuItem'.$this->invCategorySelected($this->invCategory, 18).'">
 							<a class="AssetsMenuButton'.$this->invCategorySelected($this->invCategory, 18).'" href="javascript:__doWebPostBack('.$this->inventoryEndpoint.',\'UserAssetsPane\',{\'userId\': '.$this->userId.',\'publicView\': '.(int)$view.',\'theme\': '.$this->theme.',\'postData\': [\'AssetCategorySelector\',\'18$AssetCategory$Inventory\',18]})">Faces</a>
+						</div>
+                        <div class="AssetsMenuItem'.$this->invCategorySelected($this->invCategory, 19).'">
+							<a class="AssetsMenuButton'.$this->invCategorySelected($this->invCategory, 19).'" href="javascript:__doWebPostBack('.$this->inventoryEndpoint.',\'UserAssetsPane\',{\'userId\': '.$this->userId.',\'publicView\': '.(int)$view.',\'theme\': '.$this->theme.',\'postData\': [\'AssetCategorySelector\',\'19$AssetCategory$Inventory\',19]})">Gears</a>
 						</div>
 						<div class="AssetsMenuItem'.$this->invCategorySelected($this->invCategory, 2).'">
 							<a class="AssetsMenuButton'.$this->invCategorySelected($this->invCategory, 2).'" href="javascript:__doWebPostBack('.$this->inventoryEndpoint.',\'UserAssetsPane\',{\'userId\': '.$this->userId.',\'publicView\': '.(int)$view.',\'theme\': '.$this->theme.',\'postData\': [\'AssetCategorySelector\',\'2$AssetCategory$Inventory\',2]})">T-Shirts</a>
