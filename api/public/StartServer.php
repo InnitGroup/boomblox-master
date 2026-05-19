@@ -13,11 +13,7 @@ if ($result->rowCount() == 0) {
     exit;
 }
 
-# $localPort = rand(31000, 32000); # 31000 - 32000
-# $remotePort = $localPort + 1; # 32001 - 33001
-# $serverPort = $remotePort + 1001; # 33002 - 34002
 $port = rand(31000, 32000);
-
 $playerTable = 'a:0:{}';
 
 $stmt = "INSERT INTO servers (placeid, serverid, playerTable, port) VALUES (:placeid, :serverid, :playerTable, :port)";
@@ -25,39 +21,12 @@ $result = $db->execute($stmt, [
     ":placeid" => $placeId,
     ":serverid" => uniqid(),
     ":playerTable" => $playerTable,
-    ":port" => $port # + 1
+    ":port" => $port
 ]);
-
-/*
-$clientToml = new File("/api/private/toml/client.toml", [
-    "serverAddr" => Server::getServerIP(),
-    "serverPort" => $serverPort,
-    "localPort" => $localPort,
-    "localIP" => "127.0.0.1",
-    "remotePort" => $remotePort
-]);
-
-$serverToml = new File("/api/private/toml/server.toml", [
-    "bindPort" => $serverPort
-]);
-
-file_put_contents("C:/frp/temp/frpc$localPort.toml", $clientToml->handle());
-file_put_contents("C:/frp/temp/frps$localPort.toml", $serverToml->handle());
-*/
 
 echo $port;
-# $remotePort = $port + 1;
 
 $script = "wait(); dofile('http://".domain."/game/gameserver.ashx?serverPort=" . $port . "&PlaceID=".$placeId."')";
 $command = 'start C:\2009M\Server.exe -no3d -script "'.$script.'"';
 popen($command, "r");
-
-# $udp = "cmd /c start C:/udp/sudppipe " . Server::getServerIP() . " $port $remotePort";
-# popen($udp, "rb");
-/*
-$frpc = "start C:/frp/frpc.exe -c C:/frp/temp/frpc$localPort.toml";
-$frps = "start C:/frp/frps.exe -c C:/frp/temp/frps$localPort.toml";
-popen($frps, "r");
-popen($frpc, "r");
-*/
 ?>

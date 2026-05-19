@@ -58,3 +58,13 @@ Another thing that is currenlty done with the utility DLL is the exported functi
 - `DllUnregisterServer`
 
 This is done so that in the event that the DLL is identified in suspicion of a non-authentic Roblox DLL, it can be thrown off by the exported functions; and of course the original Roblox resources would add to this as well.
+
+### Packaging
+The installer Boomblox has used since it's beginning is InstallForge, an InstallShield knockoff that is simple to install and easy to operate.
+
+You can find the `.ifp` preset file in `/api/docs/bin/Preset.ifp`, which includes the basic template of the installer preset. The only thing that is changed typically is the Product Version, which is set to the Roblox version (digital, ex: 0.13.27.0)
+
+Typically installers follow a 3 digit pattern with an optional alphabetical character to represent a quick fix or separate modification.
+
+### Site compatibility
+The site has some checks that the client requires in order to run properly, so first, gather an MD5 checksum of RobloxApp.exe, and store the output hash somewhere for later that you can remember. This MD5 will be placed in `/cdn/t0/version.txt` which is read by numerous classes and APIs in order to authenticate the client.
