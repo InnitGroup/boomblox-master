@@ -43,3 +43,18 @@ This can be done through inline hooking the `RBX::Crypt::verifySignatureBase64` 
 This can be done by patching by writing new assembly into empty memory and jumping out of the signature read loop to it, and jumping back to it.
 
 First, to obtain the location of this function that we want to modify, we must look for the string `CryptVerifySignature Error 0x%x. sigLen=%d sigB64='%s' message='%s'"` which is an error thrown in an exception during the effort to load in the signature byte by byte.
+
+## Pre-release
+Before releasing the client, there are a few steps that should be taken into consideration; namely, the client's presentation. In 2024 and up until late-2025, the presentation of Boomblox's clients weren't necessarily preserved entirely for sound viewing, but with the addition of custom DLLs being in use as well as the degree of accuracy in everything that is done in Boomblox being raised, this has changed.
+
+### DLLs
+Any DLL that you write and compile for Boomblox usage on the client-end should be concealed with the resource of a real Roblox DLL, for example; at the current time (5/19/2026 8:16 AM EST), the one DLL the client uses for all it's utilities is renamed to RobloxInstall.dll as well as reusing the Version section from an original RobloxInstall.dll's resource from 2008 via Resource Hacker.
+
+Another thing that is currenlty done with the utility DLL is the exported functions being listed as they were originally, like so:
+- `DllMain`
+- `DllCanUnloadNow`
+- `DllGetClassObject`
+- `DllRegisterServer`
+- `DllUnregisterServer`
+
+This is done so that in the event that the DLL is identified in suspicion of a non-authentic Roblox DLL, it can be thrown off by the exported functions; and of course the original Roblox resources would add to this as well.
