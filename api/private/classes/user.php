@@ -36,6 +36,7 @@ class User {
             "torsoColor",
             "head",
             "face",
+            "gear",
             "hat",
             "shirt",
             "pants",
@@ -468,24 +469,28 @@ class User {
         if (isset($this->data["character"]["hat"])) {
             $charapp .= ";".Site::$domain."/Asset/?id=".(int)$this->data["character"]["hat"];
         }
+
         if (isset($this->data["character"]["shirt"])) {
             $asset = new Asset((int)$this->data["character"]["shirt"]);
             if ($asset->IsApproved()) {
                 $charapp .= ";".Site::$domain."/Asset/?id=".(int)$this->data["character"]["shirt"];
             }
         }
+
         if (isset($this->data["character"]["pants"])) {
             $asset = new Asset((int)$this->data["character"]["pants"]);
             if ($asset->IsApproved()) {
                 $charapp .= ";".Site::$domain."/Asset/?id=".(int)$this->data["character"]["pants"];
             }
         }
+
         if (isset($this->data["character"]["t-shirt"])) {
             $asset = new Asset((int)$this->data["character"]["t-shirt"]);
             if ($asset->IsApproved()) {
                 $charapp .= ";".Site::$domain."/Asset/?id=".(int)$this->data["character"]["t-shirt"];
             }
         }
+
         if (!$isRender) {
             if (isset($this->data["character"]["head"]) && $this->data["character"]["head"] > 0) {
                 $charapp .= ";".Site::$domain."/content/test/".(int)$this->data["character"]["head"];
@@ -493,17 +498,26 @@ class User {
             if (isset($this->data["character"]["face"]) && $this->data["character"]["face"] > 0) {
                 $charapp .= ";".Site::$domain."/Data/Face.ashx?id=".(int)$this->data["character"]["face"];
             }
-        }
+            if (isset($this->data["character"]["gear"]) && $this->data["character"]["gear"] > 0) {
+                $charapp .= ";".Site::$domain."/asset/?id=".(int)$this->data["character"]["gear"];
+            }
+        } 
+
+        
+
         return $charapp;
     }
     public function getAlternateAppearance() {
-        return substr(implode("-",$this->data["character"]),77);
+        return substr(implode("-", array_filter($this->data["character"])), 77);
     }
     public function getHead() {
         return isset($this->data["character"]["head"]) ? $this->data["character"]["head"] : 2268;
     }
     public function getFace() {
         return isset($this->data["character"]["face"]) ? $this->data["character"]["face"] : 1010;
+    }
+    public function getGear() {
+        return isset($this->data["character"]["gear"]) ? $this->data["character"]["gear"] : NULL;
     }
     public function isOnline() {
         if (!$this->getData("user","lastOnline")) {
@@ -1168,6 +1182,9 @@ class User {
         }
         if (!empty($char["face"])) {
             array_push($wornArray, $char["face"]);
+        }
+        if (!empty($char["gear"])) {
+            array_push($wornArray, $char["gear"]);
         }
         if (!$array) {
             return $wornArray;

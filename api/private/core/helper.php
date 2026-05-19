@@ -65,7 +65,8 @@ class Helper {
             "Shirt" => 11,
             "Pants" => 12,
             "Head" => 17,
-            "Face" => 18
+            "Face" => 18,
+            "Gear" => 19
         ];
 
         if (isset($types[$type])) {

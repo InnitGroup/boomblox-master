@@ -35,7 +35,7 @@ class Asset extends Base {
         switch (self::$_assetType) {
             case "catalog":
                 $lighting = "true";
-                if (self::$_itemType == "Hat" || self::$_itemType == "Model") {
+                if (self::$_itemType == "Hat" || self::$_itemType == "Model" || self::$_itemType == "Gear") {
                     $script = "game:GetObjects('http://".domain."/content/".self::$_assetId."')[1].Parent = game.Workspace";
                 } elseif (self::$_itemType == "Shirt" || self::$_itemType == "Pants") {
                     $script = "

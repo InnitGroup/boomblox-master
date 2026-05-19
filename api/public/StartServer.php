@@ -7,7 +7,11 @@ if (Setting::disabled("Gameservers")) {
 }
 
 $placeId = $_GET["PlaceID"] ?? Server::_404();
-
+$stmt = "SELECT itemType FROM items WHERE itemId=:placeId AND itemType='game'";
+$result = $db->execute($stmt, [":placeId" => $placeId]);
+if ($result->rowCount() == 0) {
+    exit;
+}
 
 # $localPort = rand(31000, 32000); # 31000 - 32000
 # $remotePort = $localPort + 1; # 32001 - 33001

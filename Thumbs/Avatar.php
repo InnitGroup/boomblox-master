@@ -12,6 +12,7 @@ class Avatar extends Base {
     public function GetScript($width=100,$height=100,$imageFormat="PNG") {
         $head = $this->user->getHead() == 0 ? 2268 : $this->user->getHead();
         $face = $this->user->getFace() == 0 ? 1010 : $this->user->getFace();
+        $gear = $this->user->getGear();
 
         $script = "
         local player = game.Players:CreateLocalPlayer(0)
@@ -32,7 +33,16 @@ class Avatar extends Base {
         local head3 = head:Clone()
         head3.Parent = char
         head3.Mesh.Scale = Vector3.new(1.02, 1.02, 1.02)
-        head3.CFrame = head2.CFrame * CFrame.fromEulerAnglesXYZ(0, math.rad(180), 0)
+        head3.CFrame = head2.CFrame * CFrame.fromEulerAnglesXYZ(0, math.rad(180), 0)";
+
+        if ($gear !== NULL) {
+            $script .= "
+            char.Torso['Right Shoulder'].CurrentAngle = math.pi / 2
+            game:GetObjects('http://xoblog.dev/asset/?id=$gear')[1].Parent = char
+            ";
+        }
+
+        $script .= "
         print('{$this->user->getUsername()}:{$this->user->getUserId()} being rendered')
         return game:GetService('ThumbnailGenerator'):Boom('$imageFormat', $width, $height, true)";
 
@@ -65,7 +75,7 @@ class Avatar extends Base {
         head3.CFrame = head2.CFrame * CFrame.fromEulerAnglesXYZ(0, math.rad(180), 0)
 
         char.Torso['Right Shoulder'].CurrentAngle = math.pi / 2
-        game:GetObjects('http://xoblog.dev/asset/?id=4220')[1].Parent = char
+        game:GetObjects('http://xoblog.dev/asset/?id=4273')[1].Parent = char
         
         print('{$this->user->getUsername()}:{$this->user->getUserId()} being rendered')
         return game:GetService('ThumbnailGenerator'):Boom('$imageFormat', $width, $height, true)";
@@ -77,9 +87,10 @@ class Avatar extends Base {
         $user = $this->user;
         $hasError = 0;
 
-        $size = Helper::dimensions($width,$height);
-        $script = $this->GetScript($width,$height,$imageFormat);
-        if ($user->isStaff()) $script = $this->TestScript($width,$height,$imageFormat);
+        $size = Helper::dimensions($width, $height);
+        $script = $this->GetScript($width, $height, $imageFormat);
+        #if ($user->getUserId() == 3) $script = $this->TestScript($width,$height,$imageFormat);
+        #Discord::sendWebhookMessage("vcchat", $user->getAlternateAppearance());
         $altHash = md5($user->getAlternateAppearance());
         $xml = Thumbnail::getXml($script);
 

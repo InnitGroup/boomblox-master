@@ -98,9 +98,9 @@ class CharacterManager {
         $id = $this->requestData["accoutrementId"];
         $action = $this->requestData["action"];
 
-        if (!in_array($type, $types)) {
-            exit(header("Location: /My/Character.aspx"));
-        }
+        #if (!in_array($type, $types)) {
+        #    exit(header("Location: /My/Character.aspx"));
+        #}
 
         if ($this->user->hasItem((int)$id)) {
             $stmt = "UPDATE users SET ";
@@ -109,22 +109,14 @@ class CharacterManager {
             $item = $_itemObj->get();
             $asset = new Asset($id);
                     
-            if ($type == "head" && $item->catalogType !== "Head") {
-                exit(header("Location: /My/Character.aspx"));
-            }
-
-            if ($type !== "head" && $item->catalogType == "Head") {
-                exit(header("Location: /My/Character.aspx"));
-            }
-
-            if ($type == "face" && $item->catalogType !== "Face") {
-                exit(header("Location: /My/Character.aspx"));
-            }
-
-            if ($type !== "face" && $item->catalogType == "Face") {
+            if ($type !== strtolower($item->catalogType)) {
                 exit(header("Location: /My/Character.aspx"));
             }
             
+            if ($item->catalogType == "Hat" && strtolower($type) == "face" || $item->catalogType == "Hat" && strtolower($type) == "gear" || $item->catalogType == "Hat" && strtolower($type) == "head") {
+                exit(header("Location: /My/Character.aspx"));
+            }
+
             if ($type == strtolower($item->catalogType) || $item->catalogType == "Hat") {
                 if ($action == "Wear") {
                     $stmt .= "`".htmlspecialchars($type)."`=:aId WHERE `id`=:uId"; # aId = accoutrementId, uId = userId

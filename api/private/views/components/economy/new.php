@@ -93,6 +93,7 @@
             <option value="8">Hat</option>
             <option value="17">Head</option>
             <option value="18">Face</option>
+            <option value="19">Gear</option>
         </select>
     </div>
     <div style="margin:5px;">

@@ -18,7 +18,7 @@ global $theme;
 						<?=Factoids::generateCatalogFactoid("pants")?>
 					</div>
 					<div class="RandomFactoid">
-						<img src="/images/RandomFactsIcons/Bux.png"> 100 <?=Site::getThemeProperty("currency", $theme)?> buys about <b>400</b> tickets on the <a href="Marketplace/TradeCurrency.aspx">Currency Exchange</a> right now
+						<img src="/images/RandomFactsIcons/Bux.png"> 100 <?=Site::getThemeProperty("currency", $theme)?> buys about <b>1000</b> tickets on the <a href="Marketplace/TradeCurrency.aspx">Currency Exchange</a> right now
 					</div>
 					<div class="RandomFactoid">
 						<img src="/images/RandomFactsIcons/Shirt.png">
