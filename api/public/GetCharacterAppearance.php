@@ -10,8 +10,7 @@ $result = $db->execute($stmt, [":ticket" => $ticket]);
 
 if ($result->rowCount() > 0) {
     $fetched = $result->fetch(PDO::FETCH_ASSOC);
-    $user = new User($fetched["id"]);
 
-    echo $user->getCharacterAppearance();
+    echo "http://" . domain . "/Asset/CharacterFetch.ashx?userId=" . $fetched["id"];
 }
 ?>

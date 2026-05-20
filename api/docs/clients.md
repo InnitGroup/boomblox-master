@@ -66,5 +66,29 @@ You can find the `.ifp` preset file in `/api/docs/bin/Preset.ifp`, which include
 
 Typically installers follow a 3 digit pattern with an optional alphabetical character to represent a quick fix or separate modification.
 
+Once the installer is built with a proper name and configuration, upload it to `/api/private/apps/`
+
+### Server-end app
+The server application should be just the client, but with the server-compiled DLL, what you will do here is zip up the folder that the server is in, move it to the server's `C:` drive at the root, and then unzip it there; deleting the remaining zip file. Ensure the folder has a unique name, a typical pattern to follow is just the client year and period specifier as well as an additional number attached to represent the version in said specifier. 
+
+Example `C:/2009E2` *because it's the 3rd 2009 client to release within the months of january-april, first being 2009E, second being 2009E1, and now we are at 2009E2*
+
+This just eases up organization so that we don't have to worry about locating these servers later on and getting them mixed up.
+
 ### Site compatibility
-The site has some checks that the client requires in order to run properly, so first, gather an MD5 checksum of RobloxApp.exe, and store the output hash somewhere for later that you can remember. This MD5 will be placed in `/cdn/t0/version.txt` which is read by numerous classes and APIs in order to authenticate the client.
+The site has some checks that the client requires in order to run properly, so first, gather an MD5 checksum of RobloxApp.exe, and store the output hash somewhere for later that you can remember; this will be used in the next section.
+
+## Release
+It is important that we release things in order of what can be seen last and what can't be accessed first, so that nobody encounters any errors.
+
+1. Go to `/api/public/StartServer.php` and on approximately **line 30** change the file path to where the current server application is, which should just be changing the name of the file, not the entire path, like so: `C:\{THIS_THING_HERE}\Server.exe`
+
+    *This is done first so that users will not be able to join servers initially, and it will throw a general ID 15 error*
+
+2. Go to `/Install/ActiveDownload.php` and change what should be **line 7** that contains the initial `$file` variable, and give it the file name of the true installer.
+
+    *This is done so that users will no longer be able to download old clients and deal with confusion*
+
+3. Go to `/cdn/t0/version.txt` and paste in the MD5 hash that you were instructed to store temporarily earlier.
+
+    *This is the last part of the release and will trigger for the installer to be prompted if they have not already installed a client with a matching MD5 hash*

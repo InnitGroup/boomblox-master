@@ -1,7 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 header("Content-Type: text/plain");
-global $user, $auth;
+global $user, $auth, $db;
 
 $port = $_GET["serverPort"] ?? 10000;
 $place = $_GET["PlaceID"] ?? 1;
@@ -26,5 +26,8 @@ $file = new File("/api/private/lua/gameserver.lua", [
     "Url" => url
 ]);
 echo $file->handle();
+
+$stmt = "UPDATE servers SET active=1 WHERE port=:port";
+$db->execute($stmt, [":port" => $port]);
 exit;
 ?>

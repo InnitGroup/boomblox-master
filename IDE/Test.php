@@ -5,8 +5,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
 global $theme, $auth, $user;
 
-global $auth;
-!$auth->isAuthed() && Server::_404();
+#global $auth;
+#!$auth->isAuthed() && Server::_404();
 ?>
 
 <button onclick="alert(window.external.IsRobloxAppIDE)">IsRobloxAppIDE</button>

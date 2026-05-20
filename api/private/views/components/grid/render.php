@@ -33,6 +33,12 @@
                         if ($asset->getType() == "game") {
                             $asset->RequestThumbnail(420, 230, "PNG",true,true);
                         }
+
+                        $stmt = "UPDATE items SET lastUpdate=:xnow WHERE itemId=:itemId";
+                        $db->execute($stmt, [
+                            ":xnow" => date("Y-m-d H:i:s"),
+                            ":itemId" => $id
+                        ]);
                         
                         $thumb = $asset->RequestThumbnail(250, 250, "PNG",true,true);
                     } else {
