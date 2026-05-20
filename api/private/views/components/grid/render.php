@@ -50,7 +50,6 @@
                     ]);
                     
                     $thumb = $asset->RequestThumbnail(250, 250, "PNG",true,true);
-                
                     break;
             }
         }

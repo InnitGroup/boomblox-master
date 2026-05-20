@@ -439,12 +439,21 @@ class User {
         if (!$this->hasItem(118)) {
             $this->giveItem(118);
         }
-
-        $expirationDate = new DateTime($this->data["membership"]["bcExpires"]);
-        $expirationDate->add(DateInterval::createFromDateString($months . " " . ($months > 1 ? "months" : "month")));
         
         global $db;
-        if ($this->hasBC()) {
+        if (!$this->hasBC()) {
+            $expirationDate = new DateTime();
+            $expirationDate->add(DateInterval::createFromDateString($months . " " . ($months > 1 ? "months" : "month")));
+
+            $stmt = "UPDATE users SET bcExpires = :expiration, bc = 1 WHERE id=:userId";
+            $db->execute($stmt, [
+                ":expiration" => $expirationDate->format("Y-m-d H:i:s"),
+                ":userId" => $this->getUserId()
+            ]);
+        } else {
+            $expirationDate = new DateTime($this->data["membership"]["bcExpires"]);
+            $expirationDate->add(DateInterval::createFromDateString($months . " " . ($months > 1 ? "months" : "month")));
+
             $stmt = "UPDATE users SET bcExpires=:expiration WHERE id=:userId";
             $db->execute($stmt, [
                 ":expiration" => $expirationDate->format("Y-m-d H:i:s"),
@@ -453,11 +462,7 @@ class User {
             return;
         }
 
-        $stmt = "UPDATE users SET bcExpires = :expiration, bc = 1 WHERE id=:userId";
-        $db->execute($stmt, [
-            ":expiration" => $expirationDate->format("Y-m-d H:i:s"),
-            ":userId" => $this->getUserId()
-        ]);
+        
     }
     public function takeBC() {
         global $db;
