@@ -9,10 +9,15 @@
             $type = $_POST['ctl$cphRoblox$Type'];
             switch ($type) {
                 case "Avatar":
+                    global $db;
+                    if (!$db->userExists($id)) {
+                        $error = "User $id was not found";
+                        break;
+                    }
+
                     $renderedUser = new User($id);
                     $altHash = md5($renderedUser->getAlternateAppearance());
-
-                    global $db;
+                    
                     $stmt = "DELETE FROM cdn WHERE altHash=:altHash";
                     $db->execute($stmt, [":altHash" => $altHash]);
 
@@ -22,29 +27,30 @@
                     $thumb = $avatar->RequestThumbnail(100,100,"JPG",true,true);
                     break;
                 case "Asset":
-                    if (file_exists($_SERVER["DOCUMENT_ROOT"]."/content/$id")) {
-                        $asset = new Asset($id);
-                        $altHash = $asset->AltHash($_SERVER["DOCUMENT_ROOT"]."/content/".$id);
-
-                        global $db;
-                        $stmt = "DELETE FROM cdn WHERE altHash=:altHash";
-                        $db->execute($stmt, [":altHash" => $altHash]);
-
-                        if ($asset->getType() == "game") {
-                            $asset->RequestThumbnail(420, 230, "PNG",true,true);
-                        }
-
-                        $stmt = "UPDATE items SET lastUpdate=:xnow WHERE itemId=:itemId";
-                        $db->execute($stmt, [
-                            ":xnow" => date("Y-m-d H:i:s"),
-                            ":itemId" => $id
-                        ]);
-                        
-                        $thumb = $asset->RequestThumbnail(250, 250, "PNG",true,true);
-                    } else {
+                    if (!file_exists($_SERVER["DOCUMENT_ROOT"]."/content/$id")) {
                         $error = "Asset file wasn't found on the server";
+                        break;
                     }
+
+                    $asset = new Asset($id);
+                    $altHash = $asset->AltHash($_SERVER["DOCUMENT_ROOT"]."/content/".$id);
+
+                    global $db;
+                    $stmt = "DELETE FROM cdn WHERE altHash=:altHash";
+                    $db->execute($stmt, [":altHash" => $altHash]);
+
+                    if ($asset->getType() == "game") {
+                        $asset->RequestThumbnail(420, 230, "PNG",true,true);
+                    }
+
+                    $stmt = "UPDATE items SET lastUpdate=:xnow WHERE itemId=:itemId";
+                    $db->execute($stmt, [
+                        ":xnow" => date("Y-m-d H:i:s"),
+                        ":itemId" => $id
+                    ]);
                     
+                    $thumb = $asset->RequestThumbnail(250, 250, "PNG",true,true);
+                
                     break;
             }
         }
