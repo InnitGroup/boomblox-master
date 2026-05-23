@@ -62,12 +62,16 @@ class Registration {
             return json_encode($error);
         }
 
-        $db->createUser($_POST["Username"],$_POST["Password"],$_POST["Key"]);
+        $db->createUser($_POST["Username"], $_POST["Password"], $_POST["Key"]);
         $id = $db->getIdByUser($_POST["Username"]);
         ROBLOSECURITY::new($id);
         IP::whitelist($id);
 
         $newUser = new User($id);
+        if ($newUser->getData("character", "head") !== 0) {
+            $newUser->giveItem($newUser->getData("character", "head"));
+        }
+        
         $message = [
             "senderId" => 1,
             "senderUn" => "Boomblox",

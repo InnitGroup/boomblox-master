@@ -96,6 +96,10 @@ class User {
         return $this->data[$dataType][$property] ?? NULL;
     }
 
+    public function getSection($dataType = "user") {
+        return $this->data[$dataType];
+    }
+
     public function getEmail() {
         return $this->data["user"]["email"];
     }

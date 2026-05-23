@@ -217,17 +217,6 @@ class CharacterManager {
 
             }
         }
-
-        /*
-        $result .= '
-        <span style="color:#dcdcdc;">First Previous</span>
-        <span>1</span>
-        <a href="javascript:__doPostBack(\'Paginator\',\'Page$2\')">2</a>
-        <a href="javascript:__doPostBack(\'Paginator\',\'Page$3\')">3</a>
-        <a href="javascript:__doPostBack(\'Paginator\',\'Page$'.($this->page+1).'\')">Next</a>
-        <a href="javascript:__doPostBack(\'Paginator\',\'Page$3\')">Last</a>
-        ';
-        */
         
         return $result;
     }

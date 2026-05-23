@@ -7,6 +7,14 @@ global $user;
     <div style="position: relative; display: inline-block">
         <img style="position: absolute; width: 16px; top: 0; left: 0; display: none;" id="CharacterLoading" src="/images/ProgressIndicator2.gif">
         <img style="width: 354px;" id="CharacterRender" src="<?=$char->GetThumbnail(500, 500, "PNG")?>">
+        <?php if (isset($_GET["debug"])) {
+            $charapp = $user->getSection("character");
+            foreach ($charapp as $optionId => $optionCategory) {
+                if (isset($charapp[$optionCategory])) {
+                    echo $optionCategory . ": " . $charapp[$optionCategory] . ", ";
+                }
+            }
+        } ?>
     </div>
     <script>
         function redraw() {

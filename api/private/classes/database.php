@@ -79,18 +79,29 @@ class Database {
     # creates a new user
     public function createUser($username, $password, $key) {
         if (!$this->keyTaken($key)) {
+            $limbColors = [1, 194];
             $torsoColors = [1, 37, 21, 194, 141];
+            $legColor = 102;
+            $heads = [2058, 2031, 2046, 0];
+
+            $limbColor = $limbColors[rand(0, 1)];
+            $torsoColor = $torsoColors[rand(0, 4)];
+            $head = $heads[rand(0, 3)];
+
             $joincode = bin2hex(random_bytes(16));
 
-            $sql = "INSERT INTO users (username, password, torsoColor, joincode) VALUES (:username, :password, :torsoColor, :joincode)";
+            $sql = "INSERT INTO users (username, password, torsoColor, llColor, rlColor, headColor, laColor, raColor, headColor, head, joincode) VALUES (:username, :password, :torsoColor, :legColor, :legColor, :limbColor, :limbColor, :limbColor, :head, :joincode)";
             $this->execute($sql, [
                 ":username" => $username, 
                 ":password" => password_hash($password, PASSWORD_BCRYPT), 
-                ":torsoColor" => $torsoColors[rand(0,4)],
+                ":torsoColor" => $torsoColor,
+                ":limbColor" => $limbColor,
+                ":legColor" => $legColor,
+                ":head" => $head,
                 ":joincode" => $joincode,
             ]);
 
-            $sql = "UPDATE `keys` SET `status`=0, `recipient`=:recipient WHERE `keyC`=:keyC";
+            $sql = "UPDATE `keys` SET `status`= 0, `recipient`=:recipient WHERE `keyC`=:keyC";
             $key = substr($key, 9);
             $this->execute($sql, [":keyC" => (int)$key, ":recipient" => $this->getLastUserId()]);
         }
