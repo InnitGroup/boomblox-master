@@ -1,17 +1,13 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
-
 global $auth;
-/*
-if (!$auth->isAuthed()) {
-    $log = implode(" -- ", $_SERVER);
-    if (strpos($_SERVER["HTTP_USER_AGENT"], "Discordbot/2.0") !== false) {
-        Discord::sendWebhookMessage("e", "Emergency log: discord embed from site");
-    } else {
-        Discord::sendWebhookMessage("e", "Emergency log: ```" . $log . "```");
+
+if (isset($_GET["WhenWill"])) {
+    if ($_GET["WhenWill"] === "YouLearn") {
+        echo '<img style="display:block;margin-left:auto;margin-right:auto;margin-top:250px" src="/images/supernichelogoahhahah.png">';
+        exit;
     }
 }
-*/
 
 $auth->isAuthed() && header("Location: /Default.aspx") && exit;
 

@@ -85,8 +85,8 @@ switch ($type) {
         Discord::sendWebhookMessage("games", $player->getUsername() . " joined [place $place](https://" . domain . "/Item.aspx?ID=$place)");
         Analytics::logJoin($player->getUserId(), $place);
 
-        echo $player->getCharacterAppearance(); 
-        # echo "http://" . domain . "/Asset/CharacterFetch.ashx?userId=" . $associate;
+        #echo $player->getCharacterAppearance(); 
+        echo "http://" . domain . "/Asset/CharacterFetch.ashx?userId=" . $associate;
         
         break;
     case 2:
