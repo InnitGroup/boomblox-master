@@ -4,7 +4,7 @@ global $auth, $user;
 
 !$auth->isAuthed() && Server::_404();
 
-$file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/07B.exe";
+$file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/037B.exe";
 if (isset($_GET["Special"])) {
     switch ($_GET["Special"]) {
         case "XPTesterGC":
@@ -39,3 +39,7 @@ if (file_exists($file)) {
     exit;
 }
 ?>
+
+<h1>File not found</h1>
+<hr>
+<p>The file requested by /Install/ActiveDownload.aspx could not be found.</p>

@@ -48,11 +48,11 @@ Roblox.Launch.StartGame = function (visitUrl, authenticationUrl, type, placeID)
     {
         var app = window.external.GetApp();
         var workspace = app.CreateGame(44340105256);    // Window
-        workspace.ExecUrlScript(visitUrl);
+        workspace.ExecScript("dofile('" + visitUrl + "')");
     } else if (Roblox.Launch.isVista()) {
         var app = new ActiveXObject("Roblox.App");
         var workspace = app.CreateGame(44340105256);
-        workspace.ExecUrlScript(visitUrl);
+        workspace.ExecScript("dofile('" + visitUrl + "')");
 		workspace = app.NullDispatch;
 		app = app.NullDispatch;
     } else

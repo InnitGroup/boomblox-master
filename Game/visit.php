@@ -13,9 +13,9 @@ if (!$auth->isAuthed()) {
 
 $script;
 
-if (isset($_GET["placeid"])) {
+if (isset($_GET["PlaceID"])) {
 	$stmt = "SELECT onsale FROM items WHERE itemId=:placeId";
-	$result = $db->execute($stmt, [":placeId" => $_GET["placeid"]]);
+	$result = $db->execute($stmt, [":placeId" => $_GET["PlaceID"]]);
 	if ($result->rowCount() == 0) {
 		$file = new File("/api/private/lua/joinfail.lua", [
 			"Error" => "join, place doesn't exist."
@@ -26,7 +26,7 @@ if (isset($_GET["placeid"])) {
 
 	$onsale = $result->fetch(PDO::FETCH_ASSOC)["onsale"];
 	$copylocked = $onsale !== 2;
-	$placeId = $_GET["placeid"];
+	$placeId = $_GET["PlaceID"];
 	if (!$user->ownsPlace($placeId) && $copylocked) {
 		exit;
 	}
@@ -54,7 +54,6 @@ if (isset($_GET["placeid"])) {
 }
 
 echo $script;
-#echo Crypt::scriptSign($script);
 
 Client::clearType($user->getUserId());
 exit;

@@ -27,6 +27,7 @@ $result = $db->execute($stmt, [
 echo $port;
 
 $script = "wait(); dofile('http://".domain."/game/gameserver.ashx?serverPort=" . $port . "&PlaceID=".$placeId."')";
+#$script = "wait(); loadfile('http://".domain."/game/gameserver.ashx?serverPort=" . $port . "&PlaceID=".$placeId."')()";
 $command = 'start C:\2009M\Server.exe -no3d -script "'.$script.'"';
 popen($command, "r");
 ?>

@@ -85,7 +85,8 @@ switch ($type) {
         Discord::sendWebhookMessage("games", $player->getUsername() . " joined [place $place](https://" . domain . "/Item.aspx?ID=$place)");
         Analytics::logJoin($player->getUserId(), $place);
 
-        echo $player->getCharacterAppearance(); # echo "http://" . domain . "/Asset/CharacterFetch.ashx?userId=" . $associate;
+        echo $player->getCharacterAppearance(); 
+        # echo "http://" . domain . "/Asset/CharacterFetch.ashx?userId=" . $associate;
         
         break;
     case 2:
@@ -164,7 +165,7 @@ switch ($type) {
                     ":died_at" => date("Y-m-d H:i:s")
                 ]);
                 $player = new User($user);
-                $player->giveTix(2);
+                $player->giveTix(10);
                 #Discord::sendWebhookMessage("games", $player->getUsername() . " got a kill");
             } else {
                 Discord::sendWebhookMessage("weird", "Someone tried to access KOs API but set a bad key");
