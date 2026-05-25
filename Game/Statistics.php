@@ -165,7 +165,7 @@ switch ($type) {
                     ":died_at" => date("Y-m-d H:i:s")
                 ]);
                 $player = new User($user);
-                $player->giveTix(10);
+                $player->giveTix(2);
                 #Discord::sendWebhookMessage("games", $player->getUsername() . " got a kill");
             } else {
                 Discord::sendWebhookMessage("weird", "Someone tried to access KOs API but set a bad key");

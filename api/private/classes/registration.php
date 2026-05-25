@@ -71,7 +71,12 @@ class Registration {
         if ($newUser->getData("character", "head") !== 0) {
             $newUser->giveItem($newUser->getData("character", "head"));
         }
-        
+
+        $avatar = new Avatar($id);
+        $avatar->RequestThumbnail(540,660,"PNG");
+        $avatar->RequestThumbnail(500,500,"PNG");
+        $avatar->RequestThumbnail(100,100,"JPG");
+
         $message = [
             "senderId" => 1,
             "senderUn" => "Boomblox",

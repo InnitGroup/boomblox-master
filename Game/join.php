@@ -37,32 +37,34 @@ if (Gameservers::isFull($serverId)) {
     exit;
 }
 
-if ($user->getClientMd5() !== Server::currentClientMd5()) {
-    $file = new File("/api/private/lua/joinfail.lua", [
-        "Error" => "join, your client is not up to date.",
-        "UserID" => $userId
-    ]);
-    echo $file->handle();
-    exit;
-}
+if (!$user->isStaff()) { # staff bypass
+    if ($user->getClientMd5() !== Server::currentClientMd5()) {
+        $file = new File("/api/private/lua/joinfail.lua", [
+            "Error" => "join, your client is not up to date.",
+            "UserID" => $userId
+        ]);
+        echo $file->handle();
+        exit;
+    }
 
-if ($user->getTimeSinceLastClientMd5() > 120) {
-    Client::clearType($user->getUserId());
-    $file = new File("/api/private/lua/joinfail.lua", [
-        "Error" => "join, your client failed to authenticate.",
-        "UserID" => $userId
-    ]);
-    echo $file->handle();
-    exit;
-}
+    if ($user->getTimeSinceLastClientMd5() > 120) {
+        Client::clearType($user->getUserId());
+        $file = new File("/api/private/lua/joinfail.lua", [
+            "Error" => "join, your client failed to authenticate.",
+            "UserID" => $userId
+        ]);
+        echo $file->handle();
+        exit;
+    }
 
-if ($user->isInGame()) {
-    $file = new File("/api/private/lua/joinfail.lua", [
-        "Error" => "join, you can not play multiple games at once.",
-        "UserID" => $userId
-    ]);
-    echo $file->handle();
-    exit;
+    if ($user->isInGame()) {
+        $file = new File("/api/private/lua/joinfail.lua", [
+            "Error" => "join, you can not play multiple games at once.",
+            "UserID" => $userId
+        ]);
+        echo $file->handle();
+        exit;
+    }
 }
 
 if (Setting::disabled("Gameservers")) {

@@ -2,8 +2,15 @@
 local port = {Port}
 local sleepTime = 10
 
+function xprint(string)
+	local m = Instance.new("Message", workspace)
+	m.Text = string
+end
+
 -- establish this peer as the Server
 local ns = game:GetService("NetworkServer")
+--xprint(game.JobId)
+--ns:SetIsPlayerAuthenticationRequired(true)
 
 -- utility
 function waitForChild(parent, childName)
@@ -98,6 +105,15 @@ game:service("Players").PlayerAdded:connect(function(player)
 	end)
 
 end)
+
+--[[ns.ChildAdded:connect(function(rep)
+	local m = Instance.new("Message", workspace)
+	m.Text = rep:GetRakStatsString(0)
+	local a = Instance.new("Message", workspace)
+	a.Text = rep:GetRakStatsString(1)
+	local x = Instance.new("Message", workspace)
+	x.Text = rep:GetRakStatsString(2)
+end)]]--
 
 if port>0 then
 	-- Now start the connection
