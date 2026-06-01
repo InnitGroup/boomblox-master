@@ -87,6 +87,8 @@ PageBuilder::addComponent("forum", "navmenu");
 										Subject required.
 										<?php elseif ($_GET["Error"] == "LongSubject"): ?>
 										Subject cannot exceed 40 characters.
+										<?php elseif ($_GET["Error"] == "TooSoon"): ?>
+										You are submitting too fast.
 										<?php endif; endif ?>
 									</span>
 								</td>

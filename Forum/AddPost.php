@@ -25,6 +25,10 @@ if (Server::isPost()) {
         $subject = $_POST['ctl00$cphRoblox$Createeditpost1$PostForm$PostSubject'];
         $body = $_POST['ctl00$cphRoblox$Createeditpost1$PostForm$PostBody'];
 
+        if ($user->lastPost()->timeSincePosted() < 5) { # FORUM COOLDOWN
+            exit(header("Location: /Forum/AddPost.aspx?$identifier=$identifierValue&Error=TooSoon"));
+        }
+
         if (empty($subject) || empty(trim($subject))) {
             exit(header("Location: /Forum/AddPost.aspx?$identifier=$identifierValue&Error=NoSubject"));
         }

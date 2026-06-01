@@ -88,6 +88,19 @@ class User {
         return isset($this->data["user"]["blurb"]) ? $this->data["user"]["blurb"] : "";
     }
 
+    public function lastPost() {
+        global $db;
+        $stmt = "SELECT postId FROM threads WHERE author=:userId ORDER BY postId DESC";
+        $result = $db->execute($stmt, [":userId" => $this->getUserId()]);
+        if ($result->rowCount() == 0) {
+            return false;
+        }
+
+        $result = $result->fetch(PDO::FETCH_ASSOC);
+
+        return new Thread($result["postId"]);
+    }
+
     public function isVerified(): bool {
         return isset($this->data["user"]["verified"]) ? (bool)$this->data["user"]["verified"] : false;
     }

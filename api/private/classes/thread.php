@@ -133,6 +133,10 @@ class Thread {
         return $diff == 0;
     }
 
+    public function timeSincePosted() {
+        return max(0, time() - $this->postDate->getTimestamp());
+    }
+
     public function getReplies(int $limit = 25, int $offset = 0) {
         global $db;
 
