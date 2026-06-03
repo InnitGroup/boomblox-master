@@ -1,15 +1,15 @@
 <?php
 class Registration {
     public array $presets = [
-        "Ryxo",
-        "DEMOblock",
-        "Talen14",
-        "cendrena",
-        "idomino",
-        "seeeeth",
-        "planeboys12",
-        "unseenunheard",
-        "Alacazar"
+        "hello52",
+        "CW2",
+        "steffanno",
+        "Kaiser_acer",
+        "zajek",
+        "Gamer101",
+        "FireBlade",
+        "BloxMaster99",
+        "BrickLayer09"
     ];
 
     private array $usernameError = [
