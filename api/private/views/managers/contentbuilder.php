@@ -47,6 +47,10 @@ class ContentBuilderManager {
         $creatorName = $db->getUserById($creatorId);
         $fileName = pathinfo($file["name"], PATHINFO_FILENAME);
         
+        if (strlen($fileName) > 75) {
+            $fileName = substr($fileName, 0, 75);
+        }
+
         $db->execute($stmt, [":catalogType" => $type, ":creatorId" => $creatorId, ":creatorName" => $creatorName, ":itemName" => Helper::debugString($fileName)]);
         $id = $db->singleton()->lastInsertId();
 

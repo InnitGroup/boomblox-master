@@ -126,7 +126,7 @@ class ItemManager {
             ":itemId" => $_GET["ID"],
             ":commenter" => $user->getUsername(),
             ":commenterId" => $user->getUserId(),
-            ":content" => $content,
+            ":content" => Helper::debugString($content),
             ":commentTime" => date('Y-m-d H:i:s')
         ]);
 

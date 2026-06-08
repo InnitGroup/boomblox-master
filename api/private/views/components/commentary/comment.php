@@ -2,7 +2,7 @@
 $isAlternate = Helper::is_even($commentPosition);
 $alternate = $isAlternate ? "" : "Alternate";
 
-$commentText = htmlspecialchars($comment["content"]);
+$commentText = htmlspecialchars(Helper::debugString($comment["content"]));
 $commenter = $comment["commenter"];
 $commentTime = Helper::timeAgo($comment["commentTime"]);
 $commenterId = $comment["commenterId"];
