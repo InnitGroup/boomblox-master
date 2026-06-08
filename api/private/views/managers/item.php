@@ -116,6 +116,11 @@ class ItemManager {
     public function handleComment() {
         global $db, $user;
         $content = $_POST['content'];
+        if (strlen($content) > 250) {
+            header("Location: " . $_SERVER['REQUEST_URI']);
+            exit;
+        }
+
         $stmt = "INSERT INTO comments (itemId, commenter, commenterId, content, commentTime) VALUES (:itemId, :commenter, :commenterId, :content, :commentTime)";
         $db->execute($stmt, [
             ":itemId" => $_GET["ID"],

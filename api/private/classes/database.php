@@ -90,7 +90,7 @@ class Database {
 
             $joincode = bin2hex(random_bytes(16));
 
-            $sql = "INSERT INTO users (username, password, torsoColor, llColor, rlColor, headColor, laColor, raColor, headColor, head, joincode) VALUES (:username, :password, :torsoColor, :legColor, :legColor, :limbColor, :limbColor, :limbColor, :head, :joincode)";
+            $sql = "INSERT INTO users (username, password, torsoColor, llColor, rlColor, headColor, laColor, raColor, head, joincode) VALUES (:username, :password, :torsoColor, :legColor, :legColor, :limbColor, :limbColor, :limbColor, :head, :joincode)";
             $this->execute($sql, [
                 ":username" => $username, 
                 ":password" => password_hash($password, PASSWORD_BCRYPT), 

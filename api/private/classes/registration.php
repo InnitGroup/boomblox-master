@@ -65,7 +65,7 @@ class Registration {
         $db->createUser($_POST["Username"], $_POST["Password"], $_POST["Key"]);
         $id = $db->getIdByUser($_POST["Username"]);
         ROBLOSECURITY::new($id);
-        IP::whitelist($id);
+        #IP::whitelist($id);
 
         $newUser = new User($id);
         if ($newUser->getData("character", "head") !== 0) {
