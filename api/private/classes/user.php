@@ -101,6 +101,25 @@ class User {
         return new Thread($result["postId"]);
     }
 
+    public function lastAsset() {
+        global $db;
+        $stmt = "SELECT * FROM items WHERE creatorId=:userId ORDER BY lastUpdate DESC";
+        $result = $db->execute($stmt, [":userId" => $this->getUserId()]);
+        if ($result->rowCount() == 0) {
+            return false;
+        }
+
+        $result = $result->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    public function timeSinceLastAsset() {
+        $result = $this->lastAsset();
+        
+        $lastUpdate = new DateTime($result["lastUpdate"]);
+        return max(0, time() - $lastUpdate->getTimestamp());
+    }
+
     public function isVerified(): bool {
         return isset($this->data["user"]["verified"]) ? (bool)$this->data["user"]["verified"] : false;
     }

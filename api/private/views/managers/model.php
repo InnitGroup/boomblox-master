@@ -7,10 +7,23 @@ class ModelManager {
             if (isset($_POST['CreationsRepeater$ctl00$CreationSelector'])) {
                 exit;
             }
+
+            if ($user->timeSinceLastAsset() < 3) {
+                exit;
+            }
+
+            $temp = $_SERVER["DOCUMENT_ROOT"] . "/content/temp/{$user->getUserId()}";
+            if (!file_exists($temp) || filesize($temp) <= 0) {
+                exit;
+            }
             
             $name = !empty($_POST['ctl00$cphRoblox$Name']) ? $_POST['ctl00$cphRoblox$Name'] : "Model";
             $description = !empty($_POST['ctl00$cphRoblox$Description']) ? $_POST['ctl00$cphRoblox$Description'] : "Model";
             $publicUse = isset($_POST['ctl00$cphRoblox$PublicUse']);
+
+            if (strlen($name) > 50) {
+                $name = substr($name, 0, 50);
+            }
 
             $stmt = "INSERT INTO items (itemType, catalogType, creatorId, creatorName, itemName, itemDescription, onsale, lastUpdate)
             VALUES ('catalog', 'Model', :creatorId, :creatorName, :itemName, :itemDescription, :onsale, :lastUpdate)";
@@ -24,7 +37,7 @@ class ModelManager {
             ]);
 
             $modelId = $db->lastInsertId("items", "creatorId = {$user->getUserId()} AND catalogType='Model'");
-            $model = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/content/temp/{$user->getUserId()}");
+            $model = file_get_contents($temp);
 
             $file = fopen($_SERVER["DOCUMENT_ROOT"] . "/content/$modelId", "w");
             fwrite($file, $model);
@@ -35,6 +48,8 @@ class ModelManager {
 
             $asset = new Asset($modelId);
             $asset->RequestThumbnail(250, 250, "PNG");
+
+            unlink($temp);
             exit;
         }
     }

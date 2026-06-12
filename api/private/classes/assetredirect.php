@@ -48,7 +48,11 @@ class AssetRedirect {
         $asset = curl_exec($curl);
         if (!$this->isCached($assetTitle) && !in_array($asset, $this->errors)) {
             $this->cache($assetTitle, $asset);
+            if (str_contains($asset, "roblox.com/asset/?id=") && isset($_GET["r"])) {
+                $asset = str_replace("roblox.com/asset/?id=", "xoblog.dev/asset/?id=", $asset);
+            }
         }
+
         return $asset;
     }
 
@@ -124,6 +128,10 @@ class AssetRedirect {
             header('Content-Type: image/png');
             echo $asset;
             exit;
+        }
+
+        if (str_contains($asset, "roblox.com/asset/?id=") && isset($_GET["r"])) {
+            $asset = str_replace("roblox.com/asset/?id=", "xoblog.dev/asset/?id=", $asset);
         }
 
         echo $asset;
