@@ -1050,6 +1050,9 @@ class User {
             }
             $favorites = serialize($favorites);
 
+            $stmt = "UPDATE items SET favorites=favorites - 1 WHERE itemId=:id";
+            $db->execute($stmt, [":id" => $id]);
+
             $stmt = "UPDATE users SET favorites=:favorites WHERE id=:id";
             return $db->execute($stmt, [
                 ":favorites" => $favorites,

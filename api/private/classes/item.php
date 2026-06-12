@@ -40,9 +40,11 @@ class Item {
     public function description(string $desc): Item {
         global $db;
         $date = date("Y-m-d H:i:s");
-        $stmt = "UPDATE items SET itemDescription=:itemDescription, lastUpdate=:dateV WHERE itemId=:itemId";
-        $db->execute($stmt, [":itemDescription" => $desc, ":itemId" => $this->id, ":dateV" => $date]);
-        return $this;
+        if (strlen($desc) <= 250) {
+            $stmt = "UPDATE items SET itemDescription=:itemDescription, lastUpdate=:dateV WHERE itemId=:itemId";
+            $db->execute($stmt, [":itemDescription" => $desc, ":itemId" => $this->id, ":dateV" => $date]);
+            return $this;
+        }
     }
 
     # makes an item onsale

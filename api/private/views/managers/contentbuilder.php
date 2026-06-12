@@ -42,7 +42,8 @@ class ContentBuilderManager {
             }
         }
 
-        $stmt = "INSERT INTO items (itemType, catalogType, creatorId, creatorName, itemName) VALUES ('catalog', :catalogType, :creatorId, :creatorName, :itemName)";
+        $stmt = "INSERT INTO items (itemType, catalogType, creatorId, creatorName, itemName, lastUpdate) VALUES ('catalog', :catalogType, :creatorId, :creatorName, :itemName, :lastUpdate)";
+        $date = date("Y-m-d H:i:s");
         $creatorId = ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]);
         $creatorName = $db->getUserById($creatorId);
         $fileName = pathinfo($file["name"], PATHINFO_FILENAME);
@@ -51,7 +52,14 @@ class ContentBuilderManager {
             $fileName = substr($fileName, 0, 75);
         }
 
-        $db->execute($stmt, [":catalogType" => $type, ":creatorId" => $creatorId, ":creatorName" => $creatorName, ":itemName" => Helper::debugString($fileName)]);
+        $db->execute($stmt, [
+            ":catalogType" => $type, 
+            ":creatorId" => $creatorId, 
+            ":creatorName" => $creatorName, 
+            ":itemName" => Helper::debugString($fileName),
+            ":lastUpdate" => $date
+        ]);
+        
         $id = $db->singleton()->lastInsertId();
 
         $filePath = $targetDirectory . (string)$id . "." . $fileType;

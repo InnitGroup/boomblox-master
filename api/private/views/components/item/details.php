@@ -7,6 +7,14 @@ if (isset($data->itemDescription)) {
 } else {
     $description = "No description provided.";
 }
+
+if (strlen($data->itemName) > 50) {
+    $data->itemName = substr($data->itemName, 0, 50);
+}
+
+if (strlen($description) > 250) {
+    $description = substr($description, 0, 250);
+}
 ?>
 
 <div id="Details">
