@@ -32,8 +32,9 @@ class Item {
         if (strlen($name) <= 50) {
             $stmt = "UPDATE items SET itemName=:itemName, lastUpdate=:dateV WHERE itemId=:itemId";
             $db->execute($stmt, [":itemName" => Helper::debugString($name), ":itemId" => $this->id, ":dateV" => $date]);
-            return $this;
         }
+
+        return $this;
     }
 
     # describes an item
@@ -43,8 +44,9 @@ class Item {
         if (strlen($desc) <= 250) {
             $stmt = "UPDATE items SET itemDescription=:itemDescription, lastUpdate=:dateV WHERE itemId=:itemId";
             $db->execute($stmt, [":itemDescription" => $desc, ":itemId" => $this->id, ":dateV" => $date]);
-            return $this;
         }
+
+        return $this;
     }
 
     # makes an item onsale
