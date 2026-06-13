@@ -83,6 +83,7 @@ class ItemManager {
         }
     }
     public function getTitle() {
+        /* 
         # Place Name by Creator Name - ROBLOX Places
         $typeMap = [
             "game" => "Places",
@@ -102,6 +103,18 @@ class ItemManager {
             $type = $typeMap[$this->itemData["itemType"]];
         }
         return htmlspecialchars(Helper::debugString($this->itemData["itemName"]))." by ".$this->itemData["creatorName"]." - ".Site::getThemeProperty("alias", $this->theme)." ".$type;
+        [DEPRECATED AS OF JUNE 2009/2026]
+        */
+
+        if ($this->itemData["itemType"] == "catalog") {
+            $type = $this->itemData["catalogType"];
+        } else {
+            $type = $this->itemData["itemType"];
+        }
+
+        $lastUpdate = new DateTime($this->itemData["lastUpdate"]);
+        $updated = $lastUpdate->format("n/d/Y g:i:s A");
+        return htmlspecialchars(Helper::debugString($this->itemData["itemName"])) . ", a $type by " . $this->itemData["creatorName"] . " - " . Site::getThemeProperty("alias", $this->theme) . " (updated $updated)";
     }
     public function load() {
         switch ($this->itemData["itemType"]) {
