@@ -63,6 +63,7 @@ PageBuilder::addComponent("forum", "navmenu");
 																$totalPosts = $thread->countReplies() + 1;
 																$pages = ceil($totalPosts / 25);
 																$page = isset($_GET["PageIndex"]) ? (int)$_GET["PageIndex"] : 1;
+																
 																if (isset($_POST["__EVENTTARGET"])) {
 																	if (str_starts_with($_POST["__EVENTTARGET"], 'ctl00$cphRoblox$PostView1$ctl00$Pager$')) {
 																		$page = explode('$', $_POST["__EVENTTARGET"])[5];
@@ -80,36 +81,46 @@ PageBuilder::addComponent("forum", "navmenu");
 																if ($page == 1) {
 																	array_unshift($replies, $thread);
 																}
-
+																							
 																if ($replies):
-																foreach ($replies as $count => $reply): ?>
+																foreach ($replies as $count => $reply): $author = $reply->getAuthor(); ?>
 																<tr>
 																	<td class="forum<?=$count % 2 == 0 ? "Alternate" : "Row"?>" valign="top" nowrap="nowrap">
 																		<table border="0">
 																			<tbody>
 																				<tr>
 																					<td>
-																						<img src="/Forum/skins/default/images/user_Is<?=$reply->getAuthor()->isOnline() ? "Online" : "Offline"?>.gif" border="0">&nbsp; <a class="normalTextSmallBold" href="/Forum/User/UserProfile.aspx?UserName=<?=$reply->getAuthor()->getUsername()?>"><?=$reply->getAuthor()->getUsername()?></a>
+																						<img src="/Forum/skins/default/images/user_Is<?=$author->isOnline() ? "Online" : "Offline"?>.gif" border="0">&nbsp; <a class="normalTextSmallBold" href="/Forum/User/UserProfile.aspx?UserName=<?=$reply->getAuthor()->getUsername()?>"><?=$reply->getAuthor()->getUsername()?></a>
 																						<br>
 																					</td>
 																				</tr>
 																				<tr>
 																					<td>
-																						<a href="/User.aspx?ID=<?=$reply->getAuthor()->getUserId()?>">
+																						<a href="/User.aspx?ID=<?=$author->getUserId()?>">
 																							<img style="width:64px;height:64px;" src="<?=$reply->getAuthorBust()?>" border="0">
 																						</a>
 																					</td>
 																				</tr>
+																				<?php
+																					$badges = $author->getForumBadges();
+																					if (!empty($badges)) {
+																						foreach ($badges as $badge) {
+																							$badgeImage = $badge[0];
+																							$badgeAlt = $badge[1];
+																							PageBuilder::addComponent("forum", "userbadge", compact("badgeImage", "badgeAlt"));
+																						}
+																					}
+																				?>
 																				<tr>
 																					<td>
 																						<span class="normalTextSmaller">
-																							<b>Joined:</b> <?=$reply->getAuthor()->joinDate()->format("j M Y")?> </span>
+																							<b>Joined:</b> <?=$author->joinDate()->format("j M Y")?> </span>
 																					</td>
 																				</tr>
 																				<tr>
 																					<td>
 																						<span class="normalTextSmaller">
-																							<b>Total Posts: </b><?=$reply->getAuthor()->getForumPosts(NULL, true)?> </span>
+																							<b>Total Posts: </b><?=$author->getForumPosts(NULL, true)?> </span>
 																					</td>
 																				</tr>
 																				<tr>

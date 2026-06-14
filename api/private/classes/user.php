@@ -1046,6 +1046,42 @@ class User {
         return $result->fetch(PDO::FETCH_ASSOC)["boombux"];
     }
 
+    public function isTopPoster(int $topWhat) {
+        global $db;
+
+        $stmt = "SELECT COUNT(*) > 0 AS isTop FROM (
+        SELECT author
+        FROM threads
+        GROUP BY author
+        ORDER BY COUNT(*) DESC
+        LIMIT $topWhat) 
+        AS topAuth WHERE author = :authorId";
+
+        $result = $db->execute($stmt, [
+            ":authorId" => $this->getUserId()
+        ]);
+
+        return (bool)$result->fetch(PDO::FETCH_ASSOC)["isTop"];
+    }
+
+    public function getForumBadges() {
+        $badges = [];
+        #users_top100.gif|Top 100 Poster   
+        if ($this->isTopPoster(25)) {
+            $badges[] = ["users_top25.gif", "Top 25 Poster"];
+        } elseif ($this->isTopPoster(50)) {
+            $badges[] = ["users_top50.gif", "Top 50 Poster"];
+        } elseif ($this->isTopPoster(100)) {
+            $badges[] = ["users_top25.gif", "Top 100 Poster"];
+        }
+
+        if ($this->isStaff()) {
+            $badges[] = ["users_moderator.gif", "Forum Moderator"];
+        }
+
+        return $badges;
+    }
+
     public function removeFavorite($id) {
         if ($this->hasFavorite($id)) {
             global $db;

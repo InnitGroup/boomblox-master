@@ -59,4 +59,73 @@ global $theme, $db;
             <td><?=number_format(Economy::countCirculatedTix(30))?></td>
         </tr>
     </table>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current',{packages:['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            const currencyData = [
+                ['Date', '<?=Site::getThemeProperty("currency", $theme)?>']
+                <?php
+                for ($i = 7; $i >= 0; $i--) {
+                    $date = new DateTime();
+                    $date->modify("-{$i} days");
+
+                    echo ",['" . $date->format('m/d') . "', " .
+                        Economy::buxSpentOnDate($date->format('Y-m-d')) . "]";
+                }
+                ?>
+            ];
+
+            const chartData = google.visualization.arrayToDataTable(currencyData);
+
+            const chart = new google.visualization.LineChart(
+                document.getElementById('myChart')
+            );
+
+            chart.draw(chartData, {
+                title: 'Sales with <?=Site::getThemeProperty("shortCurrency", $theme)?> (Past Week)',
+                hAxis: {
+                    title: 'Date'
+                },
+                vAxis: {
+                    title: '<?=Site::getThemeProperty("currency", $theme)?>'
+                },
+                legend: 'none'
+            });
+
+            const ticketData = [
+                ['Date', 'Tickets']
+                <?php
+                for ($i = 7; $i >= 0; $i--) {
+                    $date = new DateTime();
+                    $date->modify("-{$i} days");
+
+                    echo ",['" . $date->format('m/d') . "', " .
+                        Economy::tixSpentOnDate($date->format('Y-m-d')) . "]";
+                }
+                ?>
+            ];
+
+            const chartData2 = google.visualization.arrayToDataTable(ticketData);
+
+            const chart2 = new google.visualization.LineChart(
+                document.getElementById('myChart2')
+            );
+
+            chart2.draw(chartData2, {
+                title: 'Sales with Tx (Past Week)',
+                hAxis: {
+                    title: 'Date'
+                },
+                vAxis: {
+                    title: 'Tickets'
+                },
+                legend: 'none'
+            });
+        }
+    </script>
+    <div id="myChart" style="max-width:550px; height:250px"></div>
+    <div id="myChart2" style="max-width:550px; height:250px"></div>
 </div>

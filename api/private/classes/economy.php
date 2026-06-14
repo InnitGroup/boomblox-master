@@ -203,5 +203,21 @@ class Economy {
         $result = $db->execute($stmt, [":relativeTime" => $relativeTime]);
         return $result->fetch(PDO::FETCH_ASSOC)["tix"] ?? 0;
     }
+
+    public static function buxSpentOnDate($date) {
+        global $db;
+
+        $stmt = "SELECT SUM(amount) AS bux FROM economy WHERE method='sale' AND currency = 2 AND occured=:xdate";
+        $result = $db->execute($stmt, [":xdate" => $date]);
+        return $result->fetch(PDO::FETCH_ASSOC)["bux"] ?? 0;
+    }
+
+    public static function tixSpentOnDate($date) {
+        global $db;
+
+        $stmt = "SELECT SUM(amount) AS tix FROM economy WHERE method='sale' AND currency = 1 AND occured=:xdate";
+        $result = $db->execute($stmt, [":xdate" => $date]);
+        return $result->fetch(PDO::FETCH_ASSOC)["tix"] ?? 0;
+    }
 }
 ?>
