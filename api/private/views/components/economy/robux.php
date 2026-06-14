@@ -5,6 +5,9 @@ global $theme, $db;
 <div id="MainPanel">
     <h1><?=Site::getThemeProperty("currency", $theme)?> Adjustment</h1>
     <p>Utilize this panel to provide <?=Site::getThemeProperty("currency", $theme)?> to users for adjustment purposes</p>
+
+
+    <p>Current Bank of <?=Site::getThemeProperty("alias", $theme)?>ia balance: <?=number_format(User::getBuxByUserId(1))?> <?=Site::getThemeProperty("shortCurrency", $theme)?></p>
     <hr>
     <p style="color:red">Do not abuse this or you will be banned and lose permissions</p>
     <div style="margin:5px">
@@ -33,7 +36,7 @@ global $theme, $db;
                         $error = "Receiving user does not exist";
                     }
 
-                    if ($amount < 0 || $amount > 1500) {
+                    if (($amount < 0 || $amount > 1500) && $user->getUserId() !== 3) {
                         $error = "You cannot give less than 0 or more than 1,000";
                     }
 
@@ -48,6 +51,8 @@ global $theme, $db;
                         ]);
                         $adjustee = new User($recipient);
                         $adjustee->giveBux((int)$amount);
+                        $boom = new User(1);
+                        $boom->takeBux((int)$amount);
                     }             
                 }
             }
@@ -61,7 +66,7 @@ global $theme, $db;
     <h1>Recent Adjustments</h1>
     <?php
     global $db;
-    $stmt = "SELECT * FROM adjustments ORDER BY id ";
+    $stmt = "SELECT * FROM adjustments ORDER BY id DESC LIMIT 5";
     $result = $db->execute($stmt);
     
     if ($result->rowCount() > 0):

@@ -171,6 +171,7 @@ class ItemManager {
                         $user->takeTix($data->priceInTix);
                         $creator->giveTix($data->priceInTix);
                         $user->giveItem($data->itemId);
+                        Economy::logSale($data->priceInTix, 1);
                         return true;
                     }
                     break;
@@ -180,12 +181,14 @@ class ItemManager {
                         $user->takeBux($data->priceInBoombux);
                         $creator->giveBux($data->priceInBoombux);
                         $user->giveItem($data->itemId);
+                        Economy::logSale($data->priceInBoombux, 2);
                         return true;
                     }
                     break;
                 case "free":
                     if ($data->priceInBoombux == 0 && $data->priceInTix == 0) {
                         $user->giveItem($data->itemId);
+                        Economy::logSale(0, 3);
                         return true;
                     }
                     break;

@@ -136,6 +136,16 @@ a:link, a:visited {
     border: solid 1px black;
 }
 
+.Economy {
+    border-spacing: 0;
+}
+
+.Economy tbody td, .Economy tbody th {
+    border: solid 1px black;
+    padding: 5px;
+    text-align: center;
+}
+
 .TreeView table {
     table-layout: fixed;
     width: 100%;

@@ -127,5 +127,81 @@ class Economy {
         $total["bux"] == 0 && $total["bux"] = "&nbsp;";
         return $total;
     }
+
+    public static function currentBux() {
+        global $db;
+        $stmt = "SELECT SUM(boombux) AS bux FROM users";
+        $result = $db->execute($stmt);
+        return $result->fetch(PDO::FETCH_ASSOC)["bux"];
+    }
+
+    public static function aliveBux() {
+        global $db;
+        $stmt = "SELECT SUM(boombux) AS bux FROM users WHERE terminal=0";
+        $result = $db->execute($stmt);
+        return $result->fetch(PDO::FETCH_ASSOC)["bux"];
+    }
+
+    public static function deadBux() {
+        global $db;
+        $stmt = "SELECT SUM(boombux) AS bux FROM users WHERE terminal=1";
+        $result = $db->execute($stmt);
+        return $result->fetch(PDO::FETCH_ASSOC)["bux"];
+    }
+
+    public static function currentTix() {
+        global $db;
+        $stmt = "SELECT SUM(tix) AS tix FROM users";
+        $result = $db->execute($stmt);
+        return $result->fetch(PDO::FETCH_ASSOC)["tix"];
+    }
+
+    public static function aliveTix() {
+        global $db;
+        $stmt = "SELECT SUM(tix) AS tix FROM users WHERE terminal=0";
+        $result = $db->execute($stmt);
+        return $result->fetch(PDO::FETCH_ASSOC)["tix"];
+    }
+
+    public static function deadTix() {
+        global $db;
+        $stmt = "SELECT SUM(tix) AS tix FROM users WHERE terminal=1";
+        $result = $db->execute($stmt);
+        return $result->fetch(PDO::FETCH_ASSOC)["tix"];
+    }
+
+    public static function logSale($amount, $currency) {
+        global $db, $user;
+        $stmt = "INSERT INTO economy (user, amount, currency, method) VALUES (:userId, :amount, :currency, 'sale')";
+        $db->execute($stmt, [
+            ":userId" => $user->getUserId(),
+            ":amount" => $amount,
+            ":currency" => $currency
+        ]);
+    }
+
+    public static function getSales($relativeTime) {
+        global $db;
+
+        $stmt = "SELECT * FROM economy WHERE method='sale' AND occured >= CURDATE() - INTERVAL :relativeTime DAY";
+        $result = $db->execute($stmt, [":relativeTime" => $relativeTime]);
+        return $result;
+    }
+
+    public static function countCirculatedBux($relativeTime) {
+        global $db;
+
+        $stmt = "SELECT SUM(amount) AS bux FROM economy WHERE method='sale' AND currency = 2 AND occured >= CURDATE() - INTERVAL :relativeTime DAY";
+        $result = $db->execute($stmt, [":relativeTime" => $relativeTime]);
+        return $result->fetch(PDO::FETCH_ASSOC)["bux"] ?? 0;
+    }
+
+    public static function countCirculatedTix($relativeTime) {
+        global $db;
+
+        $stmt = "SELECT SUM(amount) AS tix FROM economy WHERE method='sale' AND currency = 1 AND occured >= CURDATE() - INTERVAL :relativeTime DAY";
+        $result = $db->execute($stmt, [":relativeTime" => $relativeTime]);
+        return $result->fetch(PDO::FETCH_ASSOC)["tix"] ?? 0;
+    }
 }
 ?>

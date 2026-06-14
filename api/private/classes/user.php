@@ -1038,6 +1038,14 @@ class User {
         }
         return in_array($id, unserialize($this->getData("user", "favorites")));
     }
+    public static function getBuxByUserId($userId) {
+        global $db;
+        $stmt = "SELECT boombux FROM users WHERE id=:userId";
+        $result = $db->execute($stmt, [":userId" => $userId]);
+                
+        return $result->fetch(PDO::FETCH_ASSOC)["boombux"];
+    }
+
     public function removeFavorite($id) {
         if ($this->hasFavorite($id)) {
             global $db;
