@@ -65,6 +65,12 @@ if (strlen($description) > 250) {
         </div>
         <div id="LastUpdate"> Updated: <?=Helper::timeAgo($data->lastUpdate)?> </div>
         <div id="Favorited"> Favorited: <?=Helper::times($data->favorites)?> </div>
+        <div style="margin-top: 5px; margin-bottom: 5px;">
+            <div id="ctl00_cphRoblox_Genres"> Genres: <div id="ctl00_cphRoblox_IsClassic">
+                    <img id="ctl00_cphRoblox_Image3" class="GamesInfoIcon" src="/images/GenreIcons/Classic.png" alt="Classic" border="0"> ROBLOX Classic (All)
+                </div>
+            </div>
+        </div>
         <div>
             <div id="DescriptionLabel">Description:</div>
             <div id="Description"> <?=htmlspecialchars($description)?></div>

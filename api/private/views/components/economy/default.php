@@ -45,8 +45,8 @@ global $theme, $db;
         </tr>
         <tr>
             <td>Past Day</td>
-            <td><?=number_format(Economy::countCirculatedBux(1))?></td>
-            <td><?=number_format(Economy::countCirculatedTix(1))?></td>
+            <td><?=number_format(Economy::countCirculatedBux(0))?></td>
+            <td><?=number_format(Economy::countCirculatedTix(0))?></td>
         </tr>
         <tr>
             <td>Past Week</td>
