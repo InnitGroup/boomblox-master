@@ -76,7 +76,7 @@ class UserAd {
             return;
         }
 
-        if ($this->creator->hasTix($amount)) {
+        if ($this->creator->hasTix($amount) && $this->okayToRun()) {
             $this->creator->takeTix($amount);
             $stmt = "UPDATE ads SET last_impressions = NULL, last_clicks = NULL, last_bid = :bid, bid = bid + last_bid, `status` = 'running', last_ran = :xnow WHERE id=:adId";
             $db->execute($stmt, [
@@ -98,6 +98,10 @@ class UserAd {
     public static function remove(int $id) {
         global $db, $user;
 
+        if (!$this->okayToRun()) {
+            return;
+        }
+
         $stmt = "UPDATE ads SET `status` = 'stopped', `archived` = 1 WHERE id=:adId AND creator=:userId";
         $db->execute($stmt, [
             ":adId" => $id,
@@ -110,6 +114,10 @@ class UserAd {
         if ($daysSinceRan > 0) {
            $this->deactivate();
         }
+    }
+
+    public function okayToRun() {
+        return $this->status !== "pending" && $this->status !== "rejected";
     }
 
     public function addImpression() {

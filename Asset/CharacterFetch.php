@@ -5,5 +5,12 @@ header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Pragma: no-cache");
 
 $user = new User($_GET["userId"]);
+if (isset($_GET["IncludeGear"])) {
+    if ((int)$_GET["IncludeGear"] !== 0) {
+        echo $user->getCharacterAppearance(false, false);
+        exit;
+    }
+}
+
 echo $user->getCharacterAppearance();
 ?>

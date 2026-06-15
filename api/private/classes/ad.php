@@ -56,7 +56,10 @@ class Ad {
         foreach ($ads as $ad) {
             $rand -= $ad["last_bid"];
             if ($rand <= 0) {
-                return new UserAd($ad["id"]);
+                $ad = new UserAd($ad["id"]);
+                #if ($ad->status() == "approved") {
+                    return $ad;
+                #}
             }
         }
 

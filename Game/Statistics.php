@@ -82,11 +82,16 @@ switch ($type) {
             $creator->giveTix(1);
         }
 
+        $stmt = "SELECT gears FROM items WHERE itemId=:placeId";
+        $result = $db->execute($stmt, [":placeId" => $place]);
+        $includeGears = (int)empty($result->fetch(PDO::FETCH_ASSOC)["gears"]);
+        #Discord::sendWebhookMessage("games", $includeGears);
+
         Discord::sendWebhookMessage("games", $player->getUsername() . " joined [place $place](https://" . domain . "/Item.aspx?ID=$place)");
         Analytics::logJoin($player->getUserId(), $place);
 
         #echo $player->getCharacterAppearance(); 
-        echo "http://" . domain . "/Asset/CharacterFetch.ashx?userId=" . $associate;
+        echo "http://" . domain . "/Asset/CharacterFetch.ashx?userId=$associate&IncludeGear=$includeGears";
         
         break;
     case 2:

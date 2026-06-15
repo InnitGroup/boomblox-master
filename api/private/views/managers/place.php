@@ -28,11 +28,19 @@ class PlaceManager {
                                 $name = "Unnamed Place";
                             }
 
+                            if (isset($_POST['ctl00$cphRoblox$cbHasGears'])) {
+                                $stmt = "UPDATE items SET gears=1 WHERE itemId=:itemId";
+                                $db->execute($stmt, [":itemId" => $this->placeId]);
+                            } else {
+                                $stmt = "UPDATE items SET gears=NULL WHERE itemId=:itemId";
+                                $db->execute($stmt, [":itemId" => $this->placeId]);
+                            }
+
                             $stmt = "UPDATE items SET itemName=:itemName, itemDescription=:itemDescription, access=:access, lastUpdate=:lastUpdate WHERE itemId=:itemId";
                             $db->execute($stmt, [
                                 ":itemName" => Helper::debugString($name), 
                                 ":itemDescription" => Helper::debugString($_POST['ctl00$cphRoblox$tbDescription']), 
-                                ":access" => 0, 
+                                ":access" => 0,
                                 ":lastUpdate" => date('Y-m-d H:i:s'), 
                                 ":itemId" => $this->placeId
                             ]);
@@ -123,6 +131,7 @@ class PlaceManager {
         PageBuilder::addComponent($folder, "description", $packed);
         PageBuilder::addComponent($folder, "access", $packed);
         PageBuilder::addComponent($folder, "copyprotection", $packed);
+        PageBuilder::addComponent($folder, "gears", $packed);
         PageBuilder::addComponent($folder, "reset");
         PageBuilder::addComponent($folder, "history");
         PageBuilder::addComponent($folder, "buttons");

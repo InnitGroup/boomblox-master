@@ -505,7 +505,7 @@ class User {
         $stmt = "UPDATE users SET bc=0 WHERE id=:id";
         $db->execute($stmt, [":id" => $this->getUserId()]);
     }
-    public function getCharacterAppearance($isRender = false) {
+    public function getCharacterAppearance($isRender = false, $includeGears = true) {
         $charapp = Site::$domain."/Asset/BodyColors.ashx?userid=".$this->data["user"]["id"]."&t=".time();
         if (isset($this->data["character"]["hat"])) {
             $charapp .= ";".Site::$domain."/Asset/?id=".(int)$this->data["character"]["hat"];
@@ -539,7 +539,7 @@ class User {
             if (isset($this->data["character"]["face"]) && $this->data["character"]["face"] > 0) {
                 $charapp .= ";".Site::$domain."/Data/Face.ashx?id=".(int)$this->data["character"]["face"];
             }
-            if (isset($this->data["character"]["gear"]) && $this->data["character"]["gear"] > 0) {
+            if (isset($this->data["character"]["gear"]) && $this->data["character"]["gear"] > 0 && $includeGears == true) {
                 $charapp .= ";".Site::$domain."/asset/?id=".(int)$this->data["character"]["gear"];
             }
         } 
