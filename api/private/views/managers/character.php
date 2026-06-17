@@ -177,7 +177,7 @@ class CharacterManager {
                         <img class="AssetThumbnail" src="'.$thumbnail->GetThumbnail(250,250,"PNG").'">
                         </a>
                         <div class="AssetName">
-                            <a href="/Item.aspx?ID='.$item["itemId"].'">'.htmlspecialchars($item["itemName"]).'</a>
+                            <a style="overflow-wrap: anywhere;" href="/Item.aspx?ID='.$item["itemId"].'">'.htmlspecialchars($item["itemName"]).'</a>
                         </div>
                         <div class="AssetDetails Label">
                             <span>Creator: <a href="/User.aspx?ID='.$item["creatorId"].'">'.$item["creatorName"].'</a></span>
