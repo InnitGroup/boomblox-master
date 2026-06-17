@@ -67,10 +67,10 @@ class Database {
     public function keyTaken($key) {
         $key = substr($key,9);
         if ($key !== "") {
-            $sql = "SELECT * FROM `keys` WHERE `keyC` = :keyC";
+            $sql = "SELECT `status` FROM `keys` WHERE `keyC` = :keyC";
             $result = $this->execute($sql,[":keyC" => $key]);
             $fetched = $result->fetch(PDO::FETCH_ASSOC);
-            return $result->rowCount() == 0 ?? $fetched->status == 0;
+            return $result->rowCount() == 0 ?? $fetched["status"] == 0;
         } else {
             return 1;
         }

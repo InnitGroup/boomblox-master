@@ -505,6 +505,7 @@ class User {
         $stmt = "UPDATE users SET bc=0 WHERE id=:id";
         $db->execute($stmt, [":id" => $this->getUserId()]);
     }
+
     public function getCharacterAppearance($isRender = false, $includeGears = true) {
         $charapp = Site::$domain."/Asset/BodyColors.ashx?userid=".$this->data["user"]["id"]."&t=".time();
         if (isset($this->data["character"]["hat"])) {
@@ -539,8 +540,12 @@ class User {
             if (isset($this->data["character"]["face"]) && $this->data["character"]["face"] > 0) {
                 $charapp .= ";".Site::$domain."/Data/Face.ashx?id=".(int)$this->data["character"]["face"];
             }
-            if (isset($this->data["character"]["gear"]) && $this->data["character"]["gear"] > 0 && $includeGears == true) {
-                $charapp .= ";".Site::$domain."/asset/?id=".(int)$this->data["character"]["gear"];
+            
+            if ($includeGears == true) {
+                $gears = $this->getItems("gear", false, false);
+                foreach ($gears as $gear) {
+                    $charapp .= ";".Site::$domain."/asset/?id=".(int)$gear["itemId"];
+                }
             }
         } 
 
@@ -1170,7 +1175,7 @@ class User {
     }
     public function getItems($type = false, $count = false, $checkIfWearing = false) {
         global $db;
-        $char = array_intersect($this->getCharacter(), ["t-shirt", "shirt", "pants", "hat", "head", "face"]);
+        $char = array_intersect($this->getCharacter(), ["t-shirt", "shirt", "pants", "hat", "head", "face", "gear"]);
         $items = unserialize($this->getData("user", "items"));
         if ($type) {
             if ($type == "game") {

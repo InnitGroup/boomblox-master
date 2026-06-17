@@ -21,8 +21,9 @@ if (Server::isPost()) {
 	}
 }
 
-!isset($_GET["On"]) && Server::_404();
-$_GET["On"] !== "AndOn" && Server::_404();
+#!isset($_GET["On"]) && 
+Server::_404();
+#$_GET["On"] !== "AndOn" && Server::_404();
 
 ?>
 <div id="Body">
