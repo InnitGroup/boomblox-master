@@ -29,7 +29,7 @@
 	<div class="FrontPagePanel" id="WhatsNew">
 		<div>
 			<?php
-				$featuredGameId = 2586;
+				$featuredGameId = 3803;
 				$featuredGame = new Item($featuredGameId);
 				$game = $featuredGame->get();
 				$asset = new Asset($featuredGameId);

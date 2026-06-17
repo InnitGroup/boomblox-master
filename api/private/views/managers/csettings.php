@@ -124,7 +124,7 @@ class CSettingsManager {
                         <div class="Suggestion">Do not use this unless your IP is dynamic, <a href="javascript:__viewModal(\'modal$DynamicIP\')">read more.</a></div>
                     </fieldset>
                 </div>
-                <div class="modalPopup" id="modalPopup" style="display:none;width:300px;position:absolute;left:805px;bottom:440px;">
+                <div class="modalPopup" id="modalPopup" style="display:none;width:300px;height:fit-content;position:absolute;left:50%;bottom:440px;">
                     <div style="margin: 1.5em">
                         <div id="modal$DynamicIP" style="display: none">
                             <div id="Spinner" style="float:left;margin:0 1em 1em 0">
