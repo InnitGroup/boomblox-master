@@ -24,6 +24,11 @@ class Economy {
                 $db->execute($stmt, [":userId" => $userId]);
                 $stmt = "UPDATE users SET `boombux`=`boombux`+15 WHERE id=:userId";
                 $db->execute($stmt, [":userId" => $userId]);
+            } elseif ($user->hasTBC()) {
+                $stmt = "INSERT INTO economy (`user`, `amount`, `currency`, `method`) VALUES (:userId, 35, 2, 'daily')";
+                $db->execute($stmt, [":userId" => $userId]);
+                $stmt = "UPDATE users SET `boombux`=`boombux`+35 WHERE id=:userId";
+                $db->execute($stmt, [":userId" => $userId]);
             }
 
             if ($user->hasPerms(5)) {

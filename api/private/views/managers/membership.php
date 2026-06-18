@@ -8,7 +8,7 @@ class MembershipManager {
         $this->user = $user;
     }
     public function cancel() {
-        if ($this->user->hasBC()) {
+        if ($this->user->hasBC() || $this->user->hasTBC()) {
             return '
             <div id="Cancellation">
                 <h4>Cancel Membership</h4>

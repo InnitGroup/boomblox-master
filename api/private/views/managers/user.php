@@ -187,7 +187,7 @@ class UserManager {
             75,
             'Friendship');
         }
-        if ($this->user->hasBC()) {
+        if ($this->user->hasBC() || $this->user->hasTBC()) {
             $badges .= $this->addBadge(str_replace(' ', '', Site::getThemeProperty("membership", $this->theme)).'-125x125.png',
             'Members of the illustrious '.Site::getThemeProperty("membership", $this->theme).' display this badge proudly. The '.Site::getThemeProperty("membership", $this->theme).' is a paid premium service. Members receive several benefits: they get ten places on their account instead of one, they earn a daily income of 15 '.Site::getThemeProperty("currency", $this->theme).', they can sell their creations to others in the '.Site::getThemeProperty("name", $this->theme).' Catalog, they get the ability to browse the web site without external ads, and they receive the exclusive '.Site::getThemeProperty("membership", $this->theme).' construction hat.',
             75,

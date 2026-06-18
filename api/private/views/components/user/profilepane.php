@@ -33,7 +33,7 @@ $availablePlaces = $user->getAvailablePlaces();
             </td>
         </tr>
     </table>
-    <?php if ($user->hasBC()): if (!$publicView): ?>
+    <?php if ($user->hasBC() || $users->hasTBC()): if (!$publicView): ?>
     <h4><?=Site::getThemeProperty("membership", $theme)?> Member until <?=$user->bcExpires()?></h4>
     <?php endif; endif; ?>
 </div>

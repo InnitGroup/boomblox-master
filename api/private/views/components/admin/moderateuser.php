@@ -88,12 +88,20 @@ $userId = $moderatedUser->getUserId();
         $bcExpires = $moderatedUser->bcExpires(true);
         ?>
 
-        <p>This users Builders Club <?=$bcExpires > 0 ? "expires in $bcExpires days" : "expired"?>.</p>
+        <p>This users Builders Club <?=$bcExpires > 0 ? "expires in $bcExpires days" : "is not active"?>.</p>
         
         <?php if ($bcExpires < 60): ?>
             <input type="submit" name="ctl00$cphRoblox$Add1MembershipButton" value="Add 1 Month BC" id="ctl00_cphRoblox_AddMembershipButton">
             <br><br>
             <input type="submit" name="ctl00$cphRoblox$Add3MembershipButton" value="Add 3 Months BC" id="ctl00_cphRoblox_AddMembershipButton">
+            <br>
+        <?php endif; ?>
+
+        <?php if (!$moderatedUser->hasBC() && $moderatedUser->hasTBC()): ?>
+            <input type="submit" name="ctl00$cphRoblox$DowngradeTBC" value="Downgrade to BC" id="ctl00_cphRoblox_DowngradeBC">
+            <br>
+        <?php elseif ($moderatedUser->hasBC() && !$moderatedUser->hasTBC()): ?>
+            <input type="submit" name="ctl00$cphRoblox$SetTBC" value="Upgrade to TBC" id="ctl00_cphRoblox_SetTBC">
             <br>
         <?php endif; ?>
 
