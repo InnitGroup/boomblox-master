@@ -1123,13 +1123,13 @@ class User {
     public function getForumBadges() {
         $badges = [];
         #users_top100.gif|Top 100 Poster   
-        if ($this->isTopPoster(25)) {
+        if ($this->isTopPoster(5)) {
             $badges[] = ["users_top25.gif", "Top 25 Poster"];
-        } elseif ($this->isTopPoster(50)) {
+        /*} elseif ($this->isTopPoster(50)) {
             $badges[] = ["users_top50.gif", "Top 50 Poster"];
         } elseif ($this->isTopPoster(100)) {
             $badges[] = ["users_top25.gif", "Top 100 Poster"];
-        }
+        */}
 
         if ($this->isStaff()) {
             $badges[] = ["users_moderator.gif", "Forum Moderator"];
