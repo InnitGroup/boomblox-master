@@ -99,7 +99,7 @@ PageBuilder::addComponent("forum", "navmenu");
 								<th class="tableHeaderText" align="center" style="white-space:nowrap;">&nbsp;Last Post&nbsp;</th>
 							</tr>
 							<?php
-							$posts = $user->getForumPosts(25);
+							$posts = $user->getForumPosts(25, false, false);
 							if ($posts !== 0):
 								foreach ($posts as $post):
 							?>
@@ -113,17 +113,21 @@ PageBuilder::addComponent("forum", "navmenu");
 								<td class="forumRowHighlight" align="left" style="width:100px;">&nbsp; <a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=<?=$post->getAuthor()->getUsername()?>"><?=$post->getAuthor()->getUsername()?></a>
 								</td>
 								<td class="forumRowHighlight" align="center" style="width:50px;">
-									<span class="normalTextSmaller">-</span>
+									<span class="normalTextSmaller"><?=$post->countReplies()?></span>
 								</td>
 								<td class="forumRowHighlight" align="center" style="width:50px;">
-									<span class="normalTextSmaller"><?=count($post->getViews())?></span>
+									<span class="normalTextSmaller"><?=$post->viewCount()?></span>
 								</td>
-								<td class="forumRowHighlight" align="center" style="width:140px;white-space:nowrap;">
+								<td class="forumRowHighlight" align="center" width="140" nowrap="nowrap">
 									<span class="normalTextSmaller">
-										<b><?=$post->formatLastActivity()?></b>
+                                        <?php if ($post->postedToday()): ?>
+                                        <b><?=$post->formatLastActivity()?></b>
+                                        <?php else: ?>
+                                        <?=$post->formatLastActivity()?>
+                                        <?php endif; ?>
 										<br>by </span>
-									<a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=Cubut">Cubut</a>
-									<a href="/Forum/ShowPost.aspx?PostID=<?=$post->getId()?>#47631015">
+									<a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=<?=$post->getAuthor()->getUsername()?>"><?=$post->getAuthor()->getUsername()?></a>
+									<a href="/Forum/ShowPost.aspx?PostID=<?=$post->getId()?>#<?=$post->getId()?>">
 										<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
 									</a>
 								</td>

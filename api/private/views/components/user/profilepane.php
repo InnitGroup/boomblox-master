@@ -34,7 +34,7 @@ $availablePlaces = $user->getAvailablePlaces();
         </tr>
     </table>
     <?php if ($user->hasBC() || $user->hasTBC()): if (!$publicView): ?>
-    <h4><?=Site::getThemeProperty("membership", $theme)?> Member until <?=$user->bcExpires()?></h4>
+    <h4><?=$user->hasTBC() ? "Turbo " . Site::getThemeProperty("membership", $theme) : ""?> Subscriber (renews <?=$user->bcExpires()?>)</h4>
     <?php endif; endif; ?>
 </div>
 

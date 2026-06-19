@@ -8,7 +8,7 @@ class Database {
     private $dbpassword = '$W-m%bSA9gg9';
 
     # current instance of the database
-    protected $current;
+    public $current;
 
     # main constructor
     public function __construct() {

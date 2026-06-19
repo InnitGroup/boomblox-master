@@ -502,7 +502,7 @@ class User {
     }
 
     public function giveTBC(int $months = 1) {
-        if ($this->bcExpires(true) > 160) { # if they have more than 5 months worth of bc then they can't be given more 
+        if ($this->bcExpires(true) > 160 && $this->hasTBC()) { # if they have more than 5 months worth of bc then they can't be given more 
             return;
         }
 
@@ -511,7 +511,7 @@ class User {
         }
         
         global $db;
-        if (!$this->hasBC()) {
+        if (!$this->hasTBC()) {
             $expirationDate = new DateTime();
             $expirationDate->add(DateInterval::createFromDateString($months . " " . ($months > 1 ? "months" : "month")));
 
@@ -532,6 +532,12 @@ class User {
             return;
         }
 
+    }
+
+    public function takeTBC() {
+        global $db;
+        $stmt = "UPDATE users SET bc=1 WHERE id=:id";
+        $db->execute($stmt, [":id" => $this->getUserId()]);
     }
 
     public function takeBC() {
@@ -1041,21 +1047,20 @@ class User {
     public function isInviter() {
         return false; // temp
     }
-    public function getForumPosts($limit = NULL, $count = false) {
+    public function getForumPosts($limit = NULL, $count = false, $isReply = true) {
         global $db;
-        $stmt = "SELECT * FROM threads WHERE author=:userId ORDER BY postId DESC";
+        $stmt = "SELECT * FROM threads WHERE author=:userId AND isReply=:isReply ORDER BY lastActivity DESC";
         $result;
 
         if ($limit) {
             $stmt .= " LIMIT $limit";
-            $result = $db->execute($stmt, [
-                ":userId" => $this->getUserId()
-            ]);
-        } else {
-            $result = $db->execute($stmt, [
-                ":userId" => $this->getUserId()
-            ]);
+            
         }
+
+        $result = $db->execute($stmt, [
+            ":userId" => $this->getUserId(),
+            ":isReply" => (int)$isReply
+        ]);
 
         if ($count) {
             return $result->rowCount();

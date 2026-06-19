@@ -65,12 +65,37 @@ if (Server::isPost()) {
 
     # bc handler
     if (isset($_POST['ctl00$cphRoblox$Add1MembershipButton'])) {
-        $moderatedUser->giveBC(1);
+        $moderatedUser->giveBC();
         Server::_self();
     }
 
     if (isset($_POST['ctl00$cphRoblox$Add3MembershipButton'])) {
         $moderatedUser->giveBC(3);
+        Server::_self();
+    }
+
+    if (isset($_POST['ctl00$cphRoblox$Add1TBCButton'])) {
+        $moderatedUser->giveTBC();
+        Server::_self();
+    }
+
+    if (isset($_POST['ctl00$cphRoblox$Add3TBCButton'])) {
+        $moderatedUser->giveTBC(3);
+        Server::_self();
+    }
+
+    if (isset($_POST['ctl00$cphRoblox$ctl00$cphRoblox$DowngradeBC'])) {
+        $moderatedUser->giveBC(3);
+        Server::_self();
+    }
+
+    if (isset($_POST['ctl00$cphRoblox$SetTBC'])) {
+        $moderatedUser->giveTBC();
+        Server::_self();
+    }
+
+    if (isset($_POST['ctl00$cphRoblox$DowngradeBC'])) {
+        $moderatedUser->takeTBC();
         Server::_self();
     }
 }

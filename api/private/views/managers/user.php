@@ -187,11 +187,17 @@ class UserManager {
             75,
             'Friendship');
         }
-        if ($this->user->hasBC() || $this->user->hasTBC()) {
+        if ($this->user->hasBC()) {
             $badges .= $this->addBadge(str_replace(' ', '', Site::getThemeProperty("membership", $this->theme)).'-125x125.png',
             'Members of the illustrious '.Site::getThemeProperty("membership", $this->theme).' display this badge proudly. The '.Site::getThemeProperty("membership", $this->theme).' is a paid premium service. Members receive several benefits: they get ten places on their account instead of one, they earn a daily income of 15 '.Site::getThemeProperty("currency", $this->theme).', they can sell their creations to others in the '.Site::getThemeProperty("name", $this->theme).' Catalog, they get the ability to browse the web site without external ads, and they receive the exclusive '.Site::getThemeProperty("membership", $this->theme).' construction hat.',
             75,
             Site::getThemeProperty("membership", $this->theme));
+        }
+        if ($this->user->hasTBC()) {
+            $badges .= $this->addBadge(str_replace(' ', '', 'Turbo'.Site::getThemeProperty("membership", $this->theme)).'-125x125.png',
+            'Members of the exclusive Turbo '.Site::getThemeProperty("membership", $this->theme).' are some of the most dedicated '.Site::getThemeProperty("alias", $this->theme).'ians. Turbo '.Site::getThemeProperty("membership", $this->theme).' is a paid premium service. Members receive all of the benefits of the regular '.Site::getThemeProperty("membership", $this->theme).': they can sell their creations in the '.Site::getThemeProperty("alias", $this->theme).' Catalog, and they can browse the '.Site::getThemeProperty("alias", $this->theme).' web site without external ads. In addition, Turbo '.Site::getThemeProperty("membership", $this->theme).' members receive a few exclusive upgrades from regular '.Site::getThemeProperty("membership", $this->theme).': they get twenty-five places on their account instead of ten: they earn a daily income of 35 '.Site::getThemeProperty("currency", $this->theme).'; they receive the exclusive Turbo '.Site::getThemeProperty("membership", $this->theme).' red site managers hat; and finally, they receive an exclusive gear item.',
+            75,
+            'Turbo ' . Site::getThemeProperty("membership", $this->theme));
         }
         if ($this->user->isInviter()) {
             $badges .= $this->addBadge(Site::getThemeProperty("alias", $this->theme).'Inviter-75x75.png',

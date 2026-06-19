@@ -4,7 +4,83 @@ PageBuilder::addComponent("forum", "navmenu");
 
 global $db;
 
-$stmt = "SELECT * FROM users LIMIT 50";
+$where = "";
+$orderBy = "username";
+$orderDir = "ASC";
+$limit = 50;
+$offset = 0;
+$letter = "";
+
+if (!empty($_POST['ctl00$cphRoblox$Showallusers1$ctl00$CurrentAlpha'])) {
+    $letter = preg_replace('/[^A-Za-z0-9]/', '', $_POST['ctl00$cphRoblox$Showallusers1$ctl00$CurrentAlpha']);
+}
+
+if (isset($_POST['ctl00$cphRoblox$Showallusers1$ctl00$SortBy'])) {
+    switch ((int)$_POST['ctl00$cphRoblox$Showallusers1$ctl00$SortBy']) {
+        case 0:
+            $orderBy = "id";
+            break;
+        case 1:
+            $orderBy = "username";
+            break;
+        case 2:
+            $orderBy = "website";
+            break;
+        case 3:
+            $orderBy = "lastOnline";
+            break;
+        case 4:
+            #$orderBy = "forum_posts";
+            break;
+    }
+}
+
+if (isset($_POST['ctl00$cphRoblox$Showallusers1$ctl00$SortDirection']) && (int)$_POST['ctl00$cphRoblox$Showallusers1$ctl00$SortDirection'] === 1) {
+    $orderDir = "DESC";
+}
+
+if (Server::isPost()) {
+
+    if (isset($_POST["__EVENTTARGET"]) && !empty($_POST["__EVENTTARGET"]) && substr($_POST["__EVENTTARGET"], 0, 47) === 'ctl00$cphRoblox$Showallusers1$ctl00$AlphaPicker') {
+
+        $split = explode("$", $_POST["__EVENTTARGET"]);
+
+        if (count($split) === 6) {
+            $option = $split[5];
+            $allCheck = substr($option, -3) === "All";
+
+            if ($allCheck) {
+                $letter = "";
+            } else {
+                $letter = preg_replace('/[^A-Za-z0-9]/', '', substr($option, -1));
+            }
+        }
+    }
+
+    if (isset($_POST['ctl00$cphRoblox$Showallusers1$ctl00$SearchButton'])) {
+        $search = trim($_POST['ctl00$cphRoblox$Showallusers1$ctl00$SeachForUser']);
+
+        if ($search !== '') {
+            $where = " WHERE username LIKE " . $db->current->quote($search . '%');
+        }
+    }
+
+    if (isset($_POST["__EVENTTARGET"]) && substr($_POST["__EVENTTARGET"], 0, 41) === 'ctl00$cphRoblox$Showallusers1$ctl00$Pager') {
+
+        $split = explode("$", $_POST["__EVENTTARGET"]);
+
+        if (count($split) === 6) {
+            $page = (int)substr($split[5], -1);
+            $offset = $page * $limit;
+        }
+    }
+}
+
+if ($where === "" && $letter !== "") {
+    $where = " WHERE username LIKE " . $db->current->quote($letter . '%');
+}
+
+$stmt = "SELECT * FROM users $where ORDER BY $orderBy $orderDir LIMIT $limit OFFSET $offset";
 $result = $db->execute($stmt);
 $users = $result->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -22,6 +98,7 @@ $users = $result->fetchAll(PDO::FETCH_ASSOC);
 		<tr>
 			<td align="center">
 				<span id="ctl00_cphRoblox_Showallusers1_ctl00_AlphaPicker">
+					<input type="hidden" name="ctl00$cphRoblox$Showallusers1$ctl00$CurrentAlpha" value="<?=$letter !== "" ? htmlspecialchars($letter) : ""?>">
 					<a id="ctl00_cphRoblox_Showallusers1_ctl00_AlphaPicker_LetteredLink_A" class="linkSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$Showallusers1$ctl00$AlphaPicker$LetteredLink_A','')">A</a>
 					<span class="normalTextSmallBold"> | </span>
 					<a id="ctl00_cphRoblox_Showallusers1_ctl00_AlphaPicker_LetteredLink_B" class="linkSmallBold" href="javascript:__doPostBack('ctl00$cphRoblox$Showallusers1$ctl00$AlphaPicker$LetteredLink_B','')">B</a>
@@ -78,16 +155,16 @@ $users = $result->fetchAll(PDO::FETCH_ASSOC);
 				</span>
 			</td>
 			<td valign="bottom" align="right"> &nbsp; <span class="normalTextSmall">Sort by: </span>
-				<select name="ctl00$cphRoblox$Showallusers1$ctl00$SortBy" id="ctl00_cphRoblox_Showallusers1_ctl00_SortBy">
-					<option selected="selected" value="0">Date Joined</option>
-					<option value="3">Date Last Active</option>
-					<option value="4">Posts</option>
-					<option value="1">Username</option>
-					<option value="2">Website</option>
+				<select onchange="this.form.submit()" name="ctl00$cphRoblox$Showallusers1$ctl00$SortBy" id="ctl00_cphRoblox_Showallusers1_ctl00_SortBy">
+					<option <?=isset($_POST['ctl00$cphRoblox$Showallusers1$ctl00$SortBy']) ? ($_POST['ctl00$cphRoblox$Showallusers1$ctl00$SortBy'] == "0" ? 'selected="selected"' : '') : 'selected="selected"'?> value="0">Date Joined</option>
+					<option <?=isset($_POST['ctl00$cphRoblox$Showallusers1$ctl00$SortBy']) ? ($_POST['ctl00$cphRoblox$Showallusers1$ctl00$SortBy'] == "3" ? 'selected="selected"' : '') : ''?> value="3">Date Last Active</option>
+					<option <?=isset($_POST['ctl00$cphRoblox$Showallusers1$ctl00$SortBy']) ? ($_POST['ctl00$cphRoblox$Showallusers1$ctl00$SortBy'] == "4" ? 'selected="selected"' : '') : ''?> value="4">Posts</option>
+					<option <?=isset($_POST['ctl00$cphRoblox$Showallusers1$ctl00$SortBy']) ? ($_POST['ctl00$cphRoblox$Showallusers1$ctl00$SortBy'] == "1" ? 'selected="selected"' : '') : ''?> value="1">Username</option>
+					<option <?=isset($_POST['ctl00$cphRoblox$Showallusers1$ctl00$SortBy']) ? ($_POST['ctl00$cphRoblox$Showallusers1$ctl00$SortBy'] == "2" ? 'selected="selected"' : '') : ''?> value="2">Website</option>
 				</select> &nbsp; <span class="normalTextSmall">Order: </span>
-				<select name="ctl00$cphRoblox$Showallusers1$ctl00$SortDirection" id="ctl00_cphRoblox_Showallusers1_ctl00_SortDirection">
-					<option selected="selected" value="0">Ascending</option>
-					<option value="1">Descending</option>
+				<select onchange="this.form.submit()" name="ctl00$cphRoblox$Showallusers1$ctl00$SortDirection" id="ctl00_cphRoblox_Showallusers1_ctl00_SortDirection">
+					<option <?=isset($_POST['ctl00$cphRoblox$Showallusers1$ctl00$SortDirection']) ? ($_POST['ctl00$cphRoblox$Showallusers1$ctl00$SortDirection'] == "0" ? 'selected="selected"' : '') : 'selected="selected"'?> value="0">Ascending</option>
+					<option <?=isset($_POST['ctl00$cphRoblox$Showallusers1$ctl00$SortDirection']) ? ($_POST['ctl00$cphRoblox$Showallusers1$ctl00$SortDirection'] == "1" ? 'selected="selected"' : '') : ''?> value="1">Descending</option>
 				</select>
 			</td>
 		</tr>
@@ -110,16 +187,18 @@ $users = $result->fetchAll(PDO::FETCH_ASSOC);
                             $joined = $joined->format("d M Y");
                             $lastActive = new DateTime($f_user["lastOnline"]);
                             $lastActive = $lastActive->format("d M Y");
+
+							$f_userObj = new User($f_user["id"]);
                         ?>
 						<tr>
 							<td class="forumRow" align="center" valign="middle" width="25">
 								<span class="normalTextSmallBold"><?=$f_user["id"]?></span>
 							</td>
 							<td class="forumRow">
-								<a class="linkSmallBold" href="/Forum/User/UserProfile.aspx?UserName=<?=htmlspecialchars($f_user["id"])?>"><?=htmlspecialchars($f_user["username"])?></a>
+								<a class="linkSmallBold" href="/Forum/User/UserProfile.aspx?UserName=<?=htmlspecialchars($f_user["username"])?>"><?=htmlspecialchars($f_user["username"])?></a>
 							</td>
 							<td class="forumRowHighlight" align="left">
-								<a class="linkSmallBold" target="_blank">-</a>
+								<a class="linkSmallBold" target="_blank"><?=$f_user["website"] !== "" ? htmlspecialchars($f_user["website"]) : "-"?></a>
 							</td>
 							<td class="forumRowHighlight" align="left">
 								<span class="normalTextSmall"></span>
@@ -131,7 +210,7 @@ $users = $result->fetchAll(PDO::FETCH_ASSOC);
 								<span class="normalTextSmall"><?=$lastActive?></span>
 							</td>
 							<td class="forumRowHighlight" align="left">
-								<a class="linkSmallBold" href="/Forum/Search/default.aspx?SearchFor=1&amp;SearchText=<?=$f_user["id"]?>"><?=$f_user["forumPosts"] > 0 ? $f_user["forumPosts"] : "-"?></a>
+								<a class="linkSmallBold" href="/Forum/Search/default.aspx?SearchFor=1&amp;SearchText=<?=$f_user["id"]?>"><?=$f_userObj->getForumPosts(NULL, true) > 0 ? number_format($f_userObj->getForumPosts(NULL, true)) : "-"?></a>
 							</td>
 						</tr>
                         <?php endforeach; ?>
