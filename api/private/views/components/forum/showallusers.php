@@ -5,7 +5,7 @@ PageBuilder::addComponent("forum", "navmenu");
 global $db;
 
 $where = "";
-$orderBy = "username";
+$orderBy = "id";
 $orderDir = "ASC";
 $limit = 50;
 $offset = 0;

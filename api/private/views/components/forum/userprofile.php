@@ -197,7 +197,7 @@ $profiledUser = new User($userId);
 															<tr>
 																<td valign="top" align="left" colspan="2">
 																	<?php 
-																	$recentPosts = $profiledUser->getForumPosts(10);
+																	$recentPosts = $profiledUser->getForumPosts(10, false, 3);
 																	if (!empty($recentPosts)): ?>
 																	<table id="ctl00_cphRoblox_Userinfo1_ctl00_PostList" cellspacing="1" cellpadding="3" border="0" width="100%">
 																		<tbody>

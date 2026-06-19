@@ -1057,10 +1057,18 @@ class User {
             
         }
 
-        $result = $db->execute($stmt, [
-            ":userId" => $this->getUserId(),
-            ":isReply" => (int)$isReply
-        ]);
+        if ($isReply !== 3) {
+            $result = $db->execute($stmt, [
+                ":userId" => $this->getUserId(),
+                ":isReply" => (int)$isReply
+            ]);
+        } else {
+            $stmt = "SELECT * FROM threads WHERE author=:userId ORDER BY lastActivity DESC LIMIT $limit";
+            $result = $db->execute($stmt, [
+                ":userId" => $this->getUserId()
+            ]);
+        }
+        
 
         if ($count) {
             return $result->rowCount();
