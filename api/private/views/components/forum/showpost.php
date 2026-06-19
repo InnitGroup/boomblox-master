@@ -24,7 +24,7 @@ PageBuilder::addComponent("forum", "navmenu");
 														<select name="ctl00$cphRoblox$PostView1$ctl00$DisplayMode" id="ctl00_cphRoblox_PostView1_ctl00_DisplayMode">
 															<option selected="selected" value="Flat">Flat View</option>
 															<option value="Threaded">Threaded View</option>
-														</select>&nbsp; <select name="ctl00$cphRoblox$PostView1$ctl00$SortOrder" id="ctl00_cphRoblox_PostView1_ctl00_SortOrder">
+														</select>&nbsp; <select onchange="this.form.submit()" name="ctl00$cphRoblox$PostView1$ctl00$SortOrder" id="ctl00_cphRoblox_PostView1_ctl00_SortOrder">
 															<option selected="selected" value="0">Oldest to newest</option>
 															<option value="1">Newest to oldest</option>
 														</select>
@@ -77,7 +77,12 @@ PageBuilder::addComponent("forum", "navmenu");
 
 																$offset = ($page - 1) * 25; # ThePlayerRolo this is the only way to calculate offsets Frick laravel
 
-																$replies = $thread->getReplies(25, $offset);
+																$sortOrder = 0;
+																if (isset($_POST['ctl00$cphRoblox$PostView1$ctl00$SortOrder'])) {
+																	$sortOrder = (int)$_POST['ctl00$cphRoblox$PostView1$ctl00$SortOrder'];
+																}
+
+																$replies = $thread->getReplies(25, $offset, $sortOrder);
 																if ($page == 1) {
 																	array_unshift($replies, $thread);
 																}

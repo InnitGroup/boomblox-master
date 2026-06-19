@@ -137,10 +137,15 @@ class Thread {
         return max(0, time() - $this->postDate->getTimestamp());
     }
 
-    public function getReplies(int $limit = 25, int $offset = 0) {
+    public function getReplies(int $limit = 25, int $offset = 0, int $order = 0) {
         global $db;
 
-        $stmt = "SELECT postId FROM threads WHERE parentPost=:threadId LIMIT $limit OFFSET $offset";
+        $orderBy = "DESC";
+        if ($order == 1) {
+            $orderBy = "ASC";           
+        }
+
+        $stmt = "SELECT postId FROM threads WHERE parentPost=:threadId ORDER BY postDate $orderBy LIMIT $limit OFFSET $offset";
         $result = $db->execute($stmt, [":threadId" => $this->getId()]);
         if ($result->rowCount() == 0) {
             return [];
