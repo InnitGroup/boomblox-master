@@ -21,12 +21,12 @@ PageBuilder::addComponent("forum", "navmenu");
 													</td>
 													<td valign="bottom" align="right">
 														<span class="normalTextSmallBold">Display using: </span>
-														<select name="ctl00$cphRoblox$PostView1$ctl00$DisplayMode" id="ctl00_cphRoblox_PostView1_ctl00_DisplayMode">
-															<option selected="selected" value="Flat">Flat View</option>
-															<option value="Threaded">Threaded View</option>
+														<select onchange="this.form.submit()" name="ctl00$cphRoblox$PostView1$ctl00$DisplayMode" id="ctl00_cphRoblox_PostView1_ctl00_DisplayMode">
+															<option <?=isset($_POST['ctl00$cphRoblox$PostView1$ctl00$DisplayMode']) ? ($_POST['ctl00$cphRoblox$PostView1$ctl00$DisplayMode'] == "Flat" ? 'selected="selected"' : '') : 'selected="selected"'?> value="Flat">Flat View</option>
+															<option <?=isset($_POST['ctl00$cphRoblox$PostView1$ctl00$DisplayMode']) ? ($_POST['ctl00$cphRoblox$PostView1$ctl00$DisplayMode'] == "Threaded" ? 'selected="selected"' : '') : ''?> value="Threaded">Threaded View</option>
 														</select>&nbsp; <select onchange="this.form.submit()" name="ctl00$cphRoblox$PostView1$ctl00$SortOrder" id="ctl00_cphRoblox_PostView1_ctl00_SortOrder">
-															<option selected="selected" value="0">Oldest to newest</option>
-															<option value="1">Newest to oldest</option>
+															<option <?=isset($_POST['ctl00$cphRoblox$PostView1$ctl00$SortOrder']) ? ($_POST['ctl00$cphRoblox$PostView1$ctl00$SortOrder'] == "0" ? 'selected="selected"' : '') : 'selected="selected"'?> value="0">Oldest to newest</option>
+															<option <?=isset($_POST['ctl00$cphRoblox$PostView1$ctl00$SortOrder']) ? ($_POST['ctl00$cphRoblox$PostView1$ctl00$SortOrder'] == "1" ? 'selected="selected"' : '') : ''?> value="1">Newest to oldest</option>
 														</select>
 													</td>
 												</tr>
