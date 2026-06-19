@@ -55,6 +55,11 @@ class Helper {
             $string = "[ Content Deleted ]";
         }
 
+        if (str_contains($string, "yͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥͥ")) {
+            $string = "[ Content Deleted ]";
+        }
+        
+
         return $string;
     }
 
