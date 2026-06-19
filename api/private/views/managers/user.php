@@ -194,7 +194,7 @@ class UserManager {
             Site::getThemeProperty("membership", $this->theme));
         }
         if ($this->user->hasTBC()) {
-            $badges .= $this->addBadge(str_replace(' ', '', 'Turbo'.Site::getThemeProperty("membership", $this->theme)).'-125x125.png',
+            $badges .= $this->addBadge(str_replace(' ', '', 'Turbo'.Site::getThemeProperty("membership", $this->theme)).'-125x125.png?v=1',
             'Members of the exclusive Turbo '.Site::getThemeProperty("membership", $this->theme).' are some of the most dedicated '.Site::getThemeProperty("alias", $this->theme).'ians. Turbo '.Site::getThemeProperty("membership", $this->theme).' is a paid premium service. Members receive all of the benefits of the regular '.Site::getThemeProperty("membership", $this->theme).': they can sell their creations in the '.Site::getThemeProperty("alias", $this->theme).' Catalog, and they can browse the '.Site::getThemeProperty("alias", $this->theme).' web site without external ads. In addition, Turbo '.Site::getThemeProperty("membership", $this->theme).' members receive a few exclusive upgrades from regular '.Site::getThemeProperty("membership", $this->theme).': they get twenty-five places on their account instead of ten: they earn a daily income of 35 '.Site::getThemeProperty("currency", $this->theme).'; they receive the exclusive Turbo '.Site::getThemeProperty("membership", $this->theme).' red site managers hat; and finally, they receive an exclusive gear item.',
             75,
             'Turbo ' . Site::getThemeProperty("membership", $this->theme));

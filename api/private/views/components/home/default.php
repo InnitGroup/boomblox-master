@@ -22,7 +22,7 @@
 	</div>
 	<div class="FrontPagePanel" id="SalesPitch">
 		<a id="ctl00_cphRoblox_MoneyMachine_PlayNowButton" href="/Upgrades/ROBUX.aspx">
-			<img src="/images/SalesPitcher/ExtraCash.png" border="0">
+			<img src="/images/SalesPitcher/ExtraCash<?=$theme == 1 ? "" : "Boomblox"?>.png" border="0">
 		</a>
 	</div>
 	<?=PageBuilder::addComponent("home", "factoids")?>
