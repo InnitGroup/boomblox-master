@@ -902,8 +902,14 @@ class User {
         if ($result->rowCount() > 0) {
             $placeName .= ": #".$result->rowCount() + 1;
         }
-        $stmt = "INSERT INTO items (`itemType`, `creatorId`, `creatorName`, `itemName`, `itemDescription`, `status`) VALUES ('game', :creatorId, :creatorName, :itemName, 'No description available.', 'accepted')";
-        $result = $db->execute($stmt,[":creatorId" => $this->data["user"]["id"], ":creatorName" => $this->data["user"]["username"], ":itemName" => Helper::debugString($placeName)]);
+        $stmt = "INSERT INTO items (`itemType`, `creatorId`, `creatorName`, `itemName`, `itemDescription`, `status`, `creationDate`, `lastUpdate`) VALUES ('game', :creatorId, :creatorName, :itemName, 'No description available.', 'accepted', :creationDate, :creationDate)";
+        $result = $db->execute($stmt,[
+            ":creatorId" => $this->data["user"]["id"],
+            ":creatorName" => $this->data["user"]["username"],
+            ":itemName" => Helper::debugString($placeName),
+            ":creationDate" => date("Y-m-d H:i:s")
+        ]);
+
         $placeId = $db->singleton()->lastInsertId();
         
         $data = file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/content/templates/HappyHomeInBoombloxia");
