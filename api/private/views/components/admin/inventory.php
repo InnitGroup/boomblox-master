@@ -10,7 +10,16 @@ if (Server::isPost()) {
     }
 
     $itemToRemove = (int)$_POST['ctl00$cphRoblox$RemoveItem'];
+    if (!$inventoryOwner->hasItem($itemToRemove)) {
+        exit;
+    }
+    
     $inventoryOwner->removeItem($itemToRemove);
+    global $db;
+
+    $stmt = "UPDATE items SET interactions = interactions - 1 WHERE itemId=:itemId";
+    $db->execute($stmt, [":itemId" => $itemToRemove]);
+
     Discord::sendWebhookMessage("staff-logs", "{$user->getUsername()} removed item $itemToRemove from {$inventoryOwner->getUsername()}'s inventory");
     exit(Server::_self());
 }

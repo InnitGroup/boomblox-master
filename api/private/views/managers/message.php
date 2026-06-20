@@ -58,18 +58,39 @@ class MessageManager {
     }
 
     public function send($messageData) {
-        global $db;
-        $userId = ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]);
+        global $db, $user;
+        $userId = $user->getUserId();
         $recipientId = $_GET["RecipientID"];
+        
 
         $this->recipient = [
             "userId" => $recipientId,
             "username" => $db->getUserById($recipientId)
         ];
 
+                    
         if (!$db->userExists($recipientId)) {
             Server::_404();
             #echo 2;
+        }
+
+        $recipient = new User($recipientId);
+        # secret 
+        if ($messageData[0] == "nos numquam ad sinistram" || $messageData[1] == "nos numquam ad sinistram") {
+            if ($user->hasItem(56) && !$recipient->hasItem(56)) {
+                $stmt = "SELECT COUNT(*) AS messagesSent FROM messages WHERE senderId=:senderId AND recipientId=:recipientId AND `content`=:phrase";
+                $result = $db->execute($stmt, [
+                    ":senderId" => $userId,
+                    ":recipientId" => $recipientId,
+                    ":phrase" => "nos numquam ad sinistram"
+                ]);
+
+                $messagesSent = $result->fetch(PDO::FETCH_ASSOC)["messagesSent"];
+
+                if ($messagesSent == 0) {
+                    $user->giveTix(2);
+                }
+            }
         }
 
         $stmt = "INSERT INTO messages (`senderId`, `senderUn`, `recipientId`, `subject`, `content`, `friendInvite`, `inviteActive`) VALUES (:userId, :username, :recipientId, :subject, :content, 0, 0)";
