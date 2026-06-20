@@ -501,6 +501,17 @@ class User {
 
     }
 
+    public function getJoinDate(): object {
+        $joinDate = $this->joinDate();
+        $join = [
+            "Year" => $joinDate->format("Y"),
+            "Month" => $joinDate->format("m"),
+            "Day" => $joinDate->format("d")
+        ];
+
+        return (object)$join;
+    }
+
     public function giveTBC(int $months = 1) {
         if ($this->bcExpires(true) > 160 && $this->hasTBC()) { # if they have more than 5 months worth of bc then they can't be given more 
             return;
@@ -794,6 +805,10 @@ class User {
             return true;
         }
 
+        if ($this->getJoinDate()->Year == "2024") {
+            return true;
+        }
+
         $testers = [91, 3, 123, 113, 126, 108, 100, 93, 73, 124, 86, 76, 79, 135, 137, 132, 149];
         if (in_array($this->getUserId(), $testers)) {
             return true;
@@ -1081,7 +1096,7 @@ class User {
         
 
         if ($count) {
-            return $result->rowCount();
+            return $result->rowCount()+1;
         }
 
         if ($result->rowCount() == 0) {

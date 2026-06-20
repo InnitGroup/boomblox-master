@@ -173,7 +173,7 @@ class CharacterManager {
                     $result .= '
                     <td class="Asset" id="'.$item["itemId"].'">
                         <a class="WearItem" title="click to wear" href="javascript:__doPostBack(\'Accoutrement\', \''.htmlspecialchars($this->requestData["type"]).'$'.(int)$item["itemId"].'$Wear\')" onclick="wearItem(event)">[ wear ]</a>
-                        <a href="/Item.aspx?ID='.$item["itemId"].'">
+                        <a href="javascript:__doPostBack(\'Accoutrement\', \''.htmlspecialchars($this->requestData["type"]).'$'.(int)$item["itemId"].'$Wear\')">
                         <img class="AssetThumbnail" src="'.$thumbnail->GetThumbnail(250,250,"PNG").'">
                         </a>
                         <div class="AssetName">
@@ -273,7 +273,7 @@ class CharacterManager {
                                 echo '
                                 <td class="Asset" id="'.$item["itemId"].'">
                                 <a class="RemoveItem" href="javascript:__doPostBack(\'Accoutrement\', \''.$item["catalogType"].'$'.$item["itemId"].'$Remove\')" onclick="wearItem(event)">&nbsp;[ remove ]&nbsp;</a>
-                                <a href="/Item.aspx?ID='.$item["itemId"].'">
+                                <a href="javascript:__doPostBack(\'Accoutrement\', \''.$item["catalogType"].'$'.$item["itemId"].'$Remove\')">
                                 <img class="AssetThumbnail" src="'.$thumbnail->GetThumbnail(250,250,"PNG").'">
                                 </a>
                                 <div class="AssetName">

@@ -47,7 +47,7 @@ PageBuilder::addComponent("forum", "whereami");
 					</span>
 				</span>
 				<br>
-				<span class="normalTextSmaller">by <a href="/Forum/User/UserProfile.aspx?UserName=<?=$forum->getLastPoster()->getUsername()?>"><?=$forum->getLastPoster()->getUsername()?></a>
+				<span class="normalTextSmaller">by <a style="overflow-wrap:anywhere" href="/Forum/User/UserProfile.aspx?UserName=<?=$forum->getLastPoster()->getUsername()?>"><?=$forum->getLastPoster()->getUsername()?></a>
 					<a href="/Forum/ShowPost.aspx?PostID=<?=$forum->getLastPostId()?>#1203476">
 						<img border="0" src="/Forum/skins/default/images/icon_mini_topic.gif">
 					</a>

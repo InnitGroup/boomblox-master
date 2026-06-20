@@ -110,7 +110,7 @@ PageBuilder::addComponent("forum", "navmenu");
 								<td class="forumRow" style="height:25px;">
 									<a class="linkSmallBold" href="/Forum/ShowPost.aspx?PostID=<?=$post->getId()?>"><?=htmlspecialchars($post->getTitle())?></a>
 								</td>
-								<td class="forumRowHighlight" align="left" style="width:100px;">&nbsp; <a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=<?=$post->getAuthor()->getUsername()?>"><?=$post->getAuthor()->getUsername()?></a>
+								<td class="forumRowHighlight" align="left" style="width:100px;overflow-wrap:anywhere">&nbsp; <a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=<?=$post->getAuthor()->getUsername()?>"><?=$post->getAuthor()->getUsername()?></a>
 								</td>
 								<td class="forumRowHighlight" align="center" style="width:50px;">
 									<span class="normalTextSmaller"><?=$post->countReplies()?></span>
