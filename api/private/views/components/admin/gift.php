@@ -2,8 +2,8 @@
     <p>Utility panel for giving gifts to specific users</p>
     <?php
     #exit;
-    $gift = 3630;
-    $item = 3799;
+    $gift = 4807;
+    $item = 5106;
 
     global $db;
     $recentUsers = $db->getAllUsersThisMonth()->fetchAll(PDO::FETCH_ASSOC);

@@ -509,6 +509,10 @@ class User {
         if (!$this->hasItem(5042)) {
             $this->giveItem(5042);
         }
+
+        if (!$this->hasItem(5104)) {
+            $this->giveItem(5104);
+        }
         
         global $db;
         if (!$this->hasTBC()) {
