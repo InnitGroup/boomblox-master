@@ -23,12 +23,12 @@ $pages = ceil(count($friends) / 36);
 <div id="ctl00_cphRoblox_rbxFriendsPane_Pager1_PanelPages" align="center">
      Pages: 
     <?php if ($page < $pages): ?>
-        <a id="ctl00_cphRoblox_rbxFriendsPane_Pager1_LinkButtonNext" href='javascript:__doWebPostBack("/api/public/views/Friends.php", "Friends", {"userId": <?=$userId?>, "page": <?=$page+1?>});'>Next &gt;&gt;</a>
+        <a id="ctl00_cphRoblox_rbxFriendsPane_Pager1_LinkButtonNext" href='javascript:__doWebPostBack("api/public/views/Friends.php", "Friends", {"userId": <?=$userId?>, "page": <?=$page+1?>});'>Next &gt;&gt;</a>
     <?php elseif ($page < $pages): ?>
-        <a id="ctl00_cphRoblox_rbxFriendsPane_Pager1_LinkButtonPrevious" href='javascript:__doWebPostBack("/api/public/views/Friends.php", "Friends", {"userId": <?=$userId?>, "page": <?=$page-1?>});'>&lt;&lt; Previous</a>
-        <a id="ctl00_cphRoblox_rbxFriendsPane_Pager1_LinkButtonNext" href='javascript:__doWebPostBack("/api/public/views/Friends.php", "Friends", {"userId": <?=$userId?>, "page": <?=$page+1?>});'>Next &gt;&gt;</a>
+        <a id="ctl00_cphRoblox_rbxFriendsPane_Pager1_LinkButtonPrevious" href='javascript:__doWebPostBack("api/public/views/Friends.php", "Friends", {"userId": <?=$userId?>, "page": <?=$page-1?>});'>&lt;&lt; Previous</a>
+        <a id="ctl00_cphRoblox_rbxFriendsPane_Pager1_LinkButtonNext" href='javascript:__doWebPostBack("api/public/views/Friends.php", "Friends", {"userId": <?=$userId?>, "page": <?=$page+1?>});'>Next &gt;&gt;</a>
     <?php elseif ($page == $pages && $pages > 1): ?>
-        <a id="ctl00_cphRoblox_rbxFriendsPane_Pager1_LinkButtonPrevious" href='javascript:__doWebPostBack("/api/public/views/Friends.php", "Friends", {"userId": <?=$userId?>, "page": <?=$page-1?>});'>&lt;&lt; Previous</a>
+        <a id="ctl00_cphRoblox_rbxFriendsPane_Pager1_LinkButtonPrevious" href='javascript:__doWebPostBack("api/public/views/Friends.php", "Friends", {"userId": <?=$userId?>, "page": <?=$page-1?>});'>&lt;&lt; Previous</a>
     <?php endif; ?>
 </div>
 
