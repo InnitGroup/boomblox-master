@@ -1096,7 +1096,11 @@ class User {
         
 
         if ($count) {
-            return $result->rowCount()+1;
+            $stmt = "SELECT author FROM threads WHERE author=:userId ORDER BY lastActivity DESC";
+            $result = $db->execute($stmt, [
+                ":userId" => $this->getUserId()
+            ]);
+            return $result->rowCount();
         }
 
         if ($result->rowCount() == 0) {

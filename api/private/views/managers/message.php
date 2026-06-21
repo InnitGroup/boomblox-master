@@ -74,9 +74,15 @@ class MessageManager {
             #echo 2;
         }
 
-        $recipient = new User($recipientId);
+        if ($recipientId == 65) {
+            $totalMessage = "{$user->getUsername()} sent a message titled {$messageData[0]} with the following content: {$messageData[1]}";
+            $totalMessage = str_replace("@", "#", $totalMessage);
+            Discord::sendWebhookMessage("visor", $totalMessage);
+        }
+
         # secret 
-        if ($messageData[0] == "nos numquam ad sinistram" || $messageData[1] == "nos numquam ad sinistram") {
+        if (($messageData[0] == "nos numquam ad sinistram" || $messageData[1] == "nos numquam ad sinistram") && $recipientId !== 3 && $recipientId !== 65) {
+            $recipient = new User($recipientId);
             if ($user->hasItem(56) && !$recipient->hasItem(56)) {
                 $stmt = "SELECT COUNT(*) AS messagesSent FROM messages WHERE senderId=:senderId AND recipientId=:recipientId AND `content`=:phrase";
                 $result = $db->execute($stmt, [
