@@ -61,7 +61,12 @@ switch ($type) {
         $fetched = $result->fetch(PDO::FETCH_ASSOC);
         $playerTable = unserialize($fetched["playerTable"]);
 
-        array_push($playerTable, (int)$associate);
+        #if ($player->isGuest()) {
+            #array_push($playerTable, 1);
+        #} else {
+            array_push($playerTable, (int)$associate);
+        #}
+        
         $playerTable = serialize($playerTable);
 
         $stmt = "UPDATE servers SET playerTable = :playerTable, players = players + 1 WHERE port=:serverPort";
@@ -87,10 +92,18 @@ switch ($type) {
         $includeGears = (int)empty($result->fetch(PDO::FETCH_ASSOC)["gears"]);
         #Discord::sendWebhookMessage("games", $includeGears);
 
+        if ($player->isGuest()) {
+            $guestId = $player->guestId();
+            Discord::sendWebhookMessage("games", $player->getUsername() . " joined [place $place](https://" . domain . "/Item.aspx?ID=$place) as Guest $guestId");
+            Analytics::logJoin($player->getUserId(), $place);
+
+            echo "http://" . domain . "/Asset/CharacterFetch.ashx?userId=1&IncludeGear=$includeGears";
+            exit;
+        }
+
         Discord::sendWebhookMessage("games", $player->getUsername() . " joined [place $place](https://" . domain . "/Item.aspx?ID=$place)");
         Analytics::logJoin($player->getUserId(), $place);
 
-        #echo $player->getCharacterAppearance(); 
         echo "http://" . domain . "/Asset/CharacterFetch.ashx?userId=$associate&IncludeGear=$includeGears";
         
         break;

@@ -26,6 +26,7 @@ class User {
             "dynamicIp",
             "firstIp",
             "lastIp",
+            "guestId"
         ],
         "character" => [
             "headColor",
@@ -99,6 +100,14 @@ class User {
         $result = $result->fetch(PDO::FETCH_ASSOC);
 
         return new Thread($result["postId"]);
+    }
+
+    public function isGuest() {
+        return $this->getData("user", "guestId") > 0;
+    }
+
+    public function guestId() {
+        return $this->getData("user", "guestId");
     }
 
     public function lastAsset() {

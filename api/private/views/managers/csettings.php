@@ -14,7 +14,7 @@ class CSettingsManager {
         if (isset($_POST["__EVENTARGUMENT"]) && !empty($_POST["__EVENTARGUMENT"])) {
             $argument = $_POST["__EVENTARGUMENT"];
             if (str_contains($argument, "$")) {
-                global $db;
+                global $db, $user;
                 $decryptedData = explode("$", $argument);
                 $action = $decryptedData[1];
                 switch ($action) {
@@ -25,7 +25,7 @@ class CSettingsManager {
                         $isDynamic = (bool)$result["dynamicIp"];
 
                         $stmt = "UPDATE users SET dynamicIp=:dynamicIp WHERE id=:id";
-                        $result = $db->execute($stmt, [":dynamicIp" => (int)!$isDynamic, ":id" => ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"])]);
+                        $result = $db->execute($stmt, [":dynamicIp" => (int)!$isDynamic, ":id" => $user->getUserId()]);
 
                         $stmt = "UPDATE users SET lastIp=:lastIp WHERE id=:id";
                         #$ip = IP::getDatabaseIp(IP::getIp(!$isDynamic), !$isDynamic);
@@ -36,7 +36,20 @@ class CSettingsManager {
                         $validThemes = [0, 1];
                         if ($theme !== $this->user->getData("user", "theme") && in_array($theme, $validThemes)) {
                             $stmt = "UPDATE users SET theme=:theme WHERE id=:id";
-                            $db->execute($stmt, [":theme" => $theme, ":id" => ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"])]);
+                            $db->execute($stmt, [":theme" => $theme, ":id" => $user->getUserId()]);
+                        }
+                        if ($post["GuestMode"] == "True") {
+                            $stmt = "UPDATE users SET guestId=:guestId WHERE id=:id";
+                            $db->execute($stmt, [
+                                ":guestId" => rand(100, 9999),
+                                ":id" => $user->getUserId()
+                            ]);
+                        } else {
+                            $stmt = "UPDATE users SET guestId=:guestId WHERE id=:id";
+                            $db->execute($stmt, [
+                                ":guestId" => 0,
+                                ":id" => $user->getUserId()
+                            ]);
                         }
                         break;
                 }
@@ -52,13 +65,27 @@ class CSettingsManager {
             return "Offline";
         }
     }
+
     public function isTheme($theme) {
         $isTheme = (bool)($theme == $this->user->getData("user", "theme"));
         if ($isTheme) {
             return 'checked="checked"';
         }
     }
+
+    public function checkIsGuest(bool $check) {
+        $isGuest = (bool)($this->user->getData("user", "guestId") > 0);
+        if ($check == false && !$isGuest) {
+            return 'checked="checked"';
+        }
+        if ($check == true && $isGuest) {
+            return 'checked="checked"';
+        }
+    }
+
     public function load() {
+        global $theme;
+
         echo '
         <div id="Body">
             <div id="EditProfileContainer">
@@ -90,21 +117,21 @@ class CSettingsManager {
                 </div>
                 <div id="ChatMode">
                     <fieldset title="Update your chat mode">
-                        <legend>Update your chat mode</legend>
-                        <div class="Suggestion"> All in-game chat is subject to profanity filtering and moderation. For enhanced chat safety, choose SuperSafe Chat; only chat from pre-approved menus will be shown to you. </div>
+                        <legend>Play as Guest</legend>
+                        <div class="Suggestion"> Explore '.Site::getThemeProperty("alias", $theme).'ia through the eyes of a guest! </div>
                         <div class="ChatModeRow">
                             <table border="0">
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <input type="radio" name="ChatMode" value="False" checked="checked" tabindex="2">
-                                            <label>Safe Chat</label>
+                                            <input type="radio" name="GuestMode" value="False" '.$this->checkIsGuest(false).' tabindex="2">
+                                            <label>Registered User</label>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <input type="radio" name="ChatMode" value="True" tabindex="2">
-                                            <label>SuperSafe Chat</label>
+                                            <input type="radio" name="GuestMode" value="True" '.$this->checkIsGuest(true).' tabindex="2">
+                                            <label>Guest</label>
                                         </td>
                                     </tr>
                                 </tbody>

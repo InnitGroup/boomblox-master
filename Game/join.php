@@ -106,15 +106,21 @@ $port = $server["port"];
 $uploadUrl = $user->ownsPlace($server["placeId"]) ? "http://".domain."/Data/Upload.ashx?id=" . $server["placeId"] : "";
 $hasLocalScripts = File::hasLocalScripts($_SERVER["DOCUMENT_ROOT"] . "/content/" . $server["placeId"]);
 $noLocalScripts = $hasLocalScripts ? '' : 'game["Script Context"]:Remove()';
+$username = $user->getUsername();
+if ($user->isGuest()) {
+    $guestId = $user->guestId();
+    $username = "Guest $guestId";
+}
 
 $file = new File("/api/private/lua/join.lua", [
     "UserID" => $userId, 
-    "Username" => $user->getUsername(), 
+    "Username" => $username, 
     "Port" => $port,
     "ClientTicket" => $user->getTicket(),
     "NoLocalScripts" => $noLocalScripts,
     "UploadUrl" => $uploadUrl,
     "Url" => url,
+    "SuperSafeChat" => ($user->isGuest() ? "true" : "false"),
     "IP" => Server::getServerIP()
 ]);
 

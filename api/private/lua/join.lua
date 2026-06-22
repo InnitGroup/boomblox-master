@@ -136,7 +136,7 @@ local success, err = pcall(function()
     game:HttpGet("http://{Url}/Game/Statistics.ashx?TypeID=3&UserID={UserID}", false)
     setMessage("Creating Player")
     player = game:GetService("Players"):CreateLocalPlayer({UserID})
-    player:SetSuperSafeChat(false)
+    player:SetSuperSafeChat({SuperSafeChat})
     player.Idled:connect(onPlayerIdled)
 
     -- Overriden
