@@ -725,6 +725,8 @@ class User {
                 }
                 return $modelIds;
             }
+            #$boughtModels = $this->getItems("model");
+            #$result = array_intersect($result, $boughtModels);
             return $result;
         } else {
             return array();
@@ -1268,7 +1270,7 @@ class User {
     }
     public function getItems($type = false, $count = false, $checkIfWearing = false) {
         global $db;
-        $char = array_intersect($this->getCharacter(), ["t-shirt", "shirt", "pants", "hat", "head", "face", "gear"]);
+        $char = array_intersect($this->getCharacter(), ["t-shirt", "shirt", "pants", "hat", "head", "face", "gear", "decal", "model"]);
         $items = unserialize($this->getData("user", "items"));
         if ($type) {
             if ($type == "game") {

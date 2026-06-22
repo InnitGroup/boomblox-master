@@ -63,9 +63,6 @@ if (Server::isPost()) {
                                 $visualId = $file->getTextureId();
                             #}
 
-                            echo $asset["itemId"];
-                            echo $visualId;
-
                             if ($file = File::getImageType($_SERVER["DOCUMENT_ROOT"]."/cdn/t3/".$visualId)) {
                                 if (file_exists($_SERVER["DOCUMENT_ROOT"] . "/cdn/t3/".$visualId.".".$file["Extension"])) {
                                     $texture = "/cdn/t3/".$visualId.".".$file["Extension"];

@@ -165,7 +165,7 @@ class Admin {
             return false;
         }
 
-        $file = new File("/content/".$assetId);
+        $file = new File("/content/" . $assetId);
         $secondaryId = $file->getTextureId();
 
         $file = File::getImageType($_SERVER["DOCUMENT_ROOT"]."/cdn/t3/$secondaryId");
@@ -173,25 +173,19 @@ class Admin {
             File::JPGtoPNG($file["FullPath"], $_SERVER["DOCUMENT_ROOT"]."/cdn/t3/$secondaryId.png");
         }
 
-        if ($assetType !== "Decal") {
-            $path = $_SERVER["DOCUMENT_ROOT"]."/cdn/t3/$secondaryId.png";
-            $assetTexture = file_get_contents($path);
+        $path = $_SERVER["DOCUMENT_ROOT"]."/cdn/t3/$secondaryId.png";
+        $assetTexture = file_get_contents($path);
 
-            file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/content/" . $secondaryId, $assetTexture);
+        if ($assetType !== "Decal") {
             $stmt = "UPDATE items SET `status`='accepted', lastUpdate=:lastUpdate WHERE itemId=:itemId";
             $db->execute($stmt, [":itemId" => $secondaryId, ":lastUpdate" => date("Y-m-d H:i:s")]);
 
-            #$asset = new File("/api/private/xml/$assetType.xml", ["1" => "http://".domain."/content/".$assetId."_1.png"]);
-            #$asset = $asset->handle();
-            #$assetTexture = file_get_contents($_SERVER["DOCUMENT_ROOT"]."/cdn/t3/$assetId.png");
-
+            file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/content/" . $secondaryId, $assetTexture);
             file_put_contents($_SERVER["DOCUMENT_ROOT"]."/content/$secondaryId", $assetTexture);
-            #file_put_contents($_SERVER["DOCUMENT_ROOT"]."/content/$assetId", $asset);
 
             $thumb = new Asset($assetId);
             $thumb->RequestThumbnail(250, 250, "PNG");
         } else {   
-            #Discord::sendWebhookMessage("vcchat", "id: $assetId tex: $assetId, texture: {$assetTexture}");
             file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/content/" . $secondaryId, $assetTexture);
             $stmt = "UPDATE items SET `status`='accepted', lastUpdate=:lastUpdate WHERE itemId=:itemId";
             $db->execute($stmt, [":itemId" => $secondaryId, ":lastUpdate" => date("Y-m-d H:i:s")]);

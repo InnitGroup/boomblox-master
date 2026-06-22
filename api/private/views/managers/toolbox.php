@@ -4,7 +4,7 @@ class ToolboxManager {
         global $user, $db;
         $count = $this->modelCount();
 
-        $stmt = "SELECT * FROM items WHERE `catalogType`='Model'";
+        $stmt = "SELECT * FROM items WHERE `catalogType`='Model' AND `status` <> 'blocked'";
 
         if (isset($_POST["tbSearch"])) {
             $search = htmlspecialchars($_POST["tbSearch"]);
@@ -15,6 +15,12 @@ class ToolboxManager {
             $sort = isset($_POST["ddlToolboxes"]) ? htmlspecialchars($_POST["ddlToolboxes"]) : htmlspecialchars($_GET["Category"]);
             if ($sort == "MyModels") {
                 $stmt .= " AND creatorId=".$user->getUserId()." ORDER BY itemId DESC";
+            }
+            if ($sort == "MyDecals") {
+                $stmt = "SELECT * FROM items WHERE `catalogType`='Decal' AND `status` <> 'blocked' AND creatorId=".$user->getUserId()." ORDER BY itemId DESC";
+            }
+            if ($sort == "AllDecals") {
+                $stmt = "SELECT * FROM items WHERE `catalogType`='Decal' AND `status` <> 'blocked'";
             }
             if ((int)$sort > 0) {
                 $stmt .= " AND modelType=".$sort;
@@ -59,6 +65,12 @@ class ToolboxManager {
             return $count;
         } elseif ($typeId == "MyModels") {
             return count($user->getModels(true));
+        } elseif ($typeId == "AllDecals") {
+            $stmt = "SELECT COUNT(*) AS count FROM items WHERE catalogType='Decal'";
+            $result = $db->execute($stmt);
+            $count = $result->fetch(PDO::FETCH_ASSOC)["count"];
+        } elseif ($typeId == "MyDecals") {
+            return $user->getItems("decal", true);
         } else {
             $stmt = "SELECT COUNT(*) AS count FROM items WHERE modelType=:typeId";
             $result = $db->execute($stmt, [":typeId" => $typeId]);
