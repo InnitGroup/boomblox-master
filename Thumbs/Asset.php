@@ -214,6 +214,10 @@ class Asset extends Base {
             return "https://t3.".domain."/".self::$_assetId.".png";
         }
 
+        if (self::$_itemType == "Face") {
+            return "https://t3.".domain."/".self::$_assetId.".png";
+        }
+
         $file = new File("/content/".self::$_assetId);
         $assetId = $file->getTextureId();
 
