@@ -53,6 +53,32 @@ class File {
         return $playerCount;
     }
 
+    public function getTexture(): string {
+        $contents = file_get_contents($this->file);
+        if (!str_contains($contents, '<Content name="Texture"><url>')) {
+            return "https://t2.".domain."/unavail-250x250.png";
+        }
+
+        $half = explode('<Content name="Texture"><url>', $contents);
+        $half = $half[1];
+        $half = explode('</url></Content>', $half);
+
+        return $half[0];
+    }
+
+    public function getTextureId(): int {
+        $contents = file_get_contents($this->file);
+        if (!str_contains($contents, '<Content name="Texture"><url>')) {
+            return "https://t2.".domain."/unavail-250x250.png";
+        }
+
+        $half = explode('<Content name="Texture"><url>http://xoblog.dev/asset/?id=', $contents);
+        $half = $half[1];
+        $half = explode('</url></Content>', $half);
+
+        return (int)$half[0];
+    }
+
     public function getPlayerCount2(): int {
         // <int name="MaxPlayers">12</int>
         $contents = file_get_contents($this->file);

@@ -154,13 +154,13 @@ class Asset extends Base {
             return "https://t2.".domain."/unapproved-250x250.png";
         }
 
-        if (self::$_itemType == "T-Shirt" || self::$_itemType == "Decal" || self::$_itemType == "Face") {
+        if (self::$_itemType == "T-Shirt" || self::$_itemType == "Decal" || self::$_itemType == "Face" || self::$_itemType == "Image") {
             return $this->GetClothing();
         } 
         $assetId = self::$_assetId;
 
         if (self::$_itemType == "Mesh") {
-            return "https://t2.".domain."/Unknown-120x120-00000000000000000000000000000000.png";
+            return "https://t0.".domain."/Unknown-120x120-00000000000000000000000000000000.png";
         }
 
         if (self::$_itemType != "Model") {
@@ -210,6 +210,9 @@ class Asset extends Base {
             return "https://t2.".domain."/unapproved-250x250.png";
         }
 
+        $file = new File("/content/".self::$_assetId);
+        return $file->getTexture();
+
         $path = "/cdn/t3/".self::$_assetId;
         if (empty(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/content/".self::$_assetId))) {
             return "https://t2.".domain."/unavail-250x250.png";
@@ -229,7 +232,7 @@ class Asset extends Base {
     public function GetClothing() {
         if (self::$_itemType == "T-Shirt") {
             return $this->GetTShirt();
-        } elseif(self::$_itemType == "Decal" || self::$_itemType == "Face") {
+        } elseif(self::$_itemType == "Decal" || self::$_itemType == "Face" || self::$_itemType == "Image") {
             return $this->GetDecal();
         }
         if (self::$_status == "pending") {

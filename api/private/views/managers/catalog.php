@@ -19,6 +19,7 @@ class CatalogManager {
 
     private $cToLabel = [
         #2 11 12 8 13 10 9
+        "1" => "Images",
         "2" => "T-Shirts",
         "4" => "Meshes",
         "8" => "Hats",
@@ -33,6 +34,7 @@ class CatalogManager {
     ];
 
     private $cToSQL = [
+        "1" => "Image",
         "2" => "T-Shirt",
         "4" => "Mesh",
         "8" => "Hat",
@@ -62,7 +64,7 @@ class CatalogManager {
     ];
 
     public function __construct($m = "TopFavorites", $c = "8", $t = "PastWeek", $d = "All", $p = "1", $q = "", $theme = 0) {
-        $validC = [2, 4, 9, 8, 10, 11, 12, 13, 17, 18, 19];
+        $validC = [1, 2, 4, 9, 8, 10, 11, 12, 13, 17, 18, 19];
         $validM = ["TopFavorites", "BestSelling", "ForSale", "RecentlyUpdated", "PublicDomain"];
         $validT = ["PastHour", "PastDay", "PastWeek", "PastMonth", "AllTime"];
         if (!in_array($c, $validC)) {

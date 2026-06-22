@@ -184,7 +184,9 @@ class Admin {
             $thumb->RequestThumbnail(250, 250, "PNG");
         } else {
             #$assetTexture = file_get_contents($_SERVER["DOCUMENT_ROOT"]."/cdn/t3/$assetId.png");
-            file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/content/" . (string)$assetId, $assetTexture);
+            $file = new File("/content/".$assetId);
+            file_put_contents($file->getTexture();
+            #file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/content/" . (string)$assetId, $assetTexture);
         }
     }
 

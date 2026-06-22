@@ -3,7 +3,7 @@
 class ContentBuilderManager {
     private $allowedFileTypes = ["png", "jpg", "jpeg"];
     public function handleUpload($contentId, $data, $content) {
-        global $db; 
+        global $db, $user; 
         $type = $data->Type;
 
         if (!isset($_FILES["texture"])) {
@@ -44,13 +44,31 @@ class ContentBuilderManager {
 
         $stmt = "INSERT INTO items (itemType, catalogType, creatorId, creatorName, itemName, lastUpdate) VALUES ('catalog', :catalogType, :creatorId, :creatorName, :itemName, :lastUpdate)";
         $date = date("Y-m-d H:i:s");
-        $creatorId = ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"]);
+        $creatorId = $user->getUserId();
         $creatorName = $db->getUserById($creatorId);
         $fileName = pathinfo($file["name"], PATHINFO_FILENAME);
         
         if (strlen($fileName) > 75) {
             $fileName = substr($fileName, 0, 75);
         }
+
+        $db->execute($stmt, [
+            ":catalogType" => "Image", 
+            ":creatorId" => $creatorId, 
+            ":creatorName" => $creatorName, 
+            ":itemName" => Helper::debugString($fileName),
+            ":lastUpdate" => $date
+        ]);
+
+        $id = $db->lastInsertId("items");
+        $filePath = $targetDirectory . (string)$id . "." . $fileType;
+        if (!move_uploaded_file($file["tmp_name"], $targetDirectory . (string)$id . "." . $fileType)) {
+            return (object)["Error" => "Error uploading file."];
+        }
+
+        $user->giveItem($id);
+
+        $stmt = "INSERT INTO items (itemType, catalogType, creatorId, creatorName, itemName, lastUpdate) VALUES ('catalog', :catalogType, :creatorId, :creatorName, :itemName, :lastUpdate)";
 
         $db->execute($stmt, [
             ":catalogType" => $type, 
@@ -60,17 +78,12 @@ class ContentBuilderManager {
             ":lastUpdate" => $date
         ]);
         
-        $id = $db->singleton()->lastInsertId();
+        $file = new File("/api/private/xml/$type.xml", ["1" => "http://".domain."/asset/?id=$id"]);
+        $file = $file->handle();
+        $xmlId = $db->lastInsertId("items");
+        file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/content/$xmlId", $file);
 
-        $filePath = $targetDirectory . (string)$id . "." . $fileType;
-        if (!move_uploaded_file($file["tmp_name"], $targetDirectory . (string)$id . "." . $fileType)) {
-            return (object)["Error" => "Error uploading file."];
-        }
-
-        $user = new User($creatorId);
-        $user->giveItem($id);
-
-        header("Location: /My/Character.aspx?AttireTypeID=".$contentId);
+        header("Location: /My/Character.aspx?AttireTypeID=" . $contentId);
         exit;
     }
 }

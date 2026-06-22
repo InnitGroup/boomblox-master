@@ -80,8 +80,10 @@ global $auth;
 							<option <?=$sort == "14" ? 'selected="selected"' : ""?> value="14">Skyboxes</option>
 							<option <?=$sort == "15" ? 'selected="selected"' : ""?> value="15">Billboards</option>
 							<option <?=$sort == "16" ? 'selected="selected"' : ""?> value="16">Game Objects</option>
+							<option <?=$sort == "MyDecals" ? 'selected="selected"' : ""?> value="MyDecals">My Decals</option>
+							<option <?=$sort == "AllDecals" ? 'selected="selected"' : ""?> value="AllDecals">Free Decals</option>
 							<option <?=$sort == "MyModels" ? 'selected="selected"' : ""?> value="MyModels">My Models</option>
-							<option <?=$sort == "AllModels" ? 'selected="selected"' : ""?> value="AllModels">All Models</option>
+							<option <?=$sort == "AllModels" ? 'selected="selected"' : ""?> value="AllModels">Free Models</option>
 						</select>
 					</div>
 					<?php if ($toolbox->getModelsInCategory($toolbox->getCategory()) > 20): ?>
