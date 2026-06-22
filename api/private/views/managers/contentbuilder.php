@@ -81,6 +81,7 @@ class ContentBuilderManager {
         $file = new File("/api/private/xml/$type.xml", ["1" => "http://".domain."/asset/?id=$id"]);
         $file = $file->handle();
         $xmlId = $db->lastInsertId("items");
+        $user->giveItem($xmlId);
         file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/content/$xmlId", $file);
 
         header("Location: /My/Character.aspx?AttireTypeID=" . $contentId);

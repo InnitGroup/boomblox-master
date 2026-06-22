@@ -56,10 +56,19 @@ if (Server::isPost()) {
                         foreach ($assets as $key => $asset) {
                             $name = Helper::debugString($asset["itemName"]);
                             $texture = "/cdn/t2/unavail-420x230.png";
+                            $visualId = $asset["itemId"];
 
-                            if ($file = File::getImageType($_SERVER["DOCUMENT_ROOT"]."/cdn/t3/".$asset["itemId"])) {
-                                if (file_exists($_SERVER["DOCUMENT_ROOT"] . "/cdn/t3/".$asset["itemId"].".".$file["Extension"])) {
-                                    $texture = "/cdn/t3/".$asset["itemId"].".".$file["Extension"];
+                            #if ($asset["catalogType"] == "Decal") {
+                                $file = new File("/content/".$asset["itemId"]);    
+                                $visualId = $file->getTextureId();
+                            #}
+
+                            echo $asset["itemId"];
+                            echo $visualId;
+
+                            if ($file = File::getImageType($_SERVER["DOCUMENT_ROOT"]."/cdn/t3/".$visualId)) {
+                                if (file_exists($_SERVER["DOCUMENT_ROOT"] . "/cdn/t3/".$visualId.".".$file["Extension"])) {
+                                    $texture = "/cdn/t3/".$visualId.".".$file["Extension"];
                                 }
                             }
                             

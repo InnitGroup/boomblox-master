@@ -161,31 +161,40 @@ class Admin {
         $fetched = $result->fetch(PDO::FETCH_ASSOC);
 
         $assetType = $fetched["catalogType"] !== NULL ? $fetched["catalogType"] : $fetched["itemType"];
-        if (!in_array($assetType, ["T-Shirt", "Shirt", "Pants", "Decal"])) {
+        if (!in_array($assetType, ["T-Shirt", "Shirt", "Pants", "Decal", "Image"])) {
             return false;
         }
 
-        $file = File::getImageType($_SERVER["DOCUMENT_ROOT"]."/cdn/t3/$assetId");
-        if ($file["Extension"] == "image/jpeg" || $file["Extension"] == "jpg") {
-            File::JPGtoPNG($file["FullPath"], $_SERVER["DOCUMENT_ROOT"]."/cdn/t3/$assetId.png");
-        }
-        $path = $_SERVER["DOCUMENT_ROOT"]."/cdn/t3/$assetId.png";
+        $file = new File("/content/".$assetId);
+        $secondaryId = $file->getTextureId();
 
-        $assetTexture = file_get_contents($path);
+        $file = File::getImageType($_SERVER["DOCUMENT_ROOT"]."/cdn/t3/$secondaryId");
+        if ($file["Extension"] == "image/jpeg" || $file["Extension"] == "jpg") {
+            File::JPGtoPNG($file["FullPath"], $_SERVER["DOCUMENT_ROOT"]."/cdn/t3/$secondaryId.png");
+        }
+
         if ($assetType !== "Decal") {
-            $asset = new File("/api/private/xml/$assetType.xml", ["1" => "http://".domain."/content/".$assetId."_1.png"]);
-            $asset = $asset->handle();
+            $path = $_SERVER["DOCUMENT_ROOT"]."/cdn/t3/$secondaryId.png";
+            $assetTexture = file_get_contents($path);
+
+            file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/content/" . $secondaryId, $assetTexture);
+            $stmt = "UPDATE items SET `status`='accepted', lastUpdate=:lastUpdate WHERE itemId=:itemId";
+            $db->execute($stmt, [":itemId" => $secondaryId, ":lastUpdate" => date("Y-m-d H:i:s")]);
+
+            #$asset = new File("/api/private/xml/$assetType.xml", ["1" => "http://".domain."/content/".$assetId."_1.png"]);
+            #$asset = $asset->handle();
             #$assetTexture = file_get_contents($_SERVER["DOCUMENT_ROOT"]."/cdn/t3/$assetId.png");
 
-            file_put_contents($_SERVER["DOCUMENT_ROOT"]."/content/".$assetId."_1.png", $assetTexture);
-            file_put_contents($_SERVER["DOCUMENT_ROOT"]."/content/$assetId", $asset);
+            file_put_contents($_SERVER["DOCUMENT_ROOT"]."/content/$secondaryId", $assetTexture);
+            #file_put_contents($_SERVER["DOCUMENT_ROOT"]."/content/$assetId", $asset);
 
             $thumb = new Asset($assetId);
             $thumb->RequestThumbnail(250, 250, "PNG");
-        } else {
-            #$assetTexture = file_get_contents($_SERVER["DOCUMENT_ROOT"]."/cdn/t3/$assetId.png");
-            $file = new File("/content/".$assetId);
-            file_put_contents($file->getTexture();
+        } else {   
+            #Discord::sendWebhookMessage("vcchat", "id: $assetId tex: $assetId, texture: {$assetTexture}");
+            file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/content/" . $secondaryId, $assetTexture);
+            $stmt = "UPDATE items SET `status`='accepted', lastUpdate=:lastUpdate WHERE itemId=:itemId";
+            $db->execute($stmt, [":itemId" => $secondaryId, ":lastUpdate" => date("Y-m-d H:i:s")]);
             #file_put_contents($_SERVER["DOCUMENT_ROOT"] . "/content/" . (string)$assetId, $assetTexture);
         }
     }

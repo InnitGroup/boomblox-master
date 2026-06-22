@@ -55,11 +55,11 @@ class File {
 
     public function getTexture(): string {
         $contents = file_get_contents($this->file);
-        if (!str_contains($contents, '<Content name="Texture"><url>')) {
+        if (!str_contains($contents, '<url>')) {
             return "https://t2.".domain."/unavail-250x250.png";
         }
 
-        $half = explode('<Content name="Texture"><url>', $contents);
+        $half = explode('<url>', $contents);
         $half = $half[1];
         $half = explode('</url></Content>', $half);
 
@@ -68,13 +68,14 @@ class File {
 
     public function getTextureId(): int {
         $contents = file_get_contents($this->file);
-        if (!str_contains($contents, '<Content name="Texture"><url>')) {
-            return "https://t2.".domain."/unavail-250x250.png";
+        if (!str_contains($contents, '<url>')) {
+            return 0;
         }
 
-        $half = explode('<Content name="Texture"><url>http://xoblog.dev/asset/?id=', $contents);
+        $half = explode('<url>http://xoblog.dev/asset/?id=', $contents);
         $half = $half[1];
         $half = explode('</url></Content>', $half);
+        
 
         return (int)$half[0];
     }

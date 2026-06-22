@@ -210,17 +210,34 @@ class Asset extends Base {
             return "https://t2.".domain."/unapproved-250x250.png";
         }
 
+        if (self::$_itemType == "Image") {
+            return "https://t3.".domain."/".self::$_assetId.".png";
+        }
+
         $file = new File("/content/".self::$_assetId);
-        return $file->getTexture();
+        $assetId = $file->getTextureId();
+
+        if ($assetId == 0) {
+            return "https://t2.".domain."/unavail-250x250.png";
+        }
+
+        if (file_exists($_SERVER["DOCUMENT_ROOT"]."/content/$assetId")) {
+            return "https://t3.".domain."/$assetId.png";
+        }
 
         $path = "/cdn/t3/".self::$_assetId;
-        if (empty(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/content/".self::$_assetId))) {
+        if (empty(file_get_contents($_SERVER["DOCUMENT_ROOT"] . "/content/".$assetId))) {
             return "https://t2.".domain."/unavail-250x250.png";
         }
 
         $file = File::getImageType($_SERVER["DOCUMENT_ROOT"] . $path);
+
+        if (!$file) {
+            return "https://t2.".domain."/unavail-250x250.png";
+        }
+
         if (file_exists($file["FullPath"])) {
-            return "https://t3.".domain."/".self::$_assetId.".".$file["Extension"];
+            return "https://t3.".domain."/".$assetId.".".$file["Extension"];
         } else {
             return "https://t2.".domain."/unavail-250x250.png";
         }
@@ -240,6 +257,7 @@ class Asset extends Base {
         } elseif (self::$_status == "blocked") {
             return "https://t2.".domain."/unapproved-250x250.png";
         }
+        
         $path = "/cdn/t7/".self::$_assetId.".png";
         if (file_exists($_SERVER["DOCUMENT_ROOT"] . $path)) {
             return "http://".domain.$path;

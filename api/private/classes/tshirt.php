@@ -2,7 +2,11 @@
 class Tshirt {
     public static function render($tshirtId, $upload = true) {
         $backgroundPath = $_SERVER["DOCUMENT_ROOT"] . "/cdn/t2/tshirt-template.png";
-        $overlayPath = $_SERVER["DOCUMENT_ROOT"] . "/cdn/t3/$tshirtId.png";
+
+        $file = new File("/content/".$tshirtId);
+        $secondaryId = $file->getTextureId();
+
+        $overlayPath = $_SERVER["DOCUMENT_ROOT"] . "/cdn/t3/$secondaryId.png";
         $outputPath = $_SERVER["DOCUMENT_ROOT"] . "/cdn/t7/$tshirtId.png";
 
         $background = imagecreatefrompng($backgroundPath);

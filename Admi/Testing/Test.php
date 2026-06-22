@@ -5,21 +5,24 @@ global $theme, $auth, $db;
 
 $page = new APageBuilder;
 
-#exit;
-#$stmt = "SELECT * as images FROM items WHERE catalogType='Decal'";
-#$result = $db->execute($stmt);
+exit;
+$stmt = "SELECT * FROM items WHERE catalogType='Decal' AND itemId > 460";
+$result = $db->execute($stmt);
 #echo $result->fetch(PDO::FETCH_ASSOC)["images"];
 
-exit;
+#exit;
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     $stmt = "INSERT INTO items (itemType, catalogType, creatorId, creatorName, itemName, itemDescription, lastUpdate) VALUES ('catalog', 'Decal', :creatorId, :creatorName, :itemName, :itemDescription, :lastUpdate)";
-    $result = $db->execute($stmt, [
+    $db->execute($stmt, [
         ":creatorId" => $row["creatorId"],
         ":creatorName" => $row["creatorName"],
         ":itemName" => $row["itemName"],
         ":itemDescription" => $row["itemDescription"],
         ":lastUpdate" => date("Y-m-d H:i:s")
     ]);
+
+    $stmt = "UPDATE items SET catalogType='Image' WHERE itemId=:itemId";
+    $db->execute($stmt, [":itemId" => $row["itemId"]]);
 
     $asset = new File("/api/private/xml/Decal.xml", ["1" => "http://".domain."/asset/?id=" . $row["itemId"]]);
     $asset = $asset->handle();
