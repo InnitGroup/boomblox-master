@@ -47,7 +47,7 @@ $genre = $item->genre;
                     <div id="SetGenres">
                         <fieldset>
                             <legend>Genre</legend>
-                            <div class="Suggestion"> Classify your Place to help people find it. </div>
+                            <div class="Suggestion"> Classify your <?=$item->itemType == "catalog" ? $item->catalogType : "Place"?> to help people find it. </div>
                             <div id="ctl00_cphRoblox_AllowOneGenre">
                                 <div class="MyItemIndentedOption">
                                     <ul style="list-style: none;">

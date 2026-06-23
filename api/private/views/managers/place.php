@@ -28,13 +28,46 @@ class PlaceManager {
                                 $name = "Unnamed Place";
                             }
 
-                            if (isset($_POST['ctl00$cphRoblox$cbHasGears'])) {
-                                $stmt = "UPDATE items SET gears=1 WHERE itemId=:itemId";
-                                $db->execute($stmt, [":itemId" => $this->placeId]);
-                            } else {
-                                $stmt = "UPDATE items SET gears=NULL WHERE itemId=:itemId";
-                                $db->execute($stmt, [":itemId" => $this->placeId]);
-                            }
+                            
+                            /*
+                            if (isset($_POST['ctl00$cphRoblox$GearGenreButtons'])) {
+                                $gearGenreButtons = $_POST['ctl00$cphRoblox$GearGenreButtons'];
+                                if ($gearGenreButtons == 'rbAllowAllGenres') {
+                                    Category::setAllCategory($this->placeId);
+                                } elseif ($gearGenreButtons == 'rbAllowSpecificGenres') {
+                                    $categories = [];
+                                    if (isset($_POST['ctl00$cphRoblox$cbMelee'])) {
+                                        array_push($categories, 3);
+                                    }
+                                    if (isset($_POST['ctl00$cphRoblox$cbRanged'])) {
+                                        array_push($categories, 7);
+                                    }
+                                    if (isset($_POST['ctl00$cphRoblox$cbExplosives'])) {
+                                        array_push($categories, 1);
+                                    }
+                                    if (isset($_POST['ctl00$cphRoblox$cbPowerups'])) {
+                                        array_push($categories, 6);
+                                    }
+                                    if (isset($_POST['ctl00$cphRoblox$cbNavigation'])) {
+                                        array_push($categories, 5);
+                                    }
+                                    if (isset($_POST['ctl00$cphRoblox$cbInstruments'])) {
+                                        array_push($categories, 4);
+                                    }
+                                    if (isset($_POST['ctl00$cphRoblox$cbSocial'])) {
+                                        array_push($categories, 8);
+                                    }
+                                    if (isset($_POST['ctl00$cphRoblox$cbBuilding'])) {
+                                        array_push($categories, 0);
+                                    }
+                                    if (isset($_POST['ctl00$cphRoblox$cbPersonalTransport'])) {
+                                        array_push($categories, 9);
+                                    }
+
+                                    Category::setCategories($this->placeId, $categories);
+                                }
+                            }*/
+                            
 
                             $stmt = "UPDATE items SET itemName=:itemName, itemDescription=:itemDescription, access=:access, lastUpdate=:lastUpdate WHERE itemId=:itemId";
                             $db->execute($stmt, [
