@@ -53,16 +53,23 @@ class EditItemManager {
 
             if ($robux == 0 && $tickets == 0) {
                 $this->item->offsale();
-                #return header("Location: " . htmlspecialchars($_SERVER['REQUEST_URI']));
             }
 
             $this->item->onsale()
                 ->sellForBux($robux)
                 ->sellForTix($tickets);
-                #return header("Location: " . htmlspecialchars($_SERVER['REQUEST_URI']));
         } else {
             $this->item->offsale();
-            #return header("Location: " . htmlspecialchars($_SERVER['REQUEST_URI']));
+        }
+
+        if (isset($_POST['GenreButtons2'])) {
+            $assumedGenreId = (int)$_POST['GenreButtons2'];
+
+            if (Genre::genreCount() < $assumedGenreId || $assumedGenreId < 0) {
+                return;
+            }
+
+            Genre::assignGenre($this->itemData->itemId, (int)$assumedGenreId);
         }
     }
 }
