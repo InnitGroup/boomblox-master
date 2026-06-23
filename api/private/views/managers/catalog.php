@@ -753,7 +753,7 @@ class CatalogManager {
                             <div class="AssetName"><a href="Item.aspx?ID='.htmlspecialchars($item["itemId"]).'">'.htmlspecialchars(Helper::debugString($item["itemName"])).'</a></div>
                             <div class="AssetLastUpdate"><span class="Label">Updated:</span> <span class="Detail">'.Helper::timeAgo($item["lastUpdate"]).'</span></div>
                             <div class="AssetCreator"><span class="Label">Creator:</span> <span class="Detail"><a href="User.aspx?ID='.htmlspecialchars($item["creatorId"]).'">'.htmlspecialchars($item["creatorName"]).'</a></span></div>
-                            <div class="AssetsSold"><span class="Label">Number Sold:</span> <span class="Detail">'.Helper::times($sales).'</span></div>
+                            <div class="AssetsSold"><span class="Label">Number Sold:</span> <span class="Detail">'.number_format($sales).'</span></div>
                             <div class="AssetFavorites"><span class="Label">Favorited:</span> <span class="Detail">'.Helper::times($item["favorites"]).'</span></div>
                             '.$this->getPrice($item).'
                         </div>
