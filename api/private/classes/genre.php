@@ -26,6 +26,32 @@ class Genre {
         "WildWest"   #23
     ];
 
+    public static array $genreTitles = [
+        "All",
+        "Adventure",
+        "Castle",
+        "City",
+        "Classic",
+        "Cthulu",
+        "Fantasy",
+        "FPS",
+        "Funny",
+        "LOL",
+        "Modern Military",
+        "Ninja",
+        "Pirate",
+        "RPG",
+        "Scary",
+        "Sci Fi",
+        "Sci-Fi",
+        "Skate Park",
+        "Sports",
+        "Town and City",
+        "Tutorial",
+        "War",
+        "Wild West"
+    ];
+
     public static function genreName(int $genreId): string {
         return self::$genres[$genreId];
     }
@@ -46,6 +72,23 @@ class Genre {
             ":genre" => $genre,
             ":itemId" => $itemId
         ]);
+    }
+
+    public static function getGenreTitle(int $itemId) {
+        global $db, $theme;
+        $stmt = "SELECT * FROM items WHERE itemId=:itemId";
+        $result = $db->execute($stmt, [":itemId" => $itemId]);
+
+        $fetched = $result->fetch(PDO::FETCH_ASSOC);
+        $genreId = $fetched["genre"];
+        $creatorId = $fetched["creatorId"];
+        $itemType = $fetched["itemType"];
+
+        if ($creatorId == 1 && $itemType == "catalog" && $genreId == 0) {
+            return Site::getThemeProperty("alias", $theme) . "ia Classic (All)";
+        }
+
+        return self::$genreTitles[$genreId];
     }
 
     public static function getGenre(int $itemId): int {

@@ -66,8 +66,12 @@ if (strlen($description) > 250) {
         <div id="LastUpdate"> Updated: <?=Helper::timeAgo($data->lastUpdate)?> </div>
         <div id="Favorited"> Favorited: <?=Helper::times($data->favorites)?> </div>
         <div style="margin-top: 5px; margin-bottom: 5px;">
-            <div id="ctl00_cphRoblox_Genres"> Genres: <div id="ctl00_cphRoblox_IsClassic">
-                    <img id="ctl00_cphRoblox_Image3" class="GamesInfoIcon" src="/images/GenreIcons/Classic.png" alt="Classic" border="0"> ROBLOX Classic (All)
+            <?php
+            $genreTitle = Genre::getGenreTitle($data->itemId);
+            $genreName = Genre::genreName($data->genre);
+            ?>
+            <div id="ctl00_cphRoblox_Genres"> Genres: <div id="ctl00_cphRoblox_Is<?=$genreName?>">
+                    <img id="ctl00_cphRoblox_Image3" class="GamesInfoIcon" src="/images/GenreIcons/<?=$genreName?>.png" alt="<?=$genreName?>" border="0"> <?=$genreTitle?>
                 </div>
             </div>
         </div>
