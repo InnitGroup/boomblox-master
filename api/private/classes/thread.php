@@ -48,7 +48,7 @@ class Thread {
     public function isAReply() { return $this->isReply; }
     public function isPinned() { return $this->pinned; }
     public function getAuthor() { return $this->author; }
-    public function getTitle() { return $this->title; }
+    public function getTitle() { return Helper::themeAdjust($this->title); }
     public function getContent() { return $this->content; }
 
     public function viewedBy(int|string $viewer): bool {

@@ -107,7 +107,7 @@
 											?>
 											<tr id="ctl00_cphRoblox_ForumGroupRepeater1_ctl0<?=$groupId?>_ForumGroup">
 												<td class="forumHeaderBackgroundAlternate" colspan="5" height="20">
-													<a id="ctl00_cphRoblox_ForumGroupRepeater1_ctl0<?=$groupId?>_GroupTitle" class="forumTitle" href="/Forum/ShowForumGroup.aspx?ForumGroupID=<?=$groupId?>"><?=htmlspecialchars($groupName)?></a>
+													<a id="ctl00_cphRoblox_ForumGroupRepeater1_ctl0<?=$groupId?>_GroupTitle" class="forumTitle" href="/Forum/ShowForumGroup.aspx?ForumGroupID=<?=$groupId?>"><?=htmlspecialchars(Helper::themeAdjust($groupName))?></a>
 												</td>
 											</tr>
 											<?php
@@ -120,7 +120,7 @@
 													<img src="/Forum/skins/default/images/forum_status.gif" width="34" border="0">
 												</td>
 												<td class="forumRow" width="80%">
-													<a class="forumTitle" href="/Forum/ShowForum.aspx?ForumID=<?=$forum->getId()?>"><?=htmlspecialchars($forum->getTopic())?></a>
+													<a class="forumTitle" href="/Forum/ShowForum.aspx?ForumID=<?=$forum->getId()?>"><?=htmlspecialchars(Helper::themeAdjust($forum->getTopic()))?></a>
 													<span class="normalTextSmall">
 														<br><?=htmlspecialchars($forum->getDescription())?> </span>
 												</td>

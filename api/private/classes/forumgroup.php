@@ -44,7 +44,7 @@ class ForumGroup {
     }
 
     public function getId(): int { return $this->groupId; }
-    public function getName(): string { return $this->groupName; }
+    public function getName(): string { return Helper::themeAdjust($this->groupName); }
     
     public static function getAllGroups(): array {
         return self::$s_groups;

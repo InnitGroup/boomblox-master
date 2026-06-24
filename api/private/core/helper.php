@@ -112,6 +112,19 @@ class Helper {
         }
     }
 
+    public static function themeAdjust(string $string) {
+        global $theme;
+
+        str_replace("Roblox", Site::getThemeProperty("name", $theme), $string);
+        str_replace("Boomblox", Site::getThemeProperty("name", $theme), $string);
+        str_replace("roblox", strtolower(Site::getThemeProperty("name", $theme)), $string);
+        str_replace("boomblox", strtolower(Site::getThemeProperty("name", $theme)), $string);
+        str_replace("ROBLOX", Site::getThemeProperty("alias", $theme), $string);
+        str_replace("BOOMBLOX", strtoupper(Site::getThemeProperty("alias", $theme)), $string);
+
+        return $string;
+    }
+
     public static function timeAgo($timestamp) {
         $current_time = time();
         $time_diff = $current_time - strtotime($timestamp);

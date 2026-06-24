@@ -6,7 +6,7 @@ global $theme;
 	<div class="ParentsContainer">
 		<a name="top"></a>
 		<div id="BreadcrumbsContainer">
-			<a id="ctl00_cphRoblox_BreadcrumbsHyperLink" href="/Parents.aspx">ROBLOX Parents</a> &gt; Frequently Asked Questions
+			<a id="ctl00_cphRoblox_BreadcrumbsHyperLink" href="/Parents.aspx"><?=Site::getThemeProperty("alias", $theme)?> Parents</a> &gt; Frequently Asked Questions
 		</div>
 		<a id="ctl00_cphRoblox_PageImage" class="PageImage" onclick="javascript:__doPostBack('ctl00$cphRoblox$PageImage','')" style="display:inline-block;cursor:pointer;">
 			<img src="/images/Parents/FAQs-110x110.png" border="0" blankurl="http://t6.roblox.com:80/blank-128x128.gif">

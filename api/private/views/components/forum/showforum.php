@@ -76,7 +76,7 @@ global $forum, $user;
                                     <?php endif; ?>
 								</td>
 								<td class="forumRow" height="25">
-									<a class="linkSmallBold" href="/Forum/ShowPost.aspx?PostID=<?=$thread->getId()?>"><?=$thread->getTitle()?></a>
+									<a class="linkSmallBold" href="/Forum/ShowPost.aspx?PostID=<?=$thread->getId()?>"><?=Helper::themeAdjust($thread->getTitle())?></a>
 								</td>
 								<td class="forumRowHighlight" align="left" width="100">&nbsp; <a class="linkSmall" href="/Forum/User/UserProfile.aspx?UserName=<?=$thread->getAuthor()->getUsername()?>"><?=$thread->getAuthor()->getUsername()?></a>
 								</td>

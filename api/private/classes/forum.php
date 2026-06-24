@@ -59,8 +59,8 @@ class Forum {
     public function getGroupId() { return $this->groupId; }
     public function getLastPostId() { return $this->lastPostId; }
     public function getLastPoster() { return $this->lastPoster; }
-    public function getTopic() { return $this->forumTopic; }
-    public function getDescription() { return $this->forumDesc; }
+    public function getTopic() { return Helper::themeAdjust($this->forumTopic); }
+    public function getDescription() { return Helper::themeAdjust($this->forumDesc); }
     public function getCreationDate() { return $this->creationDate; }
     public function getLastPostTime() { return $this->lastPostTime; }
     public function getThreadCount() { return $this->threads; }
