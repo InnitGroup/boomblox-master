@@ -42,18 +42,23 @@ global $forum, $user;
                             <?php
                             $totalThreads = $forum->getThreadCount();
 							$pages = ceil($totalThreads / 12);
-							$page = isset($_GET["PageIndex"]) ? (int)$_GET["PageIndex"] : 1;
+							$page = isset($_GET["PageIndex"]) ? (int)$_GET["PageIndex"] : (isset($_POST["PageIndex"]) ? (int)$_POST["PageIndex"] : 1);
 							if (isset($_POST["__EVENTTARGET"])) {
 								if (str_starts_with($_POST["__EVENTTARGET"], 'ctl00$cphRoblox$ThreadView1$ctl00$Pager$')) {
-									$page = explode('$', $_POST["__EVENTTARGET"])[5];
-									if ($page == "Next") {
-										$page = $page + 1;
+									$exploded = explode('$', $_POST["__EVENTTARGET"])[5];
+
+									if ($exploded == "Next") {
+										$page++;
 									} else {
-										$page = (int)explode("Page", $page)[1];
+										$page = (int)explode("Page", $exploded)[1];
 									}
 								}
 							}
+							?>
 
+							<input type="hidden" name="PageIndex" value=<?=$page?>>
+
+							<?php
 							$offset = ($page - 1) * 12;
                             $posts = $forum->getPosts($page);
 
