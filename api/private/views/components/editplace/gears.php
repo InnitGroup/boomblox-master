@@ -6,11 +6,11 @@
 				<div class="Suggestion"> Here you can choose whether to allow all genres of gear into your place, or whether to only allow gear that matches your place's genre. </div>
 				<div class="MyItemIndentedOption">
 					<img id="ctl00_cphRoblox_Image17" src="../images/Suitcase16x16.png" alt="Allow All" style="border-width:0px;">
-					<input id="ctl00_cphRoblox_rbAllowAllGenres" type="radio" name="ctl00$cphRoblox$GearGenreButtons" value="rbAllowAllGenres" checked="checked">
+					<input id="ctl00_cphRoblox_rbAllowAllGenres" type="radio" name="ctl00$cphRoblox$GearGenreButtons" value="rbAllowAllGenres">
 					<label for="ctl00_cphRoblox_rbAllowAllGenres">All genres</label>
 					<br>
 					<img id="ctl00_cphRoblox_Image16" src="../images/GenreSuitcase16x16.png" alt="Genre Specific Only" style="border-width:0px;">
-					<input id="ctl00_cphRoblox_rbAllowSpecificGenres" type="radio" name="ctl00$cphRoblox$GearGenreButtons" value="rbAllowSpecificGenres">
+					<input id="ctl00_cphRoblox_rbAllowSpecificGenres" type="radio" name="ctl00$cphRoblox$GearGenreButtons" value="rbAllowSpecificGenres" checked="checked">
 					<label for="ctl00_cphRoblox_rbAllowSpecificGenres">Only genres that match my place</label>
 					<br>
 				</div>

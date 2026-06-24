@@ -95,16 +95,16 @@ class UserAd {
     }
 
     # static ->deactivate()
-    public static function remove(int $id) {
+    public function remove() {
         global $db, $user;
 
         if (!$this->okayToRun()) {
             return;
         }
 
-        $stmt = "UPDATE ads SET `status` = 'stopped', `archived` = 1 WHERE id=:adId AND creator=:userId";
+        $stmt = "UPDATE ads SET `status` = 'stopped' WHERE id=:adId AND creator=:userId";
         $db->execute($stmt, [
-            ":adId" => $id,
+            ":adId" => $this->id,
             ":userId" => $user->getUserId()
         ]);
     }

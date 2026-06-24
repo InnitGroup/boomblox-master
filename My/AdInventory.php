@@ -9,7 +9,8 @@ if (Server::isPost()) {
         if ($_POST['__EVENTTARGET'] == 'ctl00$cphRoblox$RemoveAd') {
             $adToRemove = (int)$_POST['__EVENTARGUMENT'];
             if (UserAd::exists($adToRemove)) {
-                UserAd::remove($adToRemove);
+                $ad = new UserAd($adToRemove);
+                $ad->remove();
                 exit(header("Location: /My/AdInventory.aspx"));
             }
         }
