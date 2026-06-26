@@ -77,7 +77,7 @@ PageBuilder::addComponent("forum", "navmenu");
 
 																$offset = ($page - 1) * 25; # ThePlayerRolo this is the only way to calculate offsets Frick laravel
 
-																$sortOrder = 0;
+																$sortOrder = 1;
 																if (isset($_POST['ctl00$cphRoblox$PostView1$ctl00$SortOrder'])) {
 																	$sortOrder = (int)$_POST['ctl00$cphRoblox$PostView1$ctl00$SortOrder'];
 																}
