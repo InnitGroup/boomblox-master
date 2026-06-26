@@ -1,5 +1,11 @@
                     <div id="Footer" style="clear:both;">
                         <hr>
+                        <div class="FooterNav">
+                            <a id="ctl00_rbxFooter_PrivacyHyperLink" href="info/Privacy.aspx">
+                                <b>Privacy Policy</b>
+                            </a> &nbsp;|&nbsp; <a id="ctl00_rbxFooter_AdvertiseHyperLink" href="https://sales.<?=domain?>/">Advertise with Us</a> &nbsp;|&nbsp; <a id="ctl00_rbxFooter_ContactHyperLink" href="info/ContactUs.aspx">Contact Us</a> &nbsp;|&nbsp; <a id="ctl00_rbxFooter_AboutHyperLink" href="info/About.aspx">About Us</a> &nbsp;|&nbsp; <a id="ctl00_rbxFooter_FreeGamesHyperLink" href="FreeGames.aspx">Free Games</a> &nbsp;|&nbsp; <a id="ctl00_rbxFooter_ResourcesHyperLink" href="info/RelatedResources.aspx">Related Resources</a> &nbsp;|&nbsp; <a id="ctl00_rbxFooter_JobsHyperLink" href="http://jobs.<?=domain?>/">Jobs</a>
+                        </div>
+                        <hr>
                         <p class="Legalese">
                         <?=Site::getThemeProperty("alias",$theme); ?>, "Online Building Toy", characters and names are under 
                             <a href="/info/About.aspx"><?=Site::getThemeProperty("company",$theme); ?></a>,
@@ -21,3 +27,4 @@
         </form>
     </body>
 </html>
+
