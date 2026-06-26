@@ -15,7 +15,7 @@ global $theme, $db;
     </ul>
     <hr>
     <span>Statistics</span>
-    <table class="Economy">
+    <table class="AdmiTable">
         <tr>
             <td title="Dead currency is currency held by banned and terminated users, active currency is currency held by active users"><u>i</u></td>
             <td>Total</td>
@@ -37,7 +37,7 @@ global $theme, $db;
     </table>
     <hr>
     <span>Market Activity</span>
-    <table class="Economy">
+    <table class="AdmiTable">
         <tr>
             <td title="Dead currency is currency held by banned and terminated users, active currency is currency held by active users"><u>i</u></td>
             <td><?=Site::getThemeProperty("currency", $theme)?></td>
