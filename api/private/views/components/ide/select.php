@@ -33,7 +33,7 @@ $places = $user->getPlaces();
 			</div>
 			<input id="DialogResult" type="hidden" />
 			<p>Select the Place you wish to update:</p>
-			<div id="CreationsPanel" class="CreationsPanel" style="overflow-y: scroll;">
+			<div id="CreationsPanel" class="CreationsPanel" style="height:250px;overflow-y: scroll;">
 				<div class="Creations">
 					<?php
                     foreach ($places as $item) {
