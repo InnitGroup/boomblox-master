@@ -16,12 +16,13 @@ if ($result->rowCount() == 0) {
 $port = rand(31000, 32000);
 $playerTable = 'a:0:{}';
 
-$stmt = "INSERT INTO servers (placeid, serverid, playerTable, port) VALUES (:placeid, :serverid, :playerTable, :port)";
+$stmt = "INSERT INTO servers (placeid, serverid, playerTable, port, `started`) VALUES (:placeid, :serverid, :playerTable, :port, :xstarted)";
 $result = $db->execute($stmt, [
     ":placeid" => $placeId,
     ":serverid" => uniqid(),
     ":playerTable" => $playerTable,
-    ":port" => $port
+    ":port" => $port,
+    ":xstarted" => date("Y-m-d H:i:s")
 ]);
 
 echo $port;
