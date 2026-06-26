@@ -11,9 +11,9 @@ if (isset($_GET["WhenWill"])) {
 
 $auth->isAuthed() && header("Location: /Default.aspx") && exit;
 
-if (isset($_GET["Every"])) {
-    if ($_GET["Every"] === "Breath") {
-        header("Location: /Login/Default.aspx?You=Take");
+if (isset($_GET["XO"])) {
+    if ($_GET["XO"] === "TourLlif3") {
+        header("Location: /Login/Default.aspx?Luv=IsRage2");
         exit;
     }
 }
