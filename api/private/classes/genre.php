@@ -19,11 +19,11 @@ class Genre {
         "SciFi",     #15
         "Sci-Fi",    #16
         "SkatePark", #17
-        "Sports",    #19
-        "TownandCity",#20
-        "Tutorial",  #21
-        "War",       #22
-        "WildWest"   #23
+        "Sports",    #18
+        "TownandCity",#19
+        "Tutorial",  #20
+        "War",       #21
+        "WildWest"   #22
     ];
 
     public static array $genreTitles = [

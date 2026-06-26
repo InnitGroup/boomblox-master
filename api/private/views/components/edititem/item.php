@@ -94,7 +94,7 @@ $genre = $item->genre;
                                         <li>
                                             <img src="/images/GenreIcons/Sports.png" alt="Sports">
                                             <label>
-                                                <input type="radio" name="GenreButtons2" value="19" <?=$genre == 19 ? 'checked="checked"' : ''?>> Sports </label>
+                                                <input type="radio" name="GenreButtons2" value="18" <?=$genre == 18 ? 'checked="checked"' : ''?>> Sports </label>
                                         </li>
                                         <li>
                                             <img src="/images/GenreIcons/LOL.png" alt="Funny">
@@ -104,12 +104,12 @@ $genre = $item->genre;
                                         <li>
                                             <img src="/images/GenreIcons/WildWest.png" alt="Wild West">
                                             <label>
-                                                <input type="radio" name="GenreButtons2" value="23" <?=$genre == 23 ? 'checked="checked"' : ''?>> Wild West </label>
+                                                <input type="radio" name="GenreButtons2" value="22" <?=$genre == 22 ? 'checked="checked"' : ''?>> Wild West </label>
                                         </li>
                                         <li>
                                             <img src="/images/GenreIcons/ModernMilitary.png" alt="War">
                                             <label>
-                                                <input type="radio" name="GenreButtons2" value="22" <?=$genre == 22 ? 'checked="checked"' : ''?>> War </label>
+                                                <input type="radio" name="GenreButtons2" value="21" <?=$genre == 21 ? 'checked="checked"' : ''?>> War </label>
                                         </li>
                                         <li>
                                             <img src="/images/GenreIcons/Skatepark.png" alt="Skate Park">
@@ -119,7 +119,7 @@ $genre = $item->genre;
                                         <li>
                                             <img src="/images/GenreIcons/Tutorial.gif" alt="Tutorial">
                                             <label>
-                                                <input type="radio" name="GenreButtons2" value="21" <?=$genre == 21 ? 'checked="checked"' : ''?>> Tutorial </label>
+                                                <input type="radio" name="GenreButtons2" value="20" <?=$genre == 20 ? 'checked="checked"' : ''?>> Tutorial </label>
                                         </li>
                                     </ul>
                                 </div>
