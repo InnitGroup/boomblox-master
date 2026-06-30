@@ -27,12 +27,21 @@ foreach ($servers as $server):
                 foreach ($players as $userId):
                 $player = new User($userId);
                 $avatar = new Avatar($userId);
+                if ($player->isGuest()) {
+                    $avatar = new Avatar(1);
+                }
+
                 $thumb = $avatar->GetThumbnail(100, 100, "JPG");
+                if ($player->isGuest()):
                 ?>
+                <a id="ctl00_cphRoblox_TabbedInfo_GamesTab_RunningGamesDataList_ctl00_PlayersRepeater_ctl05_PlayerImage" disabled="disabled" title="Guest <?=$player->guestId()?>" style="display:inline-block;">
+                    <img src="<?=$thumb?>" style="height:48px;" border="0" alt="Guest <?=$player->guestId()?>">
+                </a>
+                <?php else: ?>
                 <a id="ctl00_cphRoblox_TabbedInfo_GamesTab_RunningGamesDataList_ctl00_PlayersRepeater_ctl05_PlayerImage" disabled="disabled" title="<?=$player->getUsername()?>" href="/User.aspx?id=<?=$userId?>" style="display:inline-block;">
                     <img src="<?=$thumb?>" style="height:48px;" border="0" alt="<?=$player->getUsername()?>">
                 </a>
-                <?php endforeach; ?>
+                <?php endif; endforeach; ?>
             </div>
             <div style="text-align: left;"> <?=number_format($server["players"])?> players of <?=$max?> max <br> &nbsp; </div><br>
             <?php if ($user->canAccessPlace($id)): ?>
