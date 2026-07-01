@@ -98,7 +98,7 @@ class Group {
 
         $members = serialize([
             $user->getUserId() => [
-                "Role" => 1,
+                "Roleset" => 0,
                 "JoinDate" => date("Y-m-d H:i:s")
             ]
         ]);
@@ -154,6 +154,23 @@ class Group {
         ]);
     }
 
+    # MEMBERS
+    public function updateMembers($members) {
+        if (gettype($members) == "array") {
+            $this->members = $members;
+            $members = serialize($members);
+        } elseif (gettype($members) == "string") {
+            $this->members = unserialize($members);
+        }
+
+        global $db;
+        $stmt = "UPDATE groups SET members=:members WHERE id=:id";
+        $db->execute($stmt, [
+            ":members" => $members,
+            ":id" => $this->id()
+        ]);
+    }
+
     # ROLESETS
 
     public function lastRolesetId(): int {
@@ -165,8 +182,36 @@ class Group {
         return $rolesets[$rolesetId];
     }
 
+    public function findLowestRoleset(): array {
+        $rolesets = $this->rolesets;
+        $ranks = array_column($rolesets, "Rank");
+        array_multisort($ranks, SORT_ASC, $rolesets);
+
+        $lowestRoleset = $rolesets[1]; # Not 0, because 0 will always be guest; we want the one above that
+
+        return $lowestRoleset;
+    }
+
+    public function findRolesetIdByRoleset(array $roleset): int {
+        return array_search($roleset, $this->rolesets);
+    }
+
+    public function findRolesetByName(string $rolesetName): array {
+        $matchedRoleset = array_find($this->rolesets, function($roleset) {
+            return $roleset["Name"] == $rolesetName;
+        });
+
+        return $matchedRoleset;
+    }
+
     public function getMembersInRoleset(int $rolesetId): array {
-        
+        $members = array_filter($this->rolesets, function($member) {
+            if (isset($member["Roleset"])) {
+                return $member["Roleset"] == $rolesetId;
+            }
+        });
+
+        return $members;
     }
 
     public function updateRolesets($rolesets) {
@@ -228,7 +273,16 @@ class Group {
     }
 
     public function deleteRoleset(int $rolesetId) {
+        $rolesets = $this->rolesets;
+        unset($rolesets[$rolesetId]);
+        
+        $members = $this->getMembersInRoleset($rolesetId);
+        foreach ($members as $member) {
+            $member["Roleset"] = $this->findRolesetIdByRoleset($this->findLowestRoleset()); # 2 is Member
+        }
 
+        $this->updateRolesets($rolesets);
+        $this->updateMembers($members;)
     }
 }
 ?>
