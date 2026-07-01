@@ -21,6 +21,7 @@ $settings = $result->fetchAll(PDO::FETCH_ASSOC);
         $stmt = "SELECT `option` FROM settings";
         $result = $db->execute($stmt);
         if ($user->hasPerms(5)) {
+            
             if ($result->rowCount() > 0) {
                 $tempSettings = $result->fetchAll(PDO::FETCH_ASSOC);
                 $settingOptions = array_column($tempSettings, 'option');

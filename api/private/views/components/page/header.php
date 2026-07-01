@@ -128,5 +128,7 @@ if (Server::isPost()) {
                                 <a class="MenuItem" href="https://uboomblox.miraheze.org/wiki/Main_Page" target="_blank">Help</a>
                             </span>
                         </div>
+                        <?php if (Setting::enabled("SystemAlert")): ?>
                         <div style="text-align:center;background-color:#E7BACF;color:black;font-size:14px;position:relative;font-family:'Comic Sans MS', 'Comic Sans', cursive;"><?=htmlspecialchars(Helper::debugString(Site::currentShout()))?></div>
+                        <?php endif; ?>
                     </div>
