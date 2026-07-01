@@ -1066,9 +1066,9 @@ class User {
     }
     public function hasTBC() {
         if ($this->joinDate(true) < 3) {
-            return $this->data["membership"]["bc"] == 1;
+            return $this->data["membership"]["bc"] == 2;
         }
-        
+
         $expires = new DateTime($this->data["membership"]["bcExpires"]);
         $today = new DateTime();
 

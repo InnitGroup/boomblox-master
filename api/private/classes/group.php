@@ -92,9 +92,9 @@ class Group {
     public static function new(string $name, string $description, int $emblemId, int $privacy, int $wallView, int $posting) {
         global $db, $user;
         $stmt = "INSERT INTO groups 
-                (`emblemId`, `privacy`, `name`, `description`, `creator`, `members`, `privacy`, `rolesets`) 
+                (`emblemId`, `privacy`, `name`, `description`, `creator`, `members`, `rolesets`) 
                 VALUES 
-                (:emblemId, :privacy, :gName, :gDescription, :creator, :members, :privacy, :rolesets)";
+                (:emblemId, :privacy, :gName, :gDescription, :creator, :members, :rolesets)";
 
         $members = serialize([
             $user->getUserId() => [
@@ -124,7 +124,7 @@ class Group {
             ],
             [
                 "Name" => "Administrator",
-                "Description" => "A group administrator."
+                "Description" => "A group administrator.",
                 "Rank" => 254,
                 "Permissions" => [1, 2, 4, 5, 6, 7, 8]
             ],
@@ -147,7 +147,7 @@ class Group {
             ":privacy" => $privacy, 
             ":gName" => $name,
             ":gDescription" => $description,
-            ":creator" => $user->getUserId()
+            ":creator" => $user->getUserId(),
             ":privacy" => $privacy,
             ":members" => $members,
             ":rolesets" => $rolesets
@@ -169,6 +169,16 @@ class Group {
             ":members" => $members,
             ":id" => $this->id()
         ]);
+    }
+
+    public function getMembersInRoleset(int $rolesetId): array {
+        $members = array_filter($this->rolesets, function($member) {
+            if (isset($member["Roleset"])) {
+                return $member["Roleset"] == $rolesetId;
+            }
+        });
+
+        return $members;
     }
 
     # ROLESETS
@@ -204,16 +214,6 @@ class Group {
         return $matchedRoleset;
     }
 
-    public function getMembersInRoleset(int $rolesetId): array {
-        $members = array_filter($this->rolesets, function($member) {
-            if (isset($member["Roleset"])) {
-                return $member["Roleset"] == $rolesetId;
-            }
-        });
-
-        return $members;
-    }
-
     public function updateRolesets($rolesets) {
         if (gettype($rolesets) == "array") {
             $this->rolesets = $rolesets;
@@ -236,7 +236,7 @@ class Group {
         $roleset = [
             "Name" => $name,
             "Description" => $description,
-            "Rank" => $rank
+            "Rank" => $rank,
             "Permissions" => []
         ];
 
@@ -282,7 +282,7 @@ class Group {
         }
 
         $this->updateRolesets($rolesets);
-        $this->updateMembers($members;)
+        $this->updateMembers($members);
     }
 }
 ?>
