@@ -154,12 +154,19 @@ class Group {
         ]);
     }
 
+    # ROLESETS
+
     public function lastRolesetId(): int {
         return end($this->rolesets);
     }
 
-    public function findRolesetById(int $rolesetId) {
+    public function findRolesetById(int $rolesetId): array {
         $rolesets = $this->rolesets;
+        return $rolesets[$rolesetId];
+    }
+
+    public function getMembersInRoleset(int $rolesetId): array {
+        
     }
 
     public function updateRolesets($rolesets) {
@@ -218,6 +225,10 @@ class Group {
         $rolesets[$rolesetId]["Permissions"] = $permissions;
 
         $this->updateRolesets($rolesets);
+    }
+
+    public function deleteRoleset(int $rolesetId) {
+
     }
 }
 ?>

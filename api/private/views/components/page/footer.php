@@ -14,12 +14,6 @@
                             <br>
                             Use of this site signifies your acceptance of the
                             <a href="/info/TermsOfService.aspx">Terms and Conditions</a>.
-                            <br>
-                            <a href="/info/Privacy.aspx">Privacy Policy</a>
-                            &nbsp;|&nbsp; <a href="mailto:boombloxkewl@gmail.com">Contact Us</a> &nbsp;|&nbsp;
-                            <a href="/info/About.aspx">About Us</a>
-                            &nbsp;|&nbsp;
-                            <a href="/info/Jobs.aspx">Jobs</a>
                         </p>
                     </div>
                 </div>
