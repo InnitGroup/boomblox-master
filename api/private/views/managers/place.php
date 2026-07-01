@@ -28,6 +28,16 @@ class PlaceManager {
                                 $name = "Unnamed Place";
                             }
 
+                            if (isset($_POST['GenreButtons2'])) {
+                                $assumedGenreId = (int)$_POST['GenreButtons2'];
+
+                                if (Genre::genreCount() < $assumedGenreId || $assumedGenreId < 0) {
+                                    return;
+                                }
+
+                                Genre::assignGenre($this->placeId, (int)$assumedGenreId);
+                            }
+
                             
                             /*
                             if (isset($_POST['ctl00$cphRoblox$GearGenreButtons'])) {

@@ -7,6 +7,7 @@ $creatorName = $game["creatorName"];
 $favorites = Helper::times(number_format($game["favorites"]));
 $visits = Helper::times($game["interactions"]);
 $gears = (int)$game["gears"];
+$genre = $game["genre"];
 ?>
 
 <td class="Game" valign="top">
@@ -18,6 +19,7 @@ $gears = (int)$game["gears"];
         </div>
         <div class="GameDetails">
             <div class="GameName">
+                <img id="ctl00_cphRoblox_rbxGames_GamesRepeater_ctl04_GenreIcon" class="GamesInfoIcon" src="/images/GenreIcons/<?=Genre::genreName($genre)?>.png" alt="<?=Genre::genreName($genre)?>" border="0">
                 <?php if ($gears == 1): ?>
                     <img id="ctl00_cphRoblox_rbxGames_GamesRepeater_ctl05_GearIcon" class="GamesInfoIcon" src="/images/Suitcase16x16.png" alt="Allows gear" border="0">
                 <?php elseif ($gears !== 1 && $gears !== 0): ?>

@@ -1,3 +1,91 @@
+<?php
+$genre = $place["genre"];
+?>
+
+<div id="PlaceCopyProtection">
+	<div id="SetGenres">
+		<fieldset>
+			<legend>Genre</legend>
+			<div class="Suggestion"> Classify your Place to help people find it. </div>
+			<div id="ctl00_cphRoblox_AllowOneGenre">
+				<div class="MyItemIndentedOption">
+					<ul style="list-style: none;">
+						<li>
+							<img src="/images/GenreIcons/Classic.png" alt="All">
+							<label>
+								<input type="radio" name="GenreButtons2" value="0" <?=$genre == 0 ? 'checked="checked"' : ''?>> All </label>
+						</li>
+						<li>
+							<img src="/images/GenreIcons/City.png" alt="Town and City">
+							<label>
+								<input type="radio" name="GenreButtons2" value="20" <?=$genre == 20 ? 'checked="checked"' : ''?>> Town and City </label>
+						</li>
+						<li>
+							<img src="/images/GenreIcons/Castle.png" alt="Fantasy">
+							<label>
+								<input type="radio" name="GenreButtons2" value="6" <?=$genre == 6 ? 'checked="checked"' : ''?>> Fantasy </label>
+						</li>
+						<li>
+							<img src="/images/GenreIcons/SciFi.png" alt="Sci-Fi">
+							<label>
+								<input type="radio" name="GenreButtons2" value="16" <?=$genre == 16 ? 'checked="checked"' : ''?>> Sci-Fi </label>
+						</li>
+						<li>
+							<img src="/images/GenreIcons/Ninja.png" alt="Ninja">
+							<label>
+								<input type="radio" name="GenreButtons2" value="11" <?=$genre == 11 ? 'checked="checked"' : ''?>> Ninja </label>
+						</li>
+						<li>
+							<img src="/images/GenreIcons/Cthulu.png" alt="Scary">
+							<label>
+								<input type="radio" name="GenreButtons2" value="14" <?=$genre == 14 ? 'checked="checked"' : ''?>> Scary </label>
+						</li>
+						<li>
+							<img src="/images/GenreIcons/Pirate.png" alt="Pirate">
+							<label>
+								<input type="radio" name="GenreButtons2" value="12" <?=$genre == 12 ? 'checked="checked"' : ''?>> Pirate </label>
+						</li>
+						<li>
+							<img src="/images/GenreIcons/Adventure.png" alt="Adventure">
+							<label>
+								<input type="radio" name="GenreButtons2" value="1" <?=$genre == 1 ? 'checked="checked"' : ''?>> Adventure </label>
+						</li>
+						<li>
+							<img src="/images/GenreIcons/Sports.png" alt="Sports">
+							<label>
+								<input type="radio" name="GenreButtons2" value="18" <?=$genre == 18 ? 'checked="checked"' : ''?>> Sports </label>
+						</li>
+						<li>
+							<img src="/images/GenreIcons/LOL.png" alt="Funny">
+							<label>
+								<input type="radio" name="GenreButtons2" value="8" <?=$genre == 8 ? 'checked="checked"' : ''?>> Funny </label>
+						</li>
+						<li>
+							<img src="/images/GenreIcons/WildWest.png" alt="Wild West">
+							<label>
+								<input type="radio" name="GenreButtons2" value="22" <?=$genre == 22 ? 'checked="checked"' : ''?>> Wild West </label>
+						</li>
+						<li>
+							<img src="/images/GenreIcons/ModernMilitary.png" alt="War">
+							<label>
+								<input type="radio" name="GenreButtons2" value="21" <?=$genre == 21 ? 'checked="checked"' : ''?>> War </label>
+						</li>
+						<li>
+							<img src="/images/GenreIcons/Skatepark.png" alt="Skate Park">
+							<label>
+								<input type="radio" name="GenreButtons2" value="17" <?=$genre == 17 ? 'checked="checked"' : ''?>> Skate Park </label>
+						</li>
+						<li>
+							<img src="/images/GenreIcons/Tutorial.gif" alt="Tutorial">
+							<label>
+								<input type="radio" name="GenreButtons2" value="20" <?=$genre == 20 ? 'checked="checked"' : ''?>> Tutorial </label>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</fieldset>
+	</div>
+</div>
 <div id="ctl00_cphRoblox_GearOptionsPanel">
 	<div class="MyItemOptions">
 		<fieldset>
