@@ -820,11 +820,12 @@ class User {
             return true;
         }
 
-        $testers = [91, 3, 123, 113, 126, 108, 100, 93, 73, 124, 86, 76, 79, 135, 137, 132, 149];
+        $testers = [91, 3, 123, 113, 126, 108, 100, 93, 73, 124, 86, 76, 79, 131, 135, 137, 132, 149];
         if (in_array($this->getUserId(), $testers)) {
             return true;
         }
     }
+
     public function getLastWeekVisits(int $placeId = NULL) {
         global $db;
         if ($placeId) {
@@ -1476,6 +1477,7 @@ class User {
             }
         }
     }
+
     public function boombloxifyItem($item) {
         if (!$this->hasItem($item)) {
             return false;
@@ -1498,15 +1500,73 @@ class User {
         $items = serialize($items);
 
         $stmt = "UPDATE users SET items=:items WHERE id=:id";
-        $db->execute($stmt, [":items" => $items, ":id" => $this->getData("user","id")]);
+        $db->execute($stmt, [":items" => $items, ":id" => $this->getUserId()]);
         $stmt = "UPDATE items SET interactions = interactions + 1 WHERE itemId=:id";
         $db->execute($stmt, [":id" => $item]);
     }
+
     public function changePassword($newPassword) {
         global $db;
         $stmt = "UPDATE users SET `password`=:newPassword WHERE id=:id";
         $db->execute($stmt, [":newPassword" => password_hash($newPassword, PASSWORD_BCRYPT), ":id" => $this->getData("user","id")]);
         return true;
+    }
+
+    public function getBestFriends(): array {
+        $bestFriends = $this->getData("user", "bestFriends");
+        if ($bestFriends == 0) {
+            $bestFriends = serialize(array());
+        }
+
+        return unserialize($bestFriends);
+    }
+
+    public function bestFriendsWith(int $friendId): bool {
+        return in_array($this->getBestFriends(), $bestFriends);
+    }
+
+    public function addBestFriend(int $friendId) {
+        global $db;
+        $friendName = $db->getUserById($friendId);
+        if (!$this->friendsWith($friendName)) {
+            return;
+        }
+
+        if ($this->bestFriendsWith($friendId)) {
+            return;
+        }
+        
+        $bestFriends = $this->getBestFriends();
+        array_push($bestFriends, $friendId);
+        $bestFriends = serialize($bestFriends);
+
+        $stmt = "UPDATE users SET bestFriends=:bestFriends WHERE id=:id";
+        return $db->execute($stmt, [
+            ":bestFriends" => $bestFriends,
+            ":id" => $this->getUserId()
+        ]);
+    }
+
+    public function removeBestFriend(int $friendId) {
+        global $db;
+        $friendName = $db->getUserById($friendId);
+        if (!$this->friendsWith($friendName)) {
+            return;
+        }
+
+        if (!$this->bestFriendsWith($friendId)) {
+            return;
+        }
+
+        $bestFriends = $this->getBestFriends();
+        unset($bestFriends[array_search($friendId, $bestFriends)]);
+        $bestFriends = serialize($bestFriends);
+
+        $stmt = "UPDATE users SET bestFriends=:bestFriends WHERE id=:id";
+        return $db->execute($stmt, [
+            ":bestFriends" => $bestFriends,
+            ":id" => $this->getUserId()
+        ]);
     }
 }
 ?>

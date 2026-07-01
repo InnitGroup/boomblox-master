@@ -122,5 +122,13 @@ class Site {
             <p class="NoResults"><span>'.$string.'</span></p>
         ';
     }
+    public static function currentShout(): string {
+        global $db;
+
+        $stmt = "SELECT `text` FROM shoutbox ORDER BY shoutId DESC LIMIT 1";
+        $result = $db->execute($stmt);
+        
+        return $result->fetch(PDO::FETCH_ASSOC)["text"];
+    }
 }
 ?>
