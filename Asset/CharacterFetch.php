@@ -6,8 +6,8 @@ header("Pragma: no-cache");
 
 $user = new User($_GET["userId"]);
 if (isset($_GET["IncludeGear"])) {
-    if ((int)$_GET["IncludeGear"] !== 0) {
-        echo $user->getCharacterAppearance(false, false);
+    if ($_GET["IncludeGear"] !== "0") {
+        echo $user->getCharacterAppearance(false, unserialize($_GET["IncludeGear"]));
         exit;
     }
 }

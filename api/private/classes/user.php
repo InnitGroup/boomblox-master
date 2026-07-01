@@ -608,7 +608,6 @@ class User {
             
             if (!empty($includeGears)) {
                 $gears = $this->getItems("gear", false, false);
-                
                 foreach ($gears as $gear) {
                     if (in_array($gear["category"], $includeGears)) {
                         $charapp .= ";".Site::$domain."/asset/?id=".(int)$gear["itemId"];

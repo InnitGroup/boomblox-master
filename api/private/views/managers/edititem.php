@@ -47,6 +47,10 @@ class EditItemManager {
             ->description($desc)
             ->toggleComments($comments);
 
+        if (isset($_POST['ctl00$cphRoblox$cbGearCategory']) && $this->itemData->catalogType == "Gear") {
+            Category::setGearCategory($this->itemData->itemId, (int)$_POST['ctl00$cphRoblox$cbGearCategory']);
+        }
+
         if (isset($_POST['ctl00$cphRoblox$cbIsOnsale'])) {
             $robux = isset($_POST['ctl00$cphRoblox$PricingFieldRobux']) ? (int)$_POST['ctl00$cphRoblox$PricingFieldRobux'] : 0;
             $tickets = isset($_POST['ctl00$cphRoblox$PricingFieldTickets']) ? (int)$_POST['ctl00$cphRoblox$PricingFieldTickets'] : 0;

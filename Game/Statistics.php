@@ -89,7 +89,7 @@ switch ($type) {
 
         $stmt = "SELECT gears FROM items WHERE itemId=:placeId";
         $result = $db->execute($stmt, [":placeId" => $place]);
-        $includeGears = (int)empty($result->fetch(PDO::FETCH_ASSOC)["gears"]);
+        $includeGears = $result->fetch(PDO::FETCH_ASSOC)["gears"];
         #Discord::sendWebhookMessage("games", $includeGears);
 
         if ($player->isGuest()) {

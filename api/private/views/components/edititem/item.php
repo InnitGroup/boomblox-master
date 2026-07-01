@@ -127,51 +127,51 @@ $genre = $item->genre;
                         </fieldset>
                     </div>
                 </div>
+                <?php if ($type == "Gear"): ?>
                 <div id="ctl00_cphRoblox_GearOptionsPanel">
                     <div class="MyItemOptions">
                         <fieldset>
-                            <legend>Gear Settings</legend>
+                            <legend>Category</legend>
                             <?php
-                            $allCategoriesSet = Category::allCategoriesSet($item->itemId);
-                            $categories = Category::getCategories($item->itemId);
+                            $category = (int)Category::getGearCategory($item->itemId);
                             ?>
                             <div id="ctl00_cphRoblox_GearTypesPanel">
-                                <div class="Suggestion"> Check all the Gear types you wish to allow in your place. </div>
+                                <div class="Suggestion"> Check the proper category for this gear. </div>
                                 <div class="MyItemIndentedOption">
                                     <img id="ctl00_cphRoblox_Image1" src="../images/CategoryIcons/Melee.png" alt="Melee" style="border-width:0px;">
-                                    <input id="ctl00_cphRoblox_cbMelee" type="checkbox" name="ctl00$cphRoblox$cbMelee" <?=in_array(3, $categories) ? 'checked="checked"' : ''?>>
+                                    <input id="ctl00_cphRoblox_cbMelee" type="radio" name="ctl00$cphRoblox$cbGearCategory" value="3" <?=$category == 3 ? 'checked' : ''?>>
                                     <label for="ctl00_cphRoblox_cbMelee">Melee Weapons</label>
                                     <br>
                                     <img id="ctl00_cphRoblox_Image2" src="../images/CategoryIcons/Ranged.png" alt="Ranged" style="border-width:0px;">
-                                    <input id="ctl00_cphRoblox_cbRanged" type="checkbox" name="ctl00$cphRoblox$cbRanged" <?=in_array(7, $categories) ? 'checked="checked"' : ''?>>
+                                    <input id="ctl00_cphRoblox_cbRanged" type="radio" name="ctl00$cphRoblox$cbGearCategory" value="7" <?=$category == 7 ? 'checked' : ''?>>
                                     <label for="ctl00_cphRoblox_cbRanged">Ranged Weapons</label>
                                     <br>
                                     <img id="ctl00_cphRoblox_Image3" src="../images/CategoryIcons/Explosive.png" alt="Explosive" style="border-width:0px;">
-                                    <input id="ctl00_cphRoblox_cbExplosives" type="checkbox" name="ctl00$cphRoblox$cbExplosives" <?=in_array(1, $categories) ? 'checked="checked"' : ''?>>
+                                    <input id="ctl00_cphRoblox_cbExplosives" type="radio" name="ctl00$cphRoblox$cbGearCategory" value="1" <?=$category == 1 ? 'checked' : ''?>>
                                     <label for="ctl00_cphRoblox_cbExplosives">Explosives</label>
                                     <br>
                                     <img id="ctl00_cphRoblox_Image4" src="../images/CategoryIcons/PowerUps.png" alt="Power Ups" style="border-width:0px;">
-                                    <input id="ctl00_cphRoblox_cbPowerups" type="checkbox" name="ctl00$cphRoblox$cbPowerups" <?=in_array(6, $categories) ? 'checked="checked"' : ''?>>
+                                    <input id="ctl00_cphRoblox_cbPowerups" type="radio" name="ctl00$cphRoblox$cbGearCategory" value="6" <?=$category == 6 ? 'checked' : ''?>>
                                     <label for="ctl00_cphRoblox_cbPowerups">Power Ups</label>
                                     <br>
                                     <img id="ctl00_cphRoblox_Image5" src="../images/CategoryIcons/Navigation.png" alt="Navigation" style="border-width:0px;">
-                                    <input id="ctl00_cphRoblox_cbNavigation" type="checkbox" name="ctl00$cphRoblox$cbNavigation" <?=in_array(5, $categories) ? 'checked="checked"' : ''?>>
+                                    <input id="ctl00_cphRoblox_cbNavigation" type="radio" name="ctl00$cphRoblox$cbGearCategory" value="5" <?=$category == 5 ? 'checked' : ''?>>
                                     <label for="ctl00_cphRoblox_cbNavigation">Navigation Enhancers</label>
                                     <br>
                                     <img id="ctl00_cphRoblox_Image6" src="../images/CategoryIcons/Music.png" alt="Music" style="border-width:0px;">
-                                    <input id="ctl00_cphRoblox_cbInstruments" type="checkbox" name="ctl00$cphRoblox$cbInstruments" <?=in_array(4, $categories) ? 'checked="checked"' : ''?>>
+                                    <input id="ctl00_cphRoblox_cbInstruments" type="radio" name="ctl00$cphRoblox$cbGearCategory" value="4" <?=$category == 4 ? 'checked' : ''?>>
                                     <label for="ctl00_cphRoblox_cbInstruments">Musical Instruments</label>
                                     <br>
                                     <img id="ctl00_cphRoblox_Image7" src="../images/CategoryIcons/Social.png" alt="Social" style="border-width:0px;">
-                                    <input id="ctl00_cphRoblox_cbSocial" type="checkbox" name="ctl00$cphRoblox$cbSocial" <?=in_array(8, $categories) ? 'checked="checked"' : ''?>>
+                                    <input id="ctl00_cphRoblox_cbSocial" type="radio" name="ctl00$cphRoblox$cbGearCategory" value="8" <?=$category == 8 ? 'checked' : ''?>>
                                     <label for="ctl00_cphRoblox_cbSocial">Social Items</label>
                                     <br>
                                     <img id="ctl00_cphRoblox_Image34" src="../images/CategoryIcons/Building.png" alt="Building" style="border-width:0px;">
-                                    <input id="ctl00_cphRoblox_cbBuilding" type="checkbox" name="ctl00$cphRoblox$cbBuilding" <?=in_array(0, $categories) ? 'checked="checked"' : ''?>>
+                                    <input id="ctl00_cphRoblox_cbBuilding" type="radio" name="ctl00$cphRoblox$cbGearCategory" value="0" <?=$category == 0 ? 'checked' : ''?>>
                                     <label for="ctl00_cphRoblox_cbBuilding">Building Tools</label>
                                     <br>
                                     <img id="ctl00_cphRoblox_Image8" src="../images/CategoryIcons/PersonalTransport.png" alt="Personal Transportation Items" style="border-width:0px;">
-                                    <input id="ctl00_cphRoblox_cbPersonalTransport" type="checkbox" name="ctl00$cphRoblox$cbPersonalTransport" <?=in_array(9, $categories) ? 'checked="checked"' : ''?>>
+                                    <input id="ctl00_cphRoblox_cbPersonalTransport" type="radio" name="ctl00$cphRoblox$cbGearCategory" value="9" <?=$category == 9 ? 'checked' : ''?>>
                                     <label for="ctl00_cphRoblox_cbPersonalTransport">Personal Transport</label>
                                     <br>
                                 </div>
@@ -180,6 +180,7 @@ $genre = $item->genre;
                     </div>
                 </div>
             </div>
+            <?php endif; ?>
             <?php if ($item->catalogType !== "Model"): ?>
             <div id="SellThisItem">
                 <fieldset title="Sell this Item">
