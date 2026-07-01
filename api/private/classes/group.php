@@ -48,6 +48,8 @@ class Group {
             ":emblemId" => $emblemId,
             ":id" => $this->id()
         ]);
+
+        $this->emblemId = $emblemId;
     }
 
     public function setPrivacy(int $privacy) {
@@ -58,6 +60,8 @@ class Group {
             ":privacy" => $privacy,
             ":id" => $this->id()
         ]);
+
+        $this->privacy = $privacy;
     }
 
     public function setName(string $name) {
@@ -68,6 +72,8 @@ class Group {
             ":gName" => $name,
             ":id" => $this->id()
         ]);
+
+        $this->name = $name;
     }
 
     public function setDescription(string $description) {
@@ -78,6 +84,8 @@ class Group {
             ":gDescription" => $description,
             ":id" => $this->id()
         ]);
+
+        $this->description = $description;
     }
 
 
@@ -110,7 +118,6 @@ class Group {
         $rolesets = serialize([
             [
                 "Name" => "Owner",
-                "ID" => 1,
                 "Description" => "The group",
                 "Rank" => 255,
                 "Permissions" => [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -119,21 +126,18 @@ class Group {
                 "Name" => "Administrator",
                 "Description" => "A group administrator."
                 "Rank" => 254,
-                "ID" => 2,
                 "Permissions" => [1, 2, 4, 5, 6, 7, 8]
             ],
             [
                 "Name" => "Member",
                 "Description" => "A regular group member.",
                 "Rank" => 1,
-                "ID" => 3,
                 "Permissions" => [2, 5, 7, 8]
             ],
             [
                 "Name" => "Guest",
                 "Description" => "A non-group member.",
                 "Rank" => 0,
-                "ID" => 4,
                 "Permissions" => [7]
             ]
         ]);
@@ -151,23 +155,20 @@ class Group {
     }
 
     public function lastRolesetId(): int {
-        return end($this->rolesets)["ID"];
+        return end($this->rolesets);
     }
 
-    public function newRoleset(string $name, string $description, int $rank) {
+    public function findRolesetById(int $rolesetId) {
         $rolesets = $this->rolesets;
-        
-        $id = $this->lastRolesetId() + 1;
-        $roleset = [
-            "Name" => $name,
-            "Description" => $description,
-            "Rank" => $rank,
-            "ID" => $id,
-            "Permissions" => []
-        ];
+    }
 
-        array_push($rolesets, $roleset);
-        $rolesets = serialize($rolesets);
+    public function updateRolesets($rolesets) {
+        if (gettype($rolesets) == "array") {
+            $this->rolesets = $rolesets;
+            $rolesets = serialize($rolesets);
+        } elseif (gettype($rolesets) == "string") {
+            $this->rolesets = unserialize($rolesets);
+        }
 
         global $db;
         $stmt = "UPDATE groups SET rolesets=:rolesets WHERE id=:id";
@@ -175,6 +176,48 @@ class Group {
             ":rolesets" => $rolesets,
             ":id" => $this->id()
         ]);
+    }
+
+    public function newRoleset(string $name, string $description, int $rank) {
+        $rolesets = $this->rolesets;
+        
+        $roleset = [
+            "Name" => $name,
+            "Description" => $description,
+            "Rank" => $rank
+            "Permissions" => []
+        ];
+
+        array_push($rolesets, $roleset);
+        $this->updateRolesets($rolesets);
+    }
+
+    public function editRolesetName(int $rolesetId, string $name) {
+        $rolesets = $this->rolesets;
+        $rolesets[$rolesetId]["Name"] = $name;
+
+        $this->updateRolesets($rolesets);
+    }
+
+    public function editRolesetDescription(int $rolesetId, string $description) {
+        $rolesets = $this->rolesets;
+        $rolesets[$rolesetId]["Description"] = $description;
+
+        $this->updateRolesets($rolesets);
+    }
+
+    public function editRolesetRank(int $rolesetId, int $rank) {
+        $rolesets = $this->rolesets;
+        $rolesets[$rolesetId]["Rank"] = $rank;
+
+        $this->updateRolesets($rolesets);
+    }
+
+    public function editRolesetPermissions(int $rolesetId, array $permissions) {
+        $rolesets = $this->rolesets;
+        $rolesets[$rolesetId]["Permissions"] = $permissions;
+
+        $this->updateRolesets($rolesets);
     }
 }
 ?>
