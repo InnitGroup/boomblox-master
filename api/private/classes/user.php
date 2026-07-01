@@ -12,6 +12,7 @@ class User {
             "characterImage",
             "level",
             "friends",
+            "bestFriends",
             "favorites",
             "items",
             "forumPosts",
@@ -1514,15 +1515,21 @@ class User {
 
     public function getBestFriends(): array {
         $bestFriends = $this->getData("user", "bestFriends");
-        if ($bestFriends == 0) {
-            $bestFriends = serialize(array());
+        if ($bestFriends == "0") {
+            $bestFriends = array();
+        } else {
+            $bestFriends = unserialize($bestFriends);
         }
 
-        return unserialize($bestFriends);
+        return ($bestFriends);
     }
 
     public function bestFriendsWith(int $friendId): bool {
-        return in_array($this->getBestFriends(), $bestFriends);
+        if (empty($this->getBestFriends())) {
+            return false;
+        }
+
+        return in_array($this->getBestFriends(), $friendId);
     }
 
     public function addBestFriend(int $friendId) {

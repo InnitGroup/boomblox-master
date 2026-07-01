@@ -9,6 +9,12 @@ if ($publicView): ?>
     <p>
         <a href="/My/FriendInvitation.aspx?RecipientID=<?=$userId?>">Send Friend Request</a>
     </p>
+        <?php elseif ($user->isStaff() && !$user->bestFriendsWith($userId)): ?>
+    <p>
+        <a href="javascript:__doPostBack('','')">Make Best Friend</a>
+    </p>        
+        <?php elseif ($user->bestFriendsWith($userId)): ?>
+            
         <?php endif; ?>
     <p>
         <a href="/My/PrivateMessage.aspx?RecipientID=<?=$userId?>">Send Message</a>
