@@ -1529,7 +1529,7 @@ class User {
             return false;
         }
 
-        return in_array($this->getBestFriends(), $friendId);
+        return in_array($friendId, $this->getBestFriends());
     }
 
     public function addBestFriend(int $friendId) {

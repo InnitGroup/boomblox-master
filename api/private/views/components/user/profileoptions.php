@@ -14,7 +14,9 @@ if ($publicView): ?>
         <a href="javascript:__doPostBack('','')">Make Best Friend</a>
     </p>        
         <?php elseif ($user->bestFriendsWith($userId)): ?>
-            
+    <p>
+        <a href="javascript:__doPostBack('','')">Remove Best Friend</a>
+    </p>         
         <?php endif; ?>
     <p>
         <a href="/My/PrivateMessage.aspx?RecipientID=<?=$userId?>">Send Message</a>
