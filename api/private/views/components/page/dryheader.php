@@ -37,19 +37,19 @@ global $theme, $auth, $user;
             			<div id="Settings">
             			    <span id="ctl00_lSettings"></span>
             			</div>
-            				</div>
-								<div id="Logo" style="height:0px">
-								<a id="ctl00_rbxImage_Logo" title="<?=Site::getThemeProperty("name",$theme);?>" href="/Default.aspx" style="display:inline-block;cursor:pointer;">
-									<img src="/images/<?=Site::getThemeProperty("logo",$theme);?>" border="0" alt="<?=Site::getThemeProperty("name",$theme);?>" style="position:relative;<?=Site::getThemeProperty("logoDimensions",$theme);?>">
-								</a>
-							</div>
-            			<div id="Alerts" style="position:relative;bottom:1px;">
-            			    <table style="width:100%;height:100%">
-            			        <tr>
-            			            <td valign="middle">
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
             		</div>
-            </div>
+					<div id="Logo">
+						<a id="ctl00_rbxImage_Logo" title="<?=Site::getThemeProperty("name",$theme);?>" href="/" style="display:inline-block;cursor:pointer;position:relative;top:4px">
+							<img src="/images/<?=Site::getThemeProperty("logo", $theme)?>?t=<?=time()?>" border="0" alt="<?=Site::getThemeProperty("name",$theme);?>" blankurl="http://t2.<?=domain?>/blank-267x70.gif" style="">
+						</a>
+					</div>
+					<div id="Alerts" style="position:relative;bottom:1px;">
+						<table style="width:100%;height:100%">
+							<tr>
+								<td valign="middle">
+								</td>
+							</tr>
+						</table>
+					</div>
+            	</div>
+        </div>

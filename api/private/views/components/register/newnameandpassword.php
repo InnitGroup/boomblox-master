@@ -54,7 +54,7 @@
                 <fieldset title="Provide your parent's email address">		
                     <legend class="Legend">Provide your <?=Site::getThemeProperty("alias", $theme)?> key</legend>
                     <div class="Suggestion">
-                        This will allow you to create a <?=rand(1, 20) == 17 ? "Boobmlox" : "Boomblox"?> account
+                        This will allow you to create a <?=(rand(1, 20) == 17 && $theme !== 1) ? "Boobmlox" : Site::getThemeProperty("alias", $theme)?> account
                     </div>
                     <div class="Validators">
                         <div class="Attention"><?=isset($error) && $error == "EnterKey" && $register->error(json_decode($result), "EnterKey")?></div>
