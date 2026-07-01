@@ -81,14 +81,16 @@ class Genre {
 
         $fetched = $result->fetch(PDO::FETCH_ASSOC);
         $genreId = $fetched["genre"];
-        $creatorId = $fetched["creatorId"];
+        $creatorId = (int)$fetched["creatorId"];
         $itemType = $fetched["itemType"];
 
-        if ($creatorId == 1 && $itemType == "catalog" && $genreId == 0) {
-            return Site::getThemeProperty("alias", $theme) . "ia Classic (All)";
+        if ($creatorId !== 1) {
+            return self::$genreTitles[$genreId]; 
         }
 
-        return self::$genreTitles[$genreId];
+        if ($itemType == "catalog" && $genreId == 0) {
+            return Site::getThemeProperty("alias", $theme) . "ia Classic (All)";
+        }
     }
 
     public static function getGenre(int $itemId): int {

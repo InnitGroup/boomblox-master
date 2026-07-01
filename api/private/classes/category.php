@@ -13,8 +13,25 @@ class Category {
         "PersonalTransport"    #9
     ];
 
+    private static array $categoryTitles = [
+        "Building Tool",            #0
+        "Explosive",           #1
+        "Hourglass",           #2
+        "Melee Weapon",               #3
+        "Musical Instrument",               #4
+        "Navigation Enhancer",          #5
+        "Power Ups",            #6
+        "Ranged Weapon",              #7
+        "Social Item",              #8
+        "Personal Transport"    #9
+    ];
+
     public static function categoryName(int $categoryId): string {
         return self::$categories[$categoryId];
+    }
+
+    public static function categoryTitle(int $categoryId): string {
+        return self::$categoryTitles[$categoryId];
     }
 
     public static function categoryId(string $category): int {
@@ -136,7 +153,7 @@ class Category {
     public static function setGearCategory(int $itemId, int $category) {
         global $db;
         $stmt = "UPDATE items SET category=:category WHERE itemId=:itemId";
-        
+
         return $db->execute($stmt, [
             ":itemId" => $itemId,
             ":category" => $category

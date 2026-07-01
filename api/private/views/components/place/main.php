@@ -12,6 +12,7 @@ $favorites = $item["favorites"];
 $interactions = $item["interactions"];
 $access = $item["access"];
 $gears = $item["gears"];
+$genre = $item["genre"];
 $allCategoriesSet = Category::allCategoriesSet($item["itemId"]);
 $copylock = (bool)$item["onsale"] == 2 ? "Shared" : "CopyLocked";
 
@@ -49,6 +50,24 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
 					<div id="LastUpdate">Updated: <?=Helper::timeAgo($lastUpdate)?></div>
 					<div id="Favorited">Favorited: <?=Helper::times($favorites)?></div>
 					<div id="ctl00_cphRoblox_VisitedPanel" class="Visited">Visited: <?=Helper::times($interactions)?></div>
+					<div style="margin-top: 5px; margin-bottom: 5px;">
+						<div id="ctl00_cphRoblox_Genres"> Genres: <div id="ctl00_cphRoblox_Panel11">
+								<img id="ctl00_cphRoblox_Image20" class="GamesInfoIcon" src="/images/GenreIcons/<?=Genre::genreName($genre)?>.png" alt="<?=Genre::genreName($genre)?>" border="0"> <?=Genre::getGenreTitle($id)?>
+							</div>
+						</div>
+					</div>
+					<?php if ($gears !== NULL): ?>
+					<div id="ctl00_cphRoblox_GearAttributes">
+						<div style="margin-top: 5px; margin-bottom: 5px;"> Allowed Gear Types: 
+							<?php if (false): ?>
+							<div id="ctl00_cphRoblox_PlaceGearGenreRestriction"><img id="ctl00_cphRoblox_GenreRestrictionIcon" class="GamesInfoIcon" src="/images/GenreSuitcase16x16.png" alt="In-genre gear only" border="0"> <?=Genre::getGenreTitle($id)?> gear only</div>
+							<?php endif; ?>
+							<?php foreach (Category::getCategories($id) as $category): ?>
+							<div id="ctl00_cphRoblox_Is<?=Category::categoryName($category)?>"><img id="ctl00_cphRoblox_Image9" class="GamesInfoIcon" src="/images/CategoryIcons/<?=Category::categoryName($category)?>.png" alt="<?=Category::categoryName($category)?>" border="0"> <?=Category::categoryTitle($category)?></div>
+							<?php endforeach; ?>
+						</div>
+					</div>
+					<?php endif; ?>
                     <?php if (!empty($description)): ?>
                         <div id="ctl00_cphRoblox_DescriptionPanel">
                             <div id="DescriptionLabel">Description:</div>
