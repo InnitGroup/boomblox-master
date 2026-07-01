@@ -1,14 +1,15 @@
 <?php
 class Registration {
     public array $presets = [
-        "hello52",
-        "CW2",
-        "steffanno",
-        "Kaiser_acer",
-        "Gamer101",
-        "FireBlade",
-        "BloxMaster99",
-        "BrickLayer09"
+        "RobloTim",
+        "Ponchokings",
+        "RobloSam",
+        "BrightEyes",
+        "po_ke",
+        "ProjectSniper",
+        "Legocitymovie",
+        "cosmonova1",
+        "BrianReddus"
     ];
 
     private array $usernameError = [
@@ -64,7 +65,6 @@ class Registration {
         $db->createUser($_POST["Username"], $_POST["Password"], $_POST["Key"]);
         $id = $db->getIdByUser($_POST["Username"]);
         ROBLOSECURITY::new($id);
-        #IP::whitelist($id);
 
         $newUser = new User($id);
         if ($newUser->getData("character", "head") !== 0) {
@@ -92,12 +92,12 @@ Have a great time here!",
         $newUser->givePlace();
 
         if (in_array($_POST["Username"], $this->presets)) {
-            $newUser->giveBux(100);
+            $newUser->giveBC();
             $message = [
                 "senderId" => 1,
                 "senderUn" => "Boomblox",
                 "subject" => "Welcome to Boomblox",
-                "content" => "Hello, {$newUser->getUsername()}, you have been awarded B$ 100 for choosing a preset username, thank you for building site accuracy within the population!",
+                "content" => "Hello, {$newUser->getUsername()}, you have been awarded BC for choosing a preset username, thank you for building site accuracy within the population!",
                 "recipientId" => $id
             ];
 

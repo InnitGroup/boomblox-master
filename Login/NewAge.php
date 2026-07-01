@@ -2,7 +2,10 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
 global $theme, $auth, $user;
-$auth->isAuthed() && exit(header("Location: /Default.aspx"));
+if (!$auth->isAuthed()) {
+    !isset($_GET["TimeOf"]) && Server::_404();
+    $_GET["TimeOf"] !== "OurLives" && Server::_404();
+}
 
 if (Server::isPost()) {
     if (isset($_POST["__EVENTTARGET"]) && !empty($_POST["__EVENTTARGET"])) {
@@ -26,9 +29,6 @@ if (Server::isPost()) {
         }
     }
 }
-
-!isset($_GET["TimeOf"]) && Server::_404();
-$_GET["TimeOf"] !== "OurLives" && Server::_404();
 
 $page = new PageBuilder("Free Games at " . strtoupper(Site::getThemeProperty("url")), 0, "/templates/dryheader.php", [], ["register"]);
 
