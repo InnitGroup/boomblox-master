@@ -103,6 +103,13 @@ class Category {
     public static function setCategories(int $itemId, array $categories) {
         global $db;
 
+        if (empty($categories)) {
+            $stmt = "UPDATE items SET gears = NULL WHERE itemId=:itemId";
+            return $db->execute($stmt, [
+                ":itemId" => $itemId
+            ]);
+        }
+
         $categories = serialize($categories);
         $stmt = "UPDATE items SET gears = :category WHERE itemId=:itemId";
         return $db->execute($stmt, [
