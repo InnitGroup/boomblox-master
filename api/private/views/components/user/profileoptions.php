@@ -1,11 +1,11 @@
 <?php
-global $theme, $user;
+global $theme, $user, $db;
 $viewerId = $user->getUserId();
 $blurb = !empty($blurb) ? $blurb : "";
 
 if ($publicView): ?>
     <?php if ($viewerId !== $userId): ?>
-        <?php if (!$user->friendsWith($userId)): ?>
+        <?php if (!$user->friendsWith($db->getUserById($userId))): ?>
     <p>
         <a href="/My/FriendInvitation.aspx?RecipientID=<?=$userId?>">Send Friend Request</a>
     </p>
