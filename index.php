@@ -18,6 +18,13 @@ if (isset($_GET["XO"])) {
     }
 }
 
+if (isset($_GET["OhIts"])) {
+    if ($_GET["OhIts"] === "SaturdayNight") {
+        header("Location: /Login/NewAge.aspx?TimeOf=OurLives");
+        exit;
+    }
+}
+
 PageBuilder::addComponent("outside", "index");
 exit;
 ?>

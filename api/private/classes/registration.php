@@ -5,7 +5,6 @@ class Registration {
         "CW2",
         "steffanno",
         "Kaiser_acer",
-        "zajek",
         "Gamer101",
         "FireBlade",
         "BloxMaster99",

@@ -1,6 +1,7 @@
+<?php global $theme; ?>
 <div id="Body">
     <div class="Registration">
-        <h2>Create a Free ROBLOX Account</h2>
+        <h2>Create a Free <?=Site::getThemeProperty("alias", $theme)?> Account</h2>
         <h3>How old are you?</h3>
         <br>
         <div class="AgeOptions">
@@ -24,9 +25,9 @@
             <h3>Hey Parents!</h3>
             <p>Are you creating an account for your young child?</p>
             <p>If so, you should select "Under 13"</p>
-            <p>ROBLOX has a variety of online safety features that help to prevent your child from disclosing personal information to other players. As a parent, you will have the option to override them later.</p>
+            <p><?=Site::getThemeProperty("alias", $theme)?> has a variety of online safety features that help to prevent your child from disclosing personal information to other players. As a parent, you will have the option to override them later.</p>
             <p>
-                <a id="ctl00_cphRoblox_ParentsInfo" href="/Parents.aspx">More information for ROBLOX parents</a>
+                <a id="ctl00_cphRoblox_ParentsInfo" href="/Parents.aspx">More information for <?=Site::getThemeProperty("alias", $theme)?> parents</a>
             </p>
             <p>
                 <a id="ctl00_cphRoblox_ParentsAccntLink" href="/Parents/Login.aspx">Create/Manage Parent Account</a>
@@ -40,7 +41,7 @@
     </div>
     <div class="Registration">
         <h2>Create a Parent Account</h2>
-        <h3>Create an administrative account to control a child's access to ROBLOX</h3>
+        <h3>Create an administrative account to control a child's access to <?=Site::getThemeProperty("alias", $theme)?></h3>
         <br>
         <div class="AgeOptions">
             <div id="ParentAccount">
