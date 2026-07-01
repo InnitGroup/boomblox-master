@@ -65,7 +65,7 @@ class Database {
 
     # checks if a given key is in use
     public function keyTaken($key) {
-        $key = substr($key,9);
+        $key = substr($key, 9);
         if ($key !== "") {
             $sql = "SELECT `status` FROM `keys` WHERE `keyC` = :keyC";
             $result = $this->execute($sql,[":keyC" => $key]);
