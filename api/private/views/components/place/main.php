@@ -11,7 +11,8 @@ $lastUpdate = $item["lastUpdate"];
 $favorites = $item["favorites"];
 $interactions = $item["interactions"];
 $access = $item["access"];
-$gears = (int)$item["gears"];
+$gears = $item["gears"];
+$allCategoriesSet = Category::allCategoriesSet($item["itemId"]);
 $copylock = (bool)$item["onsale"] == 2 ? "Shared" : "CopyLocked";
 
 $publicView = !$user->ownsPlace($id);
@@ -79,9 +80,9 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
 						<span id="ctl00_cphRoblox_PlaceAccessIndicator_Public" style="display:<?=$access == 1 ? "inline" : "none"?>;">
 							<img id="ctl00_cphRoblox_PlaceAccessIndicator_iPublic" src="/images/public.png" alt="Public" border="0">&nbsp;Public </span>
 						<img id="ctl00_cphRoblox_SharedIcon" src="/images/<?=$copylock?>.png" alt="Shared" border="0"> Copy Protection: <?=$copylock?>
-						<?php if ($gears == 0): ?>
+						<?php if ($gears == NULL): ?>
 							<img id="ctl00_cphRoblox_GenreGearIcon" src="/images/NoSuitcase16x16.png" alt="No Gear Allowed" border="0"> No Gear Allowed
-						<?php elseif ($gears == 1): ?>
+						<?php elseif ($allCategoriesSet): ?>
 							<img id="ctl00_cphRoblox_GenreGearIcon" src="/images/Suitcase16x16.png" alt="Gear Allowed" border="0"> Gear Allowed
 						<?php else: ?>
 							<img id="ctl00_cphRoblox_GenreGearIcon" src="/images/GenreSuitcase16x16.png" alt="Genre Specific Gear" border="0"> Genre Specific Gear Only
