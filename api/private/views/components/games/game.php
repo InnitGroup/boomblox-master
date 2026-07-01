@@ -6,8 +6,9 @@ $creatorId = $game["creatorId"];
 $creatorName = $game["creatorName"];
 $favorites = Helper::times(number_format($game["favorites"]));
 $visits = Helper::times($game["interactions"]);
-$gears = (int)$game["gears"];
+$gears = $game["gears"];
 $genre = $game["genre"];
+$allCategoriesSet = Category::allCategoriesSet($game["itemId"]);
 ?>
 
 <td class="Game" valign="top">
@@ -20,9 +21,9 @@ $genre = $game["genre"];
         <div class="GameDetails">
             <div class="GameName">
                 <img id="ctl00_cphRoblox_rbxGames_GamesRepeater_ctl04_GenreIcon" class="GamesInfoIcon" src="/images/GenreIcons/<?=Genre::genreName($genre)?>.png" alt="<?=Genre::genreName($genre)?>" border="0">
-                <?php if ($gears == 1): ?>
+                <?php if ($allCategoriesSet): ?>
                     <img id="ctl00_cphRoblox_rbxGames_GamesRepeater_ctl05_GearIcon" class="GamesInfoIcon" src="/images/Suitcase16x16.png" alt="Allows gear" border="0">
-                <?php elseif ($gears !== 1 && $gears !== 0): ?>
+                <?php elseif (!$allCategoriesSet && $gears !== NULL): ?>
                     <img id="ctl00_cphRoblox_rbxGames_GamesRepeater_ctl05_GearIcon" class="GamesInfoIcon" src="/images/GenreSuitcase16x16.png" alt="Allows select gear" border="0">
                 <?php endif; ?>
                 <a href="Item.aspx?ID=<?=$id?>"><?=$name?></a>
