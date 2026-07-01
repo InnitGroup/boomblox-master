@@ -1202,6 +1202,12 @@ class User {
     }
 
     public function removeFavorite($id) {
+        global $user;
+
+        if ($this->user !== $user) {
+            return;
+        }
+        
         if ($this->hasFavorite($id)) {
             global $db;
 

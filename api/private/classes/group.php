@@ -123,7 +123,7 @@ class Group {
                 "Permissions" => [1, 2, 3, 4, 5, 6, 7, 8, 9]
             ],
             [
-                "Name" => "Administrator",
+                "Name" => "Admin",
                 "Description" => "A group administrator.",
                 "Rank" => 254,
                 "Permissions" => [1, 2, 4, 5, 6, 7, 8]
