@@ -84,13 +84,11 @@ class Genre {
         $creatorId = (int)$fetched["creatorId"];
         $itemType = $fetched["itemType"];
 
-        if ($creatorId !== 1) {
-            return self::$genreTitles[$genreId]; 
-        }
-
-        if ($itemType == "catalog" && $genreId == 0) {
+        if ($creatorId !== 1 && $itemType == "catalog" && $genreId == 0) {
             return Site::getThemeProperty("alias", $theme) . "ia Classic (All)";
         }
+
+        return self::$genreTitles[$genreId]; 
     }
 
     public static function getGenre(int $itemId): int {

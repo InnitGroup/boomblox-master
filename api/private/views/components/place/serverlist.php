@@ -54,4 +54,6 @@ foreach ($servers as $server):
     </td>
 </tr>
 
-<?php endforeach; endif; ?>
+<?php endforeach; else: ?>
+    <p style="text-align: center;">There are no running games for this place.</p>
+<?php endif; ?>
