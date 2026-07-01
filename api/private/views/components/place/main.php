@@ -56,15 +56,15 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
 							</div>
 						</div>
 					</div>
-					<?php if ($gears !== NULL): ?>
+					<?php if ($gears !== NULL && !empty(Category::getCategories($id))): ?>
 					<div id="ctl00_cphRoblox_GearAttributes">
 						<div style="margin-top: 5px; margin-bottom: 5px;"> Allowed Gear Types: 
 							<?php if (false): ?>
 							<div id="ctl00_cphRoblox_PlaceGearGenreRestriction"><img id="ctl00_cphRoblox_GenreRestrictionIcon" class="GamesInfoIcon" src="/images/GenreSuitcase16x16.png" alt="In-genre gear only" border="0"> <?=Genre::getGenreTitle($id)?> gear only</div>
 							<?php endif; ?>
-							<?php foreach (Category::getCategories($id) as $category): ?>
+							<?php foreach (Category::getCategories($id) as $category): if (!empty(unserialize($category))): ?>
 							<div id="ctl00_cphRoblox_Is<?=Category::categoryName($category)?>"><img id="ctl00_cphRoblox_Image9" class="GamesInfoIcon" src="/images/CategoryIcons/<?=Category::categoryName($category)?>.png" alt="<?=Category::categoryName($category)?>" border="0"> <?=Category::categoryTitle($category)?></div>
-							<?php endforeach; ?>
+							<?php endif; endforeach; ?>
 						</div>
 					</div>
 					<?php endif; ?>

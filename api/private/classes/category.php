@@ -132,7 +132,7 @@ class Category {
         $result = $db->execute($stmt, [":itemId" => $itemId]);
         $itemCategory = $result->fetch(PDO::FETCH_ASSOC)["gears"];
 
-        if ($itemCategory == NULL || empty($itemCategory)) {
+        if ($itemCategory == NULL || empty($itemCategory) || $itemCategory == 'a:0:{}') {
             $itemCategory = array();
         } elseif (@unserialize($itemCategory) == false) {
             $itemCategory = array($itemCategory);
