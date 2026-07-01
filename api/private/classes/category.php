@@ -50,7 +50,7 @@ class Category {
         ]);
     }
 
-    public static function categorySet(int $itemId, string|int $category) {
+    public static function categorySet(int $itemId, string|int $category): bool {
         if (gettype($category) == "string") {
             $category = self::$categoryId($category);
         }
@@ -69,6 +69,18 @@ class Category {
         }
 
         return in_array($category, $itemCategory);
+    }
+
+    public static function allCategoriesSet(int $itemId): bool {
+        global $db;
+        $categories = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+        # Discord::sendWebhookMessage("vcchat", serialize($categories));
+        
+        $stmt = "SELECT gears FROM items WHERE itemId=:itemId";
+        $result = $db->execute($stmt, [":itemId" => $itemId]);
+        # Discord::sendWebhookMessage("vcchat", $result->fetch(PDO::FETCH_ASSOC)["gears"]);  # == serialize($categories);
+
+        return $result->fetch(PDO::FETCH_ASSOC)["gears"] == serialize($categories);
     }
 
     public static function setCategories(int $itemId, array $categories) {
@@ -112,6 +124,23 @@ class Category {
         }
 
         return $itemCategory;
+    }
+
+    public static function getGearCategory(int $itemId) {
+        global $db;
+        $stmt = "SELECT category FROM items WHERE itemId=:itemId";
+        $result = $db->execute($stmt, [":itemId" => $itemId]);
+        return (int)$result->fetch(PDO::FETCH_ASSOC)["category"];
+    }
+
+    public static function setGearCategory(int $itemId, int $category) {
+        global $db;
+        $stmt = "UPDATE items SET category=:category WHERE itemId=:itemId";
+        
+        return $db->execute($stmt, [
+            ":itemId" => $itemId,
+            ":category" => $category
+        ]);
     }
 };
 ?>

@@ -571,7 +571,7 @@ class User {
         $db->execute($stmt, [":id" => $this->getUserId()]);
     }
 
-    public function getCharacterAppearance($isRender = false, $includeGears = true) {
+    public function getCharacterAppearance($isRender = false, array $includeGears = []) {
         $charapp = Site::$domain."/Asset/BodyColors.ashx?userid=".$this->data["user"]["id"]."&t=".time();
         if (isset($this->data["character"]["hat"])) {
             $charapp .= ";".Site::$domain."/Asset/?id=".(int)$this->data["character"]["hat"];
@@ -606,10 +606,13 @@ class User {
                 $charapp .= ";".Site::$domain."/Data/Face.ashx?id=".(int)$this->data["character"]["face"];
             }
             
-            if ($includeGears == true) {
+            if (!empty($includeGears)) {
                 $gears = $this->getItems("gear", false, false);
+                
                 foreach ($gears as $gear) {
-                    $charapp .= ";".Site::$domain."/asset/?id=".(int)$gear["itemId"];
+                    if (in_array($gear["category"], $includeGears)) {
+                        $charapp .= ";".Site::$domain."/asset/?id=".(int)$gear["itemId"];
+                    }
                 }
             }
         } 
@@ -821,7 +824,7 @@ class User {
             return true;
         }
 
-        $testers = [91, 3, 123, 113, 126, 108, 100, 93, 73, 124, 86, 76, 79, 131, 135, 137, 132, 149];
+        $testers = [91, 3, 123, 113, 126, 108, 100, 93, 73, 124, 86, 76, 79, 131, 135, 137, 132, 149, 142];
         if (in_array($this->getUserId(), $testers)) {
             return true;
         }

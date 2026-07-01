@@ -90,22 +90,24 @@ $genre = $place["genre"];
 	<div class="MyItemOptions">
 		<fieldset>
 			<legend>Gear Settings</legend>
+			<?php
+			$allCategoriesSet = Category::allCategoriesSet($place["itemId"]);
+			?>
 			<div id="ctl00_cphRoblox_PlaceGearOptions">
 				<div class="Suggestion"> Here you can choose whether to allow all genres of gear into your place, or whether to only allow gear that matches your place's genre. </div>
 				<div class="MyItemIndentedOption">
 					<img id="ctl00_cphRoblox_Image17" src="../images/Suitcase16x16.png" alt="Allow All" style="border-width:0px;">
-					<input id="ctl00_cphRoblox_rbAllowAllGenres" type="radio" name="ctl00$cphRoblox$GearGenreButtons" value="rbAllowAllGenres">
+					<input id="ctl00_cphRoblox_rbAllowAllGenres" type="radio" name="ctl00$cphRoblox$GearGenreButtons" value="rbAllowAllGenres" <?=$allCategoriesSet == true ? 'checked="checked"' : ""?>>
 					<label for="ctl00_cphRoblox_rbAllowAllGenres">All genres</label>
 					<br>
 					<img id="ctl00_cphRoblox_Image16" src="../images/GenreSuitcase16x16.png" alt="Genre Specific Only" style="border-width:0px;">
-					<input id="ctl00_cphRoblox_rbAllowSpecificGenres" type="radio" name="ctl00$cphRoblox$GearGenreButtons" value="rbAllowSpecificGenres" checked="checked">
+					<input id="ctl00_cphRoblox_rbAllowSpecificGenres" type="radio" name="ctl00$cphRoblox$GearGenreButtons" value="rbAllowSpecificGenres" <?=$allCategoriesSet == true ? "" : 'checked="checked"'?>>
 					<label for="ctl00_cphRoblox_rbAllowSpecificGenres">Only genres that match my place</label>
 					<br>
 				</div>
 			</div>
             <?php 
             $categories = Category::getCategories($place["itemId"]);
-            #print_r($_POST);
             ?>
 			<div id="ctl00_cphRoblox_GearTypesPanel">
 				<div class="Suggestion"> Check all the Gear types you wish to allow in your place. </div>

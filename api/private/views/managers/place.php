@@ -39,7 +39,7 @@ class PlaceManager {
                             }
 
                             
-                            /*
+                            
                             if (isset($_POST['ctl00$cphRoblox$GearGenreButtons'])) {
                                 $gearGenreButtons = $_POST['ctl00$cphRoblox$GearGenreButtons'];
                                 if ($gearGenreButtons == 'rbAllowAllGenres') {
@@ -76,7 +76,7 @@ class PlaceManager {
 
                                     Category::setCategories($this->placeId, $categories);
                                 }
-                            }*/
+                            }
                             
 
                             $stmt = "UPDATE items SET itemName=:itemName, itemDescription=:itemDescription, access=:access, lastUpdate=:lastUpdate WHERE itemId=:itemId";
