@@ -61,7 +61,6 @@ class MessageManager {
         global $db, $user;
         $userId = $user->getUserId();
         $recipientId = $_GET["RecipientID"];
-        
 
         $this->recipient = [
             "userId" => $recipientId,
@@ -72,6 +71,10 @@ class MessageManager {
         if (!$db->userExists($recipientId)) {
             Server::_404();
             #echo 2;
+        }
+
+        if ($user->timeSinceLastMessage() < 5) {
+            Server::_404();
         }
 
         if ($recipientId == 65) {
@@ -99,13 +102,14 @@ class MessageManager {
             }
         }
 
-        $stmt = "INSERT INTO messages (`senderId`, `senderUn`, `recipientId`, `subject`, `content`, `friendInvite`, `inviteActive`) VALUES (:userId, :username, :recipientId, :subject, :content, 0, 0)";
+        $stmt = "INSERT INTO messages (`senderId`, `senderUn`, `recipientId`, `subject`, `content`, `friendInvite`, `inviteActive`, `date`) VALUES (:userId, :username, :recipientId, :subject, :content, 0, 0, :xdate)";
         $db->execute($stmt, [
             ":userId" => $userId,
             ":username" => $db->getUserById($userId),
             ":recipientId" => $recipientId,
             ":subject" => $messageData[0],
-            ":content" => $messageData[1]
+            ":content" => $messageData[1],
+            ":xdate" => date("Y-m-d H:i:s A")
         ]);
 
         $this->page = "sent";
@@ -113,6 +117,10 @@ class MessageManager {
 
     public function reply() {
         global $db, $user;
+        if ($user->timeSinceLastMessage() < 5) {
+            Server::_404();
+        }
+        
         $userId = $user->getUserId();
         $messageId = $_GET["MessageID"];
         $messageData = $this->getMessageData($messageId);
@@ -138,13 +146,14 @@ class MessageManager {
             #echo 2;
         }
 
-        $stmt = "INSERT INTO messages (`senderId`, `senderUn`, `recipientId`, `subject`, `content`, `friendInvite`, `inviteActive`) VALUES (:userId, :username, :recipientId, :subject, :content, 0, 0)";
+        $stmt = "INSERT INTO messages (`senderId`, `senderUn`, `recipientId`, `subject`, `content`, `friendInvite`, `inviteActive`, `date`) VALUES (:userId, :username, :recipientId, :subject, :content, 0, 0, :xdate)";
         $db->execute($stmt, [
             ":userId" => $userId,
             ":username" => $user->getUsername(),
             ":recipientId" => $recipientId,
             ":subject" => $subject,
-            ":content" => $content
+            ":content" => $content,
+            ":xdate" => date("Y-m-d H:i:s A")
         ]);
 
         $this->page = "sent";
@@ -161,7 +170,8 @@ class MessageManager {
                 ]);
             }
         }
-        header("Location: /My/Inbox.aspx");
+        
+        exit(header("Location: /My/Inbox.aspx"));
     }
 
     public function handleMessage() {

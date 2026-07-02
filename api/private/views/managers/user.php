@@ -113,6 +113,7 @@ class UserManager {
         </td>
         ';
     }
+
     public function loadBadges() {
         $badges = "";
         if (in_array("Administrator", $this->user->typeStaff())) {

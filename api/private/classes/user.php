@@ -130,6 +130,32 @@ class User {
         return max(0, time() - $lastUpdate->getTimestamp());
     }
 
+    public function timeSinceLastMessage() {
+        global $db;
+        $stmt = "SELECT `date` FROM messages WHERE senderId=:userId ORDER BY `messageId` DESC";
+        $result = $db->execute($stmt, [":userId" => $this->getUserId()]);
+        if ($result->rowCount() == 0) {
+            return 100;
+        }
+
+        $date = $result->fetch(PDO::FETCH_ASSOC)["date"];
+        $lastMessage = new DateTime($date);
+        return max(0, time() - $lastMessage->getTimestamp());
+    }
+
+    public function timeSinceLastComment() {
+        global $db;
+        $stmt = "SELECT `commentTime` FROM messages WHERE commenterId=:userId ORDER BY `id` DESC";
+        $result = $db->execute($stmt, [":userId" => $this->getUserId()]);
+        if ($result->rowCount() == 0) {
+            return 100;
+        }
+
+        $date = $result->fetch(PDO::FETCH_ASSOC)["commentTime"];
+        $lastMessage = new DateTime($date);
+        return max(0, time() - $lastMessage->getTimestamp());
+    }
+
     public function isVerified(): bool {
         return isset($this->data["user"]["verified"]) ? (bool)$this->data["user"]["verified"] : false;
     }

@@ -182,11 +182,26 @@ class Group {
     }
 
     public function getPermissions(int $userId): array {
+        if (!$this->isInGroup($userId)) {
+            return [];
+        }
+
         $member = $this->members[$userId];
         $rolesetId = $member["Roleset"];
         $roleset = $this->rolesets[$rolesetId];
 
         return $roleset["Permissions"];
+    }
+
+    public function getRank(int $userId): int {
+        if (!$this->isInGroup($userId)) {
+            return 0;
+        }
+
+        $rolesetId = $this->members[$userId]["Roleset"];
+        $roleset = $this->rolesets[$rolesetId];
+
+        return $roleset["Rank"];
     }
 
     public function canDeletePosts(int $userId): bool {
@@ -226,6 +241,10 @@ class Group {
     }
 
     public function kickMember(int $memberId) {
+        if (!$this->isInGroup($memberId)) {
+            return;
+        }
+
         $members = $this->members;
         unset($members[$memberId]);
 
@@ -237,6 +256,10 @@ class Group {
     }
 
     public function addMember(int $userId) {
+        if ($this->isInGroup($userId)) {
+            return;
+        }
+
         $members = $this->members;
         $members[$userId] = [
             "Roleset" => 2,
