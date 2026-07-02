@@ -91,7 +91,6 @@ switch ($type) {
         $result = $db->execute($stmt, [":placeId" => $place]);
         $includeGears = $result->fetch(PDO::FETCH_ASSOC)["gears"];
         if ($includeGears == NULL) {$includeGears = serialize([]);}
-        #Discord::sendWebhookMessage("games", $includeGears);
 
         if ($player->isGuest()) {
             $guestId = $player->guestId();

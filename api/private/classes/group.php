@@ -181,6 +181,71 @@ class Group {
         return $members;
     }
 
+    public function getPermissions(int $userId): array {
+        $member = $this->members[$userId];
+        $rolesetId = $member["Roleset"];
+        $roleset = $this->rolesets[$rolesetId];
+
+        return $roleset["Permissions"];
+    }
+
+    public function canDeletePosts(int $userId): bool {
+        return in_array(1, $this->getPermissions($userId));
+    }
+
+    public function canPost(int $userId): bool {
+        return in_array(2, $this->getPermissions($userId));
+    }
+
+    public function canAcceptJoins(int $userId): bool {
+        return in_array(3, $this->getPermissions($userId));
+    }
+
+    public function canPostStatus(int $userId): bool {
+        return in_array(4, $this->getPermissions($userId));
+    }
+
+    public function canBuild(int $userId): bool {
+        return in_array(5, $this->getPermissions($userId));
+    }
+
+    public function canRemoveMembers(int $userId): bool {
+        return in_array(6, $this->getPermissions($userId));
+    }
+
+    public function canViewStatus(int $userId): bool {
+        return in_array(7, $this->getPermissions($userId));
+    }
+
+    public function canViewWall(int $userId): bool {
+        return in_array(8, $this->getPermissions($userId));
+    }
+
+    public function canChangeRanks(int $userId): bool {
+        return in_array(9, $this->getPermissions($userId));
+    }
+
+    public function kickMember(int $memberId) {
+        $members = $this->members;
+        unset($members[$memberId]);
+
+        $this->updateMembers($members);
+    }
+
+    public function isInGroup(int $userId) {
+        return isset($this->members[$userId]);
+    }
+
+    public function addMember(int $userId) {
+        $members = $this->members;
+        $members[$userId] = [
+            "Roleset" => 2,
+            "JoinDate" => date("Y-m-d H:i:s")
+        ];
+        
+        $this->updateMembers($members);
+    }
+
     # ROLESETS
 
     public function lastRolesetId(): int {
