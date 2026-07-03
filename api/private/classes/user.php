@@ -145,7 +145,7 @@ class User {
 
     public function timeSinceLastComment() {
         global $db;
-        $stmt = "SELECT `commentTime` FROM messages WHERE commenterId=:userId ORDER BY `id` DESC";
+        $stmt = "SELECT `commentTime` FROM comments WHERE commenterId=:userId ORDER BY `id` DESC";
         $result = $db->execute($stmt, [":userId" => $this->getUserId()]);
         if ($result->rowCount() == 0) {
             return 100;
