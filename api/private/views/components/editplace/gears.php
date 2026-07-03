@@ -18,7 +18,7 @@ $genre = $place["genre"];
 						<li>
 							<img src="/images/GenreIcons/City.png" alt="Town and City">
 							<label>
-								<input type="radio" name="GenreButtons2" value="20" <?=$genre == 20 ? 'checked="checked"' : ''?>> Town and City </label>
+								<input type="radio" name="GenreButtons2" value="19" <?=$genre == 19 ? 'checked="checked"' : ''?>> Town and City </label>
 						</li>
 						<li>
 							<img src="/images/GenreIcons/Castle.png" alt="Fantasy">
