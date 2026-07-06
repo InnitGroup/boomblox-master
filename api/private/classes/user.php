@@ -527,7 +527,7 @@ class User {
             $expirationDate = new DateTime($this->data["membership"]["bcExpires"]);
             $expirationDate->add(DateInterval::createFromDateString($months . " " . ($months > 1 ? "months" : "month")));
 
-            $stmt = "UPDATE users SET bcExpires=:expiration WHERE id=:userId";
+            $stmt = "UPDATE users SET bcExpires=:expiration, bc = 1 WHERE id=:userId";
             $db->execute($stmt, [
                 ":expiration" => $expirationDate->format("Y-m-d H:i:s"),
                 ":userId" => $this->getUserId()
@@ -575,7 +575,7 @@ class User {
             $expirationDate = new DateTime($this->data["membership"]["bcExpires"]);
             $expirationDate->add(DateInterval::createFromDateString($months . " " . ($months > 1 ? "months" : "month")));
 
-            $stmt = "UPDATE users SET bcExpires=:expiration WHERE id=:userId";
+            $stmt = "UPDATE users SET bcExpires=:expiration, bc = 2 WHERE id=:userId";
             $db->execute($stmt, [
                 ":expiration" => $expirationDate->format("Y-m-d H:i:s"),
                 ":userId" => $this->getUserId()
@@ -894,7 +894,12 @@ class User {
         return $this->data["user"]["username"];
     }
     public function declineAllInvites() {
-        global $db;
+        global $db, $user;
+
+        if ($user !== $this) {
+            return;
+        }
+        
         $userId = $this->getUserId();
         $stmt = "UPDATE messages SET inviteActive=0 WHERE recipientId=:userId";
         $db->execute($stmt,[":userId" => $userId]);
@@ -935,8 +940,12 @@ class User {
         return $result->fetchAll(PDO::FETCH_ASSOC);
     }
     public function acceptAllInvites() {
-        global $db;
+        global $db, $user;
         $userId = $this->getUserId();
+
+        if ($user !== $this) {
+            return;
+        }
 
         $stmt = "SELECT senderId FROM messages WHERE inviteActive=1 AND recipientId=:userId";
         $result = $db->execute($stmt,[":userId" => $userId]);

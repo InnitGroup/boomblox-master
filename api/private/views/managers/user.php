@@ -31,24 +31,29 @@ class UserManager {
             $this->publicView = $publicView;
         };
 
-        switch ($postData[1]) {
-            case 'ct100$rbx$CreatePlace':
-                if ($this->user->getAvailablePlaces() > 0) {
-                    $this->user->givePlace();
-                }
-                break;
-            case 'ctl00$FriendRequests$DeclineAll':
-                $this->user->declineAllInvites();
-                break;
-            case 'ctl00$FriendRequests$AcceptAll':
-                $this->user->acceptAllInvites();
-                break;
-            case 'ctl00$robloxCph$RemoveFavorite';
-                #var_dump($_POST);
-                $this->user->removeFavorite($_POST['__EVENTTARGET']);
-                header("Location: ".$_SERVER["REQUEST_URI"]);
-                break;
+        global $user;
+
+        if ($this->userId == $user->getUserId()) {
+            switch ($postData[1]) {
+                case 'ct100$rbx$CreatePlace':
+                    if ($this->user->getAvailablePlaces() > 0) {
+                        $this->user->givePlace();
+                    }
+                    break;
+                case 'ctl00$FriendRequests$DeclineAll':
+                    $this->user->declineAllInvites();
+                    break;
+                case 'ctl00$FriendRequests$AcceptAll':
+                    $this->user->acceptAllInvites();
+                    break;
+                case 'ctl00$robloxCph$RemoveFavorite';
+                    #var_dump($_POST);
+                    $this->user->removeFavorite($_POST['__EVENTTARGET']);
+                    header("Location: ".$_SERVER["REQUEST_URI"]);
+                    break;
+            }
         }
+        
 
         if (!empty($postData[0])) {
             $decryptedPostData = explode("\$", $postData[1]);
