@@ -45,14 +45,20 @@ class PageBuilder {
         
         if ($this->content["header"] == $_SERVER['DOCUMENT_ROOT'] . "/templates/authheader.php") {
             self::addComponent("page", "header", $packed);
-        } else {
+        } elseif ($this->content["header"] == $_SERVER['DOCUMENT_ROOT'] . "/templates/dryheader.php") {
             self::addComponent("page", "dryheader", $packed);
+        } else {
+            self::addComponent("page", "2010header", $packed);
         }
     }
     public function buildFooter() {
         global $theme, $user;
         $packed = compact("theme");
-        self::addComponent("page", "footer", $packed);
+        if ($this->content["header"] ==  $_SERVER['DOCUMENT_ROOT'] . "2010header") {
+            self::addComponent("page", "2010footer", $packed);
+        } else {
+            self::addComponent("page", "footer", $packed);
+        }
 
         if (isset($user)) {
             if ($user->hasPerms(3)) {

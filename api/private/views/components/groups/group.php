@@ -4,17 +4,23 @@ $userId = $user->getUserId();
 $group = new Group($_GET["gid"]);
 
 if (Server::isPost()) {
+    if (isset($_POST['ctl00$cphRoblox$JoinGroup'])) {
+        $group->addMember($user->getUserId());
+    }
+
+    /*
     if (isset($_POST["__EVENTTARGET"]) && isset($_POST["__EVENTARGUMENT"])) {
         if ($_POST["__EVENTTARGET"] == "Kick") {
             if ($group->canRemoveMembers($user->getUserId())) {
                 $group->kickMember((int)$_POST["__EVENTARGUMENT"]);
             }
         } elseif ($_POST["__EVENTTARGET"] == "Join") {
-            $group->addMember($user->getUserId());
+            
         } elseif ($_POST["__EVENTTARGET"] == "Leave") {
             $group->kickMember($user->getUserId());
         }
     }
+    */
 }
 ?>
 
