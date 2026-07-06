@@ -6,6 +6,8 @@ $group = new Group($_GET["gid"]);
 if (Server::isPost()) {
     if (isset($_POST['ctl00$cphRoblox$JoinGroup'])) {
         $group->addMember($user->getUserId());
+    } elseif (isset($_POST['ctl00$cphRoblox$LeaveGroup'])) {
+        $group->kickMember($user->getUserId());
     }
 }
 ?>
@@ -254,7 +256,11 @@ if (Server::isPost()) {
 				<br style="clear: both">
 			</div>
 			<div>
-				<input type="submit" name="ctl00$cphRoblox$JoinGroup" value="Join Group" id="ctl00_cphRoblox_JoinGroup">
+                <?php if ($group->isInGroup($userId)): ?>
+				<input type="submit" name="ctl00$cphRoblox$LeaveGroup" value="Leave Group" id="ctl00_cphRoblox_LeaveGroup">
+                <?php elseif (!$group->isInGroup($userId)): ?>
+                <input type="submit" name="ctl00$cphRoblox$JoinGroup" value="Join Group" id="ctl00_cphRoblox_JoinGroup">
+                <?php endif; ?>
 			</div>
 			<div></div>
 			<div></div>

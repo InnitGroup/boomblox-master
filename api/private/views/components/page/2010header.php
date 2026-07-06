@@ -46,7 +46,9 @@ if (Server::isPost()) {
 									</span>
 								</div>
 							</div>
-							<a id="Logo" href="/Default.aspx" style="cursor: pointer; border: none;"></a>
+							<a id="Logo" href="/Default.aspx" style="cursor: pointer; border: none;">
+								<img src="/images/<?=Site::getThemeProperty("logo", $theme)?>?t=<?=time()?>" border="0" alt="<?=Site::getThemeProperty("name",$theme);?>" blankurl="http://t2.<?=domain?>/blank-267x70.gif" style="">
+							</a>
 							<div id="Alerts">
 								<table style="width:100%;height:100%">
 									<tr>
