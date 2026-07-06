@@ -204,6 +204,17 @@ class Group {
         return $roleset["Rank"];
     }
 
+    public function getRoleset(int $userId): array {
+        if (!$this->isInGroup($userId)) {
+            return 0;
+        }
+
+        $rolesetId = $this->members[$userId]["Roleset"];
+        $roleset = $this->rolesets[$rolesetId];
+
+        return $roleset;
+    }
+
     public function canDeletePosts(int $userId): bool {
         return in_array(1, $this->getPermissions($userId));
     }
