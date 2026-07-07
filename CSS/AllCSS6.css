@@ -132,6 +132,9 @@ input.Text {
     background-repeat: no-repeat;
     height: 72px;
     text-align: center;
+	border-top: solid 1px #000;
+  	border-left: solid 1px #000;
+  	border-right: solid 1px #000;
 }
 
 #Banner #Options {
@@ -146,7 +149,7 @@ input.Text {
     left: 0;
     padding: 4px;
     position: absolute;
-    background: #6E99C9;
+    /*background: #6E99C9;*/
 }
 
 #Banner #Options #Settings {

@@ -38,7 +38,7 @@ if (Server::isPost()) {
             <?php if ($group->isInGroup($userId)): ?>
             <div style="overflow:visible; padding: 10px 5px 10px 5px; width: 176px; float: left" class="StandardBox">
                 <div style="text-align:center;font-size: 18px;"><u>My Rank</u></div>
-                <div style="text-align:center;font-size: 24px;color:brown;"><?=$group->getRoleset($userId)["Name"]?></div>
+                <div style="text-align:center;font-size: 24px;color:<?=$group->getRoleset($userId)["Name"] == "Owner" ? "brown" : "#00FF00"?>;"><?=$group->getRoleset($userId)["Name"]?></div>
                 <div id="ctl00_cphRoblox_AbuseReportButton_AbuseReportPanel" class="ReportAbusePanel">
                     <span class="AbuseIcon">
                         <a id="ctl00_cphRoblox_AbuseReportButton_ReportAbuseIconHyperLink" href="/AbuseReport/Group.aspx?ID=10&amp;RedirectUrl=http%3a%2f%2fwww.roblox.com%2fGroups%2fgroup.aspx%3fgid%3d10">
@@ -182,10 +182,18 @@ if (Server::isPost()) {
 			</div>
 		</div>
 		<div class="Column3b">
+            <div style="overflow:visible; padding: 10px 5px 10px 5px; width: 176px; float: left" class="StandardBox">
+                <div style="text-align:center">
+                    <img src="/images/groups.png">
+                    <a href="/My/CreateGroup.aspx" style="font-size:12px">Create a group</a>
+                </div>
+            </div>
 			<div id="GroupRoleSetsMembersPane">
 				<div id="ctl00_cphRoblox_rbxGroupRoleSetMembersPane_GroupMembersUpdatePanel">
 					<div id="ctl00_cphRoblox_rbxGroupRoleSetMembersPane_RolesetHeader" class="StandardBoxHeader" style="float: left; text-align: center; font-size: 14px; vertical-align: middle">Members (<?=count($group->members())?>) <br>
-						<span style="font-size: 12px; color: black">Rank: <b>1</b>
+						<?php if ($group->isInGroup($userId)): ?>
+                        <span style="font-size: 12px; color: black">Rank: <b><?=$group->getRank($userId)?></b>
+                        <?php endif; ?>
 						</span>
 					</div>
 					<div style="overflow:visible; padding: 10px 5px 10px 5px; width: 176px; float: left" class="StandardBox">
@@ -201,8 +209,8 @@ if (Server::isPost()) {
                             <?php endif; ?>
 								<div class="GroupMember" style="float: right; text-align: center; width:  33%">
 									<div class="Avatar">
-										<a id="ctl00_cphRoblox_rbxGroupRoleSetMembersPane_dlUsers_ctrl0_ctl01_hlAvatar" title="snowsnakeeyes" href="/User.aspx?ID=<?=$memberUser->getUserId()?>" style="display:inline-block;cursor:pointer;">
-											<img src="<?=$avatar->GetThumbnail(48,48,"JPG")?>" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="snowsnakeeyes">
+										<a id="ctl00_cphRoblox_rbxGroupRoleSetMembersPane_dlUsers_ctrl0_ctl01_hlAvatar" title="<?=$memberUser->getUsername()?>" href="/User.aspx?ID=<?=$memberUser->getUserId()?>" style="display:inline-block;cursor:pointer;">
+											<img src="<?=$avatar->GetThumbnail(48,48,"JPG")?>" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="<?=$memberUser->getUsername()?>">
 										</a>
 									</div>
 									<div class="Summary">
@@ -210,7 +218,7 @@ if (Server::isPost()) {
 											<img id="ctl00_cphRoblox_rbxGroupRoleSetMembersPane_dlUsers_ctrl0_ctl01_iOnlineStatus" src="/images/<?=$status?>.png" alt="<?=$memberUser->getUsername()?> is <?=$location?>)." border="0">
 										</span>
 										<span class="Name">
-											<a id="ctl00_cphRoblox_rbxGroupRoleSetMembersPane_dlUsers_ctrl0_ctl01_hlMember" title="snowsnakeeyes" href="/User.aspx?ID=<?=$memberUser->getUserId()?>"><?=mb_strimwidth($memberUser->getUsername(), 0, 7, "...")?></a>
+											<a id="ctl00_cphRoblox_rbxGroupRoleSetMembersPane_dlUsers_ctrl0_ctl01_hlMember" title="<?=$memberUser->getUsername()?>" href="/User.aspx?ID=<?=$memberUser->getUserId()?>"><?=mb_strimwidth($memberUser->getUsername(), 0, 7, "...")?></a>
 										</span>
 									</div>
 								</div>

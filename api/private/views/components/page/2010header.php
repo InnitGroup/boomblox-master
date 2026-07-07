@@ -45,9 +45,12 @@ if (Server::isPost()) {
 										<a id="ctl00_BannerOptionsLoginView_BannerOptions_Authenticated_lsLoginStatus" href="javascript:__doPostBack('ctl00$BannerOptionsLoginView$BannerOptions_Authenticated$lsLoginStatus$ctl00','')">Logout</a>
 									</span>
 								</div>
+								 <div id="Settings">
+                                    <span id="ctl00_lSettings">Age: 13+, Chat Mode: Safe</span>
+                                </div>
 							</div>
 							<a id="Logo" href="/Default.aspx" style="cursor: pointer; border: none;">
-								<img src="/images/<?=Site::getThemeProperty("logo", $theme)?>?t=<?=time()?>" border="0" alt="<?=Site::getThemeProperty("name",$theme);?>" blankurl="http://t2.<?=domain?>/blank-267x70.gif" style="">
+								<img src="/images/RobloxLogo2.png?t=<?=time()?>" border="0" alt="<?=Site::getThemeProperty("name",$theme);?>" blankurl="http://t2.<?=domain?>/blank-267x70.gif" style="">
 							</a>
 							<div id="Alerts">
 								<table style="width:100%;height:100%">

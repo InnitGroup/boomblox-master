@@ -204,6 +204,15 @@ class Group {
         return $roleset["Rank"];
     }
 
+    public function setRoleset(int $userId, int $rolesetId) {
+        if (!$this->isInGroup($userId)) {
+            return;
+        }
+
+        $this->members[$userId]["Roleset"] = $rolesetId;
+        $this->updateMembers();
+    }
+
     public function getRoleset(int $userId): array {
         if (!$this->isInGroup($userId)) {
             return 0;
