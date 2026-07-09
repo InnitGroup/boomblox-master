@@ -4,7 +4,7 @@ local threadSleepTime = 15
 
 local test = false
 
-print("! Joining game '0' place 0 at 127.0.0.1")
+print("! Joining game '0' place 0 at 192.168.24.129")
 
 local waitingForCharacter = false
 
@@ -113,7 +113,7 @@ local success, err = pcall(function()
     client.ConnectionAccepted:connect(onConnectionAccepted)
     client.ConnectionRejected:connect(onConnectionRejected)
     connectionFailed = client.ConnectionFailed:connect(onConnectionFailed)
-    client:Connect("192.168.109.1", {Port}, 0, threadSleepTime)
+    client:Connect("127.0.0.1", {Port}, 0, threadSleepTime)
 end)
 
 if not success then

@@ -6,6 +6,6 @@ global $theme, $auth, $user;
 
 $page = new PageBuilder("Free Games at " . strtoupper(Site::getThemeProperty("url", $theme)), 6, "2010header");
 $page->buildHeader();
-PageBuilder::addComponent("groups", "newgroup");
+PageBuilder::addComponent("groups", "group");
 $page->buildFooter();
 ?>

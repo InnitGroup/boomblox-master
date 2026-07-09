@@ -592,6 +592,7 @@ a.BannerText:hover {
     background: #6E99C9;
 }
 
+/*
 .subMenu {
     background: #A3514F;
     background-repeat: repeat-x;
@@ -720,7 +721,7 @@ a.BannerText:hover {
     border: none;
     width: 148px;
     padding-top: 8px;
-}
+}*/
 
 .blueAndWhite {
     border: 2px solid #6e99c9;

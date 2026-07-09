@@ -1,4 +1,4 @@
-<div id="Body">
+
     <div id="MyRobloxContainer">
         <div id="GroupTitle" class="StandardBox" style="text-align: center; padding: 5px 0px 5px 0px">
 								<div style="height: 20px; margin-bottom: 3px">

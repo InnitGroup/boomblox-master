@@ -27,6 +27,48 @@ if (Server::isPost()) {
 		</script> <?php endif; ?> <?php if (isset($jsList)): foreach ($jsList as $js): ?> <script src="/ScriptResource.axd?d=
 							<?=base64_encode($js)?>">
 		</script> <?php endforeach; endif; ?>
+        <style>
+            .subMenu
+            {
+                background:url('/images/UI/subMenuBackground.jpg?v=2');
+                background-repeat:repeat-x;
+                color:White;
+                font-family:Arial, Helvetica, Sans-Serif; 
+                font-size:14px;
+                height:20px; 
+                position:relative; 
+                border-left: solid 1px black; 
+                border-right: solid 1px black; 
+                border-bottom:solid 1px black;
+                padding-left:5px;
+                padding-top:5px;
+                margin-bottom:10px;
+                z-index:999;
+            }
+            a.subMenuItem
+            {
+                font-family:Arial, Helvetica, Sans-Serif; 
+                font-size:14px; 
+                color:White;
+            }
+            a.subMenuItem:link
+            {
+                font-family:Arial, Helvetica, Sans-Serif; 
+                font-size:14px; 
+                color:White;
+            }
+            a.subMenuItem:visited
+            {
+                font-family:Arial, Helvetica, Sans-Serif; 
+                font-size:14px; 
+                color:White;
+            }
+            .subMenuItem.selected
+            {
+                font-weight:bold;
+                text-decoration:underline;
+            }
+        </style>
 	</head>
 	<body>
 		<form name="aspnetForm" method="post" id="aspnetForm" <?=isset($enc) ? "enctype='".$enc."'" : ""?>>
@@ -130,66 +172,7 @@ if (Server::isPost()) {
                         <?php endif; ?>
                     </div>
 					<div id="Body">
-						<div id="ctl00_ctl00_cphRoblox_subMenu" class="subMenu"> 
-        <ul> 
-            <li><a class="subMenuItemselected"
-
-                href="/My/Home.aspx">Home</a></li> 
-            <li><a class=""
-
-                href="/My/Places.aspx">Places</a></li> 
-            <li><a class=""
-
-                href="/My/Inbox.aspx">Inbox</a></li> 
-            <li><a class=""
-
-                href="/My/Profile.aspx">Account</a></li> 
-            <li><a href="/User.aspx?submenu=true">Profile</a></li> 
-            <li><a class=""
-
-                href="/My/EditFriends.aspx">Friends</a></li> 
-            <li><a class=""
-
-                href="/My/Character.aspx">Character</a></li> 
-            <li><a class=""
-
-                href="/My/Stuff.aspx">Stuff</a></li> 
-            <li><a class=""
-
-                href="/My/Groups.aspx">Groups</a></li> 
-            <li><a class=""
-
-                href="/My/AccountBalance.aspx">Money</a></li> 
-            <li><a class=""
-
-                href="/My/AdInventory.aspx">Advertising</a></li> 
-            <li><a class=""
-
-                href="/My/LinkInventory.aspx">Ambassadors</a></li> 
-            <li><!--[if IE 6]><span id="IE6mouseoverfix" onmouseover="$('#IE6Table').css('display', 'block');" onmouseout="$('#IE6Table').css('display', 'none');"><![endif]--> 
-            <a style="border: none;" class=""
-
-                href="/My/InviteAFriend.aspx">Share Roblox</a> 
-                <ul> 
-                    <li><a href="/My/Share/PleaseUpgradeMe.aspx">Please Upgrade Me</a></li> 
-                    <li><a href="/My/InviteAFriend.aspx">Invite A Friend</a></li> 
-                    <li id="ctl00_ctl00_cphRoblox_ref1"><a href="/My/Share/ReferralLeaderboards.aspx">Referral Leaderboards</a></li> 
-                </ul> 
-                <!--[if IE 6]>
-                    <table id="IE6Table">
-                        <tr>
-                            <td><a href="/My/Share/PleaseUpgradeMe.aspx">Please Upgrade Me</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="/My/InviteAFriend.aspx">Invite A Friend</a></td>
-                        </tr>
-                        <tr id="ctl00_ctl00_cphRoblox_ref3">
-	<td><a href="/My/Share/ReferralLeaderboards.aspx">Referral Leaderboards</a></td>
-</tr>
- 
-                    </table>
-                <![endif]--> 
-                <!--[if IE 6]></span><![endif]--> 
-            </li> 
-        </ul> 
-    </div> 
+                        <div id="ctl00_ctl00_cphRoblox_subMenu" class="subMenu">
+                            <a class="subMenuItem selected" href="/Browse.aspx">Users</a> | 
+                            <a class="subMenuItem" href="/Groups/Search.aspx">Groups</a>
+                        </div>
