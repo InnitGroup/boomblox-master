@@ -96,7 +96,7 @@ if (Server::isPost()) {
                                     </a>
                                 </div>
                                 <?php if ($theme == 3 && $user->getBoombux() > 0 || $theme !== 3): ?>
-                                <div id="Alerts" style="position:relative;bottom:1px;">
+                                <div id="Alerts">
                                     <table style="width:100%;height:100%">
                                         <tbody><tr>
                                             <td valign="middle">

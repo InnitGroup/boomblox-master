@@ -91,7 +91,12 @@ $october2009 = false;
 			</div>
 			<br style="clear:both;">
 			<div id="ctl00_cphRoblox_GroupWallPane_Wall">
-				<div class="StandardBoxHeader">Wall</div>
+				<div class="StandardBoxHeader">Wall
+					<div style="background-color:#A9A09B;margin-top:5px;padding:10px">
+						<input type="submit" value="Post" name="ctl00$GroupWall$Post" class="GroupWallPostButton" style="background-color:#EE9004;border-radius:20px;font-size:16px;position:relative;top:4px">
+						<textarea name="ctl00$GroupWall$Text" cols="48" rows="4" style="overflow-y:scroll;max-width:365px;"></textarea>
+					</div>
+				</div>
 				<div class="StandardBox">
 					<table class="Repeater" cellpadding="0" cellspacing="0">
 						<tbody>
