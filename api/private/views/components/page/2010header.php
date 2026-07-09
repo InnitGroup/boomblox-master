@@ -37,119 +37,159 @@ if (Server::isPost()) {
 			<div id="MasterContainer">
 				<div id="Container"> <?=Ad::generateAd("728x90")?> 
                     <div id="Header">
-						<div id="Banner">
-							<div id="Options">
-								<div id="Authentication">
-									<span>
-										<span id="ctl00_BannerOptionsLoginView_BannerOptions_Authenticated_lnLoginName">Logged in as <?=$user->getUsername()?> | </span>
-										<a id="ctl00_BannerOptionsLoginView_BannerOptions_Authenticated_lsLoginStatus" href="javascript:__doPostBack('ctl00$BannerOptionsLoginView$BannerOptions_Authenticated$lsLoginStatus$ctl00','')">Logout</a>
-									</span>
-								</div>
-								 <div id="Settings">
+                        <div id="Banner">
+                            <div id="Options">
+                                <div id="Authentication">
+                                    <span>
+                                        Logged in as <?=$user->getData("user","username");?> | <a id="ctl00_lsLoginStatus" href="javascript:__doPostBack('LoginStatus','')">Logout</a>
+                                    </span>
+                                </div>
+                                <div id="Settings">
                                     <span id="ctl00_lSettings">Age: 13+, Chat Mode: Safe</span>
                                 </div>
-							</div>
-							<a id="Logo" href="/Default.aspx" style="cursor: pointer; border: none;">
-								<img src="/images/RobloxLogo2.png?t=<?=time()?>" border="0" alt="<?=Site::getThemeProperty("name",$theme);?>" blankurl="http://t2.<?=domain?>/blank-267x70.gif" style="">
-							</a>
-							<div id="Alerts">
-								<table style="width:100%;height:100%">
-									<tr>
-										<td valign="middle">
-											<div id="ctl00_BannerAlertsLoginView_BannerAlerts_Authenticated_rbxBannerAlert_rbxAlerts_AlertSpacePanel">
-												<div class="AlertSpace">
-													<div class="MessageAlert">
-														<div class="icons message_icon"></div>
-														<a id="ctl00_BannerAlertsLoginView_BannerAlerts_Authenticated_rbxBannerAlert_rbxAlerts_MessageAlertCaptionHyperLink" class="MessageAlertCaption" href="../My/Inbox.aspx"><?=number_format($user->getMessageCount())?> new messages</a>
-													</div>
-													<div class="FriendsAlert">
-														<div class="icons friends_icon"></div>
-														<a id="ctl00_BannerAlertsLoginView_BannerAlerts_Authenticated_rbxBannerAlert_rbxAlerts_FriendsAlertCaptionHyperLink" class="FriendsAlertCaption" href="../User.aspx?submenu=true#friendreqs">0 friend requests</a>
-													</div>
-													<div class="RobuxAlert">
-														<div class="icons robux_icon"></div>
-														<a id="ctl00_BannerAlertsLoginView_BannerAlerts_Authenticated_rbxBannerAlert_rbxAlerts_RobuxAlertCaptionHyperLink" class="RobuxAlertCaption" href="../My/AccountBalance.aspx"><?=number_format($user->getBoombux())?> ROBUX</a>
-													</div>
-													<div class="TicketsAlert">
-														<div class="icons tickets_icon"></div>
-														<a id="ctl00_BannerAlertsLoginView_BannerAlerts_Authenticated_rbxBannerAlert_rbxAlerts_TicketsAlertCaptionHyperLink" class="TicketsAlertCaption" href="../My/AccountBalance.aspx"><?=number_format($user->getTickets())?> Tickets</a>
-													</div>
-												</div>
-											</div>
-										</td>
-									</tr>
-								</table>
-							</div>
-						</div>
-						<div class="Navigation">
-							<ul id="ctl00_Menu_MenuUL">
-								<li>
-									<a id="ctl00_Menu_hlMyRobloxLink_hlMyRoblox" href="../My/Home.aspx" style="">My ROBLOX</a>
-								</li>
-								<li>
-									<a id="hlGames" href="/Games.aspx" style="" title="Games">Games</a>
-									<!--
-								<ul><li><div class="dropdownmainnav"><div style="float: left; width: 50%; text-align: left;"><img src="/images/GenreIconsInverted/Classic.png" /><a href='/all-games'
-															title="All" style="padding: 0; margin: 0 2px 0 0; border: none; font-size: 15px;">
-															All</a></div><div style="float: left; width: 50%; text-align: left;"><img src="/images/GenreIconsInverted/City.png" /><a href='/town-and-city-games'
-															title="Town and City" style="padding: 0; margin: 0 2px 0 0; border: none; font-size: 15px;">
-															Town and City</a></div><div style="float: left; width: 50%; text-align: left;"><img src="/images/GenreIconsInverted/Castle.png" /><a href='/medieval-games'
-															title="Medieval" style="padding: 0; margin: 0 2px 0 0; border: none; font-size: 15px;">
-															Medieval</a></div><div style="float: left; width: 50%; text-align: left;"><img src="/images/GenreIconsInverted/SciFi.png" /><a href='/sci-fi-games'
-															title="Sci-Fi" style="padding: 0; margin: 0 2px 0 0; border: none; font-size: 15px;">
-															Sci-Fi</a></div><div style="float: left; width: 50%; text-align: left;"><img src="/images/GenreIconsInverted/Ninja.png" /><a href='/ninja-games'
-															title="Ninja" style="padding: 0; margin: 0 2px 0 0; border: none; font-size: 15px;">
-															Ninja</a></div><div style="float: left; width: 50%; text-align: left;"><img src="/images/GenreIconsInverted/Cthulu.png" /><a href='/scary-games'
-															title="Horror" style="padding: 0; margin: 0 2px 0 0; border: none; font-size: 15px;">
-															Horror</a></div><div style="float: left; width: 50%; text-align: left;"><img src="/images/GenreIconsInverted/Pirate.png" /><a href='/pirate-games'
-															title="Pirate" style="padding: 0; margin: 0 2px 0 0; border: none; font-size: 15px;">
-															Pirate</a></div><div style="float: left; width: 50%; text-align: left;"><img src="/images/GenreIconsInverted/Adventure.png" /><a href='/adventure-games'
-															title="Adventure" style="padding: 0; margin: 0 2px 0 0; border: none; font-size: 15px;">
-															Adventure</a></div><div style="float: left; width: 50%; text-align: left;"><img src="/images/GenreIconsInverted/Sports.png" /><a href='/sports-games'
-															title="Sports" style="padding: 0; margin: 0 2px 0 0; border: none; font-size: 15px;">
-															Sports</a></div><div style="float: left; width: 50%; text-align: left;"><img src="/images/GenreIconsInverted/LOL.png" /><a href='/funny-games'
-															title="LOL" style="padding: 0; margin: 0 2px 0 0; border: none; font-size: 15px;">
-															LOL</a></div><div style="float: left; width: 50%; text-align: left;"><img src="/images/GenreIconsInverted/WildWest.png" /><a href='/wild-west-cowboy-games'
-															title="Wild West" style="padding: 0; margin: 0 2px 0 0; border: none; font-size: 15px;">
-															Wild West</a></div><div style="float: left; width: 50%; text-align: left;"><img src="/images/GenreIconsInverted/ModernMilitary.png" /><a href='/war-games'
-															title="Modern Military" style="padding: 0; margin: 0 2px 0 0; border: none; font-size: 15px;">
-															Modern Military</a></div><div style="float: left; width: 50%; text-align: left;"><img src="/images/GenreIconsInverted/Skatepark.png" /><a href='/skatepark-games'
-															title="Skate Park" style="padding: 0; margin: 0 2px 0 0; border: none; font-size: 15px;">
-															Skate Park</a></div></div></li></ul>
-								!-->
-								</li>
-								<li>
-									<a id="hlCatalog" href="/Catalog.aspx" style="" title="Catalog">Catalog</a>
-								</li>
-								<li>
-									<a id="hlBrowse" href="/Browse.aspx" style="" title="People">People</a>
-								</li>
-								<li>
-									<a id="hlBuildersClub" href="/Upgrades/BuildersClub.aspx" style="" title="Builders Club">Builders Club</a>
-								</li>
-								<li id="ctl00_Menu_ContestsMenuTab">
-									<a id="hlContests" href="/Contests/" style="" title="Contests">Contests</a>
-								</li>
-								<li>
-									<a id="hlForum" onclick="" href="/Forum/Default.aspx" style="font-weight: bold; " title="Forum">Forum</a>
-								</li>
-								<li>
-									<a id="hlNews" href="http://blog.roblox.com/" target="_blank" title="News">News</a>
-									<a id="hlNewsFeed" href="http://blog.roblox.com/?feed=rss" title="RSS" class="icons rss_icon" style="padding: 0; margin: 0 2px 0 0; border: none;"></a>
-								</li>
-								<li>
-									<a id="hlParents" href="/Parents.aspx" style="" title="Parents">Parents</a>
-								</li>
-								<li>
-									<a id="hlHelp" href="/Help/Builderman.aspx" style="" title="Help">Help</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-					<div id="ctl00_Announcement">
-						<div class="SystemAlert">
-							<div id="ctl00_SystemAlertTextColor" class="SystemAlertText" style="background-color:orange;">
-								<div class="Exclamation"></div>
-								<div id="ctl00_LabelAnnouncement">Are you an experienced Robloxian? Come try out the game on gametest.roblox.com</div>
-							</div>
-						</div>
+                                    </div>
+                                <div id="Logo">
+                                    <a id="ctl00_rbxImage_Logo" title="<?=Site::getThemeProperty("name",$theme);?>" href="/" style="display:inline-block;cursor:pointer;position:relative;top:4px">
+                                        <img src="/images/RobloxLogo2.png" border="0" alt="<?=Site::getThemeProperty("name",$theme);?>" blankurl="http://t2.<?=domain?>/blank-267x70.gif" style="">
+                                    </a>
+                                </div>
+                                <?php if ($theme == 3 && $user->getBoombux() > 0 || $theme !== 3): ?>
+                                <div id="Alerts" style="position:relative;bottom:1px;">
+                                    <table style="width:100%;height:100%">
+                                        <tbody><tr>
+                                            <td valign="middle">
+                                                <div id="AlertSpace">
+                                                    <?php $messages = $user->getMessageCount(); if ($messages > 0): ?>
+                                                        <div id="MessageAlert">
+                                                                <a class="MessageAlertIcon" href="/My/Inbox.aspx">
+                                                                    <img src="/images/Message.gif" style="border-width:0px;">
+                                                                </a>
+                                                                <a class="MessageAlertCaption" href="/My/Inbox.aspx"><?=$messages?> new <?=$messages !== 1 ? "messages" : "message"?></a>
+                                                            </div>
+                                                    <?php endif; if ($user->getData("user","boombux") > 0): ?>
+                                                        <div id="RobuxAlert">
+                                                            <a class="RobuxAlertIcon" href="/My/AccountBalance.aspx">
+                                                                <img src="/images/<?=Site::getThemeProperty("currencyIcon",$theme)?>.png" style="border-width:0px;">
+                                                            </a>
+                                                            <a class="RobuxAlertCaption" href="/My/AccountBalance.aspx"><?=number_format($user->getData("user","boombux"))?> <?=Site::getThemeProperty("currency",$theme)?></a>    
+                                                        </div>  
+                                                    <?php endif; if ($user->getData("user","tix") > 0 && $theme !== 3): ?>
+                                                        <div id="TicketsAlert">
+                                                            <a class="TicketsAlertIcon" href="/My/AccountBalance.aspx">
+                                                                <img src="/images/Tickets.png" style="border-width:0px;">
+                                                            </a>
+                                                            <a class="TicketsAlertCaption" href="/My/AccountBalance.aspx"><?=number_format($user->getData("user","tix"))?> Tickets</a>
+                                                        </div>
+                                                    <?php endif; ?>     
+                                                </div>                    			                
+                                            </td>
+                                        </tr>
+                                    </tbody></table>
+                                </div>
+                                <?php endif; ?>
+                            </div>
+                        <div class="Navigation">
+                            <span>
+                                <a class="MenuItem" href="/User.aspx">My <?=Site::getThemeProperty("alias",$theme);?></a>
+                            </span>
+                            <span class="Separator">&nbsp;|&nbsp;</span>
+                            <span>
+                                <a class="MenuItem" href="/Games.aspx">Games</a>
+                            </span>
+                            <span class="Separator">&nbsp;|&nbsp;</span>
+                            <span>
+                                <a class="MenuItem" href="/Catalog.aspx">Catalog</a>
+                            </span>
+                            <span class="Separator">&nbsp;|&nbsp;</span>
+                            <span>
+                                <a class="MenuItem" href="/Browse.aspx">People</a>
+                            </span>
+                            <span class="Separator">&nbsp;|&nbsp;</span>
+                            <span>
+                                <a class="MenuItem" href="/Upgrades/BuildersClub.aspx"><?=Site::getThemeProperty("membership",$theme);?></a>
+                            </span>
+                            <span class="Separator">&nbsp;|&nbsp;</span>
+                            <span>
+                                <a class="MenuItem" href="/Forum/Default.aspx">Forum</a>
+                            </span>
+                            <span class="Separator">&nbsp;|&nbsp;</span>
+                            <span>
+                                <a class="MenuItem" href="https://boombloxjournal.tumblr.com/" target="_blank">News</a>&nbsp;<a id="ctl00_hlNewsFeed" href="https://boombloxjournal.tumblr.com/"><img src="/images/feed-icons/feed-icon-14x14.png" alt="RSS" border="0"></a>
+                            </span>
+                            <span class="Separator">&nbsp;|&nbsp;</span>
+                            <span>
+                                <a class="MenuItem" href="/Parents.aspx">Parents</a>
+                            </span>
+                            <span class="Separator">&nbsp;|&nbsp;</span>
+                            <span>
+                                <a class="MenuItem" href="https://uboomblox.miraheze.org/wiki/Main_Page" target="_blank">Help</a>
+                            </span>
+                        </div>
+                        <?php if (Setting::enabled("SystemAlert")): ?>
+                        <div style="text-align:center;background-color:#E7BACF;color:black;font-size:14px;position:relative;font-family:'Comic Sans MS', 'Comic Sans', cursive;"><?=htmlspecialchars(Helper::debugString(Site::currentShout()))?></div>
+                        <?php endif; ?>
+                    </div>
+					<div id="Body">
+						<div id="ctl00_ctl00_cphRoblox_subMenu" class="subMenu"> 
+        <ul> 
+            <li><a class="subMenuItemselected"
+
+                href="/My/Home.aspx">Home</a></li> 
+            <li><a class=""
+
+                href="/My/Places.aspx">Places</a></li> 
+            <li><a class=""
+
+                href="/My/Inbox.aspx">Inbox</a></li> 
+            <li><a class=""
+
+                href="/My/Profile.aspx">Account</a></li> 
+            <li><a href="/User.aspx?submenu=true">Profile</a></li> 
+            <li><a class=""
+
+                href="/My/EditFriends.aspx">Friends</a></li> 
+            <li><a class=""
+
+                href="/My/Character.aspx">Character</a></li> 
+            <li><a class=""
+
+                href="/My/Stuff.aspx">Stuff</a></li> 
+            <li><a class=""
+
+                href="/My/Groups.aspx">Groups</a></li> 
+            <li><a class=""
+
+                href="/My/AccountBalance.aspx">Money</a></li> 
+            <li><a class=""
+
+                href="/My/AdInventory.aspx">Advertising</a></li> 
+            <li><a class=""
+
+                href="/My/LinkInventory.aspx">Ambassadors</a></li> 
+            <li><!--[if IE 6]><span id="IE6mouseoverfix" onmouseover="$('#IE6Table').css('display', 'block');" onmouseout="$('#IE6Table').css('display', 'none');"><![endif]--> 
+            <a style="border: none;" class=""
+
+                href="/My/InviteAFriend.aspx">Share Roblox</a> 
+                <ul> 
+                    <li><a href="/My/Share/PleaseUpgradeMe.aspx">Please Upgrade Me</a></li> 
+                    <li><a href="/My/InviteAFriend.aspx">Invite A Friend</a></li> 
+                    <li id="ctl00_ctl00_cphRoblox_ref1"><a href="/My/Share/ReferralLeaderboards.aspx">Referral Leaderboards</a></li> 
+                </ul> 
+                <!--[if IE 6]>
+                    <table id="IE6Table">
+                        <tr>
+                            <td><a href="/My/Share/PleaseUpgradeMe.aspx">Please Upgrade Me</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="/My/InviteAFriend.aspx">Invite A Friend</a></td>
+                        </tr>
+                        <tr id="ctl00_ctl00_cphRoblox_ref3">
+	<td><a href="/My/Share/ReferralLeaderboards.aspx">Referral Leaderboards</a></td>
+</tr>
+ 
+                    </table>
+                <![endif]--> 
+                <!--[if IE 6]></span><![endif]--> 
+            </li> 
+        </ul> 
+    </div> 

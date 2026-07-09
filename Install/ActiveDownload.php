@@ -20,7 +20,7 @@ if (isset($_GET["Special"])) {
                 Server::_404();
             }
 
-            $file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/039E.exe";
+            $file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/040testing.zip";
             break;
     }
 }
