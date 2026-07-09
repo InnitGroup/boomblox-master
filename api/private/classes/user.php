@@ -123,6 +123,17 @@ class User {
         return $result;
     }
 
+    public function timeSinceLastWallPost() {
+        global $db;
+        $stmt = "SELECT `date` FROM wall WHERE userId=:userId ORDER BY id DESC";
+        $result = $db->execute($stmt, [":userId" => $this->getUserId()]);
+        if ($result->rowCount() == 0) return 500;
+
+        $fetched = $result->fetch(PDO::FETCH_ASSOC);
+        $lastPostTime = new DateTime($fetched["date"]);
+        return max(0, time() - $lastPostTime->getTimestamp());
+    }
+
     public function timeSinceLastAsset() {
         $result = $this->lastAsset();
         

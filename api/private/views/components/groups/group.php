@@ -3,14 +3,6 @@ global $user;
 $userId = $user->getUserId();
 $group = new Group($_GET["gid"]);
 
-if (Server::isPost()) {
-    if (isset($_POST['ctl00$cphRoblox$JoinGroup'])) {
-        $group->addMember($user->getUserId());
-    } elseif (isset($_POST['ctl00$cphRoblox$LeaveGroup'])) {
-        $group->kickMember($user->getUserId());
-    }
-}
-
 $october2009 = false;
 ?>
 
@@ -40,16 +32,6 @@ $october2009 = false;
             <div style="overflow:visible; padding: 10px 5px 10px 5px; width: 176px; float: left" class="StandardBox">
                 <div style="text-align:center;font-size: 18px;"><u>My Rank</u></div>
                 <div style="text-align:center;font-size: 24px;color:<?=$group->getRoleset($userId)["Name"] == "Owner" ? "brown" : "#00FF00"?>;"><?=$group->getRoleset($userId)["Name"]?></div>
-                <div id="ctl00_cphRoblox_AbuseReportButton_AbuseReportPanel" class="ReportAbusePanel">
-                    <span class="AbuseIcon">
-                        <a id="ctl00_cphRoblox_AbuseReportButton_ReportAbuseIconHyperLink" href="/AbuseReport/Group.aspx?ID=10&amp;RedirectUrl=http%3a%2f%2fwww.roblox.com%2fGroups%2fgroup.aspx%3fgid%3d10">
-                            <img src="/images/abuse.PNG?v=2" alt="Report Abuse" border="0">
-                        </a>
-                    </span>
-                    <span class="AbuseButton">
-                        <a id="ctl00_cphRoblox_AbuseReportButton_ReportAbuseTextHyperLink" href="/AbuseReport/Group.aspx?ID=10&amp;RedirectUrl=http%3a%2f%2fwww.roblox.com%2fGroups%2fgroup.aspx%3fgid%3d10">Report Abuse</a>
-                    </span>
-                </div>
             </div>
             <?php endif; ?>
 
@@ -94,29 +76,42 @@ $october2009 = false;
 				<div class="StandardBoxHeader">Wall
 					<div style="background-color:#A9A09B;margin-top:5px;padding:10px">
 						<input type="submit" value="Post" name="ctl00$GroupWall$Post" class="GroupWallPostButton" style="background-color:#EE9004;border-radius:20px;font-size:16px;position:relative;top:4px">
-						<textarea name="ctl00$GroupWall$Text" cols="48" rows="4" style="overflow-y:scroll;max-width:365px;"></textarea>
+						<textarea name="ctl00$GroupWall$Text" cols="48" rows="4" style="overflow-y:scroll;max-width:365px;" maxlength="500"></textarea>
 					</div>
 				</div>
 				<div class="StandardBox">
 					<table class="Repeater" cellpadding="0" cellspacing="0">
 						<tbody>
-							<tr class="AlternatingItemTemplateOdd">
+							<?php
+							global $db;
+							$posts = $group->getPostsRawResult(10);
+
+							if ($posts->rowCount() > 0):
+
+							$count = 1; 
+							while ($row = $posts->fetch(PDO::FETCH_ASSOC)): 
+
+							$username = $db->getUserById($row["userId"]);
+							$avatar = new Avatar($row["userId"]);
+							$date = new DateTime($row["date"]);
+							?>
+							<tr class="AlternatingItemTemplate<?=$count % 2 == 0 ? "Even" : "Odd"?>">
 								<td class="RepeaterImage" style="width: 50px">
-									<a id="ctl00_cphRoblox_GroupWallPane_GroupWall_ctl01_hlAvatar" title="marsoc" href="/User.aspx?ID=3" style="display:inline-block;cursor:pointer;">
-										<img src="https://t2.xoblog.dev/2d72f10b5266a0ee1c4e4863d141036c?v=1" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="marsoc">
+									<a id="ctl00_cphRoblox_GroupWallPane_GroupWall_ctl01_hlAvatar" title="marsoc" href="/User.aspx?ID=<?=$userId?>" style="display:inline-block;cursor:pointer;">
+										<img src="<?=$avatar->GetThumbnail(48,48,"JPG")?>" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="<?=$username?>">
 									</a>
 								</td>
 								<td class="RepeaterText">
-									<div style="overflow:hidden; width: 456px">
-										<a href="/User.aspx?ID=3"> marsoc </a> says: <b>
-											<i>hi test</i>
+									<div style="overflow:hidden; width: 390px">
+										<a href="/User.aspx?ID=<?=$userId?>"> <?=$username?> </a> says: <b>
+											<i><?=htmlspecialchars($row["content"])?></i>
 										</b>
 										<br>
 										<br>
 									</div>
 									<div>
 										<div style="float: left; width: 30%">
-											<span style="color: Gray; font-size: 8px">7/23/2010 2:08:48 AM</span>
+											<span style="color: Gray; font-size: 8px"><?=$date->format("n/j/Y h:i:s A")?></span>
 										</div>
 										<div style="float: left">
 											<div id="ctl00_cphRoblox_GroupWallPane_GroupWall_ctl01_AbuseReportButton_AbuseReportPanel" class="ReportAbusePanel">
@@ -136,42 +131,9 @@ $october2009 = false;
 									<div></div>
 								</td>
 							</tr>
-							<tr class="AlternatingItemTemplateEven">
-								<td class="RepeaterImage" style="width: 50px">
-									<a id="ctl00_cphRoblox_GroupWallPane_GroupWall_ctl02_hlAvatar" title="marsoc" href="/User.aspx?ID=3" style="display:inline-block;cursor:pointer;">
-										<img src="https://t2.xoblog.dev/2d72f10b5266a0ee1c4e4863d141036c?v=1" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="marsoc">
-									</a>
-								</td>
-								<td class="RepeaterText">
-									<div style="overflow:hidden; width: 456px">
-										<a href="/User.aspx?ID=3"> marsoc </a> says: <b>
-											<i>first post haha</i>
-										</b>
-										<br>
-										<br>
-									</div>
-									<div>
-										<div style="float: left; width: 30%">
-											<span style="color: Gray; font-size: 8px">7/22/2010 7:36:39 PM</span>
-										</div>
-										<div style="float: left">
-											<div id="ctl00_cphRoblox_GroupWallPane_GroupWall_ctl02_AbuseReportButton_AbuseReportPanel" class="ReportAbusePanel">
-												<span class="AbuseIcon">
-													<a id="ctl00_cphRoblox_GroupWallPane_GroupWall_ctl02_AbuseReportButton_ReportAbuseIconHyperLink" href="/AbuseReport/GroupWallPost.aspx?ID=8720094&amp;RedirectUrl=http%3a%2f%2fwww.roblox.com%2fGroups%2fgroup.aspx%3fgid%3d10">
-														<img src="/images/abuse.PNG?v=2" alt="Report Abuse" border="0">
-													</a>
-												</span>
-												<span class="AbuseButton">
-													<a id="ctl00_cphRoblox_GroupWallPane_GroupWall_ctl02_AbuseReportButton_ReportAbuseTextHyperLink" href="/AbuseReport/GroupWallPost.aspx?ID=8720094&amp;RedirectUrl=http%3a%2f%2fwww.roblox.com%2fGroups%2fgroup.aspx%3fgid%3d10">Report Abuse</a>
-												</span>
-											</div>
-											<br>
-										</div>
-									</div>
-									<br style="clear: both">
-									<div></div>
-								</td>
-							</tr>
+							<?php $count++; endwhile; else: ?>
+								<center>No posts yet.</center>
+							<?php endif; ?>
 							<tr>
 								<td colspan="2">
 									<hr>

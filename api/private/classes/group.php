@@ -154,8 +154,50 @@ class Group {
         ]);
     }
 
+    # WALL
+    public function addPost(string $content, int $special = 0) {
+        global $db, $user;
+
+        if ($user->timeSinceLastWallPost() < 5) return;
+        if (strlen($content) > 500) return;
+        $content = Helper::debugString($content);
+        
+        $stmt = "INSERT INTO wall (`gid`, `date`, `content`, `userId`) VALUES (:gid, :date, :content, :userId)";
+
+        return $db->execute($stmt, [
+            ":gid" => $this->id(),
+            ":date" => date("Y-m-d H:i:s"),
+            ":content" => $content,
+            ":userId" => $user->getUserId()
+        ]);
+    }
+
+    public function getPostsRawResult(int $limit = 0, int $offset = 0) {
+        global $db;
+
+        $stmt = "SELECT * FROM wall WHERE gid=:gid ORDER BY id DESC";
+        if ($limit > 0) {
+            $stmt .= " LIMIT $limit OFFSET $offset";
+        }
+
+        $result = $db->execute($stmt, [":gid" => $this->id()]);
+        return $result;
+    }
+
+    public function getPosts(int $limit = 0, int $offset = 0): array {
+        global $db;
+
+        $stmt = "SELECT * FROM wall WHERE gid=:gid ORDER BY id DESC";
+        if ($limit > 0) {
+            $stmt .= " LIMIT $limit OFFSET $offset";
+        }
+
+        $result = $db->execute($stmt, [":gid" => $this->id()]);
+        return $result->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     # MEMBERS
-    public function updateMembers($members) {
+    public function updateMembers(array $members) {
         if (gettype($members) == "array") {
             $this->members = $members;
             $members = serialize($members);
