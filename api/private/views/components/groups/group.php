@@ -137,9 +137,7 @@ $october2009 = false;
 									<div></div>
 								</td>
 							</tr>
-							<?php $count++; endwhile; else: ?>
-								<center>No posts yet.</center>
-							<?php endif; ?>
+							<?php $count++; endwhile; ?>
 							<tr>
 								<td colspan="2">
 									<hr>
@@ -150,6 +148,10 @@ $october2009 = false;
 									<span id="ctl00_cphRoblox_GroupWallPane_GroupWall_ctl11_FooterPagerLabel">Page 1 of 1</span>
 								</td>
 							</tr>
+							<?php else: ?>
+								Nobody has said anything yet...
+							<?php endif; ?>
+							
 						</tbody>
 					</table>
 				</div>
