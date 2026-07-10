@@ -146,7 +146,7 @@ class User {
         $stmt = "SELECT `date` FROM messages WHERE senderId=:userId ORDER BY `messageId` DESC";
         $result = $db->execute($stmt, [":userId" => $this->getUserId()]);
         if ($result->rowCount() == 0) {
-            return 100;
+            return 500;
         }
 
         $date = $result->fetch(PDO::FETCH_ASSOC)["date"];

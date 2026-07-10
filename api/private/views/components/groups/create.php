@@ -19,20 +19,20 @@
                     
                     <div style="margin:2px">
                         <span>Group Entry:</span><br>
-                        <span><input type="radio" checked> Anyone can join</span><br>
-                        <span><input type="radio"> Manual Approval</span>
+                        <span><input name="ctl00$RobloxGroup$Settings$GroupEntry" value="1" type="radio" checked> Anyone can join</span><br>
+                        <span><input name="ctl00$RobloxGroup$Settings$GroupEntry" value="2" type="radio"> Manual Approval</span>
                     </div>
 
                     <div style="margin:2px">
                         <br><span>Public Wall View:</span><br>
-                        <span><input type="radio" checked> Anyone can see the wall</span><br>
-                        <span><input type="radio"> Only members can see the wall</span>
+                        <span><input name="ctl00$RobloxGroup$Settings$WallView" value="1" type="radio" checked> Anyone can see the wall</span><br>
+                        <span><input name="ctl00$RobloxGroup$Settings$WallView" value="2" type="radio"> Only members can see the wall</span>
                     </div>
 
                     <div style="margin:2px">
                         <br><span>Posting:</span><br>
-                        <span><input type="radio" checked> Every group member can post</span><br>
-                        <span><input type="radio"> Only Group Admins can post</span>
+                        <span><input name="ctl00$RobloxGroup$Settings$Posting" value="1" type="radio" checked> Every group member can post</span><br>
+                        <span><input name="ctl00$RobloxGroup$Settings$Posting" value="2" type="radio"> Only Group Admins can post</span>
                     </div>
                 </div>
             </div>

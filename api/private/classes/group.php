@@ -115,6 +115,15 @@ class Group {
         # 8 - Can view the group wall
         # 9 - Can change the ranks of lower-ranked members. New rank can only be as high as the performer's rank
 
+        $memberPermissions = [5, 7];
+        if ($wallView == 1) {
+            array_push($memberPermissions, 8);
+        }
+
+        if ($posting == 1) {
+            array_push($memberPermissions, 2);
+        }
+
         $rolesets = serialize([
             [
                 "Name" => "Owner",
@@ -132,7 +141,7 @@ class Group {
                 "Name" => "Member",
                 "Description" => "A regular group member.",
                 "Rank" => 1,
-                "Permissions" => [2, 5, 7, 8]
+                "Permissions" => $memberPermissions
             ],
             [
                 "Name" => "Guest",
@@ -148,7 +157,6 @@ class Group {
             ":gName" => $name,
             ":gDescription" => $description,
             ":creator" => $user->getUserId(),
-            ":privacy" => $privacy,
             ":members" => $members,
             ":rolesets" => $rolesets
         ]);
@@ -158,6 +166,7 @@ class Group {
     public function addPost(string $content, int $special = 0) {
         global $db, $user;
 
+        if (strlen(trim($content)) < 1) return;
         if ($user->timeSinceLastWallPost() < 5) return;
         if (strlen($content) > 500) return;
         $content = Helper::debugString($content);

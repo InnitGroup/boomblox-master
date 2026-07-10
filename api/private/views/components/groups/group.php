@@ -92,12 +92,13 @@ $october2009 = false;
 							while ($row = $posts->fetch(PDO::FETCH_ASSOC)): 
 
 							$username = $db->getUserById($row["userId"]);
+							$userId = $row["userId"];
 							$avatar = new Avatar($row["userId"]);
 							$date = new DateTime($row["date"]);
 							?>
 							<tr class="AlternatingItemTemplate<?=$count % 2 == 0 ? "Even" : "Odd"?>">
 								<td class="RepeaterImage" style="width: 50px">
-									<a id="ctl00_cphRoblox_GroupWallPane_GroupWall_ctl01_hlAvatar" title="marsoc" href="/User.aspx?ID=<?=$userId?>" style="display:inline-block;cursor:pointer;">
+									<a id="ctl00_cphRoblox_GroupWallPane_GroupWall_ctl01_hlAvatar" title="<?=$username?>" href="/User.aspx?ID=<?=$userId?>" style="display:inline-block;cursor:pointer;">
 										<img src="<?=$avatar->GetThumbnail(48,48,"JPG")?>" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="<?=$username?>">
 									</a>
 								</td>
