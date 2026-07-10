@@ -88,7 +88,7 @@ class Group {
         $this->description = $description;
     }
 
-
+    # STATIC
     public static function new(string $name, string $description, int $emblemId, int $privacy, int $wallView, int $posting) {
         global $db, $user;
         $stmt = "INSERT INTO groups 
@@ -160,6 +160,14 @@ class Group {
             ":members" => $members,
             ":rolesets" => $rolesets
         ]);
+    }
+
+    public static function exists(int $groupId): bool {
+        global $db;
+        $stmt = "SELECT id FROM groups WHERE id=:id";
+        $result = $db->execute($stmt, [":id" => $groupId]);
+
+        return $result->rowCount() > 0;
     }
 
     # WALL

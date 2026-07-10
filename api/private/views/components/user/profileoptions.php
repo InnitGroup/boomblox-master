@@ -53,7 +53,7 @@ if ($publicView): ?>
         <a href="/My/InviteAFriend.aspx">Share <?=Site::getThemeProperty("alias", $theme)?></a>
     </p>
     <p>
-        <a href="/My/InviteAFriend.aspx">Buy <?=Site::getThemeProperty("currency", $theme)?></a>
+        <a href="/Upgrades/Robux.aspx">Buy <?=Site::getThemeProperty("currency", $theme)?></a>
     </p>
     <p>
         <a href="/Marketplace/TradeCurrency.aspx">Trade Currency</a>

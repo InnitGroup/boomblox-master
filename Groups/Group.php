@@ -4,8 +4,11 @@ global $theme, $auth, $user;
 !$auth->isAuthed() && Server::_404();
 !$user->isTester() && Server::_404();
 
+$gid = (int)$_GET["gid"];
+!Group::exists($gid) && Server::_404();
+
 if (Server::isPost()) {
-    $gid = (int)$_GET["gid"];
+    
     $group = new Group($gid);
     if (isset($_POST['ctl00$cphRoblox$JoinGroup'])) {
         $group->addMember($user->getUserId());

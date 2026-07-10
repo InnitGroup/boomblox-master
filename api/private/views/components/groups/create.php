@@ -5,15 +5,16 @@
             <div style="text-align:left;margin:12px;display:block;height:500px">
                 <div style="float:left;">
                     <div>Name:</div>
-                    <div><br><input name="ctl00$RobloxGroup$Name" type="text" style="width:370px"></div>
+                    <div><br><input name="ctl00$RobloxGroup$Name" type="text" style="width:370px" maxlength="50"></div>
                     <div><br>Description:</div>
                     <div><br><textarea name="ctl00$RobloxGroup$Description" rows="15" cols="65"></textarea></div>
                     <div><br>Emblem:</div>
                     <div><br><input name="ctl00$RobloxGroup$Emblem" type="file"></div>
                     <div><br>Creating a group costs <span class="CreateNewGroupError">100 ROBUX</span>. By clicking Purchase, your account will be charged <span class="CreateNewGroupError">100 ROBUX</span>.</div>
-                    <div><br>Need more ROBUX? Buy some <a href="#">here</a>.</div>
-                    <div><br><input type="submit" value="Purchase">&nbsp;<input type="submit" value="Cancel"></div>
+                    <div><br>Need more ROBUX? Buy some <a href="/Upgrades/Robux.aspx">here</a>.</div>
+                    <div><br><input type="submit" name="ctl00$RobloxGroup$Purchase" value="Purchase">&nbsp;<input type="submit" name="ctl00$RobloxGroup$Cancel" value="Cancel"></div>
                 </div>
+
                 <div style="float:right;border:solid 2px black;padding:4px">
                     <h3>Settings:</h3>
                     

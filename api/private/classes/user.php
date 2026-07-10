@@ -134,6 +134,13 @@ class User {
         return max(0, time() - $lastPostTime->getTimestamp());
     }
 
+    public function ownedGroups() {
+        global $db;
+        $stmt = "SELECT id FROM groups WHERE creator=:id";
+        $result = $db->execute($stmt, [":id" => $this->getUserId()]);
+        return $result->rowCount();
+    }
+
     public function timeSinceLastAsset() {
         $result = $this->lastAsset();
         

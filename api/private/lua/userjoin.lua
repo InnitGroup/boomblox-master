@@ -4,7 +4,7 @@ local threadSleepTime = 15
 
 local test = false
 
-print("! Joining game '0' place 0 at 192.168.24.129")
+print("! Joining game '0' place 0 at localhost")
 
 local waitingForCharacter = false
 
