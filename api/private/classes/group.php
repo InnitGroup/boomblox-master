@@ -254,8 +254,22 @@ class Group {
     }
 
     public function hasOwner(): bool {
-        # Discord::sendWebhookMessage("vcchat", serialize($this->getMembersInRoleset(0)));
         return count($this->getMembersInRoleset(0)) == 1;
+    }
+
+    public function makeOwner(int $userId) {
+        if ($this->hasOwner()) return;
+        
+        $this->setRoleset($userId, 0);
+    }
+
+    public function owner(): User|null {
+        if (!$this->hasOwner()) return null;
+
+        $owners = $this->getMembersInRoleset(0);
+        #print_r(array_keys($owners));
+        #echo array_keys($owners);
+        return new User(array_key_first($owners));
     }
 
     public function getRank(int $userId): int {

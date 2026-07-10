@@ -55,7 +55,7 @@ $october2009 = false;
 					</div>
 					<div style="height: 100%">
 						<?php if ($group->hasOwner()): ?>
-						<p style="color: #A9A9A9;">Owned By: <a style="color: Purple; font-style: italic;" href="/user.aspx?id=<?=$group->creator()->getUserId()?>"><?=$group->creator()->getUsername()?></a></p>
+						<p style="color: #A9A9A9;">Owned By: <a style="color: Purple; font-style: italic;" href="/user.aspx?id=<?=$group->owner()->getUserId()?>"><?=$group->owner()->getUsername()?></a></p>
 						<?php else: ?>
 						<p style="color: #A9A9A9;">Owned By: <a style="color: Purple; font-style: italic;" href="/Groups/Group.aspx?gid=<?=$group->id()?>">No one!</a></p>
 						<?php endif; ?>
