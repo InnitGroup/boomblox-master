@@ -18,7 +18,8 @@ if (Server::isPost()) {
         if (($privacy > 2 || $wallView > 2 || $posting > 2) || ($privacy < 1 || $wallView < 1 || $posting < 1)) return;
         if ($user->ownedGroups() > 3) return;
 
-        Group::new($name, $desc, $emblem, $privacy, $wallView, $posting);
+        $gid = Group::new($name, $desc, $emblem, $privacy, $wallView, $posting);
+        exit(header("Location: /Groups/Group.aspx?gid=$gid"));
     }
 }
 

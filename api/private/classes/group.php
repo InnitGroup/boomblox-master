@@ -89,7 +89,7 @@ class Group {
     }
 
     # STATIC
-    public static function new(string $name, string $description, int $emblemId, int $privacy, int $wallView, int $posting) {
+    public static function new(string $name, string $description, int $emblemId, int $privacy, int $wallView, int $posting): int {
         global $db, $user;
         $stmt = "INSERT INTO groups 
                 (`emblemId`, `privacy`, `name`, `description`, `creator`, `members`, `rolesets`) 
@@ -160,6 +160,8 @@ class Group {
             ":members" => $members,
             ":rolesets" => $rolesets
         ]);
+
+        return $db->lastInsertId("groups");
     }
 
     public static function exists(int $groupId): bool {
@@ -173,6 +175,8 @@ class Group {
     # WALL
     public function addPost(string $content, int $special = 0) {
         global $db, $user;
+
+        if (!$this->isInGroup($user->getUserId())) return;
 
         if (strlen(trim($content)) < 1) return;
         if ($user->timeSinceLastWallPost() < 5) return;
@@ -214,7 +218,7 @@ class Group {
     }
 
     # MEMBERS
-    public function updateMembers(array $members) {
+    public function updateMembers(array $members = null) {
         if (gettype($members) == "array") {
             $this->members = $members;
             $members = serialize($members);
@@ -231,13 +235,10 @@ class Group {
     }
 
     public function getMembersInRoleset(int $rolesetId): array {
-        $members = array_filter($this->rolesets, function($member) {
-            if (isset($member["Roleset"])) {
-                return $member["Roleset"] == $rolesetId;
-            }
-        });
-
-        return $members;
+        return array_filter(
+            $this->members,
+            fn($member) => isset($member["Roleset"]) && $member["Roleset"] === $rolesetId
+        );
     }
 
     public function getPermissions(int $userId): array {
@@ -250,6 +251,11 @@ class Group {
         $roleset = $this->rolesets[$rolesetId];
 
         return $roleset["Permissions"];
+    }
+
+    public function hasOwner(): bool {
+        # Discord::sendWebhookMessage("vcchat", serialize($this->getMembersInRoleset(0)));
+        return count($this->getMembersInRoleset(0)) == 1;
     }
 
     public function getRank(int $userId): int {
@@ -269,7 +275,7 @@ class Group {
         }
 
         $this->members[$userId]["Roleset"] = $rolesetId;
-        $this->updateMembers();
+        $this->updateMembers($this->members);
     }
 
     public function getRoleset(int $userId): array {

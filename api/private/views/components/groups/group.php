@@ -54,8 +54,11 @@ $october2009 = false;
 						</a>
 					</div>
 					<div style="height: 100%">
-						<p style="color: #A9A9A9;">Owned By: <a style="color: Purple; font-style: italic;" href="/user.aspx?id=<?=$group->creator()->getUserId()?>"><?=$group->creator()->getUsername()?></a>
-						</p>
+						<?php if ($group->hasOwner()): ?>
+						<p style="color: #A9A9A9;">Owned By: <a style="color: Purple; font-style: italic;" href="/user.aspx?id=<?=$group->creator()->getUserId()?>"><?=$group->creator()->getUsername()?></a></p>
+						<?php else: ?>
+						<p style="color: #A9A9A9;">Owned By: <a style="color: Purple; font-style: italic;" href="/Groups/Group.aspx?gid=<?=$group->id()?>">No one!</a></p>
+						<?php endif; ?>
 						<p><?=htmlspecialchars(Helper::debugString($group->description()))?></p>
 						<div id="ctl00_cphRoblox_AbuseReportButton_AbuseReportPanel" class="ReportAbusePanel">
 							<span class="AbuseIcon">
@@ -74,10 +77,12 @@ $october2009 = false;
 			<br style="clear:both;">
 			<div id="ctl00_cphRoblox_GroupWallPane_Wall">
 				<div class="StandardBoxHeader">Wall
+					<?php if ($group->isInGroup($user->getUserId())): ?>
 					<div style="background-color:#A9A09B;margin-top:5px;padding:10px">
 						<input type="submit" value="Post" name="ctl00$GroupWall$Post" class="GroupWallPostButton" style="background-color:#EE9004;border-radius:20px;font-size:16px;position:relative;top:4px">
 						<textarea name="ctl00$GroupWall$Text" cols="48" rows="4" style="overflow-y:scroll;max-width:365px;" maxlength="500"></textarea>
 					</div>
+					<?php endif; ?>
 				</div>
 				<div class="StandardBox">
 					<table class="Repeater" cellpadding="0" cellspacing="0">
@@ -91,20 +96,20 @@ $october2009 = false;
 							$count = 1; 
 							while ($row = $posts->fetch(PDO::FETCH_ASSOC)): 
 
-							$username = $db->getUserById($row["userId"]);
-							$userId = $row["userId"];
+							$m_username = $db->getUserById($row["userId"]);
+							$m_userId = $row["userId"];
 							$avatar = new Avatar($row["userId"]);
 							$date = new DateTime($row["date"]);
 							?>
 							<tr class="AlternatingItemTemplate<?=$count % 2 == 0 ? "Even" : "Odd"?>">
 								<td class="RepeaterImage" style="width: 50px">
-									<a id="ctl00_cphRoblox_GroupWallPane_GroupWall_ctl01_hlAvatar" title="<?=$username?>" href="/User.aspx?ID=<?=$userId?>" style="display:inline-block;cursor:pointer;">
-										<img src="<?=$avatar->GetThumbnail(48,48,"JPG")?>" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="<?=$username?>">
+									<a id="ctl00_cphRoblox_GroupWallPane_GroupWall_ctl01_hlAvatar" title="<?=$m_username?>" href="/User.aspx?ID=<?=$m_userId?>" style="display:inline-block;cursor:pointer;">
+										<img src="<?=$avatar->GetThumbnail(48,48,"JPG")?>" border="0" onerror="return Roblox.Controls.Image.OnError(this)" alt="<?=$m_username?>">
 									</a>
 								</td>
 								<td class="RepeaterText">
 									<div style="overflow:hidden; width: 390px">
-										<a href="/User.aspx?ID=<?=$userId?>"> <?=$username?> </a> says: <b>
+										<a href="/User.aspx?ID=<?=$m_userId?>"> <?=$m_username?> </a> says: <b>
 											<i><?=htmlspecialchars($row["content"])?></i>
 										</b>
 										<br>
@@ -235,7 +240,10 @@ $october2009 = false;
 				<br style="clear: both">
 			</div>
 			<div>
-                <?php if ($group->isInGroup($userId)): ?>
+                <?php if ($group->isInGroup($userId) && (!$group->hasOwner())): ?>
+				<input type="submit" name="ctl00$cphRoblox$ClaimGroup" value="Claim Group" id="ctl00_cphRoblox_ClaimGroup"><br><br>
+				<input type="submit" name="ctl00$cphRoblox$LeaveGroup" value="Leave Group" id="ctl00_cphRoblox_LeaveGroup">
+				<?php elseif ($group->isInGroup($userId)): ?>
 				<input type="submit" name="ctl00$cphRoblox$LeaveGroup" value="Leave Group" id="ctl00_cphRoblox_LeaveGroup">
                 <?php elseif (!$group->isInGroup($userId)): ?>
                 <input type="submit" name="ctl00$cphRoblox$JoinGroup" value="Join Group" id="ctl00_cphRoblox_JoinGroup">

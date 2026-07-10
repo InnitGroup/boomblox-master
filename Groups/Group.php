@@ -14,6 +14,8 @@ if (Server::isPost()) {
         $group->addMember($user->getUserId());
     } elseif (isset($_POST['ctl00$cphRoblox$LeaveGroup'])) {
         $group->kickMember($user->getUserId());
+    } elseif (isset($_POST['ctl00$cphRoblox$ClaimGroup'])) {
+        $group->setRoleset($user->getUserId(), 0);
     } elseif (isset($_POST['ctl00$GroupWall$Post'])) {
 		$content = $_POST['ctl00$GroupWall$Text'];
 		$group->addPost($content);
