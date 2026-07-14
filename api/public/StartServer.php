@@ -29,6 +29,6 @@ echo $port;
 
 #$script = "wait(); dofile('http://".domain."/game/gameserver.ashx?serverPort=" . $port . "&PlaceID=".$placeId."')";
 $script = "wait(); loadfile('http://".domain."/game/gameserver.ashx?serverPort=" . $port . "&PlaceID=".$placeId."')()";
-$command = 'start C:\2009M2\server3.exe -no3d -script "'.$script.'"';
+$command = 'start C:\2009M3\Server2.exe -no3d -script "'.$script.'"';
 popen($command, "r");
 ?>

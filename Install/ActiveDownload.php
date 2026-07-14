@@ -4,7 +4,7 @@ global $auth, $user;
 
 !$auth->isAuthed() && Server::_404();
 
-$file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/039E.exe";
+$file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/040A.exe";
 if (isset($_GET["Special"])) {
     switch ($_GET["Special"]) {
         case "XPTesterGC":
@@ -13,14 +13,14 @@ if (isset($_GET["Special"])) {
                 Server::_404();
             }
 
-            $file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/039E.exe";
+            $file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/040A.exe";
             break;
         case "QATester":
             if (!$user->isTester()) {
                 Server::_404();
             }
 
-            $file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/040testing.zip";
+            $file = $_SERVER["DOCUMENT_ROOT"] . "/api/private/apps/040A.exe";
             break;
     }
 }
