@@ -77,13 +77,13 @@ $october2009 = false;
 			<br style="clear:both;">
 			<div id="ctl00_cphRoblox_GroupWallPane_Wall">
 				<div class="StandardBoxHeader">Wall
-					<?php if ($group->isInGroup($user->getUserId())): ?>
-					<div style="background-color:#A9A09B;margin-top:5px;padding:10px">
-						<input type="submit" value="Post" name="ctl00$GroupWall$Post" class="GroupWallPostButton" style="background-color:#EE9004;border-radius:20px;font-size:16px;position:relative;top:4px">
-						<textarea name="ctl00$GroupWall$Text" cols="48" rows="4" style="overflow-y:scroll;max-width:365px;" maxlength="500"></textarea>
+				</div>
+				<?php if ($group->isInGroup($user->getUserId())): ?>
+					<div id="ctl00_ctl00_cphRoblox_cphMyRobloxContent_GroupWallPane_WallPostBox" class="StandardBoxGrey" style="margin-bottom: 0px; height:60px">
+						<textarea name="ctl00$ctl00$cphRoblox$cphMyRobloxContent$GroupWallPane$NewPost" rows="2" cols="20" id="ctl00_ctl00_cphRoblox_cphMyRobloxContent_GroupWallPane_NewPost" class="GroupWallPostText" style="width:75%;"></textarea>
+						<input type="image" name="ctl00$ctl00$cphRoblox$cphMyRobloxContent$GroupWallPane$NewPostButton" id="ctl00_ctl00_cphRoblox_cphMyRobloxContent_GroupWallPane_NewPostButton" class="GroupWallPostButton" src="/images/Post1.png" style="border-width:0px;" />
 					</div>
 					<?php endif; ?>
-				</div>
 				<div class="StandardBox">
 					<table class="Repeater" cellpadding="0" cellspacing="0">
 						<tbody>

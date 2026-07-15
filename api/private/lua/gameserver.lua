@@ -8,6 +8,7 @@ local ns = game:GetService("NetworkServer")
 --game:GetService("Players"):SetAbuseReportUrl("http://www.roblox.com/AbuseReport/InGameChatHandler.ashx")
 --game:GetService("Players"):SetChatFilterUrl("http://xoblog.dev/Game/ChatFilter.ashx")
 game:Load("http://{Url}/Data/Get.ashx?id={PlaceID}&key=8u09nhoasNHDXAOSHDL")
+pcall(function() settings().Diagnostics:LegacyScriptMode() end)
 --game:GetObjects("http://{Url}/content/duckydrop.rbxm")[1].Parent = workspace
 --game:GetObjects("http://{Url}/content/eggdrop2009.rbxm?v=20")[1].Parent = workspace
 --settings().Network.PhysicsSend = 1 -- 1==RoundRobin

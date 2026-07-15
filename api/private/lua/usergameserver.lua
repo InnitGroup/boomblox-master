@@ -9,6 +9,7 @@ end
 
 -- establish this peer as the Server
 local ns = game:GetService("NetworkServer")
+pcall(function() settings().Diagnostics:LegacyScriptMode() end)
 --xprint(game.JobId)
 --ns:SetIsPlayerAuthenticationRequired(true)
 

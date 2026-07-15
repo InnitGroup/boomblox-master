@@ -16,8 +16,8 @@ if (Server::isPost()) {
         $group->kickMember($user->getUserId());
     } elseif (isset($_POST['ctl00$cphRoblox$ClaimGroup'])) {
         $group->makeOwner($user->getUserId());
-    } elseif (isset($_POST['ctl00$GroupWall$Post'])) {
-		$content = $_POST['ctl00$GroupWall$Text'];
+    } elseif (isset($_POST['ctl00$ctl00$cphRoblox$cphMyRobloxContent$GroupWallPane$NewPostButton_x'])) {
+		$content = $_POST['ctl00$ctl00$cphRoblox$cphMyRobloxContent$GroupWallPane$NewPost'];
 		$group->addPost($content);
 	}
     
