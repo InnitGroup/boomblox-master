@@ -60,10 +60,10 @@
 					<div id="ctl00_cphRoblox_FeaturedGames_VisitedPanel" class="Visited">Visited: <?=Helper::times($featuredGame->get()->interactions)?></div>
 					<div id="Creator" class="Creator">
 						<div class="Avatar">
-							<a id="ctl00_cphRoblox_FeaturedGames_AvatarImage" title="<?=htmlspecialchars($creator->getUsername())?>" href="https://<?=domain?>/User.aspx?ID=140" style="display:inline-block;cursor:pointer;">
+							<a id="ctl00_cphRoblox_FeaturedGames_AvatarImage" title="<?=htmlspecialchars($creator->getUsername())?>" href="https://<?=domain?>/User.aspx?ID=<?=$creator->getUserId()?>" style="display:inline-block;cursor:pointer;">
 								<img src="<?=$avatarRender?>" style="height:100px;" border="0" alt="<?=htmlspecialchars($creator->getUsername())?>" blankurl="http://t6-cf.roblox.com/blank-100x100.gif">
 							</a>
-						</div> Creator: <a id="ctl00_cphRoblox_FeaturedGames_CreatorHyperLink" href="User.aspx?ID=140"><?=htmlspecialchars($creator->getUsername())?></a>
+						</div> Creator: <a id="ctl00_cphRoblox_FeaturedGames_CreatorHyperLink" href="User.aspx?ID=<?=$creator->getUserId()?>"><?=htmlspecialchars($creator->getUsername())?></a>
 					</div>
 				</div>
 			</div>
