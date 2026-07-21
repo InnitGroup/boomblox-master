@@ -303,6 +303,14 @@ class Group {
         return $roleset;
     }
 
+    public function getRolesetId(int $userId): int {
+        if (!$this->isInGroup($userId)) {
+            return 0;
+        }
+
+        return $this->members[$userId]["Roleset"];
+    }
+
     public function canDeletePosts(int $userId): bool {
         return in_array(1, $this->getPermissions($userId));
     }

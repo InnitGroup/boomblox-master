@@ -245,6 +245,9 @@ $october2009 = false;
                 <?php if ($group->isInGroup($userId) && (!$group->hasOwner())): ?>
 				<input type="submit" name="ctl00$cphRoblox$ClaimGroup" value="Claim Group" id="ctl00_cphRoblox_ClaimGroup"><br><br>
 				<input type="submit" name="ctl00$cphRoblox$LeaveGroup" value="Leave Group" id="ctl00_cphRoblox_LeaveGroup">
+				<?php elseif ($group->getRolesetId($userId) == 0): ?>
+				<input type="submit" name="ctl00$cphRoblox$GroupAdmin" value="Group Admin" id="ctl00_cphRoblox_GroupAdmin"><br><br>
+				<input type="submit" name="ctl00$cphRoblox$LeaveGroup" value="Leave Group" id="ctl00_cphRoblox_LeaveGroup">
 				<?php elseif ($group->isInGroup($userId)): ?>
 				<input type="submit" name="ctl00$cphRoblox$LeaveGroup" value="Leave Group" id="ctl00_cphRoblox_LeaveGroup">
                 <?php elseif (!$group->isInGroup($userId)): ?>

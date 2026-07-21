@@ -7,9 +7,15 @@ global $theme, $auth, $user;
 
 #global $auth;
 #!$auth->isAuthed() && Server::_404();
+$is2007 = isset($_GET["2007"]);
 ?>
 
+<?php if ($is2007): ?>
+<button onclick="alert(window.external.IsRobloxIDE)">IsRobloxIDE</button>
+<button onclick="window.external.GetApp().CreateGame(2).ExecScript('wait();print(1)')">Open game</button>
+<?php else: ?>
 <button onclick="alert(window.external.IsRobloxAppIDE)">IsRobloxAppIDE</button>
 <button onclick="window.external.GetApp().CreateGame('44340105256').ExecScript('loadfile(\'http://xoblog.dev/IDE/TestScript.ashx\')()')">test script</button>
 <button onclick="window.external.GetApp().CreateGame('44340105256').ExecScript('dofile(\'http://xoblog.dev/game/join.ashx\')')">test join</button>
 <button onclick="window.external.GetApp().CreateGame('44340105256').ExecUrlScript('http://<?=domain?>/game/gameserver.ashx?t=1')">test server</button>
+<?php endif; ?>

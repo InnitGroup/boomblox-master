@@ -173,20 +173,6 @@ game:service("Players").PlayerAdded:connect(function(player)
 		end
 	end)
 
-	local eggValue = Instance.new("ObjectValue", player)
-	eggValue.Name = "SuperCoolHopefullySecretValue"
-	eggValue.Value = nil
-
-	eggValue.Changed:connect(function()
-		if eggValue.Value ~= nil then
-			game:HttpGet("http://{Url}/Game/TreasureHunt.ashx?userid=" .. player.userId .. "&key=WhyY0uG0tt4UpNJ1ckl3Y4ng&assetnumber=" .. eggValue.Value.Name, false)
-			
-			print("destroying")
-			eggValue.Value:Remove()
-			eggValue.Value = nil
-		end
-	end)
-
 	player.Chatted:connect(function(msg) 
 		local pms = msg:lower() 
 		if (pms == ";wm") then
