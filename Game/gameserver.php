@@ -11,6 +11,18 @@ if (!Server::isLocal()) {
         "Url" => url,
         "Port" => 53640
     ]);
+
+    if (isset($_GET["2007"])) {
+        $file = new File("/api/private/lua/2007gs.lua", [
+            "Url" => url,
+            "Port" => 53640,
+            "PlaceID" => 1
+        ]);
+        
+        echo $file->handle(false);
+        exit;
+    }
+    
     echo $file->handle();
     exit;
 }

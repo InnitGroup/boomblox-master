@@ -3,6 +3,17 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 header("Content-type: text/plain");
 global $auth;
 
+if (isset($_GET["2007"])) {
+    $file = new File("/api/private/lua/2007join.lua", [
+        "IP" => "localhost",
+        "Port" => 53640,
+        "Url" => url
+    ]);
+
+    echo $file->handle(false);
+    exit;
+}
+
 if (!$auth->isAuthed()) {
     $file = new File("/api/private/lua/userjoin.lua", [
         "Port" => 53640,
