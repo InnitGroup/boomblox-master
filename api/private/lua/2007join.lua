@@ -91,7 +91,7 @@ function onConnectionAccepted(url, replicator)
 	end
 	
 	-- TODO: report marker progress
-	
+
 	while waitingForMarker do
 		workspace:ZoomToExtents()
 		wait(0.5)
@@ -119,7 +119,7 @@ end
 
 
 local success, err = pcall(function()	
-
+    game:HttpGet("http://{Url}/Game/Statistics.ashx?TypeID=3&UserID={UserID}", false)
 	setMessage("Creating Player")
 	player = game:GetService("Players"):CreateLocalPlayer({UserID})
 	player:SetUnder13(false)

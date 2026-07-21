@@ -97,14 +97,15 @@ switch ($type) {
             Discord::sendWebhookMessage("games", $player->getUsername() . " joined [place $place](https://" . domain . "/Item.aspx?ID=$place) as Guest $guestId");
             Analytics::logJoin($player->getUserId(), $place);
 
-            echo "http://" . domain . "/Asset/CharacterFetch.ashx?userId=1&IncludeGear=$includeGears";
-            exit;
+            #echo "http://" . domain . "/Asset/CharacterFetch.ashx?userId=1&IncludeGear=$includeGears";
+            #exit;
         }
 
         Discord::sendWebhookMessage("games", $player->getUsername() . " joined [place $place](https://" . domain . "/Item.aspx?ID=$place)");
         Analytics::logJoin($player->getUserId(), $place);
 
-        echo "http://" . domain . "/Asset/CharacterFetch.ashx?userId=$associate&IncludeGear=$includeGears";
+        #echo "http://" . domain . "/Asset/CharacterFetch.ashx?userId=$associate&IncludeGear=$includeGears";
+        echo $player->getCharacterAppearance();
         
         break;
     case 2:

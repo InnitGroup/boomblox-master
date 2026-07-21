@@ -147,7 +147,7 @@ $file = new File("/api/private/lua/2007join.lua", [
     "UserID" => $userId, 
     "Username" => $username, 
     "Port" => $port,
-    "CharacterAppearance" => $user->getCharacterAppearance(),
+    "CharacterAppearance" => $user->getTicket(),
     "Url" => url,
     "IP" => Server::getServerIP()
 ]);
