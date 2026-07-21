@@ -119,22 +119,22 @@ end
 
 
 local success, err = pcall(function()	
-    --game:HttpGet("http://{Url}/Game/Statistics.ashx?TypeID=3&UserID={UserID}", false)
+
 	setMessage("Creating Player")
-	player = game:GetService("Players"):CreateLocalPlayer(0)
+	player = game:GetService("Players"):CreateLocalPlayer({UserID})
 	player:SetUnder13(false)
 	player:SetSuperSafeChat(false)
 	player.Idled:connect(onPlayerIdled)
 	
-	player.Name = [======[marsoc]======]
-	player.CharacterAppearance = "{ClientTicket}"	
+	player.Name = [======[{Username}]======]
+	player.CharacterAppearance = "{CharacterAppearance}"	
 	visit:SetUploadUrl("")
 
 	setMessage("Connecting to Server")
 	client.ConnectionAccepted:connect(onConnectionAccepted)
 	client.ConnectionRejected:connect(onConnectionRejected)
 	client.ConnectionFailed:connect(onConnectionFailed)
-	client:Connect("192.168.109.1", {Port}, 0, threadSleepTime)
+	client:Connect("{IP}", {Port}, 0, threadSleepTime)
 end)
 
 if not success then

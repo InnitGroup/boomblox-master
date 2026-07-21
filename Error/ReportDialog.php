@@ -1,7 +1,13 @@
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
+global $theme, $auth, $user;
+#!$auth->isAuthed() && Server::_root();
+?>
+
 <div style="margin:12px">
-    <div id="ErrorReporting" class="ErrorReporting" style="display: none">
+    <div id="ErrorReporting" class="ErrorReporting" style="display: block">
         <p> ROBLOX crashed on your computer recently! We would like to find out why so that we can make ROBLOX better. </p>
-        <p> Help us fix bugs by clicking Send Error Report</p>
+        <p> Help us fix bugs by cclicking Send Error Report</p>
         <div class="YesNoButtons">
             <input name="ctl00$ContentPlaceHolder1$ErrorReporting1$ButtonYes" type="button" id="ctl00_ContentPlaceHolder1_ErrorReporting1_ButtonYes" class="YesButton" value="Send Error Report" onclick="sendRobloxErrorFiles(); return false" />
             <input id="ButtonNo" class="NoButton" type="button" value="Don't Send" onclick="dontSendRobloxErrorFiles(); return false" />
@@ -23,7 +29,7 @@
         }
 
         function sendRobloxErrorFiles() {
-            robloxAppReport.SendErrorFiles("http://<?=Site::$domain?>/Error/Dmp.ashx");
+            robloxAppReport.SendErrorFiles("http://<?=url?>/Error/Dmp.ashx");
             window.close();
         }
 

@@ -37,7 +37,7 @@ switch ($typeId) {
 
         try {
             var app = window.external.GetApp();
-            var workspace = app.CreateGame(44340105256);
+            var workspace = app.CreateGame(2); // 44340105256
             workspace.ExecUrlScript(visitUrl);
 
             window.location = "http://<?=domain?>/Games.aspx";
