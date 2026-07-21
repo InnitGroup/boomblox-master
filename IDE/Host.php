@@ -6,6 +6,8 @@ if (Server::getIP() !== Server::getServerIP()) {
     Server::_404();
 }
 
+#exit;
+
 # check if there are any servers being queued
 $stmt = "SELECT * FROM servers WHERE active=0 ORDER BY id ASC";
 $result = $db->execute($stmt);
@@ -19,15 +21,8 @@ $server = $result->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <head>
-    <meta http-equiv="refresh" content="1">
+    <!--<meta http-equiv="refresh" content="1">-->
     <script>
-        function go() {
-            var App = window.external.GetApp();
-            var Workspace = App.CreateGame('44340105256');
-            var Result = Workspace.ExecScript('loadfile("http://<?=domain?>/game/gameserver.ashx?serverPort=<?=$server["port"]?>&PlaceID=<?=$server["placeId"]?>")()');
-        }
-
-        go();
-        alert(Result);
+        window.external.GetApp().CreateGame(0).ExecUrlScript("http://<?=domain?>/game/gameserver.ashx?serverPort=<?=$server["port"]?>&PlaceID=<?=$server["placeId"]?>&2007=1");
     </script>
 </head>
