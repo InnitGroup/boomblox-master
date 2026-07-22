@@ -27,7 +27,7 @@ class Paginator {
             return '<a href="'.htmlspecialchars($this->name).'.aspx'.htmlspecialchars($this->sort).'&p='.((int)$this->current+1).'">Next <span class="NavigationIndicators">&gt;&gt;</span></a>';
         }
     }
-    public function load() {
+    public function load($header = true) {
         $pages = (int)$this->getPages();
         $pageLabel = "";
         if ($pages > 1) {
@@ -35,12 +35,26 @@ class Paginator {
             $this->current < $this->getPages() && $pageLabel .= ": ";
         }
 
-        echo '<div class="HeaderPager">
-                '.$this->loadPreviousA().'
-                <span>'.$pageLabel.'</span>
-                '.$this->loadNextA().'
+        if ($header) {
+            echo '
+            <div style="height: 70px; width: 350px;">
+                <div class="HeaderPager">
+                    '.$this->loadPreviousA().'
+                    <span>'.$pageLabel.'</span>
+                    '.$this->loadNextA().'
+                </div>
             </div>
         ';
+        } else {
+            echo '
+            <div class="HeaderPager">
+                    '.$this->loadPreviousA().'
+                    <span>'.$pageLabel.'</span>
+                    '.$this->loadNextA().'
+                </div>
+            ';
+        }
+        
     }
 }
 ?>

@@ -181,20 +181,20 @@ class GamesManager {
     }
     public function getPages($gamesResult,$c) {
         $currentPage = (int)$c;
-        return "Page ".$currentPage." of ".ceil($gamesResult->rowCount() / 14);
+        return "Page ".$currentPage." of ".ceil($gamesResult->rowCount() / 17);
     }
     public function loadGames($gamesResult, $page) {
         $gameCount = 0;
         while ($game = $gamesResult->fetch(PDO::FETCH_ASSOC)) {
-            if ($gameCount == 0) {echo "<tr>";}
-            if ($gameCount < 15*$page && ($gameCount >= ($page-1)*15)) {
+            //if ($gameCount == 0) {echo "<tr>";}
+            if ($gameCount < 18*$page && ($gameCount >= ($page-1)*18)) {
                 $asset = new Asset($game["itemId"]);
                 $players = $game["totalPlayers"];#$this->getPlayers($game["itemId"]);
                 $packed = compact("asset", "game", "players");
                 PageBuilder::addComponent("games", "game", $packed);
             }
             $gameCount += 1;
-            if ($gameCount % 3 == 0) {echo "</tr>";}
+            //if ($gameCount % 3 == 0) {echo "</tr>";}
         }
     }
 }

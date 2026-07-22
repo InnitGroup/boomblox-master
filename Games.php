@@ -49,16 +49,21 @@ $page->buildHeader();
                 </div>
                 <div id="Games">
                     <span class="GamesDisplaySet"><?=$games->loadTitleSort($m,$t)?></span>
+                    <div style="clear:both;"></div>
                     <?=$paginator->load()?>
-                    <table cellspacing="0" align="Center" border="0" width="550">
-                        <tbody>
-                            <?=$games->loadGames($gameItems, $p);?>
-                        </tbody>
-                    </table>
-                    <?=$paginator->load();?>
+                    <div id="GamePageAdDiv" style="height: 175px; width: 360px; float: right; _overflow: hidden;">
+                            <div style="width: 300px; height: 250px; margin-left: 38px; position: relative; top: -90px;">
+                                <div style="overflow: hidden;">
+                                <?=Ad::generateAd("300x250a")?>
+                                <a id="ctl00_cphRoblox_rbxGames_GamesPageAd_ReportAdButton" title="click to give feedback on an ad" class="BadAdButton" href="javascript:__doPostBack('ctl00$cphRoblox$rbxGames$GamesPageAd$ReportAdButton','')">[ feedback ]</a>
+                            </div>
+                        </div>
+                    </div>
+                    <?=$games->loadGames($gameItems, $p);?>
+                    <div style="clear:both;"></div>
+                    <?=$paginator->load(false);?>
                 </div>
             </div>
-            <?=Ad::generateAd("160x600")?>
             <div style="clear:both;"></div>
         </div> 
     </div>

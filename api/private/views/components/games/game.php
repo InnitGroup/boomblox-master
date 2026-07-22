@@ -11,14 +11,14 @@ $genre = $game["genre"];
 $allCategoriesSet = Category::allCategoriesSet($game["itemId"]);
 ?>
 
-<td class="Game" valign="top">
-    <div style="padding-bottom:5px;">
-        <div class="GameThumbnail">
+<div style="height: 175px; width: 180px; float: left;">
+    <div style="margin-left:18px">
+        <div class="GameThumbnail12" style="margin: 0; width: 160px; height: 100px; border: 1px solid black;">
             <a title="<?=$name?>" href="Item.aspx?ID=<?=$id?>" style="display:inline-block;cursor:pointer;">
                 <img src="<?=$asset->GetThumbnail(420, 230, "PNG")?>" border="0" alt="<?=$name?>" style="width:160px;height:100px;">
             </a>
         </div>
-        <div class="GameDetails">
+        <div class="GameDetails12" style="margin: 0; width: 160px;">
             <div class="GameName">
                 <img id="ctl00_cphRoblox_rbxGames_GamesRepeater_ctl04_GenreIcon" class="GamesInfoIcon" src="/images/GenreIcons/<?=Genre::genreName($genre)?>.png" alt="<?=Genre::genreName($genre)?>" border="0">
                 <?php if ($allCategoriesSet): ?>
@@ -28,14 +28,8 @@ $allCategoriesSet = Category::allCategoriesSet($game["itemId"]);
                 <?php endif; ?>
                 <a href="Item.aspx?ID=<?=$id?>"><?=$name?></a>
             </div>
-            <div class="GameLastUpdate">
-                <span class="Label">Updated: </span><span class="Detail"><?=$lastUpdate?></span>
-            </div>
             <div class="GameCreator">
                 <span class="Label">Creator:</span> <span class="Detail"><a href="User.aspx?ID=<?=$creatorId?>"><?=$creatorName?></a></span>
-            </div>
-            <div class="AssetFavorites">
-                <span class="Label">Favorited: </span> <span class="Detail"><?=$favorites?><span>
             </div>
             <div class="GamePlays">
                 <span class="Label">Played: </span> <span class="Detail"><?=$visits?></span>
@@ -53,4 +47,4 @@ $allCategoriesSet = Category::allCategoriesSet($game["itemId"]);
             </div>
         </div>
     </div>
-</td>
+</div>
