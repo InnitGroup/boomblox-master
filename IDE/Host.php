@@ -6,7 +6,7 @@ if (Server::getIP() !== Server::getServerIP()) {
     Server::_404();
 }
 
-#exit;
+exit;
 
 # check if there are any servers being queued
 $stmt = "SELECT * FROM servers WHERE active=0 ORDER BY id ASC";

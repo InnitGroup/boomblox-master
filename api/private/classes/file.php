@@ -6,7 +6,7 @@ class File {
         $this->file = $_SERVER["DOCUMENT_ROOT"] . $file;
         $this->parameters = $parameters;
     }
-    public function handle(bool $signed = true) {
+    public function handle() {
         if (file_exists($this->file)) {
             $contents = file_get_contents($this->file);
             if (!empty($this->parameters)) {
@@ -14,7 +14,7 @@ class File {
                     $contents = str_replace("{".$key."}", $value, $contents);
                 }
 
-                if (str_ends_with($this->file, ".lua") && Setting::enabled("SignedScripts") && $signed) {
+                if (str_ends_with($this->file, ".lua") && Setting::enabled("SignedScripts")) {
                     return Crypt::scriptSign($contents);
                 }
 

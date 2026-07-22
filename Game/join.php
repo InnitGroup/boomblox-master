@@ -2,24 +2,7 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 header("Content-type: text/plain");
 global $auth;
-
-/*
-if (isset($_GET["2007"])) {
-    global $user;
-    $file = new File("/api/private/lua/2007join.lua", [
-        "IP" => "localhost",
-        "Port" => 53640,
-        "Url" => url,
-        "UserID" => $user->getUserId(),
-        "Username" => $user->getUsername(),
-        "CharacterAppearance" => $user->getCharacterAppearance()
-    ]);
-
-    echo $file->handle(false);
-    exit;
-}
-    */
-
+    
 if (!$auth->isAuthed()) {
     $file = new File("/api/private/lua/userjoin.lua", [
         "Port" => 53640,
@@ -124,12 +107,12 @@ $uploadUrl = $user->ownsPlace($server["placeId"]) ? "http://".domain."/Data/Uplo
 $hasLocalScripts = File::hasLocalScripts($_SERVER["DOCUMENT_ROOT"] . "/content/" . $server["placeId"]);
 $noLocalScripts = $hasLocalScripts ? '' : 'game["Script Context"]:Remove()';
 $username = $user->getUsername();
+
 if ($user->isGuest()) {
     $guestId = $user->guestId();
     $username = "Guest $guestId";
 }
 
-/*
 $file = new File("/api/private/lua/join.lua", [
     "UserID" => $userId, 
     "Username" => $username, 
@@ -141,18 +124,8 @@ $file = new File("/api/private/lua/join.lua", [
     "SuperSafeChat" => ($user->isGuest() ? "true" : "false"),
     "IP" => Server::getServerIP()
 ]);
-*/
-
-$file = new File("/api/private/lua/2007join.lua", [
-    "UserID" => $userId, 
-    "Username" => $username, 
-    "Port" => $port,
-    "CharacterAppearance" => $user->getTicket(),
-    "Url" => url,
-    "IP" => Server::getServerIP()
-]);
 
 Client::clearType($user->getUserId());
-echo $file->handle(false);
+echo $file->handle();
 exit;
 ?>

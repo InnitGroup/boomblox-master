@@ -12,7 +12,8 @@ $is2007 = isset($_GET["2007"]);
 
 <?php if ($is2007): ?>
 <button onclick="alert(window.external.IsRobloxIDE)">IsRobloxIDE</button>
-<button onclick="window.external.GetApp().CreateGame(2).ExecUrlScript('http://<?=domain?>/game/gameserver.ashx?2007=5')">Open game</button>
+<button onclick="window.external.GetApp().CreateGame(2)">Open game</button>
+<button onclick="window.external.GetApp().CreateGame(2).ExecUrlScript('http://<?=domain?>/game/gameserver.ashx?2007=5')">Host game</button>
 <button onclick="window.external.GetApp().CreateGame(2).ExecUrlScript('http://<?=domain?>/game/join.ashx?2007=7')">Join game</button>
 <?php else: ?>
 <button onclick="alert(window.external.IsRobloxAppIDE)">IsRobloxAppIDE</button>

@@ -17,29 +17,17 @@ if (!Server::isLocal()) {
 }
 
 Server::ipLock();
+
 if (Setting::disabled("Gameservers")) {
     exit;
 }
 
-if (isset($_GET["2007"])) {
-    $file = new File("/api/private/lua/2007gs.lua", [
-        "Url" => url,
-        "Port" => $port,
-        "PlaceID" => $place
-    ]);
-    
-    echo $file->handle(false);
-    #exit;
-}
-
-/*
 $file = new File("/api/private/lua/gameserver.lua", [
     "Port" => $port, 
     "PlaceID" => $place, 
     "Url" => url
 ]);
 echo $file->handle();
-*/
 
 $stmt = "UPDATE servers SET active=1 WHERE port=:port";
 $db->execute($stmt, [":port" => $port]);
