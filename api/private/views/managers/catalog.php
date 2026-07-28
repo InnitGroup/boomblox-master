@@ -298,7 +298,9 @@ class CatalogManager {
                             break;
                     }
 				echo '</ul>
-			</div>
+			</div>';
+            if ($this->m !== "Featured") {
+                echo '
 			<div id="Category">
 				<h4>Category</h4>
 				
@@ -736,7 +738,7 @@ class CatalogManager {
                     }
 					
 				echo '
-			</div>
+			</div>'; } echo '
 		</div>
         ';
     }
