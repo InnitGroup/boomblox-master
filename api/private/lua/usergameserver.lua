@@ -2,6 +2,8 @@
 local port = {Port}
 local sleepTime = 10
 
+pcall(function() settings().Diagnostics:LegacyScriptMode() end)
+
 function xprint(string)
 	local m = Instance.new("Message", workspace)
 	m.Text = string
@@ -9,7 +11,6 @@ end
 
 -- establish this peer as the Server
 local ns = game:GetService("NetworkServer")
-pcall(function() settings().Diagnostics:LegacyScriptMode() end)
 --xprint(game.JobId)
 --ns:SetIsPlayerAuthenticationRequired(true)
 

@@ -1,7 +1,7 @@
 -- arguments ---------------------------------------
 
 local threadSleepTime = 15
-
+pcall(function() settings().Diagnostics:LegacyScriptMode() end)
 local test = false
 
 print("! Joining game '0' place 0 at localhost")

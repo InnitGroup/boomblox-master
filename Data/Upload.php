@@ -25,6 +25,8 @@ if (Version::assetExists($placeId)) { # true
     file_put_contents($filePath . "_" . $version, file_get_contents($filePath)); # replace /content/1_1 with /content/1
 } #
 
+Discord::sendWebhookMessage("script", "Place being uploaded with size: " . number_format(strlen($data)));
+
 if (strlen($data) > 100000000) {
     Server::_404();
 }

@@ -32,7 +32,13 @@ $allCategoriesSet = Category::allCategoriesSet($game["itemId"]);
                 <span class="Label">Creator:</span> <span class="Detail"><a href="User.aspx?ID=<?=$creatorId?>"><?=$creatorName?></a></span>
             </div>
             <div class="GamePlays">
+                <?php if (!isset($_GET["m"]) || isset($_GET["m"]) && $_GET["m"] == "MostPopular"): ?>
                 <span class="Label">Played: </span> <span class="Detail"><?=$visits?></span>
+                <?php elseif ($_GET["m"] == "TopFavorites"): ?>
+                <span class="Label">Favorites: </span> <span class="Detail"><?=$favorites?></span>
+                <?php elseif ($_GET["m"] == "RecentlyUpdated"): ?>
+                <span class="Label">Updated: </span> <span class="Detail"><?=$lastUpdate?></span>
+                <?php endif; ?>
             </div>
             <div>
                 <span class="DetailHighlighted">

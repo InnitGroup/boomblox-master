@@ -55,7 +55,7 @@ $page->buildHeader();
                             <div style="width: 300px; height: 250px; margin-left: 38px; position: relative; top: -90px;">
                                 <div style="overflow: hidden;">
                                 <?=Ad::generateAd("300x250a")?>
-                                <a id="ctl00_cphRoblox_rbxGames_GamesPageAd_ReportAdButton" title="click to give feedback on an ad" class="BadAdButton" href="javascript:__doPostBack('ctl00$cphRoblox$rbxGames$GamesPageAd$ReportAdButton','')">[ feedback ]</a>
+                                <a id="ctl00_cphRoblox_rbxGames_GamesPageAd_ReportAdButton" title="click to report an ad" class="BadAdButton" href="javascript:__doPostBack('ctl00$cphRoblox$rbxGames$GamesPageAd$ReportAdButton','')">[ report ]</a>
                             </div>
                         </div>
                     </div>

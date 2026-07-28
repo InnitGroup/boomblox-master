@@ -1,7 +1,7 @@
 -- arguments ---------------------------------------
 
 local threadSleepTime = 15
-
+pcall(function() settings().Diagnostics:LegacyScriptMode() end)
 local test = false
 
 print("! Joining game 'cf8a733b-2409-4688-8ebe-1f1241865ebe' place 14799793 at 68.168.101.62")

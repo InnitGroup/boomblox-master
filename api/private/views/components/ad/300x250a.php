@@ -43,6 +43,5 @@ if (!isset($display->isFallback)) {
 	<a id="ctl00_cphRoblox_LargeRectAd_UserAd_AdImage" title="<?=htmlspecialchars($display->name())?>" onclick="__doPostBack('ctl00$cphRoblox$LargeRectAd$UserAd$AdImage','<?=$display->id()?>')" style="display:inline-block;cursor:pointer;">
 		<img src="<?=$display->getImage()?>" border="0" alt="<?=htmlspecialchars($display->name())?>" blankurl="http://t2-cf.roblox.com/blank-300x250.gif">
 	</a>
-	<a id="ctl00_cphRoblox_LargeRectAd_UserAd_ReportAdButton" title="click to report an offensive ad" class="BanishButtonOverlay" href="javascript:__doPostBack('ctl00$cphRoblox$LargeRectAd$UserAd$ReportAdButton','')">[ report ]</a>
 </div>
 <?php endif; ?>

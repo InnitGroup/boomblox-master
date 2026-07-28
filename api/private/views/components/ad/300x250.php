@@ -49,7 +49,6 @@ if (!isset($display->isFallback)) {
 				<img src="<?=$display->getImage()?>" border="0" alt="<?=htmlspecialchars($display->name())?>">
 			</a>
 		</div>
-		<a id="ctl00_cphRoblox_BigUglyAd_ReportUserAdButton" title="click to report an offensive ad" class="BadAdButton" href="javascript:__doPostBack('ctl00$cphRoblox$BigUglyAd$ReportUserAdButton','')">[ report ]</a>
 	</div>
 </div>
 <?php endif; ?>

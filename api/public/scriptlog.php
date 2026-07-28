@@ -4,6 +4,11 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 global $user, $auth;
 
+header("Expires: Tue, 01 Jan 1980 00:00:00 GMT");
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
 $whitelisted = [
     "a7b1b12afef178fb0feb72e5faf3ffed", // [Client] return game:findFirstChild("NetworkClient")~=nil
     "03a0650e359ef3f0e1e6c4eeb25d3e4d", // [Roblox] Local Gui
@@ -27,7 +32,11 @@ $whitelisted = [
 ];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $contents = file_get_contents("php://input");
+    $json = file_get_contents("php://input");
+    $data = json_decode($json, true);
+    $name = $data["name"];
+    $buffer = $data["buffer"];
+    $contents = "$name\n$buffer";
 
     if (str_contains($contents, "@")) {
         $contents = str_replace("@", "[@]", $contents);
@@ -40,6 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         exit;
     }
 
+    if ($user == NULL) $user = new User(1);
     $tag = $user->isInGame() ? "[IN-GAME]" : "[STUDIO]";
     Discord::sendWebhookMessage("script", "[$md5] $tag Script from: {$user->getUsername()}: ```lua
 $contents```");
