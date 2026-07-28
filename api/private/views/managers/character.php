@@ -150,11 +150,12 @@ class CharacterManager {
     }
 
     public function getCreate() {
-        if ($this->requestData["type"] == "Hat" || $this->requestData["type"] == "Head") {
-            return '<span style="color: #cccccc">Create</span>';
-        } else {
+        $isCreatable = ["Shirt", "Pants", "T-Shirt", "Decal", "Image"];
+        if (in_array($this->requestData["type"], $isCreatable)) {
             return '<a href="/My/ContentBuilder.aspx?ContentType='.Helper::typeId($this->requestData["type"]).'">Create</a>';
         }
+
+        return '<span style="color: #cccccc">Create</span>';
     }
 
     public function loadWardrobe() {

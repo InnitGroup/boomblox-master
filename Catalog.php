@@ -27,17 +27,17 @@ $page->buildHeader();
 		<?=$catalog->loadSorts()?>
 		<div class="Assets">
 			<span class="AssetsDisplaySet"><?=$catalog->getDisplaySetLabel($m,$c,$t)?></span>
-			<div style="height:70px">
-				<?=$paginator->load()?>
-			</div>
+
+			<?=$paginator->load()?>
+
 			<table cellspacing="0" align="Center" border="0" width="610">
 				<?=$catalog->loadItems($items);
 				isset($GLOBALS["pageEx"]) && print($GLOBALS["pageEx"]);
 				?>
 			</table>
-			<div style="height:70px">
-				<?=$paginator->load()?>
-			</div>
+
+			<?=$paginator->load()?>
+
 		</div>
 		<div style="clear: both;"/>
 	</div>
