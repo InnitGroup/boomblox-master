@@ -121,6 +121,13 @@ class Gameservers {
         )->fetchColumn();
     }
 
+    public static function serversOnPlace(int $placeId) {
+        return self::getDb()->execute(
+            "SELECT COUNT(*) as serverCount FROM servers WHERE placeId=:placeId",
+            [":placeId" => $placeId]
+        )->fetchColumn();
+    }
+
     public static function getAPIKey(string $api) {
         return match($api) {
             "Close" => "Y2M0YjFjNzNhZWY5YzAyYjkzNmM1NzFlZjg3MWZmODc=",

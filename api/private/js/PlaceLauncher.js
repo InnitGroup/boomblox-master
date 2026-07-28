@@ -66,50 +66,62 @@ Roblox.Launch.VisitOnline = function(visit, placeID, serverID) {
     $(".modalPopup").show();
 
     if (__requestResponse("api/public/GameserversActive.ashx") == "0") {
-        setTimeout(function() {
-            $("#Spinner").hide();
-            $("#Expired").show();
-        }, 1000);
-
+        $("#Requesting").show();
+        $("#Spinner").hide();
+        $("#Expired").show();
         return;
     }
 
     if (serverID === 0) {
-        setTimeout(function() {
-            $("#Requesting").show();
-        }, 1000);
+        if (__requestResponse("api/public/CountServers.ashx") == "0") {
+            setTimeout(function() {
+                $("#Requesting").show();
+            }, 1000);
+            setTimeout(function() {
+                $("#Requesting").hide();
+                $("#Waiting").show();
+            }, 2000);
+            setTimeout(function() {
+                $("#Waiting").hide();
+                $("#Loading").show();
+            }, 3000);
+            setTimeout(function() {
+                $("#Loading").hide();
+                $("#Joining").show();
+            }, 4000);
 
-        setTimeout(function() {
-            $("#Requesting").hide();
-            $("#Waiting").show();
-        }, 2000);
-
-        setTimeout(function() {
-            $("#Waiting").hide();
-            $("#Loading").show();
-        }, 3000);
-
-        setTimeout(function() {
-            $("#Loading").hide();
-            $("#Joining").show();
-        }, 4000);
-
-        setTimeout(function() {
-            window.location = "/Data/HandleJoin.ashx?PlaceID=" + placeID + "&TypeID=1&ServerID=" + serverID;
-        }, 5000);
+            setTimeout(function() {
+                window.location = "/Data/HandleJoin.ashx?PlaceID=" + placeID + "&TypeID=1&ServerID=" + serverID;
+            }, 5000);
+        } else {
+            setTimeout(function() {
+                $("#Requesting").hide();
+                $("#Waiting").show();
+            }, 1000);
+            setTimeout(function() {
+                $("#Waiting").hide();
+                $("#Loading").show();
+            }, 2000);
+            setTimeout(function() {
+                $("#Loading").hide();
+                $("#Joining").show();
+            }, 3000);
+            setTimeout(function() {
+                window.location = "/Data/HandleJoin.ashx?PlaceID=" + placeID + "&TypeID=1&ServerID=" + serverID;
+            }, 4000);
+        }
 
         return;
     }
 
     if (__requestResponse("api/public/ServerFull.ashx?ServerID=" + serverID) == "1") {
-        setTimeout(function() {
-            $("#Spinner").hide();
-            $("#GameFull").show();
-        }, 1000);
-
+        $("#Requesting").hide();
+        $("#Spinner").hide();
+        $("#GameFull").show();
         return;
     }
 
+    $("#GameFull").hide();
     $("#Requesting").hide();
     $("#Joining").show();
 
