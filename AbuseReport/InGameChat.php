@@ -10,6 +10,10 @@ if (Server::isPost()) {
         PageBuilder::addComponent("report", "chatsuccess");
         
         global $db;
+        if (!$db->userExists((int)$_POST['ctl00$robloxCph$reportedUser'])) {
+            exit;
+        }
+
         $stmt = "INSERT INTO reports (`type`, `abuse`, `comment`, `reportedBy`, `date`) VALUES ('user', :abuse, :comment, :reportedBy, :reportTime)";
         $db->execute($stmt, [
             ":abuse" => (int)$_POST['ctl00$robloxCph$reportedUser'],

@@ -20,6 +20,18 @@ class AbuseManager {
         $comment = $_POST['ct100$Comment$TextBox'];
         $reportedBy = $user->getUserId();
 
+        if ($abuseType == "user") {
+            if (!$db->userExists($abuseId)) {
+                exit;
+            }
+        }
+
+        if ($abuseType == "asset") {
+            if (!Item::exists($abuseId)) {
+                exit;
+            }
+        }
+
         if (empty(trim($comment))) {$comment = "No user comment available.";}
         if ($db->execute($stmt, [":abuseType" => $abuseType, ":abuseId" => $abuseId, ":comment" => $comment, ":reportedBy" => $reportedBy])) {
             switch ($abuseType) {
