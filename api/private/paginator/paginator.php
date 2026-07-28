@@ -37,13 +37,11 @@ class Paginator {
 
         if ($header) {
             echo '
-            <div style="height: 70px; width: 350px;">
                 <div class="HeaderPager">
                     '.$this->loadPreviousA().'
                     <span>'.$pageLabel.'</span>
                     '.$this->loadNextA().'
                 </div>
-            </div>
         ';
         } else {
             echo '

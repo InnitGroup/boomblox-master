@@ -50,6 +50,9 @@ $page->buildHeader();
                 <div id="Games">
                     <span class="GamesDisplaySet"><?=$games->loadTitleSort($m,$t)?></span>
                     <div style="clear:both;"></div>
+                    <div style="height:70px;width:350px;">
+                        <?=$paginator->load()?>
+                    </div>
                     <?=$paginator->load()?>
                     <div id="GamePageAdDiv" style="height: 175px; width: 360px; float: right; _overflow: hidden;">
                             <div style="width: 300px; height: 250px; margin-left: 38px; position: relative; top: -90px;">
