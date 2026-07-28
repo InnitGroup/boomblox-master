@@ -2,6 +2,7 @@
 class CatalogManager {
     private $m, $c, $t, $d, $p, $q, $theme;
     private $mToLabel = [
+        "Featured" => "Featured",
         "TopFavorites" => "Favorite",
         "BestSelling" => "Best Selling",
         "RecentlyUpdated" => "Recently Updated",
@@ -10,6 +11,7 @@ class CatalogManager {
     ];
 
     private $sortToSQL = [
+        "Featured" => "ORDER BY RAND(42) DESC",
         "TopFavorites" => "ORDER BY favorites DESC",
         "BestSelling" => "ORDER BY interactions DESC",
         "RecentlyUpdated" => "ORDER BY lastUpdate DESC",
@@ -63,10 +65,11 @@ class CatalogManager {
         "AllTime" => "All-time"
     ];
 
-    public function __construct($m = "TopFavorites", $c = "8", $t = "PastWeek", $d = "All", $p = "1", $q = "", $theme = 0) {
+    public function __construct($m = "Featured", $c = "8", $t = "PastWeek", $d = "All", $p = "1", $q = "", $theme = 0) {
         $validC = [1, 2, 4, 9, 8, 10, 11, 12, 13, 17, 18, 19];
-        $validM = ["TopFavorites", "BestSelling", "ForSale", "RecentlyUpdated", "PublicDomain"];
+        $validM = ["Featured", "TopFavorites", "BestSelling", "ForSale", "RecentlyUpdated", "PublicDomain"];
         $validT = ["PastHour", "PastDay", "PastWeek", "PastMonth", "AllTime"];
+        $this->sortToSQL["Featured"] = "ORDER BY RAND(" . (int)date("Ymd") .") DESC";
         if (!in_array($c, $validC)) {
             Server::_404();
         }
@@ -208,9 +211,15 @@ class CatalogManager {
 
     public function getDisplaySetLabel($m, $c, $t) {
         $label = "";
-        $label .= $this->mToLabel[$m]." ";
-        $label .= $this->cToLabel[(int)$c].", ";
-        $label .= $this->tToLabel[$t];
+        if ($m !== "Featured") {
+            $label .= $this->mToLabel[$m]." ";
+            $label .= $this->cToLabel[(int)$c].", ";
+            $label .= $this->tToLabel[$t];
+        } else {
+            $label = "Featured Items ";
+        }
+        
+        
         
         if (isset($_POST['SearchTextBox'])) {
             $label .= " (Keyword: " . htmlspecialchars($_POST['SearchTextBox']) . ")";
@@ -232,36 +241,49 @@ class CatalogManager {
 				<h4>Browse</h4>
 				<ul>';
 					switch ($this->m) { #
+                        case "Featured":
+                            echo '<li><img id="ctl00_cphRoblox_rbxCatalog_BrowseModeFeaturedBullet" class="GamesBullet" src="images/games_bullet.png" border="0"/><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeFeaturedSelector" href="Catalog.aspx?m=Featured&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All"><b>Featured</b></a></li>
+                            <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeTopFavoritesSelector" href="Catalog.aspx?m=TopFavorites&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All">Top Favorites</a></li>
+                            <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeBestSellingSelector" href="Catalog.aspx?m=BestSelling&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All">Best Selling</a></li>
+                            <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeRecentlyUpdatedSelector" href="Catalog.aspx?m=RecentlyUpdated&c='.htmlspecialchars($this->c).'">Recently Updated</a></li>
+                            <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeForSaleSelector" href="Catalog.aspx?m=ForSale&c='.htmlspecialchars($this->c).'&d=All">For Sale</a></li>
+                            <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModePublicDomainSelector" href="Catalog.aspx?m=PublicDomain&c='.htmlspecialchars($this->c).'">Public Domain</a></li>';
+                            break;
                         case "TopFavorites":
-                            echo '<li><img id="ctl00_cphRoblox_rbxCatalog_BrowseModeTopFavoritesBullet" class="GamesBullet" src="images/games_bullet.png" border="0"/><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeTopFavoritesSelector" href="Catalog.aspx?m=TopFavorites&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All"><b>Top Favorites</b></a></li>
+                            echo '<li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeFeaturedSelector" href="Catalog.aspx?m=Featured&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All">Featured</a></li>
+                            <li><img id="ctl00_cphRoblox_rbxCatalog_BrowseModeTopFavoritesBullet" class="GamesBullet" src="images/games_bullet.png" border="0"/><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeTopFavoritesSelector" href="Catalog.aspx?m=TopFavorites&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All"><b>Top Favorites</b></a></li>
                             <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeBestSellingSelector" href="Catalog.aspx?m=BestSelling&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All">Best Selling</a></li>
                             <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeRecentlyUpdatedSelector" href="Catalog.aspx?m=RecentlyUpdated&c='.htmlspecialchars($this->c).'">Recently Updated</a></li>
                             <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeForSaleSelector" href="Catalog.aspx?m=ForSale&c='.htmlspecialchars($this->c).'&d=All">For Sale</a></li>
                             <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModePublicDomainSelector" href="Catalog.aspx?m=PublicDomain&c='.htmlspecialchars($this->c).'">Public Domain</a></li>';
                             break;
                         case "BestSelling":
-                            echo '<li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeTopFavoritesSelector" href="Catalog.aspx?m=TopFavorites&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All">Top Favorites</a></li>
+                            echo '<li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeFeaturedSelector" href="Catalog.aspx?m=Featured&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All">Featured</a></li>
+                            <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeTopFavoritesSelector" href="Catalog.aspx?m=TopFavorites&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All">Top Favorites</a></li>
                             <li><img id="ctl00_cphRoblox_rbxCatalog_BrowseModeTopFavoritesBullet" class="GamesBullet" src="images/games_bullet.png" border="0"/><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeBestSellingSelector" href="Catalog.aspx?m=BestSelling&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All"><b>Best Selling</b></a></li>
                             <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeRecentlyUpdatedSelector" href="Catalog.aspx?m=RecentlyUpdated&c='.htmlspecialchars($this->c).'">Recently Updated</a></li>
                             <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeForSaleSelector" href="Catalog.aspx?m=ForSale&c='.htmlspecialchars($this->c).'&d=All">For Sale</a></li>
                             <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModePublicDomainSelector" href="Catalog.aspx?m=PublicDomain&c='.htmlspecialchars($this->c).'">Public Domain</a></li>';
                             break;
                         case "RecentlyUpdated":
-                            echo '<li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeTopFavoritesSelector" href="Catalog.aspx?m=TopFavorites&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All">Top Favorites</a></li>
+                            echo '<li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeFeaturedSelector" href="Catalog.aspx?m=Featured&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All">Featured</a></li>
+                            <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeTopFavoritesSelector" href="Catalog.aspx?m=TopFavorites&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All">Top Favorites</a></li>
                             <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeBestSellingSelector" href="Catalog.aspx?m=BestSelling&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All">Best Selling</a></li>
                             <li><img id="ctl00_cphRoblox_rbxCatalog_BrowseModeTopFavoritesBullet" class="GamesBullet" src="images/games_bullet.png" border="0"/><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeRecentlyUpdatedSelector" href="Catalog.aspx?m=RecentlyUpdated&c='.htmlspecialchars($this->c).'"><b>Recently Updated</b></a></li>
                             <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeForSaleSelector" href="Catalog.aspx?m=ForSale&c='.htmlspecialchars($this->c).'&d=All">For Sale</a></li>
                             <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModePublicDomainSelector" href="Catalog.aspx?m=PublicDomain&c='.htmlspecialchars($this->c).'">Public Domain</a></li>';
                             break;
                         case "ForSale":
-                            echo '<li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeTopFavoritesSelector" href="Catalog.aspx?m=TopFavorites&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All">Top Favorites</a></li>
+                            echo '<li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeFeaturedSelector" href="Catalog.aspx?m=Featured&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All">Featured</a></li>
+                            <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeTopFavoritesSelector" href="Catalog.aspx?m=TopFavorites&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All">Top Favorites</a></li>
                             <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeBestSellingSelector" href="Catalog.aspx?m=BestSelling&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All">Best Selling</a></li>
                             <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeRecentlyUpdatedSelector" href="Catalog.aspx?m=RecentlyUpdated&c='.htmlspecialchars($this->c).'">Recently Updated</a></li>
                             <li><img id="ctl00_cphRoblox_rbxCatalog_BrowseModeTopFavoritesBullet" class="GamesBullet" src="images/games_bullet.png" border="0"/><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeForSaleSelector" href="Catalog.aspx?m=ForSale&c='.htmlspecialchars($this->c).'&d=All"><b>For Sale</b></a></li>
                             <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModePublicDomainSelector" href="Catalog.aspx?m=PublicDomain&c='.htmlspecialchars($this->c).'">Public Domain</a></li>';
                             break;
                         case "PublicDomain":
-                            echo '<li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeTopFavoritesSelector" href="Catalog.aspx?m=TopFavorites&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All">Top Favorites</a></li>
+                            echo '<li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeFeaturedSelector" href="Catalog.aspx?m=Featured&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All">Featured</a></li>
+                            <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeTopFavoritesSelector" href="Catalog.aspx?m=TopFavorites&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All">Top Favorites</a></li>
                             <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeBestSellingSelector" href="Catalog.aspx?m=BestSelling&c='.htmlspecialchars($this->c).'&t='.htmlspecialchars($this->t).'&d=All">Best Selling</a></li>
                             <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeRecentlyUpdatedSelector" href="Catalog.aspx?m=RecentlyUpdated&c='.htmlspecialchars($this->c).'">Recently Updated</a></li>
                             <li><a id="ctl00_cphRoblox_rbxCatalog_BrowseModeForSaleSelector" href="Catalog.aspx?m=ForSale&c='.htmlspecialchars($this->c).'&d=All">For Sale</a></li>
