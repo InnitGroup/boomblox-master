@@ -32,8 +32,18 @@ global $theme;
 						<a href="Parents.aspx">parents</a> keeping track of their kids on <?=Site::getThemeProperty("alias", $theme)?>
 					</div>
 					<div class="RandomFactoid">
+						<?php
+						global $db;
+						$stmt = "SELECT id FROM users WHERE `level` > 2";
+						$admins = $db->execute($stmt);
+						$count = 0;
+						while ($admin = $admins->fetch(PDO::FETCH_ASSOC)) {
+							$adminU = new User($admin["id"]);
+							if ($adminU->isOnline()) $count++;
+						}
+						?>
 						<img src="/images/RandomFactsIcons/Admin.png">
-						<b>0</b> forum moderators are providing help in the forums
+						<b><?=$count?></b> forum moderator<?=$count == 0 || $count > 1 ? "s are" : " is"?> providing help in the forums
 					</div>
 				</div>
 			</div>
