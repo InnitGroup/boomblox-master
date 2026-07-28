@@ -2,8 +2,8 @@
 global $theme;
 ?>
 
-<h4 style="text-align: center; height: 16px; margin: 0px 0px 2px 0px;"><a id="ctl00_cphRoblox_NewsFeed_RobloxNewsHyperLink" href="#"><font color="graytext"><?=Site::getThemeProperty("alias", $theme)?> News</font></a></h4>
-<table id="ctl00_cphRoblox_NewsFeed_dlNews" cellspacing="0" cellpadding="1" border="0" width="158">
+<h4 style="text-align: center; height: 16px; margin: 0px 0px 2px 0px;"><a id="ctl00_cphRoblox_NewsFeed_RobloxNewsHyperLink" href="https://boombloxjournal.tumblr.com/"><font color="graytext"><?=Site::getThemeProperty("alias", $theme)?> News</font></a></h4>
+<table id="ctl00_cphRoblox_NewsFeed_dlNews" cellspacing="0" cellpadding="1" border="0" width="158" style="position:relative;left:17px">
     <tbody>
         <tr>
             <td align="left">

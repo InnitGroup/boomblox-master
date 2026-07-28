@@ -40,7 +40,7 @@
 				$avatarRender = $avatar->GetThumbnail(500, 500, "PNG");
 			?>
 			<div style="text-align: center;">
-				<h3>Featured Game: <span id="ctl00_cphRoblox_FeaturedGames_GameName"><?=htmlspecialchars(Helper::debugString($game->itemName))?></span>
+				<h3>Featured Free Game: <span id="ctl00_cphRoblox_FeaturedGames_GameName"><?=mb_strimwidth(htmlspecialchars(Helper::debugString($game->itemName)), 0, 34)?></span>
 				</h3>
 			</div>
 			<div style="float: left;">
