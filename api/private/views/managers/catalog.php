@@ -113,6 +113,13 @@ class CatalogManager {
         $this->q !== "" && $sql .= " AND `itemName`" . $this->returnTippedQuery($this->q) . " ";
         $this->c !== "9" && $sql .= " AND catalogType='".$this->cToSQL[$this->c]."' ".htmlspecialchars($sort);
         $this->c == "9" && $sql = "SELECT * FROM items WHERE itemType='game' ";
+        if ($this->m == "Featured") {
+            $sql = "SELECT * FROM items WHERE itemType='catalog'";
+            $this->q !== "" & $this->c == "9" && $sql .= " AND itemName LIKE '%".htmlspecialchars($this->q)."%' ";
+            $sql .= " AND interactions > 10 AND onsale = 1 " . $this->getSQLSort("Featured");
+            $result = $db->execute($sql);
+            return $result;
+        }
         $this->q !== "" & $this->c == "9" && $sql .= " AND itemName LIKE '%".htmlspecialchars($this->q)."%' ";
         $this->c == "9" && $sql .= htmlspecialchars($sort);
         $result = $db->execute($sql);
