@@ -65,37 +65,56 @@ Roblox.Launch.VisitOnline = function(visit, placeID, serverID) {
     $(".modalContainer").show();
     $(".modalPopup").show();
 
-    setTimeout(function() {
-        $("#Requesting").show();
-    }, 1000);
-
     if (__requestResponse("api/public/GameserversActive.ashx") == "0") {
         setTimeout(function() {
             $("#Spinner").hide();
-            $("#Requesting").hide();
             $("#Expired").show();
-        }, 2000);
+        }, 1000);
 
         return;
     }
 
-    setTimeout(function() {
-        $("#Requesting").hide();
-        $("#Waiting").show();
-    }, 2000);
+    if (serverID === 0) {
+        setTimeout(function() {
+            $("#Requesting").show();
+        }, 1000);
 
-    setTimeout(function() {
-        $("#Waiting").hide();
-        $("#Loading").show();
-    }, 3000);
+        setTimeout(function() {
+            $("#Requesting").hide();
+            $("#Waiting").show();
+        }, 2000);
 
-    setTimeout(function() {
-        $("#Loading").hide();
-        $("#Joining").show();
-    }, 4000);
+        setTimeout(function() {
+            $("#Waiting").hide();
+            $("#Loading").show();
+        }, 3000);
+
+        setTimeout(function() {
+            $("#Loading").hide();
+            $("#Joining").show();
+        }, 4000);
+
+        setTimeout(function() {
+            window.location = "/Data/HandleJoin.ashx?PlaceID=" + placeID + "&TypeID=1&ServerID=" + serverID;
+        }, 5000);
+
+        return;
+    }
+
+    if (__requestResponse("api/public/ServerFull.ashx?ServerID=" + serverID) == "1") {
+        setTimeout(function() {
+            $("#Spinner").hide();
+            $("#GameFull").show();
+        }, 1000);
+
+        return;
+    }
+
+    $("#Requesting").hide();
+    $("#Joining").show();
 
     setTimeout(function() {
         window.location = "/Data/HandleJoin.ashx?PlaceID="+placeID+"&TypeID=1&ServerID="+serverID;
-    }, 5000);
+    }, 2000);
     
 }
