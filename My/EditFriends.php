@@ -6,7 +6,7 @@ global $theme, $auth, $user;
 
 $editFriends = new EditFriendsManager;
 
-$page = new PageBuilder(Site::getThemeProperty("alias",$theme).": A FREE Virtual World-Building Game with Avatar Chat, 3D Environments, and Physics", $theme, '/templates/authheader.php', null, 'editfriends');
+$page = new PageBuilder("Free Games at " . Site::getThemeProperty("titleUrl", $theme), $theme, '/templates/authheader.php', null, 'editfriends');
 $page->buildHeader();
 $editFriends->load();
 $page->buildFooter();

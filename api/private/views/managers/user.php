@@ -52,6 +52,21 @@ class UserManager {
                     header("Location: ".$_SERVER["REQUEST_URI"]);
                     break;
             }
+        } else {
+            switch ($postData[1]) {
+                case 'ctl00$rbx$MakeBestFriend':
+                    if (!$user->bestFriendsWith($this->userId)) {
+                        $user->addBestFriend($this->userId);
+                        header("Location: " . $_SERVER['REQUEST_URI']);
+                    }
+                    break;
+                case 'ctl00$rbx$RemoveBestFriend':
+                    if ($user->bestFriendsWith($this->userId)) {
+                        $user->removeBestFriend($this->userId);
+                        header("Location: " . $_SERVER['REQUEST_URI']);
+                    }
+                    break;
+            }
         }
         
 

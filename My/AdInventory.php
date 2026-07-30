@@ -17,7 +17,7 @@ if (Server::isPost()) {
     }    
 }
 
-$page = new PageBuilder(Site::getThemeProperty("alias",$theme).": A FREE Virtual World-Building Game with Avatar Chat, 3D Environments, and Physics", $theme, "/templates/authheader.php", [], "edititem"); # 
+$page = new PageBuilder("Free Games at " . Site::getThemeProperty("titleUrl", $theme), $theme, "/templates/authheader.php", [], "edititem"); # 
 $page->buildHeader();
 
 PageBuilder::addComponent("userad", "inventory");

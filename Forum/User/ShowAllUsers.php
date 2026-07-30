@@ -6,7 +6,7 @@ global $theme, $auth, $user;
 
 !$user->isTester() && Server::_404();
 
-$page = new PageBuilder(Site::getThemeProperty("alias",$theme).": A FREE Virtual World-Building Game with Avatar Chat, 3D Environments, and Physics", $theme, "/templates/authheader.php", [], "rbxnews");
+$page = new PageBuilder("Free Games at " . Site::getThemeProperty("titleUrl", $theme), $theme, "/templates/authheader.php", [], "rbxnews");
 $page->buildHeader();
 ?>
 <link rel="stylesheet" href="/Forum/skins/default/style/default.css">

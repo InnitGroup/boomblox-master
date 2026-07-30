@@ -11,7 +11,7 @@ $post = $_POST;
 
 $place = new PlaceManager($post, $theme, $placeId);
 
-$page = new PageBuilder(Site::getThemeProperty("alias",$theme).": A FREE Virtual World-Building Game with Avatar Chat, 3D Environments, and Physics", $theme, "/templates/authheader.php", null, "myplace"); # 
+$page = new PageBuilder("Free Games at " . Site::getThemeProperty("titleUrl", $theme), $theme, "/templates/authheader.php", null, "myplace"); # 
 $page->buildHeader();
 
 $place->load();

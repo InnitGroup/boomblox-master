@@ -6,7 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 global $theme, $auth, $user;
 $auth->isAuthed() && header("Location: /Default.aspx") && exit;
 
-$page = new PageBuilder(Site::getThemeProperty("alias",$theme).": A FREE Virtual World-Building Game with Avatar Chat, 3D Environments, and Physics", 0, "/templates/dryheader.php", [], ["register"]);
+$page = new PageBuilder("Free Games at " . Site::getThemeProperty("titleUrl", $theme), 0, "/templates/dryheader.php", [], ["register"]);
 $page->buildHeader();
 
 $register = new Registration;

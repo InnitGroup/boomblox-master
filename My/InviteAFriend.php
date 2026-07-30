@@ -7,7 +7,7 @@ global $theme, $auth, $user;
 !$auth->isAuthed() && Server::_404();;
 
 #$invite = new InviteManager;
-$page = new PageBuilder(Site::getThemeProperty("alias",$theme).": A FREE Virtual World-Building Game with Avatar Chat, 3D Environments, and Physics", $theme, "/templates/authheader.php");
+$page = new PageBuilder("Free Games at " . Site::getThemeProperty("titleUrl", $theme), $theme, "/templates/authheader.php");
 $page->buildHeader();
 PageBuilder::addComponent("invite", "main");
 $page->buildFooter();

@@ -27,7 +27,7 @@ if (Server::isPost()) {
     exit(header("Location: /Groups/Group.aspx?gid=$gid"));
 }
 
-$page = new PageBuilder("Free Games at " . strtoupper(Site::getThemeProperty("url", $theme)), 6, "2010header");
+$page = new PageBuilder("Free Games at " . Site::getThemeProperty("titleUrl", $theme), 6, "2010header");
 $page->buildHeader();
 PageBuilder::addComponent("groups", "group");
 $page->buildFooter();

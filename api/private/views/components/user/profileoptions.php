@@ -11,11 +11,11 @@ if ($publicView): ?>
     </p>
         <?php elseif ($user->isStaff() && !$user->bestFriendsWith($userId)): ?>
     <p>
-        <a href="javascript:__doPostBack('','')">Make Best Friend</a>
+        <a href="javascript:__doPostBack('','ctl00$rbx$MakeBestFriend')">Make Best Friend</a>
     </p>        
         <?php elseif ($user->bestFriendsWith($userId)): ?>
     <p>
-        <a href="javascript:__doPostBack('','')">Remove Best Friend</a>
+        <a href="javascript:__doPostBack('','ctl00$rbx$RemoveBestFriend')">Remove Best Friend</a>
     </p>         
         <?php endif; ?>
     <p>
