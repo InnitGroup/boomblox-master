@@ -5,7 +5,7 @@ global $user, $theme;
 <div class="MyRobloxContainer">
 	<!-- Left column -->
 	<div id="ctl00_ctl00_cphRoblox_cphMyRobloxContent_TopFriends" class="Column1a">
-		<div style="width:260px;height:28px;font-family:Verdana, Helvetica, Sans-Serif; font-size:20px; font-weight:bold; clear:both; display:block;"> Hi, <?=$user->getUsername()?> </div>
+		<div style="width:260px;height:28px;font-family:Verdana, Helvetica, Sans-Serif; font-size:20px; font-weight:bold; clear:both; display:block;"> <a href="/My/CustomSettings.aspx" style="color:inherit">Hi</a>, <?=$user->getUsername()?> </div>
 		<br clear="all" />
 		<!-- Profile pic and inbox -->
 		<div class="StandardBox">
@@ -52,10 +52,11 @@ global $user, $theme;
 			</div>
 		</div>
 		<br clear="all" />
+		<?php $bestFriends = $user->getBestFriends(); if (!empty($bestFriends) && $bestFriends !== NULL): ?>
 		<div id="ctl00_ctl00_cphRoblox_cphMyRobloxContent_pnlBestFriends">
 			<div class="StandardBoxHeader"> My Best Friends ( <a style="color:#ccccff" href="/my/EditFriends.aspx">Edit</a>) </div>
 			<div class="StandardBox" style="text-align:center">
-				<?php $bestFriends = $user->getBestFriends(); if (!empty($bestFriends) && $bestFriends !== NULL): ?>
+				
 				<table width="260px">
 					<?php foreach ($bestFriends as $bestFriend): $friendUser = new User($bestFriend); $friendAvatar = new Avatar($bestFriend); ?>
 					<tr>
@@ -73,12 +74,10 @@ global $user, $theme;
 					</tr>
 					<?php endforeach; ?>
 				</table>
-				<?php else: ?>
-				<div>
-				<?php endif; ?>
 			</div>
 			<br clear="all" />
 		</div>
+		<?php endif; ?>
 		<!-- Connect to facebook -->
 		<div id="ctl00_ctl00_cphRoblox_cphMyRobloxContent_facebookPanel_pnlNotLoggedIn">
 			<div class="StandardBoxHeader" style="padding-bottom:1px; padding-top:1px"> Facebook Connect&nbsp;&nbsp; <a onclick="$('#fbHelp').show(); return false;" href="#">

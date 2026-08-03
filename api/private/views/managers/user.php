@@ -98,7 +98,8 @@ class UserManager {
     }
     //head start
     public function loadTitle() {
-        if ($this->userId == ROBLOSECURITY::match($_COOKIE["BROBLOSECURITY"])) {
+        global $user;
+        if ($this->userId == $user->getUserId()) {
             return "My ".Site::getThemeProperty("alias", $this->theme)." Home Page";
         } else {
             return $this->user->getData("user", "username")."'s ".Site::getThemeProperty("alias", $this->theme)." Home Page";
@@ -237,91 +238,64 @@ class UserManager {
     }
     public function loadBadgesPane() {
         echo '
-            <div id="UserBadgesPane">
-				<div id="UserBadges">
-					<h4>
-						<a href="Badges.aspx">Badges</a>
-					</h4>
-					<table cellspacing="0" align="Center" border="0">
-						<tr>
-                            '.$this->loadBadges().'
-						</tr>
-					</table>
-				</div>
-			</div>
+        <div class="StandardBoxHeader">' . Site::getThemeProperty("alias", $this->theme) . ' Badges</div>
+        <div class="StandardBox">
+            <table cellspacing="0" align="Center" border="0">
+                <tr>
+                    '.$this->loadBadges().'
+                </tr>
+            </table>
+        </div>
         ';
     }
     //loadStatsPane start
     public function loadStatsPane() {
         echo '
-            <div id="UserStatisticsPane" >
-				<div id="UserStatistics" style="transition: height 0.5s ease-out; overflow: hidden; height: 200px;">
-					<h4>Statistics</h4>
-					<div class="Statistic">
-						<div class="Label">
-							<acronym title="The number of this user\'s friends.">Friends</acronym>:
-						</div>
-						<div class="Value">
-							<span>'.number_format(count($this->user->getFriends(false))).' ( last week)</span>
-						</div>
-					</div>';
-                    if (!$this->publicView) {
-                        echo '
-                        <div class="Statistic">
-                            <div class="Label">
-                                <acronym title="The number of this user\'s friends that they invited.">Friends Invited</acronym>:
-                            </div>
-                            <div class="Value">
-                                <span> ( last week)</span>
-                            </div>
-                        </div>
-                        ';
-                    } echo '
-					<div class="Statistic">
-						<div class="Label">
-							<acronym title="The number of posts this user has made to the '.Site::getThemeProperty("name", $this->theme).' forum.">Forum Posts</acronym>:
-						</div>
-						<div class="Value">
-							<span>'.number_format($this->user->getForumPosts(NULL, true)).'</span>
-						</div>
-					</div>
-					<div class="Statistic">
-						<div class="Label">
-							<acronym title="The number of times this user\'s profile has been viewed.">Profile Views</acronym>:
-						</div>
-						<div class="Value">
-							<span>'.number_format($this->user->getProfileViews()).' ( last week)</span>
-						</div>
-					</div>
-					<div class="Statistic">
-						<div class="Label">
-							<acronym title="The number of times this user\'s place has been visited.">Place Visits</acronym>:
-						</div>
-						<div class="Value">
-							<span>'.number_format($this->user->getVisits()).' ('.number_format($this->user->getLastWeekVisits()).' last week)</span>
-						</div>
-					</div>
-					<div class="Statistic">
-						<div class="Label">
-							<acronym title="The number of times this user\'s character has destroyed another user\'s character in-game.">Knockouts</acronym>:
-						</div>
-						<div class="Value">
-							<span>'.number_format($this->user->getData("user", "kos")).' ('.number_format($this->user->getLastWeekKOs()).' last week)</span>
-						</div>
-					</div>';
-                    if (!$this->publicView) {
-                        echo '
-                    <div class="Statistic">
-						<div class="Label">
-							<acronym title="The number of times this user\'s character has been destroyed by another user\'s character in-game.">Wipeouts</acronym>:
-						</div>
-						<div class="Value">
-							<span>'.number_format($this->user->getData("user", "wos")).' ('.number_format($this->user->getLastWeekWOs()).' last week)</span>
-						</div>
-					</div>'; }
-                    echo '
-				</div>
-			</div>
+        <style>
+        .statsLabel { font-weight:bold; text-align:right; padding-right:10px;}
+        .statsValue { font-weight:normal; text-align:left;}
+        .statsTable { width:400px; }
+        </style>
+        <div class="StandardBoxHeader">Statistics</div>
+        <div class="StandardBox">
+            <table class="statsTable">
+                <tbody>
+                    <tr>
+                        <td class="statsLabel">
+                        <acronym title="The number of this user\'s friends.">Friends</acronym>:
+                        </td>
+                        <td class="statsValue">
+                        <span id="ctl00_cphRoblox_rbxUserStatisticsPane_lFriendsStatistics">'.number_format(count($this->user->getFriends(false))).' ( last week)</span>
+                        </td>
+                    </tr>'; if (!$this->publicView) { echo '
+                    <tr>
+                        <td class="statsLabel"><acronym title="The number of this user\'s friends that they invited.">Friends Invited</acronym>:</td>
+                        <td class="statsValue"><span id="ctl00_cphRoblox_rbxUserStatisticsPane_lForumPostsStatistics"> ( last week)</span></td>
+                    </tr>'; } echo '
+                    <tr>
+                        <td class="statsLabel"><acronym title="The number of posts this user has made to the '.Site::getThemeProperty("alias", $this->theme).' forum.">Forum Posts</acronym>:</td>
+                        <td class="statsValue"><span id="ctl00_cphRoblox_rbxUserStatisticsPane_lForumPostsStatistics">'.number_format($this->user->getForumPosts(NULL, true)).'</span></td>
+                    </tr>
+                    <tr>
+                        <td class="statsLabel"><acronym title="The number of times this user\'s profile has been viewed.">Profile Views</acronym>:</td>
+                        <td class="statsValue"><span id="ctl00_cphRoblox_rbxUserStatisticsPane_lProfileViewsStatistics">' . number_format($this->user->getProfileViews()) . ' ( last week)</span></td>
+                    </tr>
+                    <tr>
+                        <td class="statsLabel"><acronym title="The number of times this user\'s place has been visited.">Place Visits</acronym>:</td>
+                        <td class="statsValue"><span id="ctl00_cphRoblox_rbxUserStatisticsPane_lPlaceVisitsStatistics">'.number_format($this->user->getVisits()).' ('.number_format($this->user->getLastWeekVisits()).' last week)</span></td>
+                    </tr>
+                    <tr>
+                        <td class="statsLabel"><acronym title="The number of times this user\'s character has destroyed another user\'s character in-game.">Knockouts</acronym>:</td>
+                        <td class="statsValue"><span id="ctl00_cphRoblox_rbxUserStatisticsPane_lKillsStatistics">'.number_format($this->user->getData("user", "kos")).' ('.number_format($this->user->getLastWeekKOs()).' last week)</span></td>
+                    </tr>';
+                    if (!$this->publicView) { echo '
+                    <tr>
+                        <td class="statsLabel"><acronym title="The number of times this user\'s character has been destroyed by another user\'s character in-game.">Wipeouts</acronym>:</td>
+                        <td class="statsValue"><span id="ctl00_cphRoblox_rbxUserStatisticsPane_lKillsStatistics">'.number_format($this->user->getData("user", "wos")).' ('.number_format($this->user->getLastWeekWOs()).' last week)</span></td>
+                    </tr>'; } echo '
+                </tbody>
+            </table>    
+        </div>
         ';
     }
     //loadPlaces start
@@ -532,7 +506,7 @@ class UserManager {
                     $result .= '
                                         <td class="Asset" valign="top">
                                             <div style="padding:5px">';
-                                            if (!$publicView) {$result .= '<a class="RemoveItem" href="javascript:__doPostBack(\''.$favorite["itemId"].'\', \'ctl00$robloxCph$RemoveFavorite\')" style="position:relative;left:24px;" onclick="wearItem(event)">&nbsp;[ delete ]&nbsp;</a>';}
+                                            if (!$publicView) {$result .= '<a class="RemoveItem" href="javascript:__doPostBack(\''.$favorite["itemId"].'\', \'ctl00$robloxCph$RemoveFavorite\')" style="position:relative;left:47px;" onclick="wearItem(event)">&nbsp;[ delete ]&nbsp;</a>';}
                                                 
                                                 $result .= '<div class="AssetThumbnail">
                                                     <a title="'.htmlspecialchars(Helper::debugString($favorite["itemName"])).'" href="/Item.aspx?ID='.htmlspecialchars($favorite["itemId"]).'" style="display:inline-block;cursor:pointer;">
@@ -571,10 +545,11 @@ class UserManager {
     public function loadFavoritesPane() {
         $view = (int)$this->publicView;
         echo '
-				<div>
-					<div id="Favorites">
-                        <h4>Favorites</h4>
-                        <div id="FavoritesContent" style="">
+            <div style="clear:both; margin-bottom:10px">
+                <div class="StandardBoxHeader" style="height:20px;">Favorites</div>
+                <div>
+                    <div class="StandardBox">
+                        <div id="FavoritesContent">
                             '.$this->loadFavPanePaginator("Header").'
                             <table id="ctl00_cphRoblox_rbxFavoritesPane_FavoritesDataList" cellspacing="0" border="0" style="margin-left:auto;margin-right:auto;">
                                 <tbody>
@@ -596,7 +571,8 @@ class UserManager {
                             </select>
                         </div>
                     </div>
-				</div>
+                </div>
+            </div>
         ';
     }
 
@@ -690,13 +666,19 @@ class UserManager {
         }
         return $result;
     }
+    public function loadUserBadgesPane() {
+        PageBuilder::addComponent("user", "userbadgespane");
+    }
+    public function loadGroupsPane() {
+        $currentUser = $this->user;
+        PageBuilder::addComponent("user", "groupspane", compact("currentUser"));
+    }
     public function loadInventoryPane() {
         $view = $this->publicView ?? 0;
         echo '
 
-			<div>
-				<div id="UserAssets">
-					<h4>Stuff</h4>
+			    <div class="StandardBoxHeader">Stuff</div>
+				<div id="UserAssets" style="background-color: White;">
                     <div>';
                         if ((bool)!$view) {
                             echo '

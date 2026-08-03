@@ -28,7 +28,7 @@ if ($publicView): ?>
 <?php else: ?>
 <div style="text-align: left">
     <p>
-        <a href="/My/Inbox.aspx">Inbox</a>
+        <a href="/My/Inbox.aspx">Inbox</a> <?=$user->getMessageCount() > 0 ? "(" . number_format($user->getMessageCount()) .")" : ""?>
     </p>
     <p>
         <a href="/My/Character.aspx">Change Character</a>

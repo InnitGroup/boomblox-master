@@ -161,7 +161,10 @@ class Group {
             ":rolesets" => $rolesets
         ]);
 
-        return $db->lastInsertId("groups");
+        $groupId = $db->lastInsertId("groups");
+        $user->addGroup($groupId);
+
+        return $groupId;
     }
 
     public static function exists(int $groupId): bool {
@@ -366,6 +369,9 @@ class Group {
         if ($this->isInGroup($userId)) {
             return;
         }
+
+        $member = new User($userId);
+        $member->addGroup($this->id());
 
         $members = $this->members;
         $members[$userId] = [

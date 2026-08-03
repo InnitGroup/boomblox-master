@@ -8,7 +8,7 @@ global $theme, $auth, $user;
 
 $char = new CharacterManager($_POST);
 
-$page = new PageBuilder(Site::getThemeProperty("alias",$theme)." - Change Character", $theme, "/templates/authheader.php", null, "character");
+$page = new PageBuilder(Site::getThemeProperty("alias",$theme)." - Change Character", $theme, "oldheader.php", null, "character");
 $page->buildHeader();
 ?>
 <div id="Body">

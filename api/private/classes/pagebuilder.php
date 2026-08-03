@@ -48,7 +48,7 @@ class PageBuilder {
         } elseif ($this->content["header"] == $_SERVER['DOCUMENT_ROOT'] . "/templates/dryheader.php") {
             self::addComponent("page", "dryheader", $packed);
         } else {
-            self::addComponent("page", "2010header", $packed);
+            self::addComponent("page", "oldheader", $packed);
         }
     }
     public function buildFooter() {

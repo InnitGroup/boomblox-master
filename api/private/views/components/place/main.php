@@ -33,11 +33,6 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
 		<div id="Item">
 			<h2><?=$name?></h2>
 			<div id="Details">
-				<div id="Thumbnail_Place">
-					<a id="ctl00_cphRoblox_AssetThumbnailImage_Place" disabled="disabled" title="<?=$name?>" onclick="return false" style="display:inline-block;">
-						<img src="<?=$assetThumb?>" border="0" alt="<?=$name?>">
-					</a>
-				</div>
                 <div id="Summary">
 					<h3>ROBLOX Place</h3>
 					<div id="Creator" class="Creator">
@@ -87,6 +82,11 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
 						</div>
 					</div>
 				</div>
+				<div id="Thumbnail_Place">
+					<a id="ctl00_cphRoblox_AssetThumbnailImage_Place" disabled="disabled" title="<?=$name?>" onclick="return false" style="display:inline-block;">
+						<img src="<?=$assetThumb?>" border="0" alt="<?=$name?>">
+					</a>
+				</div>
 				<div id="Actions_Place">
 					<a <?=$user->hasFavorite($id) ? "disabled" : ""?> <?php if (!$user->hasFavorite($id)): ?> href="javascript:__doPostBack('ctl00$cphRoblox$Favorite', '')" <?php endif; ?>>Favorite</a>
 				</div>
@@ -125,7 +125,7 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
                     <div id="Configuration">
                         <a href="/My/Place.aspx?ID=<?=$id?>">Configure this Place</a>
                     </div>
-					<div id="Advertise">
+					<div id="Configuration">
                         <a href="/My/NewUserAd.aspx?targetID=<?=$id?>">Advertise this Place</a>
                     </div>
                 <?php endif; ?>

@@ -175,7 +175,7 @@ class CharacterManager {
                     <td class="Asset" id="'.$item["itemId"].'">
                         <a class="WearItem" title="click to wear" href="javascript:__doPostBack(\'Accoutrement\', \''.htmlspecialchars($this->requestData["type"]).'$'.(int)$item["itemId"].'$Wear\')" onclick="wearItem(event)">[ wear ]</a>
                         <a href="javascript:__doPostBack(\'Accoutrement\', \''.htmlspecialchars($this->requestData["type"]).'$'.(int)$item["itemId"].'$Wear\')">
-                        <img class="AssetThumbnail" src="'.$thumbnail->GetThumbnail(250,250,"PNG").'">
+                        <img class="AssetThumbnail" style="height:110px" src="'.$thumbnail->GetThumbnail(250,250,"PNG").'">
                         </a>
                         <div class="AssetName">
                             <a style="overflow-wrap: anywhere;" href="/Item.aspx?ID='.$item["itemId"].'">'.htmlspecialchars($item["itemName"]).'</a>
@@ -275,7 +275,7 @@ class CharacterManager {
                                 <td class="Asset" id="'.$item["itemId"].'">
                                 <a class="RemoveItem" href="javascript:__doPostBack(\'Accoutrement\', \''.$item["catalogType"].'$'.$item["itemId"].'$Remove\')" onclick="wearItem(event)">&nbsp;[ remove ]&nbsp;</a>
                                 <a href="javascript:__doPostBack(\'Accoutrement\', \''.$item["catalogType"].'$'.$item["itemId"].'$Remove\')">
-                                <img class="AssetThumbnail" src="'.$thumbnail->GetThumbnail(250,250,"PNG").'">
+                                <img class="AssetThumbnail" style="height:110px" src="'.$thumbnail->GetThumbnail(250,250,"PNG").'">
                                 </a>
                                 <div class="AssetName">
                                     <a href="/Item.aspx?ID='.$item["itemId"].'">'.htmlspecialchars($item["itemName"]).'</a>

@@ -88,14 +88,14 @@ $userId = $moderatedUser->getUserId();
         $bcExpires = $moderatedUser->bcExpires(true);
         ?>
 
-        <p>This users subscription <?=$moderatedUser->hasTBC() ? "(Turbo)" : "(Regular)"?> <?=$bcExpires > 0 ? "expires in $bcExpires days" : "is not active"?>.</p>
+        <p>This users subscription <?=$moderatedUser->hasTBC() ? "(Turbo)" : "(Regular)"?> <?=$moderatedUser->hasBC() && $bcExpires > 0 ? "expires in $bcExpires days" : "is not active"?>.</p>
         
-        <?php if ($bcExpires < 60 && !$moderatedUser->hasTBC()): ?>
+        <?php if (!$moderatedUser->hasBC()): ?>
             <input type="submit" name="ctl00$cphRoblox$Add1MembershipButton" value="Add 1 Month BC" id="ctl00_cphRoblox_AddMembershipButton">
             <br><br>
             <input type="submit" name="ctl00$cphRoblox$Add3MembershipButton" value="Add 3 Months BC" id="ctl00_cphRoblox_AddMembershipButton">
             <br><br>
-        <?php elseif ($bcExpires < 60 && $moderatedUser->hasTBC()): ?>
+        <?php elseif (!$moderatedUser->hasTBC()): ?>
             <input type="submit" name="ctl00$cphRoblox$Add1TBCButton" value="Add 1 Month TBC" id="ctl00_cphRoblox_AddMembershipButton">
             <br><br>
             <input type="submit" name="ctl00$cphRoblox$Add3TBCButton" value="Add 3 Months TBC" id="ctl00_cphRoblox_AddMembershipButton">

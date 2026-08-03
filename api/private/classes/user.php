@@ -27,7 +27,8 @@ class User {
             "dynamicIp",
             "firstIp",
             "lastIp",
-            "guestId"
+            "guestId",
+            "groups"
         ],
         "character" => [
             "headColor",
@@ -523,10 +524,6 @@ class User {
     }
 
     public function giveBC(int $months = 1) {
-        if ($this->bcExpires(true) > 160) { # if they have more than 5 months worth of bc then they can't be given more 
-            return;
-        }
-
         if (!$this->hasItem(118)) {
             $this->giveItem(118);
         }
@@ -567,10 +564,6 @@ class User {
     }
 
     public function giveTBC(int $months = 1) {
-        if ($this->bcExpires(true) > 160 && $this->hasTBC()) { # if they have more than 5 months worth of bc then they can't be given more 
-            return;
-        }
-
         if (!$this->hasItem(5042)) {
             $this->giveItem(5042);
         }
@@ -1140,7 +1133,7 @@ class User {
             $now = new DateTime;
             $diff = $now->diff($expires);
 
-            return $diff->format("%R%a");
+            return (int)$diff->format("%r%a");
         }
 
         return $expires->format("n/j/Y");
@@ -1642,6 +1635,43 @@ class User {
         return $db->execute($stmt, [
             ":bestFriends" => $bestFriends,
             ":id" => $this->getUserId()
+        ]);
+    }
+
+    public function getGroups(): array {
+        $groups = $this->getData("user", "groups");
+        if ($groups == "a:0:{}") {
+            $groups = array();
+        } else {
+            $groups = unserialize($groups);
+        }
+
+        return ($groups);
+    }
+
+    public function addGroup(int $groupId) {
+        $groups = $this->getGroups();
+        array_push($groups, $groupId);
+
+        global $db;
+        $stmt = "UPDATE users SET groups = :groups WHERE id = :userId";
+        $db->execute($stmt, [
+            ":groups" => serialize($groups),
+            ":userId" => $this->getUserId()
+        ]);
+    }
+
+    public function removeGroup(int $groupId) {
+        $group = new Group($groupId);
+        if (!$group->isInGroup($this->getUserId())) return;
+        $groups = $this->getGroups();
+        unset($groups[array_search($groupId, $groups)]);
+
+        global $db;
+        $stmt = "UPDATE users SET groups = :groups WHERE id = :userId";
+        $db->execute($stmt, [
+            ":groups" => serialize($groups),
+            ":userId" => $this->getUserId()
         ]);
     }
 }

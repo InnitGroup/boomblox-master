@@ -19,7 +19,7 @@ if ($user->getUserId() == $place["creatorId"]) {
 <div class="AccordionHeader" onclick="OpenPlace(<?=$id?>)"> <?=htmlspecialchars(Helper::debugString($place["itemName"]))?> </div>
     <div style="display:<?=$display?>;" id="PlaceContent<?=$id?>" class="PlaceContent">
         <div class="Place">
-            <div class="PlayStatus">
+            <div style="" class="PlayStatus">
                 <span style="display: <?=!$user->friendsWith($place["creatorName"]) && $place["access"] == 0 && $user->getUserId() !== $place["creatorId"] ? "inline" : "none"?>">
                     <img src="images/locked.png" alt="Locked" border="0" />&nbsp;Friends-only </span>
                 <span style="display: <?=$user->friendsWith($place["creatorName"]) && $place["access"] == 0 || $user->getUserId() == $place["creatorId"] && $place["access"] == 0 ? "inline" : "none"?>">
@@ -70,7 +70,7 @@ if ($user->getUserId() == $place["creatorId"]) {
                 </div>
                 <?php endif; endif; ?>
             </div>
-            <div class="Statistics">
+            <div style="text-align:center" class="Statistics">
                 <span>Visited <?=number_format($place["interactions"])?> times (<?=number_format($user->getLastWeekVisits($place["itemId"]))?> last week)</span>
             </div>
             <div class="Thumbnail">
@@ -84,10 +84,10 @@ if ($user->getUserId() == $place["creatorId"]) {
             </div>
             <?php endif; ?>
             <?php if (!$publicView): ?>
-            <div class="Configuration">
+            <div class="Configuration" style="text-align:center">
                 <a href="/My/Place.aspx?ID=<?=$place["itemId"]?>">Configure this Place</a>
             </div>
-            <div class="Configuration">
+            <div class="Configuration" style="text-align:center">
                 <a href="/My/NewUserAd.aspx?targetID=<?=$place["itemId"]?>">Advertise this Place</a>
             </div>
             <?php endif; ?>

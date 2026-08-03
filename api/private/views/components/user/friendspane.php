@@ -1,13 +1,11 @@
-<div id="FriendsPane">
-    <div id="Friends">
-        <h4><?=$publicView ? $username."'s" : "My"?> Friends 
-            <a href="Friends.aspx?UserID=<?=$userId?>">See all <?=$friendCount?></a>
+<div style="margin-top:10px;" class="StandardBoxHeader"><?=$publicView ? $username."'s" : "My"?> Friends 
+            <a style="color:yellow" href="Friends.aspx?UserID=<?=$userId?>">See all <?=$friendCount?></a>
             <?php if (!$publicView): ?>
-                (<a href="/My/EditFriends.aspx">Edit</a>)
-            <?php endif; ?>
-        </h4>
-        <table cellspacing="0" align="Center" border="0">
-            <?=$friends?>
-        </table>
-    </div>
+                (<a style="color:yellow" href="/My/EditFriends.aspx">Edit</a>)
+            <?php endif; ?></div>
+
+<div class="StandardBox">
+    <table cellspacing="0" align="Center" border="0">
+        <?=$friends?>
+    </table>
 </div>

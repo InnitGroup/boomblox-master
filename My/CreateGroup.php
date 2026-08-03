@@ -23,7 +23,7 @@ if (Server::isPost()) {
     }
 }
 
-$page = new PageBuilder("Free Games at " . strtoupper(Site::getThemeProperty("url", $theme)), 6, "2010header");
+$page = new PageBuilder("Free Games at " . Site::getThemeProperty("titleUrl", $theme), $theme, "/templates/authheader.php");
 $page->buildHeader();
 PageBuilder::addComponent("groups", "create");
 $page->buildFooter();

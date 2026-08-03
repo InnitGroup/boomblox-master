@@ -2081,7 +2081,15 @@ div.AspNet-TreeView ul {
 	font-size: 1em;
 	vertical-align: middle;
 }
-
+.WearItem {
+  padding-bottom:1px;
+  z-index:2;
+  position:relative;
+  top:17px;
+  left:64px;
+  background-color:#ededed;
+  border:solid 1px #000;
+}
 #GamesContainer .Game {
 	margin: 0 10px 15px 10px;
 	vertical-align: top;

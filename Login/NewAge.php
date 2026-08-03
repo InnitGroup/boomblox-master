@@ -3,8 +3,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 
 global $theme, $auth, $user;
 if (!$auth->isAuthed()) {
-    !isset($_GET["TimeOf"]) && Server::_404();
-    $_GET["TimeOf"] !== "OurLives" && Server::_404();
+    !isset($_GET["Upon"]) && Server::_404();
+    $_GET["Upon"] !== "ThatList" && Server::_404();
 }
 
 if (Server::isPost()) {

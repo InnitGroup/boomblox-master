@@ -38,35 +38,39 @@ if ($publicView) {
 
 $page = new PageBuilder($userm->loadTitle(), $theme, "/templates/authheader.php", null, "PlaceLauncher");
 $page->buildHeader();
-
 ?>
-<div id="Body">
-	<div id="UserContainer">
-		<div id="LeftBank">
-			<?=$userm->loadProfilePane()?>
-			<?=$userm->loadBadgesPane()?>
-			<?=$userm->loadStatsPane()?>
-		</div>
-		<div id="RightBank">
-			<div id="UserPlacesPane">
-				<div id="UserPlaces">
-					<h4>Showcase</h4>
-					<div>
-						<input type="hidden" name="ShowcasePlacesAccordion_AccordionExtender_ClientState" value="0" />
-						<?=$userm->loadPlaces()?>
-					</div>
+
+<div class="MyRobloxContainer">
+	<div style="width:900px;height:30px;font-family:Verdana, Helvetica, Sans-Serif; clear:both; display:block;">
+		<span id="ctl00_cphRoblox_rbxHeaderPane_nameRegion" style="font-size:20px; font-weight:bold;"><?=$userId !== 0 ? $db->getUserById($userId) : "<a href='/My/CustomSettings.aspx' style='color:inherit'>Hi</a>, " . $user->getUsername()?></span>
+	</div>
+	<br clear="all">
+	<div class="Column1d">
+		<?=$userm->loadProfilePane()?>
+		<?=$userm->loadBadgesPane()?>
+		<?php if (false): ?>
+		<?=$userm->loadUserBadgesPane()?>
+		<?php endif; ?>
+		<?=$userm->loadStatsPane()?>
+		<?=$userm->loadGroupsPane()?>
+	</div>
+	<div class="Column2d">
+		<div class="StandardBoxHeader">Showcase </div>
+			<div id="UserPlacesPane" style="clear:both; background-color: White;">
+				<div id="UserPlaces" style="overflow:visible">
+					<input type="hidden" name="ShowcasePlacesAccordion_AccordionExtender_ClientState" value="0" />
+					<?=$userm->loadPlaces()?>
 				</div>
 			</div>
 			<?=$userm->loadFriendsPane()?>
-			<div id="FavoritesPane">
-				<?=$userm->loadFavoritesPane()?>
-			</div>
+			<?=$userm->loadFavoritesPane()?>
 		</div>
-        <div style="height:5px;clear:both;"></div>
-		<?=$userm->loadFriendRequests()?>
-		<div id="UserAssetsPane">
-			<?=$userm->loadInventoryPane()?>
-		</div>
+	</div>
+	<br clear="all">
+	<div style="height:5px;clear:both;"></div>
+	<?=$userm->loadFriendRequests()?>
+	<div id="UserContainer"><div id="UserAssetsPane">
+		<?=$userm->loadInventoryPane()?>
 	</div>
 </div>
 

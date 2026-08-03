@@ -18,12 +18,7 @@ if (strlen($description) > 250) {
 ?>
 
 <div id="Details">
-    <div id="Thumbnail">
-        <a disabled="" title="<?=htmlspecialchars(Helper::debugString($data->itemName))?>" onclick="return false" style="display:inline-block;">
-            <img src="<?=$assetRender?>" border="0" alt="<?=htmlspecialchars(Helper::debugString($data->itemName))?>" style="height:250px;width:250px;">
-        </a>
-    </div>
-    <div id="Summary">
+<div id="Summary">
         <h3><?=Site::getThemeProperty("alias", $theme)?> <?=$data->catalogType?></h3>
         <?php
         if (!$user->hasItem($data->itemId) && $data->onsale == 1) {
@@ -91,6 +86,11 @@ if (strlen($description) > 250) {
                 </span>
             </div>
         </div>
+    </div>    
+<div id="Thumbnail">
+        <a disabled="" title="<?=htmlspecialchars(Helper::debugString($data->itemName))?>" onclick="return false" style="display:inline-block;">
+            <img src="<?=$assetRender?>" border="0" alt="<?=htmlspecialchars(Helper::debugString($data->itemName))?>" style="height:420px;width:420px;">
+        </a>
     </div>
     <div id="Actions">
         <a <?=$user->hasFavorite($_GET["ID"]) ? "disabled" : ""?> <?php if (!$user->hasFavorite($_GET["ID"])): ?> href="javascript:__doPostBack('ctl00$cphRoblox$Favorite', '')" <?php endif; ?>>Favorite</a>

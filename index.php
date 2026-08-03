@@ -2,25 +2,18 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . "/api/private/core/main.php";
 global $auth;
 
-if (isset($_GET["WhenWill"])) {
-    if ($_GET["WhenWill"] === "YouLearn") {
-        echo '<img style="display:block;margin-left:auto;margin-right:auto;margin-top:250px" src="/images/supernichelogoahhahah.png">';
-        exit;
-    }
-}
-
 $auth->isAuthed() && header("Location: /Default.aspx") && exit;
 
-if (isset($_GET["XO"])) {
-    if ($_GET["XO"] === "TourLlif3") {
-        header("Location: /Login/Default.aspx?Luv=IsRage2");
+if (isset($_GET["Super"])) {
+    if ($_GET["Super"] === "Califragilistic") {
+        header("Location: /Login/Default.aspx?Expialo=docious");
         exit;
     }
 }
 
-if (isset($_GET["OhIts"])) {
-    if ($_GET["OhIts"] === "SaturdayNight") {
-        header("Location: /Login/NewAge.aspx?TimeOf=OurLives");
+if (isset($_GET["IDont"])) {
+    if ($_GET["IDont"] === "SeeMyself") {
+        header("Location: /Login/NewAge.aspx?Upon=ThatList");
         exit;
     }
 }

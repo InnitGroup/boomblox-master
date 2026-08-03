@@ -217,6 +217,61 @@ input.Text {
     width: 120px;
 }
 
+#UserPlaces .Place {
+  padding: 5px 10px;
+}
+#UserPlaces .Place .PlayStatus {
+  margin: 5px 0 0 0;
+  display: inline;
+}
+#UserPlaces .Place .PlayOptions {
+  margin: 5px 0 0 0;
+  display: inline;
+}
+#UserPlaces .Place .PlayOptions .Button {
+  border-color: #333;
+  color: #333;
+  margin: 0 3px;
+}
+#UserPlaces .Place .PlayOptions .Button:hover {
+  background-color: #6e99c9;
+  color: #fff;
+}
+#UserPlaces .Place .Statistics {
+  border-top: dashed 1px #555;
+  border-left: dashed 1px #555;
+  border-right: dashed 1px #555;
+  color: #555;
+  font: normal 1em / normal Verdana, sans-serif;
+  letter-spacing: 0.1em;
+  line-height: 1.7em;
+  margin: 0;
+  margin-top: 10px;
+}
+#UserPlaces .Place .Thumbnail {
+  border: solid 1px #555;
+  margin: 0;
+}
+#UserPlaces .Place .Description {
+  border: dashed 1px #555;
+  color: #555;
+  font: normal 1em / normal Verdana, sans-serif;
+  max-height: 75px;
+  line-height: 1.7em;
+  margin: 5px 0 0 0;
+  padding: 5px 10px;
+  overflow: auto;
+  text-align: left;
+}
+#UserPlaces .Place .Configuration {
+  border-bottom: dashed 1px #555;
+  border-left: dashed 1px #555;
+  border-right: dashed 1px #555;
+  font: normal 1em / normal Verdana, sans-serif;
+  line-height: 1.7em;
+  padding: 5px 10px;
+}
+
 #RobloxLargeRectangleAd {
     padding: 10px 0 10px 0;
 }
@@ -1331,7 +1386,7 @@ div.RobuxAlert {
 }
 
 div.RobuxAlert a {
-    color: Green;
+    color: #422763;
     vertical-align: middle;
 }
 
@@ -1383,7 +1438,7 @@ a.MessageAlertCaption {
 }
 
 a.RobuxAlertCaption {
-    color: Green;
+    color: #422763;
     vertical-align: middle;
     font-weight: bold;
 }
@@ -2566,7 +2621,7 @@ table.stats td.hed {
 }
 
 #CatalogContainer .PriceInRobux {
-    color: Green;
+    color: #422763;
     font-weight: bold;
 }
 
@@ -3682,7 +3737,7 @@ div.AspNet-TreeView ul {
 }
 
 #ItemContainer #Summary #RobuxPurchase #PriceInRobux {
-    color: Green;
+    color: #422763;
     float: left;
     font-weight: bold;
     line-height: 2em;
@@ -4795,61 +4850,6 @@ dt {
     margin: 0 auto;
     margin-top: 10px;
     width: 420px;
-}
-
-#UserPlaces .Place {
-  padding: 5px 10px;
-}
-#UserPlaces .Place .PlayStatus {
-  margin: 5px 0 0 0;
-  display: inline;
-}
-#UserPlaces .Place .PlayOptions {
-  margin: 5px 0 0 0;
-  display: inline;
-}
-#UserPlaces .Place .PlayOptions .Button {
-  border-color: #333;
-  color: #333;
-  margin: 0 3px;
-}
-#UserPlaces .Place .PlayOptions .Button:hover {
-  background-color: #6e99c9;
-  color: #fff;
-}
-#UserPlaces .Place .Statistics {
-  border-top: dashed 1px #555;
-  border-left: dashed 1px #555;
-  border-right: dashed 1px #555;
-  color: #555;
-  font: normal 1em / normal Verdana, sans-serif;
-  letter-spacing: 0.1em;
-  line-height: 1.7em;
-  margin: 0;
-  margin-top: 10px;
-}
-#UserPlaces .Place .Thumbnail {
-  border: solid 1px #555;
-  margin: 0;
-}
-#UserPlaces .Place .Description {
-  border: dashed 1px #555;
-  color: #555;
-  font: normal 1em / normal Verdana, sans-serif;
-  max-height: 75px;
-  line-height: 1.7em;
-  margin: 5px 0 0 0;
-  padding: 5px 10px;
-  overflow: auto;
-  text-align: left;
-}
-#UserPlaces .Place .Configuration {
-  border-bottom: dashed 1px #555;
-  border-left: dashed 1px #555;
-  border-right: dashed 1px #555;
-  font: normal 1em / normal Verdana, sans-serif;
-  line-height: 1.7em;
-  padding: 5px 10px;
 }
 
 #ConfigurePlaceContainer .PlaceAccessRow,
@@ -6687,7 +6687,7 @@ dt {
 }
 
 #UserContainer .PriceInRobux {
-    color: Green;
+    color: #422763;
     font-weight: bold;
 }
 
