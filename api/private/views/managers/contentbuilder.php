@@ -44,6 +44,24 @@ class ContentBuilderManager {
         return false;
     }
 
+    public function isGif(string $file): bool
+    {
+        if (!is_file($file) || !is_readable($file)) {
+            return false;
+        }
+
+        $fp = fopen($file, 'rb');
+        if (!$fp) {
+            return false;
+        }
+
+        if (fread($fp, 3) == "GIF") {
+            return true;
+        }
+
+        return false;
+    }
+
     public function handleUpload($contentId, $data, $content) {
         global $db, $user; 
         $type = $data->Type;
@@ -58,6 +76,10 @@ class ContentBuilderManager {
         $fileType = strtolower(pathinfo($file["name"], PATHINFO_EXTENSION));
 
         if (File::isWebp($file["tmp_name"])) {
+            return (object)["Error" => "Illegal file type: .png/.jpg, only!"];
+        }
+
+        if ($this->isGif($file["tmp_name"])) {
             return (object)["Error" => "Illegal file type: .png/.jpg, only!"];
         }
 

@@ -13,7 +13,8 @@ if (Server::isPost()) {
     if (isset($_POST['ctl00$cphRoblox$JoinGroup'])) {
         $group->addMember($user->getUserId());
     } elseif (isset($_POST['ctl00$cphRoblox$LeaveGroup'])) {
-        $group->kickMember($user->getUserId());
+        $user->removeGroup($gid);    
+        $group->kickMember($user->getUserId());  
     } elseif (isset($_POST['ctl00$cphRoblox$ClaimGroup'])) {
         $group->makeOwner($user->getUserId());
     } elseif (isset($_POST['ctl00$ctl00$cphRoblox$cphMyRobloxContent$GroupWallPane$NewPostButton_x'])) {

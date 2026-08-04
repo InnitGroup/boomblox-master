@@ -23,7 +23,7 @@ if ($publicView): ?>
     </p>
     <?php endif; ?>
     <p>
-        <span><?=(strip_tags($blurb))?></span>
+        <span style="word-break:break-all"><?=(strip_tags($blurb))?></span>
     </p>
 <?php else: ?>
 <div style="text-align: left">

@@ -1651,7 +1651,13 @@ class User {
 
     public function addGroup(int $groupId) {
         $groups = $this->getGroups();
-        array_push($groups, $groupId);
+        if (count($groups) >= 20) return;
+        if (count($groups) >= 10 && !$this->hasTBC()) return;
+        if (count($groups) >= 5 && !$this->hasBC()) return;
+        
+        if (!in_array($groupId, $groups, true)) {
+            $groups[] = $groupId;
+        }
 
         global $db;
         $stmt = "UPDATE users SET groups = :groups WHERE id = :userId";
@@ -1664,8 +1670,12 @@ class User {
     public function removeGroup(int $groupId) {
         $group = new Group($groupId);
         if (!$group->isInGroup($this->getUserId())) return;
+
         $groups = $this->getGroups();
-        unset($groups[array_search($groupId, $groups)]);
+        $index = array_search($groupId, $groups, true);
+        
+        unset($groups[$index]);
+        $groups = array_values($groups);
 
         global $db;
         $stmt = "UPDATE users SET groups = :groups WHERE id = :userId";

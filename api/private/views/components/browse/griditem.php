@@ -7,7 +7,7 @@
     <td>
         <a href="User.aspx?ID=<?=$userObj->getUserId()?>"><?=$userObj->getUsername()?></a>
         <br/>
-        <span><?=htmlspecialchars(Helper::debugString($userObj->getBlurb()))?></span>
+        <span style="word-break:break-all"><?=htmlspecialchars(Helper::debugString($userObj->getBlurb()))?></span>
     </td>
     <td>
         <span><?=$userObj->getOnline()?></span>

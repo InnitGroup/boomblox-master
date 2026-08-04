@@ -66,7 +66,7 @@ $playerThumb = $avatar->GetThumbnail(100, 100, "JPG");
                     <?php if (!empty($description)): ?>
                         <div id="ctl00_cphRoblox_DescriptionPanel">
                             <div id="DescriptionLabel">Description:</div>
-                            <div id="Description"><?=$description?></div>              
+                            <div id="Description" style="word-break:break-all"><?=$description?></div>              
                         </div>
                     <?php endif; ?>
 					<div id="ReportAbuse">

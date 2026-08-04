@@ -27,6 +27,23 @@ $october2009 = false;
 		<script type="text/javascript">
 			var SearchKeywordText = 'ctl00_cphRoblox_GroupSearchBar_SearchKeyword';
 		</script>
+		<?php 
+		$groups = $user->getGroups();
+		if (count($groups) > 0):
+		?>
+		<div class="StandardBox">
+			<table style="width:100%">
+				<tr>
+				<?php foreach ($groups as $l_groupId): $l_group = new Group($l_groupId); ?>
+					<td style="text-align:center">
+						<a href="group.aspx?gid=<?=$l_groupId?>"><img style="height:100px" src="https://t3.<?=url?>/<?=$l_group->emblemId()?>.png"></a>
+						<div><a href="group.aspx?gid=<?=$l_groupId?>"><?=htmlspecialchars(Helper::debugString($l_group->name()))?></a></div>
+					</td>
+				<?php endforeach; ?>
+				</tr>
+			</table>
+		</div>
+		<?php endif; ?>
 		<div class="Column1b">
             <?php if ($group->isInGroup($userId)): # OCTOBER 2009?>
             <div style="overflow:visible; padding: 10px 5px 10px 5px; width: 176px; float: left" class="StandardBox">
@@ -245,7 +262,7 @@ $october2009 = false;
                 <?php if ($group->isInGroup($userId) && (!$group->hasOwner())): ?>
 				<input type="submit" name="ctl00$cphRoblox$ClaimGroup" value="Claim Group" id="ctl00_cphRoblox_ClaimGroup"><br><br>
 				<input type="submit" name="ctl00$cphRoblox$LeaveGroup" value="Leave Group" id="ctl00_cphRoblox_LeaveGroup">
-				<?php elseif ($group->getRolesetId($userId) == 0): ?>
+				<?php elseif ($group->getRank($userId) == 255): ?>
 				<input type="submit" name="ctl00$cphRoblox$GroupAdmin" value="Group Admin" id="ctl00_cphRoblox_GroupAdmin"><br><br>
 				<input type="submit" name="ctl00$cphRoblox$LeaveGroup" value="Leave Group" id="ctl00_cphRoblox_LeaveGroup">
 				<?php elseif ($group->isInGroup($userId)): ?>
