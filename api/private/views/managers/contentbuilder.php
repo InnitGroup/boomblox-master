@@ -2,6 +2,48 @@
 
 class ContentBuilderManager {
     private $allowedFileTypes = ["png", "jpg", "jpeg"];
+
+    public function isAnimatedPng(string $file): bool
+    {
+        if (!is_file($file) || !is_readable($file)) {
+            return false;
+        }
+
+        $fp = fopen($file, 'rb');
+        if (!$fp) {
+            return false;
+        }
+
+        if (fread($fp, 8) !== "\x89PNG\r\n\x1a\n") {
+            fclose($fp);
+            return false;
+        }
+
+        while (!feof($fp)) {
+            $lengthData = fread($fp, 4);
+            if (strlen($lengthData) !== 4) {
+                break;
+            }
+
+            $length = unpack('N', $lengthData)[1];
+            $type = fread($fp, 4);
+
+            if ($type === 'acTL') {
+                fclose($fp);
+                return true;
+            }
+
+            fseek($fp, $length + 4, SEEK_CUR);
+
+            if ($type === 'IEND') {
+                break;
+            }
+        }
+
+        fclose($fp);
+        return false;
+    }
+
     public function handleUpload($contentId, $data, $content) {
         global $db, $user; 
         $type = $data->Type;
@@ -17,6 +59,12 @@ class ContentBuilderManager {
 
         if (File::isWebp($file["tmp_name"])) {
             return (object)["Error" => "Illegal file type: .png/.jpg, only!"];
+        }
+
+        if ($fileType == "png") {
+            if ($this->isAnimatedPng($file["tmp_name"])) {
+                return (object)["Error" => "Illegal file type: .png/.jpg, only!"];
+            }
         }
 
         if (!in_array($fileType, $this->allowedFileTypes)) {

@@ -522,7 +522,47 @@ class User {
         global $db;
         return $this->data["user"]["boombux"] >= $amount;
     }
+    public function hasBC() {
+        if ($this->joinDate(true) < 3) {
+            return $this->data["membership"]["bc"] >= 1;
+        }
 
+        $expires = new DateTime($this->data["membership"]["bcExpires"]);
+        $today = new DateTime();
+
+        if ($expires < $today) {
+            $this->takeBC();
+            return false;
+        }
+
+        return $this->data["membership"]["bc"] == 1;
+    }
+    public function hasTBC() {
+        if ($this->joinDate(true) < 3) {
+            return $this->data["membership"]["bc"] == 2;
+        }
+
+        $expires = new DateTime($this->data["membership"]["bcExpires"]);
+        $today = new DateTime();
+
+        if ($expires < $today) {
+            $this->takeBC();
+            return false;
+        }
+
+        return $this->data["membership"]["bc"] == 2;
+    }
+    public function bcExpires(bool $inDays = false) {
+        $expires = new DateTime($this->data["membership"]["bcExpires"]);
+        if ($inDays) {
+            $now = new DateTime;
+            $diff = $now->diff($expires);
+
+            return (int)$diff->format("%r%a");
+        }
+
+        return $expires->format("n/j/Y");
+    }
     public function giveBC(int $months = 1) {
         if (!$this->hasItem(118)) {
             $this->giveItem(118);
@@ -550,17 +590,6 @@ class User {
             return;
         }
 
-    }
-
-    public function getJoinDate(): object {
-        $joinDate = $this->joinDate();
-        $join = [
-            "Year" => $joinDate->format("Y"),
-            "Month" => $joinDate->format("m"),
-            "Day" => $joinDate->format("d")
-        ];
-
-        return (object)$join;
     }
 
     public function giveTBC(int $months = 1) {
@@ -606,6 +635,17 @@ class User {
         global $db;
         $stmt = "UPDATE users SET bc=0 WHERE id=:id";
         $db->execute($stmt, [":id" => $this->getUserId()]);
+    }
+
+    public function getJoinDate(): object {
+        $joinDate = $this->joinDate();
+        $join = [
+            "Year" => $joinDate->format("Y"),
+            "Month" => $joinDate->format("m"),
+            "Day" => $joinDate->format("d")
+        ];
+
+        return (object)$join;
     }
 
     public function getCharacterAppearance($isRender = false, array $includeGears = []) {
@@ -860,7 +900,7 @@ class User {
             return true;
         }
 
-        $testers = [91, 3, 123, 113, 126, 146, 85, 108, 100, 93, 73, 124, 86, 76, 79, 131, 135, 137, 132, 149, 142];
+        $testers = [91, 3, 123, 113, 126, 146, 85, 108, 100, 93, 73, 124, 86, 76, 79, 131, 135, 137, 132, 149, 142, 163, 127, 10, 160, 167, 155, 159];
         if (in_array($this->getUserId(), $testers)) {
             return true;
         }
@@ -1097,47 +1137,7 @@ class User {
         ]);
     }
     
-    public function hasBC() {
-        if ($this->joinDate(true) < 3) {
-            return $this->data["membership"]["bc"] == 1;
-        }
-
-        $expires = new DateTime($this->data["membership"]["bcExpires"]);
-        $today = new DateTime();
-
-        if ($expires < $today) {
-            $this->takeBC();
-            return false;
-        }
-
-        return $this->data["membership"]["bc"] == 1;
-    }
-    public function hasTBC() {
-        if ($this->joinDate(true) < 3) {
-            return $this->data["membership"]["bc"] == 2;
-        }
-
-        $expires = new DateTime($this->data["membership"]["bcExpires"]);
-        $today = new DateTime();
-
-        if ($expires < $today) {
-            $this->takeBC();
-            return false;
-        }
-
-        return $this->data["membership"]["bc"] == 2;
-    }
-    public function bcExpires(bool $inDays = false) {
-        $expires = new DateTime($this->data["membership"]["bcExpires"]);
-        if ($inDays) {
-            $now = new DateTime;
-            $diff = $now->diff($expires);
-
-            return (int)$diff->format("%r%a");
-        }
-
-        return $expires->format("n/j/Y");
-    }
+    
     public function isInviter() {
         return false; // temp
     }
