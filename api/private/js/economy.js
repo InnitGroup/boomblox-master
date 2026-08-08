@@ -5,7 +5,7 @@ class EconomyServices {
                 //throw new Error("Invalid trade amount");
             }
 
-            onTix(Number(amountToTrade * 9), context);
+            onTix(Number(amountToTrade * 8), context);
         } catch (error) {
             onError(error, context);
         }
@@ -17,7 +17,7 @@ class EconomyServices {
                 //throw new Error("Invalid trade amount");
             }
 
-            onBux(Math.floor(Number(amountToTrade / 9)), context);
+            onBux(Math.floor(Number(amountToTrade / 8)), context);
         } catch (error) {
             onError(error, context);
         }

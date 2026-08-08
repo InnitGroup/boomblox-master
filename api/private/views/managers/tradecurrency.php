@@ -1,6 +1,6 @@
 <?php
 class TradeCurrencyManager {
-    private int $tixPerBux = 9;
+    private int $tixPerBux = 8;
     # calculate the returned amount based on the amount & currency
     public function calculate($amount, $currency) {
         if ($amount <= 0) {

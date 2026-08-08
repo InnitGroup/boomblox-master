@@ -545,7 +545,7 @@ class UserManager {
     public function loadFavoritesPane() {
         $view = (int)$this->publicView;
         echo '
-            <div style="clear:both; margin-bottom:10px">
+            <div id="FavoritesPane" style="clear:both; margin-bottom:10px">
                 <div class="StandardBoxHeader" style="height:20px;">Favorites</div>
                 <div>
                     <div class="StandardBox">
