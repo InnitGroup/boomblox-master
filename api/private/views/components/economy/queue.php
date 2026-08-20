@@ -3,7 +3,7 @@ global $db, $user;
 
 $stmt = "SELECT COUNT(*) AS admins FROM users WHERE `level` > 2";
 $result = $db->execute($stmt);
-$admins = $result->fetch(PDO::FETCH_ASSOC)["admins"];
+$admins = 4; //$result->fetch(PDO::FETCH_ASSOC)["admins"];
 $required = Helper::is_even(round(abs($admins/2))) ? round(abs($admins/2))+1 : round(abs($admins/2));
 ?>
 

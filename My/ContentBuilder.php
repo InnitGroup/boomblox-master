@@ -10,9 +10,11 @@ $contentBuilder = new ContentBuilderManager;
 $contentId = (int)$_GET["ContentType"];
 $content = Helper::itemType($contentId);
 $error = null;
+$invalidTypes = [9, 10, 8, 17, 18, 19];
 
-if (!$content) {header("Location: /My/ContentBuilder.aspx?ContentType=1");}
-if (!$content->IsContent) {header("Location: /My/ContentBuilder.aspx?ContentType=1");}
+if (in_array($contentId, $invalidTypes)) {exit(header("Location: /My/ContentBuilder.aspx?ContentType=1"));}
+if (!$content) {exit(header("Location: /My/ContentBuilder.aspx?ContentType=1"));}
+if (!$content->IsContent) {exit(header("Location: /My/ContentBuilder.aspx?ContentType=1"));}
 
 if (Server::isPost()) {
     $result = $contentBuilder->handleUpload($contentId, $content, $_POST);
